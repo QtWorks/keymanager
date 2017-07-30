@@ -11,6 +11,7 @@ class LayoutMgr;
 }
 class KeyBlock;
 class CollapsibleStack;
+class CollapsiblePanel;
 
 class LayoutMgr : public QWidget
 {
@@ -36,7 +37,7 @@ public:
 
 private:
     //! Create key block
-    KeyBlock *createKeyBlock(const CXMLNode &xKeyBlock, QString &sBlockName);
+    KeyBlock *createKeyBlock(const CXMLNode &xKeyBlock, QString &sKeyName, bool &bHasParameters);
 
     //! Find associated parameter variable
     QString findAssociatedParameterVariable(QWidget *pWidget) const;
@@ -65,11 +66,14 @@ public slots:
     //! A radio button was clicked
     void onRadioButtonClicked();
 
-    //! Close all key blocks in menu 1
+    //! Expand all key blocks in menu 1
     void onExpandAll();
 
-    //! Open all key blocks in menu 1
+    //! Collapse all key blocks in menu 1
     void onCollapseAll();
+
+    //! Panel selected
+    void onPanelSelected(CollapsiblePanel *pPanel);
 
 signals:
     //-------------------------------------------------------------------------------------------------

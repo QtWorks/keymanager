@@ -68,7 +68,8 @@ SOURCES += main.cpp\
     keyblock.cpp \
     filepicker.cpp \
     layoutmgr.cpp \
-    scriptmgr.cpp
+    scriptmgr.cpp \
+    captionlabel.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblepanel.h \
@@ -83,12 +84,14 @@ HEADERS  += mainwindow.h \
     keyblock.h \
     filepicker.h \
     layoutmgr.h \
-    scriptmgr.h
+    scriptmgr.h \
+    captionlabel.h
 
 FORMS    += mainwindow.ui \
     keyblock.ui \
     filepicker.ui \
-    layoutmgr.ui
+    layoutmgr.ui \
+    captionlabel.ui
 
 DISTFILES +=
 

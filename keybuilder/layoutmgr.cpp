@@ -9,6 +9,7 @@
 #include "ui_layoutmgr.h"
 #include "keyblock.h"
 #include "collapsiblestack.h"
+#include "collapsiblepanel.h"
 #include "constants.h"
 #include "filepicker.h"
 #define MAX_KEY_PER_STACK 5
@@ -32,10 +33,11 @@ LayoutMgr::~LayoutMgr()
 
 void LayoutMgr::addKeyBlock(const CXMLNode &xKeyBlock)
 {
-    QString sBlockName("");
-    KeyBlock *pNewKeyBlock = createKeyBlock(xKeyBlock, sBlockName);
-    if (sBlockName.isEmpty())
-        sBlockName = "NO NAME";
+    QString sKeyName("");
+    bool bHasParameters = true;
+    KeyBlock *pNewKeyBlock = createKeyBlock(xKeyBlock, sKeyName, bHasParameters);
+    if (sKeyName.isEmpty())
+        sKeyName = "NO NAME";
 
     CollapsibleStack *pTargetStack = nullptr;
     int iStackIndex = m_nKeyBlocks/MAX_KEY_PER_STACK;
@@ -44,25 +46,31 @@ void LayoutMgr::addKeyBlock(const CXMLNode &xKeyBlock)
     else
     {
         pTargetStack = new CollapsibleStack(this);
+        connect(pTargetStack, &CollapsibleStack::panelSelected, this, &LayoutMgr::onPanelSelected);
         m_vStacks << pTargetStack;
         ui->horizontalLayout->addWidget(pTargetStack);
         ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
     }
-    pTargetStack->addPanel(sBlockName, pNewKeyBlock);
+    pTargetStack->addPanel(sKeyName, pNewKeyBlock, bHasParameters);
     m_nKeyBlocks++;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-KeyBlock *LayoutMgr::createKeyBlock(const CXMLNode &xKeyBlock, QString &sBlockName)
+KeyBlock *LayoutMgr::createKeyBlock(const CXMLNode &xKeyBlock, QString &sKeyName, bool &bHasParameters)
 {
     // Populate key block with parameters
     QVector<CXMLNode> vParameterNodes = xKeyBlock.getNodesByTagName(TAG_PARAMETER);
-    bool bHasParameters = !vParameterNodes.isEmpty();
+    bHasParameters = !vParameterNodes.isEmpty();
 
     // Build key block
-    sBlockName = xKeyBlock.attributes()[PROPERTY_NAME];
-    KeyBlock *pKeyBlock = bHasParameters ? new KeyBlock() : nullptr;
+    sKeyName = xKeyBlock.attributes()[PROPERTY_NAME];
+    KeyBlock *pKeyBlock = new KeyBlock();
+    pKeyBlock->setName(sKeyName);
+    if (!bHasParameters) {
+        pKeyBlock->setFixedSize(0, 0);
+        pKeyBlock->setVisible(false);
+    }
 
     foreach (CXMLNode xParameter, vParameterNodes)
     {
@@ -178,4 +186,14 @@ void LayoutMgr::onCollapseAll()
         pStack->expandAll();
 }
 
+//-------------------------------------------------------------------------------------------------
 
+void LayoutMgr::onPanelSelected(CollapsiblePanel *pCurrentPanel)
+{
+    foreach (CollapsibleStack *pStack, m_vStacks)
+    {
+        QVector<CollapsiblePanel *> vPanels = pStack->panels();
+        foreach (CollapsiblePanel *pPanel, vPanels)
+            pPanel->setCurrent(pPanel == pCurrentPanel);
+    }
+}

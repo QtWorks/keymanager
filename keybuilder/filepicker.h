@@ -21,7 +21,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit FilePicker(const QString &sFileExtension, QWidget *parent = 0);
+    explicit FilePicker(const QString &sFileExtension, QWidget *parent=nullptr);
 
     //! Destructor
     ~FilePicker();

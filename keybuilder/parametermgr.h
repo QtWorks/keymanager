@@ -19,7 +19,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ParameterMgr(QObject *parent = 0);
+    explicit ParameterMgr(QObject *parent=nullptr);
 
     //! Destructor
     ~ParameterMgr();

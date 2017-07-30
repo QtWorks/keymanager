@@ -31,6 +31,9 @@ bool ParameterMgr::loadMenu1Parameters()
     if (m_xMenu1Node.nodes().isEmpty())
         return false;
 
+    // This describes the type of key to be created
+    m_hParameters[PARAMETER_TYPE_OF_KEY] = new Parameter();
+
     // Retrieve Key nodes
     QVector<CXMLNode> vKeyNodes = m_xMenu1Node.getNodesByTagName(TAG_KEY);
     foreach (CXMLNode xKeyNode, vKeyNodes)
@@ -38,19 +41,19 @@ bool ParameterMgr::loadMenu1Parameters()
         QVector<CXMLNode> vParameterNodes = xKeyNode.getNodesByTagName(TAG_PARAMETER);
         foreach (CXMLNode xParameterNode, vParameterNodes)
         {
-            QString sParameterName = xParameterNode.attributes()["name"];
+            QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
             if (sParameterName.simplified().isEmpty())
             {
                 qDebug() << "--- FIND A PARAMETER WITH AN EMPTY NAME!";
                 continue;
             }
-            QString sParameterType = xParameterNode.attributes()["type"];
+            QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
             if (sParameterType.simplified().isEmpty())
             {
                 qDebug() << "--- FIND A PARAMETER WITH AN UNDEFINED TYPE!";
                 continue;
             }
-            QString sParameterVariable = xParameterNode.attributes()["variable"];
+            QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
             if (sParameterVariable.simplified().isEmpty())
             {
                 qDebug() << "--- FIND A PARAMETER WITH AN UNDEFINED VARIABLE!";

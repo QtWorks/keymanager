@@ -1,0 +1,9 @@
+TOTO = %qt_dimple_laser_length_qt%
+
+TATA = %qt_dimple_laser_width_qt%
+
+TUTU = %qt_dimple_laser_thickness_qt%
+
+TITI = %qt_dimple_laser_dxf_name_qt%
+
+ZOZO = %qt_dimple_laser_stl_name_qt%

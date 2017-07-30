@@ -4,6 +4,7 @@
 // Application
 #include "collapsiblestack.h"
 #include "collapsiblepanel.h"
+#include "keyblock.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -24,15 +25,21 @@ CollapsibleStack::~CollapsibleStack()
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsiblePanel *CollapsibleStack::addPanel(const QString &sCaption, QWidget *pWidget)
+const QVector<CollapsiblePanel *> &CollapsibleStack::panels() const
 {
-    CollapsiblePanel *pPanel = new CollapsiblePanel(sCaption, (pWidget != nullptr), this);
-    if (pWidget != nullptr)
-        pPanel->setWidget(pWidget);
+    return m_vPanels;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleStack::addPanel(const QString &sCaption, QWidget *pKeyBlock, bool bHasParameters)
+{
+    CollapsiblePanel *pPanel = new CollapsiblePanel(sCaption, bHasParameters, this);
+    connect(pPanel, &CollapsiblePanel::panelSelected, this, &CollapsibleStack::onPanelSelected);
+    pPanel->setWidget(pKeyBlock);
     m_pLayout->addWidget(pPanel);
     m_pLayout->setAlignment(pPanel, Qt::AlignTop);
     m_vPanels << pPanel;
-    return pPanel;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -69,4 +76,13 @@ bool CollapsibleStack::allCollapsed() const
             return false;
     }
     return true;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleStack::onPanelSelected()
+{
+    CollapsiblePanel *pSelectedPanel = dynamic_cast<CollapsiblePanel *>(sender());
+    if (pSelectedPanel != nullptr)
+        emit panelSelected(pSelectedPanel);
 }

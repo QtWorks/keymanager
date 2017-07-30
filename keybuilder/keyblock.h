@@ -17,7 +17,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit KeyBlock(QWidget *parent = 0);
+    explicit KeyBlock(QWidget *parent=nullptr);
 
     //! Destructor
     ~KeyBlock();

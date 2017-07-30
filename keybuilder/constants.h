@@ -16,4 +16,6 @@
 #define WIDGET_FILE_PICKER "filepicker"
 #define WIDGET_RADIO_BUTTON "radio"
 
+#define PARAMETER_TYPE_OF_KEY "qt_type_of_key_qt"
+
 #endif // CONSTANTS_H

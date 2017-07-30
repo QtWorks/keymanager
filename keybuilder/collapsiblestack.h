@@ -24,11 +24,18 @@ public:
     ~CollapsibleStack();
 
     //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return list of panels
+    const QVector<CollapsiblePanel *> &panels() const;
+
+    //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
     //! Add panel
-    CollapsiblePanel *addPanel(const QString &sCaption, QWidget *pWidget);
+    void addPanel(const QString &sCaption, QWidget *pKeyBlock, bool bHasParameters);
 
     //! Expand all
     void expandAll();
@@ -45,6 +52,22 @@ private:
 
     //! Panels
     QVector<CollapsiblePanel *> m_vPanels;
+
+public slots:
+    //-------------------------------------------------------------------------------------------------
+    // Slots
+    //-------------------------------------------------------------------------------------------------
+
+    //! Panel selected
+    void onPanelSelected();
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! Panel selected
+    void panelSelected(CollapsiblePanel *pPanel);
 };
 
 #endif // COLLAPSIBLESTACK_H
