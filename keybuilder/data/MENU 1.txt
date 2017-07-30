@@ -1,0 +1,94 @@
+// LES COMMENTAIRES APRES UN DOUBLE SLASH SONT POUR LE DEVELOPPEMENT
+// LES COMMENTAIRES ENTRE PARENTHESES SONT A AFFICHER SUR L'UI POUR L'UTILISATEUR
+
+TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
+[OPEN ALL]
+[CLOSE ALL]
+
+[]REGULAR KEY // qt_type_of_key_qt="regular" //exclusive
+	LENGTH[ ] //qt_regular_length_qt
+	HEIGHT[ ] //qt_regular_height_qt
+	THICKNESS[ ] //qt_regular_thickness_qt
+	[BROWSE FOR A DXF] //"qt_regular_dxf_name_qt" //exclusive with next line
+	[XOR BROWSE FOR A STL] //"qt_regular_stl_name_qt"
+	MANDATORY: LENGTH, HEIGHT
+	
+[]DIMPLE/LASER KEY	// qt_type_of_key_qt="dimple_laser" //exclusive
+	LENGTH[ ] //qt_dimple_laser_length_qt
+	WIDTH[ ] //qt_dimple_laser_width_qt
+	THICKNESS[ ] //qt_dimple_laser_thickness_qt
+	[BROWSE FOR A DXF] //"qt_dimple_laser_dxf_name_qt" //exclusive with next line
+	[BROWSE FOR A STL] //"qt_dimple_laser_stl_name_qt"
+	
+[]ROUND PUMP/TUBULAR		// qt_type_of_key_qt="round_pump" //exclusive
+	LENGTH[ ] //qt_round_pump_length_qt	
+	DIAMETER[ ] //qt_round_pump_diameter_qt
+	NUMBER OF RAISED WINGS [ ] //qt_round_pump_number_of_raised_wings_qt
+	RAISED DIAMETER[ ] //qt_round_pump_raised_diameter_qt
+	RAISED LENGTH FROM TIP[ ] //qt_round_pump_raised_length_from_tip_qt
+	RAISED THICKNESS[ ] //qt_round_pump_raised_thickness_qt
+	TIP HOLE DIAMETER[ ] //qt_round_pump_tip_hole_diameter_qt
+	TIP HOLE DEPTH[ ] //qt_round_pump_tip_hole_depth_qt
+	OUTWARD TENSIONER LENGTH[ ] //qt_round_pump_outward_tensioner_length_qt
+	OUTWARD TENSIONER HEIGHT[ ] (From the back of the back wing) //qt_round_pump_outward_tensioner_height_qt
+	OUTWARD TENSIONER THICKNESS[ ] //qt_round_pump_outward_tensioner_thickness_qt
+	INWARD TENSIONER LENGTH[ ] //qt_round_pump_inward_tensioner_length_qt
+	INWARD TENSIONER HEIGHT[ ] //qt_round_pump_inward_tensioner_height_qt
+	INWARD TENSIONER THICKNESS[ ] //qt_round_pump_inward_tensioner_thickness_qt
+	
+[]BROWSE FOR A ROUND PUMP BLANK STL		// qt_type_of_key_qt="round_stl" //exclusive
+	[BROWSE FOR A STL] //"qt_round_stl_name_qt"
+	ROTATION
+	X[ ] Y[ ] Z[ ] //qt_round_stl_rx_qt qt_round_stl_ry_qt qt_round_stl_rz_qt
+	TRANSLATE
+	X[ ] Y[ ] Z[ ] //qt_round_stl_tx_qt qt_round_stl_ty_qt qt_round_stl_tz_qt
+	
+[]LEVER LOCK		// qt_type_of_key_qt="lever_simple" //exclusive
+	BODY LENGTH[ ] //qt_lever_simple_body_length_qt
+	BODY DIAMETER[ ] //qt_lever_simple_body_diameter_qt
+	BLADE LENGTH[ ] //qt_lever_simple_blade_length_qt
+	BLADE HEIGHT FROM BACK[ ] //qt_lever_simple_blade_height_qt
+	BLADE THICKNESS[ ] //qt_lever_simple_blade_thickness_qt
+	TIP LENGTH[ ] //qt_lever_simple_tip_length_qt
+	TIP HOLE DIAMETER[ ] //qt_lever_simple_tip_hole_diameter_qt
+	TIP HOLE DEPTH[ ] //qt_lever_simple_tip_hole_depth_qt
+	
+[]LEVER LOCK DOUBLE BITTED		// qt_type_of_key_qt="lever_double" //exclusive
+	BODY LENGTH[ ] //qt_lever_double_body_length_qt
+	BODY DIAMETER[ ] //qt_lever_double_body_diameter_qt
+	BLADE LENGTH[ ] //qt_lever_double_blade_length_qt
+	BLADE HEIGHT FROM MIDDLE[ ] //qt_lever_double_blade_height_qt
+	BLADE OFFSET[ ] //qt_lever_double_blade_offset_qt
+	BLADE THICKNESS[ ] //qt_lever_double_blade_thickness_qt
+	TIP LENGTH[ ] //qt_lever_double_tip_length_qt
+	TIP HOLE DIAMETER[ ] //qt_lever_double_tip_hole_diameter_qt
+	TIP HOLE DEPTH[ ] //qt_lever_double_tip_hole_depth_qt
+	
+[]ABLOY CLASSIC		// qt_type_of_key_qt="abloy_classic" //exclusive
+	LENGTH[ ] //DEFAULT IS 30 //qt_abloy_classic_length_qt
+	HEIGHT[ ] //DEFAULT IS 6 //qt_abloy_classic_height_qt
+	THICKNESS[ ] //DEFAULT IS 3 // qt_abloy_classic_thickness_qt
+	[BROWSE FOR A DXF] //"qt_abloy_classic_dxf_name_qt" //exclusive with next line
+	[BROWSE FOR A STL] //"qt_abloy_classic_stl_name_qt"
+	
+[]ABLOY DISKLOCK PRO		// qt_type_of_key_qt="abloy_disklock" //exclusive
+
+[]ABLOY PROTEC		// qt_type_of_key_qt="abloy_protec" //exclusive
+
+[]ABUS PLUS		// qt_type_of_key_qt="abus_plus" //exclusive
+
+[]AXI HOME		// qt_type_of_key_qt="axi_home" //exclusive
+	[]RIGHT []LEFT //qt_axi_home_model_qt="RIGHT" or qt_axi_home_model_qt="LEFT"
+	
+[]FICHET 787		// qt_type_of_key_qt="fichet_787" //exclusive
+
+[]EXPERT : BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)		// qt_type_of_key_qt="import_stl" //exclusive
+	[BROWSE FOR A STL] //"qt_expert_stl_name_qt"
+	[]SET DIMENSIONS //qt_expert_stl_set_dimensions_qt="YES" or qt_expert_stl_set_dimensions_qt="NO"
+		IF YES
+		DIMENSIONS
+		X[ ] Y[ ] Z[ ] //qt_expert_stl_dx_qt qt_expert_stl_dy_qt qt_expert_stl_dz_qt
+		ROTATION
+		X[ ] Y[ ] Z[ ] //qt_expert_stl_rx_qt qt_expert_stl_ry_qt qt_expert_stl_rz_qt
+		TRANSLATE
+		X[ ] Y[ ] Z[ ] //qt_expert_stl_tx_qt qt_expert_stl_ty_qt qt_expert_stl_tz_qt

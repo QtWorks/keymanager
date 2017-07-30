@@ -1,0 +1,12 @@
+#ifndef STLLIBRARY_GLOBAL_H
+#define STLLIBRARY_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(STLLIBRARY_LIBRARY)
+#  define STLLIBRARYSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define STLLIBRARYSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // STLLIBRARY_GLOBAL_H

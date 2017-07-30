@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/menu1.xml</file>
+    </qresource>
+</RCC>
