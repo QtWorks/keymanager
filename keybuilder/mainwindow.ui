@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -57,7 +57,7 @@
         <string>Menu 1</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="2" column="0">
+        <item row="3" column="0">
          <widget class="QScrollArea" name="scrollArea">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -68,7 +68,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>437</height>
+             <height>408</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
@@ -79,6 +79,13 @@
           </widget>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="closeAllButtonMenu1">
+          <property name="text">
+           <string>CLOSE ALL</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="openAllButtonMenu1">
           <property name="text">
@@ -86,10 +93,10 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="closeAllButtonMenu1">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="generateScriptButton">
           <property name="text">
-           <string>CLOSE ALL</string>
+           <string>GENERATE SCRIPT</string>
           </property>
          </widget>
         </item>

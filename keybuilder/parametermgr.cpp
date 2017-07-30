@@ -5,6 +5,7 @@
 #include "parametermgr.h"
 #include "parameter.h"
 #include "constants.h"
+#include "scriptmgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -81,6 +82,16 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
     Parameter *pParameter = m_hParameters[sParameterName];
     if (pParameter != nullptr)
         pParameter->setValue(sParameterValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterMgr::generateScript()
+{
+    QString sInFile = "D:/projects/keymanager/keybuilder/data/testdata_in.txt";
+    QString sOutFile = "D:/projects/keymanager/keybuilder/data/testdata_out.txt";
+
+    ScriptMgr::generateScript(sInFile, sOutFile, m_hParameters.values());
 }
 
 //-------------------------------------------------------------------------------------------------

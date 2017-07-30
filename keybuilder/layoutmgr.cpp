@@ -177,3 +177,5 @@ void LayoutMgr::onCollapseAll()
     foreach (CollapsibleStack *pStack, m_vStacks)
         pStack->expandAll();
 }
+
+

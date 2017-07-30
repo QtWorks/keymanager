@@ -58,3 +58,10 @@ void Controller::onParameterValueChanged(const QString &sParameterName, const QS
 {
     m_pParameterMgr->setParameterValue(sParameterName, sParameterValue);
 }
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::onGenerateScript()
+{
+    m_pParameterMgr->generateScript();
+}

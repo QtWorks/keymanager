@@ -37,6 +37,9 @@ public:
     //! Set parameter value
     void setParameterValue(const QString &sParameterName, const QString &sParameterValue);
 
+    //! Generate script
+    void generateScript();
+
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------

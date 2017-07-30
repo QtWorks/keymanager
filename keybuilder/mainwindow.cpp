@@ -18,10 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Add STL Window
     ui->stlViewerLayout->addWidget(new STLWindow);
-
-    // Collapse all
-    connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onExpandAll);
-    connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onCollapseAll);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -42,6 +38,13 @@ void MainWindow::setController(Controller *pController)
 
     // Build menu 2 tab
     buildMenu2Tab(m_pController->menu2Node());
+
+    // Collapse/Expand all
+    connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onExpandAll);
+    connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onCollapseAll);
+
+    // Generate script
+    connect(ui->generateScriptButton, &QPushButton::clicked, m_pController, &Controller::onGenerateScript);
 
     // Listen parameter change
     connect(ui->layoutMgr, &LayoutMgr::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);

@@ -57,6 +57,9 @@ public slots:
 
     //! Parameter value changed
     void onParameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
+
+    //! Generate script
+    void onGenerateScript();
 };
 
 #endif // CONTROLLER_H
