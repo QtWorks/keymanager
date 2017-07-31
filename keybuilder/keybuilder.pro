@@ -58,7 +58,6 @@ win32 {
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    collapsiblepanel.cpp \
     collapsiblestack.cpp \
     parameter.cpp \
     cxmlnode.cpp \
@@ -69,10 +68,10 @@ SOURCES += main.cpp\
     filepicker.cpp \
     layoutmgr.cpp \
     scriptmgr.cpp \
-    captionlabel.cpp
+    captionlabel.cpp \
+    collpasibleblock.cpp
 
 HEADERS  += mainwindow.h \
-    collapsiblepanel.h \
     collapsiblestack.h \
     parameter.h \
     cxmlnode.h \
@@ -85,7 +84,8 @@ HEADERS  += mainwindow.h \
     filepicker.h \
     layoutmgr.h \
     scriptmgr.h \
-    captionlabel.h
+    captionlabel.h \
+    collapsibleblock.h
 
 FORMS    += mainwindow.ui \
     keyblock.ui \

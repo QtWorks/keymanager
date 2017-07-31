@@ -65,8 +65,8 @@ signals:
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Panel selected
-    void panelSelected();
+    //! Block selected
+    void blockSelected();
 
     //! Toggle collapsed state
     void toggleCollapsedState();

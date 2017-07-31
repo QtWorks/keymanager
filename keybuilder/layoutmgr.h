@@ -9,7 +9,7 @@ namespace Ui {
 class LayoutMgr;
 }
 class CollapsibleStack;
-class CollapsiblePanel;
+class CollapsibleBlock;
 
 class LayoutMgr : public QWidget
 {
@@ -31,7 +31,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add key block
-    CollapsiblePanel *addBlock(QWidget *pBlock, const QString &sName);
+    CollapsibleBlock *addBlock(QWidget *pBlock, const QString &sName, bool bHasParameters);
 
 private:
     //! UI
@@ -54,8 +54,8 @@ public slots:
     //! Collapse all key blocks in menu 1
     void onCollapseAll();
 
-    //! Panel selected
-    void onPanelSelected(CollapsiblePanel *pPanel);
+    //! Block selected
+    void onBlockSelected(CollapsibleBlock *pBlock);
 };
 
 #endif // LAYOUTMGR_H

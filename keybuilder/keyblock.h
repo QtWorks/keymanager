@@ -39,6 +39,9 @@ public:
     //! Set name
     void setName(const QString &sName);
 
+    //! Has parameters?
+    bool hasParameters() const;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -72,6 +75,9 @@ private:
 
     //! Widget hash
     QHash<QString, QVector<QWidget *> > m_hWidgetHash;
+
+    //! Has parameters?
+    bool m_bHasParameters;
 
 signals:
     //! Parameter value changed

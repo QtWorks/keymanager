@@ -7,12 +7,12 @@
 #include <stdexcept>
 
 // Application
-#include "collapsiblepanel.h"
+#include "collapsibleblock.h"
 #include "captionlabel.h"
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsiblePanel::CollapsiblePanel(const QString &sCaption, bool bHasParameters, QWidget *parent)
+CollapsibleBlock::CollapsibleBlock(const QString &sCaption, bool bHasParameters, QWidget *parent)
     : QWidget(parent), m_pWidget(nullptr), m_bHasParameters(bHasParameters), m_bIsCollapsed(true)
 {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -21,28 +21,28 @@ CollapsiblePanel::CollapsiblePanel(const QString &sCaption, bool bHasParameters,
     m_pLabel->setCaption(sCaption);
     m_pLabel->setExpandable(bHasParameters);
     m_pLayout->addWidget(m_pLabel);
-    connect(m_pLabel, &CaptionLabel::panelSelected, this, &CollapsiblePanel::panelSelected);
-    connect(this, &CollapsiblePanel::stateChanged, m_pLabel, &CaptionLabel::onStateChanged);
-    connect(m_pLabel, &CaptionLabel::toggleCollapsedState, this, &CollapsiblePanel::onToggleCollapsedState);
+    connect(m_pLabel, &CaptionLabel::blockSelected, this, &CollapsibleBlock::blockSelected);
+    connect(this, &CollapsibleBlock::stateChanged, m_pLabel, &CaptionLabel::onStateChanged);
+    connect(m_pLabel, &CaptionLabel::toggleCollapsedState, this, &CollapsibleBlock::onToggleCollapsedState);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsiblePanel::~CollapsiblePanel()
+CollapsibleBlock::~CollapsibleBlock()
 {
 
 }
 
 //-------------------------------------------------------------------------------------------------
 
-QWidget *CollapsiblePanel::widget() const
+QWidget *CollapsibleBlock::widget() const
 {
     return m_pWidget;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsiblePanel::setWidget(QWidget *widget)
+void CollapsibleBlock::setWidget(QWidget *widget)
 {
     if (m_pWidget == nullptr)
     {
@@ -56,7 +56,7 @@ void CollapsiblePanel::setWidget(QWidget *widget)
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsiblePanel::onCollapse(bool bCollapse)
+void CollapsibleBlock::onCollapse(bool bCollapse)
 {
     if (!m_pWidget || !m_bHasParameters)
         return;
@@ -67,21 +67,21 @@ void CollapsiblePanel::onCollapse(bool bCollapse)
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsiblePanel::onToggleCollapsedState()
+void CollapsibleBlock::onToggleCollapsedState()
 {
     onCollapse(!m_bIsCollapsed);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-bool CollapsiblePanel::isCollapsed() const
+bool CollapsibleBlock::isCollapsed() const
 {
     return m_bIsCollapsed;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsiblePanel::setCurrent(bool bCurrent)
+void CollapsibleBlock::setCurrent(bool bCurrent)
 {
     m_pLabel->setCurrent(bCurrent);
     m_pLabel->update();

@@ -1,5 +1,5 @@
-#ifndef COLLAPSIBLEPANEL_H_
-#define COLLAPSIBLEPANEL_H_
+#ifndef COLLAPSIBLEBLOCK_H
+#define COLLAPSIBLEBLOCK_H
 
 // Qt
 #include <QWidget>
@@ -9,7 +9,7 @@ class QVBoxLayout;
 // Application
 class CaptionLabel;
 
-class CollapsiblePanel : public QWidget
+class CollapsibleBlock : public QWidget
 {
     Q_OBJECT
 
@@ -19,10 +19,10 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    CollapsiblePanel(const QString &sCaption, bool bHasParameters=true, QWidget *parent=nullptr);
+    CollapsibleBlock(const QString &sCaption, bool bHasParameters, QWidget *parent=nullptr);
 
     //! Destructor
-    ~CollapsiblePanel();
+    ~CollapsibleBlock();
 
     //-------------------------------------------------------------------------------------------------
     // Getters
@@ -76,11 +76,11 @@ signals:
     // Slots
     //-------------------------------------------------------------------------------------------------
 
-    //! Panel selected
-    void panelSelected();
+    //! Block selected
+    void blockSelected();
 
     //! State changed (collapsed or expanded)
     void stateChanged(bool bCollapsed);
 };
 
-#endif /*COLLAPSIBLEPANEL_H_*/
+#endif /*COLLAPSIBLEBLOCK_H*/

@@ -5,7 +5,7 @@
 #include <QWidget>
 
 // Application
-class CollapsiblePanel;
+class CollapsibleBlock;
 class QVBoxLayout;
 
 class CollapsibleStack : public QWidget
@@ -27,15 +27,15 @@ public:
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Return list of panels
-    const QVector<CollapsiblePanel *> &panels() const;
+    //! Return list of blocks
+    const QVector<CollapsibleBlock *> &blocks() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Add panel
-    CollapsiblePanel *addPanel(const QString &sCaption, QWidget *pKeyBlock);
+    //! Add block
+    CollapsibleBlock *setWidget(const QString &sCaption, QWidget *pWidget, bool bHasParameters);
 
     //! Expand all
     void expandAll();
@@ -50,24 +50,24 @@ private:
     //! Own layout
     QVBoxLayout *m_pLayout;
 
-    //! Panels
-    QVector<CollapsiblePanel *> m_vPanels;
+    //! Blocks
+    QVector<CollapsibleBlock *> m_vBlocks;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
     //-------------------------------------------------------------------------------------------------
 
-    //! Panel selected
-    void onPanelSelected();
+    //! Block selected
+    void onBlockSelected();
 
 signals:
     //-------------------------------------------------------------------------------------------------
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Panel selected
-    void panelSelected(CollapsiblePanel *pPanel);
+    //! Block selected
+    void blockSelected(CollapsibleBlock *pBlock);
 };
 
 #endif // COLLAPSIBLESTACK_H

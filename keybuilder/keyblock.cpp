@@ -11,7 +11,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-KeyBlock::KeyBlock(const CXMLNode &xKeyBlock, QWidget *parent) : QWidget(parent), ui(new Ui::KeyBlock)
+KeyBlock::KeyBlock(const CXMLNode &xKeyBlock, QWidget *parent) : QWidget(parent), ui(new Ui::KeyBlock),
+    m_bHasParameters(false)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -31,11 +32,11 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
 {
     // Populate key block with parameters
     QVector<CXMLNode> vParameterNodes = xKeyBlock.getNodesByTagName(TAG_PARAMETER);
-    bool bHasParameters = !vParameterNodes.isEmpty();
+    m_bHasParameters = !vParameterNodes.isEmpty();
 
     // Build key block
     setName(xKeyBlock.attributes()[PROPERTY_NAME]);
-    if (!bHasParameters) {
+    if (!m_bHasParameters) {
         setFixedSize(0, 0);
         setVisible(false);
     }
@@ -171,4 +172,11 @@ const QString &KeyBlock::name() const
 void KeyBlock::setName(const QString &sName)
 {
     m_sName = sName;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool KeyBlock::hasParameters() const
+{
+    return m_bHasParameters;
 }

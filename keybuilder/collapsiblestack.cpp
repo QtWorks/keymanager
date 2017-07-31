@@ -3,7 +3,7 @@
 
 // Application
 #include "collapsiblestack.h"
-#include "collapsiblepanel.h"
+#include "collapsibleblock.h"
 #include "keyblock.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -25,32 +25,32 @@ CollapsibleStack::~CollapsibleStack()
 
 //-------------------------------------------------------------------------------------------------
 
-const QVector<CollapsiblePanel *> &CollapsibleStack::panels() const
+const QVector<CollapsibleBlock *> &CollapsibleStack::blocks() const
 {
-    return m_vPanels;
+    return m_vBlocks;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsiblePanel *CollapsibleStack::addPanel(const QString &sCaption, QWidget *pKeyBlock)
+CollapsibleBlock *CollapsibleStack::setWidget(const QString &sCaption, QWidget *pWidget, bool bHasParameters)
 {
-    CollapsiblePanel *pPanel = new CollapsiblePanel(sCaption, this);
-    connect(pPanel, &CollapsiblePanel::panelSelected, this, &CollapsibleStack::onPanelSelected);
-    pPanel->setWidget(pKeyBlock);
-    m_pLayout->addWidget(pPanel);
-    m_pLayout->setAlignment(pPanel, Qt::AlignTop);
-    m_vPanels << pPanel;
-    return pPanel;
+    CollapsibleBlock *pBlock = new CollapsibleBlock(sCaption, bHasParameters, this);
+    connect(pBlock, &CollapsibleBlock::blockSelected, this, &CollapsibleStack::onBlockSelected);
+    pBlock->setWidget(pWidget);
+    m_pLayout->addWidget(pBlock);
+    m_pLayout->setAlignment(pBlock, Qt::AlignTop);
+    m_vBlocks << pBlock;
+    return pBlock;
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void CollapsibleStack::expandAll()
 {
-    foreach (CollapsiblePanel *pPanel, m_vPanels)
+    foreach (CollapsibleBlock *pBlock, m_vBlocks)
     {
-        if (pPanel->widget() != nullptr)
-            pPanel->onCollapse(false);
+        if (pBlock->widget() != nullptr)
+            pBlock->onCollapse(false);
     }
 }
 
@@ -58,10 +58,10 @@ void CollapsibleStack::expandAll()
 
 void CollapsibleStack::collapseAll()
 {
-    foreach (CollapsiblePanel *pPanel, m_vPanels)
+    foreach (CollapsibleBlock *pBlock, m_vBlocks)
     {
-        if (pPanel->widget() != nullptr)
-            pPanel->onCollapse(true);
+        if (pBlock->widget() != nullptr)
+            pBlock->onCollapse(true);
     }
 }
 
@@ -72,8 +72,8 @@ bool CollapsibleStack::allCollapsed() const
     int n = m_pLayout->count();
     for (int i = 0; i < n; ++i)
     {
-        CollapsiblePanel *panel = dynamic_cast<CollapsiblePanel *>(m_pLayout->itemAt(i)->widget());
-        if (panel && !panel->isCollapsed())
+        CollapsibleBlock *pBlock = dynamic_cast<CollapsibleBlock *>(m_pLayout->itemAt(i)->widget());
+        if (pBlock && !pBlock->isCollapsed())
             return false;
     }
     return true;
@@ -81,9 +81,9 @@ bool CollapsibleStack::allCollapsed() const
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleStack::onPanelSelected()
+void CollapsibleStack::onBlockSelected()
 {
-    CollapsiblePanel *pSelectedPanel = dynamic_cast<CollapsiblePanel *>(sender());
-    if (pSelectedPanel != nullptr)
-        emit panelSelected(pSelectedPanel);
+    CollapsibleBlock *pSelectedBlock = dynamic_cast<CollapsibleBlock *>(sender());
+    if (pSelectedBlock != nullptr)
+        emit blockSelected(pSelectedBlock);
 }

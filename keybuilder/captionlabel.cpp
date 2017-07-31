@@ -76,7 +76,7 @@ void CaptionLabel::paintEvent(QPaintEvent *e)
 void CaptionLabel::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    emit panelSelected();
+    emit blockSelected();
 }
 
 void CaptionLabel::onStateChanged(bool bIsCollapsed)

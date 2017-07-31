@@ -9,7 +9,7 @@
 #include "ui_layoutmgr.h"
 #include "keyblock.h"
 #include "collapsiblestack.h"
-#include "collapsiblepanel.h"
+#include "collapsibleblock.h"
 #include "filepicker.h"
 #define MAX_KEY_PER_STACK 5
 
@@ -30,9 +30,9 @@ LayoutMgr::~LayoutMgr()
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsiblePanel *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
+CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, bool bHasParameters)
 {
-    CollapsiblePanel *pAddedPanel = nullptr;
+    CollapsibleBlock *pAddedBlock = nullptr;
     if (pBlock != nullptr)
     {
         CollapsibleStack *pTargetStack = nullptr;
@@ -42,15 +42,15 @@ CollapsiblePanel *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
         else
         {
             pTargetStack = new CollapsibleStack(this);
-            connect(pTargetStack, &CollapsibleStack::panelSelected, this, &LayoutMgr::onPanelSelected);
+            connect(pTargetStack, &CollapsibleStack::blockSelected, this, &LayoutMgr::onBlockSelected);
             m_vStacks << pTargetStack;
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
         }
-        pAddedPanel = pTargetStack->addPanel(sName, pBlock);
+        pAddedBlock = pTargetStack->setWidget(sName, pBlock, bHasParameters);
         m_nBlocks++;
     }
-    return pAddedPanel;
+    return pAddedBlock;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -71,12 +71,12 @@ void LayoutMgr::onCollapseAll()
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onPanelSelected(CollapsiblePanel *pCurrentPanel)
+void LayoutMgr::onBlockSelected(CollapsibleBlock *pCurrentBlock)
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
     {
-        QVector<CollapsiblePanel *> vPanels = pStack->panels();
-        foreach (CollapsiblePanel *pPanel, vPanels)
-            pPanel->setCurrent(pPanel == pCurrentPanel);
+        QVector<CollapsibleBlock *> vBlocks = pStack->blocks();
+        foreach (CollapsibleBlock *pBlock, vBlocks)
+            pBlock->setCurrent(pBlock == pCurrentBlock);
     }
 }

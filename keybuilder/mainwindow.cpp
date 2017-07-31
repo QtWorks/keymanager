@@ -7,7 +7,7 @@
 #include "controller.h"
 #include "keyblock.h"
 #include "constants.h"
-#include "collapsiblepanel.h"
+#include "collapsibleblock.h"
 #include <src/stlwindow.h>
 
 //-------------------------------------------------------------------------------------------------
@@ -65,9 +65,9 @@ void MainWindow::buildMenu1Tab(const CXMLNode &xNode)
             connect(pKeyBlock, &KeyBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
 
             // Add block
-            CollapsiblePanel *pAddedPanel = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name());
-            if (pAddedPanel != nullptr)
-                connect(pAddedPanel, &CollapsiblePanel::panelSelected, pKeyBlock, &KeyBlock::onSelectMe);
+            CollapsibleBlock *pAddedBlock = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name(), pKeyBlock->hasParameters());
+            if (pAddedBlock != nullptr)
+                connect(pAddedBlock, &CollapsibleBlock::blockSelected, pKeyBlock, &KeyBlock::onSelectMe);
         }
     }
 }
