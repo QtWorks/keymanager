@@ -35,7 +35,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add panel
-    void addPanel(const QString &sCaption, QWidget *pKeyBlock);
+    CollapsiblePanel *addPanel(const QString &sCaption, QWidget *pKeyBlock);
 
     //! Expand all
     void expandAll();

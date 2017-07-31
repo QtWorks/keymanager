@@ -32,7 +32,7 @@ bool ParameterMgr::loadMenu1Parameters()
         return false;
 
     // This describes the type of key to be created
-    m_hParameters[PARAMETER_TYPE_OF_KEY] = new Parameter();
+    m_hParameters[PARAMETER_TYPE_OF_KEY] = new Parameter(PROPERTY_TYPE_OF_KEY, PROPERTY_STRING, PARAMETER_TYPE_OF_KEY);
 
     // Retrieve Key nodes
     QVector<CXMLNode> vKeyNodes = m_xMenu1Node.getNodesByTagName(TAG_KEY);
@@ -93,7 +93,6 @@ void ParameterMgr::generateScript()
 {
     QString sInFile = "D:/projects/keymanager/keybuilder/data/testdata_in.txt";
     QString sOutFile = "D:/projects/keymanager/keybuilder/data/testdata_out.txt";
-
     ScriptMgr::generateScript(sInFile, sOutFile, m_hParameters.values());
 }
 

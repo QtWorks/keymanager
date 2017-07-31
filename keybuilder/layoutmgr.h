@@ -31,14 +31,14 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add key block
-    void addBlock(QWidget *pBlock, const QString &sName);
+    CollapsiblePanel *addBlock(QWidget *pBlock, const QString &sName);
 
 private:
     //! UI
     Ui::LayoutMgr *ui;
 
     //! Number of key blocks
-    int m_nKeyBlocks;
+    int m_nBlocks;
 
     //! Vector of stacks
     QVector<CollapsibleStack *> m_vStacks;

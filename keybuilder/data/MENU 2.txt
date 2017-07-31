@@ -1,0 +1,666 @@
+// LES COMMENTAIRES APRES UN DOUBLE SLASH SONT POUR LE DEVELOPPEMENT
+// LES COMMENTAIRES ENTRE PARENTHESES SONT A AFFICHER SUR L'UI POUR L'UTILISATEUR
+
+TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
+[CLEAR ALL]
+[OPEN ALL]
+[CLOSE ALL]
+
+[]REGULAR/DIMPLE/LASER
+[CLEAR ALL]
+
+	[]ROW 1  
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row1_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row1_offset_on_x_qt qt_regular_row1_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row1_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row1_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row1_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row1_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row1_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill" Radio bouton
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row1_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row1_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row1_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row1_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row1_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row1_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row1_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row1_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row1_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row1_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row1_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row1_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row1_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row1_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row1_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row1_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row1_cut01_depth_qt qt_regular_row1_cut01_angle_qt qt_regular_row1_cut02_distance_qt //DEFAULT : SHOULDER DISTANCE. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row1_cut02_depth_qt qt_regular_row1_cut02_angle_qt qt_regular_row1_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+	[]ROW 2
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row2_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row2_offset_on_x_qt qt_regular_row2_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row2_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row2_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row2_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row2_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row2_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill"
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row2_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row2_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row2_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row2_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row2_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row2_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row2_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row2_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row2_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row2_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row2_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row2_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row2_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row2_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row2_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row2_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row2_cut01_depth_qt qt_regular_row2_cut01_angle_qt qt_regular_row2_cut02_distance_qt //DEFAULT : EMPTY. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row2_cut02_depth_qt qt_regular_row2_cut02_angle_qt qt_regular_row2_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+	[]ROW 3
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row3_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row3_offset_on_x_qt qt_regular_row3_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row3_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row3_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row3_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row3_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row3_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill"
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row3_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row3_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row3_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row3_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row3_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row3_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row3_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row3_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row3_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row3_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row3_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row3_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row3_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row3_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row3_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row3_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row3_cut01_depth_qt qt_regular_row3_cut01_angle_qt qt_regular_row3_cut02_distance_qt //DEFAULT : EMPTY. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row3_cut02_depth_qt qt_regular_row3_cut02_angle_qt qt_regular_row3_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+	[]ROW 4
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row4_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row4_offset_on_x_qt qt_regular_row4_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row4_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row4_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row4_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row4_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row4_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill"
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row4_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row4_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row4_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row4_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row4_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row4_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row4_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row4_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row4_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row4_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row4_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row4_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row4_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row4_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row4_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row4_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row4_cut01_depth_qt qt_regular_row4_cut01_angle_qt qt_regular_row4_cut02_distance_qt //DEFAULT : EMPTY. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row4_cut02_depth_qt qt_regular_row4_cut02_angle_qt qt_regular_row4_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+	[]ROW 5
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row5_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row5_offset_on_x_qt qt_regular_row5_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row5_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row5_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row5_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row5_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row5_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill"
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row5_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row5_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row5_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row5_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row5_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row5_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row5_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row5_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row5_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row5_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row5_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row5_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row5_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row5_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row5_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row5_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row5_cut01_depth_qt qt_regular_row5_cut01_angle_qt qt_regular_row5_cut02_distance_qt //DEFAULT : EMPTY. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row5_cut02_depth_qt qt_regular_row5_cut02_angle_qt qt_regular_row5_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+	[]ROW 6
+	[CLEAR ALL] 
+	NUMBER OF PINS [ ] //qt_regular_row6_number_of_pins_qt
+	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row6_offset_on_x_qt qt_regular_row6_offset_on_z_qt
+	ANGLE OF THE ROW [ ] (FOR DIMPLE KEY MOSTLY) //qt_regular_row6_angle_on_y_qt
+	MIRROR []X  []Y  []Z //qt_regular_row6_mirror_qt [0,0,0]
+	SHOULDER DISTANCE [ ] //qt_regular_row6_shoulder_distance_qt
+	INTERPIN SPACE [ ] //qt_regular_row6_interpin_space_qt
+	CHOOSE MILL SHAPE
+		[]STANDARD (PRISM SHAPE) //qt_regular_row6_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill"
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row6_prism_root_x_qt
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row6_prism_root_y_qt
+			MILL ANGLE on X AXIS[ ] //qt_regular_row6_prism_angle_x_qt
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row6_prism_angle_y_qt
+			MILL HEIGHT[ ] //qt_regular_row6_prism_height_qt
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row6_cone_height_qt
+			ROOT DIAMETER[ ] //qt_regular_row6_cone_bottom_diameter_qt
+			MILL ANGLE[ ] //qt_regular_row6_cone_angle_qt
+			NUMBER OF FACES[ ] //qt_regular_row6_cone_number_of_faces_qt
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row6_laser_mill_height_qt
+			DIAMETER[  //qt_regular_row6_laser_mill_diameter_qt
+			NUMBER OF FACES[ ] //qt_regular_row6_laser_mill_number_of_faces_qt
+			[]CENTERED //qt_regular_row6_laser_mill_center_qt "YES" or "NO"
+			[]LINKED //qt_regular_row6_linked_qt "YES" or "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row6_link_root_addition_qt
+		[]BROWSE FOR A STL MILL //qt_regular_row6_stl_mill_name_qt "mill.stl"
+
+	
+		DEPTH	ANGLE Z	DISTANCE FROM SHOULDER
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [     ] 	    //DATA IN THIS LINE APPLIES TO ALL, MAKES ALL COLUMN GREY IF THIS CASE IS FILLED
+	1	[   ]   [     ] [     ] //qt_regular_row6_cut01_depth_qt qt_regular_row6_cut01_angle_qt qt_regular_row6_cut02_distance_qt //DEFAULT : EMPTY. DEPTH : IF EMPTY, SEND 100 TO THE SCRIPT. ANGLE IF EMPTY, SEND 0 TO THE SCRIPT. SPACE IF EMPTY, SEND 0 TO THE SCRIPT.
+	2	[   ]   [     ] [     ] //qt_regular_row6_cut02_depth_qt qt_regular_row6_cut02_angle_qt qt_regular_row6_cut02_distance_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+	21	[   ]   [     ] [     ]
+	22	[   ]   [     ] [     ]
+
+
+
+[]ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)
+[CLEAR ALL]
+
+	NUMBER OF PINS (INCLUDING THE TENSIONER //qt_round_pump_number_of_pins_qt
+	MILL DIAMETER [ ] //qt_round_pump_mill_diameter_qt
+	MILL DISTANCE FROM CENTER [ ] //qt_round_pump_mill_distance_frome_center_qt
+
+		DEPTH FROM TIP	
+		[CLEAR] 
+	ALL	[   ]   //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_round_pump_cut01_depth_from_tip_qt
+	2	[   ]   //qt_round_pump_cut02_depth_from_tip_qt
+	3	[   ]   
+	4	[   ]   
+	5	[   ]   
+	6	[   ]   
+	7	[   ]   
+	8	[   ]   
+	9	[   ]   
+	10	[   ]   
+	11	[   ]   
+	12	[   ]   
+
+
+[]LEVER LOCK (SIMPLE AND DOUBLE BITTED)
+[CLEAR ALL]
+
+	[]ROW 1 [CLEAR ALL] //DUPLICATE FOR 2 ROWS
+	NUMBER OF LEVERS [ ] //qt_lever_lock_row1_number_of_levers_qt
+	BLADE LENGTH [ ] //qt_lever_lock_row1_blade_length_qt
+	SPACES [AUTO FROM ABOVE] //qt_lever_lock_row1_spaces_qt CALCULATION IS BLADE_LENGTH/NUMBER_OF_LEVERS
+	THICKNESS OF THE CUT [AUTO] //qt_lever_lock_row1_thickness_qt CALCULATION IS SPACES*1.25
+	ANGLE OF CUTTING [ ] (ON Y AXIS) //qt_lever_lock_row1_angle_on_y_qt
+
+		DEPTH  DISTANCE  THICKNESS
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [AUTO ] [AUTO ] //DATA IN THIS LINE APPLIES TO ALL. CALCULATION FOR THICKNESS IS SPACES*1.25
+	1	[   ]   [     ] [     ] //qt_lever_lock_row1_cut01_depth_qt qt_lever_lock_row1_cut01_distance_qt qt_lever_lock_row1_cut01_thickness_qt
+	2	[   ]   [     ] [     ] //qt_lever_lock_row1_cut02_depth_qt qt_lever_lock_row1_cut02_distance_qt qt_lever_lock_row1_cut02_thickness_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+
+	[]ROW 2 [CLEAR ALL] //DUPLICATE FOR 2 ROWS
+	NUMBER OF LEVERS [ ] //qt_lever_lock_row2_number_of_levers_qt
+	BLADE LENGTH [ ] //qt_lever_lock_row2_blade_length_qt
+	SPACES [AUTO FROM ABOVE] //qt_lever_lock_row2_spaces_qt CALCULATION IS BLADE_LENGTH/NUMBER_OF_LEVERS
+	THICKNESS OF THE CUT [AUTO] //qt_lever_lock_row2_thickness_qt CALCULATION IS SPACES*1.25
+	ANGLE OF CUTTING [ ] (ON Y AXIS) //qt_lever_lock_row2_angle_on_y_qt
+
+		DEPTH  DISTANCE  THICKNESS
+		[CLEAR] [CLEAR] [CLEAR]
+	ALL	[   ]   [AUTO ] [AUTO ] //DATA IN THIS LINE APPLIES TO ALL. CALCULATION FOR THICKNESS IS SPACES*1.25
+	1	[   ]   [     ] [     ] //qt_lever_lock_row2_cut01_depth_qt qt_lever_lock_row2_cut01_distance_qt qt_lever_lock_row2_cut01_thickness_qt
+	2	[   ]   [     ] [     ] //qt_lever_lock_row2_cut02_depth_qt qt_lever_lock_row2_cut02_distance_qt qt_lever_lock_row2_cut02_thickness_qt
+	3	[   ]   [     ] [     ]
+	4	[   ]   [     ] [     ]
+	5	[   ]   [     ] [     ]
+	6	[   ]   [     ] [     ]
+	7	[   ]   [     ] [     ]
+	8	[   ]   [     ] [     ]
+	9	[   ]   [     ] [     ]
+	10	[   ]   [     ] [     ]
+	11	[   ]   [     ] [     ]
+	12	[   ]   [     ] [     ]
+	13	[   ]   [     ] [     ]
+	14	[   ]   [     ] [     ]
+	15	[   ]   [     ] [     ]
+	16	[   ]   [     ] [     ]
+	17	[   ]   [     ] [     ]
+	18	[   ]   [     ] [     ]
+	19	[   ]   [     ] [     ]
+	20	[   ]   [     ] [     ]
+
+	
+[]ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)
+[CLEAR ALL]
+	SIDE OF CUTTING []RIGHT  []LEFT //qt_abloy_classic_side_of_cutting_qt "RIGHT" or "LEFT"
+	BLADE LENGTH [ ] //qt_abloy_classic_blade_length_qt
+	NUMBER OF DISCS [ ] //qt_abloy_classic_number_of_discs_qt
+	SPACES [ ] (EQUAL TO DISC THICKNESS+SPACER THICKNESS) //qt_abloy_classic_spaces_qt DEFAULT IS 2
+	MILL THICKNESS [ ] //qt_abloy_classic_mill_thickness_qt DEFAULT IS 2.5
+	ANGLE STEP [ ] //qt_abloy_classic_angle_step_qt DEFAULT IS 18°
+	DISTANCE FROM TIP [ ] //qt_abloy_classic_distance_from_tip_qt
+
+		DEPTH
+		[CLEAR] 
+	ALL	[   ]    //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_abloy_classic_cut01_qt
+	2	[   ]   //qt_abloy_classic_cut02_qt
+	3	[   ]   //qt_abloy_classic_cut03_qt
+	4	[   ]   
+	5	[   ]   
+	6	[   ]   
+	7	[   ]   
+	8	[   ]   
+	9	[   ]   
+	10	[   ]   
+	11	[   ]   
+	12	[   ]   
+	13	[   ]   
+	14	[   ]   
+	15	[   ]   
+	16	[   ]   
+	17	[   ]   
+	18	[   ]   
+	19	[   ]   
+	20	[   ]   
+
+[]ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)
+[CLEAR ALL]
+	BLADE LENGTH [ ] //qt_abloy_disklock_pro_blade_length_qt DEFAULT IS 34
+	NUMBER OF DISCS [ ] //qt_abloy_disklock_pro_number_of_discs_qt
+	SPACES [ ] //qt_abloy_disklock_pro_spaces_qt DEFAULT IS 1.6
+	MILL THICKNESS [ ] // qt_abloy_disklock_pro_mill_thickness_qtDEFAULT IS 2
+	DISTANCE FROM TIP [ ] //qt_abloy_disklock_pro_distance_from_tip_qt DEFAULT IS 2.5
+	GROOVE AT THE TIP []  //qt_abloy_disklock_pro_groove_at_the_tip_qt "YES" or "NO"
+
+		DEPTH
+		[CLEAR] 
+	ALL	[   ]    //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_abloy_disklock_pro_cut01_qt DEFAULT IS 0
+	2	[   ]   //qt_abloy_disklock_pro_cut02_qt
+	3	[   ]   //qt_abloy_disklock_pro_cut03_qt
+	4	[   ]   
+	5	[   ]   
+	6	[   ]   
+	7	[   ]   
+	8	[   ]   //DEFAULT IS 0
+	9	[   ]   
+	10	[   ]   
+	11	[   ]   
+	12	[   ]   
+	13	[   ]   
+	14	[   ]   
+	15	[   ]   
+	16	[   ]   
+	17	[   ]   
+	18	[   ]   
+	19	[   ]   
+	20	[   ]   
+
+[]ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)
+[CLEAR ALL]
+	BLADE LENGTH [ ] //qt_abloy_protec_blade_length_qt DEFAULT IS 30
+	NUMBER OF DISCS [ ] //qt_abloy_protec_number_of_discs_qt
+	SPACES [ ] //qt_abloy_protec_spaces_qt DEFAULT IS 1.5
+	MILL THICKNESS [ ] //qt_abloy_protec_mill_thickness_qt DEFAULT IS 2
+	DISTANCE FROM TIP [ ] //qt_abloy_protec_distance_from_tip_qt DEFAULT IS 2
+	THINNER AT THE TIP [] //qt_abloy_protec_thinner_at_the_tip_qt "YES" or "NO"
+
+		DEPTH
+		[CLEAR] 
+	ALL	[   ]    //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_abloy_protec_cut01_qt DEFAULT IS 0
+	2	[   ]   //qt_abloy_protec_cut02_qt
+	3	[   ]   //qt_abloy_protec_cut03_qt
+	4	[   ]   
+	5	[   ]   
+	6	[   ]   
+	7	[   ]   
+	8	[   ]   //DEFAULT IS 0
+	9	[   ]   
+	10	[   ]   
+	11	[   ]   
+	12	[   ]   
+	13	[   ]   
+	14	[   ]   
+	15	[   ]   
+	16	[   ]   
+	17	[   ]   
+	18	[   ]   
+	19	[   ]   
+	20	[   ]   
+
+[]ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)
+[CLEAR ALL]
+	BLADE LENGTH [ ] //qt_abus_plus_blade_length_qt DEFAULT IS 33
+	NUMBER OF DISCS [ ] //qt_abus_plus_number_of_discs_qt
+	SPACES [ ] //qt_abus_plus_spaces_qt DEFAULT IS 2
+	MILL THICKNESS [ ] //qt_abus_plus_mill_thickness_qt DEFAULT IS 2.5
+	DISTANCE FROM TIP [ ] //qt_abus_plus_distance_from_tip_qt DEFAULT IS 4
+
+		DEPTH
+		[CLEAR] 
+	ALL	[   ]    //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_abus_plus_cut01_qt
+	2	[   ]   //qt_abus_plus_cut02_qt
+	3	[   ]   //qt_abus_plus_cut03_qt
+	4	[   ]   //qt_abus_plus_cut04_qt
+	5	[   ]   
+	6	[   ]   
+	7	[   ]   
+	8	[   ]   
+	9	[   ]   
+	10	[   ]   
+	11	[   ]   
+	12	[   ]   
+	13	[   ]   
+	14	[   ]   
+	15	[   ]   
+	16	[   ]   
+	17	[   ]   
+	18	[   ]   
+	19	[   ]   
+	20	[   ]  
+
+[]AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)
+[CLEAR ALL]
+	SIDE OF PROFILE []RIGHT []LEFT //qt_axi_home_side_qt "RIGHT" or "LEFT"
+	TOP 	[]ROW1 []ROW2 []ROW3 //qt_axi_home_top_row_qt "ROW1" or "ROW2" or "ROW3" DEFAULT IS ROW 1. ONE ROW CAN BE SELECTED ONLY ONCE
+	RIGHT 	[]ROW1 []ROW2 []ROW3 //qt_axi_home_right_row_qt "ROW1" or "ROW2" or "ROW3" DEFAULT IS ROW 2
+	LEFT	[]ROW1 []ROW2 []ROW3 //qt_axi_home_left_row_qt "ROW1" or "ROW2" or "ROW3" DEFAULT IS ROW 3
+
+	ROW 1 [CLEAR ALL] 
+		 DEPTH	
+		[CLEAR] 
+	ALL	[   ]   //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_axi_home_row1_cut01_qt
+	2	[   ]   //qt_axi_home_row1_cut02_qt
+	3	[   ]   //qt_axi_home_row1_cut03_qt
+	4	[   ]   NO MODIFICATION REQUIRED //qt_axi_home_row1_cut04_qt DEFAULT IS 0
+	5	[   ]   //qt_axi_home_row1_cut05_qt
+	6	[   ]   //qt_axi_home_row1_cut06_qt
+
+	ROW 2 [CLEAR ALL] 
+		 DEPTH	
+		[CLEAR] 
+	ALL	[   ]   //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_axi_home_row2_cut01_qt
+	2	[   ]   NO MODIFICATION REQUIRED //qt_axi_home_row2_cut02_qt DEFAULT IS 0
+	3	[   ]   //qt_axi_home_row2_cut03_qt
+	4	[   ]   //qt_axi_home_row2_cut04_qt
+	5	[   ]   //qt_axi_home_row2_cut05_qt
+	6	[   ]   //qt_axi_home_row2_cut06_qt
+
+	ROW 3 [CLEAR ALL] 
+		 DEPTH	
+		[CLEAR] 
+	ALL	[   ]   //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   //qt_axi_home_row3_cut01_qt
+	2	[   ]   NO MODIFICATION REQUIRED //qt_axi_home_row3_cut02_qt DEFAULT IS 0
+	3	[   ]   //qt_axi_home_row3_cut03_qt
+	4	[   ]   //qt_axi_home_row3_cut04_qt
+	5	[   ]   //qt_axi_home_row3_cut05_qt
+	6	[   ]   //qt_axi_home_row3_cut06_qt
+
+
+[]FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)
+[CLEAR ALL]
+		DEPTH
+		[CLEAR] 
+	ALL	[   ]    //DATA IN THIS LINE APPLIES TO ALL
+	1	[   ]   RIGHT //qt_fichet_787_cut01_qt
+	2	[   ]   LEFT  //qt_fichet_787_cut02_qt
+	3	[   ]   RIGHT //qt_fichet_787_cut03_qt
+	4	[   ]   LEFT
+	5	[   ]   RIGHT
+	6	[   ]   LEFT
+	7	[   ]   RIGHT
+	8	[   ]   LEFT
+	9	[   ]   RIGHT
+	10	[   ]   LEFT
+
+EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)
+[CLEAR ALL]
+	SHAPE 01 //DUPLICATE FOR 10 SHAPES
+		[]CUBE []CYLINDER []SPHERE []BROWSE FOR STL //qt_extra_cut_shape_1_model_qt "CUBE" or "CYLINDER" or "SPHERE" or "STL"
+		IF CUBE
+			CENTER []YES []NO //qt_extra_cut_shape_01_cube_centered_qt "YES" or "NO"
+			DIMENSIONS
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_cube_dimensions_qt [0,0,0]
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_cube_rotation_qt [0,0,0]
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_cube_translate_qt [0,0,0]
+		IF CYLINDER
+			CENTER []YES []NO //qt_extra_cut_shape_01_cylinder_centered_qt "YES" or "NO"
+			DIMENSIONS
+			DIAMETER[ ] HEIGHT[ ] //qt_extra_cut_shape_01_cylinder_diameter_qt qt_extra_cut_shape_1_cylinder_height_qt
+			NUMBER OF FACES [ ] //qt_extra_cut_shape_01_cylinder_number_of_faces_qt
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_cylinder_rotation_qt [0,0,0] 
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_cylinder_translate_qt [0,0,0]
+		IF SPHERE
+			DIAMETER[ ] //qt_extra_cut_shape_01_sphere_diameter_qt
+			NUMBER OF FACES //qt_extra_cut_shape_01_sphere_number_of_faces_qt
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_sphere_translate_qt [0,0,0]
+		IF STL
+			[BROWSE FOR STL] //qt_extra_cut_shape_01_stl_name_qt "mobile.stl"
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_stl_rotation_qt [0,0,0]
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_cut_shape_01_stl_translate_qt [0,0,0]

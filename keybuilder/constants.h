@@ -11,6 +11,8 @@
 #define PROPERTY_VALUE "value"
 #define PROPERTY_TYPE "type"
 #define PROPERTY_DOUBLE "double"
+#define PROPERTY_STRING "string"
+#define PROPERTY_TYPE_OF_KEY "typeOfKey"
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"

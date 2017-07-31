@@ -50,6 +50,9 @@ public slots:
     //! A radio button was clicked
     void onRadioButtonClicked();
 
+    //! Select me
+    void onSelectMe();
+
 private:
     //! Find associated parameter variable
     QString findAssociatedParameterVariable(QWidget *pWidget) const;

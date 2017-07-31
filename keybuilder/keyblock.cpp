@@ -126,6 +126,13 @@ void KeyBlock::onRadioButtonClicked()
 
 //-------------------------------------------------------------------------------------------------
 
+void KeyBlock::onSelectMe()
+{
+    emit parameterValueChanged(PARAMETER_TYPE_OF_KEY, m_sName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 QString KeyBlock::findAssociatedParameterVariable(QWidget *pWidget) const
 {
     for (QHash<QString, QVector<QWidget *> >::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)

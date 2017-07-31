@@ -16,7 +16,7 @@
 //-------------------------------------------------------------------------------------------------
 
 LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
-    m_nKeyBlocks(0)
+    m_nBlocks(0)
 {
     ui->setupUi(this);
 }
@@ -30,12 +30,13 @@ LayoutMgr::~LayoutMgr()
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
+CollapsiblePanel *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
 {
+    CollapsiblePanel *pAddedPanel = nullptr;
     if (pBlock != nullptr)
     {
         CollapsibleStack *pTargetStack = nullptr;
-        int iStackIndex = m_nKeyBlocks/MAX_KEY_PER_STACK;
+        int iStackIndex = m_nBlocks/MAX_KEY_PER_STACK;
         if (iStackIndex < m_vStacks.size())
             pTargetStack = m_vStacks[iStackIndex];
         else
@@ -46,9 +47,10 @@ void LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
         }
-        pTargetStack->addPanel(sName, pBlock);
-        m_nKeyBlocks++;
+        pAddedPanel = pTargetStack->addPanel(sName, pBlock);
+        m_nBlocks++;
     }
+    return pAddedPanel;
 }
 
 //-------------------------------------------------------------------------------------------------
