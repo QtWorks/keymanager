@@ -32,11 +32,12 @@ const QVector<CollapsibleBlock *> &CollapsibleStack::blocks() const
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *CollapsibleStack::setWidget(const QString &sCaption, QWidget *pWidget, bool bHasParameters)
+CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *pWidget, bool bHasParameters)
 {
     CollapsibleBlock *pBlock = new CollapsibleBlock(sCaption, bHasParameters, this);
     connect(pBlock, &CollapsibleBlock::blockSelected, this, &CollapsibleStack::onBlockSelected);
     pBlock->setWidget(pWidget);
+    pBlock->setParent(this);
     m_pLayout->addWidget(pBlock);
     m_pLayout->setAlignment(pBlock, Qt::AlignTop);
     m_vBlocks << pBlock;

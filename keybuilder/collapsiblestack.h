@@ -35,7 +35,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add block
-    CollapsibleBlock *setWidget(const QString &sCaption, QWidget *pWidget, bool bHasParameters);
+    CollapsibleBlock *addBlock(const QString &sCaption, QWidget *pWidget, bool bHasParameters);
 
     //! Expand all
     void expandAll();

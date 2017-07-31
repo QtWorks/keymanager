@@ -7,6 +7,13 @@
 <Parameter name="THICKNESS" type="double" variable="qt_regular_thickness_qt" ui="lineedit"/>
 <Parameter name="BROWSE FOR A DXF" type="string" variable="qt_regular_dxf_name_qt" ui="filepicker" extension="*.dxf"/>
 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_stl_name_qt" ui="filepicker" extension="*.stl"/>
+<Block name="TEST" variable="qt_type_of_key_qt" value="regular">
+<Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
+<Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit"/>
+<Parameter name="THICKNESS" type="double" variable="qt_regular_thickness_qt" ui="lineedit"/>
+<Parameter name="BROWSE FOR A DXF" type="string" variable="qt_regular_dxf_name_qt" ui="filepicker" extension="*.dxf"/>
+<Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_stl_name_qt" ui="filepicker" extension="*.stl"/>
+</Block>
 </Block>
 
 <Block name="DIMPLE/LASER KEY" variable="qt_type_of_key_qt" value="dimple_laser">

@@ -54,22 +54,37 @@ void MainWindow::setController(Controller *pController)
 
 void MainWindow::buildMenu1Tab(const CXMLNode &xNode)
 {
-    QVector<CXMLNode> vKeyBlocks = xNode.getNodesByTagName(TAG_KEY);
-    ui->menu1LayoutMgr->setSize(vKeyBlocks.size());
-    foreach (CXMLNode xKeyBlock, vKeyBlocks)
-    {
-        // Create new key block
-        KeyBlock *pKeyBlock = new KeyBlock(xKeyBlock);
-        if (pKeyBlock != nullptr)
-        {
-            // Listen to parameter value changed
-            connect(pKeyBlock, &KeyBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+    QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
+    ui->menu1LayoutMgr->setSize(vBlocks.size());
+    foreach (CXMLNode xKeyBlock, vBlocks)
+        buildBlock(xKeyBlock);
+}
 
-            // Add block
-            CollapsibleBlock *pAddedBlock = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name(), pKeyBlock->hasParameters());
-            if (pAddedBlock != nullptr)
-                connect(pAddedBlock, &CollapsibleBlock::blockSelected, pKeyBlock, &KeyBlock::onSelectMe);
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlock)
+{
+    // Create new key block
+    KeyBlock *pKeyBlock = new KeyBlock(xBlock);
+    if (pKeyBlock != nullptr)
+    {
+        // Listen to parameter value changed
+        connect(pKeyBlock, &KeyBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+
+        // Add block
+        if (pParentBlock == nullptr)
+        {
+            pParentBlock = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name(), pKeyBlock->hasParameters());
+            connect(pParentBlock, &CollapsibleBlock::blockSelected, pKeyBlock, &KeyBlock::onSelectMe);
         }
+        else
+        {
+            pParentBlock->addWidgetInLayout(pKeyBlock);
+        }
+
+        QVector<CXMLNode> vChildBlocks = xBlock.getNodesByTagName(TAG_BLOCK);
+        foreach (CXMLNode xChildBlock, vChildBlocks)
+            buildBlock(xChildBlock, pParentBlock);
     }
 }
 

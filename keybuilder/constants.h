@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define TAG_KEY "Key"
+#define TAG_BLOCK "Block"
 #define TAG_PARAMETER "Parameter"
 
 #define PROPERTY_NAME "name"

@@ -6,8 +6,8 @@
 
 // Application
 #include "cxmlnode.h"
-
 class Controller;
+class CollapsibleBlock;
 namespace Ui {
 class MainWindow;
 }
@@ -39,6 +39,10 @@ public:
 
     //! Build menu 2 tab
     void buildMenu2Tab(const CXMLNode &xNode);
+
+private:
+    //! Build single key block
+    void buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlock=nullptr);
 
 private:
     //! UI

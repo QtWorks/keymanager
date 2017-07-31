@@ -35,8 +35,8 @@ bool ParameterMgr::loadMenu1Parameters()
     m_hParameters[PARAMETER_TYPE_OF_KEY] = new Parameter(PROPERTY_TYPE_OF_KEY, PROPERTY_STRING, PARAMETER_TYPE_OF_KEY);
 
     // Retrieve Key nodes
-    QVector<CXMLNode> vKeyNodes = m_xMenu1Node.getNodesByTagName(TAG_KEY);
-    foreach (CXMLNode xKeyNode, vKeyNodes)
+    QVector<CXMLNode> vBlocks = m_xMenu1Node.getNodesByTagName(TAG_BLOCK);
+    foreach (CXMLNode xKeyNode, vBlocks)
     {
         QVector<CXMLNode> vParameterNodes = xKeyNode.getNodesByTagName(TAG_PARAMETER);
         foreach (CXMLNode xParameterNode, vParameterNodes)

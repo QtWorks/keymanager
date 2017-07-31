@@ -49,7 +49,7 @@ CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, boo
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
         }
-        pAddedBlock = pTargetStack->setWidget(sName, pBlock, bHasParameters);
+        pAddedBlock = pTargetStack->addBlock(sName, pBlock, bHasParameters);
         m_nBlocks++;
     }
     return pAddedBlock;

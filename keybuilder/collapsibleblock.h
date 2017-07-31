@@ -44,6 +44,9 @@ public:
     //! Set current
     void setCurrent(bool bCurrent);
 
+    //! Add widget in layout
+    void addWidgetInLayout(QWidget *pWidget);
+
 private:
     //! Own widget
     QWidget *m_pWidget;

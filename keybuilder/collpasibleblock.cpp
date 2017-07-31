@@ -48,8 +48,7 @@ void CollapsibleBlock::setWidget(QWidget *widget)
     {
         m_pWidget = widget;
         m_pWidget->setParent(this);
-        m_pLayout->addWidget(m_pWidget);
-        m_pLayout->setAlignment(m_pWidget, Qt::AlignTop);
+        addWidgetInLayout(m_pWidget);
         onCollapse(m_bIsCollapsed);
     }
 }
@@ -87,3 +86,11 @@ void CollapsibleBlock::setCurrent(bool bCurrent)
     m_pLabel->update();
 }
 
+void CollapsibleBlock::addWidgetInLayout(QWidget *pWidget)
+{
+    if (pWidget != nullptr)
+    {
+        m_pLayout->addWidget(pWidget);
+        m_pLayout->setAlignment(pWidget, Qt::AlignTop);
+    }
+}
