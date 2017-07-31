@@ -33,6 +33,9 @@ public:
     //! Add key block
     CollapsibleBlock *addBlock(QWidget *pBlock, const QString &sName, bool bHasParameters);
 
+    //! Set size
+    void setSize(int iSize);
+
 private:
     //! UI
     Ui::LayoutMgr *ui;
@@ -42,6 +45,15 @@ private:
 
     //! Vector of stacks
     QVector<CollapsibleStack *> m_vStacks;
+
+    //! Size
+    int m_iSize;
+
+    //! # columns
+    int m_nCols;
+
+    //! # block per stack
+    int m_nBlockPerStack;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

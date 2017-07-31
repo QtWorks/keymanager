@@ -11,12 +11,12 @@
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
 #include "filepicker.h"
-#define MAX_KEY_PER_STACK 5
+#define NSTACKS 3
 
 //-------------------------------------------------------------------------------------------------
 
 LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
-    m_nBlocks(0)
+    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0)
 {
     ui->setupUi(this);
 }
@@ -36,7 +36,9 @@ CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, boo
     if (pBlock != nullptr)
     {
         CollapsibleStack *pTargetStack = nullptr;
-        int iStackIndex = m_nBlocks/MAX_KEY_PER_STACK;
+        int iStackIndex = m_nBlocks/m_nBlockPerStack;
+        if (iStackIndex > (NSTACKS-1))
+            iStackIndex = NSTACKS-1;
         if (iStackIndex < m_vStacks.size())
             pTargetStack = m_vStacks[iStackIndex];
         else
@@ -51,6 +53,18 @@ CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, boo
         m_nBlocks++;
     }
     return pAddedBlock;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::setSize(int iSize)
+{
+    if (iSize > 0)
+    {
+        m_iSize = iSize;
+        m_nCols = (m_iSize < NSTACKS) ? 1 : NSTACKS;
+        m_nBlockPerStack = qRound((double)m_iSize/(double)m_nCols);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

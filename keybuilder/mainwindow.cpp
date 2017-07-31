@@ -55,6 +55,7 @@ void MainWindow::setController(Controller *pController)
 void MainWindow::buildMenu1Tab(const CXMLNode &xNode)
 {
     QVector<CXMLNode> vKeyBlocks = xNode.getNodesByTagName(TAG_KEY);
+    ui->menu1LayoutMgr->setSize(vKeyBlocks.size());
     foreach (CXMLNode xKeyBlock, vKeyBlocks)
     {
         // Create new key block
