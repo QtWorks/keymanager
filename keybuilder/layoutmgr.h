@@ -5,11 +5,9 @@
 #include <QWidget>
 
 // Application
-#include "cxmlnode.h"
 namespace Ui {
 class LayoutMgr;
 }
-class KeyBlock;
 class CollapsibleStack;
 class CollapsiblePanel;
 
@@ -33,14 +31,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add key block
-    void addKeyBlock(const CXMLNode &xKeyBlock);
-
-private:
-    //! Create key block
-    KeyBlock *createKeyBlock(const CXMLNode &xKeyBlock, QString &sKeyName, bool &bHasParameters);
-
-    //! Find associated parameter variable
-    QString findAssociatedParameterVariable(QWidget *pWidget) const;
+    void addBlock(QWidget *pBlock, const QString &sName);
 
 private:
     //! UI
@@ -52,19 +43,10 @@ private:
     //! Vector of stacks
     QVector<CollapsibleStack *> m_vStacks;
 
-    //! Widget hash
-    QHash<QString, QVector<QWidget *> > m_hWidgetHash;
-
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
     //-------------------------------------------------------------------------------------------------
-
-    //! A line edit text changed
-    void onLineEditTextChanged();
-
-    //! A radio button was clicked
-    void onRadioButtonClicked();
 
     //! Expand all key blocks in menu 1
     void onExpandAll();
@@ -74,14 +56,6 @@ public slots:
 
     //! Panel selected
     void onPanelSelected(CollapsiblePanel *pPanel);
-
-signals:
-    //-------------------------------------------------------------------------------------------------
-    // Signals
-    //-------------------------------------------------------------------------------------------------
-
-    //! Parameter value changed
-    void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
 #endif // LAYOUTMGR_H

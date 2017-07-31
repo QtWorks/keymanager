@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-CONFIG += orderder
+CONFIG += ordered
 SUBDIRS += \
     stllibrary \
     keybuilder

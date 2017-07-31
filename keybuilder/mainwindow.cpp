@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "controller.h"
+#include "keyblock.h"
 #include "constants.h"
 #include <src/stlwindow.h>
 
@@ -31,6 +32,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setController(Controller *pController)
 {
+    // Set controller
     m_pController = pController;
 
     // Build menu 1 tab
@@ -40,14 +42,11 @@ void MainWindow::setController(Controller *pController)
     buildMenu2Tab(m_pController->menu2Node());
 
     // Collapse/Expand all
-    connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onExpandAll);
-    connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->layoutMgr, &LayoutMgr::onCollapseAll);
+    connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onExpandAll);
+    connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCollapseAll);
 
     // Generate script
     connect(ui->generateScriptButton, &QPushButton::clicked, m_pController, &Controller::onGenerateScript);
-
-    // Listen parameter change
-    connect(ui->layoutMgr, &LayoutMgr::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -56,8 +55,18 @@ void MainWindow::buildMenu1Tab(const CXMLNode &xNode)
 {
     QVector<CXMLNode> vKeyBlocks = xNode.getNodesByTagName(TAG_KEY);
     foreach (CXMLNode xKeyBlock, vKeyBlocks)
-        // Create a new key block
-        ui->layoutMgr->addKeyBlock(xKeyBlock);
+    {
+        // Create new key block
+        KeyBlock *pKeyBlock = new KeyBlock(xKeyBlock);
+        if (pKeyBlock != nullptr)
+        {
+            // Listen to parameter value changed
+            connect(pKeyBlock, &KeyBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+
+            // Add block
+            ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name());
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -29,9 +29,6 @@ public:
     //! Set state
     void toggleState();
 
-    //! Is collpased
-    bool isCollapsed() const { return m_bCollpased; }
-
     //! Set current
     void setCurrent(bool bCurrent);
 
@@ -55,21 +52,26 @@ private:
     // UI
     Ui::CaptionLabel *ui;
 
+public slots:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! State changed
+    void onStateChanged(bool bIsCollapsed);
+
 signals:
     //-------------------------------------------------------------------------------------------------
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Notify a collapse/expand change
-    void collapseOrExpand(bool);
-
     //! Panel selected
     void panelSelected();
 
-private:
-    //! Collapsed state
-    bool m_bCollpased;
+    //! Toggle collapsed state
+    void toggleCollapsedState();
 
+private:
     //! Expandable?
     bool m_bExpandable;
 

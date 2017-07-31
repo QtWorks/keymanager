@@ -6,7 +6,7 @@
 // Application
 #include "scriptmgr.h"
 #include "parameter.h"
-#define VARIABLE_MARKER QString("%")
+#define VARIABLE_MARKER QString("")
 
 //-------------------------------------------------------------------------------------------------
 

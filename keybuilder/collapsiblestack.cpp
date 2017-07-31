@@ -32,9 +32,9 @@ const QVector<CollapsiblePanel *> &CollapsibleStack::panels() const
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleStack::addPanel(const QString &sCaption, QWidget *pKeyBlock, bool bHasParameters)
+void CollapsibleStack::addPanel(const QString &sCaption, QWidget *pKeyBlock)
 {
-    CollapsiblePanel *pPanel = new CollapsiblePanel(sCaption, bHasParameters, this);
+    CollapsiblePanel *pPanel = new CollapsiblePanel(sCaption, this);
     connect(pPanel, &CollapsiblePanel::panelSelected, this, &CollapsibleStack::onPanelSelected);
     pPanel->setWidget(pKeyBlock);
     m_pLayout->addWidget(pPanel);
@@ -49,7 +49,7 @@ void CollapsibleStack::expandAll()
     foreach (CollapsiblePanel *pPanel, m_vPanels)
     {
         if (pPanel->widget() != nullptr)
-            pPanel->expand();
+            pPanel->onCollapse(false);
     }
 }
 
@@ -60,7 +60,7 @@ void CollapsibleStack::collapseAll()
     foreach (CollapsiblePanel *pPanel, m_vPanels)
     {
         if (pPanel->widget() != nullptr)
-            pPanel->collapse();
+            pPanel->onCollapse(true);
     }
 }
 

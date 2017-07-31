@@ -57,19 +57,19 @@ private:
     //! Has parameters?
     bool m_bHasParameters;
 
+    //! Collapsed?
+    bool m_bIsCollapsed;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
     //-------------------------------------------------------------------------------------------------
 
-    //! Do collapse
-    void collapse();
-
-    //! Do expand
-    void expand();
-
     //! Collapse or expand
-    void collapseOrExpand(bool);
+    void onCollapse(bool);
+
+    //! Toggle collapsed state
+    void onToggleCollapsedState();
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -78,6 +78,9 @@ signals:
 
     //! Panel selected
     void panelSelected();
+
+    //! State changed (collapsed or expanded)
+    void stateChanged(bool bCollapsed);
 };
 
 #endif /*COLLAPSIBLEPANEL_H_*/

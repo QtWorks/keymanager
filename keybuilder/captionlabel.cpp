@@ -9,11 +9,10 @@
 //-------------------------------------------------------------------------------------------------
 
 CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
-    ui(new Ui::CaptionLabel), m_bCollpased(false), m_bExpandable(true),
+    ui(new Ui::CaptionLabel), m_bExpandable(true),
     m_bIsCurrent(false)
 {
     ui->setupUi(this);
-    ui->openCloseButton->setText(m_bCollpased ? tr("OPEN") : tr("CLOSE"));
     connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::toggleState);
 }
 
@@ -28,8 +27,7 @@ CaptionLabel::~CaptionLabel()
 
 void CaptionLabel::toggleState()
 {
-    m_bCollpased = !m_bCollpased;
-    emit collapseOrExpand(m_bCollpased);
+    emit toggleCollapsedState();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -79,4 +77,9 @@ void CaptionLabel::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
     emit panelSelected();
+}
+
+void CaptionLabel::onStateChanged(bool bIsCollapsed)
+{
+    setButtonLabel(bIsCollapsed ? tr("OPEN") : tr("CLOSE"));
 }

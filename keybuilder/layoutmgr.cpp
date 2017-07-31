@@ -10,7 +10,6 @@
 #include "keyblock.h"
 #include "collapsiblestack.h"
 #include "collapsiblepanel.h"
-#include "constants.h"
 #include "filepicker.h"
 #define MAX_KEY_PER_STACK 5
 
@@ -31,143 +30,25 @@ LayoutMgr::~LayoutMgr()
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::addKeyBlock(const CXMLNode &xKeyBlock)
+void LayoutMgr::addBlock(QWidget *pBlock, const QString &sName)
 {
-    QString sKeyName("");
-    bool bHasParameters = true;
-    KeyBlock *pNewKeyBlock = createKeyBlock(xKeyBlock, sKeyName, bHasParameters);
-    if (sKeyName.isEmpty())
-        sKeyName = "NO NAME";
-
-    CollapsibleStack *pTargetStack = nullptr;
-    int iStackIndex = m_nKeyBlocks/MAX_KEY_PER_STACK;
-    if (iStackIndex < m_vStacks.size())
-        pTargetStack = m_vStacks[iStackIndex];
-    else
+    if (pBlock != nullptr)
     {
-        pTargetStack = new CollapsibleStack(this);
-        connect(pTargetStack, &CollapsibleStack::panelSelected, this, &LayoutMgr::onPanelSelected);
-        m_vStacks << pTargetStack;
-        ui->horizontalLayout->addWidget(pTargetStack);
-        ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
-    }
-    pTargetStack->addPanel(sKeyName, pNewKeyBlock, bHasParameters);
-    m_nKeyBlocks++;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-KeyBlock *LayoutMgr::createKeyBlock(const CXMLNode &xKeyBlock, QString &sKeyName, bool &bHasParameters)
-{
-    // Populate key block with parameters
-    QVector<CXMLNode> vParameterNodes = xKeyBlock.getNodesByTagName(TAG_PARAMETER);
-    bHasParameters = !vParameterNodes.isEmpty();
-
-    // Build key block
-    sKeyName = xKeyBlock.attributes()[PROPERTY_NAME];
-    KeyBlock *pKeyBlock = new KeyBlock();
-    pKeyBlock->setName(sKeyName);
-    if (!bHasParameters) {
-        pKeyBlock->setFixedSize(0, 0);
-        pKeyBlock->setVisible(false);
-    }
-
-    foreach (CXMLNode xParameter, vParameterNodes)
-    {
-        QString sParameterName = xParameter.attributes()[PROPERTY_NAME];
-        QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE];
-        QString sParameterType = xParameter.attributes()[PROPERTY_TYPE];
-        QString sWidgetType = xParameter.attributes()[PROPERTY_UI];
-        if (sWidgetType == WIDGET_LINE_EDIT)
-        {
-            // Label
-            QLabel *pLabel = new QLabel(sParameterName, pKeyBlock);
-            pKeyBlock->addWidget(pLabel);
-
-            // Widget
-            QLineEdit *pLineEdit = new QLineEdit(pKeyBlock);
-            pKeyBlock->addWidget(pLineEdit);
-            if (sParameterType == PROPERTY_DOUBLE)
-            {
-                QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, pKeyBlock);
-                pLineEdit->setValidator(pValidator);
-            }
-
-            // Connections
-            connect(pLineEdit, &QLineEdit::textChanged, this, &LayoutMgr::onLineEditTextChanged);
-            m_hWidgetHash[sParameterVariable] << pLineEdit;
-        }
+        CollapsibleStack *pTargetStack = nullptr;
+        int iStackIndex = m_nKeyBlocks/MAX_KEY_PER_STACK;
+        if (iStackIndex < m_vStacks.size())
+            pTargetStack = m_vStacks[iStackIndex];
         else
-        if (sWidgetType == WIDGET_FILE_PICKER)
         {
-            QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
-            QLabel *pLabel = new QLabel(sParameterName, pKeyBlock);
-            pKeyBlock->addWidget(pLabel);
-            FilePicker *pFilePicker = new FilePicker(sFileExtension, pKeyBlock);
-            pKeyBlock->addWidget(pFilePicker);
-            connect(pFilePicker->fileLineEdit(), &QLineEdit::textChanged, this, &LayoutMgr::onLineEditTextChanged);
-            m_hWidgetHash[sParameterVariable] << pFilePicker->fileLineEdit();
+            pTargetStack = new CollapsibleStack(this);
+            connect(pTargetStack, &CollapsibleStack::panelSelected, this, &LayoutMgr::onPanelSelected);
+            m_vStacks << pTargetStack;
+            ui->horizontalLayout->addWidget(pTargetStack);
+            ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
         }
-        else
-        if (sWidgetType == WIDGET_RADIO_BUTTON)
-        {
-            QString sValue = xParameter.attributes()[PROPERTY_VALUE];
-            QLabel *pLabel = new QLabel(sParameterName, pKeyBlock);
-            pKeyBlock->addWidget(pLabel);
-            QRadioButton *pRadioButton = new QRadioButton(pKeyBlock);
-            pRadioButton->setAutoExclusive(true);
-            pRadioButton->setProperty("userValue", sValue);
-            pKeyBlock->addWidget(pRadioButton);
-            connect(pRadioButton, &QRadioButton::clicked, this, &LayoutMgr::onRadioButtonClicked);
-            m_hWidgetHash[sParameterVariable] << pRadioButton;
-        }
+        pTargetStack->addPanel(sName, pBlock);
+        m_nKeyBlocks++;
     }
-
-    return pKeyBlock;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void LayoutMgr::onLineEditTextChanged()
-{
-    QLineEdit *pSender = dynamic_cast<QLineEdit *>(sender());
-    if (pSender != nullptr)
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            emit parameterValueChanged(sParameterVariable, pSender->text());
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void LayoutMgr::onRadioButtonClicked()
-{
-    QRadioButton *pSender = dynamic_cast<QRadioButton *>(sender());
-    if ((pSender != nullptr) && (pSender->isChecked()))
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            // Retrieve user value
-            QString sUserValue = pSender->property("userValue").toString();
-            emit parameterValueChanged(sParameterVariable, sUserValue);
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QString LayoutMgr::findAssociatedParameterVariable(QWidget *pWidget) const
-{
-    for (QHash<QString, QVector<QWidget *> >::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
-    {
-        if (it.value().contains(pWidget))
-            return it.key();
-    }
-    return QString();
 }
 
 //-------------------------------------------------------------------------------------------------
