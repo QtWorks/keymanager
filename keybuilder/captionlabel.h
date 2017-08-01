@@ -58,7 +58,7 @@ public slots:
     //-------------------------------------------------------------------------------------------------
 
     //! State changed
-    void onStateChanged(bool bIsCollapsed);
+    void onStateChanged(bool bIsClosed);
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -68,8 +68,8 @@ signals:
     //! Block selected
     void blockSelected();
 
-    //! Toggle collapsed state
-    void toggleCollapsedState();
+    //! Toggle closed state
+    void toggleClosedState();
 
 private:
     //! Expandable?

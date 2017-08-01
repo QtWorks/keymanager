@@ -93,7 +93,14 @@
         <string>Menu 1</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="3" column="0">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="openAllButtonMenu1">
+          <property name="text">
+           <string>OPEN ALL</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
          <widget class="QScrollArea" name="scrollArea">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -104,7 +111,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>408</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
@@ -119,20 +126,6 @@
          <widget class="QPushButton" name="closeAllButtonMenu1">
           <property name="text">
            <string>CLOSE ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="openAllButtonMenu1">
-          <property name="text">
-           <string>OPEN ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="generateScriptButton">
-          <property name="text">
-           <string>GENERATE SCRIPT</string>
           </property>
          </widget>
         </item>
@@ -159,7 +152,21 @@
            </property>
            <layout class="QGridLayout" name="gridLayout_7">
             <item row="0" column="0">
+             <widget class="QPushButton" name="openAllButtonMenu2">
+              <property name="text">
+               <string>OPEN ALL</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
              <widget class="LayoutMgr" name="menu2LayoutMgr" native="true"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="closeAllButtonMenu2">
+              <property name="text">
+               <string>CLOSE ALL</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

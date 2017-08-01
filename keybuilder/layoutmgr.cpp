@@ -7,10 +7,11 @@
 // Application
 #include "layoutmgr.h"
 #include "ui_layoutmgr.h"
-#include "keyblock.h"
+#include "parameterblock.h"
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
 #include "filepicker.h"
+#include "constants.h"
 #define NSTACKS 3
 
 //-------------------------------------------------------------------------------------------------
@@ -26,6 +27,29 @@ LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
 LayoutMgr::~LayoutMgr()
 {
     delete ui;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::buildMenu(const CXMLNode &xNode)
+{
+    QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
+    setSize(vBlocks.size());
+    foreach (CXMLNode xParameterBlock, vBlocks)
+        addCollapsibleBlockToStack(xParameterBlock);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock)
+{
+    // Create new parameter block
+    ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this);
+
+    // Listen to parameter value changed
+    connect(pParameterBlock, &ParameterBlock::parameterValueChanged, this, &LayoutMgr::parameterValueChanged);
+    CollapsibleBlock *pNewBlock = addBlock(pParameterBlock, pParameterBlock->name(), pParameterBlock->isEmpty());
+    connect(pNewBlock, &CollapsibleBlock::blockSelected, pParameterBlock, &ParameterBlock::onSelectMe);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -69,18 +93,18 @@ void LayoutMgr::setSize(int iSize)
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onExpandAll()
+void LayoutMgr::onOpenAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
-        pStack->collapseAll();
+        pStack->openAll();
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onCollapseAll()
+void LayoutMgr::onCloseAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
-        pStack->expandAll();
+        pStack->closeAll();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -89,8 +113,8 @@ void LayoutMgr::onBlockSelected(CollapsibleBlock *pCurrentBlock)
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
     {
-        QVector<CollapsibleBlock *> vBlocks = pStack->blocks();
-        foreach (CollapsibleBlock *pBlock, vBlocks)
+        QList<CollapsibleBlock *> lBlocks = pStack->blocks();
+        foreach (CollapsibleBlock *pBlock, lBlocks)
             pBlock->setCurrent(pBlock == pCurrentBlock);
     }
 }

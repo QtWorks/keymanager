@@ -28,7 +28,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Return list of blocks
-    const QVector<CollapsibleBlock *> &blocks() const;
+    QList<CollapsibleBlock *> blocks() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -37,18 +37,15 @@ public:
     //! Add block
     CollapsibleBlock *addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty);
 
-    //! Expand all
-    void expandAll();
+    //! Open all
+    void openAll();
 
-    //! Collapse all
-    void collapseAll();
+    //! Close all
+    void closeAll();
 
 private:
     //! Own layout
     QVBoxLayout *m_pLayout;
-
-    //! Blocks
-    QVector<CollapsibleBlock *> m_vBlocks;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

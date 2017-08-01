@@ -64,13 +64,14 @@ SOURCES += main.cpp\
     keybuilder.cpp \
     controller.cpp \
     parametermgr.cpp \
-    keyblock.cpp \
     filepicker.cpp \
     layoutmgr.cpp \
     scriptmgr.cpp \
     captionlabel.cpp \
     collpasibleblock.cpp \
-    lineedittriplet.cpp
+    lineedittriplet.cpp \
+    parameterblock.cpp \
+    exclusivechoicewidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -81,20 +82,22 @@ HEADERS  += mainwindow.h \
     iservice.h \
     parametermgr.h \
     constants.h \
-    keyblock.h \
     filepicker.h \
     layoutmgr.h \
     scriptmgr.h \
     captionlabel.h \
     collapsibleblock.h \
-    lineedittriplet.h
+    lineedittriplet.h \
+    parameterblock.h \
+    exclusivechoicewidget.h
 
 FORMS    += mainwindow.ui \
-    keyblock.ui \
     filepicker.ui \
     layoutmgr.ui \
     captionlabel.ui \
-    lineedittriplet.ui
+    lineedittriplet.ui \
+    parameterblock.ui \
+    exclusivechoicewidget.ui
 
 DISTFILES +=
 

@@ -41,8 +41,8 @@ public:
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Return collapsed state
-    bool isCollapsed() const;
+    //! Return closed state
+    bool isClosed() const;
 
 private:
     //! Set widget
@@ -61,8 +61,8 @@ private:
     //! Has parameters or child blocks?
     bool m_bIsEmpty;
 
-    //! Collapsed?
-    bool m_bIsCollapsed;
+    //! Closed?
+    bool m_bIsClosed;
 
     //! Is current?
     bool m_bIsCurrent;
@@ -72,11 +72,11 @@ public slots:
     // Slots
     //-------------------------------------------------------------------------------------------------
 
-    //! Collapse or expand
-    void onCollapse(bool);
+    //! Close or open
+    void onClose(bool);
 
-    //! Toggle collapsed state
-    void onToggleCollapsedState();
+    //! Toggle closed state
+    void onToggleClosedState();
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -86,8 +86,8 @@ signals:
     //! Block selected
     void blockSelected();
 
-    //! State changed (collapsed or expanded)
-    void collapsedStateChanged(bool bCollapsed);
+    //! State changed (closed or opened)
+    void closedStateChanged(bool bClosed);
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

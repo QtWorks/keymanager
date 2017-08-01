@@ -27,7 +27,7 @@ CaptionLabel::~CaptionLabel()
 
 void CaptionLabel::toggleState()
 {
-    emit toggleCollapsedState();
+    emit toggleClosedState();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ void CaptionLabel::mousePressEvent(QMouseEvent *event)
     emit blockSelected();
 }
 
-void CaptionLabel::onStateChanged(bool bIsCollapsed)
+void CaptionLabel::onStateChanged(bool bIsClosed)
 {
-    setButtonLabel(bIsCollapsed ? tr("OPEN") : tr("CLOSE"));
+    setButtonLabel(bIsClosed ? tr("OPEN") : tr("CLOSE"));
 }

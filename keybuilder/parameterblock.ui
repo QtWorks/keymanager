@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>KeyBlock</class>
- <widget class="QWidget" name="KeyBlock">
+ <class>ParameterBlock</class>
+ <widget class="QWidget" name="ParameterBlock">
   <property name="geometry">
    <rect>
     <x>0</x>

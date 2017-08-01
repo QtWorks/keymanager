@@ -1,21 +1,23 @@
 // Qt
 #include <QVBoxLayout>
 #include <QMouseEvent>
-#include <QPainter>
-#include <QFontMetrics>
-#include <QPolygon>
-#include <stdexcept>
+#include <QDebug>
 
 // Application
 #include "collapsibleblock.h"
 #include "captionlabel.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
 CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bool bIsEmpty, QWidget *parent)
-    : QWidget(parent), m_pWidget(nullptr), m_bIsEmpty(bIsEmpty), m_bIsCollapsed(true),
+    : QWidget(parent), m_pWidget(nullptr), m_bIsEmpty(bIsEmpty), m_bIsClosed(true),
       m_bIsCurrent(false)
 {
+    // Set object name
+    setObjectName(COLLAPSIBLEBLOCK_OBJECT_NAME);
+
+    // Set size policy
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     // Create layout
@@ -29,8 +31,8 @@ CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bo
 
     // Do connections
     connect(m_pLabel, &CaptionLabel::blockSelected, this, &CollapsibleBlock::blockSelected);
-    connect(this, &CollapsibleBlock::collapsedStateChanged, m_pLabel, &CaptionLabel::onStateChanged);
-    connect(m_pLabel, &CaptionLabel::toggleCollapsedState, this, &CollapsibleBlock::onToggleCollapsedState);
+    connect(this, &CollapsibleBlock::closedStateChanged, m_pLabel, &CaptionLabel::onStateChanged);
+    connect(m_pLabel, &CaptionLabel::toggleClosedState, this, &CollapsibleBlock::onToggleClosedState);
 
     // Set widget
     setWidget(pWidget);
@@ -40,7 +42,7 @@ CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bo
 
 CollapsibleBlock::~CollapsibleBlock()
 {
-
+    qDebug() << "*** DESTROY COLLAPSIBLE BLOCK ***";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -60,33 +62,33 @@ void CollapsibleBlock::setWidget(QWidget *widget)
         m_pWidget->setParent(this);
         m_pLayout->addWidget(m_pWidget);
         m_pLayout->setAlignment(m_pWidget, Qt::AlignTop);
-        onCollapse(m_bIsCollapsed);
+        onClose(m_bIsClosed);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::onCollapse(bool bCollapse)
+void CollapsibleBlock::onClose(bool bClose)
 {
     if (!m_pWidget || m_bIsEmpty)
         return;
-    m_bIsCollapsed = bCollapse;
-    m_pWidget->setVisible(!bCollapse);
-    emit collapsedStateChanged(m_bIsCollapsed);
+    m_bIsClosed = bClose;
+    m_pWidget->setVisible(!bClose);
+    emit closedStateChanged(m_bIsClosed);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::onToggleCollapsedState()
+void CollapsibleBlock::onToggleClosedState()
 {
-    onCollapse(!m_bIsCollapsed);
+    onClose(!m_bIsClosed);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-bool CollapsibleBlock::isCollapsed() const
+bool CollapsibleBlock::isClosed() const
 {
-    return m_bIsCollapsed;
+    return m_bIsClosed;
 }
 
 bool CollapsibleBlock::isCurrent() const

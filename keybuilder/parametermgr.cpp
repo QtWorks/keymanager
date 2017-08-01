@@ -33,23 +33,23 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
         if (sParameterName.simplified().isEmpty())
         {
-            qDebug() << "--- FIND A PARAMETER WITH AN EMPTY NAME!";
+            qDebug() << "*** FIND A PARAMETER WITH AN EMPTY NAME ***";
             continue;
         }
         QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
         if (sParameterType.simplified().isEmpty())
         {
-            qDebug() << "--- FIND A PARAMETER WITH AN UNDEFINED TYPE!";
+            qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED TYPE ***";
             continue;
         }
         QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
         if (sParameterVariable.simplified().isEmpty())
         {
-            qDebug() << "--- FIND A PARAMETER WITH AN UNDEFINED VARIABLE!";
+            qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED VARIABLE ***";
             continue;
         }
 
-        qDebug() << "IDENTIFIED: " << sParameterVariable;
+        qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
         if (!m_hParameters.contains(sParameterVariable))
             m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
     }
@@ -102,7 +102,7 @@ bool ParameterMgr::loadMenu1Parameters()
     foreach (CXMLNode xBlock, vBlocks)
         parseSingleBlock(xBlock);
 
-    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1";
+    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1 ***";
 
     return true;
 }
@@ -121,7 +121,7 @@ bool ParameterMgr::loadMenu2Parameters()
     foreach (CXMLNode xBlock, vBlocks)
         parseSingleBlock(xBlock);
 
-    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 2";
+    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 2 ***";
 
     return true;
 }

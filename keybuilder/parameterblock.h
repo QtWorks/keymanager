@@ -1,17 +1,18 @@
-#ifndef KEYBLOCK_H
-#define KEYBLOCK_H
+#ifndef PARAMETERBLOCK_H
+#define PARAMETERBLOCK_H
 
 // Qt
 #include <QWidget>
 
 // Application
 #include "cxmlnode.h"
+class LayoutMgr;
 
 namespace Ui {
-class KeyBlock;
+class ParameterBlock;
 }
 
-class KeyBlock : public QWidget
+class ParameterBlock : public QWidget
 {
     Q_OBJECT
 
@@ -21,10 +22,10 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit KeyBlock(const CXMLNode &xKeyBlock, QWidget *parent=nullptr);
+    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, QWidget *parent=nullptr);
 
     //! Destructor
-    ~KeyBlock();
+    ~ParameterBlock();
 
     //! Add widget
     void addWidget(QWidget *pWidget, const QString &sParameterVariable);
@@ -63,15 +64,15 @@ private:
     //! Find associated parameter variable
     QString findAssociatedParameterVariable(QWidget *pWidget) const;
 
-    //! Populate key block
-    void populateKeyBlock(const CXMLNode &xKeyBlock);
+    //! Populate parameter block
+    void populateParameterBlock(const CXMLNode &xParameterBlock);
 
     //! Add widget
     void addWidget(QWidget *pWidget);
 
 private:
     //! UI
-    Ui::KeyBlock *ui;
+    Ui::ParameterBlock *ui;
 
     //! Name
     QString m_sName;
@@ -82,9 +83,12 @@ private:
     //! Is empty?
     bool m_bIsEmpty;
 
+    //! Layout mgr
+    LayoutMgr *m_pLayoutMgr;
+
 signals:
     //! Parameter value changed
     void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
-#endif // KEYBLOCK_H
+#endif // PARAMETERBLOCK_H

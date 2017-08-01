@@ -1,10 +1,12 @@
 // Qt
 #include <QVBoxLayout>
+#include <QDebug>
 
 // Application
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
-#include "keyblock.h"
+#include "parameterblock.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -20,14 +22,14 @@ CollapsibleStack::CollapsibleStack(QWidget *parent) : QWidget(parent)
 
 CollapsibleStack::~CollapsibleStack()
 {
-
+    qDebug() << "*** DESTROY COLLAPSIBLE STACK ***";
 }
 
 //-------------------------------------------------------------------------------------------------
 
-const QVector<CollapsibleBlock *> &CollapsibleStack::blocks() const
+QList<CollapsibleBlock *> CollapsibleStack::blocks() const
 {
-    return m_vBlocks;
+    return findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -39,29 +41,30 @@ CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *p
     pBlock->setParent(this);
     m_pLayout->addWidget(pBlock);
     m_pLayout->setAlignment(pBlock, Qt::AlignTop);
-    m_vBlocks << pBlock;
     return pBlock;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleStack::expandAll()
+void CollapsibleStack::openAll()
 {
-    foreach (CollapsibleBlock *pBlock, m_vBlocks)
+    QList<CollapsibleBlock *> lChildren = findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
+    foreach (CollapsibleBlock *pBlock, lChildren)
     {
         if (pBlock->widget() != nullptr)
-            pBlock->onCollapse(false);
+            pBlock->onClose(false);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleStack::collapseAll()
+void CollapsibleStack::closeAll()
 {
-    foreach (CollapsibleBlock *pBlock, m_vBlocks)
+    QList<CollapsibleBlock *> lChildren = findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
+    foreach (CollapsibleBlock *pBlock, lChildren)
     {
         if (pBlock->widget() != nullptr)
-            pBlock->onCollapse(true);
+            pBlock->onClose(true);
     }
 }
 

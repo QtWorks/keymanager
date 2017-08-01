@@ -4,40 +4,42 @@
 #include <QRadioButton>
 
 // Application
-#include "keyblock.h"
-#include "ui_keyblock.h"
+#include "parameterblock.h"
+#include "ui_parameterblock.h"
 #include "constants.h"
 #include "collapsibleblock.h"
 #include "filepicker.h"
 #include "lineedittriplet.h"
+#include "layoutmgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
-KeyBlock::KeyBlock(const CXMLNode &xKeyBlock, QWidget *parent) : QWidget(parent), ui(new Ui::KeyBlock),
-    m_bIsEmpty(false)
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
+    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    populateKeyBlock(xKeyBlock);
+    populateParameterBlock(xParameterBlock);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-KeyBlock::~KeyBlock()
+ParameterBlock::~ParameterBlock()
 {
     delete ui;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
+void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 {
-    // Populate key block with parameters
-    QVector<CXMLNode> vParameterNodes = xKeyBlock.getNodesByTagName(TAG_PARAMETER);
-    m_bIsEmpty = xKeyBlock.isEmpty();
+    // Populate parameter block with parameters
+    QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
+    m_bIsEmpty = xParameterBlock.nodes().isEmpty();
 
-    // Build key block
-    setName(xKeyBlock.attributes()[PROPERTY_NAME]);
+    // Build parameter block
+    setName(xParameterBlock.attributes()[PROPERTY_NAME]);
+
     if (m_bIsEmpty) {
         setFixedSize(0, 0);
         setVisible(false);
@@ -65,7 +67,7 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
             }
 
             // Connections
-            connect(pLineEdit, &QLineEdit::textChanged, this, &KeyBlock::onLineEditTextChanged);
+            connect(pLineEdit, &QLineEdit::textChanged, this, &ParameterBlock::onLineEditTextChanged);
             m_hWidgetHash[sParameterVariable] << pLineEdit;
         }
         else
@@ -76,11 +78,11 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
             addWidget(pLabel);
             FilePicker *pFilePicker = new FilePicker(sFileExtension, this);
             addWidget(pFilePicker);
-            connect(pFilePicker->fileLineEdit(), &QLineEdit::textChanged, this, &KeyBlock::onLineEditTextChanged);
+            connect(pFilePicker->fileLineEdit(), &QLineEdit::textChanged, this, &ParameterBlock::onLineEditTextChanged);
             m_hWidgetHash[sParameterVariable] << pFilePicker->fileLineEdit();
         }
         else
-        if (sWidgetType == WIDGET_RADIO_BUTTON)
+        if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
         {
             QString sValue = xParameter.attributes()[PROPERTY_VALUE];
             QLabel *pLabel = new QLabel(sParameterName, this);
@@ -89,7 +91,7 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
             pRadioButton->setAutoExclusive(true);
             pRadioButton->setProperty("userValue", sValue);
             addWidget(pRadioButton);
-            connect(pRadioButton, &QRadioButton::clicked, this, &KeyBlock::onRadioButtonClicked);
+            connect(pRadioButton, &QRadioButton::clicked, this, &ParameterBlock::onRadioButtonClicked);
             m_hWidgetHash[sParameterVariable] << pRadioButton;
         }
         else
@@ -99,23 +101,25 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
             addWidget(pLabel);
             LineEditTriplet *pTriplet = new LineEditTriplet(this);
             addWidget(pTriplet);
-            connect(pTriplet, &LineEditTriplet::valueChanged, this, &KeyBlock::onLineEditTripletValueChanged);
+            connect(pTriplet, &LineEditTriplet::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
             m_hWidgetHash[sParameterVariable] << pTriplet;
         }
     }
 
     // Parse child blocks
-    QVector<CXMLNode> vChildBlocks = xKeyBlock.getNodesByTagName(TAG_BLOCK);
+    QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
     foreach (CXMLNode xChildBlock, vChildBlocks)
     {
         // Get child block name
         QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
 
-        // Build new key block
-        KeyBlock *pChildKeyBlock = new KeyBlock(xChildBlock);
+        // Build new parameter block
+        ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr);
+        connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr, &LayoutMgr::parameterValueChanged);
 
         // Create new collapsible block
-        CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildKeyBlock, sChildBlockName, true, this);
+        CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
+        connect(pNewBlock, &CollapsibleBlock::blockSelected, pChildParameterBlock, &ParameterBlock::onSelectMe);
 
         // Add to own layout
         addWidget(pNewBlock);
@@ -124,7 +128,7 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::onLineEditTextChanged()
+void ParameterBlock::onLineEditTextChanged()
 {
     QLineEdit *pSender = dynamic_cast<QLineEdit *>(sender());
     if (pSender != nullptr)
@@ -139,7 +143,7 @@ void KeyBlock::onLineEditTextChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::onRadioButtonClicked()
+void ParameterBlock::onRadioButtonClicked()
 {
     QRadioButton *pSender = dynamic_cast<QRadioButton *>(sender());
     if ((pSender != nullptr) && (pSender->isChecked()))
@@ -156,7 +160,7 @@ void KeyBlock::onRadioButtonClicked()
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::onLineEditTripletValueChanged()
+void ParameterBlock::onLineEditTripletValueChanged()
 {
     LineEditTriplet *pSender = dynamic_cast<LineEditTriplet *>(sender());
     if (pSender != nullptr)
@@ -171,14 +175,14 @@ void KeyBlock::onLineEditTripletValueChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::onSelectMe()
+void ParameterBlock::onSelectMe()
 {
     emit parameterValueChanged(PARAMETER_TYPE_OF_KEY, m_sName);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-QString KeyBlock::findAssociatedParameterVariable(QWidget *pWidget) const
+QString ParameterBlock::findAssociatedParameterVariable(QWidget *pWidget) const
 {
     for (QHash<QString, QVector<QWidget *> >::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
     {
@@ -190,7 +194,7 @@ QString KeyBlock::findAssociatedParameterVariable(QWidget *pWidget) const
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::addWidget(QWidget *pWidget)
+void ParameterBlock::addWidget(QWidget *pWidget)
 {
     ui->verticalLayout->addWidget(pWidget);
     ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
@@ -198,7 +202,7 @@ void KeyBlock::addWidget(QWidget *pWidget)
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::addWidget(QWidget *pWidget, const QString &sParameterVariable)
+void ParameterBlock::addWidget(QWidget *pWidget, const QString &sParameterVariable)
 {
     addWidget(pWidget);
     m_hWidgetHash[sParameterVariable] << pWidget;
@@ -206,21 +210,21 @@ void KeyBlock::addWidget(QWidget *pWidget, const QString &sParameterVariable)
 
 //-------------------------------------------------------------------------------------------------
 
-const QString &KeyBlock::name() const
+const QString &ParameterBlock::name() const
 {
     return m_sName;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void KeyBlock::setName(const QString &sName)
+void ParameterBlock::setName(const QString &sName)
 {
     m_sName = sName;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-bool KeyBlock::isEmpty() const
+bool ParameterBlock::isEmpty() const
 {
     return m_bIsEmpty;
 }

@@ -34,16 +34,6 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
-    //! Build menu 1 tab
-    void buildMenu1Tab(const CXMLNode &xNode);
-
-    //! Build menu 2 tab
-    void buildMenu2Tab(const CXMLNode &xNode);
-
-private:
-    //! Build single key block
-    void buildBlock(const CXMLNode &xBlock);
-
 private:
     //! UI
     Ui::MainWindow *ui;

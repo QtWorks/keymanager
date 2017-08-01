@@ -20,12 +20,11 @@
 #define PROPERTY_TARGET_ROW "targetrow"
 #define PROPERTY_NROWS "nrows"
 #define PROPERTY_TARGET_VARIABLE "targetvariable"
-
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"
-#define WIDGET_RADIO_BUTTON "radio"
-#define WIDGET_DOUBLE_TRIPLET "lineedit_triplet"
-
+#define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"
+#define WIDGET_DOUBLE_TRIPLET "double_triplet"
 #define PARAMETER_TYPE_OF_KEY "qt_type_of_key_qt"
+#define COLLAPSIBLEBLOCK_OBJECT_NAME "collapsibleblock"
 
 #endif // CONSTANTS_H
