@@ -19,33 +19,34 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    CollapsibleBlock(const QString &sCaption, bool bHasParameters, QWidget *parent=nullptr);
+    CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bool bIsEmpty, QWidget *parent=nullptr);
 
     //! Destructor
     ~CollapsibleBlock();
 
     //-------------------------------------------------------------------------------------------------
-    // Getters
+    // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
     //! Return widget
     QWidget *widget() const;
 
-    //-------------------------------------------------------------------------------------------------
-    // Control methods
-    //-------------------------------------------------------------------------------------------------
-
-    //! Set widget
-    void setWidget(QWidget *widget);
-
-    //! Return collapsed state
-    bool isCollapsed() const;
+    //! Is current?
+    bool isCurrent() const;
 
     //! Set current
     void setCurrent(bool bCurrent);
 
-    //! Add widget in layout
-    void addWidgetInLayout(QWidget *pWidget);
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return collapsed state
+    bool isCollapsed() const;
+
+private:
+    //! Set widget
+    void setWidget(QWidget *widget);
 
 private:
     //! Own widget
@@ -57,11 +58,14 @@ private:
     //! Caption
     CaptionLabel *m_pLabel;
 
-    //! Has parameters?
-    bool m_bHasParameters;
+    //! Has parameters or child blocks?
+    bool m_bIsEmpty;
 
     //! Collapsed?
     bool m_bIsCollapsed;
+
+    //! Is current?
+    bool m_bIsCurrent;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -83,7 +87,7 @@ signals:
     void blockSelected();
 
     //! State changed (collapsed or expanded)
-    void stateChanged(bool bCollapsed);
+    void collapsedStateChanged(bool bCollapsed);
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

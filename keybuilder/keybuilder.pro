@@ -69,7 +69,8 @@ SOURCES += main.cpp\
     layoutmgr.cpp \
     scriptmgr.cpp \
     captionlabel.cpp \
-    collpasibleblock.cpp
+    collpasibleblock.cpp \
+    lineedittriplet.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -85,13 +86,15 @@ HEADERS  += mainwindow.h \
     layoutmgr.h \
     scriptmgr.h \
     captionlabel.h \
-    collapsibleblock.h
+    collapsibleblock.h \
+    lineedittriplet.h
 
 FORMS    += mainwindow.ui \
     keyblock.ui \
     filepicker.ui \
     layoutmgr.ui \
-    captionlabel.ui
+    captionlabel.ui \
+    lineedittriplet.ui
 
 DISTFILES +=
 

@@ -39,8 +39,8 @@ public:
     //! Set name
     void setName(const QString &sName);
 
-    //! Has parameters?
-    bool hasParameters() const;
+    //! Is empty?
+    bool isEmpty() const;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -52,6 +52,9 @@ public slots:
 
     //! A radio button was clicked
     void onRadioButtonClicked();
+
+    //! A line edit triplet value changed
+    void onLineEditTripletValueChanged();
 
     //! Select me
     void onSelectMe();
@@ -76,8 +79,8 @@ private:
     //! Widget hash
     QHash<QString, QVector<QWidget *> > m_hWidgetHash;
 
-    //! Has parameters?
-    bool m_bHasParameters;
+    //! Is empty?
+    bool m_bIsEmpty;
 
 signals:
     //! Parameter value changed

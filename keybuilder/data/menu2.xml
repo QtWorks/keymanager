@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group Name="Menu 2">
+   <Block name="REGULAR/DIMPLE/LASER" variable="qt_type_of_key_qt" value="regular">
+      <Block name="ROW1">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+          </Block>
+          <ParameterTable1 columnlabels="DEPTH, ANGLE, Z DISTANCE FROM SHOULDER" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt"/>
+      </Block>
+      <Block name="ROW2">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+         </Block>
+      </Block>
+      <Block name="ROW3">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+         </Block>
+      </Block>
+      <Block name="ROW4">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+         </Block>
+      </Block>
+      <Block name="ROW5">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+         </Block>
+      </Block>
+      <Block name="ROW6">
+         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
+         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
+         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="lineedit_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit_triplet" />
+         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="RIGHT" />
+         <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="radio" value="LEFT" />
+         <Block name="CHOOSE MILL SHAPE" modality="exclusive">
+            <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
+               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+            </Block>
+            <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+            </Block>
+            <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+            <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
+               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="YES" />
+               <Parameter name="NOT CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" ui="radio" value="NO" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="YES" />
+               <Parameter name="NOT LINKED" type="string" variable="qt_regular_row1_linked_qt" ui="radio" value="NO" />
+            </Block>
+         </Block>
+      </Block>
+   </Block>
+</Group>

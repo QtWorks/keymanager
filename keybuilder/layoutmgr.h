@@ -31,7 +31,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add key block
-    CollapsibleBlock *addBlock(QWidget *pBlock, const QString &sName, bool bHasParameters);
+    CollapsibleBlock *addBlock(QWidget *pBlock, const QString &sName, bool bIsEmpty);
 
     //! Set size
     void setSize(int iSize);

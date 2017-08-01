@@ -32,11 +32,10 @@ const QVector<CollapsibleBlock *> &CollapsibleStack::blocks() const
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *pWidget, bool bHasParameters)
+CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty)
 {
-    CollapsibleBlock *pBlock = new CollapsibleBlock(sCaption, bHasParameters, this);
+    CollapsibleBlock *pBlock = new CollapsibleBlock(pWidget, sCaption, bIsEmpty, this);
     connect(pBlock, &CollapsibleBlock::blockSelected, this, &CollapsibleStack::onBlockSelected);
-    pBlock->setWidget(pWidget);
     pBlock->setParent(this);
     m_pLayout->addWidget(pBlock);
     m_pLayout->setAlignment(pBlock, Qt::AlignTop);
@@ -64,20 +63,6 @@ void CollapsibleStack::collapseAll()
         if (pBlock->widget() != nullptr)
             pBlock->onCollapse(true);
     }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-bool CollapsibleStack::allCollapsed() const
-{
-    int n = m_pLayout->count();
-    for (int i = 0; i < n; ++i)
-    {
-        CollapsibleBlock *pBlock = dynamic_cast<CollapsibleBlock *>(m_pLayout->itemAt(i)->widget());
-        if (pBlock && !pBlock->isCollapsed())
-            return false;
-    }
-    return true;
 }
 
 //-------------------------------------------------------------------------------------------------

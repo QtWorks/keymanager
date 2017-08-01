@@ -62,7 +62,7 @@ void MainWindow::buildMenu1Tab(const CXMLNode &xNode)
 
 //-------------------------------------------------------------------------------------------------
 
-void MainWindow::buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlock)
+void MainWindow::buildBlock(const CXMLNode &xBlock)
 {
     // Create new key block
     KeyBlock *pKeyBlock = new KeyBlock(xBlock);
@@ -70,21 +70,8 @@ void MainWindow::buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlo
     {
         // Listen to parameter value changed
         connect(pKeyBlock, &KeyBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
-
-        // Add block
-        if (pParentBlock == nullptr)
-        {
-            pParentBlock = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name(), pKeyBlock->hasParameters());
-            connect(pParentBlock, &CollapsibleBlock::blockSelected, pKeyBlock, &KeyBlock::onSelectMe);
-        }
-        else
-        {
-            pParentBlock->addWidgetInLayout(pKeyBlock);
-        }
-
-        QVector<CXMLNode> vChildBlocks = xBlock.getNodesByTagName(TAG_BLOCK);
-        foreach (CXMLNode xChildBlock, vChildBlocks)
-            buildBlock(xChildBlock, pParentBlock);
+        CollapsibleBlock *pNewBlock = ui->menu1LayoutMgr->addBlock(pKeyBlock, pKeyBlock->name(), pKeyBlock->isEmpty());
+        connect(pNewBlock, &CollapsibleBlock::blockSelected, pKeyBlock, &KeyBlock::onSelectMe);
     }
 }
 
@@ -92,6 +79,8 @@ void MainWindow::buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlo
 
 void MainWindow::buildMenu2Tab(const CXMLNode &xNode)
 {
-
+    QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
+    ui->menu2LayoutMgr->setSize(vBlocks.size());
+    foreach (CXMLNode xKeyBlock, vBlocks)
+        buildBlock(xKeyBlock);
 }
-

@@ -51,6 +51,10 @@ public:
     const CXMLNode &menu2Node() const;
 
 private:
+    //! Parse single block
+    void parseSingleBlock(const CXMLNode &xBlock);
+
+private:
     //! Menu 1 node
     CXMLNode m_xMenu1Node;
 

@@ -35,7 +35,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add block
-    CollapsibleBlock *addBlock(const QString &sCaption, QWidget *pWidget, bool bHasParameters);
+    CollapsibleBlock *addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty);
 
     //! Expand all
     void expandAll();
@@ -44,9 +44,6 @@ public:
     void collapseAll();
 
 private:
-    //! Return all collapsed state
-    bool allCollapsed() const;
-
     //! Own layout
     QVBoxLayout *m_pLayout;
 

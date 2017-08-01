@@ -1,18 +1,20 @@
 // Qt
 #include <QLabel>
 #include <QLineEdit>
-#include "filepicker.h"
 #include <QRadioButton>
 
 // Application
 #include "keyblock.h"
 #include "ui_keyblock.h"
 #include "constants.h"
+#include "collapsibleblock.h"
+#include "filepicker.h"
+#include "lineedittriplet.h"
 
 //-------------------------------------------------------------------------------------------------
 
 KeyBlock::KeyBlock(const CXMLNode &xKeyBlock, QWidget *parent) : QWidget(parent), ui(new Ui::KeyBlock),
-    m_bHasParameters(false)
+    m_bIsEmpty(false)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -32,11 +34,11 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
 {
     // Populate key block with parameters
     QVector<CXMLNode> vParameterNodes = xKeyBlock.getNodesByTagName(TAG_PARAMETER);
-    m_bHasParameters = !vParameterNodes.isEmpty();
+    m_bIsEmpty = xKeyBlock.isEmpty();
 
     // Build key block
     setName(xKeyBlock.attributes()[PROPERTY_NAME]);
-    if (!m_bHasParameters) {
+    if (m_bIsEmpty) {
         setFixedSize(0, 0);
         setVisible(false);
     }
@@ -90,6 +92,33 @@ void KeyBlock::populateKeyBlock(const CXMLNode &xKeyBlock)
             connect(pRadioButton, &QRadioButton::clicked, this, &KeyBlock::onRadioButtonClicked);
             m_hWidgetHash[sParameterVariable] << pRadioButton;
         }
+        else
+        if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
+        {
+            QLabel *pLabel = new QLabel(sParameterName, this);
+            addWidget(pLabel);
+            LineEditTriplet *pTriplet = new LineEditTriplet(this);
+            addWidget(pTriplet);
+            connect(pTriplet, &LineEditTriplet::valueChanged, this, &KeyBlock::onLineEditTripletValueChanged);
+            m_hWidgetHash[sParameterVariable] << pTriplet;
+        }
+    }
+
+    // Parse child blocks
+    QVector<CXMLNode> vChildBlocks = xKeyBlock.getNodesByTagName(TAG_BLOCK);
+    foreach (CXMLNode xChildBlock, vChildBlocks)
+    {
+        // Get child block name
+        QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
+
+        // Build new key block
+        KeyBlock *pChildKeyBlock = new KeyBlock(xChildBlock);
+
+        // Create new collapsible block
+        CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildKeyBlock, sChildBlockName, true, this);
+
+        // Add to own layout
+        addWidget(pNewBlock);
     }
 }
 
@@ -121,6 +150,21 @@ void KeyBlock::onRadioButtonClicked()
             // Retrieve user value
             QString sUserValue = pSender->property("userValue").toString();
             emit parameterValueChanged(sParameterVariable, sUserValue);
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void KeyBlock::onLineEditTripletValueChanged()
+{
+    LineEditTriplet *pSender = dynamic_cast<LineEditTriplet *>(sender());
+    if (pSender != nullptr)
+    {
+        QString sParameterVariable = findAssociatedParameterVariable(pSender);
+        if (!sParameterVariable.isEmpty())
+        {
+            emit parameterValueChanged(sParameterVariable, pSender->value());
         }
     }
 }
@@ -176,7 +220,7 @@ void KeyBlock::setName(const QString &sName)
 
 //-------------------------------------------------------------------------------------------------
 
-bool KeyBlock::hasParameters() const
+bool KeyBlock::isEmpty() const
 {
-    return m_bHasParameters;
+    return m_bIsEmpty;
 }

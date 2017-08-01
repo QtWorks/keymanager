@@ -30,7 +30,7 @@ LayoutMgr::~LayoutMgr()
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, bool bHasParameters)
+CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, bool bIsEmpty)
 {
     CollapsibleBlock *pAddedBlock = nullptr;
     if (pBlock != nullptr)
@@ -49,7 +49,7 @@ CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, boo
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
         }
-        pAddedBlock = pTargetStack->addBlock(sName, pBlock, bHasParameters);
+        pAddedBlock = pTargetStack->addBlock(sName, pBlock, bIsEmpty);
         m_nBlocks++;
     }
     return pAddedBlock;

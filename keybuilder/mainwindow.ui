@@ -157,7 +157,11 @@
              <height>495</height>
             </rect>
            </property>
-           <layout class="QGridLayout" name="gridLayout_7"/>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="LayoutMgr" name="menu2LayoutMgr" native="true"/>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>

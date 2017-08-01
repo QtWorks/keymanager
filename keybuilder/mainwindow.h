@@ -42,7 +42,7 @@ public:
 
 private:
     //! Build single key block
-    void buildBlock(const CXMLNode &xBlock, CollapsibleBlock *pParentBlock=nullptr);
+    void buildBlock(const CXMLNode &xBlock);
 
 private:
     //! UI

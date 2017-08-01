@@ -56,7 +56,7 @@
      <item>
       <widget class="QPushButton" name="openCloseButton">
        <property name="text">
-        <string>PushButton</string>
+        <string>NO LABEL</string>
        </property>
       </widget>
      </item>

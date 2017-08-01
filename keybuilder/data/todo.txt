@@ -1,0 +1,3 @@
+ROOT ADDITION DANS MENU2
+
+<Parameter name="DETAILED PIN DEFINITION" ui="table"/>
