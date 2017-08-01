@@ -52,7 +52,7 @@ public slots:
     void onLineEditTextChanged();
 
     //! A radio button was clicked
-    void onRadioButtonClicked();
+    void onRadioButtonClicked(const QString &sSelection);
 
     //! A line edit triplet value changed
     void onLineEditTripletValueChanged();

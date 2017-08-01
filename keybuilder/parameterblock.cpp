@@ -11,6 +11,7 @@
 #include "filepicker.h"
 #include "lineedittriplet.h"
 #include "layoutmgr.h"
+#include "exclusivechoicewidget.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -84,15 +85,12 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         else
         if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
         {
-            QString sValue = xParameter.attributes()[PROPERTY_VALUE];
-            QLabel *pLabel = new QLabel(sParameterName, this);
-            addWidget(pLabel);
-            QRadioButton *pRadioButton = new QRadioButton(this);
-            pRadioButton->setAutoExclusive(true);
-            pRadioButton->setProperty("userValue", sValue);
-            addWidget(pRadioButton);
-            connect(pRadioButton, &QRadioButton::clicked, this, &ParameterBlock::onRadioButtonClicked);
-            m_hWidgetHash[sParameterVariable] << pRadioButton;
+            QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
+            QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
+            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(",").toVector(), sValues.split(",").toVector(), "", this);
+            addWidget(pExclusiveChoiceWidet);
+            connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
+            m_hWidgetHash[sParameterVariable] << pExclusiveChoiceWidet;
         }
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
@@ -143,17 +141,16 @@ void ParameterBlock::onLineEditTextChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::onRadioButtonClicked()
+void ParameterBlock::onRadioButtonClicked(const QString &sSelection)
 {
-    QRadioButton *pSender = dynamic_cast<QRadioButton *>(sender());
-    if ((pSender != nullptr) && (pSender->isChecked()))
+    ExclusiveChoiceWidget *pSender = dynamic_cast<ExclusiveChoiceWidget *>(sender());
+    if (pSender != nullptr)
     {
         QString sParameterVariable = findAssociatedParameterVariable(pSender);
         if (!sParameterVariable.isEmpty())
         {
-            // Retrieve user value
-            QString sUserValue = pSender->property("userValue").toString();
-            emit parameterValueChanged(sParameterVariable, sUserValue);
+            // Notify
+            emit parameterValueChanged(sParameterVariable, sSelection);
         }
     }
 }

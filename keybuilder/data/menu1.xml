@@ -55,8 +55,7 @@
    <Block name="ABLOY PROTECT" variable="qt_type_of_key_qt" value="abloy_protec" />
    <Block name="ABUS PLUS" variable="qt_type_of_key_qt" value="abus_plus" />
    <Block name="AXI HOME" variable="qt_type_of_key_qt" value="axi_home">
-      <Parameter name="RIGHT" type="string" variable="qt_axi_home_model_qt" ui="exclusivechoice" value="RIGHT" />
-      <Parameter name="LEFT" type="string" variable="qt_axi_home_model_qt" ui="exclusivechoice" value="LEFT" />
+     <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" ui="exclusivechoice"/>
    </Block>
    <Block name="FICHET 787" variable="qt_type_of_key_qt" value="fichet_787" />
    <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" variable="qt_type_of_key_qt" value="import_stl">
