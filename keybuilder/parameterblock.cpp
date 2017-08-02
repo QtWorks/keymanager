@@ -87,7 +87,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
             QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(",").toVector(), sValues.split(",").toVector(), "", this);
+            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(",").toVector(), sValues.split(",").toVector(), sParameterName, this);
             addWidget(pExclusiveChoiceWidet);
             connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
             m_hWidgetHash[sParameterVariable] << pExclusiveChoiceWidet;
