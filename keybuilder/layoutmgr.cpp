@@ -5,19 +5,20 @@
 #include <QDoubleValidator>
 
 // Application
+#include "controller.h"
 #include "layoutmgr.h"
 #include "ui_layoutmgr.h"
 #include "parameterblock.h"
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
-#include "filepicker.h"
+#include "filepickerwidget.h"
 #include "constants.h"
 #define NSTACKS 3
 
 //-------------------------------------------------------------------------------------------------
 
 LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
-    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0)
+    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0), m_pController(nullptr)
 {
     ui->setupUi(this);
 }
@@ -47,9 +48,32 @@ void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock)
     ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this);
 
     // Listen to parameter value changed
-    connect(pParameterBlock, &ParameterBlock::parameterValueChanged, this, &LayoutMgr::parameterValueChanged);
-    CollapsibleBlock *pNewBlock = addBlock(pParameterBlock, pParameterBlock->name(), pParameterBlock->isEmpty());
-    connect(pNewBlock, &CollapsibleBlock::blockSelected, pParameterBlock, &ParameterBlock::onSelectMe);
+    connect(pParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+    addBlock(pParameterBlock, pParameterBlock->name(), pParameterBlock->isEmpty());
+}
+
+//-------------------------------------------------------------------------------------------------
+
+Controller *LayoutMgr::controller() const
+{
+    return m_pController;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::setController(Controller *pController)
+{
+    m_pController = pController;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QList<CollapsibleBlock *> LayoutMgr::allBlocks() const
+{
+    QList<CollapsibleBlock *> lBlocks;
+    foreach (CollapsibleStack *pStack, m_vStacks)
+        lBlocks << pStack->blocks();
+    return lBlocks;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -68,7 +92,6 @@ CollapsibleBlock *LayoutMgr::addBlock(QWidget *pBlock, const QString &sName, boo
         else
         {
             pTargetStack = new CollapsibleStack(this);
-            connect(pTargetStack, &CollapsibleStack::blockSelected, this, &LayoutMgr::onBlockSelected);
             m_vStacks << pTargetStack;
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
@@ -105,16 +128,4 @@ void LayoutMgr::onCloseAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
         pStack->closeAll();
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void LayoutMgr::onBlockSelected(CollapsibleBlock *pCurrentBlock)
-{
-    foreach (CollapsibleStack *pStack, m_vStacks)
-    {
-        QList<CollapsibleBlock *> lBlocks = pStack->blocks();
-        foreach (CollapsibleBlock *pBlock, lBlocks)
-            pBlock->setCurrent(pBlock == pCurrentBlock);
-    }
 }

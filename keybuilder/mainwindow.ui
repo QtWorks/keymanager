@@ -116,7 +116,7 @@
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="0" column="0">
-             <widget class="LayoutMgr" name="menu1LayoutMgr" native="true"/>
+             <widget class="LayoutMgrMenu1" name="menu1LayoutMgr" native="true"/>
             </item>
            </layout>
           </widget>

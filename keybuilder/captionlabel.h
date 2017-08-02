@@ -17,7 +17,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CaptionLabel(QWidget *parent = 0);
+    explicit CaptionLabel(QWidget *parent=nullptr);
 
     //! Destructor
     ~CaptionLabel();

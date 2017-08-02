@@ -17,14 +17,14 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ExclusiveChoiceWidget(const QVector<QString> &vLabels, const QVector<QString> &vValues, const QString &sLabel, QWidget *parent = 0);
+    explicit ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, QWidget *parent=nullptr);
 
     //! Destructor
     ~ExclusiveChoiceWidget();
 
 private:
     //! Setup
-    void setup(const QVector<QString> &vLabels, const QVector<QString> &vValues);
+    void setup(const QStringList &vLabels, const QStringList &vValues);
 
 private:
     //! UI

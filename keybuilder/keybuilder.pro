@@ -64,14 +64,17 @@ SOURCES += main.cpp\
     keybuilder.cpp \
     controller.cpp \
     parametermgr.cpp \
-    filepicker.cpp \
     layoutmgr.cpp \
     scriptmgr.cpp \
     captionlabel.cpp \
     collpasibleblock.cpp \
-    lineedittriplet.cpp \
     parameterblock.cpp \
-    exclusivechoicewidget.cpp
+    exclusivechoicewidget.cpp \
+    lineeditwidget.cpp \
+    layoutmgrmenu1.cpp \
+    filepickerwidget.cpp \
+    levertablewidget.cpp \
+    doubletripletwidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -82,22 +85,27 @@ HEADERS  += mainwindow.h \
     iservice.h \
     parametermgr.h \
     constants.h \
-    filepicker.h \
     layoutmgr.h \
     scriptmgr.h \
     captionlabel.h \
     collapsibleblock.h \
-    lineedittriplet.h \
     parameterblock.h \
-    exclusivechoicewidget.h
+    exclusivechoicewidget.h \
+    lineeditwidget.h \
+    layoutmgrmenu1.h \
+    filepickerwidget.h \
+    doubletripletwidget.h \
+    levertablewidget.h
 
 FORMS    += mainwindow.ui \
-    filepicker.ui \
     layoutmgr.ui \
     captionlabel.ui \
-    lineedittriplet.ui \
     parameterblock.ui \
-    exclusivechoicewidget.ui
+    exclusivechoicewidget.ui \
+    lineeditwidget.ui \
+    filepickerwidget.ui \
+    levertablewidget.ui \
+    doubletripletwidget.ui
 
 DISTFILES +=
 

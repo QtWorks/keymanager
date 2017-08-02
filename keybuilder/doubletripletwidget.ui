@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LineEditTriplet</class>
- <widget class="QWidget" name="LineEditTriplet">
+ <class>DoubleTripletWidget</class>
+ <widget class="QWidget" name="DoubleTripletWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,6 +31,13 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLineEdit" name="lineEdit3"/>
        </item>
        <item>
@@ -38,6 +45,19 @@
        </item>
        <item>
         <widget class="QLineEdit" name="lineEdit1"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>

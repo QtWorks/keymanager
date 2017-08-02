@@ -37,7 +37,6 @@ QList<CollapsibleBlock *> CollapsibleStack::blocks() const
 CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty)
 {
     CollapsibleBlock *pBlock = new CollapsibleBlock(pWidget, sCaption, bIsEmpty, this);
-    connect(pBlock, &CollapsibleBlock::blockSelected, this, &CollapsibleStack::onBlockSelected);
     pBlock->setParent(this);
     m_pLayout->addWidget(pBlock);
     m_pLayout->setAlignment(pBlock, Qt::AlignTop);
@@ -48,8 +47,7 @@ CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *p
 
 void CollapsibleStack::openAll()
 {
-    QList<CollapsibleBlock *> lChildren = findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
-    foreach (CollapsibleBlock *pBlock, lChildren)
+    foreach (CollapsibleBlock *pBlock, blocks())
     {
         if (pBlock->widget() != nullptr)
             pBlock->onClose(false);
@@ -60,19 +58,11 @@ void CollapsibleStack::openAll()
 
 void CollapsibleStack::closeAll()
 {
-    QList<CollapsibleBlock *> lChildren = findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
-    foreach (CollapsibleBlock *pBlock, lChildren)
+    foreach (CollapsibleBlock *pBlock, blocks())
     {
         if (pBlock->widget() != nullptr)
             pBlock->onClose(true);
     }
 }
 
-//-------------------------------------------------------------------------------------------------
 
-void CollapsibleStack::onBlockSelected()
-{
-    CollapsibleBlock *pSelectedBlock = dynamic_cast<CollapsibleBlock *>(sender());
-    if (pSelectedBlock != nullptr)
-        emit blockSelected(pSelectedBlock);
-}

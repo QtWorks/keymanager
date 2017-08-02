@@ -3,7 +3,6 @@
 
 #define TAG_BLOCK "Block"
 #define TAG_PARAMETER "Parameter"
-#define TAG_PARAMETER_TABLE1 "ParameterTable1"
 
 #define PROPERTY_NAME "name"
 #define PROPERTY_VARIABLE "variable"
@@ -18,6 +17,7 @@
 #define PROPERTY_STRING "string"
 #define PROPERTY_TYPE_OF_KEY "typeOfKey"
 #define PROPERTY_MODALITY "exclusive"
+#define PROPERTY_COLUMN_LABELS "columnlabels"
 #define PROPERTY_COLUMN_VARIABLES "columnvariables"
 #define PROPERTY_TARGET_ROW "targetrow"
 #define PROPERTY_NROWS "nrows"
@@ -26,6 +26,8 @@
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"
 #define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"
+#define WIDGET_LEVER_TABLE "levertable"
+
 #define WIDGET_DOUBLE_TRIPLET "double_triplet"
 #define PARAMETER_TYPE_OF_KEY "qt_type_of_key_qt"
 #define COLLAPSIBLEBLOCK_OBJECT_NAME "collapsibleblock"

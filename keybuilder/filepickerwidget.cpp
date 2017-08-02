@@ -2,28 +2,30 @@
 #include <QFileDialog>
 
 // Application
-#include "filepicker.h"
-#include "ui_filepicker.h"
+#include "filepickerwidget.h"
+#include "ui_filepickerwidget.h"
 
 //-------------------------------------------------------------------------------------------------
 
-FilePicker::FilePicker(const QString &sFileExtension, QWidget *parent) : QWidget(parent),
-    ui(new Ui::FilePicker), m_sFileExtension(sFileExtension)
+FilePickerWidget::FilePickerWidget(const QString &sLabel, const QString &sFileExtension, QWidget *parent) : QWidget(parent),
+    ui(new Ui::FilePickerWidget), m_sFileExtension(sFileExtension)
 {
     ui->setupUi(this);
-    connect(ui->openButton, &QPushButton::clicked, this, &FilePicker::onOpenClicked);
+    ui->label->setText(sLabel);
+    connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::textChanged);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-FilePicker::~FilePicker()
+FilePickerWidget::~FilePickerWidget()
 {
     delete ui;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void FilePicker::onOpenClicked()
+void FilePickerWidget::onOpenClicked()
 {
     QString sFileName = QFileDialog::getOpenFileName(this,
         tr("Open File"), "", m_sFileExtension);
@@ -33,7 +35,7 @@ void FilePicker::onOpenClicked()
 
 //-------------------------------------------------------------------------------------------------
 
-QLineEdit *FilePicker::fileLineEdit() const
+QString FilePickerWidget::value() const
 {
-    return ui->lineEdit;
+    return ui->lineEdit->text();
 }

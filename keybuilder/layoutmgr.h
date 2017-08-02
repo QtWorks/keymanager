@@ -11,6 +11,7 @@ class LayoutMgr;
 }
 class CollapsibleStack;
 class CollapsibleBlock;
+class Controller;
 
 class LayoutMgr : public QWidget
 {
@@ -25,7 +26,17 @@ public:
     explicit LayoutMgr(QWidget *parent=nullptr);
 
     //! Destructor
-    ~LayoutMgr();
+    virtual ~LayoutMgr();
+
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return controller
+    Controller *controller() const;
+
+    //! Set controller
+    void setController(Controller *pController);
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -38,10 +49,18 @@ public:
     void setSize(int iSize);
 
     //! Build menu
-    void buildMenu(const CXMLNode &xNode);
+    virtual void buildMenu(const CXMLNode &xNode);
 
     //! Build block
     void addCollapsibleBlockToStack(const CXMLNode &xBlock);
+
+protected:
+    //! Return all blocks
+    QList<CollapsibleBlock *> allBlocks() const;
+
+protected:
+    //! Vector of stacks
+    QVector<CollapsibleStack *> m_vStacks;
 
 private:
     //! UI
@@ -49,9 +68,6 @@ private:
 
     //! Number of parameter blocks
     int m_nBlocks;
-
-    //! Vector of stacks
-    QVector<CollapsibleStack *> m_vStacks;
 
     //! Size
     int m_iSize;
@@ -61,6 +77,9 @@ private:
 
     //! # block per stack
     int m_nBlockPerStack;
+
+    //! Controller
+    Controller *m_pController;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -72,17 +91,6 @@ public slots:
 
     //! Close all parameter blocks
     void onCloseAll();
-
-    //! Block selected
-    void onBlockSelected(CollapsibleBlock *pBlock);
-
-signals:
-    //-------------------------------------------------------------------------------------------------
-    // Signals
-    //-------------------------------------------------------------------------------------------------
-
-    //! Parameter value changed
-    void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
 #endif // LAYOUTMGR_H

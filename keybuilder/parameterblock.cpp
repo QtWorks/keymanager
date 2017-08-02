@@ -2,16 +2,20 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
+#include <QDebug>
 
 // Application
+#include "controller.h"
 #include "parameterblock.h"
 #include "ui_parameterblock.h"
 #include "constants.h"
 #include "collapsibleblock.h"
-#include "filepicker.h"
-#include "lineedittriplet.h"
+#include "filepickerwidget.h"
+#include "doubletripletwidget.h"
 #include "layoutmgr.h"
 #include "exclusivechoicewidget.h"
+#include "lineeditwidget.h"
+#include "levertablewidget.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -54,53 +58,50 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         QString sWidgetType = xParameter.attributes()[PROPERTY_UI];
         if (sWidgetType == WIDGET_LINE_EDIT)
         {
-            // Label
-            QLabel *pLabel = new QLabel(sParameterName, this);
-            addWidget(pLabel);
-
-            // Widget
-            QLineEdit *pLineEdit = new QLineEdit(this);
-            addWidget(pLineEdit);
+            LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, this);
             if (sParameterType == PROPERTY_DOUBLE)
             {
                 QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
                 pLineEdit->setValidator(pValidator);
             }
-
-            // Connections
-            connect(pLineEdit, &QLineEdit::textChanged, this, &ParameterBlock::onLineEditTextChanged);
-            m_hWidgetHash[sParameterVariable] << pLineEdit;
+            connect(pLineEdit, &LineEditWidget::valueChanged, this, &ParameterBlock::onLineEditTextChanged);
+            addWidget(pLineEdit, sParameterVariable);
         }
         else
         if (sWidgetType == WIDGET_FILE_PICKER)
         {
             QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
-            QLabel *pLabel = new QLabel(sParameterName, this);
-            addWidget(pLabel);
-            FilePicker *pFilePicker = new FilePicker(sFileExtension, this);
-            addWidget(pFilePicker);
-            connect(pFilePicker->fileLineEdit(), &QLineEdit::textChanged, this, &ParameterBlock::onLineEditTextChanged);
-            m_hWidgetHash[sParameterVariable] << pFilePicker->fileLineEdit();
+            FilePickerWidget *pFilePickerWidget = new FilePickerWidget(sParameterName, sFileExtension, this);
+            connect(pFilePickerWidget, &FilePickerWidget::textChanged, this, &ParameterBlock::onFilePickerTextChanged);
+            addWidget(pFilePickerWidget, sParameterVariable);
         }
         else
         if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
             QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(",").toVector(), sValues.split(",").toVector(), sParameterName, this);
-            addWidget(pExclusiveChoiceWidet);
+            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, this);
             connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
-            m_hWidgetHash[sParameterVariable] << pExclusiveChoiceWidet;
+            addWidget(pExclusiveChoiceWidet, sParameterVariable);
         }
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
         {
-            QLabel *pLabel = new QLabel(sParameterName, this);
-            addWidget(pLabel);
-            LineEditTriplet *pTriplet = new LineEditTriplet(this);
-            addWidget(pTriplet);
-            connect(pTriplet, &LineEditTriplet::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
-            m_hWidgetHash[sParameterVariable] << pTriplet;
+            DoubleTripletWidget *pTriplet = new DoubleTripletWidget(sParameterName, this);
+            connect(pTriplet, &DoubleTripletWidget::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
+            addWidget(pTriplet, sParameterVariable);
+        }
+        else
+        if (sWidgetType == WIDGET_LEVER_TABLE)
+        {
+            QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
+            QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
+            QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
+            int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
+            QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
+            LeverTableWidget *pLeverTableWidget = new LeverTableWidget(sColumnLabels.split(","), sColumnVariables.split(","), sTargetRow, nRows, sTargetVariable);
+            connect(pLeverTableWidget, &LeverTableWidget::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
+            addWidget(pLeverTableWidget, sParameterVariable);
         }
     }
 
@@ -113,11 +114,10 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 
         // Build new parameter block
         ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr);
-        connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr, &LayoutMgr::parameterValueChanged);
+        connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr->controller(), &Controller::onParameterValueChanged);
 
         // Create new collapsible block
         CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
-        connect(pNewBlock, &CollapsibleBlock::blockSelected, pChildParameterBlock, &ParameterBlock::onSelectMe);
 
         // Add to own layout
         addWidget(pNewBlock);
@@ -128,13 +128,28 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 
 void ParameterBlock::onLineEditTextChanged()
 {
-    QLineEdit *pSender = dynamic_cast<QLineEdit *>(sender());
+    LineEditWidget *pSender = dynamic_cast<LineEditWidget *>(sender());
     if (pSender != nullptr)
     {
         QString sParameterVariable = findAssociatedParameterVariable(pSender);
         if (!sParameterVariable.isEmpty())
         {
-            emit parameterValueChanged(sParameterVariable, pSender->text());
+            emit parameterValueChanged(sParameterVariable, pSender->value());
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::onFilePickerTextChanged()
+{
+    FilePickerWidget *pSender = dynamic_cast<FilePickerWidget *>(sender());
+    if (pSender != nullptr)
+    {
+        QString sParameterVariable = findAssociatedParameterVariable(pSender);
+        if (!sParameterVariable.isEmpty())
+        {
+            emit parameterValueChanged(sParameterVariable, pSender->value());
         }
     }
 }
@@ -159,12 +174,13 @@ void ParameterBlock::onRadioButtonClicked(const QString &sSelection)
 
 void ParameterBlock::onLineEditTripletValueChanged()
 {
-    LineEditTriplet *pSender = dynamic_cast<LineEditTriplet *>(sender());
+    DoubleTripletWidget *pSender = dynamic_cast<DoubleTripletWidget *>(sender());
     if (pSender != nullptr)
     {
         QString sParameterVariable = findAssociatedParameterVariable(pSender);
         if (!sParameterVariable.isEmpty())
         {
+            // Notify
             emit parameterValueChanged(sParameterVariable, pSender->value());
         }
     }
@@ -172,18 +188,11 @@ void ParameterBlock::onLineEditTripletValueChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::onSelectMe()
-{
-    emit parameterValueChanged(PARAMETER_TYPE_OF_KEY, m_sName);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 QString ParameterBlock::findAssociatedParameterVariable(QWidget *pWidget) const
 {
-    for (QHash<QString, QVector<QWidget *> >::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
+    for (QHash<QString, QWidget *>::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
     {
-        if (it.value().contains(pWidget))
+        if (it.value() == pWidget)
             return it.key();
     }
     return QString();
@@ -202,7 +211,7 @@ void ParameterBlock::addWidget(QWidget *pWidget)
 void ParameterBlock::addWidget(QWidget *pWidget, const QString &sParameterVariable)
 {
     addWidget(pWidget);
-    m_hWidgetHash[sParameterVariable] << pWidget;
+    m_hWidgetHash[sParameterVariable] = pWidget;
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -1,13 +1,17 @@
-#ifndef LINEEDITTRIPLET_H
-#define LINEEDITTRIPLET_H
+#ifndef LINEEDITWIDGET_H
+#define LINEEDITWIDGET_H
 
+// Qt
 #include <QWidget>
 
+// Application
+class QValidator;
+
 namespace Ui {
-class LineEditTriplet;
+class LineEditWidget;
 }
 
-class LineEditTriplet : public QWidget
+class LineEditWidget : public QWidget
 {
     Q_OBJECT
 
@@ -17,21 +21,24 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LineEditTriplet(QWidget *parent = 0);
+    explicit LineEditWidget(const QString &sLabel, QWidget *parent=nullptr);
 
     //! Destructor
-    ~LineEditTriplet();
+    ~LineEditWidget();
 
     //! Return value
     QString value() const;
 
+    //! Set validator
+    void setValidator(QValidator *pValidator);
+
 private:
     //! UI
-    Ui::LineEditTriplet *ui;
+    Ui::LineEditWidget *ui;
 
 signals:
     //! Value changed
     void valueChanged();
 };
 
-#endif // LINEEDITTRIPLET_H
+#endif // LINEEDITWIDGET_H

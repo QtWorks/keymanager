@@ -51,14 +51,14 @@ public slots:
     //! A line edit text changed
     void onLineEditTextChanged();
 
+    //! File picker text changed
+    void onFilePickerTextChanged();
+
     //! A radio button was clicked
     void onRadioButtonClicked(const QString &sSelection);
 
     //! A line edit triplet value changed
     void onLineEditTripletValueChanged();
-
-    //! Select me
-    void onSelectMe();
 
 private:
     //! Find associated parameter variable
@@ -78,7 +78,7 @@ private:
     QString m_sName;
 
     //! Widget hash
-    QHash<QString, QVector<QWidget *> > m_hWidgetHash;
+    QHash<QString, QWidget *> m_hWidgetHash;
 
     //! Is empty?
     bool m_bIsEmpty;

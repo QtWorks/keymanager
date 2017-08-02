@@ -54,31 +54,6 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
             m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
     }
 
-    // Parse table type1
-    QVector<CXMLNode> vParameterTableType1Nodes = xBlock.getNodesByTagName(TAG_PARAMETER_TABLE1);
-    foreach (CXMLNode xParameterTableNode, vParameterTableType1Nodes)
-    {
-        QStringList lColumnVariable = xParameterTableNode.attributes()[PROPERTY_COLUMN_VARIABLES].split(",");
-        QString sTargetRow = xParameterTableNode.attributes()[PROPERTY_TARGET_ROW];
-        int nRows = xParameterTableNode.attributes()[PROPERTY_NROWS].toInt();
-        QString sTargetVariable = xParameterTableNode.attributes()[PROPERTY_TARGET_VARIABLE];
-
-        qDebug() << lColumnVariable << sTargetRow << nRows << sTargetVariable;
-
-        for (int i=0; i<nRows; i++)
-        {
-            for (int j=0; j<lColumnVariable.size(); j++)
-            {
-                QString sRowLabel = QString::number(i+1);
-                if (sRowLabel.length() < 2)
-                    sRowLabel = "0"+sRowLabel;
-                QString sColumnLabel = lColumnVariable[j].simplified();
-                QString sVariable = QString(sTargetVariable).arg(sTargetRow).arg(sRowLabel).arg(sColumnLabel);
-                qDebug() << "*** IDENTIFIED TABLE VARIABLE: " << sVariable;
-            }
-        }
-    }
-
     // Parse child blocks
     QVector<CXMLNode> vChildBlocks = xBlock.getNodesByTagName(TAG_BLOCK);
     foreach (CXMLNode xChildBlock, vChildBlocks)
@@ -133,6 +108,7 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
     Parameter *pParameter = m_hParameters[sParameterName];
     if (pParameter != nullptr)
         pParameter->setValue(sParameterValue);
+    else qDebug() << "*** CAN'T FIND PARAMETER " << sParameterName << " ***";
 }
 
 //-------------------------------------------------------------------------------------------------

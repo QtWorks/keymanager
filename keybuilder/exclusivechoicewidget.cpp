@@ -8,14 +8,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QVector<QString> &vLabels, const QVector<QString> &vValues, const QString &sLabel, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ExclusiveChoiceWidget)
+ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, QWidget *parent) :
+    QWidget(parent), ui(new Ui::ExclusiveChoiceWidget)
 {
     ui->setupUi(this);
     ui->labelArea->setVisible(!sLabel.simplified().isEmpty());
     ui->labelArea->setText(sLabel.simplified());
-    setup(vLabels, vValues);
+    setup(lLabels, lLabels);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -27,7 +26,7 @@ ExclusiveChoiceWidget::~ExclusiveChoiceWidget()
 
 //-------------------------------------------------------------------------------------------------
 
-void ExclusiveChoiceWidget::setup(const QVector<QString> &vLabels, const QVector<QString> &vValues)
+void ExclusiveChoiceWidget::setup(const QStringList &vLabels, const QStringList &vValues)
 {
     int nItems = qMin(vLabels.size(), vValues.size());
     for (int i=0; i<nItems; i++)

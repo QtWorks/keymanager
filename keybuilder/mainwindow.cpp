@@ -37,8 +37,8 @@ void MainWindow::setController(Controller *pController)
     m_pController = pController;
 
     // Listen to parameter value changed
-    connect(ui->menu1LayoutMgr, &LayoutMgr::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
-    connect(ui->menu2LayoutMgr, &LayoutMgr::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+    ui->menu1LayoutMgr->setController(m_pController);
+    ui->menu2LayoutMgr->setController(m_pController);
 
     // Close/Open all
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll);
