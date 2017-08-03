@@ -1,5 +1,5 @@
-#ifndef LEVERTABLEWIDGET_H
-#define LEVERTABLEWIDGET_H
+#ifndef GENERICPARAMETERTABLE_H
+#define GENERICPARAMETERTABLE_H
 
 // Qt
 #include <QWidget>
@@ -8,10 +8,10 @@
 #include <QItemDelegate>
 
 namespace Ui {
-class LeverTableWidget;
+class GenericParameterTable;
 }
 
-class LeverTableModel : public QAbstractItemModel
+class GenericParameterTableModel : public QAbstractItemModel
 {
     Q_OBJECT
 
@@ -21,11 +21,11 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    LeverTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sTargetRow,
-        int nRows, const QString &sTargetVariable,  QObject *parent=nullptr);
+    GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+        int nRows, const QString &sTargetVariable, const QString &sVariableMethod, QObject *parent=nullptr);
 
     //! Destructor
-    ~LeverTableModel();
+    ~GenericParameterTableModel();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -71,9 +71,8 @@ public:
     //! Reset column variables
     void resetColumnVariables(int iColumnIndex);
 
-private:
-    //! Identify target variable
-    QString identifyTargetVariable(int iColumn, int iRow) const;
+    //! Set default values
+    void applyDefaultValues();
 
 private:
     //! Column labels
@@ -81,6 +80,9 @@ private:
 
     //! Column variables
     QStringList m_lColumnVariables;
+
+    //! Default values
+    QStringList m_lDefaultValues;
 
     //! Target row
     QString m_sTargetRow;
@@ -96,6 +98,9 @@ private:
 
     //! Target variabe
     QString m_sTargetVariable;
+
+    //! Variable method
+    QString m_sVariableMethod;
 
     //! Data
     QVector<double> m_vData;
@@ -137,7 +142,7 @@ public:
     void updateEditorGeometry(QWidget *pEditor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
 
-class LeverTableWidget : public QWidget
+class GenericParameterTable : public QWidget
 {
     Q_OBJECT
 
@@ -147,11 +152,18 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LeverTableWidget(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sTargetRow,
-        int nRows, const QString &sTargetVariable,  QWidget *parent=nullptr);
+    explicit GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+        int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent=nullptr);
 
     //! Destructor
-    ~LeverTableWidget();
+    ~GenericParameterTable();
+
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Apply default values
+    void applyDefaultValues();
 
 private:
     //! Populate button area
@@ -162,10 +174,10 @@ private:
 
 private:
     //! UI
-    Ui::LeverTableWidget *ui;
+    Ui::GenericParameterTable *ui;
 
     //! Model
-    LeverTableModel *m_pModel;
+    GenericParameterTableModel *m_pModel;
 
 public slots:
     //! Number of active lever changed
@@ -183,4 +195,4 @@ signals:
     void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
-#endif // LEVERTABLEWIDGET_H
+#endif // GENERICPARAMETERTABLE_H

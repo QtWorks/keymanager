@@ -17,10 +17,20 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
+    explicit DoubleTripletWidget(QWidget *parent=nullptr);
+
+    //! Constructor
     explicit DoubleTripletWidget(const QString &sLabel, QWidget *parent=nullptr);
 
     //! Destructor
     ~DoubleTripletWidget();
+
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Set label
+    void setLabel(const QString &sLabel);
 
     //! Return value
     QString value() const;

@@ -5,8 +5,10 @@
 #include <QString>
 #include <QVariant>
 
-class Parameter
+class Parameter : public QObject
 {
+    Q_OBJECT
+
 public:
     //-------------------------------------------------------------------------------------------------
     // Constructors and destructor
@@ -61,6 +63,14 @@ private:
 
     //! Value
     QString m_sValue;
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! Parameter value changed
+    void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
 #endif // PARAMETER_H

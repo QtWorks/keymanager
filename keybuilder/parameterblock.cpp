@@ -15,12 +15,13 @@
 #include "layoutmgr.h"
 #include "exclusivechoicewidget.h"
 #include "lineeditwidget.h"
-#include "levertablewidget.h"
+#include "genericparametertable.h"
+#include "parametermgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr)
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
+    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr), m_pParameterMgr(pParameterMgr)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -58,7 +59,10 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         QString sWidgetType = xParameter.attributes()[PROPERTY_UI];
         if (sWidgetType == WIDGET_LINE_EDIT)
         {
-            LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, this);
+            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
+            QString sAuto = xParameter.attributes()[PROPERTY_AUTO];
+            LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, sDefaultValue, sAuto, this);
+            pLineEdit->setParameterMgr(m_pParameterMgr);
             if (sParameterType == PROPERTY_DOUBLE)
             {
                 QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
@@ -66,6 +70,21 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
             }
             connect(pLineEdit, &LineEditWidget::valueChanged, this, &ParameterBlock::onLineEditTextChanged);
             addWidget(pLineEdit, sParameterVariable);
+            pLineEdit->applyDefaultValue();
+
+            if (!sAuto.isEmpty())
+            {
+                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAuto);
+                QHash<QString, Parameter *> hParameters;
+                foreach (QString sVariableName, vVariableNames)
+                {
+                    Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sVariableName);
+                    if (pParameter != nullptr)
+                        hParameters[sVariableName] = pParameter;
+                }
+                if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
+                    pLineEdit->setWatchedParameters(hParameters);
+            }
         }
         else
         if (sWidgetType == WIDGET_FILE_PICKER)
@@ -80,9 +99,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
             QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, this);
+            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, this);
             connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
             addWidget(pExclusiveChoiceWidet, sParameterVariable);
+            pExclusiveChoiceWidet->applyDefaultValue();
         }
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
@@ -92,16 +113,19 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
             addWidget(pTriplet, sParameterVariable);
         }
         else
-        if (sWidgetType == WIDGET_LEVER_TABLE)
+        if (sWidgetType == WIDGET_GENERIC_PARAMETER_TABLE)
         {
             QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
             QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
             QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
             int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
             QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
-            LeverTableWidget *pLeverTableWidget = new LeverTableWidget(sColumnLabels.split(","), sColumnVariables.split(","), sTargetRow, nRows, sTargetVariable);
-            connect(pLeverTableWidget, &LeverTableWidget::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
-            addWidget(pLeverTableWidget, sParameterVariable);
+            QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
+            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
+            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue.split(","), sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
+            connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
+            addWidget(pGenericParameterTable, sParameterVariable);
+            pGenericParameterTable->applyDefaultValues();
         }
     }
 
@@ -113,7 +137,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
 
         // Build new parameter block
-        ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr);
+        ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr, m_pParameterMgr);
         connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr->controller(), &Controller::onParameterValueChanged);
 
         // Create new collapsible block

@@ -1,8 +1,11 @@
 #ifndef EXCLUSIVECHOICEWIDGET_H
 #define EXCLUSIVECHOICEWIDGET_H
 
+// Qt
 #include <QWidget>
 
+// Application
+class QRadioButton;
 namespace Ui {
 class ExclusiveChoiceWidget;
 }
@@ -17,18 +20,33 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, QWidget *parent=nullptr);
+    explicit ExclusiveChoiceWidget(QWidget *parent=nullptr);
+
+    //! Constructor
+    explicit ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor
     ~ExclusiveChoiceWidget();
 
-private:
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
     //! Setup
-    void setup(const QStringList &vLabels, const QStringList &vValues);
+    void setup(const QString &sLabel, const QStringList &lLabels, const QStringList &lValues);
+
+    //! Apply default value
+    void applyDefaultValue();
 
 private:
     //! UI
     Ui::ExclusiveChoiceWidget *ui;
+
+    //! Radio buttons
+    QVector<QRadioButton *> m_vRadioButtons;
+
+    //! Default value
+    QString m_sDefaultValue;
 
 public slots:
     //! Radio button clicked

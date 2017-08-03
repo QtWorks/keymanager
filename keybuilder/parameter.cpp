@@ -80,6 +80,7 @@ const QString &Parameter::value() const
 
 void Parameter::setValue(const QString &sValue)
 {
-    qDebug() << "*** SETTING VALUE " << sValue << " FOR PARAMETER " << m_sName << m_sVariable << " ***";
+    qDebug() << "*** SETTING VALUE " << sValue << " FOR PARAMETER (" << m_sName << "/" << m_sVariable << " ***";
     m_sValue = sValue;
+    emit parameterValueChanged(m_sVariable, sValue);
 }

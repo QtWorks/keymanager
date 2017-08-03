@@ -3,50 +3,56 @@
 #include <QPushButton>
 
 // Application
-#include "levertablewidget.h"
-#include "ui_levertablewidget.h"
+#include "genericparametertable.h"
+#include "ui_genericparametertable.h"
+#include "parametermgr.h"
 #include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
-LeverTableModel::LeverTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sTargetRow,
-                                 int nRows, const QString &sTargetVariable,  QObject *parent) : QAbstractItemModel(parent)
+GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+                                 int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QObject *parent) : QAbstractItemModel(parent)
 {
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
+    if (!lDefaultValues.isEmpty())
+        nColumns = qMin(nColumns, lDefaultValues.size());
     m_lColumnLabels = lColumnLabels.mid(0, nColumns);
     m_lColumnVariables = lColumnVariables.mid(0, nColumns);
+    if (!lDefaultValues.isEmpty())
+        m_lDefaultValues = lDefaultValues.mid(0, nColumns);
     m_sTargetRow = sTargetRow;
     m_nRows = nRows;
     m_nActiveLever = nRows;
     m_nEnabledRows = nRows;
     m_sTargetVariable = sTargetVariable;
+    m_sVariableMethod = sVariableMethod;
     m_vData.resize(nRows*nColumns);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-LeverTableModel::~LeverTableModel()
+GenericParameterTableModel::~GenericParameterTableModel()
 {
 
 }
 
 //-------------------------------------------------------------------------------------------------
 
-const QStringList &LeverTableModel::columnLabels() const
+const QStringList &GenericParameterTableModel::columnLabels() const
 {
     return m_lColumnLabels;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-const QStringList &LeverTableModel::columnVariables() const
+const QStringList &GenericParameterTableModel::columnVariables() const
 {
     return m_lColumnVariables;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-QModelIndex LeverTableModel::index(int iRow, int iCol, const QModelIndex &parent) const
+QModelIndex GenericParameterTableModel::index(int iRow, int iCol, const QModelIndex &parent) const
 {
     if (!parent.isValid())
         return createIndex(iRow, iCol);
@@ -55,14 +61,14 @@ QModelIndex LeverTableModel::index(int iRow, int iCol, const QModelIndex &parent
 
 //-------------------------------------------------------------------------------------------------
 
-QModelIndex LeverTableModel::parent(const QModelIndex &) const
+QModelIndex GenericParameterTableModel::parent(const QModelIndex &) const
 {
     return QModelIndex();
 }
 
 //-------------------------------------------------------------------------------------------------
 
-int LeverTableModel::rowCount(const QModelIndex &parent) const
+int GenericParameterTableModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())
         return m_nRows;
@@ -71,7 +77,7 @@ int LeverTableModel::rowCount(const QModelIndex &parent) const
 
 //-------------------------------------------------------------------------------------------------
 
-int LeverTableModel::columnCount(const QModelIndex &parent) const
+int GenericParameterTableModel::columnCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())
         return m_lColumnLabels.size();
@@ -80,7 +86,7 @@ int LeverTableModel::columnCount(const QModelIndex &parent) const
 
 //-------------------------------------------------------------------------------------------------
 
-QVariant LeverTableModel::data(const QModelIndex &index, int iRole) const
+QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) const
 {
     if (index.isValid())
     {
@@ -94,16 +100,30 @@ QVariant LeverTableModel::data(const QModelIndex &index, int iRole) const
 
 //-------------------------------------------------------------------------------------------------
 
-bool LeverTableModel::setData(const QModelIndex &index, const QVariant &vData, int iRole)
+bool GenericParameterTableModel::setData(const QModelIndex &index, const QVariant &vData, int iRole)
 {
     if (index.isValid())
         if (iRole == Qt::EditRole)
         {
             double dValue = vData.toDouble();
             m_vData[index.column()+index.row()*m_lColumnVariables.size()] = dValue;
-            emit parameterValueChanged(identifyTargetVariable(index.column(), index.row()), vData.toString());
-            emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
-            return true;
+
+            QString sFormattedVariable("");
+            if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+            {
+                sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
+                emit parameterValueChanged(sFormattedVariable, vData.toString());
+                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+                return true;
+            }
+            else
+            if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+            {
+                sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(m_sTargetVariable, index.row());
+                emit parameterValueChanged(sFormattedVariable, vData.toString());
+                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+                return true;
+            }
         }
 
     return false;
@@ -111,7 +131,7 @@ bool LeverTableModel::setData(const QModelIndex &index, const QVariant &vData, i
 
 //-------------------------------------------------------------------------------------------------
 
-QVariant LeverTableModel::headerData(int section, Qt::Orientation eOrientation, int role) const
+QVariant GenericParameterTableModel::headerData(int section, Qt::Orientation eOrientation, int role) const
 {
     if (eOrientation != Qt::Horizontal || role != Qt::DisplayRole)
         return QAbstractItemModel::headerData(section, eOrientation, role);
@@ -120,7 +140,7 @@ QVariant LeverTableModel::headerData(int section, Qt::Orientation eOrientation, 
 
 //-------------------------------------------------------------------------------------------------
 
-Qt::ItemFlags LeverTableModel::flags(const QModelIndex &index) const
+Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 {
     Qt::ItemFlags flags = QAbstractItemModel::flags(index);
     if (index.isValid() && (index.row() > (m_nActiveLever-1)))
@@ -131,7 +151,7 @@ Qt::ItemFlags LeverTableModel::flags(const QModelIndex &index) const
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableModel::setNumActiveLever(int iNumActiveLever)
+void GenericParameterTableModel::setNumActiveLever(int iNumActiveLever)
 {
     beginResetModel();
     m_nActiveLever = iNumActiveLever;
@@ -140,21 +160,24 @@ void LeverTableModel::setNumActiveLever(int iNumActiveLever)
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableModel::resetColumnVariables(int iColumnIndex)
+void GenericParameterTableModel::resetColumnVariables(int iColumnIndex)
 {
     for (int i=0; i<m_nRows; i++)
-        setData(index(i, iColumnIndex, QModelIndex()), 0., Qt::EditRole);
+        setData(index(i, iColumnIndex, QModelIndex()), "0", Qt::EditRole);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-QString LeverTableModel::identifyTargetVariable(int iColumn, int iRow) const
+void GenericParameterTableModel::applyDefaultValues()
 {
-    QString sRowNumber = QString::number(iRow+1);
-    if (sRowNumber.length() < 2)
-        sRowNumber = "0"+sRowNumber;
-    QString sTargetVariable = QString(m_sTargetVariable).arg(m_sTargetRow).arg(sRowNumber).arg(m_lColumnVariables[iColumn]);
-    return sTargetVariable;
+    if (!m_lDefaultValues.isEmpty())
+    {
+        for (int i=0; i<m_nRows; i++)
+        {
+            for (int j=0; j<m_lDefaultValues.size(); j++)
+                setData(index(i, j, QModelIndex()), m_lDefaultValues[j], Qt::EditRole);
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -210,8 +233,8 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 
 //-------------------------------------------------------------------------------------------------
 
-LeverTableWidget::LeverTableWidget(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sTargetRow,
-                                   int nRows, const QString &sTargetVariable,  QWidget *parent) : QWidget(parent),  ui(new Ui::LeverTableWidget)
+GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+                                   int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : QWidget(parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);
@@ -222,15 +245,15 @@ LeverTableWidget::LeverTableWidget(const QStringList &lColumnLabels, const QStri
 
     // Set validator
     ui->lineEdit->setValidator(new QIntValidator(5, nRows, this));
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LeverTableWidget::onNumActiveLeverChanged);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &GenericParameterTable::onNumActiveLeverChanged);
 
     // Stretch columns
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Set model
-    m_pModel = new LeverTableModel(lColumnLabels, lColumnVariables, sTargetRow, nRows, sTargetVariable);
+    m_pModel = new GenericParameterTableModel(lColumnLabels, lColumnVariables, lDefaultValues, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
     ui->tableView->setModel(m_pModel);
-    connect(m_pModel, &LeverTableModel::parameterValueChanged, this, &LeverTableWidget::parameterValueChanged);
+    connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged);
 
     // Populate button area
     populateButtonArea();
@@ -238,14 +261,21 @@ LeverTableWidget::LeverTableWidget(const QStringList &lColumnLabels, const QStri
 
 //-------------------------------------------------------------------------------------------------
 
-LeverTableWidget::~LeverTableWidget()
+GenericParameterTable::~GenericParameterTable()
 {
     delete ui;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableWidget::populateButtonArea()
+void GenericParameterTable::applyDefaultValues()
+{
+    m_pModel->applyDefaultValues();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTable::populateButtonArea()
 {
     QStringList lColumnLabels = m_pModel->columnLabels();
     for (int i=0; i<lColumnLabels.size(); i++)
@@ -260,7 +290,7 @@ void LeverTableWidget::populateButtonArea()
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableWidget::onNumActiveLeverChanged()
+void GenericParameterTable::onNumActiveLeverChanged()
 {
     QLineEdit *pSender = dynamic_cast<QLineEdit *>(sender());
     if (pSender != nullptr)
@@ -271,7 +301,7 @@ void LeverTableWidget::onNumActiveLeverChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableWidget::onActionButtonClicked()
+void GenericParameterTable::onActionButtonClicked()
 {
     QPushButton *pSender = dynamic_cast<QPushButton *>(sender());
     if (pSender != nullptr)
@@ -283,7 +313,7 @@ void LeverTableWidget::onActionButtonClicked()
 
 //-------------------------------------------------------------------------------------------------
 
-void LeverTableWidget::resetColumnVariables(int iColumnIndex)
+void GenericParameterTable::resetColumnVariables(int iColumnIndex)
 {
     m_pModel->resetColumnVariables(iColumnIndex);
 }

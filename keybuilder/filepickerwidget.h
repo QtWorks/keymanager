@@ -21,6 +21,9 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
+    explicit FilePickerWidget(QWidget *parent=nullptr);
+
+    //! Constructor
     explicit FilePickerWidget(const QString &sLabel, const QString &sFileExtension, QWidget *parent=nullptr);
 
     //! Destructor
@@ -32,6 +35,12 @@ public:
 
     //! Return value
     QString value() const;
+
+    //! Set label
+    void setLabel(const QString &sLabel);
+
+    //! Set extension
+    void setExtension(const QString &sExtenion);
 
 private:
     //! UI

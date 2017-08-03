@@ -1,3 +1,2 @@
-ROOT ADDITION DANS MENU2
-
-<Parameter name="DETAILED PIN DEFINITION" ui="table"/>
+calcul des variables AUTO dont valeur est calculee a partir d'autres
+handle default values bug: setting default value does not trigger a SETTING VALUE on parameters

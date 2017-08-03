@@ -1,4 +1,7 @@
 // Qt
+#include <QRegularExpressionMatch>
+#include <QRegularExpressionMatchIterator>
+#include <QScriptEngine>
 #include <QDebug>
 
 // Application
@@ -30,34 +33,164 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
     QVector<CXMLNode> vParameterNodes = xBlock.getNodesByTagName(TAG_PARAMETER);
     foreach (CXMLNode xParameterNode, vParameterNodes)
     {
-        QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
-        if (sParameterName.simplified().isEmpty())
-        {
-            qDebug() << "*** FIND A PARAMETER WITH AN EMPTY NAME ***";
-            continue;
-        }
         QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
         if (sParameterType.simplified().isEmpty())
         {
             qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED TYPE ***";
             continue;
         }
-        QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-        if (sParameterVariable.simplified().isEmpty())
-        {
-            qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED VARIABLE ***";
-            continue;
-        }
 
-        qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
-        if (!m_hParameters.contains(sParameterVariable))
-            m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
+        // Special case for table
+        if (sParameterType == PROPERTY_TABLE)
+        {
+            parseTableParameters(xParameterNode);
+        }
+        else
+        {
+            QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
+            if (sParameterName.simplified().isEmpty())
+            {
+                qDebug() << "*** FIND A PARAMETER WITH AN EMPTY NAME ***";
+                continue;
+            }
+            QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
+            if (sParameterVariable.simplified().isEmpty())
+            {
+                qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED VARIABLE ***";
+                continue;
+            }
+
+            qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
+            if (!m_hParameters.contains(sParameterVariable))
+                m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
+        }
     }
 
     // Parse child blocks
     QVector<CXMLNode> vChildBlocks = xBlock.getNodesByTagName(TAG_BLOCK);
     foreach (CXMLNode xChildBlock, vChildBlocks)
         parseSingleBlock(xChildBlock);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
+{
+    QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
+    QStringList lColumnLabels = sColumnLabels.split(",");
+    QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
+    QStringList lColumnVariables = sColumnVariables.split(",");
+    QString sParameterType = PROPERTY_DOUBLE;
+    QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
+    if (lColumnLabels.size() == lColumnVariables.size())
+    {
+        QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
+        int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
+        QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
+
+        for (int iRow=0; iRow<nRows; iRow++)
+        {
+            QString sRowNumber = QString::number(iRow+1);
+            if (sRowNumber.length() < 2)
+                sRowNumber = "0"+sRowNumber;
+            for (int iColumn=0; iColumn<lColumnVariables.size(); iColumn++)
+            {
+                QString sFormattedVariable("");
+
+                // Compute variable name using method1
+                if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+                {
+                    sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
+                    if (!m_hParameters.contains(sFormattedVariable))
+                    {
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
+                        qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
+                    }
+                }
+                else
+                    // Compute variable name using method2
+                    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+                    {
+                        sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
+                        if (!m_hParameters.contains(sFormattedVariable))
+                        {
+                            m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
+                            qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
+                        }
+                    }
+            }
+        }
+    }
+    else qDebug() << "*** CAN'T PARSE PARAMETER TABLE ***";
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString ParameterMgr::identifyTargetVariable_method1(const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow)
+{
+    QString sRowNumber = QString::number(iRow+1);
+    if (sRowNumber.length() < 2)
+        sRowNumber = "0"+sRowNumber;
+    QString sFormattedVariable = QString(sTargetVariable).arg(sTargetRow).arg(sRowNumber).arg(lColumnVariables[iColumn]);
+    return sFormattedVariable;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString ParameterMgr::identifyTargetVariable_method2(const QString &sTargetVariable, int iRow)
+{
+    QString sRowNumber = QString::number(iRow+1);
+    if (sRowNumber.length() < 2)
+        sRowNumber = "0"+sRowNumber;
+    QString sFormattedVariable = QString(sTargetVariable).arg(sRowNumber);
+    return sFormattedVariable;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QVector<QString> ParameterMgr::extractVariableNames(const QString &sInputString)
+{
+    QVector<QString> vVariableNames;
+    QRegularExpression regExp("qt_(.*?)_qt");
+    QRegularExpressionMatchIterator i = regExp.globalMatch(sInputString);
+    while (i.hasNext()) {
+        QRegularExpressionMatch match = i.next();
+        if (match.hasMatch())
+            vVariableNames << match.captured(0);
+    }
+    return vVariableNames;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSuccess)
+{
+    QVector<QString> vVariableNames = extractVariableNames(sAutoScript);
+    QString sMatchedScript = sAutoScript;
+    bSuccess = true;
+    foreach (QString sVariableName, vVariableNames)
+    {
+        Parameter *pParameter = getParameterByVariableName(sVariableName);
+        if (pParameter == nullptr)
+        {
+            qDebug() << "*** CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            bSuccess = false;
+            break;
+        }
+        sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+    }
+    if (bSuccess)
+    {
+        bSuccess = false;
+        QScriptEngine expression;
+        QScriptValue xResult = expression.evaluate(sMatchedScript);
+        if (xResult.isNumber())
+        {
+            bSuccess = true;
+            return xResult.toNumber();
+        }
+    }
+    return 0;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -132,4 +265,11 @@ const CXMLNode &ParameterMgr::menu1Node() const
 const CXMLNode &ParameterMgr::menu2Node() const
 {
     return m_xMenu2Node;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+Parameter *ParameterMgr::getParameterByVariableName(const QString &sVariableName) const
+{
+    return m_hParameters[sVariableName];
 }

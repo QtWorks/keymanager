@@ -45,7 +45,7 @@ void LayoutMgr::buildMenu(const CXMLNode &xNode)
 void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock)
 {
     // Create new parameter block
-    ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this);
+    ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this, m_pController->parameterMgr());
 
     // Listen to parameter value changed
     connect(pParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);

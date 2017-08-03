@@ -36,6 +36,9 @@ public:
     //! Return menu 2 node
     const CXMLNode &menu2Node() const;
 
+    //! Return parameter manager
+    ParameterMgr *parameterMgr() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------

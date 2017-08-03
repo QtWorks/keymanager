@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml script
 CONFIG += static
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 INCLUDEPATH += $$PWD/../stllibrary
@@ -73,8 +73,8 @@ SOURCES += main.cpp\
     lineeditwidget.cpp \
     layoutmgrmenu1.cpp \
     filepickerwidget.cpp \
-    levertablewidget.cpp \
-    doubletripletwidget.cpp
+    doubletripletwidget.cpp \
+    genericparametertable.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -95,7 +95,7 @@ HEADERS  += mainwindow.h \
     layoutmgrmenu1.h \
     filepickerwidget.h \
     doubletripletwidget.h \
-    levertablewidget.h
+    genericparametertable.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -104,8 +104,8 @@ FORMS    += mainwindow.ui \
     exclusivechoicewidget.ui \
     lineeditwidget.ui \
     filepickerwidget.ui \
-    levertablewidget.ui \
-    doubletripletwidget.ui
+    doubletripletwidget.ui \
+    genericparametertable.ui
 
 DISTFILES +=
 

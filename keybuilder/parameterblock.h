@@ -7,6 +7,7 @@
 // Application
 #include "cxmlnode.h"
 class LayoutMgr;
+class ParameterMgr;
 
 namespace Ui {
 class ParameterBlock;
@@ -22,7 +23,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, QWidget *parent=nullptr);
+    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, QWidget *parent=nullptr);
 
     //! Destructor
     ~ParameterBlock();
@@ -85,6 +86,9 @@ private:
 
     //! Layout mgr
     LayoutMgr *m_pLayoutMgr;
+
+    //! Parameter mgr
+    ParameterMgr *m_pParameterMgr;
 
 signals:
     //! Parameter value changed

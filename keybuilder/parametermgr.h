@@ -40,6 +40,18 @@ public:
     //! Generate script
     void generateScript();
 
+    //! Identify target variable (method1)
+    static QString identifyTargetVariable_method1(const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
+
+    //! Identify target variable (method2)
+    static QString identifyTargetVariable_method2(const QString &sTargetVariable, int iRow);
+
+    //! Extract variable names
+    static QVector<QString> extractVariableNames(const QString &sInputString);
+
+    //! Evaluate auto script
+    double evaluateAutoScript(const QString &sAutoScript, bool &bSuccess);
+
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
@@ -50,9 +62,15 @@ public:
     //! Return menu2 node
     const CXMLNode &menu2Node() const;
 
+    //! Return parameter by variable name
+    Parameter *getParameterByVariableName(const QString &sVariableName) const;
+
 private:
     //! Parse single block
     void parseSingleBlock(const CXMLNode &xBlock);
+
+    //! Parse table parameters
+    void parseTableParameters(const CXMLNode &xParameter);
 
 private:
     //! Menu 1 node
