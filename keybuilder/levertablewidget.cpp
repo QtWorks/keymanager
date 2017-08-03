@@ -1,9 +1,11 @@
 // Qt
 #include <QDebug>
+#include <QPushButton>
 
 // Application
 #include "levertablewidget.h"
 #include "ui_levertablewidget.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -21,12 +23,25 @@ LeverTableModel::LeverTableModel(const QStringList &lColumnLabels, const QString
     m_vData.resize(nRows*nColumns);
 }
 
-
 //-------------------------------------------------------------------------------------------------
 
 LeverTableModel::~LeverTableModel()
 {
 
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QStringList &LeverTableModel::columnLabels() const
+{
+    return m_lColumnLabels;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QStringList &LeverTableModel::columnVariables() const
+{
+    return m_lColumnVariables;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -125,6 +140,14 @@ void LeverTableModel::setNumActiveLever(int iNumActiveLever)
 
 //-------------------------------------------------------------------------------------------------
 
+void LeverTableModel::resetColumnVariables(int iColumnIndex)
+{
+    for (int i=0; i<m_nRows; i++)
+        setData(index(i, iColumnIndex, QModelIndex()), 0., Qt::EditRole);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 QString LeverTableModel::identifyTargetVariable(int iColumn, int iRow) const
 {
     QString sRowNumber = QString::number(iRow+1);
@@ -208,6 +231,9 @@ LeverTableWidget::LeverTableWidget(const QStringList &lColumnLabels, const QStri
     m_pModel = new LeverTableModel(lColumnLabels, lColumnVariables, sTargetRow, nRows, sTargetVariable);
     ui->tableView->setModel(m_pModel);
     connect(m_pModel, &LeverTableModel::parameterValueChanged, this, &LeverTableWidget::parameterValueChanged);
+
+    // Populate button area
+    populateButtonArea();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -215,6 +241,21 @@ LeverTableWidget::LeverTableWidget(const QStringList &lColumnLabels, const QStri
 LeverTableWidget::~LeverTableWidget()
 {
     delete ui;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LeverTableWidget::populateButtonArea()
+{
+    QStringList lColumnLabels = m_pModel->columnLabels();
+    for (int i=0; i<lColumnLabels.size(); i++)
+    {
+        QString sButtonLabel = QString("CLEAR ALL %1").arg(lColumnLabels[i]);
+        QPushButton *pButton = new QPushButton(sButtonLabel, this);
+        pButton->setProperty(PROPERTY_USER_VALUE, i);
+        connect(pButton, &QPushButton::clicked, this, &onActionButtonClicked);
+        ui->buttonLayout->addWidget(pButton);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -228,4 +269,22 @@ void LeverTableWidget::onNumActiveLeverChanged()
     }
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void LeverTableWidget::onActionButtonClicked()
+{
+    QPushButton *pSender = dynamic_cast<QPushButton *>(sender());
+    if (pSender != nullptr)
+    {
+        int iTargetColumn = pSender->property(PROPERTY_USER_VALUE).toInt();
+        resetColumnVariables(iTargetColumn);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LeverTableWidget::resetColumnVariables(int iColumnIndex)
+{
+    m_pModel->resetColumnVariables(iColumnIndex);
+}
 

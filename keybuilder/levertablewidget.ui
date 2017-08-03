@@ -17,6 +17,13 @@
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QLabel" name="titleLabel">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="label">
@@ -59,25 +66,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>CLEAR ALL DEPTH</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>CLEAR ALL DISTANCE</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>CLEAR ALL THICKNESS</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="buttonLayout"/>
        </item>
        <item>
         <spacer name="horizontalSpacer_2">

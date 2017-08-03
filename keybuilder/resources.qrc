@@ -4,5 +4,6 @@
         <file>data/MENU 2.txt</file>
         <file>data/menu2.xml</file>
         <file>data/todo.txt</file>
+        <file>data/MENU 1.txt</file>
     </qresource>
 </RCC>

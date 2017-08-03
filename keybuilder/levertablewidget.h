@@ -27,6 +27,20 @@ public:
     //! Destructor
     ~LeverTableModel();
 
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return column labels
+    const QStringList &columnLabels() const;
+
+    //! Return column variables
+    const QStringList &columnVariables() const;
+
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
     //! Return index
     QModelIndex index(int iRow, int iCol, const QModelIndex & parent=QModelIndex()) const;
 
@@ -53,6 +67,9 @@ public:
 
     //! Set number of active lever
     void setNumActiveLever(int iNumActiveLever);
+
+    //! Reset column variables
+    void resetColumnVariables(int iColumnIndex);
 
 private:
     //! Identify target variable
@@ -137,6 +154,13 @@ public:
     ~LeverTableWidget();
 
 private:
+    //! Populate button area
+    void populateButtonArea();
+
+    //! Reset column variables
+    void resetColumnVariables(int iColumnIndex);
+
+private:
     //! UI
     Ui::LeverTableWidget *ui;
 
@@ -146,6 +170,9 @@ private:
 public slots:
     //! Number of active lever changed
     void onNumActiveLeverChanged();
+
+    //! Action button clicked
+    void onActionButtonClicked();
 
 signals:
     //-------------------------------------------------------------------------------------------------

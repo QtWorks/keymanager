@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Group Name="Menu 2">
-   <Block name="REGULAR/DIMPLE/LASER" variable="qt_type_of_key_qt" value="regular">
+   <Block name="REGULAR/DIMPLE/LASER">
       <Block name="ROW1">
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
@@ -229,5 +229,10 @@
          </Block>
          <Parameter columnlabels="DEPTH, ANGLE, Z DISTANCE FROM SHOULDER" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" ui="levertable"/>
       </Block>
+   </Block>
+   <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)">
+    <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
+    <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
+    <Parameter name="MILL DISTANCE FROM CENTER" type="double" variable="qt_round_pump_mill_distance_frome_center_qt" ui="lineedit" />
    </Block>
 </Group>
