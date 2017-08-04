@@ -2,6 +2,10 @@
 #include "layoutmgrmenu1.h"
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
+#include "controller.h"
+#include "parametermgr.h"
+#include "constants.h"
+#include "parameterblock.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -37,7 +41,18 @@ void LayoutMgrMenu1::onBlockSelected()
         {
             QList<CollapsibleBlock *> lBlocks = pStack->blocks();
             foreach (CollapsibleBlock *pBlock, lBlocks)
+            {
                 pBlock->setCurrent(pBlock == pSender);
+                if (pBlock == pSender)
+                {
+                    ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
+                    if (pParameterBlock != nullptr)
+                    {
+                        if (pParameterBlock->variable() == PARAMETER_TYPE_OF_KEY)
+                            controller()->parameterMgr()->setParameterValue(PARAMETER_TYPE_OF_KEY, pParameterBlock->value());
+                    }
+                }
+            }
         }
     }
 }

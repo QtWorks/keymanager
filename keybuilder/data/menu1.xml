@@ -71,7 +71,7 @@
       <Parameter name="Y TRANSLATION" type="double" variable="qt_expert_stl_ty_qt" ui="lineedit" depends="SET DIMENSIONS" />
       <Parameter name="Z TRANSLATION" type="double" variable="qt_expert_stl_tz_qt" ui="lineedit" depends="SET DIMENSIONS" />
    </Block>
-   <Block name="ROUND PUMP/TUBULAR" variable="qt_type_of_key_qt" value="round_dump">
+   <Block name="ROUND PUMP/TUBULAR" variable="qt_type_of_key_qt" value="round_pump">
       <Parameter name="LENGTH" type="double" variable="qt_round_pump_length_qt" ui="lineedit" />
       <Parameter name="DIAMETER" type="double" variable="qt_round_pump_diameter_qt" ui="lineedit" />
       <Parameter name="NUMBER OF RAISED WINGS" type="int" variable="qt_round_pump_number_of_raised_wings_qt" ui="lineedit" />

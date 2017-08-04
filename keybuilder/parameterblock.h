@@ -8,6 +8,7 @@
 #include "cxmlnode.h"
 class LayoutMgr;
 class ParameterMgr;
+class Parameter;
 
 namespace Ui {
 class ParameterBlock;
@@ -41,8 +42,33 @@ public:
     //! Set name
     void setName(const QString &sName);
 
+    //! Return variable
+    const QString &variable() const;
+
+    //! Set variable
+    void setVariable(const QString &sVariableName);
+
+    //! Return value
+    const QString &value() const;
+
+    //! Set value
+    void setValue(const QString &sValue);
+
     //! Is empty?
     bool isEmpty() const;
+
+    //! Set enabled
+    void setEnabled(bool bEnabled);
+
+    //! Is enabled?
+    bool isEnabled() const;
+
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Set watched parameters
+    void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -60,6 +86,9 @@ public slots:
 
     //! A line edit triplet value changed
     void onLineEditTripletValueChanged();
+
+    //! Evaluate enabled condition
+    void onEvaluateEnabledCondition();
 
 private:
     //! Find associated parameter variable
@@ -89,6 +118,24 @@ private:
 
     //! Parameter mgr
     ParameterMgr *m_pParameterMgr;
+
+    //! Enabled?
+    bool m_bEnabled;
+
+    //! Watched parameters
+    QHash<QString, Parameter *> m_vWatchedParameters;
+
+    //! Enabled condition
+    QString m_sEnabledCondition;
+
+    //! Watched parameters
+    QHash<QString, Parameter *> m_hWatchedParameters;
+
+    //! Variable name
+    QString m_sVariableName;
+
+    //! Variable value
+    QString m_sValue;
 
 signals:
     //! Parameter value changed

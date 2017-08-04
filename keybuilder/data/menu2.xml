@@ -230,7 +230,7 @@
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)">
+   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &quot;round_pump&quot;)">
       <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
       <Parameter name="MILL DISTANCE FROM CENTER" type="double" variable="qt_round_pump_mill_distance_frome_center_qt" ui="lineedit" />

@@ -21,7 +21,8 @@
 //-------------------------------------------------------------------------------------------------
 
 ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr), m_pParameterMgr(pParameterMgr)
+    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr), m_pParameterMgr(pParameterMgr), m_sEnabledCondition(""),
+    m_sVariableName(""), m_sValue("")
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -43,10 +44,33 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
     m_bIsEmpty = xParameterBlock.nodes().isEmpty();
 
+    // Read enabled condition
+    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
+    if (!m_sEnabledCondition.isEmpty())
+    {
+        QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
+        QHash<QString, Parameter *> hParameters;
+        foreach (QString sVariableName, vVariableNames)
+        {
+            Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sVariableName);
+            if (pParameter != nullptr)
+                hParameters[sVariableName] = pParameter;
+        }
+        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
+            setWatchedParameters(hParameters);
+    }
+
     // Build parameter block
     setName(xParameterBlock.attributes()[PROPERTY_NAME]);
 
-    if (m_bIsEmpty) {
+    // Set variable
+    setVariable(xParameterBlock.attributes()[PROPERTY_VARIABLE]);
+
+    // Set value
+    setValue(xParameterBlock.attributes()[PROPERTY_VALUE]);
+
+    if (m_bIsEmpty)
+    {
         setFixedSize(0, 0);
         setVisible(false);
     }
@@ -254,7 +278,69 @@ void ParameterBlock::setName(const QString &sName)
 
 //-------------------------------------------------------------------------------------------------
 
+const QString &ParameterBlock::variable() const
+{
+    return m_sVariableName;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setVariable(const QString &sVariableName)
+{
+    m_sVariableName = sVariableName;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &ParameterBlock::value() const
+{
+    return m_sValue;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setValue(const QString &sValue)
+{
+    m_sValue = sValue;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool ParameterBlock::isEmpty() const
 {
     return m_bIsEmpty;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setEnabled(bool bEnabled)
+{
+    m_bEnabled = bEnabled;
+    QWidget::setEnabled(bEnabled);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool ParameterBlock::isEnabled() const
+{
+    return m_bEnabled;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
+{
+    m_hWatchedParameters = hParameters;
+    for (QHash<QString, Parameter *>::iterator it=m_hWatchedParameters.begin(); it!=m_hWatchedParameters.end(); ++it)
+        connect(it.value(), &Parameter::parameterValueChanged, this, &ParameterBlock::onEvaluateEnabledCondition);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::onEvaluateEnabledCondition()
+{
+    bool bSuccess = true;
+    bool bEnabled = m_pParameterMgr->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
+    if (bSuccess)
+        setEnabled(bEnabled);
 }

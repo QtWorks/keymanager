@@ -26,6 +26,7 @@
 #define PROPERTY_VARIABLE_METHOD "variablemethod"
 #define PROPERTY_VARIABLE_METHOD1 "method1"
 #define PROPERTY_VARIABLE_METHOD2 "method2"
+#define PROPERTY_ENABLED "enabled"
 #define PROPERTY_DEFAULT "default"
 #define PROPERTY_AUTO "auto"
 #define WIDGET_LINE_EDIT "lineedit"

@@ -195,6 +195,43 @@ double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucce
 
 //-------------------------------------------------------------------------------------------------
 
+bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bool &bSuccess)
+{
+    QVector<QString> vVariableNames = extractVariableNames(sEnabledCondition);
+    QString sMatchedScript = sEnabledCondition;
+    bSuccess = true;
+    foreach (QString sVariableName, vVariableNames)
+    {
+        Parameter *pParameter = getParameterByVariableName(sVariableName);
+        if (pParameter == nullptr)
+        {
+            qDebug() << "*** CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            bSuccess = false;
+            break;
+        }
+        if (pParameter->type() == PROPERTY_STRING)
+        {
+            QString sReplace
+            sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+        else
+            sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+    }
+    if (bSuccess)
+    {
+        bSuccess = false;
+        QScriptEngine expression;
+        QScriptValue xResult = expression.evaluate(sMatchedScript);
+        if (xResult.isBoolean())
+        {
+            bSuccess = true;
+            return xResult.toBool();
+        }
+    }
+    return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool ParameterMgr::loadMenu1Parameters()
 {
     // Retrieve root node
