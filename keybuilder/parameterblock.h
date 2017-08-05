@@ -24,7 +24,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, QWidget *parent=nullptr);
+    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, bool bRecurse=true, QWidget *parent=nullptr);
 
     //! Destructor
     ~ParameterBlock();
@@ -60,8 +60,20 @@ public:
     //! Set enabled
     void setEnabled(bool bEnabled);
 
-    //! Is enabled?
+    //! Is enabled
     bool isEnabled() const;
+
+    //! Set exclusive
+    void setExclusive(bool bIsExclusive);
+
+    //! Exclusive?
+    bool isExclusive() const;
+
+    //! Set parent block
+    void setParentBlock(ParameterBlock *pParentBlock);
+
+    //! Return parent block
+    ParameterBlock *parentBlock() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -95,7 +107,7 @@ private:
     QString findAssociatedParameterVariable(QWidget *pWidget) const;
 
     //! Populate parameter block
-    void populateParameterBlock(const CXMLNode &xParameterBlock);
+    void populateParameterBlock(const CXMLNode &xParameterBlock, bool bRecurse=true);
 
     //! Add widget
     void addWidget(QWidget *pWidget);
@@ -119,12 +131,6 @@ private:
     //! Parameter mgr
     ParameterMgr *m_pParameterMgr;
 
-    //! Enabled?
-    bool m_bEnabled;
-
-    //! Watched parameters
-    QHash<QString, Parameter *> m_vWatchedParameters;
-
     //! Enabled condition
     QString m_sEnabledCondition;
 
@@ -136,6 +142,15 @@ private:
 
     //! Variable value
     QString m_sValue;
+
+    //! Exclusive?
+    bool m_bIsExclusive;
+
+    //! Enabled
+    bool m_bIsEnabled;
+
+    //! Parent block
+    ParameterBlock *m_pParentBlock;
 
 signals:
     //! Parameter value changed

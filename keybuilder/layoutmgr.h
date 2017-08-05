@@ -12,6 +12,7 @@ class LayoutMgr;
 class CollapsibleStack;
 class CollapsibleBlock;
 class Controller;
+class ParameterBlock;
 
 class LayoutMgr : public QWidget
 {
@@ -52,11 +53,11 @@ public:
     virtual void buildMenu(const CXMLNode &xNode);
 
     //! Build block
-    void addCollapsibleBlockToStack(const CXMLNode &xBlock);
+    void addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBlock *pParentParameterBlock=nullptr);
 
 protected:
     //! Return all blocks
-    QList<CollapsibleBlock *> allBlocks() const;
+    QList<CollapsibleBlock *> topLevelBlocks() const;
 
 protected:
     //! Vector of stacks
@@ -91,6 +92,9 @@ public slots:
 
     //! Close all parameter blocks
     void onCloseAll();
+
+    //! Block selected
+    void onBlockSelected();
 };
 
 #endif // LAYOUTMGR_H

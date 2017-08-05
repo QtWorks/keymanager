@@ -60,7 +60,11 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
                 continue;
             }
 
-            qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
+            //qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
+            if (sParameterVariable == VARIABLE_TYPE_OF_KEY)
+            {
+                int x = 0;
+            }
             if (!m_hParameters.contains(sParameterVariable))
                 m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
         }
@@ -104,7 +108,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                     if (!m_hParameters.contains(sFormattedVariable))
                     {
                         m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
-                        qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
+                        //qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
                     }
                 }
                 else
@@ -115,7 +119,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                         if (!m_hParameters.contains(sFormattedVariable))
                         {
                             m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
-                            qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
+                            //qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
                         }
                     }
             }
@@ -155,8 +159,9 @@ QVector<QString> ParameterMgr::extractVariableNames(const QString &sInputString)
     QRegularExpressionMatchIterator i = regExp.globalMatch(sInputString);
     while (i.hasNext()) {
         QRegularExpressionMatch match = i.next();
-        if (match.hasMatch())
-            vVariableNames << match.captured(0);
+        QString sCaptured = match.captured(0);
+        if (match.hasMatch() && !vVariableNames.contains(sCaptured))
+            vVariableNames << sCaptured;
     }
     return vVariableNames;
 }
@@ -211,8 +216,10 @@ bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bo
         }
         if (pParameter->type() == PROPERTY_STRING)
         {
-            QString sReplace
-            sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+            sMatchedScript = sMatchedScript.replace("&quot;", "\"");
+            QString sQuotedString = QString("\"%1\"").arg(pParameter->value());
+            sMatchedScript = sMatchedScript.replace(sVariableName, sQuotedString);
+        }
         else
             sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
     }
@@ -240,7 +247,7 @@ bool ParameterMgr::loadMenu1Parameters()
         return false;
 
     // This describes the type of key to be created
-    m_hParameters[PARAMETER_TYPE_OF_KEY] = new Parameter(PROPERTY_TYPE_OF_KEY, PROPERTY_STRING, PARAMETER_TYPE_OF_KEY);
+    m_hParameters[VARIABLE_TYPE_OF_KEY] = new Parameter(PROPERTY_TYPE_OF_KEY, PROPERTY_STRING, VARIABLE_TYPE_OF_KEY);
 
     // Retrieve Key nodes
     QVector<CXMLNode> vBlocks = m_xMenu1Node.getNodesByTagName(TAG_BLOCK);
@@ -248,6 +255,8 @@ bool ParameterMgr::loadMenu1Parameters()
         parseSingleBlock(xBlock);
 
     qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1 ***";
+    for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
+        qDebug() << "***************************************** " << it.key() << it.value();
 
     return true;
 }

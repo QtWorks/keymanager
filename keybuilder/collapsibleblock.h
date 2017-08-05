@@ -37,6 +37,12 @@ public:
     //! Set current
     void setCurrent(bool bCurrent);
 
+    //! Is exclusive?
+    bool isExclusive() const;
+
+    //! Return own blocks
+    QList<CollapsibleBlock *> blocks() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -77,6 +83,9 @@ public slots:
 
     //! Toggle closed state
     void onToggleClosedState();
+
+    //! Update enabled state
+    void onUpdateEnabledState(bool bEnabled);
 
 signals:
     //-------------------------------------------------------------------------------------------------

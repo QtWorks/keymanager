@@ -2,6 +2,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
+#include <QPaintEvent>
+#include <QPainter>
 #include <QDebug>
 
 // Application
@@ -20,13 +22,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, bool bRecurse, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
     m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr), m_pParameterMgr(pParameterMgr), m_sEnabledCondition(""),
-    m_sVariableName(""), m_sValue("")
+    m_sVariableName(""), m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true), m_pParentBlock(nullptr)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    populateParameterBlock(xParameterBlock);
+    populateParameterBlock(xParameterBlock, bRecurse);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -38,16 +40,29 @@ ParameterBlock::~ParameterBlock()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
+void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, bool bRecurse)
 {
+    // Set name
+    setName(xParameterBlock.attributes()[PROPERTY_NAME]);
+
+    // Set variable
+    setVariable(xParameterBlock.attributes()[PROPERTY_VARIABLE]);
+
+    // Set value
+    setValue(xParameterBlock.attributes()[PROPERTY_VALUE]);
+
     // Populate parameter block with parameters
     QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
     m_bIsEmpty = xParameterBlock.nodes().isEmpty();
+    QString sExclusive = xParameterBlock.attributes()[PROPERTY_EXCLUSIVE].simplified();
+    m_bIsExclusive = sExclusive.isEmpty() ? true : (sExclusive == VALUE_TRUE);
 
     // Read enabled condition
     m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
+
     if (!m_sEnabledCondition.isEmpty())
     {
+        qDebug() << "ENABLED CONDITION = " << m_sEnabledCondition;
         QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
         QHash<QString, Parameter *> hParameters;
         foreach (QString sVariableName, vVariableNames)
@@ -56,18 +71,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
             if (pParameter != nullptr)
                 hParameters[sVariableName] = pParameter;
         }
-        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
+        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size())) {
+            qDebug() << "BLOCK WATCHING " << hParameters;
             setWatchedParameters(hParameters);
+        }
     }
-
-    // Build parameter block
-    setName(xParameterBlock.attributes()[PROPERTY_NAME]);
-
-    // Set variable
-    setVariable(xParameterBlock.attributes()[PROPERTY_VARIABLE]);
-
-    // Set value
-    setValue(xParameterBlock.attributes()[PROPERTY_VALUE]);
 
     if (m_bIsEmpty)
     {
@@ -153,22 +161,26 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
         }
     }
 
-    // Parse child blocks
-    QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
-    foreach (CXMLNode xChildBlock, vChildBlocks)
+    if (bRecurse)
     {
-        // Get child block name
-        QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
+        // Parse child blocks
+        QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
+        foreach (CXMLNode xChildBlock, vChildBlocks)
+        {
+            // Get child block name
+            QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
 
-        // Build new parameter block
-        ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr, m_pParameterMgr);
-        connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr->controller(), &Controller::onParameterValueChanged);
+            // Build new parameter block
+            ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr, m_pParameterMgr);
+            pChildParameterBlock->setParentBlock(this);
+            connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr->controller(), &Controller::onParameterValueChanged);
 
-        // Create new collapsible block
-        CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
+            // Create new collapsible block
+            CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
 
-        // Add to own layout
-        addWidget(pNewBlock);
+            // Add to own layout
+            addWidget(pNewBlock);
+        }
     }
 }
 
@@ -315,21 +327,53 @@ bool ParameterBlock::isEmpty() const
 
 void ParameterBlock::setEnabled(bool bEnabled)
 {
-    m_bEnabled = bEnabled;
+    m_bIsEnabled = bEnabled;
     QWidget::setEnabled(bEnabled);
+    CollapsibleBlock *pOwnerCollapsibleBlock = dynamic_cast<CollapsibleBlock *>(parentWidget());
+    if (pOwnerCollapsibleBlock != nullptr)
+        pOwnerCollapsibleBlock->onUpdateEnabledState(bEnabled);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 bool ParameterBlock::isEnabled() const
 {
-    return m_bEnabled;
+    return m_bIsEnabled;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setExclusive(bool bIsExclusive)
+{
+    m_bIsExclusive = bIsExclusive;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool ParameterBlock::isExclusive() const
+{
+    return m_bIsExclusive;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setParentBlock(ParameterBlock *pParentBlock)
+{
+    m_pParentBlock = pParentBlock;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+ParameterBlock *ParameterBlock::parentBlock() const
+{
+    return m_pParentBlock;
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
 {
+    qDebug() << "*** SET WATCHED PARAMETERS FOR BLOCK " << m_sName << hParameters;
     m_hWatchedParameters = hParameters;
     for (QHash<QString, Parameter *>::iterator it=m_hWatchedParameters.begin(); it!=m_hWatchedParameters.end(); ++it)
         connect(it.value(), &Parameter::parameterValueChanged, this, &ParameterBlock::onEvaluateEnabledCondition);
@@ -339,8 +383,12 @@ void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hPa
 
 void ParameterBlock::onEvaluateEnabledCondition()
 {
+    qDebug() << "TESTING AGAINST ################################################# " << m_sName;
+
     bool bSuccess = true;
     bool bEnabled = m_pParameterMgr->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
-    if (bSuccess)
+    if (bSuccess) {
+        qDebug() << "ENABLED STATE " << m_sName << bEnabled;
         setEnabled(bEnabled);
+    }
 }

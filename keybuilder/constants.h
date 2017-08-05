@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define TAG_GROUP "Group"
 #define TAG_BLOCK "Block"
 #define TAG_PARAMETER "Parameter"
 
@@ -28,14 +29,19 @@
 #define PROPERTY_VARIABLE_METHOD2 "method2"
 #define PROPERTY_ENABLED "enabled"
 #define PROPERTY_DEFAULT "default"
+#define PROPERTY_EXCLUSIVE "exclusive"
 #define PROPERTY_AUTO "auto"
+
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"
 #define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"
 #define WIDGET_GENERIC_PARAMETER_TABLE "genericparametertable"
 
 #define WIDGET_DOUBLE_TRIPLET "double_triplet"
-#define PARAMETER_TYPE_OF_KEY "qt_type_of_key_qt"
+#define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 #define COLLAPSIBLEBLOCK_OBJECT_NAME "collapsibleblock"
+
+#define VALUE_TRUE "true"
+#define VALUE_FALSE "false"
 
 #endif // CONSTANTS_H

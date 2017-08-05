@@ -10,7 +10,7 @@
 
 CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     ui(new Ui::CaptionLabel), m_bExpandable(true),
-    m_bIsCurrent(false)
+    m_bIsCurrent(false), m_bIsEnabled(true)
 {
     ui->setupUi(this);
     connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::toggleState);
@@ -61,12 +61,25 @@ void CaptionLabel::setExpandable(bool bExpandable)
 
 //-------------------------------------------------------------------------------------------------
 
+void CaptionLabel::updateEnabledState(bool bEnabled)
+{
+    m_bIsEnabled = bEnabled;
+    ui->openCloseButton->setVisible(bEnabled);
+    update();
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void CaptionLabel::paintEvent(QPaintEvent *e)
 {
     QPainter p(this);
     QColor paintColor("lightblue");
-    if (m_bIsCurrent)
-        paintColor.setNamedColor("lightgreen");
+    if (!m_bIsEnabled)
+        paintColor.setNamedColor("lightgray");
+    else {
+        if (m_bIsCurrent)
+            paintColor.setNamedColor("lightgreen");
+    }
     p.fillRect(e->rect(), paintColor);
     QWidget::paintEvent(e);
 }

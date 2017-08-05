@@ -71,7 +71,6 @@ SOURCES += main.cpp\
     parameterblock.cpp \
     exclusivechoicewidget.cpp \
     lineeditwidget.cpp \
-    layoutmgrmenu1.cpp \
     filepickerwidget.cpp \
     doubletripletwidget.cpp \
     genericparametertable.cpp
@@ -92,7 +91,6 @@ HEADERS  += mainwindow.h \
     parameterblock.h \
     exclusivechoicewidget.h \
     lineeditwidget.h \
-    layoutmgrmenu1.h \
     filepickerwidget.h \
     doubletripletwidget.h \
     genericparametertable.h

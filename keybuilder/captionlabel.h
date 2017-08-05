@@ -41,6 +41,9 @@ public:
     //! Set expandable
     void setExpandable(bool bExpandable);
 
+    //! Update enabled state
+    void updateEnabledState(bool bEnabled);
+
 protected:
     //! Paint event
     void paintEvent(QPaintEvent *e);
@@ -49,8 +52,11 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event);
 
 private:
-    // UI
+    //! UI
     Ui::CaptionLabel *ui;
+
+    //! Enabled?
+    bool m_bIsEnabled;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

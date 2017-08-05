@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Group Name="Menu 2">
-   <Block name="REGULAR/DIMPLE/LASER">
+<Block name="ROOT" exclusive="false">
+   <Block name="REGULAR/DIMPLE/LASER" exclusive="false">
       <Block name="ROW1">
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
@@ -230,13 +230,13 @@
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &quot;round_pump&quot;)">
+   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;round_pump&amp;quot;) || (qt_type_of_key_qt == &amp;quot;round_stl&amp;quot;)">
       <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
       <Parameter name="MILL DISTANCE FROM CENTER" type="double" variable="qt_round_pump_mill_distance_frome_center_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH FROM TIP" type="table" columnvariables="depth" nrows="12" targetvariable="qt_round_pump_cut%1_depth_from_tip_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="LEVER LOCK (SIMPLE AND DOUBLE BITTED)">
+   <Block name="LEVER LOCK (SIMPLE AND DOUBLE BITTED)" exclusive="false">
       <Block name="ROW1">
          <Parameter name="NUMBER OF LEVERS" type="int" variable="qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row1_blade_length_qt" ui="lineedit" />
@@ -254,7 +254,7 @@
          <Parameter columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row2" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)">
+   <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;abloy_classic&amp;quot;)">
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" ui="exclusivechoice" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="int" variable="qt_abloy_classic_number_of_discs_qt" ui="lineedit" />
@@ -264,7 +264,7 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_classic_distance_from_tip_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_classic_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)">
+   <Block name="ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;abloy_disklock&amp;quot;)">
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_disklock_pro_blade_length_qt" default="34" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_disklock_pro_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_disklock_pro_spaces_qt" default="1.6" ui="lineedit" />
@@ -273,7 +273,7 @@
       <Parameter name="GROOVE AT THE TIP" type="double" variable="qt_abloy_disklock_pro_groove_at_the_tip_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_disklock_pro_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)">
+   <Block name="ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;abloy_protec&amp;quot;)">
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_protec_blade_length_qt" default="30" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_protec_spaces_qt" default="1.5" ui="lineedit" />
@@ -283,7 +283,7 @@
       <Parameter name="THINNER AT THE TIP" labels="YES,NO" values="YES,NO" type="string" variable="qt_abloy_protec_thinner_at_the_tip_qt" ui="exclusivechoice" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_protec_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)">
+   <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;)">
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abus_plus_blade_length_qt" default="33" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abus_plus_spaces_qt" default="2" ui="lineedit" />
@@ -291,11 +291,11 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abus_plus_distance_from_tip_qt" default="4" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abus_plus_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)">
+   <Block name="AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;axi_home&amp;quot;)">
       <Parameter name="SIDE OF PROFILE" labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_side_qt" ui="exclusivechoice" />
       <Parameter name="TOP" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_top_row_qt" default="ROW1" ui="exclusivechoice" />
       <Parameter name="RIGHT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_right_row_qt" default="ROW2" ui="exclusivechoice" />
-      <Parameter name="LEFT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_left_row_qt" default="ROW3" ui="exclusivechoice" />
+      <Parameter name="LEFT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_left_row_qt" default="ROW3" ui="exclusivechoice" exclusive="false"/>
       <Block name="ROW1">
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row1_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
@@ -306,7 +306,7 @@
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row3_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)">
+   <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;)">
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qqt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)">
@@ -337,7 +337,7 @@
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_stl_translate_qt" ui="double_triplet" />
          </Block>
       </Block>
-      <Block name="SHAPE 01">
+      <Block name="SHAPE 02">
          <Parameter name="TYPE OF SHAPE" labels="CUBE,CYLINDER,SPHERE,BROWSE FOR STL" values="CUBE,CYLINDER,SPHERE,STL" type="string" variable="qt_extra_cut_shape_1_model_qt" ui="exclusivechoice" />
          <Block name="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cube_centered_qt" ui="exclusivechoice" />
@@ -581,4 +581,4 @@
          </Block>
       </Block>
    </Block>
-</Group>
+</Block>

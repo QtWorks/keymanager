@@ -256,14 +256,16 @@ CXMLNode CXMLNode::parseXMLNode(QDomNode node)
         }
         else
         {
-            tNode.m_vNodes.append(CXMLNode::parseXMLNode(node.childNodes().at(0)));
+            CXMLNode xNewNode = CXMLNode::parseXMLNode(node.childNodes().at(0));
+            tNode.m_vNodes.append(xNewNode);
         }
     }
     else
     {
         for (int Index = 0; Index < node.childNodes().length(); Index++)
         {
-            tNode.m_vNodes.append(CXMLNode::parseXMLNode(node.childNodes().at(Index)));
+            CXMLNode xNewNode = CXMLNode::parseXMLNode(node.childNodes().at(Index));
+            tNode.m_vNodes.append(xNewNode);
         }
     }
 
@@ -313,7 +315,8 @@ CXMLNode CXMLNode::parseJSONNode(QJsonObject jObject, QString sTagName)
     {
         if (jObject[sKey].isObject())
         {
-            tNode.m_vNodes.append(CXMLNode::parseJSONNode(jObject[sKey].toObject(), sKey));
+            CXMLNode xNewNode = CXMLNode::parseJSONNode(jObject[sKey].toObject(), sKey);
+            tNode.m_vNodes.append(xNewNode);
         }
         else if (jObject[sKey].isArray())
         {

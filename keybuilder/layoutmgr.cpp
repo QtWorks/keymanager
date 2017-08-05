@@ -1,8 +1,5 @@
 // Qt
-#include <QLabel>
-#include <QLineEdit>
-#include <QRadioButton>
-#include <QDoubleValidator>
+#include <QDebug>
 
 // Application
 #include "controller.h"
@@ -12,6 +9,7 @@
 #include "collapsiblestack.h"
 #include "collapsibleblock.h"
 #include "filepickerwidget.h"
+#include "parametermgr.h"
 #include "constants.h"
 #define NSTACKS 3
 
@@ -34,18 +32,31 @@ LayoutMgr::~LayoutMgr()
 
 void LayoutMgr::buildMenu(const CXMLNode &xNode)
 {
+    // Create root parameter block
+    ParameterBlock *pParameterBlock = new ParameterBlock(xNode, this, m_pController->parameterMgr(), false);
     QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
     setSize(vBlocks.size());
     foreach (CXMLNode xParameterBlock, vBlocks)
-        addCollapsibleBlockToStack(xParameterBlock);
+        addCollapsibleBlockToStack(xParameterBlock, pParameterBlock);
+    foreach (CollapsibleBlock *pBlock, topLevelBlocks())
+        connect(pBlock, &CollapsibleBlock::blockSelected, this, &LayoutMgr::onBlockSelected);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock)
+void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBlock *pParentParameterBlock)
 {
     // Create new parameter block
     ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this, m_pController->parameterMgr());
+    if (pParentParameterBlock != nullptr)
+        pParameterBlock->setParentBlock(pParentParameterBlock);
+
+    // This is a root block, set exclusive state
+    bool bIsExclusive = true;
+    QString sExclusive = xBlock.attributes()[PROPERTY_EXCLUSIVE].simplified();
+    if (!sExclusive.isEmpty())
+        bIsExclusive = (sExclusive == VALUE_TRUE);
+    pParameterBlock->setExclusive(bIsExclusive);
 
     // Listen to parameter value changed
     connect(pParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
@@ -68,7 +79,7 @@ void LayoutMgr::setController(Controller *pController)
 
 //-------------------------------------------------------------------------------------------------
 
-QList<CollapsibleBlock *> LayoutMgr::allBlocks() const
+QList<CollapsibleBlock *> LayoutMgr::topLevelBlocks() const
 {
     QList<CollapsibleBlock *> lBlocks;
     foreach (CollapsibleStack *pStack, m_vStacks)
@@ -128,4 +139,44 @@ void LayoutMgr::onCloseAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
         pStack->closeAll();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onBlockSelected()
+{
+    CollapsibleBlock *pSender = dynamic_cast<CollapsibleBlock *>(sender());
+    if (pSender != nullptr)
+    {
+        // Get parameter block
+        ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
+        if (pParameterBlock != nullptr)
+        {
+            // Do we need to set
+            if (pParameterBlock->variable() == VARIABLE_TYPE_OF_KEY)
+                m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, pParameterBlock->value());
+
+            // Retrieve parent
+            ParameterBlock *pParentParameterBlock = pParameterBlock->parentBlock();
+            if (pParentParameterBlock != nullptr)
+            {
+                // Exclusive?
+                bool bParentIsExclusive = pParentParameterBlock->isExclusive();
+
+                // Get owner collapsible block
+                CollapsibleBlock *pOwnerCollapsibleBlock = dynamic_cast<CollapsibleBlock *>(pParentParameterBlock->parentWidget());
+                QList<CollapsibleBlock *> vChildBlocks = (pOwnerCollapsibleBlock == nullptr) ? topLevelBlocks() : pOwnerCollapsibleBlock->blocks();
+                foreach (CollapsibleBlock *pBlock, vChildBlocks)
+                {
+                    if (bParentIsExclusive)
+                        pBlock->setCurrent(pBlock == pSender);
+                    else
+                    {
+                        if (pBlock == pSender)
+                            pBlock->setCurrent(!pBlock->isCurrent());
+                    }
+                }
+            }
+        }
+    }
 }

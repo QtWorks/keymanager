@@ -24,7 +24,7 @@ Parameter::Parameter(const QString &sName, const QString &sType, const QString &
 //! Destructor
 Parameter::~Parameter()
 {
-    qDebug() << "*** DESTROY PARAMETER BLOCK ***";
+    //qDebug() << "*** DESTROY PARAMETER BLOCK ***";
 }
 
 //-------------------------------------------------------------------------------------------------

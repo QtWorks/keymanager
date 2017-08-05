@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Menu Name="Menu">
+<Block name="ROOT">
    <Block name="REGULAR KEY" variable="qt_type_of_key_qt" value="regular">
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit" />
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />
@@ -88,4 +88,4 @@
       <Parameter name="INWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_inward_tensioner_height_qt" ui="lineedit" />
       <Parameter name="INWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_inward_tensioner_thickness_qt" ui="lineedit" />
    </Block>
-</Menu>
+</Block>

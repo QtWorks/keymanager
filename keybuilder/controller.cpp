@@ -5,6 +5,7 @@
 #include "controller.h"
 #include "cxmlnode.h"
 #include "parametermgr.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 

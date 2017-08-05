@@ -7,6 +7,7 @@
 #include "collapsibleblock.h"
 #include "captionlabel.h"
 #include "constants.h"
+#include "parameterblock.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -42,7 +43,7 @@ CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bo
 
 CollapsibleBlock::~CollapsibleBlock()
 {
-    qDebug() << "*** DESTROY COLLAPSIBLE BLOCK ***";
+    //qDebug() << "*** DESTROY COLLAPSIBLE BLOCK ***";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ void CollapsibleBlock::onClose(bool bClose)
     if (!m_pWidget || m_bIsEmpty)
         return;
     m_bIsClosed = bClose;
-    m_pWidget->setVisible(!bClose);
+    m_pWidget->setVisible(!bClose && m_pWidget->isEnabled());
     emit closedStateChanged(m_bIsClosed);
 }
 
@@ -91,6 +92,15 @@ bool CollapsibleBlock::isClosed() const
     return m_bIsClosed;
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
+{
+    m_pLabel->updateEnabledState(bEnabled);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool CollapsibleBlock::isCurrent() const
 {
     return m_bIsCurrent;
@@ -104,3 +114,21 @@ void CollapsibleBlock::setCurrent(bool bCurrent)
     m_pLabel->setCurrent(bCurrent);
     m_pLabel->update();
 }
+
+//-------------------------------------------------------------------------------------------------
+
+bool CollapsibleBlock::isExclusive() const
+{
+    ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(m_pWidget);
+    if (pParameterBlock != nullptr)
+        return pParameterBlock->isExclusive();
+    return true;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QList<CollapsibleBlock *> CollapsibleBlock::blocks() const
+{
+    return findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
+}
+
