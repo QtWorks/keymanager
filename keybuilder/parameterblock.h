@@ -6,8 +6,7 @@
 
 // Application
 #include "cxmlnode.h"
-class LayoutMgr;
-class ParameterMgr;
+class Controller;
 class Parameter;
 
 namespace Ui {
@@ -24,7 +23,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, bool bRecurse=true, QWidget *parent=nullptr);
+    explicit ParameterBlock(const CXMLNode &xParameterBlock, Controller *pController, bool bRecurse=true, QWidget *parent=nullptr);
 
     //! Destructor
     ~ParameterBlock();
@@ -125,12 +124,6 @@ private:
     //! Is empty?
     bool m_bIsEmpty;
 
-    //! Layout mgr
-    LayoutMgr *m_pLayoutMgr;
-
-    //! Parameter mgr
-    ParameterMgr *m_pParameterMgr;
-
     //! Enabled condition
     QString m_sEnabledCondition;
 
@@ -151,6 +144,9 @@ private:
 
     //! Parent block
     ParameterBlock *m_pParentBlock;
+
+    //! Controller
+    Controller *m_pController;
 
 signals:
     //! Parameter value changed

@@ -33,7 +33,7 @@ LayoutMgr::~LayoutMgr()
 void LayoutMgr::buildMenu(const CXMLNode &xNode)
 {
     // Create root parameter block
-    ParameterBlock *pParameterBlock = new ParameterBlock(xNode, this, m_pController->parameterMgr(), false);
+    ParameterBlock *pParameterBlock = new ParameterBlock(xNode, m_pController, false);
     QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
     setSize(vBlocks.size());
     foreach (CXMLNode xParameterBlock, vBlocks)
@@ -47,7 +47,7 @@ void LayoutMgr::buildMenu(const CXMLNode &xNode)
 void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBlock *pParentParameterBlock)
 {
     // Create new parameter block
-    ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this, m_pController->parameterMgr());
+    ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, m_pController);
     pParameterBlock->setParentBlock(pParentParameterBlock);
 
     // This is a root block, set exclusive state
@@ -58,7 +58,6 @@ void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBloc
     pParameterBlock->setExclusive(bIsExclusive);
 
     // Listen to parameter value changed
-    connect(pParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
     addBlock(pParameterBlock, pParameterBlock->name(), pParameterBlock->isEmpty());
 }
 

@@ -307,7 +307,7 @@
       </Block>
    </Block>
    <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;)">
-      <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qqt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
+      <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)" exclusive="false">
       <Block name="SHAPE 01">

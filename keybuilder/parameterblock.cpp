@@ -22,12 +22,14 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, LayoutMgr *pLayoutMgr, ParameterMgr *pParameterMgr, bool bRecurse, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_bIsEmpty(false), m_pLayoutMgr(pLayoutMgr), m_pParameterMgr(pParameterMgr), m_sEnabledCondition(""),
-    m_sVariableName(""), m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true), m_pParentBlock(nullptr)
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, Controller *pController, bool bRecurse, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
+    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_pController(pController),
+    m_sVariableName(""), m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true),
+    m_pParentBlock(nullptr)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    connect(this, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
     populateParameterBlock(xParameterBlock, bRecurse);
 }
 
@@ -66,7 +68,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         QHash<QString, Parameter *> hParameters;
         foreach (QString sVariableName, vVariableNames)
         {
-            Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sVariableName);
+            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sVariableName);
             if (pParameter != nullptr)
                 hParameters[sVariableName] = pParameter;
         }
@@ -92,7 +94,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
             QString sAuto = xParameter.attributes()[PROPERTY_AUTO];
             LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, sDefaultValue, sAuto, this);
-            pLineEdit->setParameterMgr(m_pParameterMgr);
+            pLineEdit->setParameterMgr(m_pController->parameterMgr());
             if (sParameterType == PROPERTY_DOUBLE)
             {
                 QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
@@ -108,7 +110,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
                 QHash<QString, Parameter *> hParameters;
                 foreach (QString sVariableName, vVariableNames)
                 {
-                    Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sVariableName);
+                    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sVariableName);
                     if (pParameter != nullptr)
                         hParameters[sVariableName] = pParameter;
                 }
@@ -169,9 +171,9 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
 
             // Build new parameter block
-            ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pLayoutMgr, m_pParameterMgr);
+            ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pController);
             pChildParameterBlock->setParentBlock(this);
-            connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pLayoutMgr->controller(), &Controller::onParameterValueChanged);
+            connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
 
             // Create new collapsible block
             CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
@@ -381,7 +383,7 @@ void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hPa
 void ParameterBlock::onEvaluateEnabledCondition()
 {
     bool bSuccess = true;
-    bool bEnabled = m_pParameterMgr->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
+    bool bEnabled = m_pController->parameterMgr()->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
     if (bSuccess) {
         setEnabled(bEnabled);
     }
