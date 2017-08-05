@@ -62,7 +62,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
 
     if (!m_sEnabledCondition.isEmpty())
     {
-        qDebug() << "ENABLED CONDITION = " << m_sEnabledCondition;
         QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
         QHash<QString, Parameter *> hParameters;
         foreach (QString sVariableName, vVariableNames)
@@ -72,7 +71,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
                 hParameters[sVariableName] = pParameter;
         }
         if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size())) {
-            qDebug() << "BLOCK WATCHING " << hParameters;
             setWatchedParameters(hParameters);
         }
     }
@@ -373,7 +371,6 @@ ParameterBlock *ParameterBlock::parentBlock() const
 
 void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
 {
-    qDebug() << "*** SET WATCHED PARAMETERS FOR BLOCK " << m_sName << hParameters;
     m_hWatchedParameters = hParameters;
     for (QHash<QString, Parameter *>::iterator it=m_hWatchedParameters.begin(); it!=m_hWatchedParameters.end(); ++it)
         connect(it.value(), &Parameter::parameterValueChanged, this, &ParameterBlock::onEvaluateEnabledCondition);
@@ -383,12 +380,9 @@ void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hPa
 
 void ParameterBlock::onEvaluateEnabledCondition()
 {
-    qDebug() << "TESTING AGAINST ################################################# " << m_sName;
-
     bool bSuccess = true;
     bool bEnabled = m_pParameterMgr->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
     if (bSuccess) {
-        qDebug() << "ENABLED STATE " << m_sName << bEnabled;
         setEnabled(bEnabled);
     }
 }

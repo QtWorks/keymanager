@@ -15,14 +15,14 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     // Check input script file exists
     if (!QFileInfo::exists(sInputScripFile))
     {
-        qDebug() << "*** " << sInputScripFile << " DOES NOT EXIST ***";
+        qDebug() << "ERROR: " << sInputScripFile << " DOES NOT EXIST";
         return;
     }
 
     QFile inputScriptFile(sInputScripFile);
     if (!inputScriptFile.open(QIODevice::ReadOnly))
     {
-        qDebug() << "*** CANNOT OPEN " << sInputScripFile << " ***";
+        qDebug() << "ERROR: CANNOT OPEN " << sInputScripFile;
         return;
     }
     QTextStream inStream(&inputScriptFile);
@@ -42,7 +42,7 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     QFile outputScriptFile(sOutputScriptFile);
     if (!outputScriptFile.open(QIODevice::WriteOnly))
     {
-        qDebug() << "*** CANNOT OPEN " << sOutputScriptFile << " ***";
+        qDebug() << "ERROR: CANNOT OPEN " << sOutputScriptFile;
         return;
     }
 

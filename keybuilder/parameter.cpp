@@ -24,7 +24,7 @@ Parameter::Parameter(const QString &sName, const QString &sType, const QString &
 //! Destructor
 Parameter::~Parameter()
 {
-    //qDebug() << "*** DESTROY PARAMETER BLOCK ***";
+    qDebug() << "INFORMATION: DESTROY PARAMETER";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ const QString &Parameter::value() const
 
 void Parameter::setValue(const QString &sValue)
 {
-    qDebug() << "*** SETTING VALUE " << sValue << " FOR PARAMETER (" << m_sName << "/" << m_sVariable << " ***";
+    qDebug() << "INFORMATION: SETTING VALUE " << sValue << " FOR PARAMETER (" << m_sName << "/" << m_sVariable << ")";
     m_sValue = sValue;
     emit parameterValueChanged(m_sVariable, sValue);
 }

@@ -22,7 +22,7 @@ CollapsibleStack::CollapsibleStack(QWidget *parent) : QWidget(parent)
 
 CollapsibleStack::~CollapsibleStack()
 {
-    //qDebug() << "*** DESTROY COLLAPSIBLE STACK ***";
+    qDebug() << "INFORMATION: DESTROY COLLAPSIBLE STACK";
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bo
 
 CollapsibleBlock::~CollapsibleBlock()
 {
-    //qDebug() << "*** DESTROY COLLAPSIBLE BLOCK ***";
+    qDebug() << "INFORMATION: DESTROY COLLAPSIBLE BLOCK";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -117,17 +117,7 @@ void CollapsibleBlock::setCurrent(bool bCurrent)
 
 //-------------------------------------------------------------------------------------------------
 
-bool CollapsibleBlock::isExclusive() const
-{
-    ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(m_pWidget);
-    if (pParameterBlock != nullptr)
-        return pParameterBlock->isExclusive();
-    return true;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QList<CollapsibleBlock *> CollapsibleBlock::blocks() const
+QList<CollapsibleBlock *> CollapsibleBlock::childBlocks() const
 {
     return findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
 }

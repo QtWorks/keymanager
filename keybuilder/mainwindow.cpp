@@ -52,7 +52,4 @@ void MainWindow::setController(Controller *pController)
 
     // Build menu 2 tab
     ui->menu2LayoutMgr->buildMenu(m_pController->menu2Node());
-
-    // No key selected by default
-    m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, "");
 }

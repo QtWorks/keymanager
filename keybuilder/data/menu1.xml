@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT">
+   <Parameter variable="qt_type_of_key_qt" type="string"/>
    <Block name="REGULAR KEY" variable="qt_type_of_key_qt" value="regular">
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit" />
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />

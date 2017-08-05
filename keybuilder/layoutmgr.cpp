@@ -152,9 +152,9 @@ void LayoutMgr::onBlockSelected()
         ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
         if (pParameterBlock != nullptr)
         {
-            // Do we need to set
-            if (pParameterBlock->variable() == VARIABLE_TYPE_OF_KEY)
-                m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, pParameterBlock->value());
+            // Process block variable
+            if (!pParameterBlock->variable().isEmpty())
+                m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pParameterBlock->value());
 
             // Retrieve parent
             ParameterBlock *pParentParameterBlock = pParameterBlock->parentBlock();
@@ -165,7 +165,7 @@ void LayoutMgr::onBlockSelected()
 
                 // Get owner collapsible block
                 CollapsibleBlock *pOwnerCollapsibleBlock = dynamic_cast<CollapsibleBlock *>(pParentParameterBlock->parentWidget());
-                QList<CollapsibleBlock *> vChildBlocks = (pOwnerCollapsibleBlock == nullptr) ? topLevelBlocks() : pOwnerCollapsibleBlock->blocks();
+                QList<CollapsibleBlock *> vChildBlocks = (pOwnerCollapsibleBlock == nullptr) ? topLevelBlocks() : pOwnerCollapsibleBlock->childBlocks();
                 foreach (CollapsibleBlock *pBlock, vChildBlocks)
                 {
                     if (bParentIsExclusive)

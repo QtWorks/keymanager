@@ -36,8 +36,8 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
         if (sParameterType.simplified().isEmpty())
         {
-            qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED TYPE ***";
-            continue;
+            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED TYPE, DEFAULTING TO STRING";
+            sParameterType = PROPERTY_STRING;
         }
 
         // Special case for table
@@ -50,20 +50,13 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
             QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
             if (sParameterName.simplified().isEmpty())
             {
-                qDebug() << "*** FIND A PARAMETER WITH AN EMPTY NAME ***";
-                continue;
+                qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
             }
             QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
             if (sParameterVariable.simplified().isEmpty())
             {
-                qDebug() << "*** FIND A PARAMETER WITH AN UNDEFINED VARIABLE ***";
+                qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
                 continue;
-            }
-
-            //qDebug() << "*** IDENTIFIED ***" << sParameterVariable;
-            if (sParameterVariable == VARIABLE_TYPE_OF_KEY)
-            {
-                int x = 0;
             }
             if (!m_hParameters.contains(sParameterVariable))
                 m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
@@ -108,7 +101,6 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                     if (!m_hParameters.contains(sFormattedVariable))
                     {
                         m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
-                        //qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
                     }
                 }
                 else
@@ -119,13 +111,12 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                         if (!m_hParameters.contains(sFormattedVariable))
                         {
                             m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
-                            //qDebug() << "*** IDENTIFIED TABLE PARAMETER ***" << sFormattedVariable;
                         }
                     }
             }
         }
     }
-    else qDebug() << "*** CAN'T PARSE PARAMETER TABLE ***";
+    else qDebug() << "ERROR: CAN'T PARSE PARAMETER TABLE";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -178,7 +169,7 @@ double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucce
         Parameter *pParameter = getParameterByVariableName(sVariableName);
         if (pParameter == nullptr)
         {
-            qDebug() << "*** CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            qDebug() << "ERROR: CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
             bSuccess = false;
             break;
         }
@@ -210,7 +201,7 @@ bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bo
         Parameter *pParameter = getParameterByVariableName(sVariableName);
         if (pParameter == nullptr)
         {
-            qDebug() << "*** CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            qDebug() << "ERROR: CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
             bSuccess = false;
             break;
         }
@@ -246,17 +237,9 @@ bool ParameterMgr::loadMenu1Parameters()
     if (m_xMenu1Node.nodes().isEmpty())
         return false;
 
-    // This describes the type of key to be created
-    m_hParameters[VARIABLE_TYPE_OF_KEY] = new Parameter(PROPERTY_TYPE_OF_KEY, PROPERTY_STRING, VARIABLE_TYPE_OF_KEY);
-
-    // Retrieve Key nodes
-    QVector<CXMLNode> vBlocks = m_xMenu1Node.getNodesByTagName(TAG_BLOCK);
-    foreach (CXMLNode xBlock, vBlocks)
-        parseSingleBlock(xBlock);
-
-    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1 ***";
-    for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
-        qDebug() << "***************************************** " << it.key() << it.value();
+    // Parse
+    parseSingleBlock(m_xMenu1Node);
+    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1 ***";
 
     return true;
 }
@@ -270,12 +253,9 @@ bool ParameterMgr::loadMenu2Parameters()
     if (m_xMenu2Node.nodes().isEmpty())
         return false;
 
-    // Retrieve Key nodes
-    QVector<CXMLNode> vBlocks = m_xMenu2Node.getNodesByTagName(TAG_BLOCK);
-    foreach (CXMLNode xBlock, vBlocks)
-        parseSingleBlock(xBlock);
-
-    qDebug() << "*** IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 2 ***";
+    // Parse
+    parseSingleBlock(m_xMenu2Node);
+    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 2";
 
     return true;
 }
@@ -287,7 +267,7 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
     Parameter *pParameter = m_hParameters[sParameterName];
     if (pParameter != nullptr)
         pParameter->setValue(sParameterValue);
-    else qDebug() << "*** CAN'T FIND PARAMETER " << sParameterName << " ***";
+    else qDebug() << "ERROR: CAN'T FIND PARAMETER " << sParameterName;
 }
 
 //-------------------------------------------------------------------------------------------------

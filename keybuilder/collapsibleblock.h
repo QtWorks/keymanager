@@ -37,11 +37,8 @@ public:
     //! Set current
     void setCurrent(bool bCurrent);
 
-    //! Is exclusive?
-    bool isExclusive() const;
-
-    //! Return own blocks
-    QList<CollapsibleBlock *> blocks() const;
+    //! Return child blocks
+    QList<CollapsibleBlock *> childBlocks() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
