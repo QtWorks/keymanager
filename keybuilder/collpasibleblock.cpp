@@ -12,8 +12,7 @@
 //-------------------------------------------------------------------------------------------------
 
 CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bool bIsEmpty, QWidget *parent)
-    : QWidget(parent), m_pWidget(nullptr), m_bIsEmpty(bIsEmpty), m_bIsClosed(true),
-      m_bIsCurrent(false)
+    : QWidget(parent), m_pWidget(nullptr), m_bIsClosed(true), m_bIsCurrent(false)
 {
     // Set object name
     setObjectName(COLLAPSIBLEBLOCK_OBJECT_NAME);
@@ -71,11 +70,12 @@ void CollapsibleBlock::setWidget(QWidget *widget)
 
 void CollapsibleBlock::onClose(bool bClose)
 {
-    if (!m_pWidget || m_bIsEmpty)
-        return;
-    m_bIsClosed = bClose;
-    m_pWidget->setVisible(!bClose && m_pWidget->isEnabled());
-    emit closedStateChanged(m_bIsClosed);
+    if (m_pWidget != nullptr)
+    {
+        m_bIsClosed = bClose;
+        m_pWidget->setVisible(!bClose && m_pWidget->isEnabled());
+        emit closedStateChanged(m_bIsClosed);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

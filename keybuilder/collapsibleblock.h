@@ -64,9 +64,6 @@ private:
     //! Caption
     CaptionLabel *m_pLabel;
 
-    //! Has parameters or child blocks?
-    bool m_bIsEmpty;
-
     //! Closed?
     bool m_bIsClosed;
 
