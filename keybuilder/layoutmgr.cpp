@@ -48,8 +48,7 @@ void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBloc
 {
     // Create new parameter block
     ParameterBlock *pParameterBlock = new ParameterBlock(xBlock, this, m_pController->parameterMgr());
-    if (pParentParameterBlock != nullptr)
-        pParameterBlock->setParentBlock(pParentParameterBlock);
+    pParameterBlock->setParentBlock(pParentParameterBlock);
 
     // This is a root block, set exclusive state
     bool bIsExclusive = true;
