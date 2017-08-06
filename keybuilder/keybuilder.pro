@@ -74,7 +74,8 @@ SOURCES += main.cpp\
     filepickerwidget.cpp \
     doubletripletwidget.cpp \
     genericparametertable.cpp \
-    basewidget.cpp
+    basewidget.cpp \
+    dxforstlfilepicker.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -95,7 +96,8 @@ HEADERS  += mainwindow.h \
     filepickerwidget.h \
     doubletripletwidget.h \
     genericparametertable.h \
-    basewidget.h
+    basewidget.h \
+    dxforstlfilepicker.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -105,7 +107,8 @@ FORMS    += mainwindow.ui \
     lineeditwidget.ui \
     filepickerwidget.ui \
     doubletripletwidget.ui \
-    genericparametertable.ui
+    genericparametertable.ui \
+    dxforstlfilepicker.ui
 
 DISTFILES +=
 

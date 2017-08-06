@@ -13,6 +13,7 @@
 #define PROPERTY_LABELS "labels"
 #define PROPERTY_VALUES "values"
 #define PROPERTY_TYPE "type"
+#define PROPERTY_BOOLEAN "boolean"
 #define PROPERTY_INT "int"
 #define PROPERTY_DOUBLE "double"
 #define PROPERTY_STRING "string"
@@ -36,6 +37,7 @@
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"
+#define WIDGET_DXF_OR_STL_FILE_PICKER "dxforstlfilepicker"
 #define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"
 #define WIDGET_GENERIC_PARAMETER_TABLE "genericparametertable"
 

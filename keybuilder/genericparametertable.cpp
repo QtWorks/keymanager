@@ -118,16 +118,7 @@ bool GenericParameterTableModel::setData(const QModelIndex &index, const QVarian
             QString sFormattedVariable("");
             if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD1)
             {
-                qDebug() << "************************************* ------------------------------------------------------------ > " << sFormattedVariable;
-
-
                 sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
-
-                if (sFormattedVariable == "qt_lever_lock_row1_cut02_depth_qt")
-                {
-                    int x = 0;
-                }
-
                 emit parameterValueChanged(sFormattedVariable, vData.toString());
                 emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
                 return true;

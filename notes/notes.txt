@@ -4,19 +4,11 @@ AUTO pour table
 
 toutes les valeurs par default -> affichées en gris (place holder text) et modifiables
 par defaut toutes les valeurs chiffres = 0 si vides
-toutes les valeur booléeennes c'est "NO" par defaut
-toutes les valeurs 
 
 remplacement variable -> "NOM CLE" -> guillemets necessaires dans le script
 autre variable -> pas de guillement
-chaine de caracteres vide -> mettre "0"
 nom projet OFC3DKEYV2
 dans menu1.xml remplacer les balises <Key> par <Key_Blank>
-
-dans UI, mettre label + lineedit sur meme ligne
-
-Ajouter un tab Menu 3
-
 
 Menu 1 = cle vierge
 Menu 2 = ce qu'on taille
@@ -31,12 +23,10 @@ un bouton GENERATE STL
 un bouton SAVE KEY PARAMETERS
 + OPEN ALL / CLOSE ALL (les 4 l'un a cote de l'autre)
 
-donner le nombre de colonnes plutot que nombre de cles par colonne
 
 6 caracteres max. Pas de range.
 
 dans le menu REGULAR/DIMPLE/LASER
-les 6 ROWX sont collapsible avec un bouton OPEN/CLOSE
 valeur flottante -> virgule ou point dans UI mais point dans script
 
 File/View/Help -> virer
@@ -46,10 +36,6 @@ un bouton OPEN en haut a g, "OPEN STL"
 
 ************************************** MENU 2 ************************************** 
 
-Menu 2 -> on parle de forme
-tous les trous, dents etc a creer sur la cle
-tout ce qui est supprimé de la cle 
-plusieurs types d'objets a supprimer: angles, dents, trous, ...
 Menu 2 contient des checkbox (non exclusif)
 
 MIRROR X Y Z -> checkbox non exclusive -> check = 1 unchecked= 0

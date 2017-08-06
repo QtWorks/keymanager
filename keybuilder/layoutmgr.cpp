@@ -176,7 +176,11 @@ void LayoutMgr::onBlockSelected()
 
                             // Process block variable
                             if (!pParameterBlock->variable().isEmpty())
-                                m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pBlock->isCurrent() ? PROPERTY_YES : PROPERTY_NO);
+                            {
+                                Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(pParameterBlock->variable());
+                                if ((pParameter != nullptr) && (pParameter->type() == PROPERTY_BOOLEAN))
+                                    m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pBlock->isCurrent() ? PROPERTY_YES : PROPERTY_NO);
+                            }
                         }
                     }
                 }

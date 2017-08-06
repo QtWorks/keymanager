@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT" exclusive="false">
    <Block name="REGULAR/DIMPLE/LASER" exclusive="false" variable="qt_regular_cut_use_qt">
-      <Parameter variable="qt_regular_cut_use_qt" type="string" default="NO"/>
-      <Block name="ROW1">
+      <Parameter variable="qt_regular_cut_use_qt" type="boolean" default="NO"/>
+      <Block name="ROW1" exclusive="false" variable="qt_regular_row1_cut_use_qt">
+         <Parameter variable="qt_regular_row1_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
@@ -40,7 +41,8 @@
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
-      <Block name="ROW2">
+      <Block name="ROW2" exclusive="false" variable="qt_regular_row2_cut_use_qt">
+         <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row2_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
@@ -78,7 +80,8 @@
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
-      <Block name="ROW3">
+      <Block name="ROW3" variable="qt_regular_row3_cut_use_qt">
+         <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row3_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
@@ -116,7 +119,8 @@
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
-      <Block name="ROW4">
+      <Block name="ROW4" variable="qt_regular_row4_cut_use_qt">
+         <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row4_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
@@ -154,7 +158,8 @@
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row'3'" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
-      <Block name="ROW5">
+      <Block name="ROW5" variable="qt_regular_row5_cut_use_qt">
+         <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row5_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
@@ -192,7 +197,8 @@
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
-      <Block name="ROW6">
+      <Block name="ROW6" variable="qt_regular_row6_cut_use_qt">
+         <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row6_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
@@ -232,15 +238,16 @@
       </Block>
    </Block>
    <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;round_pump&amp;quot;) || (qt_type_of_key_qt == &amp;quot;round_stl&amp;quot;)">
-      <Parameter variable="qt_round_pump_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_round_pump_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
       <Parameter name="MILL DISTANCE FROM CENTER" type="double" variable="qt_round_pump_mill_distance_frome_center_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH FROM TIP" type="table" columnvariables="depth" nrows="12" targetvariable="qt_round_pump_cut%1_depth_from_tip_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="LEVER LOCK (SIMPLE AND DOUBLE BITTED)" variable="qt_lever_lock_cut_use_qt" exclusive="false">
-      <Parameter variable="qt_lever_lock_cut_use_qt" type="string" default="NO"/>
-      <Block name="ROW1">
+      <Parameter variable="qt_lever_lock_cut_use_qt" type="boolean" default="NO"/>
+      <Block name="ROW1" variable="qt_lever_lock_row1_cut_use_qt">
+         <Parameter variable="qt_lever_lock_row1_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF LEVERS" type="int" variable="qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row1_blade_length_qt" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row1_spaces_qt" auto="qt_lever_lock_row1_blade_length_qt/qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
@@ -248,7 +255,8 @@
          <Parameter name="ANGLE OF CUTTING [ ] (ON Y AXIS)" type="double" variable="qt_lever_lock_row1_angle_on_y_qt" ui="double_triplet" />
          <Parameter columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row1" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" ui="genericparametertable" />
       </Block>
-      <Block name="ROW2">
+      <Block name="ROW2" variable="qt_lever_lock_row2_cut_use_qt">
+         <Parameter variable="qt_lever_lock_row2_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF LEVERS" type="int" variable="qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
          <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row2_blade_length_qt" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row2_spaces_qt" auto="qt_lever_lock_row2_blade_length_qt/qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
@@ -258,7 +266,7 @@
       </Block>
    </Block>
    <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)" variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_classic&amp;quot;)">
-      <Parameter variable="qt_abloy_classic_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_abloy_classic_cut_use_qt" type="boolean" default="NO"/>
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="int" variable="qt_abloy_classic_number_of_discs_qt" ui="lineedit" />
@@ -269,7 +277,7 @@
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_classic_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)" variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_disklock&amp;quot;)">
-      <Parameter variable="qt_abloy_disklock_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_abloy_disklock_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_disklock_pro_blade_length_qt" default="34" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_disklock_pro_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_disklock_pro_spaces_qt" default="1.6" ui="lineedit" />
@@ -279,7 +287,7 @@
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_disklock_pro_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)" variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_protec&amp;quot;)">
-      <Parameter variable="qt_abloy_protec_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_abloy_protec_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_protec_blade_length_qt" default="30" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_protec_spaces_qt" default="1.5" ui="lineedit" />
@@ -290,7 +298,7 @@
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_protec_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)" variable="qt_abus_plus_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;)">
-      <Parameter variable="qt_abus_plus_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_abus_plus_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abus_plus_blade_length_qt" default="33" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abus_plus_spaces_qt" default="2" ui="lineedit" />
@@ -299,23 +307,26 @@
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abus_plus_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)" variable="qt_axi_home_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;axi_home&amp;quot;)">
-      <Parameter variable="qt_axi_home_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_axi_home_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="SIDE OF PROFILE" labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_side_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="TOP" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_top_row_qt" default="ROW1" ui="exclusivechoice" />
       <Parameter name="RIGHT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_right_row_qt" default="ROW2" ui="exclusivechoice" />
       <Parameter name="LEFT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_left_row_qt" default="ROW3" ui="exclusivechoice" exclusive="false"/>
-      <Block name="ROW1">
+      <Block name="ROW1" variable="qt_axi_home_row1_cut_use_qt">
+         <Parameter variable="qt_axi_home_row1_cut_use_qt" type="boolean" default="NO"/>
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row1_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
-      <Block name="ROW2">
+      <Block name="ROW2" variable="qt_axi_home_row2_cut_use_qt">
+         <Parameter variable="qt_axi_home_row2_cut_use_qt" type="boolean" default="NO"/>
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row2_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
-      <Block name="ROW3">
+      <Block name="ROW3" variable="qt_axi_home_row3_cut_use_qt">
+         <Parameter variable="qt_axi_home_row3_cut_use_qt" type="boolean" default="NO"/>
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row3_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
    </Block>
    <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)" variable="qt_fichet_787_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;)">
-      <Parameter variable="qt_fichet_787_cut_use_qt" type="string" default="NO"/>
+      <Parameter variable="qt_fichet_787_cut_use_qt" type="boolean" default="NO"/>
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)" variable="qt_extra_cut_use_qt" exclusive="false">

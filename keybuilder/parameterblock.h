@@ -96,6 +96,12 @@ public slots:
     //! File picker text changed
     void onFilePickerTextChanged();
 
+    //! DXF selected
+    void onDXFSelected();
+
+    //! STL selected
+    void onSTLSelected();
+
     //! A radio button was clicked
     void onRadioButtonClicked(const QString &sSelection);
 

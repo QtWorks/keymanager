@@ -11,6 +11,7 @@
 #include "constants.h"
 #include "collapsibleblock.h"
 #include "filepickerwidget.h"
+#include "dxforstlfilepicker.h"
 #include "doubletripletwidget.h"
 #include "layoutmgr.h"
 #include "exclusivechoicewidget.h"
@@ -90,6 +91,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         QString sWidgetType = xParameter.attributes()[PROPERTY_UI].simplified();
         QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
         QString sAuto = xParameter.attributes()[PROPERTY_AUTO].simplified();
+
         // Parameter with no UI
         if (sWidgetType.isEmpty())
         {
@@ -135,6 +137,15 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             pFilePickerWidget->applyDefaultValue();
         }
         else
+        if (sWidgetType == WIDGET_DXF_OR_STL_FILE_PICKER)
+        {
+            DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(sDefaultValue, this);
+            connect(pFilePickerWidget, &DXForSTLFilePicker::dxfSelected, this, &ParameterBlock::onDXFSelected);
+            connect(pFilePickerWidget, &DXForSTLFilePicker::stlSelected, this, &ParameterBlock::onSTLSelected);
+            addWidget(pFilePickerWidget, sParameterVariable);
+            pFilePickerWidget->applyDefaultValue();
+        }
+        else
         if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
@@ -159,12 +170,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         else
         if (sWidgetType == WIDGET_GENERIC_PARAMETER_TABLE)
         {
-            if (sDefaultValue.isEmpty())
-            {
-                int x=  0;
-
-            }
-
             QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
             QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
 
@@ -234,6 +239,36 @@ void ParameterBlock::onFilePickerTextChanged()
         if (!sParameterVariable.isEmpty())
         {
             emit parameterValueChanged(sParameterVariable, pSender->value());
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::onDXFSelected()
+{
+    DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
+    if (pSender != nullptr)
+    {
+        QString sParameterVariable = findAssociatedParameterVariable(pSender);
+        if (!sParameterVariable.isEmpty())
+        {
+            emit parameterValueChanged(sParameterVariable, pSender->dxfValue());
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::onSTLSelected()
+{
+    DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
+    if (pSender != nullptr)
+    {
+        QString sParameterVariable = findAssociatedParameterVariable(pSender);
+        if (!sParameterVariable.isEmpty())
+        {
+            emit parameterValueChanged(sParameterVariable, pSender->stlValue());
         }
     }
 }

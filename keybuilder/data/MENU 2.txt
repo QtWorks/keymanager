@@ -6,10 +6,10 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 [OPEN ALL]
 [CLOSE ALL]
 
-[]REGULAR/DIMPLE/LASER
+[]REGULAR/DIMPLE/LASER //qt_regular_cut_use_qt = "YES";
 [CLEAR ALL]
 
-	[]ROW 1  
+	[]ROW 1  //qt_regular_row1_cut_use_qt = "YES";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row1_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row1_offset_on_x_qt qt_regular_row1_offset_on_z_qt
@@ -66,7 +66,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	21	[   ]   [     ] [     ]
 	22	[   ]   [     ] [     ]
 
-	[]ROW 2
+	[]ROW 2 //qt_regular_row2_cut_use_qt = "NO";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row2_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row2_offset_on_x_qt qt_regular_row2_offset_on_z_qt
@@ -123,7 +123,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	21	[   ]   [     ] [     ]
 	22	[   ]   [     ] [     ]
 
-	[]ROW 3
+	[]ROW 3 //qt_regular_row3_cut_use_qt = "NO";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row3_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row3_offset_on_x_qt qt_regular_row3_offset_on_z_qt
@@ -180,7 +180,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	21	[   ]   [     ] [     ]
 	22	[   ]   [     ] [     ]
 
-	[]ROW 4
+	[]ROW 4 //qt_regular_row4_cut_use_qt = "NO";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row4_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row4_offset_on_x_qt qt_regular_row4_offset_on_z_qt
@@ -237,7 +237,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	21	[   ]   [     ] [     ]
 	22	[   ]   [     ] [     ]
 
-	[]ROW 5
+	[]ROW 5 //qt_regular_row5_cut_use_qt = "NO";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row5_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row5_offset_on_x_qt qt_regular_row5_offset_on_z_qt
@@ -294,7 +294,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	21	[   ]   [     ] [     ]
 	22	[   ]   [     ] [     ]
 
-	[]ROW 6
+	[]ROW 6 // qt_regular_row6_cut_use_qt = "NO";
 	[CLEAR ALL] 
 	NUMBER OF PINS [ ] //qt_regular_row6_number_of_pins_qt
 	OFFSET X[ ]  Z[ ] (Use key thickness in Z if required)//qt_regular_row6_offset_on_x_qt qt_regular_row6_offset_on_z_qt
@@ -353,7 +353,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 
 
 
-[]ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)
+[]ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1) //qt_round_pump_cut_use_qt = "NO";
 [CLEAR ALL]
 
 	NUMBER OF PINS (INCLUDING THE TENSIONER //qt_round_pump_number_of_pins_qt
@@ -377,10 +377,10 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	12	[   ]   
 
 
-[]LEVER LOCK (SIMPLE AND DOUBLE BITTED)
+[]LEVER LOCK (SIMPLE AND DOUBLE BITTED) // qt_lever_lock_cut_use_qt = "YES";
 [CLEAR ALL]
 
-	[]ROW 1 [CLEAR ALL] //DUPLICATE FOR 2 ROWS
+	[]ROW 1 [CLEAR ALL] //qt_lever_lock_row1_cut_use_qt = "NO";
 	NUMBER OF LEVERS [ ] //qt_lever_lock_row1_number_of_levers_qt
 	BLADE LENGTH [ ] //qt_lever_lock_row1_blade_length_qt
 	SPACES [AUTO FROM ABOVE] //qt_lever_lock_row1_spaces_qt CALCULATION IS BLADE_LENGTH/NUMBER_OF_LEVERS
@@ -411,7 +411,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	19	[   ]   [     ] [     ]
 	20	[   ]   [     ] [     ]
 
-	[]ROW 2 [CLEAR ALL] //DUPLICATE FOR 2 ROWS
+	[]ROW 2 [CLEAR ALL] //qt_lever_lock_row2_cut_use_qt = "NO";
 	NUMBER OF LEVERS [ ] //qt_lever_lock_row2_number_of_levers_qt
 	BLADE LENGTH [ ] //qt_lever_lock_row2_blade_length_qt
 	SPACES [AUTO FROM ABOVE] //qt_lever_lock_row2_spaces_qt CALCULATION IS BLADE_LENGTH/NUMBER_OF_LEVERS
@@ -443,7 +443,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	20	[   ]   [     ] [     ]
 
 	
-[]ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)
+[]ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)//qt_abloy_classic_cut_use_qt = "NO";
 [CLEAR ALL]
 	SIDE OF CUTTING []RIGHT  []LEFT //qt_abloy_classic_side_of_cutting_qt "RIGHT" or "LEFT"
 	BLADE LENGTH [ ] //qt_abloy_classic_blade_length_qt
@@ -477,7 +477,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	19	[   ]   
 	20	[   ]   
 
-[]ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)
+[]ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)//qt_abloy_disklock_cut_use_qt = "NO";
 [CLEAR ALL]
 	BLADE LENGTH [ ] //qt_abloy_disklock_pro_blade_length_qt DEFAULT IS 34
 	NUMBER OF DISCS [ ] //qt_abloy_disklock_pro_number_of_discs_qt
@@ -510,7 +510,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	19	[   ]   
 	20	[   ]   
 
-[]ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)
+[]ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)//qt_abloy_protec_cut_use_qt = "NO";
 [CLEAR ALL]
 	BLADE LENGTH [ ] //qt_abloy_protec_blade_length_qt DEFAULT IS 30
 	NUMBER OF DISCS [ ] //qt_abloy_protec_number_of_discs_qt
@@ -543,7 +543,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	19	[   ]   
 	20	[   ]   
 
-[]ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)
+[]ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)//qt_abus_plus_cut_qt = "NO";
 [CLEAR ALL]
 	BLADE LENGTH [ ] //qt_abus_plus_blade_length_qt DEFAULT IS 33
 	NUMBER OF DISCS [ ] //qt_abus_plus_number_of_discs_qt
@@ -575,7 +575,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	19	[   ]   
 	20	[   ]  
 
-[]AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)
+[]AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)//qt_axi_home_cut_use_qt = "NO";
 [CLEAR ALL]
 	SIDE OF PROFILE []RIGHT []LEFT //qt_axi_home_side_qt "RIGHT" or "LEFT"
 	TOP 	[]ROW1 []ROW2 []ROW3 //qt_axi_home_top_row_qt "ROW1" or "ROW2" or "ROW3" DEFAULT IS ROW 1. ONE ROW CAN BE SELECTED ONLY ONCE
@@ -616,7 +616,7 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	6	[   ]   //qt_axi_home_row3_cut06_qt
 
 
-[]FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)
+[]FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)//qt_fichet_787_cut_use_qt = "NO";
 [CLEAR ALL]
 		DEPTH
 		[CLEAR] 
@@ -632,10 +632,10 @@ TYPE OF CUTTING (SEVERAL CHOICES POSSIBLE)
 	9	[   ]   RIGHT
 	10	[   ]   LEFT
 
-EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)
+[]EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)//qt_extra_cut_use_qt ="YES";
 [CLEAR ALL]
-	SHAPE 01 //DUPLICATE FOR 10 SHAPES
-		[]CUBE []CYLINDER []SPHERE []BROWSE FOR STL //qt_extra_cut_shape_1_model_qt "CUBE" or "CYLINDER" or "SPHERE" or "STL"
+	[]SHAPE 01 //DUPLICATE FOR 10 SHAPES//qt_extra_cut_shape01_use_qt ="NO";
+		[]CUBE []CYLINDER []SPHERE []BROWSE FOR STL //qt_extra_cut_shape_01_model_qt "CUBE" or "CYLINDER" or "SPHERE" or "STL"
 		IF CUBE
 			CENTER []YES []NO //qt_extra_cut_shape_01_cube_centered_qt "YES" or "NO"
 			DIMENSIONS

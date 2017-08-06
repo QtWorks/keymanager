@@ -9,9 +9,10 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	LENGTH[ ] //qt_regular_length_qt
 	HEIGHT[ ] //qt_regular_height_qt
 	THICKNESS[ ] //qt_regular_thickness_qt
+	[] AUTOMATIC TIP // qt_regular_auto_tip_qt "YES" "NO"
 	[BROWSE FOR A DXF] //"qt_regular_dxf_name_qt" //exclusive with next line
-	[XOR BROWSE FOR A STL] //"qt_regular_stl_name_qt"
-	MANDATORY: LENGTH, HEIGHT
+	[BROWSE FOR A STL] //"qt_regular_stl_name_qt"
+	//MANDATORY : LENGTH, HEIGHT, THICKNESS, DXF OR STL
 	
 []DIMPLE/LASER KEY	// qt_type_of_key_qt="dimple_laser" //exclusive
 	LENGTH[ ] //qt_dimple_laser_length_qt
@@ -19,6 +20,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	THICKNESS[ ] //qt_dimple_laser_thickness_qt
 	[BROWSE FOR A DXF] //"qt_dimple_laser_dxf_name_qt" //exclusive with next line
 	[BROWSE FOR A STL] //"qt_dimple_laser_stl_name_qt"
+	//MANDATORY : LENGTH, HEIGHT, THICKNESS, DXF OR STL
 	
 []ROUND PUMP/TUBULAR		// qt_type_of_key_qt="round_pump" //exclusive
 	LENGTH[ ] //qt_round_pump_length_qt	
@@ -35,6 +37,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	INWARD TENSIONER LENGTH[ ] //qt_round_pump_inward_tensioner_length_qt
 	INWARD TENSIONER HEIGHT[ ] //qt_round_pump_inward_tensioner_height_qt
 	INWARD TENSIONER THICKNESS[ ] //qt_round_pump_inward_tensioner_thickness_qt
+	//MANDATORY : LENGTH, DIAMETER
 	
 []BROWSE FOR A ROUND PUMP BLANK STL		// qt_type_of_key_qt="round_stl" //exclusive
 	[BROWSE FOR A STL] //"qt_round_stl_name_qt"
@@ -42,6 +45,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	X[ ] Y[ ] Z[ ] //qt_round_stl_rx_qt qt_round_stl_ry_qt qt_round_stl_rz_qt
 	TRANSLATE
 	X[ ] Y[ ] Z[ ] //qt_round_stl_tx_qt qt_round_stl_ty_qt qt_round_stl_tz_qt
+	//MANDATORY : STL
 	
 []LEVER LOCK		// qt_type_of_key_qt="lever_simple" //exclusive
 	BODY LENGTH[ ] //qt_lever_simple_body_length_qt
@@ -52,6 +56,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	TIP LENGTH[ ] //qt_lever_simple_tip_length_qt
 	TIP HOLE DIAMETER[ ] //qt_lever_simple_tip_hole_diameter_qt
 	TIP HOLE DEPTH[ ] //qt_lever_simple_tip_hole_depth_qt
+	//MANDATORY : BODY LENGTH, BODY DIAMETER, BLADE LENGTH, BLADE HEIGHT, BLADE THICKNESS
 	
 []LEVER LOCK DOUBLE BITTED		// qt_type_of_key_qt="lever_double" //exclusive
 	BODY LENGTH[ ] //qt_lever_double_body_length_qt
@@ -63,6 +68,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	TIP LENGTH[ ] //qt_lever_double_tip_length_qt
 	TIP HOLE DIAMETER[ ] //qt_lever_double_tip_hole_diameter_qt
 	TIP HOLE DEPTH[ ] //qt_lever_double_tip_hole_depth_qt
+	//MANDATORY : BODY LENGTH, BODY DIAMETER, BLADE LENGTH, BLADE HEIGHT, BLADE THICKNESS
 	
 []ABLOY CLASSIC		// qt_type_of_key_qt="abloy_classic" //exclusive
 	LENGTH[ ] //DEFAULT IS 30 //qt_abloy_classic_length_qt
@@ -70,6 +76,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 	THICKNESS[ ] //DEFAULT IS 3 // qt_abloy_classic_thickness_qt
 	[BROWSE FOR A DXF] //"qt_abloy_classic_dxf_name_qt" //exclusive with next line
 	[BROWSE FOR A STL] //"qt_abloy_classic_stl_name_qt"
+	//MANDATORY : LENGTH, HEIGHT, THICKNESS, DXF OR STL
 	
 []ABLOY DISKLOCK PRO		// qt_type_of_key_qt="abloy_disklock" //exclusive
 
@@ -79,6 +86,7 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 
 []AXI HOME		// qt_type_of_key_qt="axi_home" //exclusive
 	[]RIGHT []LEFT //qt_axi_home_model_qt="RIGHT" or qt_axi_home_model_qt="LEFT"
+	//MANDATORY : RIGHT OR LEFT
 	
 []FICHET 787		// qt_type_of_key_qt="fichet_787" //exclusive
 
@@ -92,3 +100,4 @@ TYPE OF BLANK KEY (ONLY ONE CHOICE POSSIBLE)
 		X[ ] Y[ ] Z[ ] //qt_expert_stl_rx_qt qt_expert_stl_ry_qt qt_expert_stl_rz_qt
 		TRANSLATE
 		X[ ] Y[ ] Z[ ] //qt_expert_stl_tx_qt qt_expert_stl_ty_qt qt_expert_stl_tz_qt
+	//MANDATORY : STL
