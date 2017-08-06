@@ -1,0 +1,37 @@
+ADDING MATERIAL (KEY HEAD OR EXTRA)
+
+[]AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)//qt_automatic_key_head_and_shoulder_qt "YES" or "NO"
+	
+	
+EXTRA MATERIAL (FOR A CUSTOM KEY HEAD OR ADDITIONAL FEATURES)
+[CLEAR ALL]
+	[]SHAPE 01 //DUPLICATE FOR 10 SHAPES//qt_extra_material_shape_01_use_qt
+		[]CUBE []CYLINDER []SPHERE []BROWSE FOR STL //qt_extra_material_shape_01_model_qt "CUBE" or "CYLINDER" or "SPHERE" or "STL"
+		IF CUBE
+			CENTER []YES []NO //qt_extra_material_shape_01_cube_centered_qt "YES" or "NO"
+			DIMENSIONS
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_cube_dimensions_qt [0,0,0]
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_cube_rotation_qt [0,0,0]
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_cube_translate_qt [0,0,0]
+		IF CYLINDER
+			CENTER []YES []NO //qt_extra_material_shape_01_cylinder_centered_qt "YES" or "NO"
+			DIMENSIONS
+			DIAMETER[ ] HEIGHT[ ] //qt_extra_material_shape_01_cylinder_diameter_qt qt_extra_material_shape_1_cylinder_height_qt
+			NUMBER OF FACES [ ] //qt_extra_material_shape_01_cylinder_number_of_faces_qt
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_cylinder_rotation_qt [0,0,0] 
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_cylinder_translate_qt [0,0,0]
+		IF SPHERE
+			DIAMETER[ ] //qt_extra_material_shape_01_sphere_diameter_qt
+			NUMBER OF FACES //qt_extra_material_shape_01_sphere_number_of_faces_qt
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_sphere_translate_qt [0,0,0]
+		IF STL
+			[BROWSE FOR STL] //qt_extra_material_shape_01_stl_name_qt "mobile.stl"
+			ROTATION
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_stl_rotation_qt [0,0,0]
+			TRANSLATE
+			X[ ] Y[ ] Z[ ] //qt_extra_material_shape_01_stl_translate_qt [0,0,0]
