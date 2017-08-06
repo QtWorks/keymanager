@@ -262,6 +262,22 @@ bool ParameterMgr::loadMenu2Parameters()
 
 //-------------------------------------------------------------------------------------------------
 
+bool ParameterMgr::loadMenu3Parameters()
+{
+    // Retrieve root node
+    m_xMenu3Node = CXMLNode::loadXMLFromFile(":/data/menu3.xml");
+    if (m_xMenu3Node.nodes().isEmpty())
+        return false;
+
+    // Parse
+    parseSingleBlock(m_xMenu3Node);
+    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 3";
+
+    return true;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void ParameterMgr::setParameterValue(const QString &sParameterName, const QString &sParameterValue)
 {
     Parameter *pParameter = m_hParameters[sParameterName];
@@ -291,6 +307,13 @@ const CXMLNode &ParameterMgr::menu1Node() const
 const CXMLNode &ParameterMgr::menu2Node() const
 {
     return m_xMenu2Node;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const CXMLNode &ParameterMgr::menu3Node() const
+{
+    return m_xMenu3Node;
 }
 
 //-------------------------------------------------------------------------------------------------

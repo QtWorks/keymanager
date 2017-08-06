@@ -122,3 +122,4 @@ QList<CollapsibleBlock *> CollapsibleBlock::childBlocks() const
     return findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
 }
 
+

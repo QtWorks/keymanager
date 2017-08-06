@@ -34,6 +34,9 @@ public:
     //! Load menu 2 parameters
     bool loadMenu2Parameters();
 
+    //! Load menu 3 parameters
+    bool loadMenu3Parameters();
+
     //! Set parameter value
     void setParameterValue(const QString &sParameterName, const QString &sParameterValue);
 
@@ -65,6 +68,9 @@ public:
     //! Return menu2 node
     const CXMLNode &menu2Node() const;
 
+    //! Return menu3 node
+    const CXMLNode &menu3Node() const;
+
     //! Return parameter by variable name
     Parameter *getParameterByVariableName(const QString &sVariableName) const;
 
@@ -81,6 +87,9 @@ private:
 
     //! Menu 2 node
     CXMLNode m_xMenu2Node;
+
+    //! Menu 3 node
+    CXMLNode m_xMenu3Node;
 
     //! Parameters
     QHash<QString, Parameter *> m_hParameters;

@@ -50,7 +50,7 @@ private:
 
 public slots:
     //! Radio button clicked
-    void onRadioButtonClicked(bool bClicked);
+    void onRadioButtonToggled(bool bClicked);
 
 signals:
     //! Selection changed

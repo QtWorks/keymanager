@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -136,7 +136,7 @@
         <string>Menu 2</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
+        <item row="2" column="0">
          <widget class="QScrollArea" name="scrollArea_2">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -147,29 +147,72 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>495</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_7">
-            <item row="0" column="0">
-             <widget class="QPushButton" name="openAllButtonMenu2">
-              <property name="text">
-               <string>OPEN ALL</string>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0">
              <widget class="LayoutMgr" name="menu2LayoutMgr" native="true"/>
             </item>
-            <item row="1" column="0">
-             <widget class="QPushButton" name="closeAllButtonMenu2">
-              <property name="text">
-               <string>CLOSE ALL</string>
-              </property>
-             </widget>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="openAllButtonMenu2">
+          <property name="text">
+           <string>OPEN ALL</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="closeAllButtonMenu2">
+          <property name="text">
+           <string>CLOSE ALL</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Menu 3</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="openAllButtonMenu3">
+          <property name="text">
+           <string>OPEN ALL</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QScrollArea" name="scrollArea_3">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>756</width>
+             <height>437</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <widget class="LayoutMgr" name="menu3LayoutMgr" native="true"/>
             </item>
            </layout>
           </widget>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="closeAllButtonMenu3">
+          <property name="text">
+           <string>CLOSE ALL</string>
+          </property>
          </widget>
         </item>
        </layout>

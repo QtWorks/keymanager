@@ -2,7 +2,7 @@
 <Block name="ROOT">
    <Parameter variable="qt_type_of_key_qt" type="string"/>
    <Block name="REGULAR KEY" variable="qt_type_of_key_qt" value="regular">
-      <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit" />
+      <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_regular_thickness_qt" ui="lineedit" />
       <Parameter name="BROWSE FOR A DXF" type="string" variable="qt_regular_dxf_name_qt" ui="filepicker" extension="*.dxf" />
@@ -56,7 +56,7 @@
    <Block name="ABLOY PROTECT" variable="qt_type_of_key_qt" value="abloy_protec" />
    <Block name="ABUS PLUS" variable="qt_type_of_key_qt" value="abus_plus" />
    <Block name="AXI HOME" variable="qt_type_of_key_qt" value="axi_home">
-      <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" ui="exclusivechoice" />
+      <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" default="RIGHT" ui="exclusivechoice" />
    </Block>
    <Block name="FICHET 787" variable="qt_type_of_key_qt" value="fichet_787" />
    <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" variable="qt_type_of_key_qt" value="import_stl">

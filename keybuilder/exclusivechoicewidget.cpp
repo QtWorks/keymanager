@@ -43,7 +43,8 @@ void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLab
         QRadioButton *pRadioButton = new QRadioButton(lLabels[i], this);
         pRadioButton->setAutoExclusive(true);
         pRadioButton->setProperty(PROPERTY_USER_VALUE, lValues[i]);
-        connect(pRadioButton, &QRadioButton::clicked, this, &ExclusiveChoiceWidget::onRadioButtonClicked);
+        //connect(pRadioButton, &QRadioButton::clicked, this, &ExclusiveChoiceWidget::onRadioButtonClicked);
+        connect(pRadioButton, &QRadioButton::toggled, this, &ExclusiveChoiceWidget::onRadioButtonToggled);
         ui->radioButtonArea->addWidget(pRadioButton);
         m_vRadioButtons << pRadioButton;
     }
@@ -69,7 +70,7 @@ void ExclusiveChoiceWidget::applyDefaultValue()
 
 //-------------------------------------------------------------------------------------------------
 
-void ExclusiveChoiceWidget::onRadioButtonClicked(bool bClicked)
+void ExclusiveChoiceWidget::onRadioButtonToggled(bool bClicked)
 {
     QRadioButton *pSender = dynamic_cast<QRadioButton *>(sender());
     if (pSender && bClicked)

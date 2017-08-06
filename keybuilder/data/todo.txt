@@ -1,2 +1,3 @@
-calcul des variables AUTO dont valeur est calculee a partir d'autres
-handle default values bug: setting default value does not trigger a SETTING VALUE on parameters
+AUTO pour table
+CLEAR ALL BUTTON
+valeurs par defaut

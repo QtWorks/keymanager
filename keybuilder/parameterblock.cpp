@@ -2,8 +2,6 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
-#include <QPaintEvent>
-#include <QPainter>
 #include <QDebug>
 
 // Application
@@ -388,3 +386,5 @@ void ParameterBlock::onEvaluateEnabledCondition()
         setEnabled(bEnabled);
     }
 }
+
+
