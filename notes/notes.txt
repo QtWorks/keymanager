@@ -1,5 +1,5 @@
 
-
+AUTO pour table
 ************************************ GENERAL ************************************ 
 
 toutes les valeurs par default -> affichées en gris (place holder text) et modifiables

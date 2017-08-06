@@ -171,8 +171,13 @@ void LayoutMgr::onBlockSelected()
                         pBlock->setCurrent(pBlock == pSender);
                     else
                     {
-                        if (pBlock == pSender)
+                        if (pBlock == pSender) {
                             pBlock->setCurrent(!pBlock->isCurrent());
+
+                            // Process block variable
+                            if (!pParameterBlock->variable().isEmpty())
+                                m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pBlock->isCurrent() ? PROPERTY_YES : PROPERTY_NO);
+                        }
                     }
                 }
             }

@@ -31,6 +31,8 @@
 #define PROPERTY_DEFAULT "default"
 #define PROPERTY_EXCLUSIVE "exclusive"
 #define PROPERTY_AUTO "auto"
+#define PROPERTY_YES "YES"
+#define PROPERTY_NO "NO"
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"

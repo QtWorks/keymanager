@@ -1,6 +1,8 @@
 // Application
 #include "keybuilder.h"
 #include "controller.h"
+#include "parametermgr.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -27,6 +29,10 @@ bool KeyBuilder::startup()
     // Show UI
     m_wMainWindow.setController(m_pController);
     m_wMainWindow.show();
+
+    // This forces blocks to update their enabled state
+    m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, "regular");
+
     return true;
 }
 
