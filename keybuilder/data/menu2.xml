@@ -27,15 +27,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -65,15 +65,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row2_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row2_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row2_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row2_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row2_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -103,15 +103,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row3_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row3_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row3_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row3_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row3_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -141,15 +141,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row4_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row4_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row4_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row4_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row4_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row'3'" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -179,15 +179,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row5_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row5_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row5_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row5_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row5_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -217,15 +217,15 @@
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row6_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row6_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" variable="qt_regular_row6_cut_to_use_qt" value="stl_mill">
                <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row6_laser_mill_height_qt" ui="lineedit" />
                <Parameter name="DIAMETER" type="double" variable="qt_regular_row6_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
-               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="YES" ui="exclusivechoice" />
-               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_linked_qt" default="YES" ui="exclusivechoice" />
+               <Parameter name="CENTERED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="exclusivechoice" />
+               <Parameter name="LINKED" labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="exclusivechoice" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -281,7 +281,7 @@
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abloy_protec_mill_thickness_qt" default="2" ui="lineedit" />
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_protec_distance_from_tip_qt" default="2" ui="lineedit" />
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
-      <Parameter name="THINNER AT THE TIP" labels="YES,NO" values="YES,NO" type="string" variable="qt_abloy_protec_thinner_at_the_tip_qt" default="YES" ui="exclusivechoice" />
+      <Parameter name="THINNER AT THE TIP" labels="YES,NO" values="YES,NO" type="string" variable="qt_abloy_protec_thinner_at_the_tip_qt" default="NO" ui="exclusivechoice" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_protec_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
    <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;)">
@@ -314,13 +314,13 @@
       <Block name="SHAPE 01">
          <Parameter variable="qt_extra_cut_shape_1_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_1_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_01_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_01_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_01_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_1_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_01_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_01_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_01_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_01_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -341,13 +341,13 @@
       <Block name="SHAPE 02">
          <Parameter variable="qt_extra_cut_shape_2_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_2_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_02_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_2_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cylinder_centered_qt" default="YES"  ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cylinder_centered_qt" default="NO"  ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_02_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_02_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -368,13 +368,13 @@
       <Block name="SHAPE 03">
          <Parameter variable="qt_extra_cut_shape_3_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_3_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_3_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_03_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_03_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -395,13 +395,13 @@
       <Block name="SHAPE 04">
          <Parameter variable="qt_extra_cut_shape_4_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_4_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_4_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_03_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_03_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -422,13 +422,13 @@
       <Block name="SHAPE 05">
          <Parameter variable="qt_extra_cut_shape_5_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_5_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_05_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_05_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_05_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_5_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_05_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_05_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_05_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_05_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -449,13 +449,13 @@
       <Block name="SHAPE 06">
          <Parameter variable="qt_extra_cut_shape_6_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_6_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_06_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_06_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_06_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_6_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_06_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_06_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_06_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_06_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -476,13 +476,13 @@
       <Block name="SHAPE 07">
          <Parameter variable="qt_extra_cut_shape_7_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_7_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_07_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_07_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_07_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_7_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_07_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_07_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_07_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_07_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -503,13 +503,13 @@
       <Block name="SHAPE 08">
          <Parameter variable="qt_extra_cut_shape_8_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_8_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_08_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_08_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_08_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_8_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_08_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_08_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_08_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_08_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -530,13 +530,13 @@
       <Block name="SHAPE 09">
          <Parameter variable="qt_extra_cut_shape_9_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_9_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_09_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_09_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_09_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_9_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_09_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_09_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_09_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_09_cylinder_number_of_faces_qt" ui="lineedit" />
@@ -557,13 +557,13 @@
       <Block name="SHAPE 10">
          <Parameter variable="qt_extra_cut_shape_10_model_qt" type="string"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_10_model_qt" value="CUBE">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_10_cube_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_10_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_10_cube_dimensions_qt" ui="double_triplet" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_cube_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_cube_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="CYLINDER" variable="qt_extra_cut_shape_10_model_qt" value="CYLINDER">
-            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_10_cylinder_centered_qt" default="YES" ui="exclusivechoice" />
+            <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_10_cylinder_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_10_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_1_cylinder_height_qt" ui="lineedit" />
             <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_10_cylinder_number_of_faces_qt" ui="lineedit" />

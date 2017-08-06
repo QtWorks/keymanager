@@ -1,3 +1,1 @@
 AUTO pour table
-CLEAR ALL BUTTON marche pas pour table
-double triple widget accepte des textes (cf mirror, defini as double)
