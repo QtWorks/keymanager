@@ -138,9 +138,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
         {
-            DoubleTripletWidget *pTriplet = new DoubleTripletWidget(sParameterName, this);
+            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+            DoubleTripletWidget *pTriplet = new DoubleTripletWidget(sParameterName, sDefaultValue, this);
             connect(pTriplet, &DoubleTripletWidget::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
             addWidget(pTriplet, sParameterVariable);
+            pTriplet->applyDefaultValue();
         }
         else
         if (sWidgetType == WIDGET_GENERIC_PARAMETER_TABLE)

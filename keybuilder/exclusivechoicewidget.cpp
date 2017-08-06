@@ -56,16 +56,23 @@ void ExclusiveChoiceWidget::applyDefaultValue()
 {
     if (!m_sDefaultValue.isEmpty())
     {
+        bool bMatch = false;
         foreach (QRadioButton *pRadioButton, m_vRadioButtons)
         {
             QString sUserValue = pRadioButton->property(PROPERTY_USER_VALUE).toString();
             if (sUserValue == m_sDefaultValue)
             {
+                bMatch = true;
                 pRadioButton->setChecked(true);
                 break;
             }
         }
+        if (!bMatch && !m_vRadioButtons.isEmpty())
+            m_vRadioButtons.first()->setChecked(true);
     }
+    else
+    if (!m_vRadioButtons.isEmpty())
+        m_vRadioButtons.first()->setChecked(true);
 }
 
 //-------------------------------------------------------------------------------------------------

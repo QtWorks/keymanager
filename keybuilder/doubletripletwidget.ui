@@ -56,13 +56,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit3"/>
+        <widget class="QLineEdit" name="lineEdit1"/>
        </item>
        <item>
         <widget class="QLineEdit" name="lineEdit2"/>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit1"/>
+        <widget class="QLineEdit" name="lineEdit3"/>
        </item>
        <item>
         <spacer name="horizontalSpacer">

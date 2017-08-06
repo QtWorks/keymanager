@@ -20,7 +20,7 @@ public:
     explicit DoubleTripletWidget(QWidget *parent=nullptr);
 
     //! Constructor
-    explicit DoubleTripletWidget(const QString &sLabel, QWidget *parent=nullptr);
+    explicit DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor
     ~DoubleTripletWidget();
@@ -35,9 +35,19 @@ public:
     //! Return value
     QString value() const;
 
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Apply default value
+    void applyDefaultValue();
+
 private:
     //! UI
     Ui::DoubleTripletWidget *ui;
+
+    //! Default value
+    QString m_sDefaultValue;
 
 signals:
     //! Value changed
