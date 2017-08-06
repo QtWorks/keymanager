@@ -9,11 +9,12 @@
 //-------------------------------------------------------------------------------------------------
 
 CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
-    ui(new Ui::CaptionLabel), m_bExpandable(true),
-    m_bIsCurrent(false), m_bIsEnabled(true)
+    ui(new Ui::CaptionLabel),  m_bIsEnabled(true), m_bExpandable(true),
+    m_bIsCurrent(false)
 {
     ui->setupUi(this);
     connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::toggleState);
+    connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::clearAll);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ void CaptionLabel::setExpandable(bool bExpandable)
 {
     m_bExpandable = bExpandable;
     ui->openCloseButton->setVisible(bExpandable);
+    ui->clearAllButton->setVisible(bExpandable);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -65,6 +67,7 @@ void CaptionLabel::updateEnabledState(bool bEnabled)
 {
     m_bIsEnabled = bEnabled;
     ui->openCloseButton->setVisible(bEnabled);
+    ui->clearAllButton->setVisible(bEnabled);
     update();
 }
 

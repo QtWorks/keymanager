@@ -8,6 +8,7 @@
 #include "cxmlnode.h"
 class Controller;
 class Parameter;
+class BaseWidget;
 
 namespace Ui {
 class ParameterBlock;
@@ -29,7 +30,7 @@ public:
     ~ParameterBlock();
 
     //! Add widget
-    void addWidget(QWidget *pWidget, const QString &sParameterVariable);
+    void addWidget(BaseWidget *pWidget, const QString &sParameterVariable);
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -81,6 +82,9 @@ public:
     //! Set watched parameters
     void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
 
+    //! Clear all
+    void clearAll();
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -103,10 +107,13 @@ public slots:
 
 private:
     //! Find associated parameter variable
-    QString findAssociatedParameterVariable(QWidget *pWidget) const;
+    QString findAssociatedParameterVariable(BaseWidget *pWidget) const;
 
     //! Populate parameter block
     void populateParameterBlock(const CXMLNode &xParameterBlock, bool bRecurse=true);
+
+    //! Add widget
+    void addWidget(BaseWidget *pWidget);
 
     //! Add widget
     void addWidget(QWidget *pWidget);
@@ -119,7 +126,7 @@ private:
     QString m_sName;
 
     //! Widget hash
-    QHash<QString, QWidget *> m_hWidgetHash;
+    QHash<QString, BaseWidget *> m_hWidgetHash;
 
     //! Is empty?
     bool m_bIsEmpty;

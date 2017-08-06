@@ -1,17 +1,15 @@
 #ifndef FILEPICKERWIDGET_H
 #define FILEPICKERWIDGET_H
 
-// Qt
-#include <QWidget>
-
 // Application
+#include "basewidget.h"
 class QLineEdit;
 
 namespace Ui {
 class FilePickerWidget;
 }
 
-class FilePickerWidget : public QWidget
+class FilePickerWidget : public BaseWidget
 {
     Q_OBJECT
 
@@ -24,10 +22,10 @@ public:
     explicit FilePickerWidget(QWidget *parent=nullptr);
 
     //! Constructor
-    explicit FilePickerWidget(const QString &sLabel, const QString &sFileExtension, QWidget *parent=nullptr);
+    explicit FilePickerWidget(const QString &sLabel, const QString &sFileExtension, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor
-    ~FilePickerWidget();
+    virtual ~FilePickerWidget();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -42,11 +40,17 @@ public:
     //! Set extension
     void setExtension(const QString &sExtenion);
 
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Apply default value
+    virtual void applyDefaultValue();
+
 private:
     //! UI
     Ui::FilePickerWidget *ui;
 
-private:
     //! File extension
     QString m_sFileExtension;
 

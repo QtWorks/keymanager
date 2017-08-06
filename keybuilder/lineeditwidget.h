@@ -2,10 +2,10 @@
 #define LINEEDITWIDGET_H
 
 // Qt
-#include <QWidget>
 class QValidator;
 
 // Application
+#include "basewidget.h"
 class Parameter;
 class ParameterMgr;
 
@@ -13,7 +13,7 @@ namespace Ui {
 class LineEditWidget;
 }
 
-class LineEditWidget : public QWidget
+class LineEditWidget : public BaseWidget
 {
     Q_OBJECT
 
@@ -29,7 +29,7 @@ public:
     explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent=nullptr);
 
     //! Destructor
-    ~LineEditWidget();
+    virtual ~LineEditWidget();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -49,7 +49,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Apply default value
-    void applyDefaultValue();
+    virtual void applyDefaultValue();
 
     //! Set watched parameters
     void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
@@ -60,9 +60,6 @@ public:
 private:
     //! UI
     Ui::LineEditWidget *ui;
-
-    //! Default value
-    QString m_sDefaultValue;
 
     //! Auto
     QString m_sAuto;

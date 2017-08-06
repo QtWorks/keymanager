@@ -8,19 +8,23 @@
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(QWidget *parent) : QWidget(parent),
-    ui(new Ui::LineEditWidget), m_sDefaultValue(""), m_sAuto(""), m_pParameterMgr(nullptr)
+LineEditWidget::LineEditWidget(QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::LineEditWidget), m_sAuto(""), m_pParameterMgr(nullptr)
 {
     ui->setupUi(this);
+    m_sDefaultValue = "0";
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::valueChanged);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent) : QWidget(parent),
-    ui(new Ui::LineEditWidget), m_sDefaultValue(sDefaultValue), m_sAuto(sAuto)
+LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::LineEditWidget), m_sAuto(sAuto)
 {
     ui->setupUi(this);
+    m_sDefaultValue = sDefaultValue;
+    if (m_sDefaultValue.isEmpty())
+        m_sDefaultValue = "0";
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::valueChanged);
     ui->label->setText(sLabel);
 }
@@ -57,8 +61,7 @@ void LineEditWidget::setLabel(const QString &sLabel)
 
 void LineEditWidget::applyDefaultValue()
 {
-    if (!m_sDefaultValue.isEmpty())
-        ui->lineEdit->setText(m_sDefaultValue);
+    ui->lineEdit->setText(m_sDefaultValue);
 }
 
 //-------------------------------------------------------------------------------------------------

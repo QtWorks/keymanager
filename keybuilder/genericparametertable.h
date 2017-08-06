@@ -7,6 +7,9 @@
 #include <QVector>
 #include <QItemDelegate>
 
+// Application
+#include "basewidget.h"
+
 namespace Ui {
 class GenericParameterTable;
 }
@@ -25,7 +28,7 @@ public:
         int nRows, const QString &sTargetVariable, const QString &sVariableMethod, QObject *parent=nullptr);
 
     //! Destructor
-    ~GenericParameterTableModel();
+    virtual ~GenericParameterTableModel();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -72,7 +75,7 @@ public:
     void resetColumnVariables(int iColumnIndex);
 
     //! Set default values
-    void applyDefaultValues();
+    virtual void applyDefaultValues();
 
 private:
     //! Column labels
@@ -142,7 +145,7 @@ public:
     void updateEditorGeometry(QWidget *pEditor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
 
-class GenericParameterTable : public QWidget
+class GenericParameterTable : public BaseWidget
 {
     Q_OBJECT
 

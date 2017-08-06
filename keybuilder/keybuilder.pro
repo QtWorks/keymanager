@@ -73,7 +73,8 @@ SOURCES += main.cpp\
     lineeditwidget.cpp \
     filepickerwidget.cpp \
     doubletripletwidget.cpp \
-    genericparametertable.cpp
+    genericparametertable.cpp \
+    basewidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -93,7 +94,8 @@ HEADERS  += mainwindow.h \
     lineeditwidget.h \
     filepickerwidget.h \
     doubletripletwidget.h \
-    genericparametertable.h
+    genericparametertable.h \
+    basewidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

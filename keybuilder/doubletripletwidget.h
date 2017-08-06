@@ -1,13 +1,14 @@
 #ifndef DOUBLETRIPLETWIDGET_H
 #define DOUBLETRIPLETWIDGET_H
 
-#include <QWidget>
+// Application
+#include "basewidget.h"
 
 namespace Ui {
 class DoubleTripletWidget;
 }
 
-class DoubleTripletWidget : public QWidget
+class DoubleTripletWidget : public BaseWidget
 {
     Q_OBJECT
 
@@ -23,7 +24,7 @@ public:
     explicit DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor
-    ~DoubleTripletWidget();
+    virtual ~DoubleTripletWidget();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
@@ -40,14 +41,11 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Apply default value
-    void applyDefaultValue();
+    virtual void applyDefaultValue();
 
 private:
     //! UI
     Ui::DoubleTripletWidget *ui;
-
-    //! Default value
-    QString m_sDefaultValue;
 
 signals:
     //! Value changed

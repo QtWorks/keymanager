@@ -17,13 +17,14 @@
 #include "lineeditwidget.h"
 #include "genericparametertable.h"
 #include "parametermgr.h"
+#include "basewidget.h"
 
 //-------------------------------------------------------------------------------------------------
 
 ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, Controller *pController, bool bRecurse, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_pController(pController),
-    m_sVariableName(""), m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true),
-    m_pParentBlock(nullptr)
+    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_sVariableName(""),
+    m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true),
+    m_pParentBlock(nullptr), m_pController(pController)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -87,9 +88,9 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE];
         QString sParameterType = xParameter.attributes()[PROPERTY_TYPE];
         QString sWidgetType = xParameter.attributes()[PROPERTY_UI];
+        QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
         if (sWidgetType == WIDGET_LINE_EDIT)
         {
-            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
             QString sAuto = xParameter.attributes()[PROPERTY_AUTO];
             LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, sDefaultValue, sAuto, this);
             pLineEdit->setParameterMgr(m_pController->parameterMgr());
@@ -120,16 +121,16 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         if (sWidgetType == WIDGET_FILE_PICKER)
         {
             QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
-            FilePickerWidget *pFilePickerWidget = new FilePickerWidget(sParameterName, sFileExtension, this);
+            FilePickerWidget *pFilePickerWidget = new FilePickerWidget(sParameterName, sFileExtension, sDefaultValue, this);
             connect(pFilePickerWidget, &FilePickerWidget::textChanged, this, &ParameterBlock::onFilePickerTextChanged);
             addWidget(pFilePickerWidget, sParameterVariable);
+            pFilePickerWidget->applyDefaultValue();
         }
         else
         if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
             QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
             ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, this);
             connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
             addWidget(pExclusiveChoiceWidet, sParameterVariable);
@@ -138,7 +139,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
         {
-            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
             DoubleTripletWidget *pTriplet = new DoubleTripletWidget(sParameterName, sDefaultValue, this);
             connect(pTriplet, &DoubleTripletWidget::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
             addWidget(pTriplet, sParameterVariable);
@@ -153,7 +153,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
             QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
             QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
-            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
             GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue.split(","), sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
             connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
             addWidget(pGenericParameterTable, sParameterVariable);
@@ -248,14 +247,22 @@ void ParameterBlock::onLineEditTripletValueChanged()
 
 //-------------------------------------------------------------------------------------------------
 
-QString ParameterBlock::findAssociatedParameterVariable(QWidget *pWidget) const
+QString ParameterBlock::findAssociatedParameterVariable(BaseWidget *pWidget) const
 {
-    for (QHash<QString, QWidget *>::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
+    for (QHash<QString, BaseWidget *>::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
     {
         if (it.value() == pWidget)
             return it.key();
     }
     return QString();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::addWidget(BaseWidget *pWidget)
+{
+    ui->verticalLayout->addWidget(pWidget);
+    ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -268,7 +275,7 @@ void ParameterBlock::addWidget(QWidget *pWidget)
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::addWidget(QWidget *pWidget, const QString &sParameterVariable)
+void ParameterBlock::addWidget(BaseWidget *pWidget, const QString &sParameterVariable)
 {
     addWidget(pWidget);
     m_hWidgetHash[sParameterVariable] = pWidget;
@@ -384,9 +391,15 @@ void ParameterBlock::onEvaluateEnabledCondition()
 {
     bool bSuccess = true;
     bool bEnabled = m_pController->parameterMgr()->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
-    if (bSuccess) {
+    if (bSuccess)
         setEnabled(bEnabled);
-    }
 }
 
+//-------------------------------------------------------------------------------------------------
 
+void ParameterBlock::clearAll()
+{
+    for (QHash<QString, BaseWidget *>::iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
+        if (it.value() != nullptr)
+            it.value()->applyDefaultValue();
+}

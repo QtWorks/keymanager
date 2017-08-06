@@ -8,18 +8,19 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ExclusiveChoiceWidget::ExclusiveChoiceWidget(QWidget *parent) : QWidget(parent),
-    ui(new Ui::ExclusiveChoiceWidget), m_sDefaultValue("")
+ExclusiveChoiceWidget::ExclusiveChoiceWidget(QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::ExclusiveChoiceWidget)
 {
-
+    m_sDefaultValue = "";
 }
 
 //-------------------------------------------------------------------------------------------------
 
 ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, QWidget *parent) :
-    QWidget(parent), ui(new Ui::ExclusiveChoiceWidget), m_sDefaultValue(sDefaultValue)
+    BaseWidget(parent), ui(new Ui::ExclusiveChoiceWidget)
 {
     ui->setupUi(this);
+    m_sDefaultValue = sDefaultValue;
     setup(sLabel, lLabels, lValues);
 }
 
@@ -43,7 +44,6 @@ void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLab
         QRadioButton *pRadioButton = new QRadioButton(lLabels[i], this);
         pRadioButton->setAutoExclusive(true);
         pRadioButton->setProperty(PROPERTY_USER_VALUE, lValues[i]);
-        //connect(pRadioButton, &QRadioButton::clicked, this, &ExclusiveChoiceWidget::onRadioButtonClicked);
         connect(pRadioButton, &QRadioButton::toggled, this, &ExclusiveChoiceWidget::onRadioButtonToggled);
         ui->radioButtonArea->addWidget(pRadioButton);
         m_vRadioButtons << pRadioButton;

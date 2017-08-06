@@ -54,6 +54,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="clearAllButton">
+       <property name="text">
+        <string>CLEAR ALL</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="openCloseButton">
        <property name="text">
         <string>NO LABEL</string>

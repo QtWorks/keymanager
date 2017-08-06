@@ -4,10 +4,21 @@
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleTripletWidget::DoubleTripletWidget(QWidget *parent) : QWidget(parent),
-    ui(new Ui::DoubleTripletWidget), m_sDefaultValue("")
+DoubleTripletWidget::DoubleTripletWidget(QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
+
+    QDoubleValidator *pValidator1 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit1->setValidator(pValidator1);
+
+    QDoubleValidator *pValidator2 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit2->setValidator(pValidator2);
+
+    QDoubleValidator *pValidator3 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit3->setValidator(pValidator3);
+
+    m_sDefaultValue = "[0,0,0]";
     connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
@@ -15,13 +26,24 @@ DoubleTripletWidget::DoubleTripletWidget(QWidget *parent) : QWidget(parent),
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent) : QWidget(parent),
-    ui(new Ui::DoubleTripletWidget), m_sDefaultValue(sDefaultValue)
+DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
+    m_sDefaultValue = sDefaultValue;
     ui->label->setText(sLabel);
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = "[0,0,0]";
+
+    QDoubleValidator *pValidator1 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit1->setValidator(pValidator1);
+
+    QDoubleValidator *pValidator2 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit2->setValidator(pValidator2);
+
+    QDoubleValidator *pValidator3 = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit3->setValidator(pValidator3);
+
     connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
@@ -53,36 +75,33 @@ QString DoubleTripletWidget::value() const
 
 void DoubleTripletWidget::applyDefaultValue()
 {
-    if (!m_sDefaultValue.isEmpty())
+    QString sFormattedDefaultValue = m_sDefaultValue;
+    sFormattedDefaultValue = sFormattedDefaultValue.replace("[", "");
+    sFormattedDefaultValue = sFormattedDefaultValue.replace("]", "");
+    QStringList lSplitted = sFormattedDefaultValue.split(",");
+    if (lSplitted.size() != 3)
     {
-        QString sFormattedDefaultValue = m_sDefaultValue;
-        sFormattedDefaultValue = sFormattedDefaultValue.replace("[", "");
-        sFormattedDefaultValue = sFormattedDefaultValue.replace("]", "");
-        QStringList lSplitted = sFormattedDefaultValue.split(",");
-        if (lSplitted.size() != 3)
-        {
-            lSplitted.clear();
-            lSplitted << "0" << "0" << "0";
-        }
-        bool bOK = true;
-        lSplitted.first().toDouble(&bOK);
-        if (bOK)
-        {
-            lSplitted[1].toDouble(&bOK);
-            if (bOK) {
-                lSplitted[2].toDouble(&bOK);
-                if (bOK)
-                {
-                    ui->lineEdit1->setText(lSplitted.first());
-                    ui->lineEdit2->setText(lSplitted[1]);
-                    ui->lineEdit3->setText(lSplitted[2]);
-                }
-                else
-                {
-                    ui->lineEdit1->setText("0");
-                    ui->lineEdit2->setText("0");
-                    ui->lineEdit3->setText("0");
-                }
+        lSplitted.clear();
+        lSplitted << "0" << "0" << "0";
+    }
+    bool bOK = true;
+    lSplitted.first().toDouble(&bOK);
+    if (bOK)
+    {
+        lSplitted[1].toDouble(&bOK);
+        if (bOK) {
+            lSplitted[2].toDouble(&bOK);
+            if (bOK)
+            {
+                ui->lineEdit1->setText(lSplitted.first());
+                ui->lineEdit2->setText(lSplitted[1]);
+                ui->lineEdit3->setText(lSplitted[2]);
+            }
+            else
+            {
+                ui->lineEdit1->setText("0");
+                ui->lineEdit2->setText("0");
+                ui->lineEdit3->setText("0");
             }
         }
     }

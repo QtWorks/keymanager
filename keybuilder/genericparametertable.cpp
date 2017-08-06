@@ -20,6 +20,11 @@ GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColum
     m_lColumnVariables = lColumnVariables.mid(0, nColumns);
     if (!lDefaultValues.isEmpty())
         m_lDefaultValues = lDefaultValues.mid(0, nColumns);
+    else
+    {
+        for (int i=0; i<nColumns; i++)
+            m_lDefaultValues << "0";
+    }
     m_sTargetRow = sTargetRow;
     m_nRows = nRows;
     m_nActiveLever = nRows;
@@ -234,7 +239,7 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
-                                   int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : QWidget(parent),  ui(new Ui::GenericParameterTable)
+                                   int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : BaseWidget(parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);

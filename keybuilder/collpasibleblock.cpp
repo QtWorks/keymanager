@@ -33,6 +33,7 @@ CollapsibleBlock::CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bo
     connect(m_pLabel, &CaptionLabel::blockSelected, this, &CollapsibleBlock::blockSelected);
     connect(this, &CollapsibleBlock::closedStateChanged, m_pLabel, &CaptionLabel::onStateChanged);
     connect(m_pLabel, &CaptionLabel::toggleClosedState, this, &CollapsibleBlock::onToggleClosedState);
+    connect(m_pLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll);
 
     // Set widget
     setWidget(pWidget);
@@ -63,6 +64,9 @@ void CollapsibleBlock::setWidget(QWidget *widget)
         m_pLayout->addWidget(m_pWidget);
         m_pLayout->setAlignment(m_pWidget, Qt::AlignTop);
         onClose(m_bIsClosed);
+        ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(m_pWidget);
+        if (pParameterBlock != nullptr)
+            connect(this, &CollapsibleBlock::clearAll, this, &CollapsibleBlock::onClearAll);
     }
 }
 
@@ -97,6 +101,22 @@ bool CollapsibleBlock::isClosed() const
 void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 {
     m_pLabel->updateEnabledState(bEnabled);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleBlock::onClearAll()
+{
+    ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(m_pWidget);
+    if (pParameterBlock != nullptr)
+    {
+        // Clear own parameter block
+        pParameterBlock->clearAll();
+
+        // Recurse
+        foreach (CollapsibleBlock *pChildBlock, childBlocks())
+            pChildBlock->onClearAll();
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

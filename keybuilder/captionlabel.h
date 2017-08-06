@@ -51,13 +51,6 @@ protected:
     //! Mouse press event
     virtual void mousePressEvent(QMouseEvent *event);
 
-private:
-    //! UI
-    Ui::CaptionLabel *ui;
-
-    //! Enabled?
-    bool m_bIsEnabled;
-
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Signals
@@ -77,7 +70,16 @@ signals:
     //! Toggle closed state
     void toggleClosedState();
 
+    //! Clear all
+    void clearAll();
+
 private:
+    //! UI
+    Ui::CaptionLabel *ui;
+
+    //! Enabled?
+    bool m_bIsEnabled;
+
     //! Expandable?
     bool m_bExpandable;
 

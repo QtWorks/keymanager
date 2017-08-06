@@ -81,6 +81,9 @@ public slots:
     //! Update enabled state
     void onUpdateEnabledState(bool bEnabled);
 
+    //! Clear all
+    void onClearAll();
+
 signals:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -91,6 +94,9 @@ signals:
 
     //! State changed (closed or opened)
     void closedStateChanged(bool bClosed);
+
+    //! Clear all
+    void clearAll();
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/
