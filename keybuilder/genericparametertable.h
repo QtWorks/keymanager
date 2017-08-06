@@ -75,7 +75,7 @@ public:
     void resetColumnVariables(int iColumnIndex);
 
     //! Set default values
-    virtual void applyDefaultValues();
+    void applyDefaultValue();
 
 private:
     //! Column labels
@@ -166,7 +166,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Apply default values
-    void applyDefaultValues();
+    virtual void applyDefaultValue();
 
 private:
     //! Populate button area

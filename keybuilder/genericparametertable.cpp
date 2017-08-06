@@ -173,7 +173,7 @@ void GenericParameterTableModel::resetColumnVariables(int iColumnIndex)
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::applyDefaultValues()
+void GenericParameterTableModel::applyDefaultValue()
 {
     if (!m_lDefaultValues.isEmpty())
     {
@@ -273,9 +273,9 @@ GenericParameterTable::~GenericParameterTable()
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTable::applyDefaultValues()
+void GenericParameterTable::applyDefaultValue()
 {
-    m_pModel->applyDefaultValues();
+    m_pModel->applyDefaultValue();
 }
 
 //-------------------------------------------------------------------------------------------------

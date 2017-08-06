@@ -156,7 +156,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue.split(","), sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
             connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
             addWidget(pGenericParameterTable, sParameterVariable);
-            pGenericParameterTable->applyDefaultValues();
+            pGenericParameterTable->applyDefaultValue();
         }
     }
 
