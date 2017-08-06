@@ -15,16 +15,18 @@ GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColum
 {
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
     if (!lDefaultValues.isEmpty())
+    {
         nColumns = qMin(nColumns, lDefaultValues.size());
-    m_lColumnLabels = lColumnLabels.mid(0, nColumns);
-    m_lColumnVariables = lColumnVariables.mid(0, nColumns);
-    if (!lDefaultValues.isEmpty())
         m_lDefaultValues = lDefaultValues.mid(0, nColumns);
+    }
     else
     {
         for (int i=0; i<nColumns; i++)
             m_lDefaultValues << "0";
     }
+
+    m_lColumnLabels = lColumnLabels.mid(0, nColumns);
+    m_lColumnVariables = lColumnVariables.mid(0, nColumns);
     m_sTargetRow = sTargetRow;
     m_nRows = nRows;
     m_nActiveLever = nRows;
@@ -116,7 +118,16 @@ bool GenericParameterTableModel::setData(const QModelIndex &index, const QVarian
             QString sFormattedVariable("");
             if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD1)
             {
+                qDebug() << "************************************* ------------------------------------------------------------ > " << sFormattedVariable;
+
+
                 sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
+
+                if (sFormattedVariable == "qt_lever_lock_row1_cut02_depth_qt")
+                {
+                    int x = 0;
+                }
+
                 emit parameterValueChanged(sFormattedVariable, vData.toString());
                 emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
                 return true;
@@ -180,7 +191,9 @@ void GenericParameterTableModel::applyDefaultValue()
         for (int i=0; i<m_nRows; i++)
         {
             for (int j=0; j<m_lDefaultValues.size(); j++)
+            {
                 setData(index(i, j, QModelIndex()), m_lDefaultValues[j], Qt::EditRole);
+            }
         }
     }
 }

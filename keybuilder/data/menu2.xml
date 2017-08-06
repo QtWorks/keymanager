@@ -312,7 +312,7 @@
    </Block>
    <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)" exclusive="false">
       <Block name="SHAPE 01">
-         <Parameter variable="qt_extra_cut_shape_1_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_1_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_1_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_01_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_01_cube_dimensions_qt" ui="double_triplet" />
@@ -339,7 +339,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 02">
-         <Parameter variable="qt_extra_cut_shape_2_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_2_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_2_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_02_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_02_cube_dimensions_qt" ui="double_triplet" />
@@ -366,7 +366,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 03">
-         <Parameter variable="qt_extra_cut_shape_3_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_3_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_3_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_dimensions_qt" ui="double_triplet" />
@@ -393,7 +393,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 04">
-         <Parameter variable="qt_extra_cut_shape_4_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_4_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_4_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_03_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_03_cube_dimensions_qt" ui="double_triplet" />
@@ -420,7 +420,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 05">
-         <Parameter variable="qt_extra_cut_shape_5_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_5_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_5_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_05_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_05_cube_dimensions_qt" ui="double_triplet" />
@@ -447,7 +447,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 06">
-         <Parameter variable="qt_extra_cut_shape_6_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_6_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_6_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_06_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_06_cube_dimensions_qt" ui="double_triplet" />
@@ -474,7 +474,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 07">
-         <Parameter variable="qt_extra_cut_shape_7_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_7_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_7_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_07_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_07_cube_dimensions_qt" ui="double_triplet" />
@@ -501,7 +501,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 08">
-         <Parameter variable="qt_extra_cut_shape_8_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_8_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_8_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_08_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_08_cube_dimensions_qt" ui="double_triplet" />
@@ -528,7 +528,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 09">
-         <Parameter variable="qt_extra_cut_shape_9_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_9_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_9_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_09_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_09_cube_dimensions_qt" ui="double_triplet" />
@@ -555,7 +555,7 @@
          </Block>
       </Block>
       <Block name="SHAPE 10">
-         <Parameter variable="qt_extra_cut_shape_10_model_qt" type="string"/>
+         <Parameter variable="qt_extra_cut_shape_10_model_qt" type="string" default="CUBE"/>
          <Block name="CUBE" variable="qt_extra_cut_shape_10_model_qt" value="CUBE">
             <Parameter name="CENTER" labels="YES,NO" values="YES,NO" type="string" variable="qt_extra_cut_shape_10_cube_centered_qt" default="NO" ui="exclusivechoice" />
             <Parameter name="DIMENSIONS (XYZ)" type="double" variable="qt_extra_cut_shape_10_cube_dimensions_qt" ui="double_triplet" />

@@ -65,11 +65,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
     {
         QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
         QHash<QString, Parameter *> hParameters;
-        foreach (QString sVariableName, vVariableNames)
+        foreach (QString sParameterVariableName, vVariableNames)
         {
-            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sVariableName);
+            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
             if (pParameter != nullptr)
-                hParameters[sVariableName] = pParameter;
+                hParameters[sParameterVariableName] = pParameter;
         }
         if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size())) {
             setWatchedParameters(hParameters);
@@ -84,14 +84,22 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
 
     foreach (CXMLNode xParameter, vParameterNodes)
     {
-        QString sParameterName = xParameter.attributes()[PROPERTY_NAME];
-        QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE];
-        QString sParameterType = xParameter.attributes()[PROPERTY_TYPE];
-        QString sWidgetType = xParameter.attributes()[PROPERTY_UI];
-        QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT];
+        QString sParameterName = xParameter.attributes()[PROPERTY_NAME].simplified();
+        QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE].simplified();
+        QString sParameterType = xParameter.attributes()[PROPERTY_TYPE].simplified();
+        QString sWidgetType = xParameter.attributes()[PROPERTY_UI].simplified();
+        QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+        QString sAuto = xParameter.attributes()[PROPERTY_AUTO].simplified();
+        // Parameter with no UI
+        if (sWidgetType.isEmpty())
+        {
+            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+            if (pParameter != nullptr)
+                pParameter->setValue(sDefaultValue);
+        }
+        else
         if (sWidgetType == WIDGET_LINE_EDIT)
         {
-            QString sAuto = xParameter.attributes()[PROPERTY_AUTO];
             LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, sDefaultValue, sAuto, this);
             pLineEdit->setParameterMgr(m_pController->parameterMgr());
             if (sParameterType == PROPERTY_DOUBLE)
@@ -107,11 +115,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
             {
                 QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAuto);
                 QHash<QString, Parameter *> hParameters;
-                foreach (QString sVariableName, vVariableNames)
+                foreach (QString sParameterVariableName, vVariableNames)
                 {
-                    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sVariableName);
+                    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
                     if (pParameter != nullptr)
-                        hParameters[sVariableName] = pParameter;
+                        hParameters[sParameterVariableName] = pParameter;
                 }
                 if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
                     pLineEdit->setWatchedParameters(hParameters);
@@ -131,10 +139,14 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         {
             QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
             QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, this);
-            connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
-            addWidget(pExclusiveChoiceWidet, sParameterVariable);
-            pExclusiveChoiceWidet->applyDefaultValue();
+
+            if (!sLabels.isEmpty() && !sValues.isEmpty())
+            {
+                ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, this);
+                connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
+                addWidget(pExclusiveChoiceWidet, sParameterVariable);
+                pExclusiveChoiceWidet->applyDefaultValue();
+            }
         }
         else
         if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
@@ -147,16 +159,29 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         else
         if (sWidgetType == WIDGET_GENERIC_PARAMETER_TABLE)
         {
+            if (sDefaultValue.isEmpty())
+            {
+                int x=  0;
+
+            }
+
             QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
             QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
-            QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
-            int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-            QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
-            QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
-            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue.split(","), sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
-            connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
-            addWidget(pGenericParameterTable, sParameterVariable);
-            pGenericParameterTable->applyDefaultValue();
+
+            if (!sColumnLabels.isEmpty() && !sColumnVariables.isEmpty())
+            {
+                QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
+                int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
+                QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
+                QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
+                QStringList lDefaultValues;
+                if (!sDefaultValue.isEmpty())
+                    lDefaultValues = sDefaultValue.split(",");
+                GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), lDefaultValues, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
+                connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
+                addWidget(pGenericParameterTable, sParameterVariable);
+                pGenericParameterTable->applyDefaultValue();
+            }
         }
     }
 

@@ -2,6 +2,8 @@
 #include <QRegularExpressionMatch>
 #include <QRegularExpressionMatchIterator>
 #include <QScriptEngine>
+#include <QFile>
+#include <QTextStream>
 #include <QDebug>
 
 // Application
@@ -164,16 +166,16 @@ double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucce
     QVector<QString> vVariableNames = extractVariableNames(sAutoScript);
     QString sMatchedScript = sAutoScript;
     bSuccess = true;
-    foreach (QString sVariableName, vVariableNames)
+    foreach (QString sParameterVariableName, vVariableNames)
     {
-        Parameter *pParameter = getParameterByVariableName(sVariableName);
+        Parameter *pParameter = getParameterByVariableName(sParameterVariableName);
         if (pParameter == nullptr)
         {
-            qDebug() << "ERROR: CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            qDebug() << "ERROR: CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sParameterVariableName << " DOES NOT EXIST";
             bSuccess = false;
             break;
         }
-        sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+        sMatchedScript = sMatchedScript.replace(sParameterVariableName, pParameter->value());
     }
     if (bSuccess)
     {
@@ -196,12 +198,12 @@ bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bo
     QVector<QString> vVariableNames = extractVariableNames(sEnabledCondition);
     QString sMatchedScript = sEnabledCondition;
     bSuccess = true;
-    foreach (QString sVariableName, vVariableNames)
+    foreach (QString sParameterVariableName, vVariableNames)
     {
-        Parameter *pParameter = getParameterByVariableName(sVariableName);
+        Parameter *pParameter = getParameterByVariableName(sParameterVariableName);
         if (pParameter == nullptr)
         {
-            qDebug() << "ERROR: CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sVariableName << " DOES NOT EXIST";
+            qDebug() << "ERROR: CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sParameterVariableName << " DOES NOT EXIST";
             bSuccess = false;
             break;
         }
@@ -209,10 +211,10 @@ bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bo
         {
             sMatchedScript = sMatchedScript.replace("&quot;", "\"");
             QString sQuotedString = QString("\"%1\"").arg(pParameter->value());
-            sMatchedScript = sMatchedScript.replace(sVariableName, sQuotedString);
+            sMatchedScript = sMatchedScript.replace(sParameterVariableName, sQuotedString);
         }
         else
-            sMatchedScript = sMatchedScript.replace(sVariableName, pParameter->value());
+            sMatchedScript = sMatchedScript.replace(sParameterVariableName, pParameter->value());
     }
     if (bSuccess)
     {
@@ -318,7 +320,37 @@ const CXMLNode &ParameterMgr::menu3Node() const
 
 //-------------------------------------------------------------------------------------------------
 
-Parameter *ParameterMgr::getParameterByVariableName(const QString &sVariableName) const
+Parameter *ParameterMgr::getParameterByVariableName(const QString &sParameterVariableName) const
 {
-    return m_hParameters[sVariableName];
+    return m_hParameters[sParameterVariableName];
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterMgr::exportAll(const QString &sOutputFile)
+{
+    QFile outFile(sOutputFile);
+    if (outFile.open(QIODevice::WriteOnly))
+    {
+        QTextStream out(&outFile);
+        for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
+        {
+            QString sParameterType = it.value()->type();
+
+            QString sParameterLine("");
+            QString sValue = it.value()->value();
+            if (!sValue.simplified().isEmpty())
+            {
+                QString sFormattedValue = sValue;
+                if (sParameterType == PROPERTY_STRING)
+                    sFormattedValue = QString("\"%1\"").arg(sValue);
+                sParameterLine = QString("%1=%2").arg(it.key()).arg(sFormattedValue);
+            }
+            else
+                sParameterLine = QString("-----------------------------------> ") + QString("%1=%2").arg(it.key()).arg(sValue);
+
+            out << sParameterLine << "\n";
+        }
+        outFile.close();
+    }
 }

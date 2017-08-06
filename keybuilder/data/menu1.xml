@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT">
-   <Parameter variable="qt_type_of_key_qt" type="string"/>
+   <Parameter variable="qt_type_of_key_qt" default="regular" type="string"/>
    <Block name="REGULAR KEY" variable="qt_type_of_key_qt" value="regular">
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />
@@ -61,16 +61,16 @@
    <Block name="FICHET 787" variable="qt_type_of_key_qt" value="fichet_787" />
    <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" variable="qt_type_of_key_qt" value="import_stl">
       <Parameter name="BROWSE FOR A STL" type="string" variable="qt_expert_stl_name_qt" ui="filepicker" extension="*.stl" />
-      <Parameter name="SET DIMENSIONS" type="checkbox" variable="qt_expert_stl_set_dimensions_qt" value_yes="YES" value_no="NO" />
-      <Parameter name="X DIMENSION" type="double" variable="qt_expert_stl_dx_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Y DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Z DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="X ROTATION" type="double" variable="qt_expert_stl_rx_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Y ROTATION" type="double" variable="qt_expert_stl_ry_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Z ROTATION" type="double" variable="qt_expert_stl_rz_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="X TRANSLATION" type="double" variable="qt_expert_stl_tx_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Y TRANSLATION" type="double" variable="qt_expert_stl_ty_qt" ui="lineedit" depends="SET DIMENSIONS" />
-      <Parameter name="Z TRANSLATION" type="double" variable="qt_expert_stl_tz_qt" ui="lineedit" depends="SET DIMENSIONS" />
+      <Parameter name="SET DIMENSIONS" labels="YES,NO" values="YES,NO" type="string" variable="qt_expert_stl_set_dimensions_qt" default="YES" ui="exclusivechoice"/>
+      <Parameter name="X DIMENSION" type="double" variable="qt_expert_stl_dx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Y DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Z DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="X ROTATION" type="double" variable="qt_expert_stl_rx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Y ROTATION" type="double" variable="qt_expert_stl_ry_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Z ROTATION" type="double" variable="qt_expert_stl_rz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="X TRANSLATION" type="double" variable="qt_expert_stl_tx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Y TRANSLATION" type="double" variable="qt_expert_stl_ty_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Z TRANSLATION" type="double" variable="qt_expert_stl_tz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
    </Block>
    <Block name="ROUND PUMP/TUBULAR" variable="qt_type_of_key_qt" value="round_pump">
       <Parameter name="LENGTH" type="double" variable="qt_round_pump_length_qt" ui="lineedit" />

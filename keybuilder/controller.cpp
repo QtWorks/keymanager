@@ -82,3 +82,10 @@ void Controller::onGenerateScript()
 {
     m_pParameterMgr->generateScript();
 }
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::onTestExport()
+{
+    m_pParameterMgr->exportAll("output.txt");
+}

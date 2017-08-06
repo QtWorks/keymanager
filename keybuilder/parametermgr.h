@@ -74,6 +74,13 @@ public:
     //! Return parameter by variable name
     Parameter *getParameterByVariableName(const QString &sVariableName) const;
 
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Export all
+    void exportAll(const QString &sOutputFile);
+
 private:
     //! Parse single block
     void parseSingleBlock(const CXMLNode &xBlock);

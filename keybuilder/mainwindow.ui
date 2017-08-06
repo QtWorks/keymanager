@@ -27,7 +27,7 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
+          <item row="1" column="0">
            <widget class="QPushButton" name="createKeyButton">
             <property name="minimumSize">
              <size>
@@ -46,7 +46,26 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="3" column="0">
+           <widget class="QPushButton" name="visualizeSTLButton">
+            <property name="minimumSize">
+             <size>
+              <width>128</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>128</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>VISUALIZE STL</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
            <widget class="QPushButton" name="useExistingKeyButton">
             <property name="minimumSize">
              <size>
@@ -65,8 +84,8 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="visualizeSTLButton">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="testExportButton">
             <property name="minimumSize">
              <size>
               <width>128</width>
@@ -80,7 +99,7 @@
              </size>
             </property>
             <property name="text">
-             <string>VISUALIZE STL</string>
+             <string>TEST EXPORT</string>
             </property>
            </widget>
           </item>

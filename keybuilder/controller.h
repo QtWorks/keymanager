@@ -66,6 +66,9 @@ public slots:
 
     //! Generate script
     void onGenerateScript();
+
+    //! Test export
+    void onTestExport();
 };
 
 #endif // CONTROLLER_H
