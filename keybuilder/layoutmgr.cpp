@@ -16,7 +16,8 @@
 //-------------------------------------------------------------------------------------------------
 
 LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
-    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0), m_pController(nullptr)
+    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0), m_pController(nullptr),
+    m_pRootBlock(nullptr)
 {
     ui->setupUi(this);
 }
@@ -33,11 +34,11 @@ LayoutMgr::~LayoutMgr()
 void LayoutMgr::buildMenu(const CXMLNode &xNode)
 {
     // Create root parameter block
-    ParameterBlock *pParameterBlock = new ParameterBlock(xNode, m_pController, false);
+    m_pRootBlock = new ParameterBlock(xNode, m_pController, false);
     QVector<CXMLNode> vBlocks = xNode.getNodesByTagName(TAG_BLOCK);
     setSize(vBlocks.size());
     foreach (CXMLNode xParameterBlock, vBlocks)
-        addCollapsibleBlockToStack(xParameterBlock, pParameterBlock);
+        addCollapsibleBlockToStack(xParameterBlock, m_pRootBlock);
     foreach (CollapsibleBlock *pBlock, topLevelBlocks())
         connect(pBlock, &CollapsibleBlock::blockSelected, this, &LayoutMgr::onBlockSelected);
 }
@@ -177,4 +178,13 @@ void LayoutMgr::onBlockSelected()
             }
         }
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onClearAll()
+{
+    m_pRootBlock->clearAll();
+    foreach (CollapsibleBlock *pBlock, topLevelBlocks())
+        pBlock->onClearAll();
 }

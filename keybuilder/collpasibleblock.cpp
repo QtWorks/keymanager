@@ -107,16 +107,15 @@ void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 
 void CollapsibleBlock::onClearAll()
 {
+    // Clear own parameter block if any
     ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(m_pWidget);
     if (pParameterBlock != nullptr)
-    {
         // Clear own parameter block
         pParameterBlock->clearAll();
 
-        // Recurse
-        foreach (CollapsibleBlock *pChildBlock, childBlocks())
-            pChildBlock->onClearAll();
-    }
+    // Recurse
+    foreach (CollapsibleBlock *pChildBlock, childBlocks())
+        pChildBlock->onClearAll();
 }
 
 //-------------------------------------------------------------------------------------------------

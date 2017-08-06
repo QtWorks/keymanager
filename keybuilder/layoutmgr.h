@@ -82,6 +82,9 @@ private:
     //! Controller
     Controller *m_pController;
 
+    //! Root block
+    ParameterBlock *m_pRootBlock;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -95,6 +98,9 @@ public slots:
 
     //! Block selected
     void onBlockSelected();
+
+    //! Clear all
+    void onClearAll();
 };
 
 #endif // LAYOUTMGR_H

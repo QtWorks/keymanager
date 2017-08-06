@@ -40,6 +40,9 @@ private:
 
     //! Controller
     Controller *m_pController;
+
+    //! All opened at startup?
+    bool m_bAllOpened;
 };
 
 #endif // MAINWINDOW_H
