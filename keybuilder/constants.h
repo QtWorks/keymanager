@@ -7,6 +7,8 @@
 
 #define PROPERTY_NAME "name"
 #define PROPERTY_VARIABLE "variable"
+#define PROPERTY_STL_VARIABLE "stl_variable"
+#define PROPERTY_DXF_VARIABLE "dxf_variable"
 #define PROPERTY_UI "ui"
 #define PROPERTY_FILE_EXTENSION "extension"
 #define PROPERTY_VALUE "value"

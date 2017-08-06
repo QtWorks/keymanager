@@ -23,7 +23,7 @@ public:
     explicit DXForSTLFilePicker(QWidget *parent=nullptr);
 
     //! Constructor
-    explicit DXForSTLFilePicker(const QString &sDefaultValue, QWidget *parent=nullptr);
+    explicit DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, QWidget *parent=nullptr);
 
     //! Destructor
     ~DXForSTLFilePicker();
@@ -38,9 +38,21 @@ public:
     //! Return STL value
     QString stlValue() const;
 
+    //! Return DXF variable
+    const QString &dxfVariable() const;
+
+    //! Return STL variable
+    const QString &stlVariable() const;
+
 private:
     //! UI
     Ui::DXForSTLFilePicker *ui;
+
+    //! STL variable
+    QString m_sSTLVariable;
+
+    //! DXF variable
+    QString m_sDXFVariable;
 
 public slots:
     //! Select DXF

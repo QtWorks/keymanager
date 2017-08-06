@@ -139,7 +139,9 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         else
         if (sWidgetType == WIDGET_DXF_OR_STL_FILE_PICKER)
         {
-            DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(sDefaultValue, this);
+            QString sParameterSTLVariable = xParameter.attributes()[PROPERTY_STL_VARIABLE].simplified();
+            QString sParameterDXFVariable = xParameter.attributes()[PROPERTY_DXF_VARIABLE].simplified();
+            DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(sDefaultValue, sParameterSTLVariable, sParameterDXFVariable, this);
             connect(pFilePickerWidget, &DXForSTLFilePicker::dxfSelected, this, &ParameterBlock::onDXFSelected);
             connect(pFilePickerWidget, &DXForSTLFilePicker::stlSelected, this, &ParameterBlock::onSTLSelected);
             addWidget(pFilePickerWidget, sParameterVariable);
@@ -250,11 +252,7 @@ void ParameterBlock::onDXFSelected()
     DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
     if (pSender != nullptr)
     {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            emit parameterValueChanged(sParameterVariable, pSender->dxfValue());
-        }
+        emit parameterValueChanged(pSender->dxfVariable(), pSender->dxfValue());
     }
 }
 
@@ -265,11 +263,7 @@ void ParameterBlock::onSTLSelected()
     DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
     if (pSender != nullptr)
     {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            emit parameterValueChanged(sParameterVariable, pSender->stlValue());
-        }
+        emit parameterValueChanged(pSender->stlVariable(), pSender->stlValue());
     }
 }
 
