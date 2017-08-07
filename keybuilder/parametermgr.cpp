@@ -329,6 +329,7 @@ Parameter *ParameterMgr::getParameterByVariableName(const QString &sParameterVar
 
 void ParameterMgr::exportAll(const QString &sOutputFile)
 {
+    /*
     QFile outFile(sOutputFile);
     if (outFile.open(QIODevice::WriteOnly))
     {
@@ -353,4 +354,6 @@ void ParameterMgr::exportAll(const QString &sOutputFile)
         }
         outFile.close();
     }
+    */
+    ScriptMgr::generateScript(":/data/confidential/script.scad", sOutputFile, m_hParameters.values());
 }

@@ -64,6 +64,26 @@ void LayoutMgr::addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBloc
 
 //-------------------------------------------------------------------------------------------------
 
+bool LayoutMgr::parentBlockIsExclusive(CollapsibleBlock *pBlock)
+{
+    if (pBlock != nullptr)
+    {
+        // Retrieve parameter block
+        ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
+        if (pParameterBlock != nullptr)
+        {
+            // Retrieve parent
+            ParameterBlock *pParentParameterBlock = pParameterBlock->parentBlock();
+            if (pParentParameterBlock != nullptr)
+                return pParentParameterBlock->isExclusive();
+        }
+        return false;
+    }
+    return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 Controller *LayoutMgr::controller() const
 {
     return m_pController;
@@ -147,14 +167,33 @@ void LayoutMgr::onBlockSelected()
     CollapsibleBlock *pSender = dynamic_cast<CollapsibleBlock *>(sender());
     if (pSender != nullptr)
     {
-        // Get parameter block
+        // Set current block
+        setCurrentBlock(pSender);
+
+        // Set block variable
+        setBlockVariable(pSender);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onClearAll()
+{
+    m_pRootBlock->clearAll();
+    foreach (CollapsibleBlock *pBlock, topLevelBlocks())
+        pBlock->onClearAll();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::setCurrentBlock(CollapsibleBlock *pSender)
+{
+    if (pSender != nullptr)
+    {
+        // Retrieve parameter block
         ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
         if (pParameterBlock != nullptr)
         {
-            // Process block variable
-            if (!pParameterBlock->variable().isEmpty())
-                m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pParameterBlock->value());
-
             // Retrieve parent
             ParameterBlock *pParentParameterBlock = pParameterBlock->parentBlock();
             if (pParentParameterBlock != nullptr)
@@ -170,19 +209,8 @@ void LayoutMgr::onBlockSelected()
                     if (bParentIsExclusive)
                         pBlock->setCurrent(pBlock == pSender);
                     else
-                    {
-                        if (pBlock == pSender) {
-                            pBlock->setCurrent(!pBlock->isCurrent());
-
-                            // Process block variable
-                            if (!pParameterBlock->variable().isEmpty())
-                            {
-                                Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(pParameterBlock->variable());
-                                if ((pParameter != nullptr) && (pParameter->type() == PROPERTY_BOOLEAN))
-                                    m_pController->parameterMgr()->setParameterValue(pParameterBlock->variable(), pBlock->isCurrent() ? PROPERTY_YES : PROPERTY_NO);
-                            }
-                        }
-                    }
+                    if (pBlock == pSender)
+                        pBlock->setCurrent(!pBlock->isCurrent());
                 }
             }
         }
@@ -191,9 +219,32 @@ void LayoutMgr::onBlockSelected()
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onClearAll()
+void LayoutMgr::setBlockVariable(CollapsibleBlock *pSender)
 {
-    m_pRootBlock->clearAll();
-    foreach (CollapsibleBlock *pBlock, topLevelBlocks())
-        pBlock->onClearAll();
+    if (pSender != nullptr)
+    {
+        // Retrieve own parameter block
+        ParameterBlock *pParameterBlock = dynamic_cast<ParameterBlock *>(pSender->widget());
+        if (pParameterBlock != nullptr)
+        {
+            // Retrieve block variable and value
+            QString sBlockVariable = pParameterBlock->variable();
+            QString sBlockValue = pParameterBlock->value();
+
+            // Retrieve parameter
+            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sBlockVariable);
+            if (pParameter != nullptr)
+            {
+                QString sParameterType = pParameter->type();
+                if (sParameterType == PROPERTY_BOOLEAN)
+                {
+
+                }
+                else
+                {
+                    m_pController->parameterMgr()->setParameterValue(sBlockValue, sBlockValue);
+                }
+            }
+        }
+    }
 }

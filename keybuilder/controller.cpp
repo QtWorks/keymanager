@@ -87,5 +87,5 @@ void Controller::onGenerateScript()
 
 void Controller::onTestExport()
 {
-    m_pParameterMgr->exportAll("output.txt");
+    m_pParameterMgr->exportAll("script_output.scad");
 }

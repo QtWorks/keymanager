@@ -6,7 +6,6 @@
 // Application
 #include "scriptmgr.h"
 #include "parameter.h"
-#define VARIABLE_MARKER QString("")
 
 //-------------------------------------------------------------------------------------------------
 
@@ -26,7 +25,7 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
         return;
     }
     QTextStream inStream(&inputScriptFile);
-    QString sScurrentText = inStream.readAll();
+    QString sCurrentText = inStream.readAll();
     inputScriptFile.close();
 
     foreach (Parameter *pParameter, vParameters)
@@ -34,8 +33,15 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
         if (pParameter != nullptr)
         {
             QString sVariableName = pParameter->variable();
-            QString sTargetString = VARIABLE_MARKER+sVariableName+VARIABLE_MARKER;
-            sScurrentText = sScurrentText.replace(sTargetString, pParameter->value());
+
+            if (sVariableName == "qt_extra_cut_shape01_use_qt")
+            {
+                qDebug() << sCurrentText.contains(sVariableName);
+                int x = 0;
+            }
+
+            sCurrentText.replace(sVariableName, pParameter->value());
+            qDebug() << sCurrentText.contains(sVariableName);
         }
     }
 
@@ -47,6 +53,6 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     }
 
     QTextStream outStream(&outputScriptFile);
-    outStream << sScurrentText;
+    outStream << sCurrentText;
     outputScriptFile.close();
 }

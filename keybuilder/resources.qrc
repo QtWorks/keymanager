@@ -6,5 +6,6 @@
         <file>data/MENU 1.txt</file>
         <file>data/MENU 3.txt</file>
         <file>data/menu3.xml</file>
+        <file>data/confidential/script.scad</file>
     </qresource>
 </RCC>
