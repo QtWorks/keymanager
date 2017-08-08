@@ -9,6 +9,7 @@
 class Controller;
 class Parameter;
 class BaseWidget;
+class CollapsibleBlock;
 
 namespace Ui {
 class ParameterBlock;
@@ -19,12 +20,11 @@ class ParameterBlock : public QWidget
     Q_OBJECT
 
 public:
+    friend class CollapsibleBlock;
+
     //-------------------------------------------------------------------------------------------------
     // Constructors and destructor
     //-------------------------------------------------------------------------------------------------
-
-    //! Constructor
-    explicit ParameterBlock(const CXMLNode &xParameterBlock, Controller *pController, bool bRecurse=true, QWidget *parent=nullptr);
 
     //! Destructor
     ~ParameterBlock();
@@ -42,11 +42,11 @@ public:
     //! Set name
     void setName(const QString &sName);
 
-    //! Return variable
-    const QString &variable() const;
+    //! Return selection variable
+    const QString &selectionVariable() const;
 
     //! Set variable
-    void setVariable(const QString &sVariableName);
+    void setSelectionVariable(const QString &sVariableName);
 
     //! Return value
     const QString &value() const;
@@ -69,11 +69,8 @@ public:
     //! Exclusive?
     bool isExclusive() const;
 
-    //! Set parent block
-    void setParentBlock(ParameterBlock *pParentBlock);
-
-    //! Return parent block
-    ParameterBlock *parentBlock() const;
+    //! Return owner collapsible block
+    CollapsibleBlock *ownerCollapsibleBlock() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -84,6 +81,9 @@ public:
 
     //! Clear all
     void clearAll();
+
+    //! Add child recursively
+    void addChildRecursively(const CXMLNode &xParameterBlock);
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -112,17 +112,20 @@ public slots:
     void onEvaluateEnabledCondition();
 
 private:
+    //! Constructor
+    explicit ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent=nullptr);
+
     //! Find associated parameter variable
     QString findAssociatedParameterVariable(BaseWidget *pWidget) const;
 
     //! Populate parameter block
-    void populateParameterBlock(const CXMLNode &xParameterBlock, bool bRecurse=true);
+    void populateParameterBlock(const CXMLNode &xParameterBlock);
 
     //! Add widget
     void addWidget(BaseWidget *pWidget);
 
-    //! Add widget
-    void addWidget(QWidget *pWidget);
+    //! Add collapsible block
+    void addCollapsibleBlock(CollapsibleBlock *pBlock);
 
 private:
     //! UI
@@ -144,7 +147,7 @@ private:
     QHash<QString, Parameter *> m_hWatchedParameters;
 
     //! Variable name
-    QString m_sVariableName;
+    QString m_sSelectionVariable;
 
     //! Variable value
     QString m_sValue;
@@ -155,8 +158,8 @@ private:
     //! Enabled
     bool m_bIsEnabled;
 
-    //! Parent block
-    ParameterBlock *m_pParentBlock;
+    //! Owner collapsible block
+    CollapsibleBlock *m_pOwnerCollapsibleBlock;
 
     //! Controller
     Controller *m_pController;

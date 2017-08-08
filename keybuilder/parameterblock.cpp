@@ -22,15 +22,15 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, Controller *pController, bool bRecurse, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_sVariableName(""),
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
+    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_sSelectionVariable(""),
     m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true),
-    m_pParentBlock(nullptr), m_pController(pController)
+    m_pOwnerCollapsibleBlock(pOwner), m_pController(pController)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    connect(this, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
-    populateParameterBlock(xParameterBlock, bRecurse);
+    connect(this, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged, Qt::UniqueConnection);
+    populateParameterBlock(xParameterBlock);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -42,22 +42,29 @@ ParameterBlock::~ParameterBlock()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, bool bRecurse)
+void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 {
     // Set name
     setName(xParameterBlock.attributes()[PROPERTY_NAME]);
 
     // Set variable
-    setVariable(xParameterBlock.attributes()[PROPERTY_VARIABLE]);
+    setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE]);
 
     // Set value
     setValue(xParameterBlock.attributes()[PROPERTY_VALUE]);
 
-    // Populate parameter block with parameters
+    // Set empty state
     QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
     m_bIsEmpty = xParameterBlock.nodes().isEmpty();
+    if (m_bIsEmpty)
+    {
+        setFixedSize(0, 0);
+        setVisible(false);
+    }
+
+    // Set exclusive state
     QString sExclusive = xParameterBlock.attributes()[PROPERTY_EXCLUSIVE].simplified();
-    m_bIsExclusive = sExclusive.isEmpty() ? true : (sExclusive == VALUE_TRUE);
+    setExclusive(sExclusive.isEmpty() ? true : (sExclusive == VALUE_TRUE));
 
     // Read enabled condition
     m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
@@ -75,12 +82,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size())) {
             setWatchedParameters(hParameters);
         }
-    }
-
-    if (m_bIsEmpty)
-    {
-        setFixedSize(0, 0);
-        setVisible(false);
     }
 
     foreach (CXMLNode xParameter, vParameterNodes)
@@ -192,27 +193,8 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock, boo
         }
     }
 
-    if (bRecurse)
-    {
-        // Parse child blocks
-        QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
-        foreach (CXMLNode xChildBlock, vChildBlocks)
-        {
-            // Get child block name
-            QString sChildBlockName = xChildBlock.attributes()[PROPERTY_NAME];
-
-            // Build new parameter block
-            ParameterBlock *pChildParameterBlock = new ParameterBlock(xChildBlock, m_pController);
-            pChildParameterBlock->setParentBlock(this);
-            connect(pChildParameterBlock, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
-
-            // Create new collapsible block
-            CollapsibleBlock *pNewBlock = new CollapsibleBlock(pChildParameterBlock, sChildBlockName, pChildParameterBlock->isEmpty(), this);
-
-            // Add to own layout
-            addWidget(pNewBlock);
-        }
-    }
+    // Add child recursively
+    addChildRecursively(xParameterBlock);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -315,16 +297,22 @@ QString ParameterBlock::findAssociatedParameterVariable(BaseWidget *pWidget) con
 
 void ParameterBlock::addWidget(BaseWidget *pWidget)
 {
-    ui->verticalLayout->addWidget(pWidget);
-    ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
+    if (pWidget != nullptr)
+    {
+        ui->verticalLayout->addWidget(pWidget);
+        ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::addWidget(QWidget *pWidget)
+void ParameterBlock::addCollapsibleBlock(CollapsibleBlock *pBlock)
 {
-    ui->verticalLayout->addWidget(pWidget);
-    ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
+    if (pBlock != nullptr)
+    {
+        ui->verticalLayout->addWidget(pBlock);
+        ui->verticalLayout->setAlignment(pBlock, Qt::AlignTop);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -351,16 +339,16 @@ void ParameterBlock::setName(const QString &sName)
 
 //-------------------------------------------------------------------------------------------------
 
-const QString &ParameterBlock::variable() const
+const QString &ParameterBlock::selectionVariable() const
 {
-    return m_sVariableName;
+    return m_sSelectionVariable;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::setVariable(const QString &sVariableName)
+void ParameterBlock::setSelectionVariable(const QString &sVariableName)
 {
-    m_sVariableName = sVariableName;
+    m_sSelectionVariable = sVariableName;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -418,16 +406,9 @@ bool ParameterBlock::isExclusive() const
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::setParentBlock(ParameterBlock *pParentBlock)
+CollapsibleBlock *ParameterBlock::ownerCollapsibleBlock() const
 {
-    m_pParentBlock = pParentBlock;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-ParameterBlock *ParameterBlock::parentBlock() const
-{
-    return m_pParentBlock;
+    return m_pOwnerCollapsibleBlock;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -456,4 +437,22 @@ void ParameterBlock::clearAll()
     for (QHash<QString, BaseWidget *>::iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
         if (it.value() != nullptr)
             it.value()->applyDefaultValue();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::addChildRecursively(const CXMLNode &xParameterBlock)
+{
+    // Parse child blocks
+    QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
+    foreach (CXMLNode xChildBlock, vChildBlocks)
+    {
+        // Create new collapsible block
+        CollapsibleBlock *pNewBlock = new CollapsibleBlock(xChildBlock, m_pController, this);
+        if (m_pOwnerCollapsibleBlock != nullptr)
+            m_pOwnerCollapsibleBlock->addChildBlock(pNewBlock);
+
+        // Add to own layout
+        addCollapsibleBlock(pNewBlock);
+    }
 }

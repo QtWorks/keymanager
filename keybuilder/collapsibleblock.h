@@ -7,7 +7,10 @@
 class QVBoxLayout;
 
 // Application
+#include "cxmlnode.h"
 class CaptionLabel;
+class ParameterBlock;
+class Controller;
 
 class CollapsibleBlock : public QWidget
 {
@@ -19,7 +22,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    CollapsibleBlock(QWidget *pWidget, const QString &sCaption, bool bIsEmpty, QWidget *parent=nullptr);
+    explicit CollapsibleBlock(const CXMLNode &xBlock, Controller *pController, QWidget *parent=nullptr);
 
     //! Destructor
     ~CollapsibleBlock();
@@ -28,17 +31,23 @@ public:
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Return widget
-    QWidget *widget() const;
+    //! Return own parameter block
+    ParameterBlock *parameterBlock() const;
 
-    //! Is current?
-    bool isCurrent() const;
+    //! Is selected?
+    bool isSelected() const;
 
-    //! Set current
-    void setCurrent(bool bCurrent);
+    //! Select
+    void select(bool bSelect);
 
     //! Return child blocks
-    QList<CollapsibleBlock *> childBlocks() const;
+    QVector<CollapsibleBlock *> childBlocks() const;
+
+    //! Return parent block
+    CollapsibleBlock *parentBlock() const;
+
+    //! Set parent block
+    void setParentBlock(CollapsibleBlock *pParentBlock);
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -47,13 +56,25 @@ public:
     //! Return closed state
     bool isClosed() const;
 
-private:
-    //! Set widget
-    void setWidget(QWidget *widget);
+    //! Add child block
+    void addChildBlock(CollapsibleBlock *pBlock);
 
 private:
-    //! Own widget
-    QWidget *m_pWidget;
+    //! Set parameter block
+    void setParameterBlock(ParameterBlock *pParameterBlock);
+
+    //! Set current block
+    void setCurrentBlock(CollapsibleBlock *pBlock);
+
+    //! Process block variable
+    void processBlockVariable(CollapsibleBlock *pBlock);
+
+    //! Unselect me
+    void unselectMe();
+
+private:
+    //! Own parameter block
+    ParameterBlock *m_pParameterBlock;
 
     //! Own layout
     QVBoxLayout *m_pLayout;
@@ -64,8 +85,17 @@ private:
     //! Closed?
     bool m_bIsClosed;
 
-    //! Is current?
-    bool m_bIsCurrent;
+    //! Is selected?
+    bool m_bIsSelected;
+
+    //! Child blocks
+    QVector<CollapsibleBlock *> m_vBlocks;
+
+    //! Parent block
+    CollapsibleBlock *m_pParentBlock;
+
+    // Controller
+    Controller *m_pController;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -73,7 +103,7 @@ public slots:
     //-------------------------------------------------------------------------------------------------
 
     //! Close or open
-    void onClose(bool);
+    void onClose(bool bClose, bool bRecurse=true);
 
     //! Toggle closed state
     void onToggleClosedState();
@@ -84,19 +114,16 @@ public slots:
     //! Clear all
     void onClearAll();
 
+    //! Block selected
+    void onSelectMe();
+
 signals:
     //-------------------------------------------------------------------------------------------------
-    // Slots
+    // Signals
     //-------------------------------------------------------------------------------------------------
-
-    //! Block selected
-    void blockSelected();
 
     //! State changed (closed or opened)
     void closedStateChanged(bool bClosed);
-
-    //! Clear all
-    void clearAll();
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

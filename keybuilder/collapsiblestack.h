@@ -5,8 +5,11 @@
 #include <QWidget>
 
 // Application
+#include "cxmlnode.h"
 class CollapsibleBlock;
+class ParameterBlock;
 class QVBoxLayout;
+class Controller;
 
 class CollapsibleStack : public QWidget
 {
@@ -18,7 +21,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CollapsibleStack(QWidget *parent=nullptr);
+    explicit CollapsibleStack(Controller *pController, QWidget *parent=nullptr);
 
     //! Destructor
     ~CollapsibleStack();
@@ -28,14 +31,14 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Return list of blocks
-    QList<CollapsibleBlock *> blocks() const;
+    QVector<CollapsibleBlock *> childBlocks() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
     //! Add block
-    CollapsibleBlock *addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty);
+    CollapsibleBlock *addBlock(const CXMLNode &xBlock);
 
     //! Open all
     void openAll();
@@ -46,6 +49,12 @@ public:
 private:
     //! Own layout
     QVBoxLayout *m_pLayout;
+
+    //! Own blocks
+    QVector<CollapsibleBlock *> m_vBlocks;
+
+    //! Controller
+    Controller *m_pController;
 };
 
 #endif // COLLAPSIBLESTACK_H

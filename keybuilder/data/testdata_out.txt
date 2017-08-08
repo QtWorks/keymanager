@@ -1,9 +1,0 @@
-TOTO = 3
-
-TATA = 4
-
-TUTU = 5
-
-TITI = cxwcxw
-
-ZOZO = xwcxww

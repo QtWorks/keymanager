@@ -43,25 +43,19 @@ public:
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Add parameter block
-    CollapsibleBlock *addBlock(QWidget *pBlock, const QString &sName, bool bIsEmpty);
-
     //! Set size
     void setSize(int iSize);
 
     //! Build menu
-    virtual void buildMenu(const CXMLNode &xNode);
-
-    //! Build block
-    void addCollapsibleBlockToStack(const CXMLNode &xBlock, ParameterBlock *pParentParameterBlock=nullptr);
-
-protected:
-    //! Return all blocks
-    QList<CollapsibleBlock *> topLevelBlocks() const;
+    virtual void buildMenu(const CXMLNode &xBlock);
 
 protected:
     //! Vector of stacks
     QVector<CollapsibleStack *> m_vStacks;
+
+private:
+    //! Add parameter block
+    CollapsibleBlock *addBlockToStack(const CXMLNode &xBlock);
 
 private:
     //! UI
@@ -83,7 +77,7 @@ private:
     Controller *m_pController;
 
     //! Root block
-    ParameterBlock *m_pRootBlock;
+    CollapsibleBlock *m_pRootCollapsibleBlock;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -95,9 +89,6 @@ public slots:
 
     //! Close all parameter blocks
     void onCloseAll();
-
-    //! Block selected
-    void onBlockSelected();
 
     //! Clear all
     void onClearAll();

@@ -1,8 +1,11 @@
 #ifndef CAPTIONLABEL_H
 #define CAPTIONLABEL_H
 
+// Qt
 #include <QWidget>
 
+// Application
+class CollapsibleBlock;
 namespace Ui {
 class CaptionLabel;
 }
@@ -44,6 +47,9 @@ public:
     //! Update enabled state
     void updateEnabledState(bool bEnabled);
 
+    //! Set block
+    void setBlock(CollapsibleBlock *pBlock);
+
 protected:
     //! Paint event
     void paintEvent(QPaintEvent *e);
@@ -64,9 +70,6 @@ signals:
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Block selected
-    void blockSelected();
-
     //! Toggle closed state
     void toggleClosedState();
 
@@ -85,6 +88,9 @@ private:
 
     //! Is current?
     bool m_bIsCurrent;
+
+    //! Block
+    CollapsibleBlock *m_pBlock;
 };
 
 #endif // CAPTIONLABEL_H

@@ -5,12 +5,13 @@
 // Application
 #include "captionlabel.h"
 #include "ui_captionlabel.h"
+#include "collapsibleblock.h"
 
 //-------------------------------------------------------------------------------------------------
 
 CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     ui(new Ui::CaptionLabel),  m_bIsEnabled(true), m_bExpandable(true),
-    m_bIsCurrent(false)
+    m_bIsCurrent(false), m_pBlock(nullptr)
 {
     ui->setupUi(this);
     connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::toggleState);
@@ -73,6 +74,13 @@ void CaptionLabel::updateEnabledState(bool bEnabled)
 
 //-------------------------------------------------------------------------------------------------
 
+void CaptionLabel::setBlock(CollapsibleBlock *pBlock)
+{
+    m_pBlock = pBlock;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void CaptionLabel::paintEvent(QPaintEvent *e)
 {
     QPainter p(this);
@@ -92,8 +100,10 @@ void CaptionLabel::paintEvent(QPaintEvent *e)
 void CaptionLabel::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    emit blockSelected();
+    m_pBlock->onSelectMe();
 }
+
+//-------------------------------------------------------------------------------------------------
 
 void CaptionLabel::onStateChanged(bool bIsClosed)
 {

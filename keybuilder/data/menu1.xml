@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT">
    <Parameter variable="qt_type_of_key_qt" default="regular" type="string"/>
-   <Block name="REGULAR KEY" variable="qt_type_of_key_qt" value="regular">
+   <Block name="REGULAR KEY" set_variable="qt_type_of_key_qt" value="regular">
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_regular_thickness_qt" ui="lineedit" />
@@ -10,7 +10,7 @@
       <Parameter name="STL FILE" type="string" variable="qt_regular_stl_name_qt" />
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_regular_stl_name_qt" dxf_variable="qt_regular_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
-   <Block name="DIMPLE/LASER KEY" variable="qt_type_of_key_qt" value="dimple_laser">
+   <Block name="DIMPLE/LASER KEY" set_variable="qt_type_of_key_qt" value="dimple_laser">
       <Parameter name="LENGTH" type="double" variable="qt_dimple_laser_length_qt" ui="lineedit" />
       <Parameter name="WIDTH" type="double" variable="qt_dimple_laser_width_qt" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_dimple_laser_thickness_qt" ui="lineedit" />
@@ -18,7 +18,7 @@
       <Parameter name="STL FILE" type="string" variable="qt_dimple_laser_stl_name_qt" />
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_dimple_laser_stl_name_qt" dxf_variable="qt_dimple_laser_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
-   <Block name="BROWSE FOR A ROUND PUMP BLANK STL" variable="qt_type_of_key_qt" value="round_stl">
+   <Block name="BROWSE FOR A ROUND PUMP BLANK STL" set_variable="qt_type_of_key_qt" value="round_stl">
       <Parameter name="BROWSE FOR A STL" type="string" variable="qt_round_stl_name_qt" ui="filepicker" extension="*.stl" />
       <Parameter name="X ROTATION" type="double" variable="qt_round_stl_rx_qt" ui="lineedit" />
       <Parameter name="Y ROTATION" type="double" variable="qt_round_stl_ry_qt" ui="lineedit" />
@@ -27,7 +27,7 @@
       <Parameter name="Y TRANSLATION" type="double" variable="qt_round_stl_ty_qt" ui="lineedit" />
       <Parameter name="Z TRANSLATION" type="double" variable="qt_round_stl_tz_qt" ui="lineedit" />
    </Block>
-   <Block name="LEVER LOCK" variable="qt_type_of_key_qt" value="lever_simple">
+   <Block name="LEVER LOCK" set_variable="qt_type_of_key_qt" value="lever_simple">
       <Parameter name="BODY LENGTH" type="double" variable="qt_lever_simple_body_length_qt" ui="lineedit" />
       <Parameter name="BODY DIAMETER" type="double" variable="qt_lever_simple_body_diameter_qt" ui="lineedit" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_simple_blade_length_qt" ui="lineedit" />
@@ -37,7 +37,7 @@
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_simple_tip_hole_diameter_qt" ui="lineedit" />
       <Parameter name="TTIP HOLE DEPTH" type="double" variable="qt_lever_simple_tip_hole_depth_qt" ui="lineedit" />
    </Block>
-   <Block name="ABLOY CLASSIC" variable="qt_type_of_key_qt" value="abloy_classic">
+   <Block name="ABLOY CLASSIC" set_variable="qt_type_of_key_qt" value="abloy_classic">
       <Parameter name="LENGTH" type="double" variable="qt_abloy_classic_length_qt" default="30" ui="lineedit" />
       <Parameter name="HEIGHT" type="double" variable="qt_abloy_classic_height_qt" default="6" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_abloy_classic_thickness_qt" default="3" ui="lineedit" />
@@ -45,7 +45,7 @@
       <Parameter name="STL FILE" type="string" variable="qt_abloy_classic_stl_name_qt" />
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_abloy_classic_stl_name_qt" dxf_variable="qt_abloy_classic_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
-   <Block name="LEVER LOCK DOUBLE BITTED" variable="qt_type_of_key_qt" value="lever_double">
+   <Block name="LEVER LOCK DOUBLE BITTED" set_variable="qt_type_of_key_qt" value="lever_double">
       <Parameter name="BODY LENGTH" type="double" variable="qt_lever_double_body_length_qt" ui="lineedit" />
       <Parameter name="BODY DIAMETER" type="double" variable="qt_lever_double_body_diameter_qt" ui="lineedit" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_double_blade_length_qt" ui="lineedit" />
@@ -56,19 +56,19 @@
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_double_tip_hole_diameter_qt" ui="lineedit" />
       <Parameter name="TTIP HOLE DEPTH" type="double" variable="qt_lever_double_tip_hole_depth_qt" ui="lineedit" />
    </Block>
-   <Block name="ABLOY DISKLOCK PRO" variable="qt_type_of_key_qt" value="abloy_disklock" />
-   <Block name="ABLOY PROTECT" variable="qt_type_of_key_qt" value="abloy_protec" />
-   <Block name="ABUS PLUS" variable="qt_type_of_key_qt" value="abus_plus" />
-   <Block name="AXI HOME" variable="qt_type_of_key_qt" value="axi_home">
+   <Block name="ABLOY DISKLOCK PRO" set_variable="qt_type_of_key_qt" value="abloy_disklock" />
+   <Block name="ABLOY PROTECT" set_variable="qt_type_of_key_qt" value="abloy_protec" />
+   <Block name="ABUS PLUS" set_variable="qt_type_of_key_qt" value="abus_plus" />
+   <Block name="AXI HOME" set_variable="qt_type_of_key_qt" value="axi_home">
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" default="RIGHT" ui="exclusivechoice" />
    </Block>
-   <Block name="FICHET 787" variable="qt_type_of_key_qt" value="fichet_787" />
-   <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" variable="qt_type_of_key_qt" value="import_stl">
+   <Block name="FICHET 787" set_variable="qt_type_of_key_qt" value="fichet_787" />
+   <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" set_variable="qt_type_of_key_qt" value="import_stl">
       <Parameter name="BROWSE FOR A STL" type="string" variable="qt_expert_stl_name_qt" ui="filepicker" extension="*.stl" />
       <Parameter name="SET DIMENSIONS" labels="YES,NO" values="YES,NO" type="string" variable="qt_expert_stl_set_dimensions_qt" default="YES" ui="exclusivechoice"/>
       <Parameter name="X DIMENSION" type="double" variable="qt_expert_stl_dx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Y DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
-      <Parameter name="Z DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
+      <Parameter name="Z DIMENSION" type="double" variable="qt_expert_stl_dz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="X ROTATION" type="double" variable="qt_expert_stl_rx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Y ROTATION" type="double" variable="qt_expert_stl_ry_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Z ROTATION" type="double" variable="qt_expert_stl_rz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
@@ -76,7 +76,7 @@
       <Parameter name="Y TRANSLATION" type="double" variable="qt_expert_stl_ty_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Z TRANSLATION" type="double" variable="qt_expert_stl_tz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
    </Block>
-   <Block name="ROUND PUMP/TUBULAR" variable="qt_type_of_key_qt" value="round_pump">
+   <Block name="ROUND PUMP/TUBULAR" set_variable="qt_type_of_key_qt" value="round_pump">
       <Parameter name="LENGTH" type="double" variable="qt_round_pump_length_qt" ui="lineedit" />
       <Parameter name="DIAMETER" type="double" variable="qt_round_pump_diameter_qt" ui="lineedit" />
       <Parameter name="NUMBER OF RAISED WINGS" type="int" variable="qt_round_pump_number_of_raised_wings_qt" ui="lineedit" />

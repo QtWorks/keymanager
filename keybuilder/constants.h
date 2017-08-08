@@ -7,6 +7,7 @@
 
 #define PROPERTY_NAME "name"
 #define PROPERTY_VARIABLE "variable"
+#define PROPERTY_SET_VARIABLE "set_variable"
 #define PROPERTY_STL_VARIABLE "stl_variable"
 #define PROPERTY_DXF_VARIABLE "dxf_variable"
 #define PROPERTY_UI "ui"
@@ -15,10 +16,10 @@
 #define PROPERTY_LABELS "labels"
 #define PROPERTY_VALUES "values"
 #define PROPERTY_TYPE "type"
-#define PROPERTY_BOOLEAN "boolean"
 #define PROPERTY_INT "int"
 #define PROPERTY_DOUBLE "double"
 #define PROPERTY_STRING "string"
+#define PROPERTY_BOOLEAN "boolean"
 #define PROPERTY_TABLE "table"
 #define PROPERTY_TYPE_OF_KEY "TYPE OF KEY"
 #define PROPERTY_COLUMN_LABELS "columnlabels"
@@ -45,7 +46,6 @@
 
 #define WIDGET_DOUBLE_TRIPLET "double_triplet"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
-#define COLLAPSIBLEBLOCK_OBJECT_NAME "collapsibleblock"
 
 #define VALUE_TRUE "true"
 #define VALUE_FALSE "false"

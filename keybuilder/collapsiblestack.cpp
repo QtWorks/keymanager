@@ -10,7 +10,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleStack::CollapsibleStack(QWidget *parent) : QWidget(parent)
+CollapsibleStack::CollapsibleStack(Controller *pController, QWidget *parent) : QWidget(parent),
+    m_pController(pController)
 {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_pLayout = new QVBoxLayout(this);
@@ -27,17 +28,17 @@ CollapsibleStack::~CollapsibleStack()
 
 //-------------------------------------------------------------------------------------------------
 
-QList<CollapsibleBlock *> CollapsibleStack::blocks() const
+QVector<CollapsibleBlock *> CollapsibleStack::childBlocks() const
 {
-    return findChildren<CollapsibleBlock *>(COLLAPSIBLEBLOCK_OBJECT_NAME);
+    return m_vBlocks;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *pWidget, bool bIsEmpty)
+CollapsibleBlock *CollapsibleStack::addBlock(const CXMLNode &xBlock)
 {
-    CollapsibleBlock *pBlock = new CollapsibleBlock(pWidget, sCaption, bIsEmpty, this);
-    pBlock->setParent(this);
+    CollapsibleBlock *pBlock = new CollapsibleBlock(xBlock, m_pController, this);
+    m_vBlocks << pBlock;
     m_pLayout->addWidget(pBlock);
     m_pLayout->setAlignment(pBlock, Qt::AlignTop);
     return pBlock;
@@ -47,22 +48,18 @@ CollapsibleBlock *CollapsibleStack::addBlock(const QString &sCaption, QWidget *p
 
 void CollapsibleStack::openAll()
 {
-    foreach (CollapsibleBlock *pBlock, blocks())
-    {
-        if (pBlock->widget() != nullptr)
+    foreach (CollapsibleBlock *pBlock, m_vBlocks)
+        if (pBlock != nullptr)
             pBlock->onClose(false);
-    }
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void CollapsibleStack::closeAll()
 {
-    foreach (CollapsibleBlock *pBlock, blocks())
-    {
-        if (pBlock->widget() != nullptr)
+    foreach (CollapsibleBlock *pBlock, m_vBlocks)
+        if (pBlock != nullptr)
             pBlock->onClose(true);
-    }
 }
 
 

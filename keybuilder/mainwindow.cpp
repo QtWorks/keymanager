@@ -55,7 +55,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll);
 
-    connect(ui->testExportButton, &QPushButton::clicked, m_pController, &Controller::onTestExport);
+    connect(ui->testExportButton, &QPushButton::clicked, m_pController, &Controller::onGenerateScript);
 
     // Build menu 1 tab
     ui->menu1LayoutMgr->buildMenu(m_pController->menu1Node());

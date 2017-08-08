@@ -55,6 +55,11 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
                 qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
             }
             QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
+            if (sParameterVariable == "qt_extra_material_shape_01_use_qt")
+            {
+                int x = 0;
+            }
+
             if (sParameterVariable.simplified().isEmpty())
             {
                 qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
@@ -292,8 +297,8 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
 
 void ParameterMgr::generateScript()
 {
-    QString sInFile = "D:/projects/keymanager/keybuilder/data/testdata_in.txt";
-    QString sOutFile = "D:/projects/keymanager/keybuilder/data/testdata_out.txt";
+    QString sInFile = "D:/projects/keymanager/keybuilder/data/script_in.scad";
+    QString sOutFile = "D:/projects/keymanager/keybuilder/data/script_out.scad";
     ScriptMgr::generateScript(sInFile, sOutFile, m_hParameters.values());
 }
 
@@ -325,35 +330,3 @@ Parameter *ParameterMgr::getParameterByVariableName(const QString &sParameterVar
     return m_hParameters[sParameterVariableName];
 }
 
-//-------------------------------------------------------------------------------------------------
-
-void ParameterMgr::exportAll(const QString &sOutputFile)
-{
-    /*
-    QFile outFile(sOutputFile);
-    if (outFile.open(QIODevice::WriteOnly))
-    {
-        QTextStream out(&outFile);
-        for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
-        {
-            QString sParameterType = it.value()->type();
-
-            QString sParameterLine("");
-            QString sValue = it.value()->value();
-            if (!sValue.simplified().isEmpty())
-            {
-                QString sFormattedValue = sValue;
-                if (sParameterType == PROPERTY_STRING)
-                    sFormattedValue = QString("\"%1\"").arg(sValue);
-                sParameterLine = QString("%1=%2").arg(it.key()).arg(sFormattedValue);
-            }
-            else
-                sParameterLine = QString("-----------------------------------> ") + QString("%1=%2").arg(it.key()).arg(sValue);
-
-            out << sParameterLine << "\n";
-        }
-        outFile.close();
-    }
-    */
-    ScriptMgr::generateScript(":/data/confidential/script.scad", sOutputFile, m_hParameters.values());
-}

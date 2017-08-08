@@ -34,13 +34,14 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
         {
             QString sVariableName = pParameter->variable();
 
-            if (sVariableName == "qt_extra_cut_shape01_use_qt")
+            if (sVariableName == "qt_extra_material_shape_01_use_qt")
             {
-                qDebug() << sCurrentText.contains(sVariableName);
                 int x = 0;
+                qDebug() << sCurrentText.contains("qt_extra_material_shape_01_use_qt");
             }
 
             sCurrentText.replace(sVariableName, pParameter->value());
+            qDebug() << sCurrentText.contains("qt_extra_material_shape_01_use_qt");
             qDebug() << sCurrentText.contains(sVariableName);
         }
     }
