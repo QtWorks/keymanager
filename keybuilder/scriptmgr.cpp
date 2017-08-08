@@ -6,6 +6,7 @@
 // Application
 #include "scriptmgr.h"
 #include "parameter.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -33,16 +34,13 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
         if (pParameter != nullptr)
         {
             QString sVariableName = pParameter->variable();
-
-            if (sVariableName == "qt_extra_material_shape_01_use_qt")
+            if ((pParameter->type() != PROPERTY_STRING) && (pParameter->type() != PROPERTY_BOOLEAN))
+                sCurrentText.replace(sVariableName, pParameter->value());
+            else
             {
-                int x = 0;
-                qDebug() << sCurrentText.contains("qt_extra_material_shape_01_use_qt");
+                QString sQuotedVariable = QString("\"%1\"").arg(pParameter->value());
+                sCurrentText.replace(sVariableName, sQuotedVariable);
             }
-
-            sCurrentText.replace(sVariableName, pParameter->value());
-            qDebug() << sCurrentText.contains("qt_extra_material_shape_01_use_qt");
-            qDebug() << sCurrentText.contains(sVariableName);
         }
     }
 

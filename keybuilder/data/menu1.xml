@@ -35,7 +35,7 @@
       <Parameter name="BLADE THICKNESS" type="double" variable="qt_lever_simple_blade_thickness_qt" ui="lineedit" />
       <Parameter name="TIP LENGTH" type="double" variable="qt_lever_simple_tip_length_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_simple_tip_hole_diameter_qt" ui="lineedit" />
-      <Parameter name="TTIP HOLE DEPTH" type="double" variable="qt_lever_simple_tip_hole_depth_qt" ui="lineedit" />
+      <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_lever_simple_tip_hole_depth_qt" ui="lineedit" />
    </Block>
    <Block name="ABLOY CLASSIC" set_variable="qt_type_of_key_qt" value="abloy_classic">
       <Parameter name="LENGTH" type="double" variable="qt_abloy_classic_length_qt" default="30" ui="lineedit" />
@@ -54,7 +54,7 @@
       <Parameter name="BLADE THICKNESS" type="double" variable="qt_lever_double_blade_thickness_qt" ui="lineedit" />
       <Parameter name="TIP LENGTH" type="double" variable="qt_lever_double_tip_length_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_double_tip_hole_diameter_qt" ui="lineedit" />
-      <Parameter name="TTIP HOLE DEPTH" type="double" variable="qt_lever_double_tip_hole_depth_qt" ui="lineedit" />
+      <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_lever_double_tip_hole_depth_qt" ui="lineedit" />
    </Block>
    <Block name="ABLOY DISKLOCK PRO" set_variable="qt_type_of_key_qt" value="abloy_disklock" />
    <Block name="ABLOY PROTECT" set_variable="qt_type_of_key_qt" value="abloy_protec" />
@@ -85,7 +85,6 @@
       <Parameter name="RAISED THICKNESS" type="double" variable="qt_round_pump_raised_thickness_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_round_pump_tip_hole_diameter_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_round_pump_tip_hole_depth_qt" ui="lineedit" />
-      <Parameter name="TENSIONER" type="double" variable="qt_round_pump_outward_tensioner_length_qt" ui="lineedit" />
       <Parameter name="OUTWARD TENSIONER LENGTH" type="double" variable="qt_round_pump_outward_tensioner_length_qt" ui="lineedit" />
       <Parameter name="OUTWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_outward_tensioner_height_qt" ui="lineedit" />
       <Parameter name="OUTWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_outward_tensioner_thickness_qt" ui="lineedit" />

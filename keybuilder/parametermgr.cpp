@@ -3,7 +3,6 @@
 #include <QRegularExpressionMatchIterator>
 #include <QScriptEngine>
 #include <QFile>
-#include <QTextStream>
 #include <QDebug>
 
 // Application
@@ -55,11 +54,6 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
                 qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
             }
             QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-            if (sParameterVariable == "qt_extra_material_shape_01_use_qt")
-            {
-                int x = 0;
-            }
-
             if (sParameterVariable.simplified().isEmpty())
             {
                 qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
@@ -180,7 +174,7 @@ double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucce
             bSuccess = false;
             break;
         }
-        sMatchedScript = sMatchedScript.replace(sParameterVariableName, pParameter->value());
+        sMatchedScript.replace(sParameterVariableName, pParameter->value());
     }
     if (bSuccess)
     {
@@ -214,12 +208,12 @@ bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bo
         }
         if (pParameter->type() == PROPERTY_STRING)
         {
-            sMatchedScript = sMatchedScript.replace("&quot;", "\"");
+            sMatchedScript.replace("&quot;", "\"");
             QString sQuotedString = QString("\"%1\"").arg(pParameter->value());
-            sMatchedScript = sMatchedScript.replace(sParameterVariableName, sQuotedString);
+            sMatchedScript.replace(sParameterVariableName, sQuotedString);
         }
         else
-            sMatchedScript = sMatchedScript.replace(sParameterVariableName, pParameter->value());
+            sMatchedScript.replace(sParameterVariableName, pParameter->value());
     }
     if (bSuccess)
     {
@@ -297,9 +291,21 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
 
 void ParameterMgr::generateScript()
 {
-    QString sInFile = "D:/projects/keymanager/keybuilder/data/script_in.scad";
-    QString sOutFile = "D:/projects/keymanager/keybuilder/data/script_out.scad";
+    QString sInFile = ":/data/script_in.scad";
+    QString sOutFile = "script_out.scad";
     ScriptMgr::generateScript(sInFile, sOutFile, m_hParameters.values());
+
+    QFile outputScriptFile(sOutFile);
+    if (outputScriptFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream outStream(&outputScriptFile);
+        QString sOutputString = outStream.readAll();
+        outputScriptFile.close();
+        QVector<QString> vUnReplacedVariables = extractVariableNames(sOutputString);
+        qDebug() << "COULD NOT REPLACE THE FOLLOWING VARIABLES: ";
+        foreach (QString sUnReplacedVariable, vUnReplacedVariables)
+            qDebug() << sUnReplacedVariable << "\n";
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

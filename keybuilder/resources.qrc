@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>data/menu1.xml</file>
-        <file>data/MENU 2.txt</file>
         <file>data/menu2.xml</file>
-        <file>data/MENU 1.txt</file>
-        <file>data/MENU 3.txt</file>
         <file>data/menu3.xml</file>
+        <file>data/script_in.scad</file>
     </qresource>
 </RCC>

@@ -6,11 +6,11 @@
          <Parameter variable="qt_regular_row1_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row1_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row1_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row1_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
@@ -38,7 +38,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW2" exclusive="false" set_variable="qt_regular_row2_cut_use_qt">
          <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
@@ -46,9 +46,9 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row2_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row2_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row2_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row2_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row2_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row2_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row2_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row2_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row2_cut_to_use_qt" value="prism_cut">
@@ -76,7 +76,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW3" set_variable="qt_regular_row3_cut_use_qt">
          <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
@@ -84,9 +84,9 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row3_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row3_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row3_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row3_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row3_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row3_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row3_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row3_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row3_cut_to_use_qt" value="prism_cut">
@@ -114,7 +114,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW4" set_variable="qt_regular_row4_cut_use_qt">
          <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
@@ -122,9 +122,9 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row4_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row4_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row4_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row4_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row4_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row4_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row4_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row4_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row4_cut_to_use_qt" value="prism_cut">
@@ -152,7 +152,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW5" set_variable="qt_regular_row5_cut_use_qt">
          <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
@@ -160,9 +160,9 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row5_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row5_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row5_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row5_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row5_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row5_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row5_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row5_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row5_cut_to_use_qt" value="prism_cut">
@@ -190,7 +190,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW6" set_variable="qt_regular_row6_cut_use_qt">
          <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
@@ -198,9 +198,9 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row6_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR" type="double" variable="qt_regular_row6_mirror_qt" ui="double_triplet" />
-         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row6_shoulder_distance_qt" ui="double_triplet" />
-         <Parameter name="NTERPIN SPACE" type="double" variable="qt_regular_row6_interpin_space_qt" ui="lineedit" />
+         <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row6_mirror_qt" ui="double_triplet" />
+         <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row6_shoulder_distance_qt" ui="lineedit" />
+         <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row6_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row6_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row6_cut_to_use_qt" value="prism_cut">
@@ -228,10 +228,10 @@
                 <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter columnlabels="DEPTH,ANGLE,Z DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;round_pump&amp;quot;) || (qt_type_of_key_qt == &amp;quot;round_stl&amp;quot;)">
+   <Block name="ROUND PUMP/TUBULAR (ACTIVE ONLY IF ROUND PUMP/TUBULAR OR ROUND PUMP STL IS SELECTED IN MENU 1)" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;round_pump&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;) || (qt_type_of_key_qt == &amp;quot;round_stl&amp;quot;)">
       <Parameter variable="qt_round_pump_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
@@ -259,7 +259,7 @@
          <Parameter columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row2" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_classic&amp;quot;)">
+   <Block name="ABLOY CLASSIC (ACTIVE ONLY IF ABLOY CLASSIC IS SELECTED IN MENU 1)" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_classic&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_abloy_classic_cut_use_qt" type="boolean" default="NO"/>
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
@@ -270,7 +270,7 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_classic_distance_from_tip_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_classic_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)" set_variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_disklock&amp;quot;)">
+   <Block name="ABLOY DISKLOCK PRO (ACTIVE ONLY IF ABLOY DISKLOCK IS SELECTED IN MENU 1)" set_variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_disklock&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_abloy_disklock_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_disklock_length_qt" default="34" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_disklock_number_of_discs_qt" ui="lineedit" />
@@ -280,7 +280,7 @@
       <Parameter name="GROOVE AT THE TIP" type="double" variable="qt_abloy_disklock_groove_at_the_tip_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_disklock_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)" set_variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_protec&amp;quot;)">
+   <Block name="ABLOY PROTEC (ACTIVE ONLY IF ABLOY PROTEC IS SELECTED IN MENU 1)" set_variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_protec&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_abloy_protec_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_protec_length_qt" default="30" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
@@ -291,7 +291,7 @@
       <Parameter name="THINNER AT THE TIP" labels="YES,NO" values="YES,NO" type="string" variable="qt_abloy_protec_thinner_at_the_tip_qt" default="NO" ui="exclusivechoice" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_protec_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)" set_variable="qt_abus_plus_cut_qt" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;)">
+   <Block name="ABUS PLUS OR STANDARD DISC KEY (ACTIVE ONLY IF ABUS PLUS IS SELECTED IN MENU 1)" set_variable="qt_abus_plus_cut_qt" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_abus_plus_cut_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abus_plus_length_qt" default="33" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
@@ -300,7 +300,7 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abus_plus_distance_from_tip_qt" default="4" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abus_plus_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)" set_variable="qt_axi_home_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;axi_home&amp;quot;)">
+   <Block name="AXI HOME (ACTIVE ONLY IF AXI HOME IS SELECTED IN MENU 1)" set_variable="qt_axi_home_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;axi_home&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_axi_home_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="SIDE OF PROFILE" labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_side_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="TOP" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_top_row_qt" default="ROW1" ui="exclusivechoice" />
@@ -319,7 +319,7 @@
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row3_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)" set_variable="qt_fichet_787_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;)">
+   <Block name="FICHET 787 (ACTIVE ONLY IF FICHET 787 IS SELECTED IN MENU 1)" set_variable="qt_fichet_787_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
       <Parameter variable="qt_fichet_787_cut_use_qt" type="boolean" default="NO"/>
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>

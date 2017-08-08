@@ -76,8 +76,8 @@ QString DoubleTripletWidget::value() const
 void DoubleTripletWidget::applyDefaultValue()
 {
     QString sFormattedDefaultValue = m_sDefaultValue;
-    sFormattedDefaultValue = sFormattedDefaultValue.replace("[", "");
-    sFormattedDefaultValue = sFormattedDefaultValue.replace("]", "");
+    sFormattedDefaultValue.replace("[", "");
+    sFormattedDefaultValue.replace("]", "");
     QStringList lSplitted = sFormattedDefaultValue.split(",");
     if (lSplitted.size() != 3)
     {
