@@ -48,3 +48,11 @@ void DXForSTLFilePicker::onSelectDXF()
         emit parameterValueChanged(m_sDXFVariable, sFileName);
     }
 }
+
+//-------------------------------------------------------------------------------------------------
+
+void DXForSTLFilePicker::applyDefaultValue()
+{
+    ui->dxfLineEdit->setText(m_sDefaultValue);
+    ui->stlLineEdit->setText(m_sDefaultValue);
+}

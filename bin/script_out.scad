@@ -3,147 +3,147 @@
 //include <data.txt>
 
 //WHAT CUTS TO USE
-regular_cut_use =                             qt_regular_cut_use_qt;
-    regular_row1_cut_use =                        qt_regular_row1_cut_use_qt;
-    regular_row2_cut_use =                        qt_regular_row2_cut_use_qt;
-    regular_row3_cut_use =                        qt_regular_row3_cut_use_qt;
-    regular_row4_cut_use =                        qt_regular_row4_cut_use_qt;
-    regular_row5_cut_use =                        qt_regular_row5_cut_use_qt;
-    regular_row6_cut_use =                        qt_regular_row6_cut_use_qt;
-round_pump_cut_use =                          qt_round_pump_cut_use_qt;
-lever_lock_cut_use =                          qt_lever_lock_cut_use_qt;
-    lever_lock_row1_cut_use =                     qt_lever_lock_row1_cut_use_qt;
-    lever_lock_row2_cut_use =                     qt_lever_lock_row2_cut_use_qt;
-abloy_classic_cut_use =                       qt_abloy_classic_cut_use_qt;
-abloy_disklock_cut_use =                      qt_abloy_disklock_cut_use_qt;
-abloy_protec_cut_use =                        qt_abloy_protec_cut_use_qt;
-abus_plus_cut =                               qt_abus_plus_cut_qt;
-axi_home_cut_use =                            qt_axi_home_cut_use_qt;
-fichet_787_cut_use =                          qt_fichet_787_cut_use_qt;
-extra_cut_use =                               qt_extra_cut_use_qt;
-    extra_cut_shape01_use =                       qt_extra_cut_shape01_use_qt;
-    extra_cut_shape02_use =                       qt_extra_cut_shape02_use_qt;
-    extra_cut_shape03_use =                       qt_extra_cut_shape03_use_qt;
-    extra_cut_shape04_use =                       qt_extra_cut_shape04_use_qt;
-    extra_cut_shape05_use =                       qt_extra_cut_shape05_use_qt;
-    extra_cut_shape06_use =                       qt_extra_cut_shape06_use_qt;
-    extra_cut_shape07_use =                       qt_extra_cut_shape07_use_qt;
-    extra_cut_shape08_use =                       qt_extra_cut_shape08_use_qt;
-    extra_cut_shape09_use =                       qt_extra_cut_shape09_use_qt;
-    extra_cut_shape10_use =                       qt_extra_cut_shape10_use_qt;
+regular_cut_use =                             "NO";
+    regular_row1_cut_use =                        "NO";
+    regular_row2_cut_use =                        "NO";
+    regular_row3_cut_use =                        "NO";
+    regular_row4_cut_use =                        "NO";
+    regular_row5_cut_use =                        "NO";
+    regular_row6_cut_use =                        "NO";
+round_pump_cut_use =                          "NO";
+lever_lock_cut_use =                          "NO";
+    lever_lock_row1_cut_use =                     "NO";
+    lever_lock_row2_cut_use =                     "NO";
+abloy_classic_cut_use =                       "NO";
+abloy_disklock_cut_use =                      "NO";
+abloy_protec_cut_use =                        "NO";
+abus_plus_cut =                               "NO";
+axi_home_cut_use =                            "NO";
+fichet_787_cut_use =                          "NO";
+extra_cut_use =                               "NO";
+    extra_cut_shape01_use =                       "NO";
+    extra_cut_shape02_use =                       "NO";
+    extra_cut_shape03_use =                       "NO";
+    extra_cut_shape04_use =                       "NO";
+    extra_cut_shape05_use =                       "NO";
+    extra_cut_shape06_use =                       "NO";
+    extra_cut_shape07_use =                       "NO";
+    extra_cut_shape08_use =                       "NO";
+    extra_cut_shape09_use =                       "NO";
+    extra_cut_shape10_use =                       "NO";
 
 
 //WHAT ADDITION TO MAKE
-automatic_key_head_and_shoulder=qt_automatic_key_head_and_shoulder_qt;
+automatic_key_head_and_shoulder="NO";
 
-extra_material_use =                  qt_extra_material_use_qt;
-    extra_material_shape01_use =          qt_extra_material_shape01_use_qt;
-    extra_material_shape02_use =          qt_extra_material_shape02_use_qt;
-    extra_material_shape03_use =          qt_extra_material_shape03_use_qt;
-    extra_material_shape04_use =          qt_extra_material_shape04_use_qt;
-    extra_material_shape05_use =          qt_extra_material_shape05_use_qt;
-    extra_material_shape06_use =          qt_extra_material_shape06_use_qt;
-    extra_material_shape07_use =          qt_extra_material_shape07_use_qt;
-    extra_material_shape08_use =          qt_extra_material_shape08_use_qt;
-    extra_material_shape09_use =          qt_extra_material_shape09_use_qt;
-    extra_material_shape10_use =          qt_extra_material_shape10_use_qt;
+extra_material_use =                  "NO";
+    extra_material_shape01_use =          "NO";
+    extra_material_shape02_use =          "NO";
+    extra_material_shape03_use =          "NO";
+    extra_material_shape04_use =          "NO";
+    extra_material_shape05_use =          "NO";
+    extra_material_shape06_use =          "NO";
+    extra_material_shape07_use =          "NO";
+    extra_material_shape08_use =          "NO";
+    extra_material_shape09_use =          "NO";
+    extra_material_shape10_use =          "NO";
 
 //BLANKS PARAMETERS
-$fn=qt_fn_qt;
+$fn=20;
 
-epsilon = qt_epsilon_qt ;
-tolerance = qt_tolerance_qt ;
+epsilon = 0.1 ;
+tolerance = 0.1 ;
 
-type_of_key = qt_type_of_key_qt ;//can be regular, dimple_laser, round_pump, round_stl, lever_simple, lever_double, abloy_classic, abloy_disklock, abloy_protec, abus_plus, axi_home, fichet_787, expert_stl
+type_of_key = "regular" ;//can be regular, dimple_laser, round_pump, round_stl, lever_simple, lever_double, abloy_classic, abloy_disklock, abloy_protec, abus_plus, axi_home, fichet_787, expert_stl
 
 //PARAMETERS OF REGULAR BLANK
-regular_length = qt_regular_length_qt;
-regular_height = qt_regular_height_qt;
-regular_thickness = qt_regular_thickness_qt;
-regular_auto_tip = qt_regular_auto_tip_qt;
-regular_dxf_name = qt_regular_dxf_name_qt;
-regular_stl_name = qt_regular_stl_name_qt;
+regular_length = 0;
+regular_height = 0;
+regular_thickness = 0;
+regular_auto_tip = "NO";
+regular_dxf_name = "0";
+regular_stl_name = "0";
 
 //PARAMETERS OF DIMPLE AND LASER BLANK
-dimple_laser_length = qt_dimple_laser_length_qt;
-dimple_laser_width = qt_dimple_laser_width_qt;
-dimple_laser_thickness = qt_dimple_laser_thickness_qt;
-dimple_laser_dxf_name = qt_dimple_laser_dxf_name_qt;
-dimple_laser_stl_name = qt_dimple_laser_stl_name_qt;
+dimple_laser_length = 0;
+dimple_laser_width = 0;
+dimple_laser_thickness = 0;
+dimple_laser_dxf_name = "0";
+dimple_laser_stl_name = "0";
 
 
 //PARAMETERS OF ROUND PUMP BLANK
-round_pump_length = qt_round_pump_length_qt;
-round_pump_diameter = qt_round_pump_diameter_qt;
-round_pump_number_of_raised_wings = qt_round_pump_number_of_raised_wings_qt;
-round_pump_raised_diameter = qt_round_pump_raised_diameter_qt;
-round_pump_raised_length_from_tip = qt_round_pump_raised_length_from_tip_qt;
-round_pump_raised_thickness = qt_round_pump_raised_thickness_qt;
-round_pump_tip_hole_diameter = qt_round_pump_tip_hole_diameter_qt;
-round_pump_tip_hole_depth = qt_round_pump_tip_hole_depth_qt;
-round_pump_outward_tensioner_length = qt_round_pump_outward_tensioner_length_qt;
-round_pump_outward_tensioner_height = qt_round_pump_outward_tensioner_height_qt;
-round_pump_outward_tensioner_thickness = qt_round_pump_outward_tensioner_thickness_qt;
-round_pump_inward_tensioner_length = qt_round_pump_inward_tensioner_length_qt;
-round_pump_inward_tensioner_height = qt_round_pump_inward_tensioner_height_qt;
-round_pump_inward_tensioner_thickness = qt_round_pump_inward_tensioner_thickness_qt;
+round_pump_length = 0;
+round_pump_diameter = 0;
+round_pump_number_of_raised_wings = 0;
+round_pump_raised_diameter = 0;
+round_pump_raised_length_from_tip = 0;
+round_pump_raised_thickness = 0;
+round_pump_tip_hole_diameter = 0;
+round_pump_tip_hole_depth = 0;
+round_pump_outward_tensioner_length = 0;
+round_pump_outward_tensioner_height = 0;
+round_pump_outward_tensioner_thickness = 0;
+round_pump_inward_tensioner_length = 0;
+round_pump_inward_tensioner_height = 0;
+round_pump_inward_tensioner_thickness = 0;
 
 
 //PARAMETERS OF ROUND PUMP STL BLANK
-round_stl_name = qt_round_stl_name_qt;
-round_stl_tx = qt_round_stl_tx_qt;
-round_stl_ty = qt_round_stl_ty_qt;
-round_stl_tz = qt_round_stl_tz_qt;
-round_stl_rx = qt_round_stl_rx_qt;
-round_stl_ry = qt_round_stl_ry_qt;
-round_stl_rz = qt_round_stl_rz_qt;
+round_stl_name = "0";
+round_stl_tx = 0;
+round_stl_ty = 0;
+round_stl_tz = 0;
+round_stl_rx = 0;
+round_stl_ry = 0;
+round_stl_rz = 0;
 
 
 
 //PARAMETERS OF LEVER LOCK SIMPLE BLANK
-lever_simple_body_length = qt_lever_simple_body_length_qt;
-lever_simple_body_diameter = qt_lever_simple_body_diameter_qt;
-lever_simple_blade_length = qt_lever_simple_blade_length_qt;
-lever_simple_blade_height = qt_lever_simple_blade_height_qt; //from the middle
-lever_simple_blade_thickness = qt_lever_simple_blade_thickness_qt;
-lever_simple_tip_length = qt_lever_simple_tip_length_qt;
-lever_simple_tip_hole_diameter = qt_lever_simple_tip_hole_diameter_qt;
-lever_simple_tip_hole_depth = qt_lever_simple_tip_hole_depth_qt;
+lever_simple_body_length = 0;
+lever_simple_body_diameter = 0;
+lever_simple_blade_length = 0;
+lever_simple_blade_height = 0; //from the middle
+lever_simple_blade_thickness = 0;
+lever_simple_tip_length = 0;
+lever_simple_tip_hole_diameter = 0;
+lever_simple_tip_hole_depth = 0;
          
 //PARAMETERS OF LEVER LOCK DOUBLE BLANK
-lever_double_body_length = qt_lever_double_body_length_qt;
-lever_double_body_diameter = qt_lever_double_body_diameter_qt;
-lever_double_blade_length = qt_lever_double_blade_length_qt;
-lever_double_blade_height = qt_lever_double_blade_height_qt; //from the middle
-lever_double_blade_offset = qt_lever_double_blade_offset_qt;
-lever_double_blade_thickness = qt_lever_double_blade_thickness_qt;
-lever_double_tip_length = qt_lever_double_tip_length_qt;
-lever_double_tip_hole_diameter = qt_lever_double_tip_hole_diameter_qt;
-lever_double_tip_hole_depth = qt_lever_double_tip_hole_depth_qt;   
+lever_double_body_length = 0;
+lever_double_body_diameter = 0;
+lever_double_blade_length = 0;
+lever_double_blade_height = 0; //from the middle
+lever_double_blade_offset = 0;
+lever_double_blade_thickness = 0;
+lever_double_tip_length = 0;
+lever_double_tip_hole_diameter = 0;
+lever_double_tip_hole_depth = 0;   
 
 
 //PARAMETERS OF ABLOY CLASSIC
-abloy_classic_length =    qt_abloy_classic_length_qt;
-abloy_classic_height =    qt_abloy_classic_height_qt;
-abloy_classic_thickness = qt_abloy_classic_thickness_qt;
-abloy_classic_dxf_name =  qt_abloy_classic_dxf_name_qt;
-abloy_classic_stl_name =  qt_abloy_classic_stl_name_qt;
+abloy_classic_length =    30;
+abloy_classic_height =    6;
+abloy_classic_thickness = 3;
+abloy_classic_dxf_name =  "0";
+abloy_classic_stl_name =  "0";
 
 
 //PARAMETERS OF ABLOY DISKLOCK
-abloy_disklock_length =   qt_abloy_disklock_length_qt; //DEFAULT 34
+abloy_disklock_length =   34; //DEFAULT 34
 
 
 //PARAMETERS OF ABLOY PROTEC
-abloy_protec_length =     qt_abloy_protec_length_qt;
+abloy_protec_length =     30;
 
 
 //PARAMETERS OF ABUS PLUS
-abus_plus_length =        qt_abus_plus_length_qt;
+abus_plus_length =        33;
 
 
 //PARAMETERS OF AXI HOME
-axi_home_model =            qt_axi_home_model_qt;
+axi_home_model =            "RIGHT";
 axi_home_blank_length =     23.8 ; //CONSTANT DEFAULT 23.8
 axi_home_key_thickness =    5.24 ; //CONSTANT DEFAULT 5.24
 axi_home_key_width =        5.66 ; //CONSTANT DEFAULT 5.66
@@ -171,601 +171,601 @@ fichet_787_dist_cut_9 = fichet_787_dist_cut_8 - fichet_787_dist_cut ;
 fichet_787_dist_cut_10 = fichet_787_dist_cut_9 - fichet_787_dist_cut ;
 
 //PARAMETERS OF EXPERT STL
-expert_stl_name =           qt_expert_stl_name_qt;
-expert_stl_set_dimensions = qt_expert_stl_set_dimensions_qt;
-expert_stl_dx =             qt_expert_stl_dx_qt;
-expert_stl_dy =             qt_expert_stl_dy_qt;
-expert_stl_dz =             qt_expert_stl_dz_qt;
-expert_stl_rx =             qt_expert_stl_rx_qt;
-expert_stl_ry =             qt_expert_stl_ry_qt;
-expert_stl_rz =             qt_expert_stl_rz_qt;
-expert_stl_tx =             qt_expert_stl_tx_qt;
-expert_stl_ty =             qt_expert_stl_ty_qt;
-expert_stl_tz =             qt_expert_stl_tz_qt;
+expert_stl_name =           "0";
+expert_stl_set_dimensions = "YES";
+expert_stl_dx =             0;
+expert_stl_dy =             0;
+expert_stl_dz =             0;
+expert_stl_rx =             0;
+expert_stl_ry =             0;
+expert_stl_rz =             0;
+expert_stl_tx =             0;
+expert_stl_ty =             0;
+expert_stl_tz =             0;
 //END OF BLANKS PARAMETERS
 
 //PARAMETERS OF REGULAR DIMPLE LASER
 //PARAMETERS OF ROW1
-regular_row1_number_of_pins = qt_regular_row1_number_of_pins_qt;
-regular_row1_offset_on_x = qt_regular_row1_offset_on_x_qt;
-regular_row1_offset_on_z = qt_regular_row1_offset_on_z_qt;
-regular_row1_angle_on_y = qt_regular_row1_angle_on_y_qt;
-regular_row1_mirror = qt_regular_row1_mirror_qt;
-regular_row1_linked = qt_regular_row1_linked_qt;
-regular_row1_link_root_addition = qt_regular_row1_link_root_addition_qt;
-regular_row1_shoulder_distance = qt_regular_row1_shoulder_distance_qt;
-regular_row1_interpin_space = qt_regular_row1_interpin_space_qt;
+regular_row1_number_of_pins = 0;
+regular_row1_offset_on_x = 0;
+regular_row1_offset_on_z = 0;
+regular_row1_angle_on_y = 0;
+regular_row1_mirror = [0,0,0];
+regular_row1_linked = "NO";
+regular_row1_link_root_addition = 0;
+regular_row1_shoulder_distance = 0;
+regular_row1_interpin_space = 0;
 //PARAMETERS OF ROW1 CUT SHAPE
-regular_row1_cut_to_use = qt_regular_row1_cut_to_use_qt;
-regular_row1_prism_root_x = qt_regular_row1_prism_root_x_qt; 
-regular_row1_prism_root_y = qt_regular_row1_prism_root_y_qt;
-regular_row1_prism_angle_x = qt_regular_row1_prism_angle_x_qt;
-regular_row1_prism_angle_y = qt_regular_row1_prism_angle_y_qt;
-regular_row1_prism_height = qt_regular_row1_prism_height_qt;
-regular_row1_cone_height = qt_regular_row1_cone_height_qt;
-regular_row1_cone_bottom_diameter = qt_regular_row1_cone_bottom_diameter_qt;
-regular_row1_cone_angle = qt_regular_row1_cone_angle_qt; 
-regular_row1_cone_number_of_faces = qt_regular_row1_cone_number_of_faces_qt;
-regular_row1_laser_mill_height = qt_regular_row1_laser_mill_height_qt;
-regular_row1_laser_mill_diameter = qt_regular_row1_laser_mill_diameter_qt;
-regular_row1_laser_mill_number_of_faces = qt_regular_row1_laser_mill_number_of_faces_qt;
-regular_row1_laser_mill_center = qt_regular_row1_laser_mill_center_qt;
-regular_row1_stl_mill_name = qt_regular_row1_stl_mill_name_qt;
+regular_row1_cut_to_use = "0";
+regular_row1_prism_root_x = 0; 
+regular_row1_prism_root_y = 0;
+regular_row1_prism_angle_x = 0;
+regular_row1_prism_angle_y = 0;
+regular_row1_prism_height = 0;
+regular_row1_cone_height = 0;
+regular_row1_cone_bottom_diameter = 0;
+regular_row1_cone_angle = 0; 
+regular_row1_cone_number_of_faces = 0;
+regular_row1_laser_mill_height = 0;
+regular_row1_laser_mill_diameter = 0;
+regular_row1_laser_mill_number_of_faces = 0;
+regular_row1_laser_mill_center = "NO";
+regular_row1_stl_mill_name = "0";
 //PARAMETERS OF ROW1 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row1_cut01_depth = qt_regular_row1_cut01_depth_qt;
-regular_row1_cut01_distance = qt_regular_row1_cut01_distance_qt;
-regular_row1_cut01_angle = qt_regular_row1_cut01_angle_qt;
-regular_row1_cut02_depth = qt_regular_row1_cut02_depth_qt;
-regular_row1_cut02_distance = qt_regular_row1_cut02_distance_qt;
-regular_row1_cut02_angle = qt_regular_row1_cut02_angle_qt;
-regular_row1_cut03_depth = qt_regular_row1_cut03_depth_qt;
-regular_row1_cut03_distance = qt_regular_row1_cut03_distance_qt;
-regular_row1_cut03_angle = qt_regular_row1_cut03_angle_qt;
-regular_row1_cut04_depth = qt_regular_row1_cut04_depth_qt;
-regular_row1_cut04_distance = qt_regular_row1_cut04_distance_qt;
-regular_row1_cut04_angle = qt_regular_row1_cut04_angle_qt;
-regular_row1_cut05_depth = qt_regular_row1_cut05_depth_qt;
-regular_row1_cut05_distance = qt_regular_row1_cut05_distance_qt;
-regular_row1_cut05_angle = qt_regular_row1_cut05_angle_qt;
-regular_row1_cut06_depth = qt_regular_row1_cut06_depth_qt;
-regular_row1_cut06_distance = qt_regular_row1_cut06_distance_qt;
-regular_row1_cut06_angle = qt_regular_row1_cut06_angle_qt;
-regular_row1_cut07_depth = qt_regular_row1_cut07_depth_qt;
-regular_row1_cut07_distance = qt_regular_row1_cut07_distance_qt;
-regular_row1_cut07_angle = qt_regular_row1_cut07_angle_qt;
-regular_row1_cut08_depth = qt_regular_row1_cut08_depth_qt;
-regular_row1_cut08_distance = qt_regular_row1_cut08_distance_qt;
-regular_row1_cut08_angle = qt_regular_row1_cut08_angle_qt;
-regular_row1_cut09_depth = qt_regular_row1_cut09_depth_qt;
-regular_row1_cut09_distance = qt_regular_row1_cut09_distance_qt;
-regular_row1_cut09_angle = qt_regular_row1_cut09_angle_qt;
-regular_row1_cut10_depth = qt_regular_row1_cut10_depth_qt;
-regular_row1_cut10_distance = qt_regular_row1_cut10_distance_qt;
-regular_row1_cut10_angle = qt_regular_row1_cut10_angle_qt;
-regular_row1_cut11_depth = qt_regular_row1_cut11_depth_qt;
-regular_row1_cut11_distance = qt_regular_row1_cut11_distance_qt;
-regular_row1_cut11_angle = qt_regular_row1_cut11_angle_qt;
-regular_row1_cut12_depth = qt_regular_row1_cut12_depth_qt;
-regular_row1_cut12_distance = qt_regular_row1_cut12_distance_qt;
-regular_row1_cut12_angle = qt_regular_row1_cut12_angle_qt;
-regular_row1_cut13_depth = qt_regular_row1_cut13_depth_qt;
-regular_row1_cut13_distance = qt_regular_row1_cut13_distance_qt;
-regular_row1_cut13_angle = qt_regular_row1_cut13_angle_qt;
-regular_row1_cut14_depth = qt_regular_row1_cut14_depth_qt;
-regular_row1_cut14_distance = qt_regular_row1_cut14_distance_qt;
-regular_row1_cut14_angle = qt_regular_row1_cut14_angle_qt;
-regular_row1_cut15_depth = qt_regular_row1_cut15_depth_qt;
-regular_row1_cut15_distance = qt_regular_row1_cut15_distance_qt;
-regular_row1_cut15_angle = qt_regular_row1_cut15_angle_qt;
-regular_row1_cut16_depth = qt_regular_row1_cut16_depth_qt;
-regular_row1_cut16_distance = qt_regular_row1_cut16_distance_qt;
-regular_row1_cut16_angle = qt_regular_row1_cut16_angle_qt;
-regular_row1_cut17_depth = qt_regular_row1_cut17_depth_qt;
-regular_row1_cut17_distance = qt_regular_row1_cut17_distance_qt;
-regular_row1_cut17_angle = qt_regular_row1_cut17_angle_qt;
-regular_row1_cut18_depth = qt_regular_row1_cut18_depth_qt;
-regular_row1_cut18_distance = qt_regular_row1_cut18_distance_qt;
-regular_row1_cut18_angle = qt_regular_row1_cut18_angle_qt;
-regular_row1_cut19_depth = qt_regular_row1_cut19_depth_qt;
-regular_row1_cut19_distance = qt_regular_row1_cut19_distance_qt;
-regular_row1_cut19_angle = qt_regular_row1_cut19_angle_qt;
-regular_row1_cut20_depth = qt_regular_row1_cut20_depth_qt;
-regular_row1_cut20_distance = qt_regular_row1_cut20_distance_qt;
-regular_row1_cut20_angle = qt_regular_row1_cut20_angle_qt;
-regular_row1_cut21_depth = qt_regular_row1_cut21_depth_qt;
-regular_row1_cut21_distance = qt_regular_row1_cut21_distance_qt;
-regular_row1_cut21_angle = qt_regular_row1_cut21_angle_qt;
-regular_row1_cut22_depth = qt_regular_row1_cut22_depth_qt;
-regular_row1_cut22_distance = qt_regular_row1_cut22_distance_qt;
-regular_row1_cut22_angle = qt_regular_row1_cut22_angle_qt;
+regular_row1_cut01_depth = 0;
+regular_row1_cut01_distance = 0;
+regular_row1_cut01_angle = 0;
+regular_row1_cut02_depth = 0;
+regular_row1_cut02_distance = 0;
+regular_row1_cut02_angle = 0;
+regular_row1_cut03_depth = 0;
+regular_row1_cut03_distance = 0;
+regular_row1_cut03_angle = 0;
+regular_row1_cut04_depth = 0;
+regular_row1_cut04_distance = 0;
+regular_row1_cut04_angle = 0;
+regular_row1_cut05_depth = 0;
+regular_row1_cut05_distance = 0;
+regular_row1_cut05_angle = 0;
+regular_row1_cut06_depth = 0;
+regular_row1_cut06_distance = 0;
+regular_row1_cut06_angle = 0;
+regular_row1_cut07_depth = 0;
+regular_row1_cut07_distance = 0;
+regular_row1_cut07_angle = 0;
+regular_row1_cut08_depth = 0;
+regular_row1_cut08_distance = 0;
+regular_row1_cut08_angle = 0;
+regular_row1_cut09_depth = 0;
+regular_row1_cut09_distance = 0;
+regular_row1_cut09_angle = 0;
+regular_row1_cut10_depth = 0;
+regular_row1_cut10_distance = 0;
+regular_row1_cut10_angle = 0;
+regular_row1_cut11_depth = 0;
+regular_row1_cut11_distance = 0;
+regular_row1_cut11_angle = 0;
+regular_row1_cut12_depth = 0;
+regular_row1_cut12_distance = 0;
+regular_row1_cut12_angle = 0;
+regular_row1_cut13_depth = 0;
+regular_row1_cut13_distance = 0;
+regular_row1_cut13_angle = 0;
+regular_row1_cut14_depth = 0;
+regular_row1_cut14_distance = 0;
+regular_row1_cut14_angle = 0;
+regular_row1_cut15_depth = 0;
+regular_row1_cut15_distance = 0;
+regular_row1_cut15_angle = 0;
+regular_row1_cut16_depth = 0;
+regular_row1_cut16_distance = 0;
+regular_row1_cut16_angle = 0;
+regular_row1_cut17_depth = 0;
+regular_row1_cut17_distance = 0;
+regular_row1_cut17_angle = 0;
+regular_row1_cut18_depth = 0;
+regular_row1_cut18_distance = 0;
+regular_row1_cut18_angle = 0;
+regular_row1_cut19_depth = 0;
+regular_row1_cut19_distance = 0;
+regular_row1_cut19_angle = 0;
+regular_row1_cut20_depth = 0;
+regular_row1_cut20_distance = 0;
+regular_row1_cut20_angle = 0;
+regular_row1_cut21_depth = 0;
+regular_row1_cut21_distance = 0;
+regular_row1_cut21_angle = 0;
+regular_row1_cut22_depth = 0;
+regular_row1_cut22_distance = 0;
+regular_row1_cut22_angle = 0;
 
 //PARAMETERS OF ROW2
-regular_row2_number_of_pins = qt_regular_row2_number_of_pins_qt;
-regular_row2_offset_on_x = qt_regular_row2_offset_on_x_qt;
-regular_row2_offset_on_z = qt_regular_row2_offset_on_z_qt;
-regular_row2_angle_on_y = qt_regular_row2_angle_on_y_qt;
-regular_row2_mirror = qt_regular_row2_mirror_qt;
-regular_row2_linked = qt_regular_row2_linked_qt;
-regular_row2_link_root_addition = qt_regular_row2_link_root_addition_qt;
-regular_row2_shoulder_distance = qt_regular_row2_shoulder_distance_qt;
-regular_row2_interpin_space = qt_regular_row2_interpin_space_qt;   
+regular_row2_number_of_pins = 0;
+regular_row2_offset_on_x = 0;
+regular_row2_offset_on_z = 0;
+regular_row2_angle_on_y = 0;
+regular_row2_mirror = [0,0,0];
+regular_row2_linked = "NO";
+regular_row2_link_root_addition = 0;
+regular_row2_shoulder_distance = 0;
+regular_row2_interpin_space = 0;   
 //PARAMETERS OF ROW2 CUT SHAPE
-regular_row2_cut_to_use = qt_regular_row2_cut_to_use_qt;
-regular_row2_prism_root_x = qt_regular_row2_prism_root_x_qt; 
-regular_row2_prism_root_y = qt_regular_row2_prism_root_y_qt;
-regular_row2_prism_angle_x = qt_regular_row2_prism_angle_x_qt;
-regular_row2_prism_angle_y = qt_regular_row2_prism_angle_y_qt;
-regular_row2_prism_height = qt_regular_row2_prism_height_qt;
-regular_row2_cone_height = qt_regular_row2_cone_height_qt;
-regular_row2_cone_bottom_diameter = qt_regular_row2_cone_bottom_diameter_qt;
-regular_row2_cone_angle = qt_regular_row2_cone_angle_qt; 
-regular_row2_cone_number_of_faces = qt_regular_row2_cone_number_of_faces_qt;
-regular_row2_laser_mill_height = qt_regular_row2_laser_mill_height_qt;
-regular_row2_laser_mill_diameter = qt_regular_row2_laser_mill_diameter_qt;
-regular_row2_laser_mill_number_of_faces = qt_regular_row2_laser_mill_number_of_faces_qt;
-regular_row2_laser_mill_center = qt_regular_row2_laser_mill_center_qt;  
-regular_row2_stl_mill_name = qt_regular_row2_stl_mill_name_qt;
+regular_row2_cut_to_use = "0";
+regular_row2_prism_root_x = 0; 
+regular_row2_prism_root_y = 0;
+regular_row2_prism_angle_x = 0;
+regular_row2_prism_angle_y = 0;
+regular_row2_prism_height = 0;
+regular_row2_cone_height = 0;
+regular_row2_cone_bottom_diameter = 0;
+regular_row2_cone_angle = 0; 
+regular_row2_cone_number_of_faces = 0;
+regular_row2_laser_mill_height = 0;
+regular_row2_laser_mill_diameter = 0;
+regular_row2_laser_mill_number_of_faces = 0;
+regular_row2_laser_mill_center = "NO";  
+regular_row2_stl_mill_name = "0";
 //PARAMETERS OF ROW2 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row2_cut01_depth = qt_regular_row2_cut01_depth_qt;
-regular_row2_cut01_distance = qt_regular_row2_cut01_distance_qt;
-regular_row2_cut01_angle = qt_regular_row2_cut01_angle_qt;
-regular_row2_cut02_depth = qt_regular_row2_cut02_depth_qt;
-regular_row2_cut02_distance = qt_regular_row2_cut02_distance_qt;
-regular_row2_cut02_angle = qt_regular_row2_cut02_angle_qt;
-regular_row2_cut03_depth = qt_regular_row2_cut03_depth_qt;
-regular_row2_cut03_distance = qt_regular_row2_cut03_distance_qt;
-regular_row2_cut03_angle = qt_regular_row2_cut03_angle_qt;
-regular_row2_cut04_depth = qt_regular_row2_cut04_depth_qt;
-regular_row2_cut04_distance = qt_regular_row2_cut04_distance_qt;
-regular_row2_cut04_angle = qt_regular_row2_cut04_angle_qt;
-regular_row2_cut05_depth = qt_regular_row2_cut05_depth_qt;
-regular_row2_cut05_distance = qt_regular_row2_cut05_distance_qt;
-regular_row2_cut05_angle = qt_regular_row2_cut05_angle_qt;
-regular_row2_cut06_depth = qt_regular_row2_cut06_depth_qt;
-regular_row2_cut06_distance = qt_regular_row2_cut06_distance_qt;
-regular_row2_cut06_angle = qt_regular_row2_cut06_angle_qt;
-regular_row2_cut07_depth = qt_regular_row2_cut07_depth_qt;
-regular_row2_cut07_distance = qt_regular_row2_cut07_distance_qt;
-regular_row2_cut07_angle = qt_regular_row2_cut07_angle_qt;
-regular_row2_cut08_depth = qt_regular_row2_cut08_depth_qt;
-regular_row2_cut08_distance = qt_regular_row2_cut08_distance_qt;
-regular_row2_cut08_angle = qt_regular_row2_cut08_angle_qt;
-regular_row2_cut09_depth = qt_regular_row2_cut09_depth_qt;
-regular_row2_cut09_distance = qt_regular_row2_cut09_distance_qt;
-regular_row2_cut09_angle = qt_regular_row2_cut09_angle_qt;
-regular_row2_cut10_depth = qt_regular_row2_cut10_depth_qt;
-regular_row2_cut10_distance = qt_regular_row2_cut10_distance_qt;
-regular_row2_cut10_angle = qt_regular_row2_cut10_angle_qt;
-regular_row2_cut11_depth = qt_regular_row2_cut11_depth_qt;
-regular_row2_cut11_distance = qt_regular_row2_cut11_distance_qt;
-regular_row2_cut11_angle = qt_regular_row2_cut11_angle_qt;
-regular_row2_cut12_depth = qt_regular_row2_cut12_depth_qt;
-regular_row2_cut12_distance = qt_regular_row2_cut12_distance_qt;
-regular_row2_cut12_angle = qt_regular_row2_cut12_angle_qt;
-regular_row2_cut13_depth = qt_regular_row2_cut13_depth_qt;
-regular_row2_cut13_distance = qt_regular_row2_cut13_distance_qt;
-regular_row2_cut13_angle = qt_regular_row2_cut13_angle_qt;
-regular_row2_cut14_depth = qt_regular_row2_cut14_depth_qt;
-regular_row2_cut14_distance = qt_regular_row2_cut14_distance_qt;
-regular_row2_cut14_angle = qt_regular_row2_cut14_angle_qt;
-regular_row2_cut15_depth = qt_regular_row2_cut15_depth_qt;
-regular_row2_cut15_distance = qt_regular_row2_cut15_distance_qt;
-regular_row2_cut15_angle = qt_regular_row2_cut15_angle_qt;
-regular_row2_cut16_depth = qt_regular_row2_cut16_depth_qt;
-regular_row2_cut16_distance = qt_regular_row2_cut16_distance_qt;
-regular_row2_cut16_angle = qt_regular_row2_cut16_angle_qt;
-regular_row2_cut17_depth = qt_regular_row2_cut17_depth_qt;
-regular_row2_cut17_distance = qt_regular_row2_cut17_distance_qt;
-regular_row2_cut17_angle = qt_regular_row2_cut17_angle_qt;
-regular_row2_cut18_depth = qt_regular_row2_cut18_depth_qt;
-regular_row2_cut18_distance = qt_regular_row2_cut18_distance_qt;
-regular_row2_cut18_angle = qt_regular_row2_cut18_angle_qt;
-regular_row2_cut19_depth = qt_regular_row2_cut19_depth_qt;
-regular_row2_cut19_distance = qt_regular_row2_cut19_distance_qt;
-regular_row2_cut19_angle = qt_regular_row2_cut19_angle_qt;
-regular_row2_cut20_depth = qt_regular_row2_cut20_depth_qt;
-regular_row2_cut20_distance = qt_regular_row2_cut20_distance_qt;
-regular_row2_cut20_angle = qt_regular_row2_cut20_angle_qt;
-regular_row2_cut21_depth = qt_regular_row2_cut21_depth_qt;
-regular_row2_cut21_distance = qt_regular_row2_cut21_distance_qt;
-regular_row2_cut21_angle = qt_regular_row2_cut21_angle_qt;
-regular_row2_cut22_depth = qt_regular_row2_cut22_depth_qt;
-regular_row2_cut22_distance = qt_regular_row2_cut22_distance_qt;
-regular_row2_cut22_angle = qt_regular_row2_cut22_angle_qt;
+regular_row2_cut01_depth = 0;
+regular_row2_cut01_distance = 0;
+regular_row2_cut01_angle = 0;
+regular_row2_cut02_depth = 0;
+regular_row2_cut02_distance = 0;
+regular_row2_cut02_angle = 0;
+regular_row2_cut03_depth = 0;
+regular_row2_cut03_distance = 0;
+regular_row2_cut03_angle = 0;
+regular_row2_cut04_depth = 0;
+regular_row2_cut04_distance = 0;
+regular_row2_cut04_angle = 0;
+regular_row2_cut05_depth = 0;
+regular_row2_cut05_distance = 0;
+regular_row2_cut05_angle = 0;
+regular_row2_cut06_depth = 0;
+regular_row2_cut06_distance = 0;
+regular_row2_cut06_angle = 0;
+regular_row2_cut07_depth = 0;
+regular_row2_cut07_distance = 0;
+regular_row2_cut07_angle = 0;
+regular_row2_cut08_depth = 0;
+regular_row2_cut08_distance = 0;
+regular_row2_cut08_angle = 0;
+regular_row2_cut09_depth = 0;
+regular_row2_cut09_distance = 0;
+regular_row2_cut09_angle = 0;
+regular_row2_cut10_depth = 0;
+regular_row2_cut10_distance = 0;
+regular_row2_cut10_angle = 0;
+regular_row2_cut11_depth = 0;
+regular_row2_cut11_distance = 0;
+regular_row2_cut11_angle = 0;
+regular_row2_cut12_depth = 0;
+regular_row2_cut12_distance = 0;
+regular_row2_cut12_angle = 0;
+regular_row2_cut13_depth = 0;
+regular_row2_cut13_distance = 0;
+regular_row2_cut13_angle = 0;
+regular_row2_cut14_depth = 0;
+regular_row2_cut14_distance = 0;
+regular_row2_cut14_angle = 0;
+regular_row2_cut15_depth = 0;
+regular_row2_cut15_distance = 0;
+regular_row2_cut15_angle = 0;
+regular_row2_cut16_depth = 0;
+regular_row2_cut16_distance = 0;
+regular_row2_cut16_angle = 0;
+regular_row2_cut17_depth = 0;
+regular_row2_cut17_distance = 0;
+regular_row2_cut17_angle = 0;
+regular_row2_cut18_depth = 0;
+regular_row2_cut18_distance = 0;
+regular_row2_cut18_angle = 0;
+regular_row2_cut19_depth = 0;
+regular_row2_cut19_distance = 0;
+regular_row2_cut19_angle = 0;
+regular_row2_cut20_depth = 0;
+regular_row2_cut20_distance = 0;
+regular_row2_cut20_angle = 0;
+regular_row2_cut21_depth = 0;
+regular_row2_cut21_distance = 0;
+regular_row2_cut21_angle = 0;
+regular_row2_cut22_depth = 0;
+regular_row2_cut22_distance = 0;
+regular_row2_cut22_angle = 0;
 
 //PARAMETERS OF ROW3
-regular_row3_number_of_pins = qt_regular_row3_number_of_pins_qt;
-regular_row3_offset_on_x = qt_regular_row3_offset_on_x_qt;
-regular_row3_offset_on_z = qt_regular_row3_offset_on_z_qt;
-regular_row3_angle_on_y = qt_regular_row3_angle_on_y_qt;
-regular_row3_mirror = qt_regular_row3_mirror_qt;
-regular_row3_linked = qt_regular_row3_linked_qt;
-regular_row3_link_root_addition = qt_regular_row3_link_root_addition_qt;
-regular_row3_shoulder_distance = qt_regular_row3_shoulder_distance_qt;
-regular_row3_interpin_space = qt_regular_row3_interpin_space_qt;
+regular_row3_number_of_pins = 0;
+regular_row3_offset_on_x = 0;
+regular_row3_offset_on_z = 0;
+regular_row3_angle_on_y = 0;
+regular_row3_mirror = [0,0,0];
+regular_row3_linked = "NO";
+regular_row3_link_root_addition = 0;
+regular_row3_shoulder_distance = 0;
+regular_row3_interpin_space = 0;
 //PARAMETERS OF ROW3 CUT SHAPE
-regular_row3_cut_to_use = qt_regular_row3_cut_to_use_qt;
-regular_row3_prism_root_x = qt_regular_row3_prism_root_x_qt; 
-regular_row3_prism_root_y = qt_regular_row3_prism_root_y_qt;
-regular_row3_prism_angle_x = qt_regular_row3_prism_angle_x_qt;
-regular_row3_prism_angle_y = qt_regular_row3_prism_angle_y_qt;
-regular_row3_prism_height = qt_regular_row3_prism_height_qt;
-regular_row3_cone_height = qt_regular_row3_cone_height_qt;
-regular_row3_cone_bottom_diameter = qt_regular_row3_cone_bottom_diameter_qt;
-regular_row3_cone_angle = qt_regular_row3_cone_angle_qt; 
-regular_row3_cone_number_of_faces = qt_regular_row3_cone_number_of_faces_qt;
-regular_row3_laser_mill_height = qt_regular_row3_laser_mill_height_qt;
-regular_row3_laser_mill_diameter = qt_regular_row3_laser_mill_diameter_qt;
-regular_row3_laser_mill_number_of_faces = qt_regular_row3_laser_mill_number_of_faces_qt;
-regular_row3_laser_mill_center = qt_regular_row3_laser_mill_center_qt;  
-regular_row3_stl_mill_name = qt_regular_row3_stl_mill_name_qt;
+regular_row3_cut_to_use = "0";
+regular_row3_prism_root_x = 0; 
+regular_row3_prism_root_y = 0;
+regular_row3_prism_angle_x = 0;
+regular_row3_prism_angle_y = 0;
+regular_row3_prism_height = 0;
+regular_row3_cone_height = 0;
+regular_row3_cone_bottom_diameter = 0;
+regular_row3_cone_angle = 0; 
+regular_row3_cone_number_of_faces = 0;
+regular_row3_laser_mill_height = 0;
+regular_row3_laser_mill_diameter = 0;
+regular_row3_laser_mill_number_of_faces = 0;
+regular_row3_laser_mill_center = "NO";  
+regular_row3_stl_mill_name = "0";
 //PARAMETERS OF ROW3 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row3_cut01_depth = qt_regular_row3_cut01_depth_qt;
-regular_row3_cut01_distance = qt_regular_row3_cut01_distance_qt;
-regular_row3_cut01_angle = qt_regular_row3_cut01_angle_qt;
-regular_row3_cut02_depth = qt_regular_row3_cut02_depth_qt;
-regular_row3_cut02_distance = qt_regular_row3_cut02_distance_qt;
-regular_row3_cut02_angle = qt_regular_row3_cut02_angle_qt;
-regular_row3_cut03_depth = qt_regular_row3_cut03_depth_qt;
-regular_row3_cut03_distance = qt_regular_row3_cut03_distance_qt;
-regular_row3_cut03_angle = qt_regular_row3_cut03_angle_qt;
-regular_row3_cut04_depth = qt_regular_row3_cut04_depth_qt;
-regular_row3_cut04_distance = qt_regular_row3_cut04_distance_qt;
-regular_row3_cut04_angle = qt_regular_row3_cut04_angle_qt;
-regular_row3_cut05_depth = qt_regular_row3_cut05_depth_qt;
-regular_row3_cut05_distance = qt_regular_row3_cut05_distance_qt;
-regular_row3_cut05_angle = qt_regular_row3_cut05_angle_qt;
-regular_row3_cut06_depth = qt_regular_row3_cut06_depth_qt;
-regular_row3_cut06_distance = qt_regular_row3_cut06_distance_qt;
-regular_row3_cut06_angle = qt_regular_row3_cut06_angle_qt;
-regular_row3_cut07_depth = qt_regular_row3_cut07_depth_qt;
-regular_row3_cut07_distance = qt_regular_row3_cut07_distance_qt;
-regular_row3_cut07_angle = qt_regular_row3_cut07_angle_qt;
-regular_row3_cut08_depth = qt_regular_row3_cut08_depth_qt;
-regular_row3_cut08_distance = qt_regular_row3_cut08_distance_qt;
-regular_row3_cut08_angle = qt_regular_row3_cut08_angle_qt;
-regular_row3_cut09_depth = qt_regular_row3_cut09_depth_qt;
-regular_row3_cut09_distance = qt_regular_row3_cut09_distance_qt;
-regular_row3_cut09_angle = qt_regular_row3_cut09_angle_qt;
-regular_row3_cut10_depth = qt_regular_row3_cut10_depth_qt;
-regular_row3_cut10_distance = qt_regular_row3_cut10_distance_qt;
-regular_row3_cut10_angle = qt_regular_row3_cut10_angle_qt;
-regular_row3_cut11_depth = qt_regular_row3_cut11_depth_qt;
-regular_row3_cut11_distance = qt_regular_row3_cut11_distance_qt;
-regular_row3_cut11_angle = qt_regular_row3_cut11_angle_qt;
-regular_row3_cut12_depth = qt_regular_row3_cut12_depth_qt;
-regular_row3_cut12_distance = qt_regular_row3_cut12_distance_qt;
-regular_row3_cut12_angle = qt_regular_row3_cut12_angle_qt;
-regular_row3_cut13_depth = qt_regular_row3_cut13_depth_qt;
-regular_row3_cut13_distance = qt_regular_row3_cut13_distance_qt;
-regular_row3_cut13_angle = qt_regular_row3_cut13_angle_qt;
-regular_row3_cut14_depth = qt_regular_row3_cut14_depth_qt;
-regular_row3_cut14_distance = qt_regular_row3_cut14_distance_qt;
-regular_row3_cut14_angle = qt_regular_row3_cut14_angle_qt;
-regular_row3_cut15_depth = qt_regular_row3_cut15_depth_qt;
-regular_row3_cut15_distance = qt_regular_row3_cut15_distance_qt;
-regular_row3_cut15_angle = qt_regular_row3_cut15_angle_qt;
-regular_row3_cut16_depth = qt_regular_row3_cut16_depth_qt;
-regular_row3_cut16_distance = qt_regular_row3_cut16_distance_qt;
-regular_row3_cut16_angle = qt_regular_row3_cut16_angle_qt;
-regular_row3_cut17_depth = qt_regular_row3_cut17_depth_qt;
-regular_row3_cut17_distance = qt_regular_row3_cut17_distance_qt;
-regular_row3_cut17_angle = qt_regular_row3_cut17_angle_qt;
-regular_row3_cut18_depth = qt_regular_row3_cut18_depth_qt;
-regular_row3_cut18_distance = qt_regular_row3_cut18_distance_qt;
-regular_row3_cut18_angle = qt_regular_row3_cut18_angle_qt;
-regular_row3_cut19_depth = qt_regular_row3_cut19_depth_qt;
-regular_row3_cut19_distance = qt_regular_row3_cut19_distance_qt;
-regular_row3_cut19_angle = qt_regular_row3_cut19_angle_qt;
-regular_row3_cut20_depth = qt_regular_row3_cut20_depth_qt;
-regular_row3_cut20_distance = qt_regular_row3_cut20_distance_qt;
-regular_row3_cut20_angle = qt_regular_row3_cut20_angle_qt;
-regular_row3_cut21_depth = qt_regular_row3_cut21_depth_qt;
-regular_row3_cut21_distance = qt_regular_row3_cut21_distance_qt;
-regular_row3_cut21_angle = qt_regular_row3_cut21_angle_qt;
-regular_row3_cut22_depth = qt_regular_row3_cut22_depth_qt;
-regular_row3_cut22_distance = qt_regular_row3_cut22_distance_qt;
-regular_row3_cut22_angle = qt_regular_row3_cut22_angle_qt;
+regular_row3_cut01_depth = 0;
+regular_row3_cut01_distance = 0;
+regular_row3_cut01_angle = 0;
+regular_row3_cut02_depth = 0;
+regular_row3_cut02_distance = 0;
+regular_row3_cut02_angle = 0;
+regular_row3_cut03_depth = 0;
+regular_row3_cut03_distance = 0;
+regular_row3_cut03_angle = 0;
+regular_row3_cut04_depth = 0;
+regular_row3_cut04_distance = 0;
+regular_row3_cut04_angle = 0;
+regular_row3_cut05_depth = 0;
+regular_row3_cut05_distance = 0;
+regular_row3_cut05_angle = 0;
+regular_row3_cut06_depth = 0;
+regular_row3_cut06_distance = 0;
+regular_row3_cut06_angle = 0;
+regular_row3_cut07_depth = 0;
+regular_row3_cut07_distance = 0;
+regular_row3_cut07_angle = 0;
+regular_row3_cut08_depth = 0;
+regular_row3_cut08_distance = 0;
+regular_row3_cut08_angle = 0;
+regular_row3_cut09_depth = 0;
+regular_row3_cut09_distance = 0;
+regular_row3_cut09_angle = 0;
+regular_row3_cut10_depth = 0;
+regular_row3_cut10_distance = 0;
+regular_row3_cut10_angle = 0;
+regular_row3_cut11_depth = 0;
+regular_row3_cut11_distance = 0;
+regular_row3_cut11_angle = 0;
+regular_row3_cut12_depth = 0;
+regular_row3_cut12_distance = 0;
+regular_row3_cut12_angle = 0;
+regular_row3_cut13_depth = 0;
+regular_row3_cut13_distance = 0;
+regular_row3_cut13_angle = 0;
+regular_row3_cut14_depth = 0;
+regular_row3_cut14_distance = 0;
+regular_row3_cut14_angle = 0;
+regular_row3_cut15_depth = 0;
+regular_row3_cut15_distance = 0;
+regular_row3_cut15_angle = 0;
+regular_row3_cut16_depth = 0;
+regular_row3_cut16_distance = 0;
+regular_row3_cut16_angle = 0;
+regular_row3_cut17_depth = 0;
+regular_row3_cut17_distance = 0;
+regular_row3_cut17_angle = 0;
+regular_row3_cut18_depth = 0;
+regular_row3_cut18_distance = 0;
+regular_row3_cut18_angle = 0;
+regular_row3_cut19_depth = 0;
+regular_row3_cut19_distance = 0;
+regular_row3_cut19_angle = 0;
+regular_row3_cut20_depth = 0;
+regular_row3_cut20_distance = 0;
+regular_row3_cut20_angle = 0;
+regular_row3_cut21_depth = 0;
+regular_row3_cut21_distance = 0;
+regular_row3_cut21_angle = 0;
+regular_row3_cut22_depth = 0;
+regular_row3_cut22_distance = 0;
+regular_row3_cut22_angle = 0;
 
 //PARAMETERS OF ROW4
-regular_row4_number_of_pins = qt_regular_row4_number_of_pins_qt;
-regular_row4_offset_on_x = qt_regular_row4_offset_on_x_qt;
-regular_row4_offset_on_z = qt_regular_row4_offset_on_z_qt;
-regular_row4_angle_on_y = qt_regular_row4_angle_on_y_qt;
-regular_row4_mirror = qt_regular_row4_mirror_qt;
-regular_row4_linked = qt_regular_row4_linked_qt;
-regular_row4_link_root_addition = qt_regular_row4_link_root_addition_qt;
-regular_row4_shoulder_distance = qt_regular_row4_shoulder_distance_qt;
-regular_row4_interpin_space = qt_regular_row4_interpin_space_qt;
+regular_row4_number_of_pins = 0;
+regular_row4_offset_on_x = 0;
+regular_row4_offset_on_z = 0;
+regular_row4_angle_on_y = 0;
+regular_row4_mirror = [0,0,0];
+regular_row4_linked = "NO";
+regular_row4_link_root_addition = 0;
+regular_row4_shoulder_distance = 0;
+regular_row4_interpin_space = 0;
 //PARAMETERS OF ROW4 CUT SHAPE
-regular_row4_cut_to_use = qt_regular_row4_cut_to_use_qt;
-regular_row4_prism_root_x = qt_regular_row4_prism_root_x_qt; 
-regular_row4_prism_root_y = qt_regular_row4_prism_root_y_qt;
-regular_row4_prism_angle_x = qt_regular_row4_prism_angle_x_qt;
-regular_row4_prism_angle_y = qt_regular_row4_prism_angle_y_qt;
-regular_row4_prism_height = qt_regular_row4_prism_height_qt;
-regular_row4_cone_height = qt_regular_row4_cone_height_qt;
-regular_row4_cone_bottom_diameter = qt_regular_row4_cone_bottom_diameter_qt;
-regular_row4_cone_angle = qt_regular_row4_cone_angle_qt; 
-regular_row4_cone_number_of_faces = qt_regular_row4_cone_number_of_faces_qt;
-regular_row4_laser_mill_height = qt_regular_row4_laser_mill_height_qt;
-regular_row4_laser_mill_diameter = qt_regular_row4_laser_mill_diameter_qt;
-regular_row4_laser_mill_number_of_faces = qt_regular_row4_laser_mill_number_of_faces_qt;
-regular_row4_laser_mill_center = qt_regular_row4_laser_mill_center_qt;  
-regular_row4_stl_mill_name = qt_regular_row4_stl_mill_name_qt;
+regular_row4_cut_to_use = "0";
+regular_row4_prism_root_x = 0; 
+regular_row4_prism_root_y = 0;
+regular_row4_prism_angle_x = 0;
+regular_row4_prism_angle_y = 0;
+regular_row4_prism_height = 0;
+regular_row4_cone_height = 0;
+regular_row4_cone_bottom_diameter = 0;
+regular_row4_cone_angle = 0; 
+regular_row4_cone_number_of_faces = 0;
+regular_row4_laser_mill_height = 0;
+regular_row4_laser_mill_diameter = 0;
+regular_row4_laser_mill_number_of_faces = 0;
+regular_row4_laser_mill_center = "NO";  
+regular_row4_stl_mill_name = "0";
 //PARAMETERS OF ROW4 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row4_cut01_depth = qt_regular_row4_cut01_depth_qt;
-regular_row4_cut01_distance = qt_regular_row4_cut01_distance_qt;
-regular_row4_cut01_angle = qt_regular_row4_cut01_angle_qt;
-regular_row4_cut02_depth = qt_regular_row4_cut02_depth_qt;
-regular_row4_cut02_distance = qt_regular_row4_cut02_distance_qt;
-regular_row4_cut02_angle = qt_regular_row4_cut02_angle_qt;
-regular_row4_cut03_depth = qt_regular_row4_cut03_depth_qt;
-regular_row4_cut03_distance = qt_regular_row4_cut03_distance_qt;
-regular_row4_cut03_angle = qt_regular_row4_cut03_angle_qt;
-regular_row4_cut04_depth = qt_regular_row4_cut04_depth_qt;
-regular_row4_cut04_distance = qt_regular_row4_cut04_distance_qt;
-regular_row4_cut04_angle = qt_regular_row4_cut04_angle_qt;
-regular_row4_cut05_depth = qt_regular_row4_cut05_depth_qt;
-regular_row4_cut05_distance = qt_regular_row4_cut05_distance_qt;
-regular_row4_cut05_angle = qt_regular_row4_cut05_angle_qt;
-regular_row4_cut06_depth = qt_regular_row4_cut06_depth_qt;
-regular_row4_cut06_distance = qt_regular_row4_cut06_distance_qt;
-regular_row4_cut06_angle = qt_regular_row4_cut06_angle_qt;
-regular_row4_cut07_depth = qt_regular_row4_cut07_depth_qt;
-regular_row4_cut07_distance = qt_regular_row4_cut07_distance_qt;
-regular_row4_cut07_angle = qt_regular_row4_cut07_angle_qt;
-regular_row4_cut08_depth = qt_regular_row4_cut08_depth_qt;
-regular_row4_cut08_distance = qt_regular_row4_cut08_distance_qt;
-regular_row4_cut08_angle = qt_regular_row4_cut08_angle_qt;
-regular_row4_cut09_depth = qt_regular_row4_cut09_depth_qt;
-regular_row4_cut09_distance = qt_regular_row4_cut09_distance_qt;
-regular_row4_cut09_angle = qt_regular_row4_cut09_angle_qt;
-regular_row4_cut10_depth = qt_regular_row4_cut10_depth_qt;
-regular_row4_cut10_distance = qt_regular_row4_cut10_distance_qt;
-regular_row4_cut10_angle = qt_regular_row4_cut10_angle_qt;
-regular_row4_cut11_depth = qt_regular_row4_cut11_depth_qt;
-regular_row4_cut11_distance = qt_regular_row4_cut11_distance_qt;
-regular_row4_cut11_angle = qt_regular_row4_cut11_angle_qt;
-regular_row4_cut12_depth = qt_regular_row4_cut12_depth_qt;
-regular_row4_cut12_distance = qt_regular_row4_cut12_distance_qt;
-regular_row4_cut12_angle = qt_regular_row4_cut12_angle_qt;
-regular_row4_cut13_depth = qt_regular_row4_cut13_depth_qt;
-regular_row4_cut13_distance = qt_regular_row4_cut13_distance_qt;
-regular_row4_cut13_angle = qt_regular_row4_cut13_angle_qt;
-regular_row4_cut14_depth = qt_regular_row4_cut14_depth_qt;
-regular_row4_cut14_distance = qt_regular_row4_cut14_distance_qt;
-regular_row4_cut14_angle = qt_regular_row4_cut14_angle_qt;
-regular_row4_cut15_depth = qt_regular_row4_cut15_depth_qt;
-regular_row4_cut15_distance = qt_regular_row4_cut15_distance_qt;
-regular_row4_cut15_angle = qt_regular_row4_cut15_angle_qt;
-regular_row4_cut16_depth = qt_regular_row4_cut16_depth_qt;
-regular_row4_cut16_distance = qt_regular_row4_cut16_distance_qt;
-regular_row4_cut16_angle = qt_regular_row4_cut16_angle_qt;
-regular_row4_cut17_depth = qt_regular_row4_cut17_depth_qt;
-regular_row4_cut17_distance = qt_regular_row4_cut17_distance_qt;
-regular_row4_cut17_angle = qt_regular_row4_cut17_angle_qt;
-regular_row4_cut18_depth = qt_regular_row4_cut18_depth_qt;
-regular_row4_cut18_distance = qt_regular_row4_cut18_distance_qt;
-regular_row4_cut18_angle = qt_regular_row4_cut18_angle_qt;
-regular_row4_cut19_depth = qt_regular_row4_cut19_depth_qt;
-regular_row4_cut19_distance = qt_regular_row4_cut19_distance_qt;
-regular_row4_cut19_angle = qt_regular_row4_cut19_angle_qt;
-regular_row4_cut20_depth = qt_regular_row4_cut20_depth_qt;
-regular_row4_cut20_distance = qt_regular_row4_cut20_distance_qt;
-regular_row4_cut20_angle = qt_regular_row4_cut20_angle_qt;
-regular_row4_cut21_depth = qt_regular_row4_cut21_depth_qt;
-regular_row4_cut21_distance = qt_regular_row4_cut21_distance_qt;
-regular_row4_cut21_angle = qt_regular_row4_cut21_angle_qt;
-regular_row4_cut22_depth = qt_regular_row4_cut22_depth_qt;
-regular_row4_cut22_distance = qt_regular_row4_cut22_distance_qt;
-regular_row4_cut22_angle = qt_regular_row4_cut22_angle_qt;
+regular_row4_cut01_depth = 0;
+regular_row4_cut01_distance = 0;
+regular_row4_cut01_angle = 0;
+regular_row4_cut02_depth = 0;
+regular_row4_cut02_distance = 0;
+regular_row4_cut02_angle = 0;
+regular_row4_cut03_depth = 0;
+regular_row4_cut03_distance = 0;
+regular_row4_cut03_angle = 0;
+regular_row4_cut04_depth = 0;
+regular_row4_cut04_distance = 0;
+regular_row4_cut04_angle = 0;
+regular_row4_cut05_depth = 0;
+regular_row4_cut05_distance = 0;
+regular_row4_cut05_angle = 0;
+regular_row4_cut06_depth = 0;
+regular_row4_cut06_distance = 0;
+regular_row4_cut06_angle = 0;
+regular_row4_cut07_depth = 0;
+regular_row4_cut07_distance = 0;
+regular_row4_cut07_angle = 0;
+regular_row4_cut08_depth = 0;
+regular_row4_cut08_distance = 0;
+regular_row4_cut08_angle = 0;
+regular_row4_cut09_depth = 0;
+regular_row4_cut09_distance = 0;
+regular_row4_cut09_angle = 0;
+regular_row4_cut10_depth = 0;
+regular_row4_cut10_distance = 0;
+regular_row4_cut10_angle = 0;
+regular_row4_cut11_depth = 0;
+regular_row4_cut11_distance = 0;
+regular_row4_cut11_angle = 0;
+regular_row4_cut12_depth = 0;
+regular_row4_cut12_distance = 0;
+regular_row4_cut12_angle = 0;
+regular_row4_cut13_depth = 0;
+regular_row4_cut13_distance = 0;
+regular_row4_cut13_angle = 0;
+regular_row4_cut14_depth = 0;
+regular_row4_cut14_distance = 0;
+regular_row4_cut14_angle = 0;
+regular_row4_cut15_depth = 0;
+regular_row4_cut15_distance = 0;
+regular_row4_cut15_angle = 0;
+regular_row4_cut16_depth = 0;
+regular_row4_cut16_distance = 0;
+regular_row4_cut16_angle = 0;
+regular_row4_cut17_depth = 0;
+regular_row4_cut17_distance = 0;
+regular_row4_cut17_angle = 0;
+regular_row4_cut18_depth = 0;
+regular_row4_cut18_distance = 0;
+regular_row4_cut18_angle = 0;
+regular_row4_cut19_depth = 0;
+regular_row4_cut19_distance = 0;
+regular_row4_cut19_angle = 0;
+regular_row4_cut20_depth = 0;
+regular_row4_cut20_distance = 0;
+regular_row4_cut20_angle = 0;
+regular_row4_cut21_depth = 0;
+regular_row4_cut21_distance = 0;
+regular_row4_cut21_angle = 0;
+regular_row4_cut22_depth = 0;
+regular_row4_cut22_distance = 0;
+regular_row4_cut22_angle = 0;
 
 //PARAMETERS OF ROW5
-regular_row5_number_of_pins = qt_regular_row5_number_of_pins_qt;
-regular_row5_offset_on_x = qt_regular_row5_offset_on_x_qt;
-regular_row5_offset_on_z = qt_regular_row5_offset_on_z_qt;
-regular_row5_angle_on_y = qt_regular_row5_angle_on_y_qt;
-regular_row5_mirror = qt_regular_row5_mirror_qt;
-regular_row5_linked = qt_regular_row5_linked_qt;
-regular_row5_link_root_addition = qt_regular_row5_link_root_addition_qt;
-regular_row5_shoulder_distance = qt_regular_row5_shoulder_distance_qt;
-regular_row5_interpin_space = qt_regular_row5_interpin_space_qt;
+regular_row5_number_of_pins = 0;
+regular_row5_offset_on_x = 0;
+regular_row5_offset_on_z = 0;
+regular_row5_angle_on_y = 0;
+regular_row5_mirror = [0,0,0];
+regular_row5_linked = "NO";
+regular_row5_link_root_addition = 0;
+regular_row5_shoulder_distance = 0;
+regular_row5_interpin_space = 0;
 //PARAMETERS OF ROW5 CUT SHAPE
-regular_row5_cut_to_use = qt_regular_row5_cut_to_use_qt;
-regular_row5_prism_root_x = qt_regular_row5_prism_root_x_qt; 
-regular_row5_prism_root_y = qt_regular_row5_prism_root_y_qt;
-regular_row5_prism_angle_x = qt_regular_row5_prism_angle_x_qt;
-regular_row5_prism_angle_y = qt_regular_row5_prism_angle_y_qt;
-regular_row5_prism_height = qt_regular_row5_prism_height_qt;
-regular_row5_cone_height = qt_regular_row5_cone_height_qt;
-regular_row5_cone_bottom_diameter = qt_regular_row5_cone_bottom_diameter_qt;
-regular_row5_cone_angle = qt_regular_row5_cone_angle_qt; 
-regular_row5_cone_number_of_faces = qt_regular_row5_cone_number_of_faces_qt;
-regular_row5_laser_mill_height = qt_regular_row5_laser_mill_height_qt;
-regular_row5_laser_mill_diameter = qt_regular_row5_laser_mill_diameter_qt;
-regular_row5_laser_mill_number_of_faces = qt_regular_row5_laser_mill_number_of_faces_qt;
-regular_row5_laser_mill_center = qt_regular_row5_laser_mill_center_qt;   
-regular_row5_stl_mill_name = qt_regular_row5_stl_mill_name_qt;
+regular_row5_cut_to_use = "0";
+regular_row5_prism_root_x = 0; 
+regular_row5_prism_root_y = 0;
+regular_row5_prism_angle_x = 0;
+regular_row5_prism_angle_y = 0;
+regular_row5_prism_height = 0;
+regular_row5_cone_height = 0;
+regular_row5_cone_bottom_diameter = 0;
+regular_row5_cone_angle = 0; 
+regular_row5_cone_number_of_faces = 0;
+regular_row5_laser_mill_height = 0;
+regular_row5_laser_mill_diameter = 0;
+regular_row5_laser_mill_number_of_faces = 0;
+regular_row5_laser_mill_center = "NO";   
+regular_row5_stl_mill_name = "0";
 //PARAMETERS OF ROW5 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row5_cut01_depth = qt_regular_row5_cut01_depth_qt;
-regular_row5_cut01_distance = qt_regular_row5_cut01_distance_qt;
-regular_row5_cut01_angle = qt_regular_row5_cut01_angle_qt;
-regular_row5_cut02_depth = qt_regular_row5_cut02_depth_qt;
-regular_row5_cut02_distance = qt_regular_row5_cut02_distance_qt;
-regular_row5_cut02_angle = qt_regular_row5_cut02_angle_qt;
-regular_row5_cut03_depth = qt_regular_row5_cut03_depth_qt;
-regular_row5_cut03_distance = qt_regular_row5_cut03_distance_qt;
-regular_row5_cut03_angle = qt_regular_row5_cut03_angle_qt;
-regular_row5_cut04_depth = qt_regular_row5_cut04_depth_qt;
-regular_row5_cut04_distance = qt_regular_row5_cut04_distance_qt;
-regular_row5_cut04_angle = qt_regular_row5_cut04_angle_qt;
-regular_row5_cut05_depth = qt_regular_row5_cut05_depth_qt;
-regular_row5_cut05_distance = qt_regular_row5_cut05_distance_qt;
-regular_row5_cut05_angle = qt_regular_row5_cut05_angle_qt;
-regular_row5_cut06_depth = qt_regular_row5_cut06_depth_qt;
-regular_row5_cut06_distance = qt_regular_row5_cut06_distance_qt;
-regular_row5_cut06_angle = qt_regular_row5_cut06_angle_qt;
-regular_row5_cut07_depth = qt_regular_row5_cut07_depth_qt;
-regular_row5_cut07_distance = qt_regular_row5_cut07_distance_qt;
-regular_row5_cut07_angle = qt_regular_row5_cut07_angle_qt;
-regular_row5_cut08_depth = qt_regular_row5_cut08_depth_qt;
-regular_row5_cut08_distance = qt_regular_row5_cut08_distance_qt;
-regular_row5_cut08_angle = qt_regular_row5_cut08_angle_qt;
-regular_row5_cut09_depth = qt_regular_row5_cut09_depth_qt;
-regular_row5_cut09_distance = qt_regular_row5_cut09_distance_qt;
-regular_row5_cut09_angle = qt_regular_row5_cut09_angle_qt;
-regular_row5_cut10_depth = qt_regular_row5_cut10_depth_qt;
-regular_row5_cut10_distance = qt_regular_row5_cut10_distance_qt;
-regular_row5_cut10_angle = qt_regular_row5_cut10_angle_qt;
-regular_row5_cut11_depth = qt_regular_row5_cut11_depth_qt;
-regular_row5_cut11_distance = qt_regular_row5_cut11_distance_qt;
-regular_row5_cut11_angle = qt_regular_row5_cut11_angle_qt;
-regular_row5_cut12_depth = qt_regular_row5_cut12_depth_qt;
-regular_row5_cut12_distance = qt_regular_row5_cut12_distance_qt;
-regular_row5_cut12_angle = qt_regular_row5_cut12_angle_qt;
-regular_row5_cut13_depth = qt_regular_row5_cut13_depth_qt;
-regular_row5_cut13_distance = qt_regular_row5_cut13_distance_qt;
-regular_row5_cut13_angle = qt_regular_row5_cut13_angle_qt;
-regular_row5_cut14_depth = qt_regular_row5_cut14_depth_qt;
-regular_row5_cut14_distance = qt_regular_row5_cut14_distance_qt;
-regular_row5_cut14_angle = qt_regular_row5_cut14_angle_qt;
-regular_row5_cut15_depth = qt_regular_row5_cut15_depth_qt;
-regular_row5_cut15_distance = qt_regular_row5_cut15_distance_qt;
-regular_row5_cut15_angle = qt_regular_row5_cut15_angle_qt;
-regular_row5_cut16_depth = qt_regular_row5_cut16_depth_qt;
-regular_row5_cut16_distance = qt_regular_row5_cut16_distance_qt;
-regular_row5_cut16_angle = qt_regular_row5_cut16_angle_qt;
-regular_row5_cut17_depth = qt_regular_row5_cut17_depth_qt;
-regular_row5_cut17_distance = qt_regular_row5_cut17_distance_qt;
-regular_row5_cut17_angle = qt_regular_row5_cut17_angle_qt;
-regular_row5_cut18_depth = qt_regular_row5_cut18_depth_qt;
-regular_row5_cut18_distance = qt_regular_row5_cut18_distance_qt;
-regular_row5_cut18_angle = qt_regular_row5_cut18_angle_qt;
-regular_row5_cut19_depth = qt_regular_row5_cut19_depth_qt;
-regular_row5_cut19_distance = qt_regular_row5_cut19_distance_qt;
-regular_row5_cut19_angle = qt_regular_row5_cut19_angle_qt;
-regular_row5_cut20_depth = qt_regular_row5_cut20_depth_qt;
-regular_row5_cut20_distance = qt_regular_row5_cut20_distance_qt;
-regular_row5_cut20_angle = qt_regular_row5_cut20_angle_qt;
-regular_row5_cut21_depth = qt_regular_row5_cut21_depth_qt;
-regular_row5_cut21_distance = qt_regular_row5_cut21_distance_qt;
-regular_row5_cut21_angle = qt_regular_row5_cut21_angle_qt;
-regular_row5_cut22_depth = qt_regular_row5_cut22_depth_qt;
-regular_row5_cut22_distance = qt_regular_row5_cut22_distance_qt;
-regular_row5_cut22_angle = qt_regular_row5_cut22_angle_qt;
+regular_row5_cut01_depth = 0;
+regular_row5_cut01_distance = 0;
+regular_row5_cut01_angle = 0;
+regular_row5_cut02_depth = 0;
+regular_row5_cut02_distance = 0;
+regular_row5_cut02_angle = 0;
+regular_row5_cut03_depth = 0;
+regular_row5_cut03_distance = 0;
+regular_row5_cut03_angle = 0;
+regular_row5_cut04_depth = 0;
+regular_row5_cut04_distance = 0;
+regular_row5_cut04_angle = 0;
+regular_row5_cut05_depth = 0;
+regular_row5_cut05_distance = 0;
+regular_row5_cut05_angle = 0;
+regular_row5_cut06_depth = 0;
+regular_row5_cut06_distance = 0;
+regular_row5_cut06_angle = 0;
+regular_row5_cut07_depth = 0;
+regular_row5_cut07_distance = 0;
+regular_row5_cut07_angle = 0;
+regular_row5_cut08_depth = 0;
+regular_row5_cut08_distance = 0;
+regular_row5_cut08_angle = 0;
+regular_row5_cut09_depth = 0;
+regular_row5_cut09_distance = 0;
+regular_row5_cut09_angle = 0;
+regular_row5_cut10_depth = 0;
+regular_row5_cut10_distance = 0;
+regular_row5_cut10_angle = 0;
+regular_row5_cut11_depth = 0;
+regular_row5_cut11_distance = 0;
+regular_row5_cut11_angle = 0;
+regular_row5_cut12_depth = 0;
+regular_row5_cut12_distance = 0;
+regular_row5_cut12_angle = 0;
+regular_row5_cut13_depth = 0;
+regular_row5_cut13_distance = 0;
+regular_row5_cut13_angle = 0;
+regular_row5_cut14_depth = 0;
+regular_row5_cut14_distance = 0;
+regular_row5_cut14_angle = 0;
+regular_row5_cut15_depth = 0;
+regular_row5_cut15_distance = 0;
+regular_row5_cut15_angle = 0;
+regular_row5_cut16_depth = 0;
+regular_row5_cut16_distance = 0;
+regular_row5_cut16_angle = 0;
+regular_row5_cut17_depth = 0;
+regular_row5_cut17_distance = 0;
+regular_row5_cut17_angle = 0;
+regular_row5_cut18_depth = 0;
+regular_row5_cut18_distance = 0;
+regular_row5_cut18_angle = 0;
+regular_row5_cut19_depth = 0;
+regular_row5_cut19_distance = 0;
+regular_row5_cut19_angle = 0;
+regular_row5_cut20_depth = 0;
+regular_row5_cut20_distance = 0;
+regular_row5_cut20_angle = 0;
+regular_row5_cut21_depth = 0;
+regular_row5_cut21_distance = 0;
+regular_row5_cut21_angle = 0;
+regular_row5_cut22_depth = 0;
+regular_row5_cut22_distance = 0;
+regular_row5_cut22_angle = 0;
 
 //PARAMETERS OF ROW6
-regular_row6_number_of_pins = qt_regular_row6_number_of_pins_qt;
-regular_row6_offset_on_x = qt_regular_row6_offset_on_x_qt;
-regular_row6_offset_on_z = qt_regular_row6_offset_on_z_qt;
-regular_row6_angle_on_y = qt_regular_row6_angle_on_y_qt;
-regular_row6_mirror = qt_regular_row6_mirror_qt;
-regular_row6_linked = qt_regular_row6_linked_qt;
-regular_row6_link_root_addition = qt_regular_row6_link_root_addition_qt;
-regular_row6_shoulder_distance = qt_regular_row6_shoulder_distance_qt;
-regular_row6_interpin_space = qt_regular_row6_interpin_space_qt;
+regular_row6_number_of_pins = 0;
+regular_row6_offset_on_x = 0;
+regular_row6_offset_on_z = 0;
+regular_row6_angle_on_y = 0;
+regular_row6_mirror = [0,0,0];
+regular_row6_linked = "NO";
+regular_row6_link_root_addition = 0;
+regular_row6_shoulder_distance = 0;
+regular_row6_interpin_space = 0;
 //PARAMETERS OF ROW6 CUT SHAPE
-regular_row6_cut_to_use = qt_regular_row6_cut_to_use_qt;
-regular_row6_prism_root_x = qt_regular_row6_prism_root_x_qt; 
-regular_row6_prism_root_y = qt_regular_row6_prism_root_y_qt;
-regular_row6_prism_angle_x = qt_regular_row6_prism_angle_x_qt;
-regular_row6_prism_angle_y = qt_regular_row6_prism_angle_y_qt;
-regular_row6_prism_height = qt_regular_row6_prism_height_qt;
-regular_row6_cone_height = qt_regular_row6_cone_height_qt;
-regular_row6_cone_bottom_diameter = qt_regular_row6_cone_bottom_diameter_qt;
-regular_row6_cone_angle = qt_regular_row6_cone_angle_qt; 
-regular_row6_cone_number_of_faces = qt_regular_row6_cone_number_of_faces_qt;
-regular_row6_laser_mill_height = qt_regular_row6_laser_mill_height_qt;
-regular_row6_laser_mill_diameter = qt_regular_row6_laser_mill_diameter_qt;
-regular_row6_laser_mill_number_of_faces = qt_regular_row6_laser_mill_number_of_faces_qt;
-regular_row6_laser_mill_center = qt_regular_row6_laser_mill_center_qt;
-regular_row6_stl_mill_name = qt_regular_row6_stl_mill_name_qt;
+regular_row6_cut_to_use = "0";
+regular_row6_prism_root_x = 0; 
+regular_row6_prism_root_y = 0;
+regular_row6_prism_angle_x = 0;
+regular_row6_prism_angle_y = 0;
+regular_row6_prism_height = 0;
+regular_row6_cone_height = 0;
+regular_row6_cone_bottom_diameter = 0;
+regular_row6_cone_angle = 0; 
+regular_row6_cone_number_of_faces = 0;
+regular_row6_laser_mill_height = 0;
+regular_row6_laser_mill_diameter = 0;
+regular_row6_laser_mill_number_of_faces = 0;
+regular_row6_laser_mill_center = "NO";
+regular_row6_stl_mill_name = "0";
 //PARAMETERS OF ROW6 CUTS DEPTH, SPACES AND ANGLE ON Z
-regular_row6_cut01_depth = qt_regular_row6_cut01_depth_qt;
-regular_row6_cut01_distance = qt_regular_row6_cut01_distance_qt;
-regular_row6_cut01_angle = qt_regular_row6_cut01_angle_qt;
-regular_row6_cut02_depth = qt_regular_row6_cut02_depth_qt;
-regular_row6_cut02_distance = qt_regular_row6_cut02_distance_qt;
-regular_row6_cut02_angle = qt_regular_row6_cut02_angle_qt;
-regular_row6_cut03_depth = qt_regular_row6_cut03_depth_qt;
-regular_row6_cut03_distance = qt_regular_row6_cut03_distance_qt;
-regular_row6_cut03_angle = qt_regular_row6_cut03_angle_qt;
-regular_row6_cut04_depth = qt_regular_row6_cut04_depth_qt;
-regular_row6_cut04_distance = qt_regular_row6_cut04_distance_qt;
-regular_row6_cut04_angle = qt_regular_row6_cut04_angle_qt;
-regular_row6_cut05_depth = qt_regular_row6_cut05_depth_qt;
-regular_row6_cut05_distance = qt_regular_row6_cut05_distance_qt;
-regular_row6_cut05_angle = qt_regular_row6_cut05_angle_qt;
-regular_row6_cut06_depth = qt_regular_row6_cut06_depth_qt;
-regular_row6_cut06_distance = qt_regular_row6_cut06_distance_qt;
-regular_row6_cut06_angle = qt_regular_row6_cut06_angle_qt;
-regular_row6_cut07_depth = qt_regular_row6_cut07_depth_qt;
-regular_row6_cut07_distance = qt_regular_row6_cut07_distance_qt;
-regular_row6_cut07_angle = qt_regular_row6_cut07_angle_qt;
-regular_row6_cut08_depth = qt_regular_row6_cut08_depth_qt;
-regular_row6_cut08_distance = qt_regular_row6_cut08_distance_qt;
-regular_row6_cut08_angle = qt_regular_row6_cut08_angle_qt;
-regular_row6_cut09_depth = qt_regular_row6_cut09_depth_qt;
-regular_row6_cut09_distance = qt_regular_row6_cut09_distance_qt;
-regular_row6_cut09_angle = qt_regular_row6_cut09_angle_qt;
-regular_row6_cut10_depth = qt_regular_row6_cut10_depth_qt;
-regular_row6_cut10_distance = qt_regular_row6_cut10_distance_qt;
-regular_row6_cut10_angle = qt_regular_row6_cut10_angle_qt;
-regular_row6_cut11_depth = qt_regular_row6_cut11_depth_qt;
-regular_row6_cut11_distance = qt_regular_row6_cut11_distance_qt;
-regular_row6_cut11_angle = qt_regular_row6_cut11_angle_qt;
-regular_row6_cut12_depth = qt_regular_row6_cut12_depth_qt;
-regular_row6_cut12_distance = qt_regular_row6_cut12_distance_qt;
-regular_row6_cut12_angle = qt_regular_row6_cut12_angle_qt;
-regular_row6_cut13_depth = qt_regular_row6_cut13_depth_qt;
-regular_row6_cut13_distance = qt_regular_row6_cut13_distance_qt;
-regular_row6_cut13_angle = qt_regular_row6_cut13_angle_qt;
-regular_row6_cut14_depth = qt_regular_row6_cut14_depth_qt;
-regular_row6_cut14_distance = qt_regular_row6_cut14_distance_qt;
-regular_row6_cut14_angle = qt_regular_row6_cut14_angle_qt;
-regular_row6_cut15_depth = qt_regular_row6_cut15_depth_qt;
-regular_row6_cut15_distance = qt_regular_row6_cut15_distance_qt;
-regular_row6_cut15_angle = qt_regular_row6_cut15_angle_qt;
-regular_row6_cut16_depth = qt_regular_row6_cut16_depth_qt;
-regular_row6_cut16_distance = qt_regular_row6_cut16_distance_qt;
-regular_row6_cut16_angle = qt_regular_row6_cut16_angle_qt;
-regular_row6_cut17_depth = qt_regular_row6_cut17_depth_qt;
-regular_row6_cut17_distance = qt_regular_row6_cut17_distance_qt;
-regular_row6_cut17_angle = qt_regular_row6_cut17_angle_qt;
-regular_row6_cut18_depth = qt_regular_row6_cut18_depth_qt;
-regular_row6_cut18_distance = qt_regular_row6_cut18_distance_qt;
-regular_row6_cut18_angle = qt_regular_row6_cut18_angle_qt;
-regular_row6_cut19_depth = qt_regular_row6_cut19_depth_qt;
-regular_row6_cut19_distance = qt_regular_row6_cut19_distance_qt;
-regular_row6_cut19_angle = qt_regular_row6_cut19_angle_qt;
-regular_row6_cut20_depth = qt_regular_row6_cut20_depth_qt;
-regular_row6_cut20_distance = qt_regular_row6_cut20_distance_qt;
-regular_row6_cut20_angle = qt_regular_row6_cut20_angle_qt;
-regular_row6_cut21_depth = qt_regular_row6_cut21_depth_qt;
-regular_row6_cut21_distance = qt_regular_row6_cut21_distance_qt;
-regular_row6_cut21_angle = qt_regular_row6_cut21_angle_qt;
-regular_row6_cut22_depth = qt_regular_row6_cut22_depth_qt;
-regular_row6_cut22_distance = qt_regular_row6_cut22_distance_qt;
-regular_row6_cut22_angle = qt_regular_row6_cut22_angle_qt;
+regular_row6_cut01_depth = 0;
+regular_row6_cut01_distance = 0;
+regular_row6_cut01_angle = 0;
+regular_row6_cut02_depth = 0;
+regular_row6_cut02_distance = 0;
+regular_row6_cut02_angle = 0;
+regular_row6_cut03_depth = 0;
+regular_row6_cut03_distance = 0;
+regular_row6_cut03_angle = 0;
+regular_row6_cut04_depth = 0;
+regular_row6_cut04_distance = 0;
+regular_row6_cut04_angle = 0;
+regular_row6_cut05_depth = 0;
+regular_row6_cut05_distance = 0;
+regular_row6_cut05_angle = 0;
+regular_row6_cut06_depth = 0;
+regular_row6_cut06_distance = 0;
+regular_row6_cut06_angle = 0;
+regular_row6_cut07_depth = 0;
+regular_row6_cut07_distance = 0;
+regular_row6_cut07_angle = 0;
+regular_row6_cut08_depth = 0;
+regular_row6_cut08_distance = 0;
+regular_row6_cut08_angle = 0;
+regular_row6_cut09_depth = 0;
+regular_row6_cut09_distance = 0;
+regular_row6_cut09_angle = 0;
+regular_row6_cut10_depth = 0;
+regular_row6_cut10_distance = 0;
+regular_row6_cut10_angle = 0;
+regular_row6_cut11_depth = 0;
+regular_row6_cut11_distance = 0;
+regular_row6_cut11_angle = 0;
+regular_row6_cut12_depth = 0;
+regular_row6_cut12_distance = 0;
+regular_row6_cut12_angle = 0;
+regular_row6_cut13_depth = 0;
+regular_row6_cut13_distance = 0;
+regular_row6_cut13_angle = 0;
+regular_row6_cut14_depth = 0;
+regular_row6_cut14_distance = 0;
+regular_row6_cut14_angle = 0;
+regular_row6_cut15_depth = 0;
+regular_row6_cut15_distance = 0;
+regular_row6_cut15_angle = 0;
+regular_row6_cut16_depth = 0;
+regular_row6_cut16_distance = 0;
+regular_row6_cut16_angle = 0;
+regular_row6_cut17_depth = 0;
+regular_row6_cut17_distance = 0;
+regular_row6_cut17_angle = 0;
+regular_row6_cut18_depth = 0;
+regular_row6_cut18_distance = 0;
+regular_row6_cut18_angle = 0;
+regular_row6_cut19_depth = 0;
+regular_row6_cut19_distance = 0;
+regular_row6_cut19_angle = 0;
+regular_row6_cut20_depth = 0;
+regular_row6_cut20_distance = 0;
+regular_row6_cut20_angle = 0;
+regular_row6_cut21_depth = 0;
+regular_row6_cut21_distance = 0;
+regular_row6_cut21_angle = 0;
+regular_row6_cut22_depth = 0;
+regular_row6_cut22_distance = 0;
+regular_row6_cut22_angle = 0;
 
 
 //PARAMETERS OF ROUND PUMP
-round_pump_number_of_pins = qt_round_pump_number_of_pins_qt; //including tensioner
-round_pump_mill_diameter = qt_round_pump_mill_diameter_qt;
-round_pump_mill_distance_frome_center = qt_round_pump_mill_distance_frome_center_qt;
-round_pump_cut01_depth_from_tip = qt_round_pump_cut01_depth_from_tip_qt;
-round_pump_cut02_depth_from_tip = qt_round_pump_cut02_depth_from_tip_qt;
-round_pump_cut03_depth_from_tip = qt_round_pump_cut03_depth_from_tip_qt;
-round_pump_cut04_depth_from_tip = qt_round_pump_cut04_depth_from_tip_qt;
-round_pump_cut05_depth_from_tip = qt_round_pump_cut05_depth_from_tip_qt;
-round_pump_cut06_depth_from_tip = qt_round_pump_cut06_depth_from_tip_qt;
-round_pump_cut07_depth_from_tip = qt_round_pump_cut07_depth_from_tip_qt;
-round_pump_cut08_depth_from_tip = qt_round_pump_cut08_depth_from_tip_qt;
-round_pump_cut09_depth_from_tip = qt_round_pump_cut09_depth_from_tip_qt;
-round_pump_cut10_depth_from_tip = qt_round_pump_cut10_depth_from_tip_qt;
-round_pump_cut11_depth_from_tip = qt_round_pump_cut11_depth_from_tip_qt;
-round_pump_cut12_depth_from_tip = qt_round_pump_cut12_depth_from_tip_qt;
+round_pump_number_of_pins = 0; //including tensioner
+round_pump_mill_diameter = 0;
+round_pump_mill_distance_frome_center = 0;
+round_pump_cut01_depth_from_tip = 0;
+round_pump_cut02_depth_from_tip = 0;
+round_pump_cut03_depth_from_tip = 0;
+round_pump_cut04_depth_from_tip = 0;
+round_pump_cut05_depth_from_tip = 0;
+round_pump_cut06_depth_from_tip = 0;
+round_pump_cut07_depth_from_tip = 0;
+round_pump_cut08_depth_from_tip = 0;
+round_pump_cut09_depth_from_tip = 0;
+round_pump_cut10_depth_from_tip = 0;
+round_pump_cut11_depth_from_tip = 0;
+round_pump_cut12_depth_from_tip = 0;
 
 
 //LEVER LOCK PARAMETERS
@@ -773,253 +773,253 @@ round_pump_cut12_depth_from_tip = qt_round_pump_cut12_depth_from_tip_qt;
 lever_cut_x = 100;
 lever_cut_z = 100;
 //ROW1 OF LEVER LOCK
-lever_lock_row1_number_of_levers = 		qt_lever_lock_row1_number_of_levers_qt;
-lever_lock_row1_blade_length = 			qt_lever_lock_row1_blade_length_qt;
-lever_lock_row1_spaces = 				qt_lever_lock_row1_spaces_qt;
-lever_lock_row1_thickness = 			qt_lever_lock_row1_thickness_qt;
-lever_lock_row1_angle_on_y = 			qt_lever_lock_row1_angle_on_y_qt;
-lever_lock_row1_cut01_depth = 			qt_lever_lock_row1_cut01_depth_qt;
-lever_lock_row1_cut01_distance = 		qt_lever_lock_row1_cut01_distance_qt;
-lever_lock_row1_cut01_thickness = 		qt_lever_lock_row1_cut01_thickness_qt;
-lever_lock_row1_cut02_depth = 			qt_lever_lock_row1_cut02_depth_qt;
-lever_lock_row1_cut02_distance = 		qt_lever_lock_row1_cut02_distance_qt;
-lever_lock_row1_cut02_thickness = 		qt_lever_lock_row1_cut02_thickness_qt;
-lever_lock_row1_cut03_depth = 			qt_lever_lock_row1_cut03_depth_qt;
-lever_lock_row1_cut03_distance = 		qt_lever_lock_row1_cut03_distance_qt;
-lever_lock_row1_cut03_thickness = 		qt_lever_lock_row1_cut03_thickness_qt;
-lever_lock_row1_cut04_depth = 			qt_lever_lock_row1_cut04_depth_qt;
-lever_lock_row1_cut04_distance = 		qt_lever_lock_row1_cut04_distance_qt;
-lever_lock_row1_cut04_thickness = qt_lever_lock_row1_cut04_thickness_qt;
-lever_lock_row1_cut05_depth = qt_lever_lock_row1_cut05_depth_qt;
-lever_lock_row1_cut05_distance = qt_lever_lock_row1_cut05_distance_qt;
-lever_lock_row1_cut05_thickness = qt_lever_lock_row1_cut05_thickness_qt;
-lever_lock_row1_cut06_depth = qt_lever_lock_row1_cut06_depth_qt;
-lever_lock_row1_cut06_distance = qt_lever_lock_row1_cut06_distance_qt;
-lever_lock_row1_cut06_thickness = qt_lever_lock_row1_cut06_thickness_qt;
-lever_lock_row1_cut07_depth = qt_lever_lock_row1_cut07_depth_qt;
-lever_lock_row1_cut07_distance = qt_lever_lock_row1_cut07_distance_qt;
-lever_lock_row1_cut07_thickness = qt_lever_lock_row1_cut07_thickness_qt;
-lever_lock_row1_cut08_depth = qt_lever_lock_row1_cut08_depth_qt;
-lever_lock_row1_cut08_distance = qt_lever_lock_row1_cut08_distance_qt;
-lever_lock_row1_cut08_thickness = qt_lever_lock_row1_cut08_thickness_qt;
-lever_lock_row1_cut09_depth = qt_lever_lock_row1_cut09_depth_qt;
-lever_lock_row1_cut09_distance = qt_lever_lock_row1_cut09_distance_qt;
-lever_lock_row1_cut09_thickness = qt_lever_lock_row1_cut09_thickness_qt;
-lever_lock_row1_cut10_depth = qt_lever_lock_row1_cut10_depth_qt;
-lever_lock_row1_cut10_distance = qt_lever_lock_row1_cut10_distance_qt;
-lever_lock_row1_cut10_thickness = qt_lever_lock_row1_cut10_thickness_qt;
-lever_lock_row1_cut11_depth = qt_lever_lock_row1_cut11_depth_qt;
-lever_lock_row1_cut11_distance = qt_lever_lock_row1_cut11_distance_qt;
-lever_lock_row1_cut11_thickness = qt_lever_lock_row1_cut11_thickness_qt;
-lever_lock_row1_cut12_depth = qt_lever_lock_row1_cut12_depth_qt;
-lever_lock_row1_cut12_distance = qt_lever_lock_row1_cut12_distance_qt;
-lever_lock_row1_cut12_thickness = qt_lever_lock_row1_cut12_thickness_qt;
-lever_lock_row1_cut13_depth = qt_lever_lock_row1_cut13_depth_qt;
-lever_lock_row1_cut13_distance = qt_lever_lock_row1_cut13_distance_qt;
-lever_lock_row1_cut13_thickness = qt_lever_lock_row1_cut13_thickness_qt;
-lever_lock_row1_cut14_depth = qt_lever_lock_row1_cut14_depth_qt;
-lever_lock_row1_cut14_distance = qt_lever_lock_row1_cut14_distance_qt;
-lever_lock_row1_cut14_thickness = qt_lever_lock_row1_cut14_thickness_qt;
-lever_lock_row1_cut15_depth = qt_lever_lock_row1_cut15_depth_qt;
-lever_lock_row1_cut15_distance = qt_lever_lock_row1_cut15_distance_qt;
-lever_lock_row1_cut15_thickness = qt_lever_lock_row1_cut15_thickness_qt;
-lever_lock_row1_cut16_depth = qt_lever_lock_row1_cut16_depth_qt;
-lever_lock_row1_cut16_distance = qt_lever_lock_row1_cut16_distance_qt;
-lever_lock_row1_cut16_thickness = qt_lever_lock_row1_cut16_thickness_qt;
-lever_lock_row1_cut17_depth = qt_lever_lock_row1_cut17_depth_qt;
-lever_lock_row1_cut17_distance = qt_lever_lock_row1_cut17_distance_qt;
-lever_lock_row1_cut17_thickness = qt_lever_lock_row1_cut17_thickness_qt;
-lever_lock_row1_cut18_depth = qt_lever_lock_row1_cut18_depth_qt;
-lever_lock_row1_cut18_distance = qt_lever_lock_row1_cut18_distance_qt;
-lever_lock_row1_cut18_thickness = qt_lever_lock_row1_cut18_thickness_qt;
-lever_lock_row1_cut19_depth = qt_lever_lock_row1_cut19_depth_qt;
-lever_lock_row1_cut19_distance = qt_lever_lock_row1_cut19_distance_qt;
-lever_lock_row1_cut19_thickness = qt_lever_lock_row1_cut19_thickness_qt;
-lever_lock_row1_cut20_depth = qt_lever_lock_row1_cut20_depth_qt;
-lever_lock_row1_cut20_distance = qt_lever_lock_row1_cut20_distance_qt;
-lever_lock_row1_cut20_thickness = qt_lever_lock_row1_cut20_thickness_qt;
+lever_lock_row1_number_of_levers = 		0;
+lever_lock_row1_blade_length = 			0;
+lever_lock_row1_spaces = 				0;
+lever_lock_row1_thickness = 			0;
+lever_lock_row1_angle_on_y = 			0;
+lever_lock_row1_cut01_depth = 			0;
+lever_lock_row1_cut01_distance = 		0;
+lever_lock_row1_cut01_thickness = 		0;
+lever_lock_row1_cut02_depth = 			0;
+lever_lock_row1_cut02_distance = 		0;
+lever_lock_row1_cut02_thickness = 		0;
+lever_lock_row1_cut03_depth = 			0;
+lever_lock_row1_cut03_distance = 		0;
+lever_lock_row1_cut03_thickness = 		0;
+lever_lock_row1_cut04_depth = 			0;
+lever_lock_row1_cut04_distance = 		0;
+lever_lock_row1_cut04_thickness = 0;
+lever_lock_row1_cut05_depth = 0;
+lever_lock_row1_cut05_distance = 0;
+lever_lock_row1_cut05_thickness = 0;
+lever_lock_row1_cut06_depth = 0;
+lever_lock_row1_cut06_distance = 0;
+lever_lock_row1_cut06_thickness = 0;
+lever_lock_row1_cut07_depth = 0;
+lever_lock_row1_cut07_distance = 0;
+lever_lock_row1_cut07_thickness = 0;
+lever_lock_row1_cut08_depth = 0;
+lever_lock_row1_cut08_distance = 0;
+lever_lock_row1_cut08_thickness = 0;
+lever_lock_row1_cut09_depth = 0;
+lever_lock_row1_cut09_distance = 0;
+lever_lock_row1_cut09_thickness = 0;
+lever_lock_row1_cut10_depth = 0;
+lever_lock_row1_cut10_distance = 0;
+lever_lock_row1_cut10_thickness = 0;
+lever_lock_row1_cut11_depth = 0;
+lever_lock_row1_cut11_distance = 0;
+lever_lock_row1_cut11_thickness = 0;
+lever_lock_row1_cut12_depth = 0;
+lever_lock_row1_cut12_distance = 0;
+lever_lock_row1_cut12_thickness = 0;
+lever_lock_row1_cut13_depth = 0;
+lever_lock_row1_cut13_distance = 0;
+lever_lock_row1_cut13_thickness = 0;
+lever_lock_row1_cut14_depth = 0;
+lever_lock_row1_cut14_distance = 0;
+lever_lock_row1_cut14_thickness = 0;
+lever_lock_row1_cut15_depth = 0;
+lever_lock_row1_cut15_distance = 0;
+lever_lock_row1_cut15_thickness = 0;
+lever_lock_row1_cut16_depth = 0;
+lever_lock_row1_cut16_distance = 0;
+lever_lock_row1_cut16_thickness = 0;
+lever_lock_row1_cut17_depth = 0;
+lever_lock_row1_cut17_distance = 0;
+lever_lock_row1_cut17_thickness = 0;
+lever_lock_row1_cut18_depth = 0;
+lever_lock_row1_cut18_distance = 0;
+lever_lock_row1_cut18_thickness = 0;
+lever_lock_row1_cut19_depth = 0;
+lever_lock_row1_cut19_distance = 0;
+lever_lock_row1_cut19_thickness = 0;
+lever_lock_row1_cut20_depth = 0;
+lever_lock_row1_cut20_distance = 0;
+lever_lock_row1_cut20_thickness = 0;
 
           
 
 //ROW2 OF LEVER LOCK
-lever_lock_row2_number_of_levers = qt_lever_lock_row2_number_of_levers_qt;
-lever_lock_row2_blade_length = qt_lever_lock_row2_blade_length_qt;
-lever_lock_row2_spaces = qt_lever_lock_row2_spaces_qt;
-lever_lock_row2_thickness = qt_lever_lock_row2_thickness_qt;
-lever_lock_row2_angle_on_y = qt_lever_lock_row2_angle_on_y_qt;
-lever_lock_row2_cut01_depth = qt_lever_lock_row2_cut01_depth_qt;
-lever_lock_row2_cut01_distance = qt_lever_lock_row2_cut01_distance_qt;
-lever_lock_row2_cut01_thickness = qt_lever_lock_row2_cut01_thickness_qt;
-lever_lock_row2_cut02_depth = qt_lever_lock_row2_cut02_depth_qt;
-lever_lock_row2_cut02_distance = qt_lever_lock_row2_cut02_distance_qt;
-lever_lock_row2_cut02_thickness = qt_lever_lock_row2_cut02_thickness_qt;
-lever_lock_row2_cut03_depth = qt_lever_lock_row2_cut03_depth_qt;
-lever_lock_row2_cut03_distance = qt_lever_lock_row2_cut03_distance_qt;
-lever_lock_row2_cut03_thickness = qt_lever_lock_row2_cut03_thickness_qt;
-lever_lock_row2_cut04_depth = qt_lever_lock_row2_cut04_depth_qt;
-lever_lock_row2_cut04_distance = qt_lever_lock_row2_cut04_distance_qt;
-lever_lock_row2_cut04_thickness = qt_lever_lock_row2_cut04_thickness_qt;
-lever_lock_row2_cut05_depth = qt_lever_lock_row2_cut05_depth_qt;
-lever_lock_row2_cut05_distance = qt_lever_lock_row2_cut05_distance_qt;
-lever_lock_row2_cut05_thickness = qt_lever_lock_row2_cut05_thickness_qt;
-lever_lock_row2_cut06_depth = qt_lever_lock_row2_cut06_depth_qt;
-lever_lock_row2_cut06_distance = qt_lever_lock_row2_cut06_distance_qt;
-lever_lock_row2_cut06_thickness = qt_lever_lock_row2_cut06_thickness_qt;
-lever_lock_row2_cut07_depth = qt_lever_lock_row2_cut07_depth_qt;
-lever_lock_row2_cut07_distance = qt_lever_lock_row2_cut07_distance_qt;
-lever_lock_row2_cut07_thickness = qt_lever_lock_row2_cut07_thickness_qt;
-lever_lock_row2_cut08_depth = qt_lever_lock_row2_cut08_depth_qt;
-lever_lock_row2_cut08_distance = qt_lever_lock_row2_cut08_distance_qt;
-lever_lock_row2_cut08_thickness = qt_lever_lock_row2_cut08_thickness_qt;
-lever_lock_row2_cut09_depth = qt_lever_lock_row2_cut09_depth_qt;
-lever_lock_row2_cut09_distance = qt_lever_lock_row2_cut09_distance_qt;
-lever_lock_row2_cut09_thickness = qt_lever_lock_row2_cut09_thickness_qt;
-lever_lock_row2_cut10_depth = qt_lever_lock_row2_cut10_depth_qt;
-lever_lock_row2_cut10_distance = qt_lever_lock_row2_cut10_distance_qt;
-lever_lock_row2_cut10_thickness = qt_lever_lock_row2_cut10_thickness_qt;
-lever_lock_row2_cut11_depth = qt_lever_lock_row2_cut11_depth_qt;
-lever_lock_row2_cut11_distance = qt_lever_lock_row2_cut11_distance_qt;
-lever_lock_row2_cut11_thickness = qt_lever_lock_row2_cut11_thickness_qt;
-lever_lock_row2_cut12_depth = qt_lever_lock_row2_cut12_depth_qt;
-lever_lock_row2_cut12_distance = qt_lever_lock_row2_cut12_distance_qt;
-lever_lock_row2_cut12_thickness = qt_lever_lock_row2_cut12_thickness_qt;
-lever_lock_row2_cut13_depth = qt_lever_lock_row2_cut13_depth_qt;
-lever_lock_row2_cut13_distance = qt_lever_lock_row2_cut13_distance_qt;
-lever_lock_row2_cut13_thickness = qt_lever_lock_row2_cut13_thickness_qt;
-lever_lock_row2_cut14_depth = qt_lever_lock_row2_cut14_depth_qt;
-lever_lock_row2_cut14_distance = qt_lever_lock_row2_cut14_distance_qt;
-lever_lock_row2_cut14_thickness = qt_lever_lock_row2_cut14_thickness_qt;
-lever_lock_row2_cut15_depth = qt_lever_lock_row2_cut15_depth_qt;
-lever_lock_row2_cut15_distance = qt_lever_lock_row2_cut15_distance_qt;
-lever_lock_row2_cut15_thickness = qt_lever_lock_row2_cut15_thickness_qt;
-lever_lock_row2_cut16_depth = qt_lever_lock_row2_cut16_depth_qt;
-lever_lock_row2_cut16_distance = qt_lever_lock_row2_cut16_distance_qt;
-lever_lock_row2_cut16_thickness = qt_lever_lock_row2_cut16_thickness_qt;
-lever_lock_row2_cut17_depth = qt_lever_lock_row2_cut17_depth_qt;
-lever_lock_row2_cut17_distance = qt_lever_lock_row2_cut17_distance_qt;
-lever_lock_row2_cut17_thickness = qt_lever_lock_row2_cut17_thickness_qt;
-lever_lock_row2_cut18_depth = qt_lever_lock_row2_cut18_depth_qt;
-lever_lock_row2_cut18_distance = qt_lever_lock_row2_cut18_distance_qt;
-lever_lock_row2_cut18_thickness = qt_lever_lock_row2_cut18_thickness_qt;
-lever_lock_row2_cut19_depth = qt_lever_lock_row2_cut19_depth_qt;
-lever_lock_row2_cut19_distance = qt_lever_lock_row2_cut19_distance_qt;
-lever_lock_row2_cut19_thickness = qt_lever_lock_row2_cut19_thickness_qt;
-lever_lock_row2_cut20_depth = qt_lever_lock_row2_cut20_depth_qt;
-lever_lock_row2_cut20_distance = qt_lever_lock_row2_cut20_distance_qt;
-lever_lock_row2_cut20_thickness = qt_lever_lock_row2_cut20_thickness_qt;
+lever_lock_row2_number_of_levers = 0;
+lever_lock_row2_blade_length = 0;
+lever_lock_row2_spaces = 0;
+lever_lock_row2_thickness = 0;
+lever_lock_row2_angle_on_y = 0;
+lever_lock_row2_cut01_depth = 0;
+lever_lock_row2_cut01_distance = 0;
+lever_lock_row2_cut01_thickness = 0;
+lever_lock_row2_cut02_depth = 0;
+lever_lock_row2_cut02_distance = 0;
+lever_lock_row2_cut02_thickness = 0;
+lever_lock_row2_cut03_depth = 0;
+lever_lock_row2_cut03_distance = 0;
+lever_lock_row2_cut03_thickness = 0;
+lever_lock_row2_cut04_depth = 0;
+lever_lock_row2_cut04_distance = 0;
+lever_lock_row2_cut04_thickness = 0;
+lever_lock_row2_cut05_depth = 0;
+lever_lock_row2_cut05_distance = 0;
+lever_lock_row2_cut05_thickness = 0;
+lever_lock_row2_cut06_depth = 0;
+lever_lock_row2_cut06_distance = 0;
+lever_lock_row2_cut06_thickness = 0;
+lever_lock_row2_cut07_depth = 0;
+lever_lock_row2_cut07_distance = 0;
+lever_lock_row2_cut07_thickness = 0;
+lever_lock_row2_cut08_depth = 0;
+lever_lock_row2_cut08_distance = 0;
+lever_lock_row2_cut08_thickness = 0;
+lever_lock_row2_cut09_depth = 0;
+lever_lock_row2_cut09_distance = 0;
+lever_lock_row2_cut09_thickness = 0;
+lever_lock_row2_cut10_depth = 0;
+lever_lock_row2_cut10_distance = 0;
+lever_lock_row2_cut10_thickness = 0;
+lever_lock_row2_cut11_depth = 0;
+lever_lock_row2_cut11_distance = 0;
+lever_lock_row2_cut11_thickness = 0;
+lever_lock_row2_cut12_depth = 0;
+lever_lock_row2_cut12_distance = 0;
+lever_lock_row2_cut12_thickness = 0;
+lever_lock_row2_cut13_depth = 0;
+lever_lock_row2_cut13_distance = 0;
+lever_lock_row2_cut13_thickness = 0;
+lever_lock_row2_cut14_depth = 0;
+lever_lock_row2_cut14_distance = 0;
+lever_lock_row2_cut14_thickness = 0;
+lever_lock_row2_cut15_depth = 0;
+lever_lock_row2_cut15_distance = 0;
+lever_lock_row2_cut15_thickness = 0;
+lever_lock_row2_cut16_depth = 0;
+lever_lock_row2_cut16_distance = 0;
+lever_lock_row2_cut16_thickness = 0;
+lever_lock_row2_cut17_depth = 0;
+lever_lock_row2_cut17_distance = 0;
+lever_lock_row2_cut17_thickness = 0;
+lever_lock_row2_cut18_depth = 0;
+lever_lock_row2_cut18_distance = 0;
+lever_lock_row2_cut18_thickness = 0;
+lever_lock_row2_cut19_depth = 0;
+lever_lock_row2_cut19_distance = 0;
+lever_lock_row2_cut19_thickness = 0;
+lever_lock_row2_cut20_depth = 0;
+lever_lock_row2_cut20_distance = 0;
+lever_lock_row2_cut20_thickness = 0;
         
 
 //ABLOY CLASSIC PARAMETERS
-abloy_classic_side_of_cutting = qt_abloy_classic_side_of_cutting_qt;
-abloy_classic_number_of_discs = qt_abloy_classic_number_of_discs_qt;
-abloy_classic_spaces = qt_abloy_classic_spaces_qt;
-abloy_classic_mill_thickness = qt_abloy_classic_mill_thickness_qt;
-abloy_classic_angle_step = qt_abloy_classic_angle_step_qt;
-abloy_classic_distance_from_tip = qt_abloy_classic_distance_from_tip_qt;
-abloy_classic_cut01 = qt_abloy_classic_cut01_qt;
-abloy_classic_cut02 = qt_abloy_classic_cut02_qt;
-abloy_classic_cut03 = qt_abloy_classic_cut03_qt;
-abloy_classic_cut04 = qt_abloy_classic_cut04_qt;
-abloy_classic_cut05 = qt_abloy_classic_cut05_qt;
-abloy_classic_cut06 = qt_abloy_classic_cut06_qt;
-abloy_classic_cut07 = qt_abloy_classic_cut07_qt;
-abloy_classic_cut08 = qt_abloy_classic_cut08_qt;
-abloy_classic_cut09 = qt_abloy_classic_cut09_qt;
-abloy_classic_cut10 = qt_abloy_classic_cut10_qt;
-abloy_classic_cut11 = qt_abloy_classic_cut11_qt;
-abloy_classic_cut12 = qt_abloy_classic_cut12_qt;
-abloy_classic_cut13 = qt_abloy_classic_cut13_qt;
-abloy_classic_cut14 = qt_abloy_classic_cut14_qt;
-abloy_classic_cut15 = qt_abloy_classic_cut15_qt;
-abloy_classic_cut16 = qt_abloy_classic_cut16_qt;
-abloy_classic_cut17 = qt_abloy_classic_cut17_qt;
-abloy_classic_cut18 = qt_abloy_classic_cut18_qt;
-abloy_classic_cut19 = qt_abloy_classic_cut19_qt;
-abloy_classic_cut20 = qt_abloy_classic_cut20_qt;
+abloy_classic_side_of_cutting = "RIGHT";
+abloy_classic_number_of_discs = 0;
+abloy_classic_spaces = 2;
+abloy_classic_mill_thickness = 2.5;
+abloy_classic_angle_step = 18;
+abloy_classic_distance_from_tip = 0;
+abloy_classic_cut01 = 0;
+abloy_classic_cut02 = 0;
+abloy_classic_cut03 = 0;
+abloy_classic_cut04 = 0;
+abloy_classic_cut05 = 0;
+abloy_classic_cut06 = 0;
+abloy_classic_cut07 = 0;
+abloy_classic_cut08 = 0;
+abloy_classic_cut09 = 0;
+abloy_classic_cut10 = 0;
+abloy_classic_cut11 = 0;
+abloy_classic_cut12 = 0;
+abloy_classic_cut13 = 0;
+abloy_classic_cut14 = 0;
+abloy_classic_cut15 = 0;
+abloy_classic_cut16 = 0;
+abloy_classic_cut17 = 0;
+abloy_classic_cut18 = 0;
+abloy_classic_cut19 = 0;
+abloy_classic_cut20 = 0;
                      
 
 
 //ABLOY DISKLOCK PRO
-abloy_disklock_number_of_discs = qt_abloy_disklock_number_of_discs_qt;
-abloy_disklock_spaces = qt_abloy_disklock_spaces_qt;
-abloy_disklock_mill_thickness = qt_abloy_disklock_mill_thickness_qt;
-abloy_disklock_distance_from_tip = qt_abloy_disklock_distance_from_tip_qt;
-abloy_disklock_groove_at_the_tip = qt_abloy_disklock_groove_at_the_tip_qt;
-abloy_disklock_cut01 = qt_abloy_disklock_cut01_qt;
-abloy_disklock_cut02 = qt_abloy_disklock_cut02_qt;
-abloy_disklock_cut03 = qt_abloy_disklock_cut03_qt;
-abloy_disklock_cut04 = qt_abloy_disklock_cut04_qt;
-abloy_disklock_cut05 = qt_abloy_disklock_cut05_qt;
-abloy_disklock_cut06 = qt_abloy_disklock_cut06_qt;
-abloy_disklock_cut07 = qt_abloy_disklock_cut07_qt;
-abloy_disklock_cut08 = qt_abloy_disklock_cut08_qt;
-abloy_disklock_cut09 = qt_abloy_disklock_cut09_qt;
-abloy_disklock_cut10 = qt_abloy_disklock_cut10_qt;
-abloy_disklock_cut11 = qt_abloy_disklock_cut11_qt;
-abloy_disklock_cut12 = qt_abloy_disklock_cut12_qt;
-abloy_disklock_cut13 = qt_abloy_disklock_cut13_qt;
-abloy_disklock_cut14 = qt_abloy_disklock_cut14_qt;
-abloy_disklock_cut15 = qt_abloy_disklock_cut15_qt;
-abloy_disklock_cut16 = qt_abloy_disklock_cut16_qt;
-abloy_disklock_cut17 = qt_abloy_disklock_cut17_qt;
-abloy_disklock_cut18 = qt_abloy_disklock_cut18_qt;
-abloy_disklock_cut19 = qt_abloy_disklock_cut19_qt;
-abloy_disklock_cut20 = qt_abloy_disklock_cut20_qt;
+abloy_disklock_number_of_discs = 0;
+abloy_disklock_spaces = 1.6;
+abloy_disklock_mill_thickness = 2;
+abloy_disklock_distance_from_tip = 2.5;
+abloy_disklock_groove_at_the_tip = "NO";
+abloy_disklock_cut01 = 0;
+abloy_disklock_cut02 = 0;
+abloy_disklock_cut03 = 0;
+abloy_disklock_cut04 = 0;
+abloy_disklock_cut05 = 0;
+abloy_disklock_cut06 = 0;
+abloy_disklock_cut07 = 0;
+abloy_disklock_cut08 = 0;
+abloy_disklock_cut09 = 0;
+abloy_disklock_cut10 = 0;
+abloy_disklock_cut11 = 0;
+abloy_disklock_cut12 = 0;
+abloy_disklock_cut13 = 0;
+abloy_disklock_cut14 = 0;
+abloy_disklock_cut15 = 0;
+abloy_disklock_cut16 = 0;
+abloy_disklock_cut17 = 0;
+abloy_disklock_cut18 = 0;
+abloy_disklock_cut19 = 0;
+abloy_disklock_cut20 = 0;
                    
 
 //ABLOY PROTEC
-abloy_protec_number_of_discs = qt_abloy_protec_number_of_discs_qt;
-abloy_protec_spaces = qt_abloy_protec_spaces_qt;
-abloy_protec_mill_thickness = qt_abloy_protec_mill_thickness_qt;
-abloy_protec_distance_from_tip = qt_abloy_protec_distance_from_tip_qt;
-abloy_protec_thinner_at_the_tip = qt_abloy_protec_thinner_at_the_tip_qt;
-abloy_protec_cut01 = qt_abloy_protec_cut01_qt;
-abloy_protec_cut02 = qt_abloy_protec_cut02_qt;
-abloy_protec_cut03 = qt_abloy_protec_cut03_qt;
-abloy_protec_cut04 = qt_abloy_protec_cut04_qt;
-abloy_protec_cut05 = qt_abloy_protec_cut05_qt;
-abloy_protec_cut06 = qt_abloy_protec_cut06_qt;
-abloy_protec_cut07 = qt_abloy_protec_cut07_qt;
-abloy_protec_cut08 = qt_abloy_protec_cut08_qt;
-abloy_protec_cut09 = qt_abloy_protec_cut09_qt;
-abloy_protec_cut10 = qt_abloy_protec_cut10_qt;
-abloy_protec_cut11 = qt_abloy_protec_cut11_qt;
-abloy_protec_cut12 = qt_abloy_protec_cut12_qt;
-abloy_protec_cut13 = qt_abloy_protec_cut13_qt;
-abloy_protec_cut14 = qt_abloy_protec_cut14_qt;
-abloy_protec_cut15 = qt_abloy_protec_cut15_qt;
-abloy_protec_cut16 = qt_abloy_protec_cut16_qt;
-abloy_protec_cut17 = qt_abloy_protec_cut17_qt;
-abloy_protec_cut18 = qt_abloy_protec_cut18_qt;
-abloy_protec_cut19 = qt_abloy_protec_cut19_qt;
-abloy_protec_cut20 = qt_abloy_protec_cut20_qt;
+abloy_protec_number_of_discs = 0;
+abloy_protec_spaces = 1.5;
+abloy_protec_mill_thickness = 2;
+abloy_protec_distance_from_tip = 2;
+abloy_protec_thinner_at_the_tip = "NO";
+abloy_protec_cut01 = 0;
+abloy_protec_cut02 = 0;
+abloy_protec_cut03 = 0;
+abloy_protec_cut04 = 0;
+abloy_protec_cut05 = 0;
+abloy_protec_cut06 = 0;
+abloy_protec_cut07 = 0;
+abloy_protec_cut08 = 0;
+abloy_protec_cut09 = 0;
+abloy_protec_cut10 = 0;
+abloy_protec_cut11 = 0;
+abloy_protec_cut12 = 0;
+abloy_protec_cut13 = 0;
+abloy_protec_cut14 = 0;
+abloy_protec_cut15 = 0;
+abloy_protec_cut16 = 0;
+abloy_protec_cut17 = 0;
+abloy_protec_cut18 = 0;
+abloy_protec_cut19 = 0;
+abloy_protec_cut20 = 0;
                    
 
 //ABUS PLUS
-abus_plus_number_of_discs = qt_abus_plus_number_of_discs_qt;
-abus_plus_spaces = qt_abus_plus_spaces_qt;
-abus_plus_mill_thickness = qt_abus_plus_mill_thickness_qt;
-abus_plus_distance_from_tip = qt_abus_plus_distance_from_tip_qt;
-abus_plus_cut01 = qt_abus_plus_cut01_qt;
-abus_plus_cut02 = qt_abus_plus_cut02_qt;
-abus_plus_cut03 = qt_abus_plus_cut03_qt;
-abus_plus_cut04 = qt_abus_plus_cut04_qt;
-abus_plus_cut05 = qt_abus_plus_cut05_qt;
-abus_plus_cut06 = qt_abus_plus_cut06_qt;
-abus_plus_cut07 = qt_abus_plus_cut07_qt;
-abus_plus_cut08 = qt_abus_plus_cut08_qt;
-abus_plus_cut09 = qt_abus_plus_cut09_qt;
-abus_plus_cut10 = qt_abus_plus_cut10_qt;
-abus_plus_cut11 = qt_abus_plus_cut11_qt;
-abus_plus_cut12 = qt_abus_plus_cut12_qt;
-abus_plus_cut13 = qt_abus_plus_cut13_qt;
-abus_plus_cut14 = qt_abus_plus_cut14_qt;
-abus_plus_cut15 = qt_abus_plus_cut15_qt;
-abus_plus_cut16 = qt_abus_plus_cut16_qt;
-abus_plus_cut17 = qt_abus_plus_cut17_qt;
-abus_plus_cut18 = qt_abus_plus_cut18_qt;
-abus_plus_cut19 = qt_abus_plus_cut19_qt;
-abus_plus_cut20 = qt_abus_plus_cut20_qt;
+abus_plus_number_of_discs = 0;
+abus_plus_spaces = 2;
+abus_plus_mill_thickness = 2.5;
+abus_plus_distance_from_tip = 4;
+abus_plus_cut01 = 0;
+abus_plus_cut02 = 0;
+abus_plus_cut03 = 0;
+abus_plus_cut04 = 0;
+abus_plus_cut05 = 0;
+abus_plus_cut06 = 0;
+abus_plus_cut07 = 0;
+abus_plus_cut08 = 0;
+abus_plus_cut09 = 0;
+abus_plus_cut10 = 0;
+abus_plus_cut11 = 0;
+abus_plus_cut12 = 0;
+abus_plus_cut13 = 0;
+abus_plus_cut14 = 0;
+abus_plus_cut15 = 0;
+abus_plus_cut16 = 0;
+abus_plus_cut17 = 0;
+abus_plus_cut18 = 0;
+abus_plus_cut19 = 0;
+abus_plus_cut20 = 0;
                        
 
 
@@ -1033,507 +1033,507 @@ axi_home_row3_shoulder_distance =   23.8-18.5 ; //CLOSEST TO TIP
 axi_home_root_x =                   1 ; 
 axi_home_root_y =                   1 ; 
 
-axi_home_top_row = qt_axi_home_top_row_qt;
-axi_home_right_row = qt_axi_home_right_row_qt;
-axi_home_left_row = qt_axi_home_left_row_qt;
+axi_home_top_row = "ROW1";
+axi_home_right_row = "ROW2";
+axi_home_left_row = "ROW3";
 
-axi_home_row1_cut01 = qt_axi_home_row1_cut01_qt;
-axi_home_row1_cut02 = qt_axi_home_row1_cut02_qt;
-axi_home_row1_cut03 = qt_axi_home_row1_cut03_qt;
-axi_home_row1_cut04 = qt_axi_home_row1_cut04_qt;
-axi_home_row1_cut05 = qt_axi_home_row1_cut05_qt;
-axi_home_row1_cut06 = qt_axi_home_row1_cut06_qt;
+axi_home_row1_cut01 = 0;
+axi_home_row1_cut02 = 0;
+axi_home_row1_cut03 = 0;
+axi_home_row1_cut04 = 0;
+axi_home_row1_cut05 = 0;
+axi_home_row1_cut06 = 0;
 
-axi_home_row2_cut01 = qt_axi_home_row2_cut01_qt;
-axi_home_row2_cut02 = qt_axi_home_row2_cut02_qt;
-axi_home_row2_cut03 = qt_axi_home_row2_cut03_qt;
-axi_home_row2_cut04 = qt_axi_home_row2_cut04_qt;
-axi_home_row2_cut05 = qt_axi_home_row2_cut05_qt;
-axi_home_row2_cut06 = qt_axi_home_row2_cut06_qt;
+axi_home_row2_cut01 = 0;
+axi_home_row2_cut02 = 0;
+axi_home_row2_cut03 = 0;
+axi_home_row2_cut04 = 0;
+axi_home_row2_cut05 = 0;
+axi_home_row2_cut06 = 0;
 
-axi_home_row3_cut01 = qt_axi_home_row3_cut01_qt;
-axi_home_row3_cut02 = qt_axi_home_row3_cut02_qt;
-axi_home_row3_cut03 = qt_axi_home_row3_cut03_qt;
-axi_home_row3_cut04 = qt_axi_home_row3_cut04_qt;
-axi_home_row3_cut05 = qt_axi_home_row3_cut05_qt;
-axi_home_row3_cut06 = qt_axi_home_row3_cut06_qt;
+axi_home_row3_cut01 = 0;
+axi_home_row3_cut02 = 0;
+axi_home_row3_cut03 = 0;
+axi_home_row3_cut04 = 0;
+axi_home_row3_cut05 = 0;
+axi_home_row3_cut06 = 0;
                   
 
 
 //FICHET 787 PARAMETERS
 //CONSTANTS
-fichet_787_cut01 = qt_fichet_787_cut01_qt;
-fichet_787_cut02 = qt_fichet_787_cut02_qt;
-fichet_787_cut03 = qt_fichet_787_cut03_qt;
-fichet_787_cut04 = qt_fichet_787_cut04_qt;
-fichet_787_cut05 = qt_fichet_787_cut05_qt;
-fichet_787_cut06 = qt_fichet_787_cut06_qt;
-fichet_787_cut07 = qt_fichet_787_cut07_qt;
-fichet_787_cut08 = qt_fichet_787_cut08_qt;
-fichet_787_cut09 = qt_fichet_787_cut09_qt;
-fichet_787_cut10 = qt_fichet_787_cut10_qt;
+fichet_787_cut01 = 0;
+fichet_787_cut02 = 0;
+fichet_787_cut03 = 0;
+fichet_787_cut04 = 0;
+fichet_787_cut05 = 0;
+fichet_787_cut06 = 0;
+fichet_787_cut07 = 0;
+fichet_787_cut08 = 0;
+fichet_787_cut09 = 0;
+fichet_787_cut10 = 0;
                    
 
 
 //EXTRA CUTS
 //SHAPE 01
-extra_cut_shape_01_model = qt_extra_cut_shape_01_model_qt;
-extra_cut_shape_01_cube_centered = qt_extra_cut_shape_01_cube_centered_qt;
-extra_cut_shape_01_cube_dimensions = qt_extra_cut_shape_01_cube_dimensions_qt;
-extra_cut_shape_01_cube_rotation = qt_extra_cut_shape_01_cube_rotation_qt;
-extra_cut_shape_01_cube_translate = qt_extra_cut_shape_01_cube_translate_qt;
+extra_cut_shape_01_model = "CUBE";
+extra_cut_shape_01_cube_centered = "NO";
+extra_cut_shape_01_cube_dimensions = [0,0,0];
+extra_cut_shape_01_cube_rotation = [0,0,0];
+extra_cut_shape_01_cube_translate = [0,0,0];
 
-extra_cut_shape_01_cylinder_centered = qt_extra_cut_shape_01_cylinder_centered_qt;
-extra_cut_shape_01_cylinder_diameter = qt_extra_cut_shape_01_cylinder_diameter_qt;
-extra_cut_shape_01_cylinder_height = qt_extra_cut_shape_01_cylinder_height_qt;
-extra_cut_shape_01_cylinder_number_of_faces = qt_extra_cut_shape_01_cylinder_number_of_faces_qt;
-extra_cut_shape_01_cylinder_rotation = qt_extra_cut_shape_01_cylinder_rotation_qt;
-extra_cut_shape_01_cylinder_translate = qt_extra_cut_shape_01_cylinder_translate_qt;
+extra_cut_shape_01_cylinder_centered = "NO";
+extra_cut_shape_01_cylinder_diameter = 0;
+extra_cut_shape_01_cylinder_height = 0;
+extra_cut_shape_01_cylinder_number_of_faces = 0;
+extra_cut_shape_01_cylinder_rotation = [0,0,0];
+extra_cut_shape_01_cylinder_translate = [0,0,0];
 
-extra_cut_shape_01_sphere_diameter = qt_extra_cut_shape_01_sphere_diameter_qt;
-extra_cut_shape_01_sphere_number_of_faces = qt_extra_cut_shape_01_sphere_number_of_faces_qt;
-extra_cut_shape_01_sphere_translate = qt_extra_cut_shape_01_sphere_translate_qt;
+extra_cut_shape_01_sphere_diameter = 0;
+extra_cut_shape_01_sphere_number_of_faces = 0;
+extra_cut_shape_01_sphere_translate = [0,0,0];
 
-extra_cut_shape_01_stl_name = qt_extra_cut_shape_01_stl_name_qt;
-extra_cut_shape_01_stl_rotation = qt_extra_cut_shape_01_stl_rotation_qt;
-extra_cut_shape_01_stl_translate = qt_extra_cut_shape_01_stl_translate_qt;
+extra_cut_shape_01_stl_name = "0";
+extra_cut_shape_01_stl_rotation = [0,0,0];
+extra_cut_shape_01_stl_translate = [0,0,0];
 
 
 //SHAPE 02
-extra_cut_shape_02_model = qt_extra_cut_shape_02_model_qt;
-extra_cut_shape_02_cube_centered = qt_extra_cut_shape_02_cube_centered_qt;
-extra_cut_shape_02_cube_dimensions = qt_extra_cut_shape_02_cube_dimensions_qt;
-extra_cut_shape_02_cube_rotation = qt_extra_cut_shape_02_cube_rotation_qt;
-extra_cut_shape_02_cube_translate = qt_extra_cut_shape_02_cube_translate_qt;
+extra_cut_shape_02_model = "CUBE";
+extra_cut_shape_02_cube_centered = "NO";
+extra_cut_shape_02_cube_dimensions = [0,0,0];
+extra_cut_shape_02_cube_rotation = [0,0,0];
+extra_cut_shape_02_cube_translate = [0,0,0];
 
-extra_cut_shape_02_cylinder_centered = qt_extra_cut_shape_02_cylinder_centered_qt;
-extra_cut_shape_02_cylinder_diameter = qt_extra_cut_shape_02_cylinder_diameter_qt;
-extra_cut_shape_02_cylinder_height = qt_extra_cut_shape_02_cylinder_height_qt;
-extra_cut_shape_02_cylinder_number_of_faces = qt_extra_cut_shape_02_cylinder_number_of_faces_qt;
-extra_cut_shape_02_cylinder_rotation = qt_extra_cut_shape_02_cylinder_rotation_qt;
-extra_cut_shape_02_cylinder_translate = qt_extra_cut_shape_02_cylinder_translate_qt;
+extra_cut_shape_02_cylinder_centered = "NO";
+extra_cut_shape_02_cylinder_diameter = 0;
+extra_cut_shape_02_cylinder_height = 0;
+extra_cut_shape_02_cylinder_number_of_faces = 0;
+extra_cut_shape_02_cylinder_rotation = [0,0,0];
+extra_cut_shape_02_cylinder_translate = [0,0,0];
 
-extra_cut_shape_02_sphere_diameter = qt_extra_cut_shape_02_sphere_diameter_qt;
-extra_cut_shape_02_sphere_number_of_faces = qt_extra_cut_shape_02_sphere_number_of_faces_qt;
-extra_cut_shape_02_sphere_translate = qt_extra_cut_shape_02_sphere_translate_qt;
+extra_cut_shape_02_sphere_diameter = 0;
+extra_cut_shape_02_sphere_number_of_faces = 0;
+extra_cut_shape_02_sphere_translate = [0,0,0];
 
-extra_cut_shape_02_stl_name = qt_extra_cut_shape_02_stl_name_qt;
-extra_cut_shape_02_stl_rotation = qt_extra_cut_shape_02_stl_rotation_qt;
-extra_cut_shape_02_stl_translate = qt_extra_cut_shape_02_stl_translate_qt;
+extra_cut_shape_02_stl_name = "0";
+extra_cut_shape_02_stl_rotation = [0,0,0];
+extra_cut_shape_02_stl_translate = [0,0,0];
 
 
 //SHAPE 03
-extra_cut_shape_03_model = qt_extra_cut_shape_03_model_qt;
-extra_cut_shape_03_cube_centered = qt_extra_cut_shape_03_cube_centered_qt;
-extra_cut_shape_03_cube_dimensions = qt_extra_cut_shape_03_cube_dimensions_qt;
-extra_cut_shape_03_cube_rotation = qt_extra_cut_shape_03_cube_rotation_qt;
-extra_cut_shape_03_cube_translate = qt_extra_cut_shape_03_cube_translate_qt;
+extra_cut_shape_03_model = "CUBE";
+extra_cut_shape_03_cube_centered = "NO";
+extra_cut_shape_03_cube_dimensions = [0,0,0];
+extra_cut_shape_03_cube_rotation = [0,0,0];
+extra_cut_shape_03_cube_translate = [0,0,0];
 
-extra_cut_shape_03_cylinder_centered = qt_extra_cut_shape_03_cylinder_centered_qt;
-extra_cut_shape_03_cylinder_diameter = qt_extra_cut_shape_03_cylinder_diameter_qt;
-extra_cut_shape_03_cylinder_height = qt_extra_cut_shape_03_cylinder_height_qt;
-extra_cut_shape_03_cylinder_number_of_faces = qt_extra_cut_shape_03_cylinder_number_of_faces_qt;
-extra_cut_shape_03_cylinder_rotation = qt_extra_cut_shape_03_cylinder_rotation_qt;
-extra_cut_shape_03_cylinder_translate = qt_extra_cut_shape_03_cylinder_translate_qt;
+extra_cut_shape_03_cylinder_centered = "NO";
+extra_cut_shape_03_cylinder_diameter = 0;
+extra_cut_shape_03_cylinder_height = 0;
+extra_cut_shape_03_cylinder_number_of_faces = 0;
+extra_cut_shape_03_cylinder_rotation = [0,0,0];
+extra_cut_shape_03_cylinder_translate = [0,0,0];
 
-extra_cut_shape_03_sphere_diameter = qt_extra_cut_shape_03_sphere_diameter_qt;
-extra_cut_shape_03_sphere_number_of_faces = qt_extra_cut_shape_03_sphere_number_of_faces_qt;
-extra_cut_shape_03_sphere_translate = qt_extra_cut_shape_03_sphere_translate_qt;
+extra_cut_shape_03_sphere_diameter = 0;
+extra_cut_shape_03_sphere_number_of_faces = 0;
+extra_cut_shape_03_sphere_translate = [0,0,0];
 
-extra_cut_shape_03_stl_name = qt_extra_cut_shape_03_stl_name_qt;
-extra_cut_shape_03_stl_rotation = qt_extra_cut_shape_03_stl_rotation_qt;
-extra_cut_shape_03_stl_translate = qt_extra_cut_shape_03_stl_translate_qt;
+extra_cut_shape_03_stl_name = "0";
+extra_cut_shape_03_stl_rotation = [0,0,0];
+extra_cut_shape_03_stl_translate = [0,0,0];
 
 
 //SHAPE 04
-extra_cut_shape_04_model = qt_extra_cut_shape_04_model_qt;
-extra_cut_shape_04_cube_centered = qt_extra_cut_shape_04_cube_centered_qt;
-extra_cut_shape_04_cube_dimensions = qt_extra_cut_shape_04_cube_dimensions_qt;
-extra_cut_shape_04_cube_rotation = qt_extra_cut_shape_04_cube_rotation_qt;
-extra_cut_shape_04_cube_translate = qt_extra_cut_shape_04_cube_translate_qt;
+extra_cut_shape_04_model = "CUBE";
+extra_cut_shape_04_cube_centered = "NO";
+extra_cut_shape_04_cube_dimensions = [0,0,0];
+extra_cut_shape_04_cube_rotation = [0,0,0];
+extra_cut_shape_04_cube_translate = [0,0,0];
 
-extra_cut_shape_04_cylinder_centered = qt_extra_cut_shape_04_cylinder_centered_qt;
-extra_cut_shape_04_cylinder_diameter = qt_extra_cut_shape_04_cylinder_diameter_qt;
-extra_cut_shape_04_cylinder_height = qt_extra_cut_shape_04_cylinder_height_qt;
-extra_cut_shape_04_cylinder_number_of_faces = qt_extra_cut_shape_04_cylinder_number_of_faces_qt;
-extra_cut_shape_04_cylinder_rotation = qt_extra_cut_shape_04_cylinder_rotation_qt;
-extra_cut_shape_04_cylinder_translate = qt_extra_cut_shape_04_cylinder_translate_qt;
+extra_cut_shape_04_cylinder_centered = "NO";
+extra_cut_shape_04_cylinder_diameter = 0;
+extra_cut_shape_04_cylinder_height = 0;
+extra_cut_shape_04_cylinder_number_of_faces = 0;
+extra_cut_shape_04_cylinder_rotation = [0,0,0];
+extra_cut_shape_04_cylinder_translate = [0,0,0];
 
-extra_cut_shape_04_sphere_diameter = qt_extra_cut_shape_04_sphere_diameter_qt;
-extra_cut_shape_04_sphere_number_of_faces = qt_extra_cut_shape_04_sphere_number_of_faces_qt;
-extra_cut_shape_04_sphere_translate = qt_extra_cut_shape_04_sphere_translate_qt;
+extra_cut_shape_04_sphere_diameter = 0;
+extra_cut_shape_04_sphere_number_of_faces = 0;
+extra_cut_shape_04_sphere_translate = [0,0,0];
 
-extra_cut_shape_04_stl_name = qt_extra_cut_shape_04_stl_name_qt;
-extra_cut_shape_04_stl_rotation = qt_extra_cut_shape_04_stl_rotation_qt;
-extra_cut_shape_04_stl_translate = qt_extra_cut_shape_04_stl_translate_qt;
+extra_cut_shape_04_stl_name = "0";
+extra_cut_shape_04_stl_rotation = [0,0,0];
+extra_cut_shape_04_stl_translate = [0,0,0];
 
 
 //SHAPE 05
-extra_cut_shape_05_model = qt_extra_cut_shape_05_model_qt;
-extra_cut_shape_05_cube_centered = qt_extra_cut_shape_05_cube_centered_qt;
-extra_cut_shape_05_cube_dimensions = qt_extra_cut_shape_05_cube_dimensions_qt;
-extra_cut_shape_05_cube_rotation = qt_extra_cut_shape_05_cube_rotation_qt;
-extra_cut_shape_05_cube_translate = qt_extra_cut_shape_05_cube_translate_qt;
+extra_cut_shape_05_model = "CUBE";
+extra_cut_shape_05_cube_centered = "NO";
+extra_cut_shape_05_cube_dimensions = [0,0,0];
+extra_cut_shape_05_cube_rotation = [0,0,0];
+extra_cut_shape_05_cube_translate = [0,0,0];
 
-extra_cut_shape_05_cylinder_centered = qt_extra_cut_shape_05_cylinder_centered_qt;
-extra_cut_shape_05_cylinder_diameter = qt_extra_cut_shape_05_cylinder_diameter_qt;
-extra_cut_shape_05_cylinder_height = qt_extra_cut_shape_05_cylinder_height_qt;
-extra_cut_shape_05_cylinder_number_of_faces = qt_extra_cut_shape_05_cylinder_number_of_faces_qt;
-extra_cut_shape_05_cylinder_rotation = qt_extra_cut_shape_05_cylinder_rotation_qt;
-extra_cut_shape_05_cylinder_translate = qt_extra_cut_shape_05_cylinder_translate_qt;
+extra_cut_shape_05_cylinder_centered = "NO";
+extra_cut_shape_05_cylinder_diameter = 0;
+extra_cut_shape_05_cylinder_height = 0;
+extra_cut_shape_05_cylinder_number_of_faces = 0;
+extra_cut_shape_05_cylinder_rotation = [0,0,0];
+extra_cut_shape_05_cylinder_translate = [0,0,0];
 
-extra_cut_shape_05_sphere_diameter = qt_extra_cut_shape_05_sphere_diameter_qt;
-extra_cut_shape_05_sphere_number_of_faces = qt_extra_cut_shape_05_sphere_number_of_faces_qt;
-extra_cut_shape_05_sphere_translate = qt_extra_cut_shape_05_sphere_translate_qt;
+extra_cut_shape_05_sphere_diameter = 0;
+extra_cut_shape_05_sphere_number_of_faces = 0;
+extra_cut_shape_05_sphere_translate = [0,0,0];
 
-extra_cut_shape_05_stl_name = qt_extra_cut_shape_05_stl_name_qt;
-extra_cut_shape_05_stl_rotation = qt_extra_cut_shape_05_stl_rotation_qt;
-extra_cut_shape_05_stl_translate = qt_extra_cut_shape_05_stl_translate_qt;
+extra_cut_shape_05_stl_name = "0";
+extra_cut_shape_05_stl_rotation = [0,0,0];
+extra_cut_shape_05_stl_translate = [0,0,0];
 
 
 //SHAPE 06
-extra_cut_shape_06_model = qt_extra_cut_shape_06_model_qt;
-extra_cut_shape_06_cube_centered = qt_extra_cut_shape_06_cube_centered_qt;
-extra_cut_shape_06_cube_dimensions = qt_extra_cut_shape_06_cube_dimensions_qt;
-extra_cut_shape_06_cube_rotation = qt_extra_cut_shape_06_cube_rotation_qt;
-extra_cut_shape_06_cube_translate = qt_extra_cut_shape_06_cube_translate_qt;
+extra_cut_shape_06_model = "CUBE";
+extra_cut_shape_06_cube_centered = "NO";
+extra_cut_shape_06_cube_dimensions = [0,0,0];
+extra_cut_shape_06_cube_rotation = [0,0,0];
+extra_cut_shape_06_cube_translate = [0,0,0];
 
-extra_cut_shape_06_cylinder_centered = qt_extra_cut_shape_06_cylinder_centered_qt;
-extra_cut_shape_06_cylinder_diameter = qt_extra_cut_shape_06_cylinder_diameter_qt;
-extra_cut_shape_06_cylinder_height = qt_extra_cut_shape_06_cylinder_height_qt;
-extra_cut_shape_06_cylinder_number_of_faces = qt_extra_cut_shape_06_cylinder_number_of_faces_qt;
-extra_cut_shape_06_cylinder_rotation = qt_extra_cut_shape_06_cylinder_rotation_qt;
-extra_cut_shape_06_cylinder_translate = qt_extra_cut_shape_06_cylinder_translate_qt;
+extra_cut_shape_06_cylinder_centered = "NO";
+extra_cut_shape_06_cylinder_diameter = 0;
+extra_cut_shape_06_cylinder_height = 0;
+extra_cut_shape_06_cylinder_number_of_faces = 0;
+extra_cut_shape_06_cylinder_rotation = [0,0,0];
+extra_cut_shape_06_cylinder_translate = [0,0,0];
 
-extra_cut_shape_06_sphere_diameter = qt_extra_cut_shape_06_sphere_diameter_qt;
-extra_cut_shape_06_sphere_number_of_faces = qt_extra_cut_shape_06_sphere_number_of_faces_qt;
-extra_cut_shape_06_sphere_translate = qt_extra_cut_shape_06_sphere_translate_qt;
+extra_cut_shape_06_sphere_diameter = 0;
+extra_cut_shape_06_sphere_number_of_faces = 0;
+extra_cut_shape_06_sphere_translate = [0,0,0];
 
-extra_cut_shape_06_stl_name = qt_extra_cut_shape_06_stl_name_qt;
-extra_cut_shape_06_stl_rotation = qt_extra_cut_shape_06_stl_rotation_qt;
-extra_cut_shape_06_stl_translate = qt_extra_cut_shape_06_stl_translate_qt;
+extra_cut_shape_06_stl_name = "0";
+extra_cut_shape_06_stl_rotation = [0,0,0];
+extra_cut_shape_06_stl_translate = [0,0,0];
 
 
 //SHAPE 07
-extra_cut_shape_07_model = qt_extra_cut_shape_07_model_qt;
-extra_cut_shape_07_cube_centered = qt_extra_cut_shape_07_cube_centered_qt;
-extra_cut_shape_07_cube_dimensions = qt_extra_cut_shape_07_cube_dimensions_qt;
-extra_cut_shape_07_cube_rotation = qt_extra_cut_shape_07_cube_rotation_qt;
-extra_cut_shape_07_cube_translate = qt_extra_cut_shape_07_cube_translate_qt;
+extra_cut_shape_07_model = "CUBE";
+extra_cut_shape_07_cube_centered = "NO";
+extra_cut_shape_07_cube_dimensions = [0,0,0];
+extra_cut_shape_07_cube_rotation = [0,0,0];
+extra_cut_shape_07_cube_translate = [0,0,0];
 
-extra_cut_shape_07_cylinder_centered = qt_extra_cut_shape_07_cylinder_centered_qt;
-extra_cut_shape_07_cylinder_diameter = qt_extra_cut_shape_07_cylinder_diameter_qt;
-extra_cut_shape_07_cylinder_height = qt_extra_cut_shape_07_cylinder_height_qt;
-extra_cut_shape_07_cylinder_number_of_faces = qt_extra_cut_shape_07_cylinder_number_of_faces_qt;
-extra_cut_shape_07_cylinder_rotation = qt_extra_cut_shape_07_cylinder_rotation_qt;
-extra_cut_shape_07_cylinder_translate = qt_extra_cut_shape_07_cylinder_translate_qt;
+extra_cut_shape_07_cylinder_centered = "NO";
+extra_cut_shape_07_cylinder_diameter = 0;
+extra_cut_shape_07_cylinder_height = 0;
+extra_cut_shape_07_cylinder_number_of_faces = 0;
+extra_cut_shape_07_cylinder_rotation = [0,0,0];
+extra_cut_shape_07_cylinder_translate = [0,0,0];
 
-extra_cut_shape_07_sphere_diameter = qt_extra_cut_shape_07_sphere_diameter_qt;
-extra_cut_shape_07_sphere_number_of_faces = qt_extra_cut_shape_07_sphere_number_of_faces_qt;
-extra_cut_shape_07_sphere_translate = qt_extra_cut_shape_07_sphere_translate_qt;
+extra_cut_shape_07_sphere_diameter = 0;
+extra_cut_shape_07_sphere_number_of_faces = 0;
+extra_cut_shape_07_sphere_translate = [0,0,0];
 
-extra_cut_shape_07_stl_name = qt_extra_cut_shape_07_stl_name_qt;
-extra_cut_shape_07_stl_rotation = qt_extra_cut_shape_07_stl_rotation_qt;
-extra_cut_shape_07_stl_translate = qt_extra_cut_shape_07_stl_translate_qt;
+extra_cut_shape_07_stl_name = "0";
+extra_cut_shape_07_stl_rotation = [0,0,0];
+extra_cut_shape_07_stl_translate = [0,0,0];
 
 
 //SHAPE 08
-extra_cut_shape_08_model = qt_extra_cut_shape_08_model_qt;
-extra_cut_shape_08_cube_centered = qt_extra_cut_shape_08_cube_centered_qt;
-extra_cut_shape_08_cube_dimensions = qt_extra_cut_shape_08_cube_dimensions_qt;
-extra_cut_shape_08_cube_rotation = qt_extra_cut_shape_08_cube_rotation_qt;
-extra_cut_shape_08_cube_translate = qt_extra_cut_shape_08_cube_translate_qt;
+extra_cut_shape_08_model = "CUBE";
+extra_cut_shape_08_cube_centered = "NO";
+extra_cut_shape_08_cube_dimensions = [0,0,0];
+extra_cut_shape_08_cube_rotation = [0,0,0];
+extra_cut_shape_08_cube_translate = [0,0,0];
 
-extra_cut_shape_08_cylinder_centered = qt_extra_cut_shape_08_cylinder_centered_qt;
-extra_cut_shape_08_cylinder_diameter = qt_extra_cut_shape_08_cylinder_diameter_qt;
-extra_cut_shape_08_cylinder_height = qt_extra_cut_shape_08_cylinder_height_qt;
-extra_cut_shape_08_cylinder_number_of_faces = qt_extra_cut_shape_08_cylinder_number_of_faces_qt;
-extra_cut_shape_08_cylinder_rotation = qt_extra_cut_shape_08_cylinder_rotation_qt;
-extra_cut_shape_08_cylinder_translate = qt_extra_cut_shape_08_cylinder_translate_qt;
+extra_cut_shape_08_cylinder_centered = "NO";
+extra_cut_shape_08_cylinder_diameter = 0;
+extra_cut_shape_08_cylinder_height = 0;
+extra_cut_shape_08_cylinder_number_of_faces = 0;
+extra_cut_shape_08_cylinder_rotation = [0,0,0];
+extra_cut_shape_08_cylinder_translate = [0,0,0];
 
-extra_cut_shape_08_sphere_diameter = qt_extra_cut_shape_08_sphere_diameter_qt;
-extra_cut_shape_08_sphere_number_of_faces = qt_extra_cut_shape_08_sphere_number_of_faces_qt;
-extra_cut_shape_08_sphere_translate = qt_extra_cut_shape_08_sphere_translate_qt;
+extra_cut_shape_08_sphere_diameter = 0;
+extra_cut_shape_08_sphere_number_of_faces = 0;
+extra_cut_shape_08_sphere_translate = [0,0,0];
 
-extra_cut_shape_08_stl_name = qt_extra_cut_shape_08_stl_name_qt;
-extra_cut_shape_08_stl_rotation = qt_extra_cut_shape_08_stl_rotation_qt;
-extra_cut_shape_08_stl_translate = qt_extra_cut_shape_08_stl_translate_qt;
+extra_cut_shape_08_stl_name = "0";
+extra_cut_shape_08_stl_rotation = [0,0,0];
+extra_cut_shape_08_stl_translate = [0,0,0];
 
 //SHAPE 09
-extra_cut_shape_09_model = qt_extra_cut_shape_09_model_qt;
-extra_cut_shape_09_cube_centered = qt_extra_cut_shape_09_cube_centered_qt;
-extra_cut_shape_09_cube_dimensions = qt_extra_cut_shape_09_cube_dimensions_qt;
-extra_cut_shape_09_cube_rotation = qt_extra_cut_shape_09_cube_rotation_qt;
-extra_cut_shape_09_cube_translate = qt_extra_cut_shape_09_cube_translate_qt;
+extra_cut_shape_09_model = "CUBE";
+extra_cut_shape_09_cube_centered = "NO";
+extra_cut_shape_09_cube_dimensions = [0,0,0];
+extra_cut_shape_09_cube_rotation = [0,0,0];
+extra_cut_shape_09_cube_translate = [0,0,0];
 
-extra_cut_shape_09_cylinder_centered = qt_extra_cut_shape_09_cylinder_centered_qt;
-extra_cut_shape_09_cylinder_diameter = qt_extra_cut_shape_09_cylinder_diameter_qt;
-extra_cut_shape_09_cylinder_height = qt_extra_cut_shape_09_cylinder_height_qt;
-extra_cut_shape_09_cylinder_number_of_faces = qt_extra_cut_shape_09_cylinder_number_of_faces_qt;
-extra_cut_shape_09_cylinder_rotation = qt_extra_cut_shape_09_cylinder_rotation_qt;
-extra_cut_shape_09_cylinder_translate = qt_extra_cut_shape_09_cylinder_translate_qt;
+extra_cut_shape_09_cylinder_centered = "NO";
+extra_cut_shape_09_cylinder_diameter = 0;
+extra_cut_shape_09_cylinder_height = 0;
+extra_cut_shape_09_cylinder_number_of_faces = 0;
+extra_cut_shape_09_cylinder_rotation = [0,0,0];
+extra_cut_shape_09_cylinder_translate = [0,0,0];
 
-extra_cut_shape_09_sphere_diameter = qt_extra_cut_shape_09_sphere_diameter_qt;
-extra_cut_shape_09_sphere_number_of_faces = qt_extra_cut_shape_09_sphere_number_of_faces_qt;
-extra_cut_shape_09_sphere_translate = qt_extra_cut_shape_09_sphere_translate_qt;
+extra_cut_shape_09_sphere_diameter = 0;
+extra_cut_shape_09_sphere_number_of_faces = 0;
+extra_cut_shape_09_sphere_translate = [0,0,0];
 
-extra_cut_shape_09_stl_name = qt_extra_cut_shape_09_stl_name_qt;
-extra_cut_shape_09_stl_rotation = qt_extra_cut_shape_09_stl_rotation_qt;
-extra_cut_shape_09_stl_translate = qt_extra_cut_shape_09_stl_translate_qt;
+extra_cut_shape_09_stl_name = "0";
+extra_cut_shape_09_stl_rotation = [0,0,0];
+extra_cut_shape_09_stl_translate = [0,0,0];
 
 
 //SHAPE 10
-extra_cut_shape_10_model = qt_extra_cut_shape_10_model_qt;
-extra_cut_shape_10_cube_centered = qt_extra_cut_shape_10_cube_centered_qt;
-extra_cut_shape_10_cube_dimensions = qt_extra_cut_shape_10_cube_dimensions_qt;
-extra_cut_shape_10_cube_rotation = qt_extra_cut_shape_10_cube_rotation_qt;
-extra_cut_shape_10_cube_translate = qt_extra_cut_shape_10_cube_translate_qt;
+extra_cut_shape_10_model = "CUBE";
+extra_cut_shape_10_cube_centered = "NO";
+extra_cut_shape_10_cube_dimensions = [0,0,0];
+extra_cut_shape_10_cube_rotation = [0,0,0];
+extra_cut_shape_10_cube_translate = [0,0,0];
 
-extra_cut_shape_10_cylinder_centered = qt_extra_cut_shape_10_cylinder_centered_qt;
-extra_cut_shape_10_cylinder_diameter = qt_extra_cut_shape_10_cylinder_diameter_qt;
-extra_cut_shape_10_cylinder_height = qt_extra_cut_shape_10_cylinder_height_qt;
-extra_cut_shape_10_cylinder_number_of_faces = qt_extra_cut_shape_10_cylinder_number_of_faces_qt;
-extra_cut_shape_10_cylinder_rotation = qt_extra_cut_shape_10_cylinder_rotation_qt;
-extra_cut_shape_10_cylinder_translate = qt_extra_cut_shape_10_cylinder_translate_qt;
+extra_cut_shape_10_cylinder_centered = "NO";
+extra_cut_shape_10_cylinder_diameter = 0;
+extra_cut_shape_10_cylinder_height = 0;
+extra_cut_shape_10_cylinder_number_of_faces = 0;
+extra_cut_shape_10_cylinder_rotation = [0,0,0];
+extra_cut_shape_10_cylinder_translate = [0,0,0];
 
-extra_cut_shape_10_sphere_diameter = qt_extra_cut_shape_10_sphere_diameter_qt;
-extra_cut_shape_10_sphere_number_of_faces = qt_extra_cut_shape_10_sphere_number_of_faces_qt;
-extra_cut_shape_10_sphere_translate = qt_extra_cut_shape_10_sphere_translate_qt;
+extra_cut_shape_10_sphere_diameter = 0;
+extra_cut_shape_10_sphere_number_of_faces = 0;
+extra_cut_shape_10_sphere_translate = [0,0,0];
 
-extra_cut_shape_10_stl_name = qt_extra_cut_shape_10_stl_name_qt;
-extra_cut_shape_10_stl_rotation = qt_extra_cut_shape_10_stl_rotation_qt;
-extra_cut_shape_10_stl_translate = qt_extra_cut_shape_10_stl_translate_qt;
+extra_cut_shape_10_stl_name = "0";
+extra_cut_shape_10_stl_rotation = [0,0,0];
+extra_cut_shape_10_stl_translate = [0,0,0];
 
 
 //PARAMETERS FOR ADDITION MATERIAL
 //EXTRA materialS
 //SHAPE 01
-extra_material_shape_01_model = qt_extra_material_shape_01_model_qt;
-extra_material_shape_01_cube_centered = qt_extra_material_shape_01_cube_centered_qt;
-extra_material_shape_01_cube_dimensions = qt_extra_material_shape_01_cube_dimensions_qt;
-extra_material_shape_01_cube_rotation = qt_extra_material_shape_01_cube_rotation_qt;
-extra_material_shape_01_cube_translate = qt_extra_material_shape_01_cube_translate_qt;
+extra_material_shape_01_model = "CUBE";
+extra_material_shape_01_cube_centered = "NO";
+extra_material_shape_01_cube_dimensions = [0,0,0];
+extra_material_shape_01_cube_rotation = [0,0,0];
+extra_material_shape_01_cube_translate = [0,0,0];
 
-extra_material_shape_01_cylinder_centered = qt_extra_material_shape_01_cylinder_centered_qt;
-extra_material_shape_01_cylinder_diameter = qt_extra_material_shape_01_cylinder_diameter_qt;
-extra_material_shape_01_cylinder_height = qt_extra_material_shape_01_cylinder_height_qt;
-extra_material_shape_01_cylinder_number_of_faces = qt_extra_material_shape_01_cylinder_number_of_faces_qt;
-extra_material_shape_01_cylinder_rotation = qt_extra_material_shape_01_cylinder_rotation_qt;
-extra_material_shape_01_cylinder_translate = qt_extra_material_shape_01_cylinder_translate_qt;
+extra_material_shape_01_cylinder_centered = "NO";
+extra_material_shape_01_cylinder_diameter = 0;
+extra_material_shape_01_cylinder_height = 0;
+extra_material_shape_01_cylinder_number_of_faces = 0;
+extra_material_shape_01_cylinder_rotation = [0,0,0];
+extra_material_shape_01_cylinder_translate = [0,0,0];
 
-extra_material_shape_01_sphere_diameter = qt_extra_material_shape_01_sphere_diameter_qt;
-extra_material_shape_01_sphere_number_of_faces = qt_extra_material_shape_01_sphere_number_of_faces_qt;
-extra_material_shape_01_sphere_translate = qt_extra_material_shape_01_sphere_translate_qt;
+extra_material_shape_01_sphere_diameter = 0;
+extra_material_shape_01_sphere_number_of_faces = 0;
+extra_material_shape_01_sphere_translate = [0,0,0];
 
-extra_material_shape_01_stl_name = qt_extra_material_shape_01_stl_name_qt;
-extra_material_shape_01_stl_rotation = qt_extra_material_shape_01_stl_rotation_qt;
-extra_material_shape_01_stl_translate = qt_extra_material_shape_01_stl_translate_qt;
+extra_material_shape_01_stl_name = "0";
+extra_material_shape_01_stl_rotation = [0,0,0];
+extra_material_shape_01_stl_translate = [0,0,0];
 
 
 //SHAPE 02
-extra_material_shape_02_model = qt_extra_material_shape_02_model_qt;
-extra_material_shape_02_cube_centered = qt_extra_material_shape_02_cube_centered_qt;
-extra_material_shape_02_cube_dimensions = qt_extra_material_shape_02_cube_dimensions_qt;
-extra_material_shape_02_cube_rotation = qt_extra_material_shape_02_cube_rotation_qt;
-extra_material_shape_02_cube_translate = qt_extra_material_shape_02_cube_translate_qt;
+extra_material_shape_02_model = "CUBE";
+extra_material_shape_02_cube_centered = "NO";
+extra_material_shape_02_cube_dimensions = [0,0,0];
+extra_material_shape_02_cube_rotation = [0,0,0];
+extra_material_shape_02_cube_translate = [0,0,0];
 
-extra_material_shape_02_cylinder_centered = qt_extra_material_shape_02_cylinder_centered_qt;
-extra_material_shape_02_cylinder_diameter = qt_extra_material_shape_02_cylinder_diameter_qt;
-extra_material_shape_02_cylinder_height = qt_extra_material_shape_02_cylinder_height_qt;
-extra_material_shape_02_cylinder_number_of_faces = qt_extra_material_shape_02_cylinder_number_of_faces_qt;
-extra_material_shape_02_cylinder_rotation = qt_extra_material_shape_02_cylinder_rotation_qt;
-extra_material_shape_02_cylinder_translate = qt_extra_material_shape_02_cylinder_translate_qt;
+extra_material_shape_02_cylinder_centered = "NO";
+extra_material_shape_02_cylinder_diameter = 0;
+extra_material_shape_02_cylinder_height = 0;
+extra_material_shape_02_cylinder_number_of_faces = 0;
+extra_material_shape_02_cylinder_rotation = [0,0,0];
+extra_material_shape_02_cylinder_translate = [0,0,0];
 
-extra_material_shape_02_sphere_diameter = qt_extra_material_shape_02_sphere_diameter_qt;
-extra_material_shape_02_sphere_number_of_faces = qt_extra_material_shape_02_sphere_number_of_faces_qt;
-extra_material_shape_02_sphere_translate = qt_extra_material_shape_02_sphere_translate_qt;
+extra_material_shape_02_sphere_diameter = 0;
+extra_material_shape_02_sphere_number_of_faces = 0;
+extra_material_shape_02_sphere_translate = [0,0,0];
 
-extra_material_shape_02_stl_name = qt_extra_material_shape_02_stl_name_qt;
-extra_material_shape_02_stl_rotation = qt_extra_material_shape_02_stl_rotation_qt;
-extra_material_shape_02_stl_translate = qt_extra_material_shape_02_stl_translate_qt;
+extra_material_shape_02_stl_name = "0";
+extra_material_shape_02_stl_rotation = [0,0,0];
+extra_material_shape_02_stl_translate = [0,0,0];
 
 
 //SHAPE 03
-extra_material_shape_03_model = qt_extra_material_shape_03_model_qt;
-extra_material_shape_03_cube_centered = qt_extra_material_shape_03_cube_centered_qt;
-extra_material_shape_03_cube_dimensions = qt_extra_material_shape_03_cube_dimensions_qt;
-extra_material_shape_03_cube_rotation = qt_extra_material_shape_03_cube_rotation_qt;
-extra_material_shape_03_cube_translate = qt_extra_material_shape_03_cube_translate_qt;
+extra_material_shape_03_model = "CUBE";
+extra_material_shape_03_cube_centered = "NO";
+extra_material_shape_03_cube_dimensions = [0,0,0];
+extra_material_shape_03_cube_rotation = [0,0,0];
+extra_material_shape_03_cube_translate = [0,0,0];
 
-extra_material_shape_03_cylinder_centered = qt_extra_material_shape_03_cylinder_centered_qt;
-extra_material_shape_03_cylinder_diameter = qt_extra_material_shape_03_cylinder_diameter_qt;
-extra_material_shape_03_cylinder_height = qt_extra_material_shape_03_cylinder_height_qt;
-extra_material_shape_03_cylinder_number_of_faces = qt_extra_material_shape_03_cylinder_number_of_faces_qt;
-extra_material_shape_03_cylinder_rotation = qt_extra_material_shape_03_cylinder_rotation_qt;
-extra_material_shape_03_cylinder_translate = qt_extra_material_shape_03_cylinder_translate_qt;
+extra_material_shape_03_cylinder_centered = "NO";
+extra_material_shape_03_cylinder_diameter = 0;
+extra_material_shape_03_cylinder_height = 0;
+extra_material_shape_03_cylinder_number_of_faces = 0;
+extra_material_shape_03_cylinder_rotation = [0,0,0];
+extra_material_shape_03_cylinder_translate = [0,0,0];
 
-extra_material_shape_03_sphere_diameter = qt_extra_material_shape_03_sphere_diameter_qt;
-extra_material_shape_03_sphere_number_of_faces = qt_extra_material_shape_03_sphere_number_of_faces_qt;
-extra_material_shape_03_sphere_translate = qt_extra_material_shape_03_sphere_translate_qt;
+extra_material_shape_03_sphere_diameter = 0;
+extra_material_shape_03_sphere_number_of_faces = 0;
+extra_material_shape_03_sphere_translate = [0,0,0];
 
-extra_material_shape_03_stl_name = qt_extra_material_shape_03_stl_name_qt;
-extra_material_shape_03_stl_rotation = qt_extra_material_shape_03_stl_rotation_qt;
-extra_material_shape_03_stl_translate = qt_extra_material_shape_03_stl_translate_qt;
+extra_material_shape_03_stl_name = "0";
+extra_material_shape_03_stl_rotation = [0,0,0];
+extra_material_shape_03_stl_translate = [0,0,0];
 
 
 //SHAPE 04
-extra_material_shape_04_model = qt_extra_material_shape_04_model_qt;
-extra_material_shape_04_cube_centered = qt_extra_material_shape_04_cube_centered_qt;
-extra_material_shape_04_cube_dimensions = qt_extra_material_shape_04_cube_dimensions_qt;
-extra_material_shape_04_cube_rotation = qt_extra_material_shape_04_cube_rotation_qt;
-extra_material_shape_04_cube_translate = qt_extra_material_shape_04_cube_translate_qt;
+extra_material_shape_04_model = "CUBE";
+extra_material_shape_04_cube_centered = "NO";
+extra_material_shape_04_cube_dimensions = [0,0,0];
+extra_material_shape_04_cube_rotation = [0,0,0];
+extra_material_shape_04_cube_translate = [0,0,0];
 
-extra_material_shape_04_cylinder_centered = qt_extra_material_shape_04_cylinder_centered_qt;
-extra_material_shape_04_cylinder_diameter = qt_extra_material_shape_04_cylinder_diameter_qt;
-extra_material_shape_04_cylinder_height = qt_extra_material_shape_04_cylinder_height_qt;
-extra_material_shape_04_cylinder_number_of_faces = qt_extra_material_shape_04_cylinder_number_of_faces_qt;
-extra_material_shape_04_cylinder_rotation = qt_extra_material_shape_04_cylinder_rotation_qt;
-extra_material_shape_04_cylinder_translate = qt_extra_material_shape_04_cylinder_translate_qt;
+extra_material_shape_04_cylinder_centered = "NO";
+extra_material_shape_04_cylinder_diameter = 0;
+extra_material_shape_04_cylinder_height = 0;
+extra_material_shape_04_cylinder_number_of_faces = 0;
+extra_material_shape_04_cylinder_rotation = [0,0,0];
+extra_material_shape_04_cylinder_translate = [0,0,0];
 
-extra_material_shape_04_sphere_diameter = qt_extra_material_shape_04_sphere_diameter_qt;
-extra_material_shape_04_sphere_number_of_faces = qt_extra_material_shape_04_sphere_number_of_faces_qt;
-extra_material_shape_04_sphere_translate = qt_extra_material_shape_04_sphere_translate_qt;
+extra_material_shape_04_sphere_diameter = 0;
+extra_material_shape_04_sphere_number_of_faces = 0;
+extra_material_shape_04_sphere_translate = [0,0,0];
 
-extra_material_shape_04_stl_name = qt_extra_material_shape_04_stl_name_qt;
-extra_material_shape_04_stl_rotation = qt_extra_material_shape_04_stl_rotation_qt;
-extra_material_shape_04_stl_translate = qt_extra_material_shape_04_stl_translate_qt;
+extra_material_shape_04_stl_name = "0";
+extra_material_shape_04_stl_rotation = [0,0,0];
+extra_material_shape_04_stl_translate = [0,0,0];
 
 
 //SHAPE 05
-extra_material_shape_05_model = qt_extra_material_shape_05_model_qt;
-extra_material_shape_05_cube_centered = qt_extra_material_shape_05_cube_centered_qt;
-extra_material_shape_05_cube_dimensions = qt_extra_material_shape_05_cube_dimensions_qt;
-extra_material_shape_05_cube_rotation = qt_extra_material_shape_05_cube_rotation_qt;
-extra_material_shape_05_cube_translate = qt_extra_material_shape_05_cube_translate_qt;
+extra_material_shape_05_model = "CUBE";
+extra_material_shape_05_cube_centered = "NO";
+extra_material_shape_05_cube_dimensions = [0,0,0];
+extra_material_shape_05_cube_rotation = [0,0,0];
+extra_material_shape_05_cube_translate = [0,0,0];
 
-extra_material_shape_05_cylinder_centered = qt_extra_material_shape_05_cylinder_centered_qt;
-extra_material_shape_05_cylinder_diameter = qt_extra_material_shape_05_cylinder_diameter_qt;
-extra_material_shape_05_cylinder_height = qt_extra_material_shape_05_cylinder_height_qt;
-extra_material_shape_05_cylinder_number_of_faces = qt_extra_material_shape_05_cylinder_number_of_faces_qt;
-extra_material_shape_05_cylinder_rotation = qt_extra_material_shape_05_cylinder_rotation_qt;
-extra_material_shape_05_cylinder_translate = qt_extra_material_shape_05_cylinder_translate_qt;
+extra_material_shape_05_cylinder_centered = "NO";
+extra_material_shape_05_cylinder_diameter = 0;
+extra_material_shape_05_cylinder_height = 0;
+extra_material_shape_05_cylinder_number_of_faces = 0;
+extra_material_shape_05_cylinder_rotation = [0,0,0];
+extra_material_shape_05_cylinder_translate = [0,0,0];
 
-extra_material_shape_05_sphere_diameter = qt_extra_material_shape_05_sphere_diameter_qt;
-extra_material_shape_05_sphere_number_of_faces = qt_extra_material_shape_05_sphere_number_of_faces_qt;
-extra_material_shape_05_sphere_translate = qt_extra_material_shape_05_sphere_translate_qt;
+extra_material_shape_05_sphere_diameter = 0;
+extra_material_shape_05_sphere_number_of_faces = 0;
+extra_material_shape_05_sphere_translate = [0,0,0];
 
-extra_material_shape_05_stl_name = qt_extra_material_shape_05_stl_name_qt;
-extra_material_shape_05_stl_rotation = qt_extra_material_shape_05_stl_rotation_qt;
-extra_material_shape_05_stl_translate = qt_extra_material_shape_05_stl_translate_qt;
+extra_material_shape_05_stl_name = "0";
+extra_material_shape_05_stl_rotation = [0,0,0];
+extra_material_shape_05_stl_translate = [0,0,0];
 
 
 //SHAPE 06
-extra_material_shape_06_model = qt_extra_material_shape_06_model_qt;
-extra_material_shape_06_cube_centered = qt_extra_material_shape_06_cube_centered_qt;
-extra_material_shape_06_cube_dimensions = qt_extra_material_shape_06_cube_dimensions_qt;
-extra_material_shape_06_cube_rotation = qt_extra_material_shape_06_cube_rotation_qt;
-extra_material_shape_06_cube_translate = qt_extra_material_shape_06_cube_translate_qt;
+extra_material_shape_06_model = "CUBE";
+extra_material_shape_06_cube_centered = "NO";
+extra_material_shape_06_cube_dimensions = [0,0,0];
+extra_material_shape_06_cube_rotation = [0,0,0];
+extra_material_shape_06_cube_translate = [0,0,0];
 
-extra_material_shape_06_cylinder_centered = qt_extra_material_shape_06_cylinder_centered_qt;
-extra_material_shape_06_cylinder_diameter = qt_extra_material_shape_06_cylinder_diameter_qt;
-extra_material_shape_06_cylinder_height = qt_extra_material_shape_06_cylinder_height_qt;
-extra_material_shape_06_cylinder_number_of_faces = qt_extra_material_shape_06_cylinder_number_of_faces_qt;
-extra_material_shape_06_cylinder_rotation = qt_extra_material_shape_06_cylinder_rotation_qt;
-extra_material_shape_06_cylinder_translate = qt_extra_material_shape_06_cylinder_translate_qt;
+extra_material_shape_06_cylinder_centered = "NO";
+extra_material_shape_06_cylinder_diameter = 0;
+extra_material_shape_06_cylinder_height = 0;
+extra_material_shape_06_cylinder_number_of_faces = 0;
+extra_material_shape_06_cylinder_rotation = [0,0,0];
+extra_material_shape_06_cylinder_translate = [0,0,0];
 
-extra_material_shape_06_sphere_diameter = qt_extra_material_shape_06_sphere_diameter_qt;
-extra_material_shape_06_sphere_number_of_faces = qt_extra_material_shape_06_sphere_number_of_faces_qt;
-extra_material_shape_06_sphere_translate = qt_extra_material_shape_06_sphere_translate_qt;
+extra_material_shape_06_sphere_diameter = 0;
+extra_material_shape_06_sphere_number_of_faces = 0;
+extra_material_shape_06_sphere_translate = [0,0,0];
 
-extra_material_shape_06_stl_name = qt_extra_material_shape_06_stl_name_qt;
-extra_material_shape_06_stl_rotation = qt_extra_material_shape_06_stl_rotation_qt;
-extra_material_shape_06_stl_translate = qt_extra_material_shape_06_stl_translate_qt;
+extra_material_shape_06_stl_name = "0";
+extra_material_shape_06_stl_rotation = [0,0,0];
+extra_material_shape_06_stl_translate = [0,0,0];
 
 
 //SHAPE 07
-extra_material_shape_07_model = qt_extra_material_shape_07_model_qt;
-extra_material_shape_07_cube_centered = qt_extra_material_shape_07_cube_centered_qt;
-extra_material_shape_07_cube_dimensions = qt_extra_material_shape_07_cube_dimensions_qt;
-extra_material_shape_07_cube_rotation = qt_extra_material_shape_07_cube_rotation_qt;
-extra_material_shape_07_cube_translate = qt_extra_material_shape_07_cube_translate_qt;
+extra_material_shape_07_model = "CUBE";
+extra_material_shape_07_cube_centered = "NO";
+extra_material_shape_07_cube_dimensions = [0,0,0];
+extra_material_shape_07_cube_rotation = [0,0,0];
+extra_material_shape_07_cube_translate = [0,0,0];
 
-extra_material_shape_07_cylinder_centered = qt_extra_material_shape_07_cylinder_centered_qt;
-extra_material_shape_07_cylinder_diameter = qt_extra_material_shape_07_cylinder_diameter_qt;
-extra_material_shape_07_cylinder_height = qt_extra_material_shape_07_cylinder_height_qt;
-extra_material_shape_07_cylinder_number_of_faces = qt_extra_material_shape_07_cylinder_number_of_faces_qt;
-extra_material_shape_07_cylinder_rotation = qt_extra_material_shape_07_cylinder_rotation_qt;
-extra_material_shape_07_cylinder_translate = qt_extra_material_shape_07_cylinder_translate_qt;
+extra_material_shape_07_cylinder_centered = "NO";
+extra_material_shape_07_cylinder_diameter = 0;
+extra_material_shape_07_cylinder_height = 0;
+extra_material_shape_07_cylinder_number_of_faces = 0;
+extra_material_shape_07_cylinder_rotation = [0,0,0];
+extra_material_shape_07_cylinder_translate = [0,0,0];
 
-extra_material_shape_07_sphere_diameter = qt_extra_material_shape_07_sphere_diameter_qt;
-extra_material_shape_07_sphere_number_of_faces = qt_extra_material_shape_07_sphere_number_of_faces_qt;
-extra_material_shape_07_sphere_translate = qt_extra_material_shape_07_sphere_translate_qt;
+extra_material_shape_07_sphere_diameter = 0;
+extra_material_shape_07_sphere_number_of_faces = 0;
+extra_material_shape_07_sphere_translate = [0,0,0];
 
-extra_material_shape_07_stl_name = qt_extra_material_shape_07_stl_name_qt;
-extra_material_shape_07_stl_rotation = qt_extra_material_shape_07_stl_rotation_qt;
-extra_material_shape_07_stl_translate = qt_extra_material_shape_07_stl_translate_qt;
+extra_material_shape_07_stl_name = "0";
+extra_material_shape_07_stl_rotation = [0,0,0];
+extra_material_shape_07_stl_translate = [0,0,0];
 
 
 //SHAPE 08
-extra_material_shape_08_model = qt_extra_material_shape_08_model_qt;
-extra_material_shape_08_cube_centered = qt_extra_material_shape_08_cube_centered_qt;
-extra_material_shape_08_cube_dimensions = qt_extra_material_shape_08_cube_dimensions_qt;
-extra_material_shape_08_cube_rotation = qt_extra_material_shape_08_cube_rotation_qt;
-extra_material_shape_08_cube_translate = qt_extra_material_shape_08_cube_translate_qt;
+extra_material_shape_08_model = "CUBE";
+extra_material_shape_08_cube_centered = "NO";
+extra_material_shape_08_cube_dimensions = [0,0,0];
+extra_material_shape_08_cube_rotation = [0,0,0];
+extra_material_shape_08_cube_translate = [0,0,0];
 
-extra_material_shape_08_cylinder_centered = qt_extra_material_shape_08_cylinder_centered_qt;
-extra_material_shape_08_cylinder_diameter = qt_extra_material_shape_08_cylinder_diameter_qt;
-extra_material_shape_08_cylinder_height = qt_extra_material_shape_08_cylinder_height_qt;
-extra_material_shape_08_cylinder_number_of_faces = qt_extra_material_shape_08_cylinder_number_of_faces_qt;
-extra_material_shape_08_cylinder_rotation = qt_extra_material_shape_08_cylinder_rotation_qt;
-extra_material_shape_08_cylinder_translate = qt_extra_material_shape_08_cylinder_translate_qt;
+extra_material_shape_08_cylinder_centered = "NO";
+extra_material_shape_08_cylinder_diameter = 0;
+extra_material_shape_08_cylinder_height = 0;
+extra_material_shape_08_cylinder_number_of_faces = 0;
+extra_material_shape_08_cylinder_rotation = [0,0,0];
+extra_material_shape_08_cylinder_translate = [0,0,0];
 
-extra_material_shape_08_sphere_diameter = qt_extra_material_shape_08_sphere_diameter_qt;
-extra_material_shape_08_sphere_number_of_faces = qt_extra_material_shape_08_sphere_number_of_faces_qt;
-extra_material_shape_08_sphere_translate = qt_extra_material_shape_08_sphere_translate_qt;
+extra_material_shape_08_sphere_diameter = 0;
+extra_material_shape_08_sphere_number_of_faces = 0;
+extra_material_shape_08_sphere_translate = [0,0,0];
 
-extra_material_shape_08_stl_name = qt_extra_material_shape_08_stl_name_qt;
-extra_material_shape_08_stl_rotation = qt_extra_material_shape_08_stl_rotation_qt;
-extra_material_shape_08_stl_translate = qt_extra_material_shape_08_stl_translate_qt;
+extra_material_shape_08_stl_name = "0";
+extra_material_shape_08_stl_rotation = [0,0,0];
+extra_material_shape_08_stl_translate = [0,0,0];
 
 //SHAPE 09
-extra_material_shape_09_model = qt_extra_material_shape_09_model_qt;
-extra_material_shape_09_cube_centered = qt_extra_material_shape_09_cube_centered_qt;
-extra_material_shape_09_cube_dimensions = qt_extra_material_shape_09_cube_dimensions_qt;
-extra_material_shape_09_cube_rotation = qt_extra_material_shape_09_cube_rotation_qt;
-extra_material_shape_09_cube_translate = qt_extra_material_shape_09_cube_translate_qt;
+extra_material_shape_09_model = "CUBE";
+extra_material_shape_09_cube_centered = "NO";
+extra_material_shape_09_cube_dimensions = [0,0,0];
+extra_material_shape_09_cube_rotation = [0,0,0];
+extra_material_shape_09_cube_translate = [0,0,0];
 
-extra_material_shape_09_cylinder_centered = qt_extra_material_shape_09_cylinder_centered_qt;
-extra_material_shape_09_cylinder_diameter = qt_extra_material_shape_09_cylinder_diameter_qt;
-extra_material_shape_09_cylinder_height = qt_extra_material_shape_09_cylinder_height_qt;
-extra_material_shape_09_cylinder_number_of_faces = qt_extra_material_shape_09_cylinder_number_of_faces_qt;
-extra_material_shape_09_cylinder_rotation = qt_extra_material_shape_09_cylinder_rotation_qt;
-extra_material_shape_09_cylinder_translate = qt_extra_material_shape_09_cylinder_translate_qt;
+extra_material_shape_09_cylinder_centered = "NO";
+extra_material_shape_09_cylinder_diameter = 0;
+extra_material_shape_09_cylinder_height = 0;
+extra_material_shape_09_cylinder_number_of_faces = 0;
+extra_material_shape_09_cylinder_rotation = [0,0,0];
+extra_material_shape_09_cylinder_translate = [0,0,0];
 
-extra_material_shape_09_sphere_diameter = qt_extra_material_shape_09_sphere_diameter_qt;
-extra_material_shape_09_sphere_number_of_faces = qt_extra_material_shape_09_sphere_number_of_faces_qt;
-extra_material_shape_09_sphere_translate = qt_extra_material_shape_09_sphere_translate_qt;
+extra_material_shape_09_sphere_diameter = 0;
+extra_material_shape_09_sphere_number_of_faces = 0;
+extra_material_shape_09_sphere_translate = [0,0,0];
 
-extra_material_shape_09_stl_name = qt_extra_material_shape_09_stl_name_qt;
-extra_material_shape_09_stl_rotation = qt_extra_material_shape_09_stl_rotation_qt;
-extra_material_shape_09_stl_translate = qt_extra_material_shape_09_stl_translate_qt;
+extra_material_shape_09_stl_name = "0";
+extra_material_shape_09_stl_rotation = [0,0,0];
+extra_material_shape_09_stl_translate = [0,0,0];
 
 
 //SHAPE 10
-extra_material_shape_10_model = qt_extra_material_shape_10_model_qt;
-extra_material_shape_10_cube_centered = qt_extra_material_shape_10_cube_centered_qt;
-extra_material_shape_10_cube_dimensions = qt_extra_material_shape_10_cube_dimensions_qt;
-extra_material_shape_10_cube_rotation = qt_extra_material_shape_10_cube_rotation_qt;
-extra_material_shape_10_cube_translate = qt_extra_material_shape_10_cube_translate_qt;
+extra_material_shape_10_model = "CUBE";
+extra_material_shape_10_cube_centered = "NO";
+extra_material_shape_10_cube_dimensions = [0,0,0];
+extra_material_shape_10_cube_rotation = [0,0,0];
+extra_material_shape_10_cube_translate = [0,0,0];
 
-extra_material_shape_10_cylinder_centered = qt_extra_material_shape_10_cylinder_centered_qt;
-extra_material_shape_10_cylinder_diameter = qt_extra_material_shape_10_cylinder_diameter_qt;
-extra_material_shape_10_cylinder_height = qt_extra_material_shape_10_cylinder_height_qt;
-extra_material_shape_10_cylinder_number_of_faces = qt_extra_material_shape_10_cylinder_number_of_faces_qt;
-extra_material_shape_10_cylinder_rotation = qt_extra_material_shape_10_cylinder_rotation_qt;
-extra_material_shape_10_cylinder_translate = qt_extra_material_shape_10_cylinder_translate_qt;
+extra_material_shape_10_cylinder_centered = "NO";
+extra_material_shape_10_cylinder_diameter = 0;
+extra_material_shape_10_cylinder_height = 0;
+extra_material_shape_10_cylinder_number_of_faces = 0;
+extra_material_shape_10_cylinder_rotation = [0,0,0];
+extra_material_shape_10_cylinder_translate = [0,0,0];
 
-extra_material_shape_10_sphere_diameter = qt_extra_material_shape_10_sphere_diameter_qt;
-extra_material_shape_10_sphere_number_of_faces = qt_extra_material_shape_10_sphere_number_of_faces_qt;
-extra_material_shape_10_sphere_translate = qt_extra_material_shape_10_sphere_translate_qt;
+extra_material_shape_10_sphere_diameter = 0;
+extra_material_shape_10_sphere_number_of_faces = 0;
+extra_material_shape_10_sphere_translate = [0,0,0];
 
-extra_material_shape_10_stl_name = qt_extra_material_shape_10_stl_name_qt;
-extra_material_shape_10_stl_rotation = qt_extra_material_shape_10_stl_rotation_qt;
-extra_material_shape_10_stl_translate = qt_extra_material_shape_10_stl_translate_qt;
+extra_material_shape_10_stl_name = "0";
+extra_material_shape_10_stl_rotation = [0,0,0];
+extra_material_shape_10_stl_translate = [0,0,0];
 
 
 
@@ -1648,7 +1648,7 @@ module round_pump(round_pump_length=round_pump_length,
                 {
                     rotate ([0,360/round_pump_number_of_raised_wings*i,0])
                     translate([-round_pump_raised_thickness/2, 0, round_pump_diameter/2-1])
-                    cube([round_pump_raised_thickness,qt_round_pump_raised_length_from_tip_qt, round_pump_raised_diameter/2-round_pump_diameter/2+1]);
+                    cube([round_pump_raised_thickness,0, round_pump_raised_diameter/2-round_pump_diameter/2+1]);
                 }//END OF FOR
             } //END OF UNION
         } //END OF COLOR RED
@@ -1764,20 +1764,20 @@ module lever_simple(lever_simple_body_length=lever_simple_body_length,
     {
         union()
         {
-            lever_simple_blade_support(lever_simple_body_diameter=qt_lever_simple_body_diameter_qt,
-                                       lever_simple_blade_length=qt_lever_simple_blade_length_qt);
+            lever_simple_blade_support(lever_simple_body_diameter=0,
+                                       lever_simple_blade_length=0);
 
-            lever_simple_tip(lever_simple_body_diameter=qt_lever_simple_body_diameter_qt,
-                             lever_simple_blade_length=qt_lever_simple_blade_length_qt,
-                             lever_simple_tip_length=qt_lever_simple_tip_length_qt);
+            lever_simple_tip(lever_simple_body_diameter=0,
+                             lever_simple_blade_length=0,
+                             lever_simple_tip_length=0);
        
-            lever_simple_body(lever_simple_body_length=qt_lever_simple_body_length_qt,
-                              lever_simple_body_diameter=qt_lever_simple_body_diameter_qt);
+            lever_simple_body(lever_simple_body_length=0,
+                              lever_simple_body_diameter=0);
         
-            lever_simple_blade(lever_simple_body_diameter=qt_lever_simple_body_diameter_qt,
-                               lever_simple_blade_length=qt_lever_simple_blade_length_qt,
-                               lever_simple_blade_height=qt_lever_simple_blade_height_qt,
-                               lever_simple_blade_thickness=qt_lever_simple_blade_thickness_qt);
+            lever_simple_blade(lever_simple_body_diameter=0,
+                               lever_simple_blade_length=0,
+                               lever_simple_blade_height=0,
+                               lever_simple_blade_thickness=0);
         }//END OF UNION
         
         translate([0,lever_simple_blade_length+lever_simple_tip_length+epsilon,0])
@@ -1877,20 +1877,20 @@ module lever_double(lever_double_body_length=lever_double_body_length,
     {
         union()
         {
-            lever_double_blade_support(lever_double_body_diameter=qt_lever_double_body_diameter_qt,
-                                       lever_double_blade_length=qt_lever_double_blade_length_qt);
+            lever_double_blade_support(lever_double_body_diameter=0,
+                                       lever_double_blade_length=0);
 
-            lever_double_tip(lever_double_body_diameter=qt_lever_double_body_diameter_qt,
-                             lever_double_blade_length=qt_lever_double_blade_length_qt,
-                             lever_double_tip_length=qt_lever_double_tip_length_qt);
+            lever_double_tip(lever_double_body_diameter=0,
+                             lever_double_blade_length=0,
+                             lever_double_tip_length=0);
        
-            lever_double_body(lever_double_body_length=qt_lever_double_body_length_qt,
-                              lever_double_body_diameter=qt_lever_double_body_diameter_qt);
+            lever_double_body(lever_double_body_length=0,
+                              lever_double_body_diameter=0);
         
-            lever_double_blade(lever_double_body_diameter=qt_lever_double_body_diameter_qt,
-                               lever_double_blade_length=qt_lever_double_blade_length_qt,
-                               lever_double_blade_height=qt_lever_double_blade_height_qt,
-                               lever_double_blade_thickness=qt_lever_double_blade_thickness_qt);
+            lever_double_blade(lever_double_body_diameter=0,
+                               lever_double_blade_length=0,
+                               lever_double_blade_height=0,
+                               lever_double_blade_thickness=0);
         }//END OF UNION
         
         translate([0,lever_double_blade_length+lever_double_tip_length+epsilon,0])
@@ -2109,17 +2109,17 @@ module fichet_787()
 
 
 
-module expert_stl(  expert_stl_name =           qt_expert_stl_name_qt,
-                    expert_stl_set_dimensions = qt_expert_stl_set_dimensions_qt,
-                    expert_stl_dx =             qt_expert_stl_dx_qt,
-                    expert_stl_dy =             qt_expert_stl_dy_qt,
-                    expert_stl_dz =             qt_expert_stl_dz_qt,
-                    expert_stl_rx =             qt_expert_stl_rx_qt,
-                    expert_stl_ry =             qt_expert_stl_ry_qt,
-                    expert_stl_rz =             qt_expert_stl_rz_qt,
-                    expert_stl_tx =             qt_expert_stl_tx_qt,
-                    expert_stl_ty =             qt_expert_stl_ty_qt,
-                    expert_stl_tz =             qt_expert_stl_tz_qt)
+module expert_stl(  expert_stl_name =           "0",
+                    expert_stl_set_dimensions = "YES",
+                    expert_stl_dx =             0,
+                    expert_stl_dy =             0,
+                    expert_stl_dz =             0,
+                    expert_stl_rx =             0,
+                    expert_stl_ry =             0,
+                    expert_stl_rz =             0,
+                    expert_stl_tx =             0,
+                    expert_stl_ty =             0,
+                    expert_stl_tz =             0)
 {
     if (expert_stl_set_dimensions=="NO")
     {
@@ -2739,7 +2739,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut01_distance,regular_row1_cut01_depth])rotate([0,0,regular_row1_cut01_angle])regular_row1_cut();
 		
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut01_distance,regular_row1_cut01_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2751,7 +2751,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut02_distance,regular_row1_cut02_depth])rotate([0,0,regular_row1_cut02_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut02_distance,regular_row1_cut02_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2763,7 +2763,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut03_distance,regular_row1_cut03_depth])rotate([0,0,regular_row1_cut03_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut03_distance,regular_row1_cut03_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2775,7 +2775,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut04_distance,regular_row1_cut04_depth])rotate([0,0,regular_row1_cut04_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut04_distance,regular_row1_cut04_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2787,7 +2787,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut05_distance,regular_row1_cut05_depth])rotate([0,0,regular_row1_cut05_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut05_distance,regular_row1_cut05_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2799,7 +2799,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut06_distance,regular_row1_cut06_depth])rotate([0,0,regular_row1_cut06_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut06_distance,regular_row1_cut06_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2811,7 +2811,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut07_distance,regular_row1_cut07_depth])rotate([0,0,regular_row1_cut07_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut07_distance,regular_row1_cut07_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2823,7 +2823,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut08_distance,regular_row1_cut08_depth])rotate([0,0,regular_row1_cut08_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut08_distance,regular_row1_cut08_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2835,7 +2835,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut09_distance,regular_row1_cut09_depth])rotate([0,0,regular_row1_cut09_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut09_distance,regular_row1_cut09_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2847,7 +2847,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut10_distance,regular_row1_cut10_depth])rotate([0,0,regular_row1_cut10_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut10_distance,regular_row1_cut10_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2859,7 +2859,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut11_distance,regular_row1_cut11_depth])rotate([0,0,regular_row1_cut11_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut11_distance,regular_row1_cut11_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2871,7 +2871,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut12_distance,regular_row1_cut12_depth])rotate([0,0,regular_row1_cut12_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut12_distance,regular_row1_cut12_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2883,7 +2883,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut13_distance,regular_row1_cut13_depth])rotate([0,0,regular_row1_cut13_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut13_distance,regular_row1_cut13_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2895,7 +2895,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut14_distance,regular_row1_cut14_depth])rotate([0,0,regular_row1_cut14_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut14_distance,regular_row1_cut14_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2907,7 +2907,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut15_distance,regular_row1_cut15_depth])rotate([0,0,regular_row1_cut15_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut15_distance,regular_row1_cut15_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2919,7 +2919,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut16_distance,regular_row1_cut16_depth])rotate([0,0,regular_row1_cut16_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut16_distance,regular_row1_cut16_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2931,7 +2931,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut17_distance,regular_row1_cut17_depth])rotate([0,0,regular_row1_cut17_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut17_distance,regular_row1_cut17_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2943,7 +2943,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut18_distance,regular_row1_cut18_depth])rotate([0,0,regular_row1_cut18_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut18_distance,regular_row1_cut18_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2955,7 +2955,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut19_distance,regular_row1_cut19_depth])rotate([0,0,regular_row1_cut19_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut19_distance,regular_row1_cut19_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2967,7 +2967,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut20_distance,regular_row1_cut20_depth])rotate([0,0,regular_row1_cut20_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut20_distance,regular_row1_cut20_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2979,7 +2979,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut21_distance,regular_row1_cut21_depth])rotate([0,0,regular_row1_cut21_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut21_distance,regular_row1_cut21_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -2991,7 +2991,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut22_distance,regular_row1_cut22_depth])rotate([0,0,regular_row1_cut22_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut22_distance,regular_row1_cut22_depth])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
 		translate([0,regular_row1_link_root_addition/2,0])
 		translate([0,regular_row1_cut22_distance,regular_row1_cut22_depth])rotate([0,0,regular_row1_cut22_angle])regular_row1_cut();
@@ -3004,7 +3004,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut01_distance,regular_row1_cut01_depth])rotate([0,0,regular_row1_cut01_angle])regular_row1_cut();
 		
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut01_distance,regular_row1_cut01_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3016,7 +3016,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut02_distance,regular_row1_cut02_depth])rotate([0,0,regular_row1_cut02_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut02_distance,regular_row1_cut02_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3028,7 +3028,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut03_distance,regular_row1_cut03_depth])rotate([0,0,regular_row1_cut03_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut03_distance,regular_row1_cut03_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3040,7 +3040,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut04_distance,regular_row1_cut04_depth])rotate([0,0,regular_row1_cut04_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut04_distance,regular_row1_cut04_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3052,7 +3052,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut05_distance,regular_row1_cut05_depth])rotate([0,0,regular_row1_cut05_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut05_distance,regular_row1_cut05_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3064,7 +3064,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut06_distance,regular_row1_cut06_depth])rotate([0,0,regular_row1_cut06_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut06_distance,regular_row1_cut06_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3076,7 +3076,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut07_distance,regular_row1_cut07_depth])rotate([0,0,regular_row1_cut07_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut07_distance,regular_row1_cut07_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3088,7 +3088,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut08_distance,regular_row1_cut08_depth])rotate([0,0,regular_row1_cut08_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut08_distance,regular_row1_cut08_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3100,7 +3100,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut09_distance,regular_row1_cut09_depth])rotate([0,0,regular_row1_cut09_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut09_distance,regular_row1_cut09_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3112,7 +3112,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut10_distance,regular_row1_cut10_depth])rotate([0,0,regular_row1_cut10_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut10_distance,regular_row1_cut10_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3124,7 +3124,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut11_distance,regular_row1_cut11_depth])rotate([0,0,regular_row1_cut11_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut11_distance,regular_row1_cut11_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3136,7 +3136,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut12_distance,regular_row1_cut12_depth])rotate([0,0,regular_row1_cut12_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut12_distance,regular_row1_cut12_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3148,7 +3148,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut13_distance,regular_row1_cut13_depth])rotate([0,0,regular_row1_cut13_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut13_distance,regular_row1_cut13_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3160,7 +3160,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut14_distance,regular_row1_cut14_depth])rotate([0,0,regular_row1_cut14_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut14_distance,regular_row1_cut14_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3172,7 +3172,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut15_distance,regular_row1_cut15_depth])rotate([0,0,regular_row1_cut15_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut15_distance,regular_row1_cut15_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3184,7 +3184,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut16_distance,regular_row1_cut16_depth])rotate([0,0,regular_row1_cut16_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut16_distance,regular_row1_cut16_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3196,7 +3196,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut17_distance,regular_row1_cut17_depth])rotate([0,0,regular_row1_cut17_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut17_distance,regular_row1_cut17_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3208,7 +3208,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut18_distance,regular_row1_cut18_depth])rotate([0,0,regular_row1_cut18_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut18_distance,regular_row1_cut18_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3220,7 +3220,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut19_distance,regular_row1_cut19_depth])rotate([0,0,regular_row1_cut19_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut19_distance,regular_row1_cut19_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3232,7 +3232,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut20_distance,regular_row1_cut20_depth])rotate([0,0,regular_row1_cut20_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut20_distance,regular_row1_cut20_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3244,7 +3244,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut21_distance,regular_row1_cut21_depth])rotate([0,0,regular_row1_cut21_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut21_distance,regular_row1_cut21_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
         hull()
         {
@@ -3256,7 +3256,7 @@ module regular_row1_complete(
 		translate([0,regular_row1_cut22_distance,regular_row1_cut22_depth])rotate([0,0,regular_row1_cut22_angle])regular_row1_cut();
 		}
 		translate([0,-regular_row1_link_root_addition/2+regular_row1_cut22_distance,regular_row1_cut22_depth-regular_row1_laser_mill_diameter/2])
-		cube([qt_regular_row1_laser_mill_height_qt,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
+		cube([0,regular_row1_link_root_addition,regular_row1_laser_mill_diameter]);
 		
 		translate([0,regular_row1_link_root_addition/2,0])
 		translate([0,regular_row1_cut22_distance,regular_row1_cut22_depth])rotate([0,0,regular_row1_cut22_angle])regular_row1_cut();
@@ -3327,7 +3327,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut01_distance,regular_row2_cut01_depth])rotate([0,0,regular_row2_cut01_angle])regular_row2_cut();
 		
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut01_distance,regular_row2_cut01_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3339,7 +3339,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut02_distance,regular_row2_cut02_depth])rotate([0,0,regular_row2_cut02_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut02_distance,regular_row2_cut02_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3351,7 +3351,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut03_distance,regular_row2_cut03_depth])rotate([0,0,regular_row2_cut03_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut03_distance,regular_row2_cut03_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3363,7 +3363,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut04_distance,regular_row2_cut04_depth])rotate([0,0,regular_row2_cut04_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut04_distance,regular_row2_cut04_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3375,7 +3375,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut05_distance,regular_row2_cut05_depth])rotate([0,0,regular_row2_cut05_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut05_distance,regular_row2_cut05_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3387,7 +3387,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut06_distance,regular_row2_cut06_depth])rotate([0,0,regular_row2_cut06_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut06_distance,regular_row2_cut06_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3399,7 +3399,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut07_distance,regular_row2_cut07_depth])rotate([0,0,regular_row2_cut07_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut07_distance,regular_row2_cut07_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3411,7 +3411,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut08_distance,regular_row2_cut08_depth])rotate([0,0,regular_row2_cut08_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut08_distance,regular_row2_cut08_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3423,7 +3423,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut09_distance,regular_row2_cut09_depth])rotate([0,0,regular_row2_cut09_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut09_distance,regular_row2_cut09_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3435,7 +3435,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut10_distance,regular_row2_cut10_depth])rotate([0,0,regular_row2_cut10_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut10_distance,regular_row2_cut10_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3447,7 +3447,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut11_distance,regular_row2_cut11_depth])rotate([0,0,regular_row2_cut11_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut11_distance,regular_row2_cut11_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3459,7 +3459,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut12_distance,regular_row2_cut12_depth])rotate([0,0,regular_row2_cut12_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut12_distance,regular_row2_cut12_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3471,7 +3471,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut13_distance,regular_row2_cut13_depth])rotate([0,0,regular_row2_cut13_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut13_distance,regular_row2_cut13_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3483,7 +3483,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut14_distance,regular_row2_cut14_depth])rotate([0,0,regular_row2_cut14_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut14_distance,regular_row2_cut14_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3495,7 +3495,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut15_distance,regular_row2_cut15_depth])rotate([0,0,regular_row2_cut15_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut15_distance,regular_row2_cut15_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3507,7 +3507,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut16_distance,regular_row2_cut16_depth])rotate([0,0,regular_row2_cut16_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut16_distance,regular_row2_cut16_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3519,7 +3519,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut17_distance,regular_row2_cut17_depth])rotate([0,0,regular_row2_cut17_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut17_distance,regular_row2_cut17_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3531,7 +3531,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut18_distance,regular_row2_cut18_depth])rotate([0,0,regular_row2_cut18_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut18_distance,regular_row2_cut18_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3543,7 +3543,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut19_distance,regular_row2_cut19_depth])rotate([0,0,regular_row2_cut19_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut19_distance,regular_row2_cut19_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3555,7 +3555,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut20_distance,regular_row2_cut20_depth])rotate([0,0,regular_row2_cut20_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut20_distance,regular_row2_cut20_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3567,7 +3567,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut21_distance,regular_row2_cut21_depth])rotate([0,0,regular_row2_cut21_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut21_distance,regular_row2_cut21_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3579,7 +3579,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut22_distance,regular_row2_cut22_depth])rotate([0,0,regular_row2_cut22_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut22_distance,regular_row2_cut22_depth])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
 		translate([0,regular_row2_link_root_addition/2,0])
 		translate([0,regular_row2_cut22_distance,regular_row2_cut22_depth])rotate([0,0,regular_row2_cut22_angle])regular_row2_cut();
@@ -3592,7 +3592,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut01_distance,regular_row2_cut01_depth])rotate([0,0,regular_row2_cut01_angle])regular_row2_cut();
 		
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut01_distance,regular_row2_cut01_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3604,7 +3604,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut02_distance,regular_row2_cut02_depth])rotate([0,0,regular_row2_cut02_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut02_distance,regular_row2_cut02_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3616,7 +3616,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut03_distance,regular_row2_cut03_depth])rotate([0,0,regular_row2_cut03_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut03_distance,regular_row2_cut03_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3628,7 +3628,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut04_distance,regular_row2_cut04_depth])rotate([0,0,regular_row2_cut04_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut04_distance,regular_row2_cut04_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3640,7 +3640,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut05_distance,regular_row2_cut05_depth])rotate([0,0,regular_row2_cut05_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut05_distance,regular_row2_cut05_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3652,7 +3652,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut06_distance,regular_row2_cut06_depth])rotate([0,0,regular_row2_cut06_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut06_distance,regular_row2_cut06_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3664,7 +3664,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut07_distance,regular_row2_cut07_depth])rotate([0,0,regular_row2_cut07_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut07_distance,regular_row2_cut07_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3676,7 +3676,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut08_distance,regular_row2_cut08_depth])rotate([0,0,regular_row2_cut08_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut08_distance,regular_row2_cut08_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3688,7 +3688,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut09_distance,regular_row2_cut09_depth])rotate([0,0,regular_row2_cut09_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut09_distance,regular_row2_cut09_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3700,7 +3700,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut10_distance,regular_row2_cut10_depth])rotate([0,0,regular_row2_cut10_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut10_distance,regular_row2_cut10_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3712,7 +3712,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut11_distance,regular_row2_cut11_depth])rotate([0,0,regular_row2_cut11_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut11_distance,regular_row2_cut11_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3724,7 +3724,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut12_distance,regular_row2_cut12_depth])rotate([0,0,regular_row2_cut12_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut12_distance,regular_row2_cut12_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3736,7 +3736,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut13_distance,regular_row2_cut13_depth])rotate([0,0,regular_row2_cut13_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut13_distance,regular_row2_cut13_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3748,7 +3748,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut14_distance,regular_row2_cut14_depth])rotate([0,0,regular_row2_cut14_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut14_distance,regular_row2_cut14_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3760,7 +3760,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut15_distance,regular_row2_cut15_depth])rotate([0,0,regular_row2_cut15_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut15_distance,regular_row2_cut15_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3772,7 +3772,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut16_distance,regular_row2_cut16_depth])rotate([0,0,regular_row2_cut16_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut16_distance,regular_row2_cut16_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3784,7 +3784,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut17_distance,regular_row2_cut17_depth])rotate([0,0,regular_row2_cut17_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut17_distance,regular_row2_cut17_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3796,7 +3796,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut18_distance,regular_row2_cut18_depth])rotate([0,0,regular_row2_cut18_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut18_distance,regular_row2_cut18_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3808,7 +3808,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut19_distance,regular_row2_cut19_depth])rotate([0,0,regular_row2_cut19_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut19_distance,regular_row2_cut19_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3820,7 +3820,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut20_distance,regular_row2_cut20_depth])rotate([0,0,regular_row2_cut20_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut20_distance,regular_row2_cut20_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3832,7 +3832,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut21_distance,regular_row2_cut21_depth])rotate([0,0,regular_row2_cut21_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut21_distance,regular_row2_cut21_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
         hull()
         {
@@ -3844,7 +3844,7 @@ module regular_row2_complete(
 		translate([0,regular_row2_cut22_distance,regular_row2_cut22_depth])rotate([0,0,regular_row2_cut22_angle])regular_row2_cut();
 		}
 		translate([0,-regular_row2_link_root_addition/2+regular_row2_cut22_distance,regular_row2_cut22_depth-regular_row2_laser_mill_diameter/2])
-		cube([qt_regular_row2_laser_mill_height_qt,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
+		cube([0,regular_row2_link_root_addition,regular_row2_laser_mill_diameter]);
 		
 		translate([0,regular_row2_link_root_addition/2,0])
 		translate([0,regular_row2_cut22_distance,regular_row2_cut22_depth])rotate([0,0,regular_row2_cut22_angle])regular_row2_cut();
@@ -3915,7 +3915,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut01_distance,regular_row3_cut01_depth])rotate([0,0,regular_row3_cut01_angle])regular_row3_cut();
 		
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut01_distance,regular_row3_cut01_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3927,7 +3927,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut02_distance,regular_row3_cut02_depth])rotate([0,0,regular_row3_cut02_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut02_distance,regular_row3_cut02_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3939,7 +3939,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut03_distance,regular_row3_cut03_depth])rotate([0,0,regular_row3_cut03_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut03_distance,regular_row3_cut03_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3951,7 +3951,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut04_distance,regular_row3_cut04_depth])rotate([0,0,regular_row3_cut04_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut04_distance,regular_row3_cut04_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3963,7 +3963,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut05_distance,regular_row3_cut05_depth])rotate([0,0,regular_row3_cut05_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut05_distance,regular_row3_cut05_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3975,7 +3975,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut06_distance,regular_row3_cut06_depth])rotate([0,0,regular_row3_cut06_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut06_distance,regular_row3_cut06_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3987,7 +3987,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut07_distance,regular_row3_cut07_depth])rotate([0,0,regular_row3_cut07_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut07_distance,regular_row3_cut07_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -3999,7 +3999,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut08_distance,regular_row3_cut08_depth])rotate([0,0,regular_row3_cut08_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut08_distance,regular_row3_cut08_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4011,7 +4011,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut09_distance,regular_row3_cut09_depth])rotate([0,0,regular_row3_cut09_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut09_distance,regular_row3_cut09_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4023,7 +4023,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut10_distance,regular_row3_cut10_depth])rotate([0,0,regular_row3_cut10_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut10_distance,regular_row3_cut10_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4035,7 +4035,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut11_distance,regular_row3_cut11_depth])rotate([0,0,regular_row3_cut11_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut11_distance,regular_row3_cut11_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4047,7 +4047,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut12_distance,regular_row3_cut12_depth])rotate([0,0,regular_row3_cut12_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut12_distance,regular_row3_cut12_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4059,7 +4059,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut13_distance,regular_row3_cut13_depth])rotate([0,0,regular_row3_cut13_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut13_distance,regular_row3_cut13_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4071,7 +4071,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut14_distance,regular_row3_cut14_depth])rotate([0,0,regular_row3_cut14_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut14_distance,regular_row3_cut14_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4083,7 +4083,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut15_distance,regular_row3_cut15_depth])rotate([0,0,regular_row3_cut15_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut15_distance,regular_row3_cut15_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4095,7 +4095,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut16_distance,regular_row3_cut16_depth])rotate([0,0,regular_row3_cut16_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut16_distance,regular_row3_cut16_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4107,7 +4107,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut17_distance,regular_row3_cut17_depth])rotate([0,0,regular_row3_cut17_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut17_distance,regular_row3_cut17_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4119,7 +4119,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut18_distance,regular_row3_cut18_depth])rotate([0,0,regular_row3_cut18_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut18_distance,regular_row3_cut18_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4131,7 +4131,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut19_distance,regular_row3_cut19_depth])rotate([0,0,regular_row3_cut19_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut19_distance,regular_row3_cut19_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4143,7 +4143,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut20_distance,regular_row3_cut20_depth])rotate([0,0,regular_row3_cut20_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut20_distance,regular_row3_cut20_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4155,7 +4155,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut21_distance,regular_row3_cut21_depth])rotate([0,0,regular_row3_cut21_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut21_distance,regular_row3_cut21_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4167,7 +4167,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut22_distance,regular_row3_cut22_depth])rotate([0,0,regular_row3_cut22_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut22_distance,regular_row3_cut22_depth])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
 		translate([0,regular_row3_link_root_addition/2,0])
 		translate([0,regular_row3_cut22_distance,regular_row3_cut22_depth])rotate([0,0,regular_row3_cut22_angle])regular_row3_cut();
@@ -4180,7 +4180,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut01_distance,regular_row3_cut01_depth])rotate([0,0,regular_row3_cut01_angle])regular_row3_cut();
 		
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut01_distance,regular_row3_cut01_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4192,7 +4192,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut02_distance,regular_row3_cut02_depth])rotate([0,0,regular_row3_cut02_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut02_distance,regular_row3_cut02_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4204,7 +4204,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut03_distance,regular_row3_cut03_depth])rotate([0,0,regular_row3_cut03_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut03_distance,regular_row3_cut03_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4216,7 +4216,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut04_distance,regular_row3_cut04_depth])rotate([0,0,regular_row3_cut04_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut04_distance,regular_row3_cut04_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4228,7 +4228,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut05_distance,regular_row3_cut05_depth])rotate([0,0,regular_row3_cut05_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut05_distance,regular_row3_cut05_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4240,7 +4240,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut06_distance,regular_row3_cut06_depth])rotate([0,0,regular_row3_cut06_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut06_distance,regular_row3_cut06_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4252,7 +4252,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut07_distance,regular_row3_cut07_depth])rotate([0,0,regular_row3_cut07_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut07_distance,regular_row3_cut07_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4264,7 +4264,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut08_distance,regular_row3_cut08_depth])rotate([0,0,regular_row3_cut08_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut08_distance,regular_row3_cut08_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4276,7 +4276,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut09_distance,regular_row3_cut09_depth])rotate([0,0,regular_row3_cut09_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut09_distance,regular_row3_cut09_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4288,7 +4288,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut10_distance,regular_row3_cut10_depth])rotate([0,0,regular_row3_cut10_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut10_distance,regular_row3_cut10_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4300,7 +4300,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut11_distance,regular_row3_cut11_depth])rotate([0,0,regular_row3_cut11_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut11_distance,regular_row3_cut11_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4312,7 +4312,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut12_distance,regular_row3_cut12_depth])rotate([0,0,regular_row3_cut12_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut12_distance,regular_row3_cut12_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4324,7 +4324,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut13_distance,regular_row3_cut13_depth])rotate([0,0,regular_row3_cut13_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut13_distance,regular_row3_cut13_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4336,7 +4336,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut14_distance,regular_row3_cut14_depth])rotate([0,0,regular_row3_cut14_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut14_distance,regular_row3_cut14_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4348,7 +4348,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut15_distance,regular_row3_cut15_depth])rotate([0,0,regular_row3_cut15_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut15_distance,regular_row3_cut15_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4360,7 +4360,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut16_distance,regular_row3_cut16_depth])rotate([0,0,regular_row3_cut16_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut16_distance,regular_row3_cut16_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4372,7 +4372,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut17_distance,regular_row3_cut17_depth])rotate([0,0,regular_row3_cut17_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut17_distance,regular_row3_cut17_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4384,7 +4384,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut18_distance,regular_row3_cut18_depth])rotate([0,0,regular_row3_cut18_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut18_distance,regular_row3_cut18_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4396,7 +4396,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut19_distance,regular_row3_cut19_depth])rotate([0,0,regular_row3_cut19_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut19_distance,regular_row3_cut19_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4408,7 +4408,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut20_distance,regular_row3_cut20_depth])rotate([0,0,regular_row3_cut20_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut20_distance,regular_row3_cut20_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4420,7 +4420,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut21_distance,regular_row3_cut21_depth])rotate([0,0,regular_row3_cut21_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut21_distance,regular_row3_cut21_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
         hull()
         {
@@ -4432,7 +4432,7 @@ module regular_row3_complete(
 		translate([0,regular_row3_cut22_distance,regular_row3_cut22_depth])rotate([0,0,regular_row3_cut22_angle])regular_row3_cut();
 		}
 		translate([0,-regular_row3_link_root_addition/2+regular_row3_cut22_distance,regular_row3_cut22_depth-regular_row3_laser_mill_diameter/2])
-		cube([qt_regular_row3_laser_mill_height_qt,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
+		cube([0,regular_row3_link_root_addition,regular_row3_laser_mill_diameter]);
 		
 		translate([0,regular_row3_link_root_addition/2,0])
 		translate([0,regular_row3_cut22_distance,regular_row3_cut22_depth])rotate([0,0,regular_row3_cut22_angle])regular_row3_cut();
@@ -4505,7 +4505,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut01_distance,regular_row4_cut01_depth])rotate([0,0,regular_row4_cut01_angle])regular_row4_cut();
 		
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut01_distance,regular_row4_cut01_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4517,7 +4517,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut02_distance,regular_row4_cut02_depth])rotate([0,0,regular_row4_cut02_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut02_distance,regular_row4_cut02_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4529,7 +4529,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut03_distance,regular_row4_cut03_depth])rotate([0,0,regular_row4_cut03_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut03_distance,regular_row4_cut03_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4541,7 +4541,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut04_distance,regular_row4_cut04_depth])rotate([0,0,regular_row4_cut04_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut04_distance,regular_row4_cut04_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4553,7 +4553,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut05_distance,regular_row4_cut05_depth])rotate([0,0,regular_row4_cut05_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut05_distance,regular_row4_cut05_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4565,7 +4565,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut06_distance,regular_row4_cut06_depth])rotate([0,0,regular_row4_cut06_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut06_distance,regular_row4_cut06_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4577,7 +4577,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut07_distance,regular_row4_cut07_depth])rotate([0,0,regular_row4_cut07_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut07_distance,regular_row4_cut07_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4589,7 +4589,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut08_distance,regular_row4_cut08_depth])rotate([0,0,regular_row4_cut08_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut08_distance,regular_row4_cut08_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4601,7 +4601,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut09_distance,regular_row4_cut09_depth])rotate([0,0,regular_row4_cut09_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut09_distance,regular_row4_cut09_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4613,7 +4613,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut10_distance,regular_row4_cut10_depth])rotate([0,0,regular_row4_cut10_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut10_distance,regular_row4_cut10_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4625,7 +4625,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut11_distance,regular_row4_cut11_depth])rotate([0,0,regular_row4_cut11_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut11_distance,regular_row4_cut11_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4637,7 +4637,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut12_distance,regular_row4_cut12_depth])rotate([0,0,regular_row4_cut12_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut12_distance,regular_row4_cut12_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4649,7 +4649,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut13_distance,regular_row4_cut13_depth])rotate([0,0,regular_row4_cut13_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut13_distance,regular_row4_cut13_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4661,7 +4661,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut14_distance,regular_row4_cut14_depth])rotate([0,0,regular_row4_cut14_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut14_distance,regular_row4_cut14_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4673,7 +4673,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut15_distance,regular_row4_cut15_depth])rotate([0,0,regular_row4_cut15_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut15_distance,regular_row4_cut15_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4685,7 +4685,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut16_distance,regular_row4_cut16_depth])rotate([0,0,regular_row4_cut16_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut16_distance,regular_row4_cut16_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4697,7 +4697,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut17_distance,regular_row4_cut17_depth])rotate([0,0,regular_row4_cut17_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut17_distance,regular_row4_cut17_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4709,7 +4709,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut18_distance,regular_row4_cut18_depth])rotate([0,0,regular_row4_cut18_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut18_distance,regular_row4_cut18_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4721,7 +4721,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut19_distance,regular_row4_cut19_depth])rotate([0,0,regular_row4_cut19_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut19_distance,regular_row4_cut19_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4733,7 +4733,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut20_distance,regular_row4_cut20_depth])rotate([0,0,regular_row4_cut20_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut20_distance,regular_row4_cut20_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4745,7 +4745,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut21_distance,regular_row4_cut21_depth])rotate([0,0,regular_row4_cut21_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut21_distance,regular_row4_cut21_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4757,7 +4757,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut22_distance,regular_row4_cut22_depth])rotate([0,0,regular_row4_cut22_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut22_distance,regular_row4_cut22_depth])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
 		translate([0,regular_row4_link_root_addition/2,0])
 		translate([0,regular_row4_cut22_distance,regular_row4_cut22_depth])rotate([0,0,regular_row4_cut22_angle])regular_row4_cut();
@@ -4770,7 +4770,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut01_distance,regular_row4_cut01_depth])rotate([0,0,regular_row4_cut01_angle])regular_row4_cut();
 		
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut01_distance,regular_row4_cut01_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4782,7 +4782,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut02_distance,regular_row4_cut02_depth])rotate([0,0,regular_row4_cut02_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut02_distance,regular_row4_cut02_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4794,7 +4794,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut03_distance,regular_row4_cut03_depth])rotate([0,0,regular_row4_cut03_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut03_distance,regular_row4_cut03_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4806,7 +4806,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut04_distance,regular_row4_cut04_depth])rotate([0,0,regular_row4_cut04_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut04_distance,regular_row4_cut04_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4818,7 +4818,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut05_distance,regular_row4_cut05_depth])rotate([0,0,regular_row4_cut05_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut05_distance,regular_row4_cut05_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4830,7 +4830,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut06_distance,regular_row4_cut06_depth])rotate([0,0,regular_row4_cut06_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut06_distance,regular_row4_cut06_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4842,7 +4842,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut07_distance,regular_row4_cut07_depth])rotate([0,0,regular_row4_cut07_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut07_distance,regular_row4_cut07_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4854,7 +4854,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut08_distance,regular_row4_cut08_depth])rotate([0,0,regular_row4_cut08_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut08_distance,regular_row4_cut08_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4866,7 +4866,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut09_distance,regular_row4_cut09_depth])rotate([0,0,regular_row4_cut09_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut09_distance,regular_row4_cut09_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4878,7 +4878,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut10_distance,regular_row4_cut10_depth])rotate([0,0,regular_row4_cut10_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut10_distance,regular_row4_cut10_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4890,7 +4890,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut11_distance,regular_row4_cut11_depth])rotate([0,0,regular_row4_cut11_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut11_distance,regular_row4_cut11_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4902,7 +4902,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut12_distance,regular_row4_cut12_depth])rotate([0,0,regular_row4_cut12_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut12_distance,regular_row4_cut12_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4914,7 +4914,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut13_distance,regular_row4_cut13_depth])rotate([0,0,regular_row4_cut13_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut13_distance,regular_row4_cut13_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4926,7 +4926,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut14_distance,regular_row4_cut14_depth])rotate([0,0,regular_row4_cut14_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut14_distance,regular_row4_cut14_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4938,7 +4938,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut15_distance,regular_row4_cut15_depth])rotate([0,0,regular_row4_cut15_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut15_distance,regular_row4_cut15_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4950,7 +4950,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut16_distance,regular_row4_cut16_depth])rotate([0,0,regular_row4_cut16_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut16_distance,regular_row4_cut16_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4962,7 +4962,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut17_distance,regular_row4_cut17_depth])rotate([0,0,regular_row4_cut17_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut17_distance,regular_row4_cut17_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4974,7 +4974,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut18_distance,regular_row4_cut18_depth])rotate([0,0,regular_row4_cut18_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut18_distance,regular_row4_cut18_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4986,7 +4986,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut19_distance,regular_row4_cut19_depth])rotate([0,0,regular_row4_cut19_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut19_distance,regular_row4_cut19_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -4998,7 +4998,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut20_distance,regular_row4_cut20_depth])rotate([0,0,regular_row4_cut20_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut20_distance,regular_row4_cut20_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -5010,7 +5010,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut21_distance,regular_row4_cut21_depth])rotate([0,0,regular_row4_cut21_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut21_distance,regular_row4_cut21_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
         hull()
         {
@@ -5022,7 +5022,7 @@ module regular_row4_complete(
 		translate([0,regular_row4_cut22_distance,regular_row4_cut22_depth])rotate([0,0,regular_row4_cut22_angle])regular_row4_cut();
 		}
 		translate([0,-regular_row4_link_root_addition/2+regular_row4_cut22_distance,regular_row4_cut22_depth-regular_row4_laser_mill_diameter/2])
-		cube([qt_regular_row4_laser_mill_height_qt,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
+		cube([0,regular_row4_link_root_addition,regular_row4_laser_mill_diameter]);
 		
 		translate([0,regular_row4_link_root_addition/2,0])
 		translate([0,regular_row4_cut22_distance,regular_row4_cut22_depth])rotate([0,0,regular_row4_cut22_angle])regular_row4_cut();
@@ -5094,7 +5094,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut01_distance,regular_row5_cut01_depth])rotate([0,0,regular_row5_cut01_angle])regular_row5_cut();
 		
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut01_distance,regular_row5_cut01_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5106,7 +5106,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut02_distance,regular_row5_cut02_depth])rotate([0,0,regular_row5_cut02_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut02_distance,regular_row5_cut02_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5118,7 +5118,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut03_distance,regular_row5_cut03_depth])rotate([0,0,regular_row5_cut03_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut03_distance,regular_row5_cut03_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5130,7 +5130,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut04_distance,regular_row5_cut04_depth])rotate([0,0,regular_row5_cut04_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut04_distance,regular_row5_cut04_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5142,7 +5142,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut05_distance,regular_row5_cut05_depth])rotate([0,0,regular_row5_cut05_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut05_distance,regular_row5_cut05_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5154,7 +5154,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut06_distance,regular_row5_cut06_depth])rotate([0,0,regular_row5_cut06_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut06_distance,regular_row5_cut06_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5166,7 +5166,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut07_distance,regular_row5_cut07_depth])rotate([0,0,regular_row5_cut07_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut07_distance,regular_row5_cut07_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5178,7 +5178,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut08_distance,regular_row5_cut08_depth])rotate([0,0,regular_row5_cut08_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut08_distance,regular_row5_cut08_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5190,7 +5190,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut09_distance,regular_row5_cut09_depth])rotate([0,0,regular_row5_cut09_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut09_distance,regular_row5_cut09_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5202,7 +5202,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut10_distance,regular_row5_cut10_depth])rotate([0,0,regular_row5_cut10_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut10_distance,regular_row5_cut10_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5214,7 +5214,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut11_distance,regular_row5_cut11_depth])rotate([0,0,regular_row5_cut11_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut11_distance,regular_row5_cut11_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5226,7 +5226,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut12_distance,regular_row5_cut12_depth])rotate([0,0,regular_row5_cut12_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut12_distance,regular_row5_cut12_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5238,7 +5238,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut13_distance,regular_row5_cut13_depth])rotate([0,0,regular_row5_cut13_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut13_distance,regular_row5_cut13_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5250,7 +5250,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut14_distance,regular_row5_cut14_depth])rotate([0,0,regular_row5_cut14_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut14_distance,regular_row5_cut14_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5262,7 +5262,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut15_distance,regular_row5_cut15_depth])rotate([0,0,regular_row5_cut15_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut15_distance,regular_row5_cut15_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5274,7 +5274,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut16_distance,regular_row5_cut16_depth])rotate([0,0,regular_row5_cut16_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut16_distance,regular_row5_cut16_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5286,7 +5286,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut17_distance,regular_row5_cut17_depth])rotate([0,0,regular_row5_cut17_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut17_distance,regular_row5_cut17_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5298,7 +5298,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut18_distance,regular_row5_cut18_depth])rotate([0,0,regular_row5_cut18_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut18_distance,regular_row5_cut18_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5310,7 +5310,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut19_distance,regular_row5_cut19_depth])rotate([0,0,regular_row5_cut19_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut19_distance,regular_row5_cut19_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5322,7 +5322,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut20_distance,regular_row5_cut20_depth])rotate([0,0,regular_row5_cut20_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut20_distance,regular_row5_cut20_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5334,7 +5334,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut21_distance,regular_row5_cut21_depth])rotate([0,0,regular_row5_cut21_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut21_distance,regular_row5_cut21_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5346,7 +5346,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut22_distance,regular_row5_cut22_depth])rotate([0,0,regular_row5_cut22_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut22_distance,regular_row5_cut22_depth])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
 		translate([0,regular_row5_link_root_addition/2,0])
 		translate([0,regular_row5_cut22_distance,regular_row5_cut22_depth])rotate([0,0,regular_row5_cut22_angle])regular_row5_cut();
@@ -5359,7 +5359,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut01_distance,regular_row5_cut01_depth])rotate([0,0,regular_row5_cut01_angle])regular_row5_cut();
 		
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut01_distance,regular_row5_cut01_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5371,7 +5371,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut02_distance,regular_row5_cut02_depth])rotate([0,0,regular_row5_cut02_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut02_distance,regular_row5_cut02_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5383,7 +5383,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut03_distance,regular_row5_cut03_depth])rotate([0,0,regular_row5_cut03_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut03_distance,regular_row5_cut03_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5395,7 +5395,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut04_distance,regular_row5_cut04_depth])rotate([0,0,regular_row5_cut04_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut04_distance,regular_row5_cut04_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5407,7 +5407,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut05_distance,regular_row5_cut05_depth])rotate([0,0,regular_row5_cut05_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut05_distance,regular_row5_cut05_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5419,7 +5419,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut06_distance,regular_row5_cut06_depth])rotate([0,0,regular_row5_cut06_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut06_distance,regular_row5_cut06_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5431,7 +5431,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut07_distance,regular_row5_cut07_depth])rotate([0,0,regular_row5_cut07_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut07_distance,regular_row5_cut07_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5443,7 +5443,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut08_distance,regular_row5_cut08_depth])rotate([0,0,regular_row5_cut08_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut08_distance,regular_row5_cut08_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5455,7 +5455,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut09_distance,regular_row5_cut09_depth])rotate([0,0,regular_row5_cut09_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut09_distance,regular_row5_cut09_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5467,7 +5467,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut10_distance,regular_row5_cut10_depth])rotate([0,0,regular_row5_cut10_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut10_distance,regular_row5_cut10_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5479,7 +5479,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut11_distance,regular_row5_cut11_depth])rotate([0,0,regular_row5_cut11_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut11_distance,regular_row5_cut11_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5491,7 +5491,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut12_distance,regular_row5_cut12_depth])rotate([0,0,regular_row5_cut12_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut12_distance,regular_row5_cut12_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5503,7 +5503,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut13_distance,regular_row5_cut13_depth])rotate([0,0,regular_row5_cut13_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut13_distance,regular_row5_cut13_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5515,7 +5515,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut14_distance,regular_row5_cut14_depth])rotate([0,0,regular_row5_cut14_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut14_distance,regular_row5_cut14_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5527,7 +5527,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut15_distance,regular_row5_cut15_depth])rotate([0,0,regular_row5_cut15_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut15_distance,regular_row5_cut15_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5539,7 +5539,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut16_distance,regular_row5_cut16_depth])rotate([0,0,regular_row5_cut16_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut16_distance,regular_row5_cut16_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5551,7 +5551,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut17_distance,regular_row5_cut17_depth])rotate([0,0,regular_row5_cut17_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut17_distance,regular_row5_cut17_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5563,7 +5563,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut18_distance,regular_row5_cut18_depth])rotate([0,0,regular_row5_cut18_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut18_distance,regular_row5_cut18_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5575,7 +5575,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut19_distance,regular_row5_cut19_depth])rotate([0,0,regular_row5_cut19_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut19_distance,regular_row5_cut19_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5587,7 +5587,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut20_distance,regular_row5_cut20_depth])rotate([0,0,regular_row5_cut20_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut20_distance,regular_row5_cut20_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5599,7 +5599,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut21_distance,regular_row5_cut21_depth])rotate([0,0,regular_row5_cut21_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut21_distance,regular_row5_cut21_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
         hull()
         {
@@ -5611,7 +5611,7 @@ module regular_row5_complete(
 		translate([0,regular_row5_cut22_distance,regular_row5_cut22_depth])rotate([0,0,regular_row5_cut22_angle])regular_row5_cut();
 		}
 		translate([0,-regular_row5_link_root_addition/2+regular_row5_cut22_distance,regular_row5_cut22_depth-regular_row5_laser_mill_diameter/2])
-		cube([qt_regular_row5_laser_mill_height_qt,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
+		cube([0,regular_row5_link_root_addition,regular_row5_laser_mill_diameter]);
 		
 		translate([0,regular_row5_link_root_addition/2,0])
 		translate([0,regular_row5_cut22_distance,regular_row5_cut22_depth])rotate([0,0,regular_row5_cut22_angle])regular_row5_cut();
@@ -5682,7 +5682,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut01_distance,regular_row6_cut01_depth])rotate([0,0,regular_row6_cut01_angle])regular_row6_cut();
 		
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut01_distance,regular_row6_cut01_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5694,7 +5694,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut02_distance,regular_row6_cut02_depth])rotate([0,0,regular_row6_cut02_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut02_distance,regular_row6_cut02_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5706,7 +5706,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut03_distance,regular_row6_cut03_depth])rotate([0,0,regular_row6_cut03_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut03_distance,regular_row6_cut03_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5718,7 +5718,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut04_distance,regular_row6_cut04_depth])rotate([0,0,regular_row6_cut04_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut04_distance,regular_row6_cut04_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5730,7 +5730,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut05_distance,regular_row6_cut05_depth])rotate([0,0,regular_row6_cut05_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut05_distance,regular_row6_cut05_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5742,7 +5742,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut06_distance,regular_row6_cut06_depth])rotate([0,0,regular_row6_cut06_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut06_distance,regular_row6_cut06_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5754,7 +5754,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut07_distance,regular_row6_cut07_depth])rotate([0,0,regular_row6_cut07_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut07_distance,regular_row6_cut07_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5766,7 +5766,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut08_distance,regular_row6_cut08_depth])rotate([0,0,regular_row6_cut08_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut08_distance,regular_row6_cut08_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5778,7 +5778,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut09_distance,regular_row6_cut09_depth])rotate([0,0,regular_row6_cut09_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut09_distance,regular_row6_cut09_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5790,7 +5790,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut10_distance,regular_row6_cut10_depth])rotate([0,0,regular_row6_cut10_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut10_distance,regular_row6_cut10_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5802,7 +5802,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut11_distance,regular_row6_cut11_depth])rotate([0,0,regular_row6_cut11_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut11_distance,regular_row6_cut11_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5814,7 +5814,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut12_distance,regular_row6_cut12_depth])rotate([0,0,regular_row6_cut12_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut12_distance,regular_row6_cut12_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5826,7 +5826,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut13_distance,regular_row6_cut13_depth])rotate([0,0,regular_row6_cut13_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut13_distance,regular_row6_cut13_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5838,7 +5838,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut14_distance,regular_row6_cut14_depth])rotate([0,0,regular_row6_cut14_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut14_distance,regular_row6_cut14_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5850,7 +5850,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut15_distance,regular_row6_cut15_depth])rotate([0,0,regular_row6_cut15_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut15_distance,regular_row6_cut15_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5862,7 +5862,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut16_distance,regular_row6_cut16_depth])rotate([0,0,regular_row6_cut16_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut16_distance,regular_row6_cut16_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5874,7 +5874,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut17_distance,regular_row6_cut17_depth])rotate([0,0,regular_row6_cut17_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut17_distance,regular_row6_cut17_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5886,7 +5886,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut18_distance,regular_row6_cut18_depth])rotate([0,0,regular_row6_cut18_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut18_distance,regular_row6_cut18_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5898,7 +5898,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut19_distance,regular_row6_cut19_depth])rotate([0,0,regular_row6_cut19_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut19_distance,regular_row6_cut19_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5910,7 +5910,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut20_distance,regular_row6_cut20_depth])rotate([0,0,regular_row6_cut20_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut20_distance,regular_row6_cut20_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5922,7 +5922,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut21_distance,regular_row6_cut21_depth])rotate([0,0,regular_row6_cut21_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut21_distance,regular_row6_cut21_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5934,7 +5934,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut22_distance,regular_row6_cut22_depth])rotate([0,0,regular_row6_cut22_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut22_distance,regular_row6_cut22_depth])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
 		translate([0,regular_row6_link_root_addition/2,0])
 		translate([0,regular_row6_cut22_distance,regular_row6_cut22_depth])rotate([0,0,regular_row6_cut22_angle])regular_row6_cut();
@@ -5947,7 +5947,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut01_distance,regular_row6_cut01_depth])rotate([0,0,regular_row6_cut01_angle])regular_row6_cut();
 		
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut01_distance,regular_row6_cut01_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5959,7 +5959,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut02_distance,regular_row6_cut02_depth])rotate([0,0,regular_row6_cut02_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut02_distance,regular_row6_cut02_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5971,7 +5971,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut03_distance,regular_row6_cut03_depth])rotate([0,0,regular_row6_cut03_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut03_distance,regular_row6_cut03_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5983,7 +5983,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut04_distance,regular_row6_cut04_depth])rotate([0,0,regular_row6_cut04_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut04_distance,regular_row6_cut04_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -5995,7 +5995,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut05_distance,regular_row6_cut05_depth])rotate([0,0,regular_row6_cut05_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut05_distance,regular_row6_cut05_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6007,7 +6007,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut06_distance,regular_row6_cut06_depth])rotate([0,0,regular_row6_cut06_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut06_distance,regular_row6_cut06_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6019,7 +6019,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut07_distance,regular_row6_cut07_depth])rotate([0,0,regular_row6_cut07_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut07_distance,regular_row6_cut07_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6031,7 +6031,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut08_distance,regular_row6_cut08_depth])rotate([0,0,regular_row6_cut08_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut08_distance,regular_row6_cut08_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6043,7 +6043,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut09_distance,regular_row6_cut09_depth])rotate([0,0,regular_row6_cut09_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut09_distance,regular_row6_cut09_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6055,7 +6055,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut10_distance,regular_row6_cut10_depth])rotate([0,0,regular_row6_cut10_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut10_distance,regular_row6_cut10_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6067,7 +6067,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut11_distance,regular_row6_cut11_depth])rotate([0,0,regular_row6_cut11_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut11_distance,regular_row6_cut11_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6079,7 +6079,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut12_distance,regular_row6_cut12_depth])rotate([0,0,regular_row6_cut12_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut12_distance,regular_row6_cut12_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6091,7 +6091,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut13_distance,regular_row6_cut13_depth])rotate([0,0,regular_row6_cut13_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut13_distance,regular_row6_cut13_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6103,7 +6103,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut14_distance,regular_row6_cut14_depth])rotate([0,0,regular_row6_cut14_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut14_distance,regular_row6_cut14_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6115,7 +6115,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut15_distance,regular_row6_cut15_depth])rotate([0,0,regular_row6_cut15_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut15_distance,regular_row6_cut15_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6127,7 +6127,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut16_distance,regular_row6_cut16_depth])rotate([0,0,regular_row6_cut16_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut16_distance,regular_row6_cut16_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6139,7 +6139,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut17_distance,regular_row6_cut17_depth])rotate([0,0,regular_row6_cut17_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut17_distance,regular_row6_cut17_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6151,7 +6151,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut18_distance,regular_row6_cut18_depth])rotate([0,0,regular_row6_cut18_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut18_distance,regular_row6_cut18_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6163,7 +6163,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut19_distance,regular_row6_cut19_depth])rotate([0,0,regular_row6_cut19_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut19_distance,regular_row6_cut19_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6175,7 +6175,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut20_distance,regular_row6_cut20_depth])rotate([0,0,regular_row6_cut20_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut20_distance,regular_row6_cut20_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6187,7 +6187,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut21_distance,regular_row6_cut21_depth])rotate([0,0,regular_row6_cut21_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut21_distance,regular_row6_cut21_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
         hull()
         {
@@ -6199,7 +6199,7 @@ module regular_row6_complete(
 		translate([0,regular_row6_cut22_distance,regular_row6_cut22_depth])rotate([0,0,regular_row6_cut22_angle])regular_row6_cut();
 		}
 		translate([0,-regular_row6_link_root_addition/2+regular_row6_cut22_distance,regular_row6_cut22_depth-regular_row6_laser_mill_diameter/2])
-		cube([qt_regular_row6_laser_mill_height_qt,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
+		cube([0,regular_row6_link_root_addition,regular_row6_laser_mill_diameter]);
 		
 		translate([0,regular_row6_link_root_addition/2,0])
 		translate([0,regular_row6_cut22_distance,regular_row6_cut22_depth])rotate([0,0,regular_row6_cut22_angle])regular_row6_cut();
@@ -8051,8 +8051,8 @@ module automatic_key_head_and_shoulder()
         {
             color ("blue") 
             {
-                translate ([-qt_abloy_classic_thickness_qt-0.5,-20,-20/2])
-                cube([qt_abloy_classic_thickness_qt+1,20,20],center = false) ; 
+                translate ([-3-0.5,-20,-20/2])
+                cube([3+1,20,20],center = false) ; 
             }
             
             

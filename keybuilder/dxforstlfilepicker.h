@@ -25,6 +25,9 @@ public:
     //! Destructor
     ~DXForSTLFilePicker();
 
+    //! Apply default value
+    virtual void applyDefaultValue();
+
 private:
     //! UI
     Ui::DXForSTLFilePicker *ui;

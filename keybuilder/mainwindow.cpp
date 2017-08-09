@@ -63,6 +63,9 @@ void MainWindow::setController(Controller *pController)
 
     // Build menu 2 tab
     ui->menu2LayoutMgr->buildMenu(m_pController->menu2Node());
+    Parameter *pTypeOfKeyParameter = m_pController->parameterMgr()->getParameterByVariableName(VARIABLE_TYPE_OF_KEY);
+    if (pTypeOfKeyParameter != nullptr)
+        connect(pTypeOfKeyParameter, &Parameter::parameterValueChanged, ui->menu2LayoutMgr, &LayoutMgr::onClearAll);
 
     // Build menu 3 tab
     ui->menu3LayoutMgr->buildMenu(m_pController->menu3Node());
