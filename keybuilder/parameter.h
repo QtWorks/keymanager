@@ -15,10 +15,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    Parameter();
-
-    //! Constructor
-    Parameter(const QString &sName, const QString &sType, const QString &sVariable);
+    Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue, const QString &sAutoScript);
 
     //! Destructor
     ~Parameter();
@@ -51,6 +48,18 @@ public:
     //! Set value
     void setValue(const QString &sValue);
 
+    //! Get default value
+    const QString &defaultValue() const;
+
+    //! Set default value
+    void setDefaultValue(const QString &sDefaultValue);
+
+    //! Get auto script
+    const QString &autoScript() const;
+
+    //! Set auto script
+    void setAutoScript(const QString &sAutoScript);
+
 private:
     //! Name
     QString m_sName;
@@ -63,6 +72,12 @@ private:
 
     //! Value
     QString m_sValue;
+
+    //! Default value
+    QString m_sDefaultValue;
+
+    //! Auto script
+    QString m_sAutoScript;
 
 signals:
     //-------------------------------------------------------------------------------------------------

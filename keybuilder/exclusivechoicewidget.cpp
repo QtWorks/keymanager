@@ -75,6 +75,6 @@ void ExclusiveChoiceWidget::onRadioButtonToggled(bool bClicked)
     if (pSender && bClicked)
     {
         QString sUserValue = pSender->property(PROPERTY_USER_VALUE).toString();
-        emit selectionChanged(sUserValue);
+        emit parameterValueChanged(m_sParameterVariable, sUserValue);
     }
 }

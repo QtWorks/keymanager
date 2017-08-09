@@ -28,9 +28,6 @@ public:
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Return value
-    QString value() const;
-
     //! Set label
     void setLabel(const QString &sLabel);
 
@@ -54,6 +51,9 @@ private:
 public slots:
     //! Open clicked
     void onOpenClicked();
+
+    //! File picker text changed
+    void onFilePickerTextChanged();
 
 signals:
     //! Text changed

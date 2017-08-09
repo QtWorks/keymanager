@@ -188,14 +188,6 @@ public slots:
 
     //! Action button clicked
     void onActionButtonClicked();
-
-signals:
-    //-------------------------------------------------------------------------------------------------
-    // Signals
-    //-------------------------------------------------------------------------------------------------
-
-    //! Parameter value changed
-    void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 };
 
 #endif // GENERICPARAMETERTABLE_H

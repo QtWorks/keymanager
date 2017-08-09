@@ -5,6 +5,7 @@
 #include "controller.h"
 #include "cxmlnode.h"
 #include "parametermgr.h"
+#include "widgetfactory.h"
 #include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -12,6 +13,9 @@
 Controller::Controller(QObject *parent) : QObject(parent)
 {
     m_pParameterMgr = new ParameterMgr(this);
+    m_pParameterMgr->setController(this);
+    m_pWidgetFactory = new WidgetFactory(this);
+    m_pWidgetFactory->setController(this);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -54,6 +58,13 @@ const CXMLNode &Controller::settingsNode() const
 ParameterMgr *Controller::parameterMgr() const
 {
     return m_pParameterMgr;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+WidgetFactory *Controller::widgetFactory() const
+{
+    return m_pWidgetFactory;
 }
 
 //-------------------------------------------------------------------------------------------------

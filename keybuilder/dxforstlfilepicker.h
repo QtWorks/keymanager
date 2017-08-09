@@ -25,22 +25,6 @@ public:
     //! Destructor
     ~DXForSTLFilePicker();
 
-    //-------------------------------------------------------------------------------------------------
-    // Getters & setters
-    //-------------------------------------------------------------------------------------------------
-
-    //! Return DXF value
-    QString dxfValue() const;
-
-    //! Return STL value
-    QString stlValue() const;
-
-    //! Return DXF variable
-    const QString &dxfVariable() const;
-
-    //! Return STL variable
-    const QString &stlVariable() const;
-
 private:
     //! UI
     Ui::DXForSTLFilePicker *ui;
@@ -57,13 +41,6 @@ public slots:
 
     //! Select STL
     void onSelectSTL();
-
-signals:
-    //! DXF selected
-    void dxfSelected();
-
-    //! STL selected
-    void stlSelected();
 };
 
 #endif // DXFORSTLFILEPICKER_H

@@ -75,7 +75,8 @@ SOURCES += main.cpp\
     doubletripletwidget.cpp \
     genericparametertable.cpp \
     basewidget.cpp \
-    dxforstlfilepicker.cpp
+    dxforstlfilepicker.cpp \
+    widgetfactory.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -97,7 +98,8 @@ HEADERS  += mainwindow.h \
     doubletripletwidget.h \
     genericparametertable.h \
     basewidget.h \
-    dxforstlfilepicker.h
+    dxforstlfilepicker.h \
+    widgetfactory.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

@@ -29,9 +29,6 @@ public:
     //! Destructor
     ~ParameterBlock();
 
-    //! Add widget
-    void addWidget(BaseWidget *pWidget, const QString &sParameterVariable);
-
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
@@ -85,28 +82,13 @@ public:
     //! Add child recursively
     void addChildRecursively(const CXMLNode &xParameterBlock);
 
+    //! Add widget
+    void addWidget(BaseWidget *pWidget);
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
     //-------------------------------------------------------------------------------------------------
-
-    //! A line edit text changed
-    void onLineEditTextChanged();
-
-    //! File picker text changed
-    void onFilePickerTextChanged();
-
-    //! DXF selected
-    void onDXFSelected();
-
-    //! STL selected
-    void onSTLSelected();
-
-    //! A radio button was clicked
-    void onRadioButtonClicked(const QString &sSelection);
-
-    //! A line edit triplet value changed
-    void onLineEditTripletValueChanged();
 
     //! Evaluate enabled condition
     void onEvaluateEnabledCondition();
@@ -115,14 +97,8 @@ private:
     //! Constructor
     explicit ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent=nullptr);
 
-    //! Find associated parameter variable
-    QString findAssociatedParameterVariable(BaseWidget *pWidget) const;
-
     //! Populate parameter block
     void populateParameterBlock(const CXMLNode &xParameterBlock);
-
-    //! Add widget
-    void addWidget(BaseWidget *pWidget);
 
     //! Add collapsible block
     void addCollapsibleBlock(CollapsibleBlock *pBlock);
@@ -133,9 +109,6 @@ private:
 
     //! Name
     QString m_sName;
-
-    //! Widget hash
-    QHash<QString, BaseWidget *> m_hWidgetHash;
 
     //! Is empty?
     bool m_bIsEmpty;
@@ -163,6 +136,9 @@ private:
 
     //! Controller
     Controller *m_pController;
+
+    //! Widgets
+    QVector<BaseWidget *> m_vWidgets;
 
 signals:
     //! Parameter value changed

@@ -36,13 +36,6 @@ void FilePickerWidget::onOpenClicked()
 
 //-------------------------------------------------------------------------------------------------
 
-QString FilePickerWidget::value() const
-{
-    return ui->lineEdit->text();
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void FilePickerWidget::setLabel(const QString &sLabel)
 {
     ui->label->setText(sLabel);
@@ -60,4 +53,11 @@ void FilePickerWidget::setExtension(const QString &sExtenion)
 void FilePickerWidget::applyDefaultValue()
 {
     ui->lineEdit->setText(m_sDefaultValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void FilePickerWidget::onFilePickerTextChanged()
+{
+    emit parameterValueChanged(m_sParameterVariable, ui->lineEdit->text());
 }

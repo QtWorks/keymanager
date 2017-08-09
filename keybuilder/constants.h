@@ -33,6 +33,7 @@
 #define PROPERTY_VARIABLE_METHOD2 "method2"
 #define PROPERTY_ENABLED "enabled"
 #define PROPERTY_DEFAULT "default"
+#define PROPERTY_DEFAULT_VALUE "0"
 #define PROPERTY_EXCLUSIVE "exclusive"
 #define PROPERTY_AUTO "auto"
 #define PROPERTY_YES "YES"

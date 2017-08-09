@@ -32,9 +32,6 @@ public:
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Return value
-    QString value() const;
-
     //! Set validator
     void setValidator(QValidator *pValidator);
 
@@ -51,9 +48,6 @@ public:
     //! Set watched parameters
     void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
 
-    //! Set parameter mgr
-    void setParameterMgr(ParameterMgr *pParameterMgr);
-
 private:
     //! UI
     Ui::LineEditWidget *ui;
@@ -64,16 +58,12 @@ private:
     //! Watched parameters
     QHash<QString, Parameter *> m_hWatchedParameters;
 
-    //! Parameter mgr
-    ParameterMgr *m_pParameterMgr;
-
 public slots:
+    //! Text changed
+    void onTextChanged();
+
     //! Evaluate auto script
     void onEvaluateAutoScript();
-    
-signals:
-    //! Value changed
-    void valueChanged();
 };
 
 #endif // LINEEDITWIDGET_H

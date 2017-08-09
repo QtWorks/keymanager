@@ -15,7 +15,7 @@ LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultVal
     m_sDefaultValue = sDefaultValue;
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = "0";
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::valueChanged);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged);
     ui->label->setText(sLabel);
 }
 
@@ -24,13 +24,6 @@ LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultVal
 LineEditWidget::~LineEditWidget()
 {
     delete ui;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QString LineEditWidget::value() const
-{
-    return ui->lineEdit->text();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -65,17 +58,19 @@ void LineEditWidget::setWatchedParameters(const QHash<QString, Parameter *> &hPa
 
 //-------------------------------------------------------------------------------------------------
 
-void LineEditWidget::setParameterMgr(ParameterMgr *pParameterMgr)
+void LineEditWidget::onTextChanged()
 {
-    m_pParameterMgr = pParameterMgr;
+    emit parameterValueChanged(m_sParameterVariable, ui->lineEdit->text());
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void LineEditWidget::onEvaluateAutoScript()
 {
+    /* TO DO
     bool bSuccess = true;
     double dValue = m_pParameterMgr->evaluateAutoScript(m_sAuto, bSuccess);
     if (bSuccess)
         ui->lineEdit->setText(QString::number(dValue));
+    */
 }

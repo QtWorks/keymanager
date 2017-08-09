@@ -14,8 +14,6 @@ DXForSTLFilePicker::DXForSTLFilePicker(const QString &sDefaultValue, const QStri
     m_sDefaultValue = sDefaultValue;
     connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF);
     connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL);
-    connect(ui->dxfLineEdit, &QLineEdit::textChanged, this, &DXForSTLFilePicker::dxfSelected);
-    connect(ui->stlLineEdit, &QLineEdit::textChanged, this, &DXForSTLFilePicker::stlSelected);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -34,6 +32,7 @@ void DXForSTLFilePicker::onSelectSTL()
     {
         ui->stlLineEdit->setText(sFileName);
         ui->dxfLineEdit->clear();
+        emit parameterValueChanged(m_sSTLVariable, sFileName);
     }
 }
 
@@ -46,33 +45,6 @@ void DXForSTLFilePicker::onSelectDXF()
     {
         ui->dxfLineEdit->setText(sFileName);
         ui->stlLineEdit->clear();
+        emit parameterValueChanged(m_sDXFVariable, sFileName);
     }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QString DXForSTLFilePicker::dxfValue() const
-{
-    return ui->dxfLineEdit->text();
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QString DXForSTLFilePicker::stlValue() const
-{
-    return ui->stlLineEdit->text();
-}
-
-//-------------------------------------------------------------------------------------------------
-
-const QString &DXForSTLFilePicker::dxfVariable() const
-{
-    return m_sDXFVariable;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-const QString &DXForSTLFilePicker::stlVariable() const
-{
-    return m_sSTLVariable;
 }

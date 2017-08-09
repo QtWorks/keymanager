@@ -8,6 +8,7 @@
 // Application
 #include "cxmlnode.h"
 class Parameter;
+class Controller;
 
 class ParameterMgr : public QObject
 {
@@ -80,6 +81,9 @@ public:
     //! Return parameter by variable name
     Parameter *getParameterByVariableName(const QString &sVariableName) const;
 
+    //! Set controller
+    void setController(Controller *pController);
+
 private:
     //! Parse single block
     void parseSingleBlock(const CXMLNode &xBlock);
@@ -88,6 +92,9 @@ private:
     void parseTableParameters(const CXMLNode &xParameter);
 
 private:
+    //! Controller
+    Controller *m_pController;
+
     //! Menu 1 node
     CXMLNode m_xMenu1Node;
 

@@ -19,6 +19,7 @@
 #include "genericparametertable.h"
 #include "parametermgr.h"
 #include "basewidget.h"
+#include "widgetfactory.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -79,218 +80,22 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
             if (pParameter != nullptr)
                 hParameters[sParameterVariableName] = pParameter;
         }
-        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size())) {
+        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
             setWatchedParameters(hParameters);
-        }
     }
 
     foreach (CXMLNode xParameter, vParameterNodes)
     {
-        QString sParameterName = xParameter.attributes()[PROPERTY_NAME].simplified();
-        QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE].simplified();
-        QString sParameterType = xParameter.attributes()[PROPERTY_TYPE].simplified();
-        QString sWidgetType = xParameter.attributes()[PROPERTY_UI].simplified();
-        QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-        QString sAuto = xParameter.attributes()[PROPERTY_AUTO].simplified();
-
-        // Parameter with no UI
-        if (sWidgetType.isEmpty())
+        BaseWidget *pWidget = m_pController->widgetFactory()->buildWidget(xParameter, this);
+        if (pWidget != nullptr)
         {
-            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
-            if (pParameter != nullptr)
-                pParameter->setValue(sDefaultValue);
-        }
-        else
-        if (sWidgetType == WIDGET_LINE_EDIT)
-        {
-            LineEditWidget *pLineEdit = new LineEditWidget(sParameterName, sDefaultValue, sAuto, this);
-            pLineEdit->setParameterMgr(m_pController->parameterMgr());
-            if (sParameterType == PROPERTY_DOUBLE)
-            {
-                QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
-                pLineEdit->setValidator(pValidator);
-            }
-            connect(pLineEdit, &LineEditWidget::valueChanged, this, &ParameterBlock::onLineEditTextChanged);
-            addWidget(pLineEdit, sParameterVariable);
-            pLineEdit->applyDefaultValue();
-
-            if (!sAuto.isEmpty())
-            {
-                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAuto);
-                QHash<QString, Parameter *> hParameters;
-                foreach (QString sParameterVariableName, vVariableNames)
-                {
-                    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
-                    if (pParameter != nullptr)
-                        hParameters[sParameterVariableName] = pParameter;
-                }
-                if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
-                    pLineEdit->setWatchedParameters(hParameters);
-            }
-        }
-        else
-        if (sWidgetType == WIDGET_FILE_PICKER)
-        {
-            QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
-            FilePickerWidget *pFilePickerWidget = new FilePickerWidget(sParameterName, sFileExtension, sDefaultValue, this);
-            connect(pFilePickerWidget, &FilePickerWidget::textChanged, this, &ParameterBlock::onFilePickerTextChanged);
-            addWidget(pFilePickerWidget, sParameterVariable);
-            pFilePickerWidget->applyDefaultValue();
-        }
-        else
-        if (sWidgetType == WIDGET_DXF_OR_STL_FILE_PICKER)
-        {
-            QString sParameterSTLVariable = xParameter.attributes()[PROPERTY_STL_VARIABLE].simplified();
-            QString sParameterDXFVariable = xParameter.attributes()[PROPERTY_DXF_VARIABLE].simplified();
-            DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(sDefaultValue, sParameterSTLVariable, sParameterDXFVariable, this);
-            connect(pFilePickerWidget, &DXForSTLFilePicker::dxfSelected, this, &ParameterBlock::onDXFSelected);
-            connect(pFilePickerWidget, &DXForSTLFilePicker::stlSelected, this, &ParameterBlock::onSTLSelected);
-            addWidget(pFilePickerWidget, sParameterVariable);
-            pFilePickerWidget->applyDefaultValue();
-        }
-        else
-        if (sWidgetType == WIDGET_EXCLUSIVE_CHOICE)
-        {
-            QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
-            QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-
-            if (!sLabels.isEmpty() && !sValues.isEmpty())
-            {
-                ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, this);
-                connect(pExclusiveChoiceWidet, &ExclusiveChoiceWidget::selectionChanged, this, &ParameterBlock::onRadioButtonClicked);
-                addWidget(pExclusiveChoiceWidet, sParameterVariable);
-                pExclusiveChoiceWidet->applyDefaultValue();
-            }
-        }
-        else
-        if (sWidgetType == WIDGET_DOUBLE_TRIPLET)
-        {
-            DoubleTripletWidget *pTriplet = new DoubleTripletWidget(sParameterName, sDefaultValue, this);
-            connect(pTriplet, &DoubleTripletWidget::valueChanged, this, &ParameterBlock::onLineEditTripletValueChanged);
-            addWidget(pTriplet, sParameterVariable);
-            pTriplet->applyDefaultValue();
-        }
-        else
-        if (sWidgetType == WIDGET_GENERIC_PARAMETER_TABLE)
-        {
-            QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
-            QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
-
-            if (!sColumnLabels.isEmpty() && !sColumnVariables.isEmpty())
-            {
-                QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
-                int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-                QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
-                QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
-                QStringList lDefaultValues;
-                if (!sDefaultValue.isEmpty())
-                    lDefaultValues = sDefaultValue.split(",");
-                GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), lDefaultValues, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
-                connect(pGenericParameterTable, &GenericParameterTable::parameterValueChanged, this, &ParameterBlock::parameterValueChanged);
-                addWidget(pGenericParameterTable, sParameterVariable);
-                pGenericParameterTable->applyDefaultValue();
-            }
+            addWidget(pWidget);
+            m_vWidgets << pWidget;
         }
     }
 
     // Add child recursively
     addChildRecursively(xParameterBlock);
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onLineEditTextChanged()
-{
-    LineEditWidget *pSender = dynamic_cast<LineEditWidget *>(sender());
-    if (pSender != nullptr)
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            emit parameterValueChanged(sParameterVariable, pSender->value());
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onFilePickerTextChanged()
-{
-    FilePickerWidget *pSender = dynamic_cast<FilePickerWidget *>(sender());
-    if (pSender != nullptr)
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            emit parameterValueChanged(sParameterVariable, pSender->value());
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onDXFSelected()
-{
-    DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
-    if (pSender != nullptr)
-    {
-        emit parameterValueChanged(pSender->dxfVariable(), pSender->dxfValue());
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onSTLSelected()
-{
-    DXForSTLFilePicker *pSender = dynamic_cast<DXForSTLFilePicker *>(sender());
-    if (pSender != nullptr)
-    {
-        emit parameterValueChanged(pSender->stlVariable(), pSender->stlValue());
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onRadioButtonClicked(const QString &sSelection)
-{
-    ExclusiveChoiceWidget *pSender = dynamic_cast<ExclusiveChoiceWidget *>(sender());
-    if (pSender != nullptr)
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            // Notify
-            emit parameterValueChanged(sParameterVariable, sSelection);
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::onLineEditTripletValueChanged()
-{
-    DoubleTripletWidget *pSender = dynamic_cast<DoubleTripletWidget *>(sender());
-    if (pSender != nullptr)
-    {
-        QString sParameterVariable = findAssociatedParameterVariable(pSender);
-        if (!sParameterVariable.isEmpty())
-        {
-            // Notify
-            emit parameterValueChanged(sParameterVariable, pSender->value());
-        }
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-QString ParameterBlock::findAssociatedParameterVariable(BaseWidget *pWidget) const
-{
-    for (QHash<QString, BaseWidget *>::const_iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
-    {
-        if (it.value() == pWidget)
-            return it.key();
-    }
-    return QString();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -313,14 +118,6 @@ void ParameterBlock::addCollapsibleBlock(CollapsibleBlock *pBlock)
         ui->verticalLayout->addWidget(pBlock);
         ui->verticalLayout->setAlignment(pBlock, Qt::AlignTop);
     }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void ParameterBlock::addWidget(BaseWidget *pWidget, const QString &sParameterVariable)
-{
-    addWidget(pWidget);
-    m_hWidgetHash[sParameterVariable] = pWidget;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -434,9 +231,9 @@ void ParameterBlock::onEvaluateEnabledCondition()
 
 void ParameterBlock::clearAll()
 {
-    for (QHash<QString, BaseWidget *>::iterator it=m_hWidgetHash.begin(); it!=m_hWidgetHash.end(); ++it)
-        if (it.value() != nullptr)
-            it.value()->applyDefaultValue();
+    foreach (BaseWidget *pWidget, m_vWidgets)
+        if (pWidget != nullptr)
+            pWidget->applyDefaultValue();
 }
 
 //-------------------------------------------------------------------------------------------------

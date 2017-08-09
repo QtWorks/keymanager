@@ -19,9 +19,9 @@ DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &s
     ui->lineEdit3->setValidator(pValidator);
 
     m_sDefaultValue = "[0,0,0]";
-    connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
-    connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
-    connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
+    connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
+    connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
+    connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -80,4 +80,11 @@ void DoubleTripletWidget::applyDefaultValue()
             }
         }
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void DoubleTripletWidget::onTextChanged()
+{
+    emit parameterValueChanged(m_sParameterVariable, value());
 }

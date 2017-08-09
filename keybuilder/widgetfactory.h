@@ -1,14 +1,15 @@
-#ifndef DOUBLETRIPLETWIDGET_H
-#define DOUBLETRIPLETWIDGET_H
+#ifndef WIDGETFACTORY_H
+#define WIDGETFACTORY_H
+
+// Qt
+#include <QObject>
 
 // Application
-#include "basewidget.h"
+#include "cxmlnode.h"
+class Controller;
+class BaseWidget;
 
-namespace Ui {
-class DoubleTripletWidget;
-}
-
-class DoubleTripletWidget : public BaseWidget
+class WidgetFactory : public QObject
 {
     Q_OBJECT
 
@@ -18,35 +19,28 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
+    explicit WidgetFactory(QObject *parent = 0);
 
     //! Destructor
-    virtual ~DoubleTripletWidget();
+    ~WidgetFactory();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Set label
-    void setLabel(const QString &sLabel);
-
-    //! Return value
-    QString value() const;
+    //! Set controller
+    void setController(Controller *pController);
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Apply default value
-    virtual void applyDefaultValue();
+    //! Build widget
+    BaseWidget *buildWidget(const CXMLNode &xNode, QWidget *pParentWidget=nullptr);
 
 private:
-    //! UI
-    Ui::DoubleTripletWidget *ui;
-
-public slots:
-    //! Text changed
-    void onTextChanged();
+    //! Controller
+    Controller *m_pController;
 };
 
-#endif // DOUBLETRIPLETWIDGET_H
+#endif // WIDGETFACTORY_H

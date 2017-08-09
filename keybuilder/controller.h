@@ -10,6 +10,7 @@
 #include "cxmlnode.h"
 #include "iservice.h"
 class ParameterMgr;
+class WidgetFactory;
 
 class Controller : public QObject, public IService
 {
@@ -45,6 +46,9 @@ public:
     //! Return parameter manager
     ParameterMgr *parameterMgr() const;
 
+    //! Return widget factory
+    WidgetFactory *widgetFactory() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -58,6 +62,9 @@ public:
 private:
     //! Parameter manager
     ParameterMgr *m_pParameterMgr;
+
+    //! Widget factory
+    WidgetFactory *m_pWidgetFactory;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

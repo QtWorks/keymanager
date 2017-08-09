@@ -13,7 +13,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterMgr::ParameterMgr(QObject *parent) : QObject(parent)
+ParameterMgr::ParameterMgr(QObject *parent) : QObject(parent),
+    m_pController(nullptr)
 {
 
 }
@@ -34,11 +35,38 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
     QVector<CXMLNode> vParameterNodes = xBlock.getNodesByTagName(TAG_PARAMETER);
     foreach (CXMLNode xParameterNode, vParameterNodes)
     {
+        QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
+        if (sParameterName.simplified().isEmpty())
+        {
+            qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
+        }
         QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
         if (sParameterType.simplified().isEmpty())
         {
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED TYPE, DEFAULTING TO STRING";
             sParameterType = PROPERTY_STRING;
+        }
+        QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
+        if (sParameterVariable.simplified().isEmpty())
+        {
+            qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
+            continue;
+        }
+        QString sDefaultValue = xParameterNode.attributes()[PROPERTY_DEFAULT];
+        if (sDefaultValue.simplified().isEmpty())
+        {
+            sDefaultValue = PROPERTY_DEFAULT_VALUE;
+            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED DEFAULT VALUE. Defaulting to \"0\"";
+        }
+        QString sAutoScript = xParameterNode.attributes()[PROPERTY_AUTO];
+        if (sAutoScript.simplified().isEmpty())
+        {
+            qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED AUTO SCRIPT";
+        }
+        QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI];
+        if (sParameterUI.simplified().isEmpty())
+        {
+            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED UI";
         }
 
         // Special case for table
@@ -48,22 +76,10 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         }
         else
         {
-            QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI];
             if (sParameterUI != WIDGET_DXF_OR_STL_FILE_PICKER)
             {
-                QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
-                if (sParameterName.simplified().isEmpty())
-                {
-                    qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
-                }
-                QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-                if (sParameterVariable.simplified().isEmpty())
-                {
-                    qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
-                    continue;
-                }
                 if (!m_hParameters.contains(sParameterVariable))
-                    m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
+                    m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable, sDefaultValue, sAutoScript);
             }
         }
     }
@@ -84,6 +100,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QStringList lColumnVariables = sColumnVariables.split(",");
     QString sParameterType = PROPERTY_DOUBLE;
     QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
+    QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO];
     if (lColumnLabels.size() == lColumnVariables.size())
     {
         QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
@@ -105,7 +122,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                     sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
                     if (!m_hParameters.contains(sFormattedVariable))
                     {
-                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript);
                     }
                 }
                 else
@@ -115,7 +132,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                         sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
                         if (!m_hParameters.contains(sFormattedVariable))
                         {
-                            m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable);
+                            m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript);
                         }
                     }
             }
@@ -363,3 +380,9 @@ Parameter *ParameterMgr::getParameterByVariableName(const QString &sParameterVar
     return m_hParameters[sParameterVariableName];
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void ParameterMgr::setController(Controller *pController)
+{
+    m_pController = pController;
+}
