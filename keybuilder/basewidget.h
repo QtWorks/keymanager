@@ -6,6 +6,7 @@
 
 // Application
 class Controller;
+class Parameter;
 
 class BaseWidget : public QWidget
 {
@@ -44,6 +45,15 @@ public:
     //! Set parameter variable
     void setParameterVariable(const QString &sParameterVariable);
 
+    //! Return auto script
+    const QString &autoScript() const;
+
+    //! Set auto script
+    void setAutoScript(const QString &sAutoScript);
+
+    //! Set watched parameters
+    void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -60,6 +70,13 @@ protected:
 
     //! Parameter variable
     QString m_sParameterVariable;
+
+    //! Auto script
+    QString m_sAutoScript;
+
+public slots:
+    //! Evaluate auto script
+    virtual void onEvaluateAutoScript();
 
 signals:
     //-------------------------------------------------------------------------------------------------

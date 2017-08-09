@@ -47,7 +47,7 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
             sParameterType = PROPERTY_STRING;
         }
         QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-        if (sParameterVariable.simplified().isEmpty())
+        if (sParameterVariable.simplified().isEmpty() && (sParameterType != PROPERTY_TABLE))
         {
             qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
             continue;
@@ -181,7 +181,7 @@ QVector<QString> ParameterMgr::extractVariableNames(const QString &sInputString)
 
 //-------------------------------------------------------------------------------------------------
 
-double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSuccess)
+QString ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSuccess)
 {
     QVector<QString> vVariableNames = extractVariableNames(sAutoScript);
     QString sMatchedScript = sAutoScript;
@@ -205,10 +205,10 @@ double ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucce
         if (xResult.isNumber())
         {
             bSuccess = true;
-            return xResult.toNumber();
+            return xResult.toString();
         }
     }
-    return 0;
+    return QString();
 }
 
 //-------------------------------------------------------------------------------------------------

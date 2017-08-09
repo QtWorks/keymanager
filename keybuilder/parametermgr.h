@@ -57,7 +57,7 @@ public:
     static QVector<QString> extractVariableNames(const QString &sInputString);
 
     //! Evaluate auto script
-    double evaluateAutoScript(const QString &sAutoScript, bool &bSuccess);
+    QString evaluateAutoScript(const QString &sAutoScript, bool &bSuccess);
 
     //! Evaluate enabled condtion
     bool evaluateEnabledCondition(const QString &sEnabledConsition, bool &bSuccess);

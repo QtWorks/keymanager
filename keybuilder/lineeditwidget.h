@@ -23,7 +23,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent=nullptr);
+    explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~LineEditWidget();
@@ -45,18 +45,9 @@ public:
     //! Apply default value
     virtual void applyDefaultValue();
 
-    //! Set watched parameters
-    void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
-
 private:
     //! UI
     Ui::LineEditWidget *ui;
-
-    //! Auto
-    QString m_sAuto;
-
-    //! Watched parameters
-    QHash<QString, Parameter *> m_hWatchedParameters;
 
 public slots:
     //! Text changed

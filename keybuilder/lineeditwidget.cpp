@@ -3,18 +3,20 @@
 #include "ui_lineeditwidget.h"
 
 // Application
+#include "controller.h"
 #include "parameter.h"
 #include "parametermgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::LineEditWidget), m_sAuto(sAuto)
+LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, QWidget *parent) : BaseWidget(parent),
+    ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = "0";
+    m_sAutoScript = sAutoScript;
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged);
     ui->label->setText(sLabel);
 }
@@ -49,15 +51,6 @@ void LineEditWidget::applyDefaultValue()
 
 //-------------------------------------------------------------------------------------------------
 
-void LineEditWidget::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
-{
-    m_hWatchedParameters = hParameters;
-    for (QHash<QString, Parameter *>::iterator it=m_hWatchedParameters.begin(); it!=m_hWatchedParameters.end(); ++it)
-        connect(it.value(), &Parameter::parameterValueChanged, this, &LineEditWidget::onEvaluateAutoScript);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void LineEditWidget::onTextChanged()
 {
     emit parameterValueChanged(m_sParameterVariable, ui->lineEdit->text());
@@ -67,10 +60,8 @@ void LineEditWidget::onTextChanged()
 
 void LineEditWidget::onEvaluateAutoScript()
 {
-    /* TO DO
     bool bSuccess = true;
-    double dValue = m_pParameterMgr->evaluateAutoScript(m_sAuto, bSuccess);
+    QString sValue = m_pController->parameterMgr()->evaluateAutoScript(m_sAutoScript, bSuccess);
     if (bSuccess)
-        ui->lineEdit->setText(QString::number(dValue));
-    */
+        ui->lineEdit->setText(sValue);
 }

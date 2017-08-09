@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------------------------------
 
 BaseWidget::BaseWidget(QWidget *parent) : QWidget(parent),
-    m_pController(nullptr), m_sDefaultValue(""), m_sParameterVariable("")
+    m_pController(nullptr), m_sDefaultValue(""), m_sParameterVariable(""), m_sAutoScript("")
 {
 
 }
@@ -62,8 +62,36 @@ void BaseWidget::setParameterVariable(const QString &sParameterVariable)
 
 //-------------------------------------------------------------------------------------------------
 
+const QString &BaseWidget::autoScript() const
+{
+    return m_sAutoScript;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::setAutoScript(const QString &sAutoScript)
+{
+    m_sAutoScript = sAutoScript;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
+{
+    for (QHash<QString, Parameter *>::const_iterator it=hParameters.begin(); it!=hParameters.end(); ++it)
+        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateAutoScript);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void BaseWidget::applyDefaultValue()
 {
 
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::onEvaluateAutoScript()
+{
+
+}
