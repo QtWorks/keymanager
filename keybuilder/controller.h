@@ -39,6 +39,9 @@ public:
     //! Return menu 3 node
     const CXMLNode &menu3Node() const;
 
+    //! Return settings node
+    const CXMLNode &settingsNode() const;
+
     //! Return parameter manager
     ParameterMgr *parameterMgr() const;
 

@@ -48,19 +48,23 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         }
         else
         {
-            QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
-            if (sParameterName.simplified().isEmpty())
+            QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI];
+            if (sParameterUI != WIDGET_DXF_OR_STL_FILE_PICKER)
             {
-                qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
+                QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
+                if (sParameterName.simplified().isEmpty())
+                {
+                    qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
+                }
+                QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
+                if (sParameterVariable.simplified().isEmpty())
+                {
+                    qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
+                    continue;
+                }
+                if (!m_hParameters.contains(sParameterVariable))
+                    m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
             }
-            QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-            if (sParameterVariable.simplified().isEmpty())
-            {
-                qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
-                continue;
-            }
-            if (!m_hParameters.contains(sParameterVariable))
-                m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable);
         }
     }
 
@@ -240,7 +244,6 @@ bool ParameterMgr::loadMenu1Parameters()
 
     // Parse
     parseSingleBlock(m_xMenu1Node);
-    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 1 ***";
 
     return true;
 }
@@ -256,7 +259,6 @@ bool ParameterMgr::loadMenu2Parameters()
 
     // Parse
     parseSingleBlock(m_xMenu2Node);
-    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 2";
 
     return true;
 }
@@ -272,7 +274,21 @@ bool ParameterMgr::loadMenu3Parameters()
 
     // Parse
     parseSingleBlock(m_xMenu3Node);
-    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size() << " PARAMETERS IN MENU 3";
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+
+bool ParameterMgr::loadSettingsParameters()
+{
+    // Retrieve root node
+    m_xSettingsNode = CXMLNode::loadXMLFromFile(":/data/settings.xml");
+    if (m_xSettingsNode.nodes().isEmpty())
+        return false;
+
+    // Parse
+    parseSingleBlock(m_xSettingsNode);
+    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size();
 
     return true;
 }
@@ -302,9 +318,13 @@ void ParameterMgr::generateScript()
         QString sOutputString = outStream.readAll();
         outputScriptFile.close();
         QVector<QString> vUnReplacedVariables = extractVariableNames(sOutputString);
-        qDebug() << "COULD NOT REPLACE THE FOLLOWING VARIABLES: ";
-        foreach (QString sUnReplacedVariable, vUnReplacedVariables)
-            qDebug() << sUnReplacedVariable << "\n";
+        if (!vUnReplacedVariables.isEmpty())
+        {
+            qDebug() << "COULD NOT REPLACE THE FOLLOWING VARIABLES: ";
+            foreach (QString sUnReplacedVariable, vUnReplacedVariables)
+                qDebug() << sUnReplacedVariable << "\n";
+        }
+        else qDebug() << "ALL VARIABLES SUCCESSFULLY REPLACED";
     }
 }
 
@@ -327,6 +347,13 @@ const CXMLNode &ParameterMgr::menu2Node() const
 const CXMLNode &ParameterMgr::menu3Node() const
 {
     return m_xMenu3Node;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const CXMLNode &ParameterMgr::settingsNode() const
+{
+    return m_xSettingsNode;
 }
 
 //-------------------------------------------------------------------------------------------------

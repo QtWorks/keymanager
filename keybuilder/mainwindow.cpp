@@ -41,6 +41,7 @@ void MainWindow::setController(Controller *pController)
     ui->menu1LayoutMgr->setController(m_pController);
     ui->menu2LayoutMgr->setController(m_pController);
     ui->menu3LayoutMgr->setController(m_pController);
+    ui->menuSettingsLayoutMgr->setController(m_pController);
 
     // Close/Open all
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll);
@@ -65,4 +66,7 @@ void MainWindow::setController(Controller *pController)
 
     // Build menu 3 tab
     ui->menu3LayoutMgr->buildMenu(m_pController->menu3Node());
+
+    // Build settings tab
+    ui->menuSettingsLayoutMgr->buildMenu(m_pController->settingsNode());
 }

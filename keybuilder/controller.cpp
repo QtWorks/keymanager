@@ -44,6 +44,13 @@ const CXMLNode &Controller::menu3Node() const
 
 //-------------------------------------------------------------------------------------------------
 
+const CXMLNode &Controller::settingsNode() const
+{
+    return m_pParameterMgr->settingsNode();
+}
+
+//-------------------------------------------------------------------------------------------------
+
 ParameterMgr *Controller::parameterMgr() const
 {
     return m_pParameterMgr;
@@ -58,6 +65,8 @@ bool Controller::startup()
     if (!m_pParameterMgr->loadMenu2Parameters())
         return false;
     if (!m_pParameterMgr->loadMenu3Parameters())
+        return false;
+    if (!m_pParameterMgr->loadSettingsParameters())
         return false;
     return true;
 }
