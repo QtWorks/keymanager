@@ -18,9 +18,6 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ExclusiveChoiceWidget(QWidget *parent=nullptr);
-
-    //! Constructor
     explicit ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor

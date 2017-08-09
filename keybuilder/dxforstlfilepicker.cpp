@@ -7,19 +7,6 @@
 
 //-------------------------------------------------------------------------------------------------
 
-DXForSTLFilePicker::DXForSTLFilePicker(QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(""), m_sDXFVariable("")
-{
-    ui->setupUi(this);
-    m_sDefaultValue = "";
-    connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF);
-    connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL);
-    connect(ui->dxfLineEdit, &QLineEdit::textChanged, this, &DXForSTLFilePicker::dxfSelected);
-    connect(ui->stlLineEdit, &QLineEdit::textChanged, this, &DXForSTLFilePicker::stlSelected);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 DXForSTLFilePicker::DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(sSTLVariable), m_sDXFVariable(sDXFVariable)
 {

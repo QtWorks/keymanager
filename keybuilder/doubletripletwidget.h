@@ -18,9 +18,6 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit DoubleTripletWidget(QWidget *parent=nullptr);
-
-    //! Constructor
     explicit DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent=nullptr);
 
     //! Destructor

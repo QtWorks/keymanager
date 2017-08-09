@@ -5,7 +5,7 @@
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
       <Parameter name="HEIGHT" type="double" variable="qt_regular_height_qt" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_regular_thickness_qt" ui="lineedit" />
-      <Parameter labels="YES,NO" values="YES,NO" type="string" variable="qt_regular_auto_tip_qt" default="NO" ui="exclusivechoice" />
+      <Parameter name="AUTOMATIC TIP" type="string" variable="qt_regular_auto_tip_qt" default="NO" ui="yesno" />
       <Parameter name="DXF FILE" type="string" variable="qt_regular_dxf_name_qt" />
       <Parameter name="STL FILE" type="string" variable="qt_regular_stl_name_qt" />
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_regular_stl_name_qt" dxf_variable="qt_regular_dxf_name_qt" ui="dxforstlfilepicker"/>
@@ -65,7 +65,7 @@
    <Block name="FICHET 787" set_variable="qt_type_of_key_qt" value="fichet_787" />
    <Block name="EXPERT: BROWSE FOR A STL (ACTIVATES ALL TYPES OF CUTTING IN MENU 2)" set_variable="qt_type_of_key_qt" value="import_stl">
       <Parameter name="BROWSE FOR A STL" type="string" variable="qt_expert_stl_name_qt" ui="filepicker" extension="*.stl" />
-      <Parameter name="SET DIMENSIONS" labels="YES,NO" values="YES,NO" type="string" variable="qt_expert_stl_set_dimensions_qt" default="YES" ui="exclusivechoice"/>
+      <Parameter name="SET DIMENSIONS" type="string" variable="qt_expert_stl_set_dimensions_qt" default="YES" ui="yesno"/>
       <Parameter name="X DIMENSION" type="double" variable="qt_expert_stl_dx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Y DIMENSION" type="double" variable="qt_expert_stl_dy_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>
       <Parameter name="Z DIMENSION" type="double" variable="qt_expert_stl_dz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &amp;quot;YES&amp;quot;)"/>

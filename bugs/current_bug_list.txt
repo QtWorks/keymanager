@@ -1,9 +1,21 @@
-﻿menu1
+﻿Quand une case de DXF ou STL est vide, renvoyer la valeur "0"
+ajuster les dimensions pour que les textes s'affichent en entier
+Quand on change de type de clé dans le menu1, il faut remettre à défaut toutes les variables de menu2
+Afficher les valeurs par défaut en grisé, et quand l'utilisateur clique dans la case, effacer la valeur par défaut pour que l'utilisateur puisse rentrer sa propre valeur
+Prévoir un bouton "Export Parameters" et "Import Parameters", qui exporte un *.txt (pour le moment, *.dat plus tard) avec la liste de toutes les valeurs de variables (mais pas le nom des variables)
+
+menu1
 	regular
-		YES/NO : ajouter "AUTOMATIC TIP" 
+		YES/NO : ajouter "AUTOMATIC TIP" en titre pour ce choix
+	Expert
+		SET DIMENSIONS // DEFAULTS IS NO
+			griser la liste dessous quand le radio button NO est coché
+	
 
 
 menu2
+	enlever les textes (active only if...)
+	mettre des valeurs par défaut pour le choix des fraises et leurs parametres (voir en bas de ce document)
 	il manque les cases "all" sur les tableaux
 	Il faut supprimer la case "number of levers", qui existe déjà sous des noms différents pour chaque block. (number of pins, number of levers, number of discs
 	regular
@@ -24,9 +36,33 @@ menu2
 		supprimer la ligne et les variables associées à side of profile right left
 		supprimer les lignes "number of levers"
 	fichet 787
-		cupprimer la ligne "number of levers"
+		supprimer la ligne "number of levers"
+
+Menu3
+	Automatic Key head : mettre en block de 1° niveau
+	changer le nom ADDING MATERIAL : enlever le texte entre parenthèses
 
 		
 		
 		
-		
+	CHOOSE MILL SHAPE qt_regular_row1_cut_to_use_qt DEFAULT IS "prism_cut"
+		[]STANDARD (PRISM SHAPE) //qt_regular_row1_cut_to_use_qt can be "prism_cut", "cone_cut", "laser_cut", "stl_mill" Radio bouton
+			ROOT WIDTH[ ]  (ON X AXIS) //qt_regular_row1_prism_root_x_qt DEFAULT IS 3
+			ROOT LENGTH[ ] (ON Y AXIS) //qt_regular_row1_prism_root_y_qt DEFAULT IS 1
+			MILL ANGLE on X AXIS[ ] //qt_regular_row1_prism_angle_x_qt DEFAULT IS 90
+			MILL ANGLE on Y AXIS[ ] //qt_regular_row1_prism_angle_y_qt DEFAULT IS 90
+			MILL HEIGHT[ ] //qt_regular_row1_prism_height_qt DEFAULT IS 10
+		[]CONICAL (LONG PROCESSING TIME) 
+			MILL HEIGHT[ ]//qt_regular_row1_cone_height_qt DEFAULT IS 10
+			ROOT DIAMETER[ ] //qt_regular_row1_cone_bottom_diameter_qt DEFAULT IS 1
+			MILL ANGLE[ ] //qt_regular_row1_cone_angle_qt DEFAULT IS 90
+			NUMBER OF FACES[ ] //qt_regular_row1_cone_number_of_faces_qt DEFAULT IS 10
+		[]CYLINDER (FOR LASER)
+			MILL HEIGHT[ ] //qt_regular_row1_laser_mill_height_qt DEFAULT IS 10
+			DIAMETER[  //qt_regular_row1_laser_mill_diameter_qt DEFAULT IS 2
+			NUMBER OF FACES[ ] //qt_regular_row1_laser_mill_number_of_faces_qt DEFAULT IS 10
+			[]CENTERED //qt_regular_row1_laser_mill_center_qt "YES" or "NO" DEFAULT IS "NO"
+			[]LINKED //qt_regular_row1_linked_qt "YES" or "NO" DEFAULT IS "NO"
+				//IF YES
+				ROOT ADDITION[ ] //qt_regular_row1_link_root_addition_qt DEFAULT IS 0.5
+		[]BROWSE FOR A STL MILL //qt_regular_row1_stl_mill_name_qt "mill.stl"		

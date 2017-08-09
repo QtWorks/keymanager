@@ -23,9 +23,6 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LineEditWidget(QWidget *parent=nullptr);
-
-    //! Constructor
     explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent=nullptr);
 
     //! Destructor

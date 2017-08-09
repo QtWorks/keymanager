@@ -8,14 +8,6 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ExclusiveChoiceWidget::ExclusiveChoiceWidget(QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::ExclusiveChoiceWidget)
-{
-    m_sDefaultValue = "";
-}
-
-//-------------------------------------------------------------------------------------------------
-
 ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, QWidget *parent) :
     BaseWidget(parent), ui(new Ui::ExclusiveChoiceWidget)
 {

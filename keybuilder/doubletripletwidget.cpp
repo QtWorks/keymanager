@@ -4,28 +4,6 @@
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleTripletWidget::DoubleTripletWidget(QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::DoubleTripletWidget)
-{
-    ui->setupUi(this);
-
-    QDoubleValidator *pValidator1 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit1->setValidator(pValidator1);
-
-    QDoubleValidator *pValidator2 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit2->setValidator(pValidator2);
-
-    QDoubleValidator *pValidator3 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit3->setValidator(pValidator3);
-
-    m_sDefaultValue = "[0,0,0]";
-    connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
-    connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
-    connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::DoubleTripletWidget)
 {
@@ -35,15 +13,12 @@ DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &s
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = "[0,0,0]";
 
-    QDoubleValidator *pValidator1 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit1->setValidator(pValidator1);
+    QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
+    ui->lineEdit1->setValidator(pValidator);
+    ui->lineEdit2->setValidator(pValidator);
+    ui->lineEdit3->setValidator(pValidator);
 
-    QDoubleValidator *pValidator2 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit2->setValidator(pValidator2);
-
-    QDoubleValidator *pValidator3 = new QDoubleValidator(0, 100, 3, this);
-    ui->lineEdit3->setValidator(pValidator3);
-
+    m_sDefaultValue = "[0,0,0]";
     connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);
     connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::valueChanged);

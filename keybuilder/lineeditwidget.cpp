@@ -8,16 +8,6 @@
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::LineEditWidget), m_sAuto(""), m_pParameterMgr(nullptr)
-{
-    ui->setupUi(this);
-    m_sDefaultValue = "0";
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::valueChanged);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAuto, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::LineEditWidget), m_sAuto(sAuto)
 {
