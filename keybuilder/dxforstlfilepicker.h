@@ -20,7 +20,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, QWidget *parent=nullptr);
+    explicit DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
 
     //! Destructor
     ~DXForSTLFilePicker();

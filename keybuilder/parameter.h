@@ -15,7 +15,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue, const QString &sAutoScript);
+    Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition);
 
     //! Destructor
     ~Parameter();
@@ -60,6 +60,12 @@ public:
     //! Set auto script
     void setAutoScript(const QString &sAutoScript);
 
+    //! Get enabled condition
+    const QString &enabledCondtion() const;
+
+    //! Set enabled condition
+    void setEnabledCondition(const QString &sEnabledCondition);
+
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
@@ -85,6 +91,9 @@ private:
 
     //! Auto script
     QString m_sAutoScript;
+
+    //! Enabled condition
+    QString m_sEnabledCondition;
 
 signals:
     //-------------------------------------------------------------------------------------------------

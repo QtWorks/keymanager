@@ -8,11 +8,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, QWidget *parent) :
+ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
     BaseWidget(parent), ui(new Ui::ExclusiveChoiceWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
+    m_sAutoScript = sAutoScript;
+    m_sEnabledCondition = sEnabledCondition;
     setup(sLabel, lLabels, lValues);
 }
 

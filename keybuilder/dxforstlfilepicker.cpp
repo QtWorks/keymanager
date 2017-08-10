@@ -4,14 +4,19 @@
 // Application
 #include "dxforstlfilepicker.h"
 #include "ui_dxforstlfilepicker.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
-DXForSTLFilePicker::DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, QWidget *parent) : BaseWidget(parent),
+DXForSTLFilePicker::DXForSTLFilePicker(const QString &sDefaultValue, const QString &sSTLVariable, const QString &sDXFVariable, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(sSTLVariable), m_sDXFVariable(sDXFVariable)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
+    if (m_sDefaultValue.isEmpty())
+        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
+    m_sAutoScript = sAutoScript;
+    m_sEnabledCondition = sEnabledCondition;
     connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF);
     connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL);
 }

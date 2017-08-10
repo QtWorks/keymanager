@@ -6,17 +6,19 @@
 #include "controller.h"
 #include "parameter.h"
 #include "parametermgr.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, QWidget *parent) : BaseWidget(parent),
+LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
     if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = "0";
+        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     m_sAutoScript = sAutoScript;
+    m_sEnabledCondition = sEnabledCondition;
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged);
     ui->label->setText(sLabel);
 }
@@ -65,3 +67,4 @@ void LineEditWidget::onEvaluateAutoScript()
     if (bSuccess)
         ui->lineEdit->setText(sValue);
 }
+

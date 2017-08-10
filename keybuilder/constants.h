@@ -34,6 +34,7 @@
 #define PROPERTY_ENABLED "enabled"
 #define PROPERTY_DEFAULT "default"
 #define PROPERTY_DEFAULT_VALUE "0"
+#define PROPERTY_DEFAULT_TRIPLET_VALUE "[0,0,0]"
 #define PROPERTY_EXCLUSIVE "exclusive"
 #define PROPERTY_AUTO "auto"
 #define PROPERTY_YES "YES"

@@ -74,9 +74,15 @@ protected:
     //! Auto script
     QString m_sAutoScript;
 
+    //! Enabled condition
+    QString m_sEnabledCondition;
+
 public slots:
     //! Evaluate auto script
     virtual void onEvaluateAutoScript();
+
+    //! Evaluate enabled condition
+    virtual void onEvaluateEnabledCondition();
 
 signals:
     //-------------------------------------------------------------------------------------------------

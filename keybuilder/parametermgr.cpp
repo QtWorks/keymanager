@@ -68,6 +68,11 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         {
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED UI";
         }
+        QString sEnabledCondition = xParameterNode.attributes()[PROPERTY_ENABLED];
+        if (sEnabledCondition.simplified().isEmpty())
+        {
+            qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED ENABLED CONDTION";
+        }
 
         // Special case for table
         if (sParameterType == PROPERTY_TABLE)
@@ -79,7 +84,7 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
             if (sParameterUI != WIDGET_DXF_OR_STL_FILE_PICKER)
             {
                 if (!m_hParameters.contains(sParameterVariable))
-                    m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable, sDefaultValue, sAutoScript);
+                    m_hParameters[sParameterVariable] = new Parameter(sParameterName, sParameterType, sParameterVariable, sDefaultValue, sAutoScript, sEnabledCondition);
             }
         }
     }
@@ -101,6 +106,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QString sParameterType = PROPERTY_DOUBLE;
     QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
     QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO];
+    QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED];
     if (lColumnLabels.size() == lColumnVariables.size())
     {
         QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
@@ -122,19 +128,19 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
                     sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
                     if (!m_hParameters.contains(sFormattedVariable))
                     {
-                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript);
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript, sEnabledCondition);
                     }
                 }
                 else
-                    // Compute variable name using method2
-                    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+                // Compute variable name using method2
+                if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+                {
+                    sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
+                    if (!m_hParameters.contains(sFormattedVariable))
                     {
-                        sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
-                        if (!m_hParameters.contains(sFormattedVariable))
-                        {
-                            m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript);
-                        }
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript, sEnabledCondition);
                     }
+                }
             }
         }
     }

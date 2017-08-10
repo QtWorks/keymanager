@@ -8,8 +8,8 @@
 //-------------------------------------------------------------------------------------------------
 
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
-    const QString &sAutoScript) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
-    m_sValue(sDefaultValue), m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript)
+    const QString &sAutoScript, const QString &sEnabledCondition) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
+    m_sValue(sDefaultValue), m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
 {
 
 }
@@ -106,6 +106,20 @@ const QString &Parameter::autoScript() const
 void Parameter::setAutoScript(const QString &sAutoScript)
 {
     m_sAutoScript = sAutoScript;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &Parameter::enabledCondtion() const
+{
+    return m_sEnabledCondition;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Parameter::setEnabledCondition(const QString &sEnabledCondition)
+{
+    m_sEnabledCondition = sEnabledCondition;
 }
 
 //-------------------------------------------------------------------------------------------------

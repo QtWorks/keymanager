@@ -1,6 +1,7 @@
 // Application
 #include "basewidget.h"
 #include "controller.h"
+#include "parametermgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -78,8 +79,10 @@ void BaseWidget::setAutoScript(const QString &sAutoScript)
 
 void BaseWidget::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
 {
-    for (QHash<QString, Parameter *>::const_iterator it=hParameters.begin(); it!=hParameters.end(); ++it)
+    for (QHash<QString, Parameter *>::const_iterator it=hParameters.begin(); it!=hParameters.end(); ++it) {
         connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateAutoScript);
+        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateEnabledCondition);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -94,4 +97,14 @@ void BaseWidget::applyDefaultValue()
 void BaseWidget::onEvaluateAutoScript()
 {
 
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::onEvaluateEnabledCondition()
+{
+    bool bSuccess = true;
+    bool bValue = m_pController->parameterMgr()->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
+    if (bSuccess)
+        setEnabled(bValue);
 }

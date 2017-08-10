@@ -23,7 +23,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, QWidget *parent=nullptr);
+    explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~LineEditWidget();
@@ -54,7 +54,7 @@ public slots:
     void onTextChanged();
 
     //! Evaluate auto script
-    void onEvaluateAutoScript();
+    virtual void onEvaluateAutoScript();
 };
 
 #endif // LINEEDITWIDGET_H

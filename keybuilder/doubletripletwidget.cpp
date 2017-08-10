@@ -1,17 +1,20 @@
 // Application
 #include "doubletripletwidget.h"
 #include "ui_doubletripletwidget.h"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent) : BaseWidget(parent),
+DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
     ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
     ui->label->setText(sLabel);
     if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = "[0,0,0]";
+        m_sDefaultValue = PROPERTY_DEFAULT_TRIPLET_VALUE;
+    m_sAutoScript = sAutoScript;
+    m_sEnabledCondition = sEnabledCondition;
 
     QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
     ui->lineEdit1->setValidator(pValidator);

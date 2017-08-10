@@ -8,11 +8,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-YesNoWidget::YesNoWidget(const QString &sLabel, const QString &sDefaultValue, QWidget *parent) :
+YesNoWidget::YesNoWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
     BaseWidget(parent), ui(new Ui::YesNoWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
+    m_sAutoScript = sAutoScript;
+    m_sEnabledCondition = sEnabledCondition;
     ui->label->setText(sLabel);
     connect(ui->yesRadioButton, &QRadioButton::toggled, this, &YesNoWidget::onRadioButtonToggled);
     ui->yesRadioButton->setProperty(PROPERTY_USER_VALUE, PROPERTY_YES);
