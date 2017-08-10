@@ -48,6 +48,10 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     // Set name
     setName(xParameterBlock.attributes()[PROPERTY_NAME]);
 
+    if (m_sName == "CHOOSE MILL SHAPE")
+    {
+        int x = 0;
+    }
     // Set variable
     setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE]);
 

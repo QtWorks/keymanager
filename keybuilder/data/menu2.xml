@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT" exclusive="false">
-   <Block name="REGULAR/DIMPLE/LASER" set_variable="qt_regular_cut_use_qt">
+   <Block name="REGULAR/DIMPLE/LASER" set_variable="qt_regular_cut_use_qt" exclusive="false">
       <Parameter variable="qt_regular_cut_use_qt" type="boolean" default="NO"/>
       <Block name="ROW1" exclusive="false" set_variable="qt_regular_row1_cut_use_qt">
          <Parameter variable="qt_regular_row1_cut_use_qt" type="boolean" default="NO"/>

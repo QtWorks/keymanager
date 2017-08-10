@@ -49,6 +49,9 @@ public:
     //! Set parent block
     void setParentBlock(CollapsibleBlock *pParentBlock);
 
+    //! Return label
+    CaptionLabel *captionLabel() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -59,15 +62,21 @@ public:
     //! Add child block
     void addChildBlock(CollapsibleBlock *pBlock);
 
+    //! Process block variable
+    void processBlockVariable();
+
+    //! Reset block variable
+    void resetBlockVariable();
+
+    //! Full reset
+    void fullReset();
+
 private:
     //! Set parameter block
     void setParameterBlock(ParameterBlock *pParameterBlock);
 
     //! Set current block
     void setCurrentBlock(CollapsibleBlock *pBlock);
-
-    //! Process block variable
-    void processBlockVariable(CollapsibleBlock *pBlock);
 
     //! Unselect me
     void unselectMe();
@@ -80,7 +89,7 @@ private:
     QVBoxLayout *m_pLayout;
 
     //! Caption
-    CaptionLabel *m_pLabel;
+    CaptionLabel *m_pCaptionLabel;
 
     //! Closed?
     bool m_bIsClosed;
@@ -89,7 +98,7 @@ private:
     bool m_bIsSelected;
 
     //! Child blocks
-    QVector<CollapsibleBlock *> m_vBlocks;
+    QVector<CollapsibleBlock *> m_vChildBlocks;
 
     //! Parent block
     CollapsibleBlock *m_pParentBlock;
@@ -114,9 +123,6 @@ public slots:
     //! Clear all
     void onClearAll();
 
-    //! Block selected
-    void onSelectMe();
-
 signals:
     //-------------------------------------------------------------------------------------------------
     // Signals
@@ -124,6 +130,9 @@ signals:
 
     //! State changed (closed or opened)
     void closedStateChanged(bool bClosed);
+
+    //! Select me
+    void selectMe();
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

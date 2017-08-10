@@ -60,6 +60,13 @@ public:
     //! Set auto script
     void setAutoScript(const QString &sAutoScript);
 
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Reset to default value
+    void resetToDefaultValue();
+
 private:
     //! Name
     QString m_sName;

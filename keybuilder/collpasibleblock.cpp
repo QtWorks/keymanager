@@ -10,6 +10,7 @@
 #include "parameterblock.h"
 #include "controller.h"
 #include "parametermgr.h"
+#include "selectionmgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -23,19 +24,20 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
     m_pLayout = new QVBoxLayout(this);
 
     // Create caption label
-    m_pLabel = new CaptionLabel(this);
-    m_pLayout->addWidget(m_pLabel);
-    m_pLabel->setBlock(this);
+    m_pCaptionLabel = new CaptionLabel(this);
+    m_pLayout->addWidget(m_pCaptionLabel);
+    connect(m_pCaptionLabel, &CaptionLabel::selectMe, this, &CollapsibleBlock::selectMe);
+    connect(this, &CollapsibleBlock::selectMe, m_pController->selectionMgr(), &SelectionMgr::onBlockSelected);
 
     // Create parameter block
     setParameterBlock(new ParameterBlock(xBlock, this, m_pController));
-    m_pLabel->setCaption(m_pParameterBlock->name());
-    m_pLabel->setExpandable(!m_pParameterBlock->isEmpty());
+    m_pCaptionLabel->setCaption(m_pParameterBlock->name());
+    m_pCaptionLabel->setExpandable(!m_pParameterBlock->isEmpty());
 
     // Do connections
-    connect(this, &CollapsibleBlock::closedStateChanged, m_pLabel, &CaptionLabel::onStateChanged);
-    connect(m_pLabel, &CaptionLabel::toggleClosedState, this, &CollapsibleBlock::onToggleClosedState);
-    connect(m_pLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll);
+    connect(this, &CollapsibleBlock::closedStateChanged, m_pCaptionLabel, &CaptionLabel::onStateChanged);
+    connect(m_pCaptionLabel, &CaptionLabel::toggleClosedState, this, &CollapsibleBlock::onToggleClosedState);
+    connect(m_pCaptionLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -82,7 +84,7 @@ void CollapsibleBlock::onClose(bool bClose, bool bRecurse)
         emit closedStateChanged(m_bIsClosed);
         if (bRecurse)
         {
-            foreach (CollapsibleBlock *pBlock, m_vBlocks)
+            foreach (CollapsibleBlock *pBlock, m_vChildBlocks)
                 if (pBlock != nullptr)
                     pBlock->onClose(bClose);
         }
@@ -107,9 +109,9 @@ bool CollapsibleBlock::isClosed() const
 
 void CollapsibleBlock::addChildBlock(CollapsibleBlock *pBlock)
 {
-    if ((pBlock != nullptr) && (!m_vBlocks.contains(pBlock)))
+    if ((pBlock != nullptr) && (!m_vChildBlocks.contains(pBlock)))
     {
-        m_vBlocks << pBlock;
+        m_vChildBlocks << pBlock;
         pBlock->setParentBlock(this);
     }
 }
@@ -118,7 +120,7 @@ void CollapsibleBlock::addChildBlock(CollapsibleBlock *pBlock)
 
 void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 {
-    m_pLabel->updateEnabledState(bEnabled);
+    m_pCaptionLabel->updateEnabledState(bEnabled);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -129,24 +131,9 @@ void CollapsibleBlock::onClearAll()
     if (m_pParameterBlock != nullptr)
         // Clear own parameter block
         m_pParameterBlock->clearAll();
-    foreach (CollapsibleBlock *pBlock, m_vBlocks)
+    foreach (CollapsibleBlock *pBlock, m_vChildBlocks)
         if (pBlock != nullptr)
             pBlock->onClearAll();
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void CollapsibleBlock::onSelectMe()
-{
-    // Set current block
-    setCurrentBlock(this);
-
-    // Set block variable
-    processBlockVariable(this);
-
-    // No selected, make sure no child is selected
-    if (!m_bIsSelected)
-        unselectMe();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -161,15 +148,18 @@ bool CollapsibleBlock::isSelected() const
 void CollapsibleBlock::select(bool bSelect)
 {
     m_bIsSelected = bSelect;
-    m_pLabel->setCurrent(bSelect);
-    m_pLabel->repaint();
+    m_pCaptionLabel->setCurrent(bSelect);
+    m_pCaptionLabel->repaint();
+    if (!bSelect)
+        foreach (CollapsibleBlock *pChildBlock, m_vChildBlocks)
+            pChildBlock->select(false);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 QVector<CollapsibleBlock *> CollapsibleBlock::childBlocks() const
 {
-    return m_vBlocks;
+    return m_vChildBlocks;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -184,6 +174,13 @@ CollapsibleBlock *CollapsibleBlock::parentBlock() const
 void CollapsibleBlock::setParentBlock(CollapsibleBlock *pParentBlock)
 {
     m_pParentBlock = pParentBlock;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+CaptionLabel *CollapsibleBlock::captionLabel() const
+{
+    return m_pCaptionLabel;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -214,50 +211,46 @@ void CollapsibleBlock::setCurrentBlock(CollapsibleBlock *pBlock)
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::processBlockVariable(CollapsibleBlock *pBlock)
+void CollapsibleBlock::processBlockVariable()
 {
-    if (pBlock != nullptr)
+    // Retrieve parameter block
+    if (m_pParameterBlock != nullptr)
     {
-        // Retrieve parameter block
-        ParameterBlock *pParameterBlock = pBlock->parameterBlock();
-        if (pParameterBlock != nullptr)
+        // Retrieve selection variable
+        QString sSelectionVariable = m_pParameterBlock->selectionVariable();
+        Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sSelectionVariable);
+        if (pParameter != nullptr)
         {
-            // Retrieve selection variable
-            QString sSelectionVariable = pParameterBlock->selectionVariable();
-            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sSelectionVariable);
-            if (pParameter != nullptr)
+            QString sType = pParameter->type();
+            if (sType == PROPERTY_STRING)
+                m_pController->parameterMgr()->setParameterValue(sSelectionVariable, m_pParameterBlock->value());
+            else
+            if (sType == PROPERTY_BOOLEAN)
             {
-                QString sType = pParameter->type();
-                if (sType == PROPERTY_STRING)
-                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, pParameterBlock->value());
-                else
-                if (sType == PROPERTY_BOOLEAN)
+                // Retrieve parent
+                if (m_pParentBlock != nullptr)
                 {
-                    // Retrieve parent
-                    if (m_pParentBlock != nullptr)
+                    // Retrieve parent parameter block
+                    ParameterBlock *pParentParameterBlock = m_pParentBlock->parameterBlock();
+                    if (pParentParameterBlock != nullptr)
                     {
-                        // Retrieve parent parameter block
-                        ParameterBlock *pParentParameterBlock = m_pParentBlock->parameterBlock();
-                        if (pParentParameterBlock != nullptr)
+                        // Exclusive?
+                        bool bParentIsExclusive = pParentParameterBlock->isExclusive();
+                        if (!bParentIsExclusive)
                         {
-                            // Exclusive?
-                            bool bParentIsExclusive = pParentParameterBlock->isExclusive();
-                            if (!bParentIsExclusive)
+                            QString sValue = pParameter->value();
+                            m_pController->parameterMgr()->setParameterValue(sSelectionVariable, sValue == PROPERTY_NO ? PROPERTY_YES : PROPERTY_NO);
+                        }
+                        else
+                        {
+                            QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
+                            foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
                             {
-                                QString sValue = pParameter->value();
-                                m_pController->parameterMgr()->setParameterValue(sSelectionVariable, sValue == PROPERTY_NO ? PROPERTY_YES : PROPERTY_NO);
-                            }
-                            else
-                            {
-                                QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
-                                foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
+                                ParameterBlock *pChildParameterBlock = pChildBlock->parameterBlock();
+                                if (pChildParameterBlock != nullptr)
                                 {
-                                    ParameterBlock *pChildParameterBlock = pChildBlock->parameterBlock();
-                                    if (pChildParameterBlock != nullptr)
-                                    {
-                                        QString sSelectionVariable = pChildParameterBlock->selectionVariable();
-                                        m_pController->parameterMgr()->setParameterValue(sSelectionVariable, pBlock == pChildBlock ? PROPERTY_YES : PROPERTY_NO);
-                                    }
+                                    QString sSelectionVariable = pChildParameterBlock->selectionVariable();
+                                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, pChildBlock == this ? PROPERTY_YES : PROPERTY_NO);
                                 }
                             }
                         }
@@ -270,10 +263,36 @@ void CollapsibleBlock::processBlockVariable(CollapsibleBlock *pBlock)
 
 //-------------------------------------------------------------------------------------------------
 
+void CollapsibleBlock::resetBlockVariable()
+{
+    // Retrieve selection variable
+    if (m_pParameterBlock != nullptr)
+    {
+        QString sSelectionVariable = m_pParameterBlock->selectionVariable();
+        Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sSelectionVariable);
+        if (pParameter != nullptr)
+            pParameter->resetToDefaultValue();
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleBlock::fullReset()
+{
+    resetBlockVariable();
+    if (m_pParameterBlock != nullptr)
+        m_pParameterBlock->clearAll();
+    foreach (CollapsibleBlock *pChildBlock, m_vChildBlocks)
+        if (pChildBlock != nullptr)
+            pChildBlock->fullReset();
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void CollapsibleBlock::unselectMe()
 {
     select(false);
     onClearAll();
-    foreach (CollapsibleBlock *pChildBlock, m_vBlocks)
+    foreach (CollapsibleBlock *pChildBlock, m_vChildBlocks)
         pChildBlock->unselectMe();
 }

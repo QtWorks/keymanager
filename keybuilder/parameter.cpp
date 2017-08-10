@@ -107,3 +107,10 @@ void Parameter::setAutoScript(const QString &sAutoScript)
 {
     m_sAutoScript = sAutoScript;
 }
+
+//-------------------------------------------------------------------------------------------------
+
+void Parameter::resetToDefaultValue()
+{
+    setValue(m_sDefaultValue);
+}

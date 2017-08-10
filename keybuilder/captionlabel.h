@@ -5,7 +5,6 @@
 #include <QWidget>
 
 // Application
-class CollapsibleBlock;
 namespace Ui {
 class CaptionLabel;
 }
@@ -47,9 +46,6 @@ public:
     //! Update enabled state
     void updateEnabledState(bool bEnabled);
 
-    //! Set block
-    void setBlock(CollapsibleBlock *pBlock);
-
 protected:
     //! Paint event
     void paintEvent(QPaintEvent *e);
@@ -76,6 +72,9 @@ signals:
     //! Clear all
     void clearAll();
 
+    //! Select me
+    void selectMe();
+
 private:
     //! UI
     Ui::CaptionLabel *ui;
@@ -88,9 +87,6 @@ private:
 
     //! Is current?
     bool m_bIsCurrent;
-
-    //! Block
-    CollapsibleBlock *m_pBlock;
 };
 
 #endif // CAPTIONLABEL_H

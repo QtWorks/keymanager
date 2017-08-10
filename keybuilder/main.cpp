@@ -8,10 +8,20 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    // Return an instance of the application
     KeyBuilder *pKeyBuilder = new KeyBuilder();
+
+    // Startup
     pKeyBuilder->startup();
+
+    // Event loop
     int res = app.exec();
+
+    // Shutdown
     pKeyBuilder->shutdown();
+
+    // Release
     delete pKeyBuilder;
 
     return res;
