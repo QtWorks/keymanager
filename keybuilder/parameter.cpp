@@ -76,8 +76,11 @@ const QString &Parameter::value() const
 void Parameter::setValue(const QString &sValue)
 {
     qDebug() << "INFORMATION: SETTING VALUE " << sValue << " FOR PARAMETER (" << m_sName << "/" << m_sVariable << ")";
-    m_sValue = sValue;
-    emit parameterValueChanged(m_sVariable, sValue);
+    if (sValue != m_sValue)
+    {
+        m_sValue = sValue;
+        emit parameterValueChanged(m_sVariable, sValue);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

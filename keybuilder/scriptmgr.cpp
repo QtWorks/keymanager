@@ -54,4 +54,7 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     QTextStream outStream(&outputScriptFile);
     outStream << sCurrentText;
     outputScriptFile.close();
+
+    QFileInfo fi(sOutputScriptFile);
+    qDebug() << "RESULT EXPORTED IN " << fi.absoluteFilePath();
 }

@@ -3,6 +3,8 @@
 #include <QRegularExpressionMatchIterator>
 #include <QScriptEngine>
 #include <QFile>
+#include <QCoreApplication>
+#include <QDir>
 #include <QDebug>
 
 // Application
@@ -331,7 +333,7 @@ void ParameterMgr::setParameterValue(const QString &sParameterName, const QStrin
 void ParameterMgr::generateScript()
 {
     QString sInFile = ":/data/script_in.scad";
-    QString sOutFile = "script_out.scad";
+    QString sOutFile = QDir(QCoreApplication::applicationDirPath()).absoluteFilePath("script_out.scad");
     ScriptMgr::generateScript(sInFile, sOutFile, m_hParameters.values());
 
     QFile outputScriptFile(sOutFile);

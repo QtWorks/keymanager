@@ -58,7 +58,16 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
                 if (bParentBlockIsExclusive)
                 {
                     foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
-                        pChildBlock->select(pChildBlock == pBlock);
+                    {
+                        if (pChildBlock == pBlock)
+                        {
+                            pChildBlock->select(true);
+                        }
+                        else
+                        {
+                            unselectBlock(pChildBlock);
+                        }
+                    }
                 }
                 else
                 {

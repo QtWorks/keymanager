@@ -12,7 +12,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row1_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row1_cut_to_use_qt" type="string" default="prism_cut" />
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
