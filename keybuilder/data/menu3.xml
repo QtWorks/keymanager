@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Block name="ROOT" exclusive="false">
-   <Block name="ADDING MATERIAL (KEY HEAD OR EXTRA)" set_variable="qt_extra_material_use_qt">
+   <Block name="ADDING MATERIAL" set_variable="qt_extra_material_use_qt">
       <Parameter variable="qt_extra_material_use_qt" type="boolean" default="NO" />
       <Parameter name="AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)" type="string" variable="qt_automatic_key_head_and_shoulder_qt" default="NO" ui="yesno" />
       <Parameter variable="qt_extra_material_shape01_use_qt" type="boolean" default="NO" />

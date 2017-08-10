@@ -44,8 +44,8 @@
 #define WIDGET_DXF_OR_STL_FILE_PICKER "dxforstlfilepicker"
 #define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"
 #define WIDGET_GENERIC_PARAMETER_TABLE "genericparametertable"
-
 #define WIDGET_DOUBLE_TRIPLET "double_triplet"
+#define WIDGET_YES_NO "yesno"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 
 #define VALUE_TRUE "true"

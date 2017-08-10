@@ -1,6 +1,4 @@
-﻿Quand une case de DXF ou STL est vide, renvoyer la valeur "0"
-ajuster les dimensions pour que les textes s'affichent en entier
-Quand on change de type de clé dans le menu1, il faut remettre à défaut toutes les variables de menu2
+﻿ajuster les dimensions pour que les textes s'affichent en entier
 Afficher les valeurs par défaut en grisé, et quand l'utilisateur clique dans la case, effacer la valeur par défaut pour que l'utilisateur puisse rentrer sa propre valeur
 Prévoir un bouton "Export Parameters" et "Import Parameters", qui exporte un *.txt (pour le moment, *.dat plus tard) avec la liste de toutes les valeurs de variables (mais pas le nom des variables)
 
@@ -14,7 +12,6 @@ menu1
 
 
 menu2
-	enlever les textes (active only if...)
 	mettre des valeurs par défaut pour le choix des fraises et leurs parametres (voir en bas de ce document)
 	il manque les cases "all" sur les tableaux
 	Il faut supprimer la case "number of levers", qui existe déjà sous des noms différents pour chaque block. (number of pins, number of levers, number of discs
@@ -24,19 +21,12 @@ menu2
 			number of levers : cette ligne existe déjà sous le nom "number of pins"
 			pour les décimales, le point ne fonctionne pas, il faut mettre une virgule, et la valeur ne s'enregistre pas quand même
 			distance from shoulder n'est pas calculé automatiquement dans le tableau
-		row2 : la variable boléenne qt_regular_row2_cut_use_qt n'existe pas ? ni les suivantes
+
 	lever lock
-		angle of cutting : une seule case suffit qui renvoi sa valeur dans qt_lever_lock_row1_angle_on_y_qt
 		dans le tableau, thickness doit s'afficher automatiquement, ainsi que Distance
 	disklock pro (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
 		groove at the tip est un radio button qui donne le choix entre "YES" ou "NO" et renvoie dans qt_abloy_disklock_pro_groove_at_the_tip_qt 
 	protec (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
-		RIGHT LEFT ne devrait pas être dans ce block
-	axi home (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
-		supprimer la ligne et les variables associées à side of profile right left
-		supprimer les lignes "number of levers"
-	fichet 787
-		supprimer la ligne "number of levers"
 
 Menu3
 	Automatic Key head : mettre en block de 1° niveau

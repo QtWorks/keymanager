@@ -10,6 +10,7 @@
 #include "exclusivechoicewidget.h"
 #include "doubletripletwidget.h"
 #include "dxforstlfilepicker.h"
+#include "yesnowidget.h"
 #include "controller.h"
 #include "parametermgr.h"
 
@@ -124,6 +125,12 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             {
                 DoubleTripletWidget *pTriplet = new DoubleTripletWidget(pParameter->name(), pParameter->defaultValue(), pParentWidget);
                 pWidget = pTriplet;
+            }
+            else
+            if (sParameterUI == WIDGET_YES_NO)
+            {
+                YesNoWidget *pYesNoWidget = new YesNoWidget(pParameter->name(), pParameter->defaultValue(), pParentWidget);
+                pWidget = pYesNoWidget;
             }
         }
     }
