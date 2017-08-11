@@ -13,6 +13,8 @@ ExclusiveChoiceWidget::ExclusiveChoiceWidget(const QStringList &lLabels, const Q
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
+    if (m_sDefaultValue.isEmpty())
+        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     m_sAutoScript = sAutoScript;
     m_sEnabledCondition = sEnabledCondition;
     setup(sLabel, lLabels, lValues);
@@ -38,7 +40,7 @@ void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLab
         QRadioButton *pRadioButton = new QRadioButton(lLabels[i], this);
         pRadioButton->setAutoExclusive(true);
         pRadioButton->setProperty(PROPERTY_USER_VALUE, lValues[i]);
-        connect(pRadioButton, &QRadioButton::toggled, this, &ExclusiveChoiceWidget::onRadioButtonToggled);
+        connect(pRadioButton, &QRadioButton::toggled, this, &ExclusiveChoiceWidget::onRadioButtonToggled, Qt::UniqueConnection);
         ui->radioButtonArea->addWidget(pRadioButton);
         m_vRadioButtons << pRadioButton;
     }
@@ -48,13 +50,20 @@ void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLab
 
 void ExclusiveChoiceWidget::applyDefaultValue()
 {
-    if (!m_sDefaultValue.isEmpty())
+    applyValue(m_sDefaultValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ExclusiveChoiceWidget::applyValue(const QString &sValue)
+{
+    if (!sValue.isEmpty())
     {
         bool bMatch = false;
         foreach (QRadioButton *pRadioButton, m_vRadioButtons)
         {
             QString sUserValue = pRadioButton->property(PROPERTY_USER_VALUE).toString();
-            if (sUserValue == m_sDefaultValue)
+            if (sUserValue == sValue)
             {
                 bMatch = true;
                 pRadioButton->setChecked(true);

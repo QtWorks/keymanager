@@ -3,6 +3,7 @@
 
 // Qt
 #include <QObject>
+#include <QHash>
 
 // Application
 #include "cxmlnode.h"
@@ -19,7 +20,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit WidgetFactory(QObject *parent = 0);
+    explicit WidgetFactory(QObject *parent = nullptr);
 
     //! Destructor
     ~WidgetFactory();
@@ -31,6 +32,9 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
+    //! Return widget by variable name
+    BaseWidget *getWidgetByVariableName(const QString &sParameterVariable) const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -41,6 +45,9 @@ public:
 private:
     //! Controller
     Controller *m_pController;
+
+    //! Widget hash
+    QHash<QString, BaseWidget *> m_hWidgetHash;
 };
 
 #endif // WIDGETFACTORY_H

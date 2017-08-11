@@ -26,8 +26,8 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
     // Create caption label
     m_pCaptionLabel = new CaptionLabel(this);
     m_pLayout->addWidget(m_pCaptionLabel);
-    connect(m_pCaptionLabel, &CaptionLabel::selectMe, this, &CollapsibleBlock::selectMe);
-    connect(this, &CollapsibleBlock::selectMe, m_pController->selectionMgr(), &SelectionMgr::onBlockSelected);
+    connect(m_pCaptionLabel, &CaptionLabel::selectMe, this, &CollapsibleBlock::selectMe, Qt::UniqueConnection);
+    connect(this, &CollapsibleBlock::selectMe, m_pController->selectionMgr(), &SelectionMgr::onBlockSelected, Qt::UniqueConnection);
 
     // Create parameter block
     setParameterBlock(new ParameterBlock(xBlock, this, m_pController));
@@ -35,9 +35,9 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
     m_pCaptionLabel->setExpandable(!m_pParameterBlock->isEmpty());
 
     // Do connections
-    connect(this, &CollapsibleBlock::closedStateChanged, m_pCaptionLabel, &CaptionLabel::onStateChanged);
-    connect(m_pCaptionLabel, &CaptionLabel::toggleClosedState, this, &CollapsibleBlock::onToggleClosedState);
-    connect(m_pCaptionLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll);
+    connect(this, &CollapsibleBlock::closedStateChanged, m_pCaptionLabel, &CaptionLabel::onStateChanged, Qt::UniqueConnection);
+    connect(m_pCaptionLabel, &CaptionLabel::openClose, this, &CollapsibleBlock::onOpenClose, Qt::UniqueConnection);
+    connect(m_pCaptionLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ void CollapsibleBlock::onClose(bool bClose, bool bRecurse)
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::onToggleClosedState()
+void CollapsibleBlock::onOpenClose()
 {
     onClose(!m_bIsClosed, false);
 }

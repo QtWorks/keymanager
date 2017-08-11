@@ -24,7 +24,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+    GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
         int nRows, const QString &sTargetVariable, const QString &sVariableMethod, QObject *parent=nullptr);
 
     //! Destructor
@@ -74,8 +74,8 @@ public:
     //! Reset column variables
     void resetColumnVariables(int iColumnIndex);
 
-    //! Set default values
-    void applyDefaultValue();
+    //! Apply value
+    void applyValue(const QString &sValue);
 
 private:
     //! Column labels
@@ -155,7 +155,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+    explicit GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
         int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent=nullptr);
 
     //! Destructor
@@ -167,6 +167,9 @@ public:
 
     //! Apply default values
     virtual void applyDefaultValue();
+
+    //! Apply value
+    virtual void applyValue(const QString &sValue);
 
 private:
     //! Populate button area

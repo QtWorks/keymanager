@@ -48,10 +48,6 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     // Set name
     setName(xParameterBlock.attributes()[PROPERTY_NAME]);
 
-    if (m_sName == "CHOOSE MILL SHAPE")
-    {
-        int x = 0;
-    }
     // Set variable
     setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE]);
 
@@ -71,23 +67,10 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     QString sExclusive = xParameterBlock.attributes()[PROPERTY_EXCLUSIVE].simplified();
     setExclusive(sExclusive.isEmpty() ? true : (sExclusive == VALUE_TRUE));
 
-    // Read enabled condition
-    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
+    // Process enabled condition
+    processEnabledCondition(xParameterBlock);
 
-    if (!m_sEnabledCondition.isEmpty())
-    {
-        QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
-        QHash<QString, Parameter *> hParameters;
-        foreach (QString sParameterVariableName, vVariableNames)
-        {
-            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
-            if (pParameter != nullptr)
-                hParameters[sParameterVariableName] = pParameter;
-        }
-        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
-            setWatchedParameters(hParameters);
-    }
-
+    // Add widgets
     foreach (CXMLNode xParameter, vParameterNodes)
     {
         BaseWidget *pWidget = m_pController->widgetFactory()->buildWidget(xParameter, this);
@@ -147,9 +130,9 @@ const QString &ParameterBlock::selectionVariable() const
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::setSelectionVariable(const QString &sVariableName)
+void ParameterBlock::setSelectionVariable(const QString &sParameterVariable)
 {
-    m_sSelectionVariable = sVariableName;
+    m_sSelectionVariable = sParameterVariable;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -218,7 +201,7 @@ void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hPa
 {
     m_hWatchedParameters = hParameters;
     for (QHash<QString, Parameter *>::iterator it=m_hWatchedParameters.begin(); it!=m_hWatchedParameters.end(); ++it)
-        connect(it.value(), &Parameter::parameterValueChanged, this, &ParameterBlock::onEvaluateEnabledCondition);
+        connect(it.value(), &Parameter::parameterValueChanged, this, &ParameterBlock::onEvaluateEnabledCondition, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -255,5 +238,27 @@ void ParameterBlock::addChildRecursively(const CXMLNode &xParameterBlock)
 
         // Add to own layout
         addCollapsibleBlock(pNewBlock);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::processEnabledCondition(const CXMLNode &xParameterBlock)
+{
+    // Read enabled condition
+    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
+
+    if (!m_sEnabledCondition.isEmpty())
+    {
+        QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(m_sEnabledCondition);
+        QHash<QString, Parameter *> hParameters;
+        foreach (QString sParameterVariable, vVariableNames)
+        {
+            Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+            if (pParameter != nullptr)
+                hParameters[sParameterVariable] = pParameter;
+        }
+        if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
+            setWatchedParameters(hParameters);
     }
 }

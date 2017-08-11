@@ -25,43 +25,43 @@
         <string>Home</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
+        <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="0">
-           <widget class="QPushButton" name="createKeyButton">
+          <item row="6" column="0">
+           <widget class="QPushButton" name="importParametersButton">
             <property name="minimumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="text">
-             <string>CREATE KEY</string>
+             <string>IMPORT PARAMETERS FROM TXT</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QPushButton" name="visualizeSTLButton">
+          <item row="4" column="0">
+           <widget class="QPushButton" name="exportToSCADButton">
             <property name="minimumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="text">
-             <string>VISUALIZE STL</string>
+             <string>EXPORT TO SCAD</string>
             </property>
            </widget>
           </item>
@@ -69,13 +69,13 @@
            <widget class="QPushButton" name="useExistingKeyButton">
             <property name="minimumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
@@ -84,22 +84,60 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="testExportButton">
+          <item row="3" column="0">
+           <widget class="QPushButton" name="visualizeSTLButton">
             <property name="minimumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>64</height>
              </size>
             </property>
             <property name="text">
-             <string>TEST EXPORT</string>
+             <string>VISUALIZE STL</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="createKeyButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>CREATE KEY</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QPushButton" name="exportParametersButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>EXPORT PARAMETERS TO TXT</string>
             </property>
            </widget>
           </item>

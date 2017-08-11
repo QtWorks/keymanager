@@ -18,8 +18,8 @@ FilePickerWidget::FilePickerWidget(const QString &sLabel, const QString &sFileEx
     m_sAutoScript = sAutoScript;
     m_sEnabledCondition = sEnabledCondition;
     ui->label->setText(sLabel);
-    connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked);
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::textChanged);
+    connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked, Qt::UniqueConnection);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::textChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -57,7 +57,12 @@ void FilePickerWidget::setExtension(const QString &sExtenion)
 
 void FilePickerWidget::applyDefaultValue()
 {
-    ui->lineEdit->setText(m_sDefaultValue);
+    applyValue(m_sDefaultValue);
+}
+
+void FilePickerWidget::applyValue(const QString &sValue)
+{
+    ui->lineEdit->setText(sValue);
 }
 
 //-------------------------------------------------------------------------------------------------

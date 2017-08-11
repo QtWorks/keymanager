@@ -43,6 +43,16 @@ private:
 
     //! All opened at startup?
     bool m_bAllOpened;
+
+public slots:
+    //! Export parameters to SCAD
+    void onExportParametersToSCAD();
+
+    //! Export parameters to TXT
+    void onExportParametersToTXT();
+
+    //! Import parameters from TXT
+    void onImportParametersFromTXT();
 };
 
 #endif // MAINWINDOW_H

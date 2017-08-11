@@ -28,9 +28,6 @@ public:
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Set state
-    void toggleState();
-
     //! Set current
     void setCurrent(bool bCurrent);
 
@@ -66,8 +63,8 @@ signals:
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Toggle closed state
-    void toggleClosedState();
+    //! Open/Close
+    void openClose();
 
     //! Clear all
     void clearAll();

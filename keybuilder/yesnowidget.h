@@ -30,6 +30,9 @@ public:
     //! Apply default value
     virtual void applyDefaultValue();
 
+    //! Apply value
+    virtual void applyValue(const QString &sValue);
+
 private:
     //! UI
     Ui::YesNoWidget *ui;

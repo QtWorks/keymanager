@@ -19,7 +19,7 @@ LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultVal
         m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     m_sAutoScript = sAutoScript;
     m_sEnabledCondition = sEnabledCondition;
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
     ui->label->setText(sLabel);
 }
 

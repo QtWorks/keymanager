@@ -17,8 +17,8 @@ DXForSTLFilePicker::DXForSTLFilePicker(const QString &sDefaultValue, const QStri
         m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     m_sAutoScript = sAutoScript;
     m_sEnabledCondition = sEnabledCondition;
-    connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF);
-    connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL);
+    connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF, Qt::UniqueConnection);
+    connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -57,6 +57,13 @@ void DXForSTLFilePicker::onSelectDXF()
 //-------------------------------------------------------------------------------------------------
 
 void DXForSTLFilePicker::applyDefaultValue()
+{
+    applyValue(m_sDefaultValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void DXForSTLFilePicker::applyValue(const QString &sValue)
 {
     ui->dxfLineEdit->setText(m_sDefaultValue);
     ui->stlLineEdit->setText(m_sDefaultValue);

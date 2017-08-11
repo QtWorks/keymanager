@@ -8,12 +8,14 @@
 #include "widgetfactory.h"
 #include "selectionmgr.h"
 #include "constants.h"
+#include "basewidget.h"
 
 //-------------------------------------------------------------------------------------------------
 
 Controller::Controller(QObject *parent) : QObject(parent)
 {
     m_pParameterMgr = new ParameterMgr(this);
+    connect(m_pParameterMgr, &ParameterMgr::updateWidgetValue, this, &Controller::onUpdateWidgetValue, Qt::UniqueConnection);
     m_pParameterMgr->setController(this);
     m_pWidgetFactory = new WidgetFactory(this);
     m_pWidgetFactory->setController(this);
@@ -101,15 +103,43 @@ void Controller::shutdown()
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::onParameterValueChanged(const QString &sParameterName, const QString &sParameterValue)
+void Controller::onParameterValueChanged(const QString &sParameterVariable, const QString &sParameterValue)
 {
-    m_pParameterMgr->setParameterValue(sParameterName, sParameterValue);
+    m_pParameterMgr->setParameterValue(sParameterVariable, sParameterValue);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::onGenerateScript()
+void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QString &sVariableValue)
 {
-    m_pParameterMgr->generateScript();
+    BaseWidget *pWidget = m_pWidgetFactory->getWidgetByVariableName(sParameterVariable);
+    if (pWidget != nullptr)
+    {
+        pWidget->applyValue(sVariableValue);
+    }
+    else
+    {
+        qDebug() << "COULD NOT FIND ANY WIDGET WITH ASSOCIATED VARIABLE: " << sParameterVariable;
+    }
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void Controller::exportParametersToSCAD(const QString &sOutputFileName)
+{
+   m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::exportParametersToTXT(const QString &sOutputFileName)
+{
+   m_pParameterMgr->exportParametersToTXT(sOutputFileName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::importParametersFromTXT(const QString &sInputFileName)
+{
+    m_pParameterMgr->importParametersFromTXT(sInputFileName);
+}

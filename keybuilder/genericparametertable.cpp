@@ -10,9 +10,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
                                  int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QObject *parent) : QAbstractItemModel(parent)
 {
+    QStringList lDefaultValues;
+    if (sDefaultValue.contains(","))
+        lDefaultValues = sDefaultValue.split(",");
+
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
     if (!lDefaultValues.isEmpty())
     {
@@ -22,7 +26,7 @@ GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColum
     else
     {
         for (int i=0; i<nColumns; i++)
-            m_lDefaultValues << "0";
+            m_lDefaultValues << PROPERTY_DEFAULT_VALUE;
     }
 
     m_lColumnLabels = lColumnLabels.mid(0, nColumns);
@@ -175,15 +179,21 @@ void GenericParameterTableModel::resetColumnVariables(int iColumnIndex)
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::applyDefaultValue()
+void GenericParameterTableModel::applyValue(const QString &sValue)
 {
-    if (!m_lDefaultValues.isEmpty())
+    QStringList lValues;
+    if (sValue.contains(","))
+        lValues = sValue.split(",");
+
+    if (!lValues.isEmpty())
     {
         for (int i=0; i<m_nRows; i++)
         {
-            for (int j=0; j<m_lDefaultValues.size(); j++)
+            for (int j=0; j<lValues.size(); j++)
             {
-                setData(index(i, j, QModelIndex()), m_lDefaultValues[j], Qt::EditRole);
+                QModelIndex targetIndex = index(i, j, QModelIndex());
+                if (targetIndex.isValid())
+                    setData(targetIndex, lValues[j], Qt::EditRole);
             }
         }
     }
@@ -242,11 +252,12 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 
 //-------------------------------------------------------------------------------------------------
 
-GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QStringList &lDefaultValues, const QString &sTargetRow,
+GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
                                    int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : BaseWidget(parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);
+    m_sDefaultValue = sDefaultValue;
 
     // Build item delegate
     ItemDelegate *pItemDelegate = new  ItemDelegate;
@@ -254,15 +265,15 @@ GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, c
 
     // Set validator
     ui->lineEdit->setValidator(new QIntValidator(5, nRows, this));
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &GenericParameterTable::onNumActiveLeverChanged);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &GenericParameterTable::onNumActiveLeverChanged, Qt::UniqueConnection);
 
     // Stretch columns
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Set model
-    m_pModel = new GenericParameterTableModel(lColumnLabels, lColumnVariables, lDefaultValues, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
+    m_pModel = new GenericParameterTableModel(lColumnLabels, lColumnVariables, m_sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
     ui->tableView->setModel(m_pModel);
-    connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged);
+    connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged, Qt::UniqueConnection);
 
     // Populate button area
     populateButtonArea();
@@ -279,7 +290,14 @@ GenericParameterTable::~GenericParameterTable()
 
 void GenericParameterTable::applyDefaultValue()
 {
-    m_pModel->applyDefaultValue();
+    applyValue(m_sDefaultValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTable::applyValue(const QString &sValue)
+{
+    m_pModel->applyValue(sValue);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -292,7 +310,7 @@ void GenericParameterTable::populateButtonArea()
         QString sButtonLabel = QString("CLEAR ALL %1").arg(lColumnLabels[i]);
         QPushButton *pButton = new QPushButton(sButtonLabel, this);
         pButton->setProperty(PROPERTY_USER_VALUE, i);
-        connect(pButton, &QPushButton::clicked, this, &onActionButtonClicked);
+        connect(pButton, &QPushButton::clicked, this, &onActionButtonClicked, Qt::UniqueConnection);
         ui->buttonLayout->addWidget(pButton);
     }
 }

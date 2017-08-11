@@ -115,7 +115,7 @@ public slots:
     void onClose(bool bClose, bool bRecurse=true);
 
     //! Toggle closed state
-    void onToggleClosedState();
+    void onOpenClose();
 
     //! Update enabled state
     void onUpdateEnabledState(bool bEnabled);

@@ -21,10 +21,9 @@ DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &s
     ui->lineEdit2->setValidator(pValidator);
     ui->lineEdit3->setValidator(pValidator);
 
-    m_sDefaultValue = "[0,0,0]";
-    connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
-    connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
-    connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged);
+    connect(ui->lineEdit1, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged, Qt::UniqueConnection);
+    connect(ui->lineEdit2, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged, Qt::UniqueConnection);
+    connect(ui->lineEdit3, &QLineEdit::textChanged, this, &DoubleTripletWidget::onTextChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -53,7 +52,18 @@ QString DoubleTripletWidget::value() const
 
 void DoubleTripletWidget::applyDefaultValue()
 {
-    QString sFormattedDefaultValue = m_sDefaultValue;
+    applyValue(m_sDefaultValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void DoubleTripletWidget::applyValue(const QString &sValue)
+{
+    ui->lineEdit1->blockSignals(true);
+    ui->lineEdit2->blockSignals(true);
+    ui->lineEdit3->blockSignals(true);
+
+    QString sFormattedDefaultValue = sValue;
     sFormattedDefaultValue.replace("[", "");
     sFormattedDefaultValue.replace("]", "");
     QStringList lSplitted = sFormattedDefaultValue.split(",");
@@ -83,6 +93,11 @@ void DoubleTripletWidget::applyDefaultValue()
             }
         }
     }
+
+    ui->lineEdit1->blockSignals(false);
+    ui->lineEdit2->blockSignals(false);
+    ui->lineEdit3->blockSignals(false);
+    onTextChanged();
 }
 
 //-------------------------------------------------------------------------------------------------

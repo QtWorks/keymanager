@@ -42,10 +42,16 @@ public:
     bool loadSettingsParameters();
 
     //! Set parameter value
-    void setParameterValue(const QString &sParameterName, const QString &sParameterValue);
+    void setParameterValue(const QString &sParameterVariable, const QString &sVariableValue);
 
     //! Generate script
-    void generateScript();
+    void exportParametersToSCAD(const QString &sOutputFileName);
+
+    //! Export parameters to TXT
+    void exportParametersToTXT(const QString &sOutputFileName);
+
+    //! Import parameters from TXT
+    void importParametersFromTXT(const QString &sInputFileName);
 
     //! Identify target variable (method1)
     static QString identifyTargetVariable_method1(const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
@@ -79,7 +85,7 @@ public:
     const CXMLNode &settingsNode() const;
 
     //! Return parameter by variable name
-    Parameter *getParameterByVariableName(const QString &sVariableName) const;
+    Parameter *getParameterByVariableName(const QString &sParameterVariable) const;
 
     //! Set controller
     void setController(Controller *pController);
@@ -90,6 +96,9 @@ private:
 
     //! Parse table parameters
     void parseTableParameters(const CXMLNode &xParameter);
+
+    //! Check if all variables were replaced
+    bool checkIfAllVariablesReplaced(const QString &sFileName, QVector<QString> &vUnReplacedVariables) const;
 
 private:
     //! Controller
@@ -109,6 +118,10 @@ private:
 
     //! Parameters
     QHash<QString, Parameter *> m_hParameters;
+
+signals:
+    //! Update widget value
+    void updateWidgetValue(const QString &sParameterVariable, const QString &sValue);
 };
 
 #endif // PARAMETERMGR_H

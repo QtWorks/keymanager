@@ -30,7 +30,7 @@ Controller *BaseWidget::controller() const
 void BaseWidget::setController(Controller *pController)
 {
     m_pController = pController;
-    connect(this, &BaseWidget::parameterValueChanged, m_pController, &Controller::onParameterValueChanged);
+    connect(this, &BaseWidget::parameterValueChanged, m_pController, &Controller::onParameterValueChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -79,15 +79,23 @@ void BaseWidget::setAutoScript(const QString &sAutoScript)
 
 void BaseWidget::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
 {
-    for (QHash<QString, Parameter *>::const_iterator it=hParameters.begin(); it!=hParameters.end(); ++it) {
-        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateAutoScript);
-        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateEnabledCondition);
+    for (QHash<QString, Parameter *>::const_iterator it=hParameters.begin(); it!=hParameters.end(); ++it)
+    {
+        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateAutoScript, Qt::UniqueConnection);
+        connect(it.value(), &Parameter::parameterValueChanged, this, &BaseWidget::onEvaluateEnabledCondition, Qt::UniqueConnection);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void BaseWidget::applyDefaultValue()
+{
+
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::applyValue(const QString &sValue)
 {
 
 }

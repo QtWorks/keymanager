@@ -63,6 +63,15 @@ public:
     //! Shutdown
     virtual void shutdown();
 
+    //! Export parameters to SCAD
+    void exportParametersToSCAD(const QString &sOutputFileName);
+
+    //! Export parameters to TXT
+    void exportParametersToTXT(const QString &sOutputFileName);
+
+    //! Import parameters from TXT
+    void importParametersFromTXT(const QString &sInputFileName);
+
 private:
     //! Parameter manager
     ParameterMgr *m_pParameterMgr;
@@ -81,8 +90,8 @@ public slots:
     //! Parameter value changed
     void onParameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 
-    //! Generate script
-    void onGenerateScript();
+    //! Update widget value
+    void onUpdateWidgetValue(const QString &sParameterVariable, const QString &sVariableValue);
 };
 
 #endif // CONTROLLER_H

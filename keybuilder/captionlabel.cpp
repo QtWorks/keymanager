@@ -14,8 +14,8 @@ CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     m_bIsCurrent(false)
 {
     ui->setupUi(this);
-    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::toggleState);
-    connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::clearAll);
+    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::openClose, Qt::UniqueConnection);
+    connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::clearAll, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -23,13 +23,6 @@ CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
 CaptionLabel::~CaptionLabel()
 {
     delete ui;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void CaptionLabel::toggleState()
-{
-    emit toggleClosedState();
 }
 
 //-------------------------------------------------------------------------------------------------

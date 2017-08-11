@@ -1,5 +1,6 @@
 // Qt
 #include <QDoubleValidator>
+#include <QDebug>
 
 // Application
 #include "widgetfactory.h"
@@ -38,6 +39,13 @@ void WidgetFactory::setController(Controller *pController)
 
 //-------------------------------------------------------------------------------------------------
 
+BaseWidget *WidgetFactory::getWidgetByVariableName(const QString &sParameterVariable) const
+{
+    return m_hWidgetHash[sParameterVariable];
+}
+
+//-------------------------------------------------------------------------------------------------
+
 BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pParentWidget)
 {
     Parameter *pParameter = nullptr;
@@ -55,11 +63,8 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
             QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
             QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
-            QStringList lDefaultValues;
             QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-            if (!sDefaultValue.isEmpty() && sDefaultValue.contains(","))
-                lDefaultValues = sDefaultValue.split(",");
-            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), lDefaultValues, sTargetRow, nRows, sTargetVariable, sVariableMethod, pParentWidget);
+            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, pParentWidget);
             pWidget = pGenericParameterTable;
         }
     }
@@ -121,40 +126,45 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         }
     }
 
-    if ((pParameter != nullptr) && (pWidget != nullptr))
+    if (pWidget != nullptr)
     {
         pWidget->setController(m_pController);
         pWidget->setParameterVariable(sParameterVariable);
-        QHash<QString, Parameter *> hWatchedParameters;
+        m_hWidgetHash[sParameterVariable] = pWidget;
 
-        // Retrieve autoscript
-        QString sAutoScript = pParameter->autoScript();
-        if (!sAutoScript.isEmpty())
+        if (pParameter != nullptr)
         {
-            QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAutoScript);
-            foreach (QString sParameterVariableName, vVariableNames)
-            {
-                Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
-                if (pWatchedParameter != nullptr)
-                    hWatchedParameters[sParameterVariableName] = pWatchedParameter;
-            }
-        }
+            QHash<QString, Parameter *> hWatchedParameters;
 
-        // Retrieve enabled condition
-        QString sEnabledCondition = pParameter->enabledCondtion();
-        if (!sEnabledCondition.isEmpty())
-        {
-            QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sEnabledCondition);
-            foreach (QString sParameterVariableName, vVariableNames)
+            // Retrieve autoscript
+            QString sAutoScript = pParameter->autoScript();
+            if (!sAutoScript.isEmpty())
             {
-                Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariableName);
-                if (pWatchedParameter != nullptr)
-                    hWatchedParameters[sParameterVariableName] = pWatchedParameter;
+                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAutoScript);
+                foreach (QString sParameterVariable, vVariableNames)
+                {
+                    Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+                    if (pWatchedParameter != nullptr)
+                        hWatchedParameters[sParameterVariable] = pWatchedParameter;
+                }
             }
-        }
 
-        if (!hWatchedParameters.isEmpty())
-            pWidget->setWatchedParameters(hWatchedParameters);
+            // Retrieve enabled condition
+            QString sEnabledCondition = pParameter->enabledCondtion();
+            if (!sEnabledCondition.isEmpty())
+            {
+                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sEnabledCondition);
+                foreach (QString sParameterVariable, vVariableNames)
+                {
+                    Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+                    if (pWatchedParameter != nullptr)
+                        hWatchedParameters[sParameterVariable] = pWatchedParameter;
+                }
+            }
+
+            if (!hWatchedParameters.isEmpty())
+                pWidget->setWatchedParameters(hWatchedParameters);
+        }
 
         pWidget->applyDefaultValue();
         pWidget->onEvaluateEnabledCondition();

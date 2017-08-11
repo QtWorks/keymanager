@@ -43,7 +43,7 @@ public:
     const QString &selectionVariable() const;
 
     //! Set variable
-    void setSelectionVariable(const QString &sVariableName);
+    void setSelectionVariable(const QString &sParameterVariable);
 
     //! Return value
     const QString &value() const;
@@ -102,6 +102,9 @@ private:
 
     //! Add collapsible block
     void addCollapsibleBlock(CollapsibleBlock *pBlock);
+
+    //! Process enabled condition
+    void processEnabledCondition(const CXMLNode &xParameterBlock);
 
 private:
     //! UI
