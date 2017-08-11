@@ -10,6 +10,11 @@
 // Application
 #include "basewidget.h"
 
+typedef struct P {
+    int column;
+    int row;
+} Position;
+
 namespace Ui {
 class GenericParameterTable;
 }
@@ -39,6 +44,9 @@ public:
 
     //! Return column variables
     const QStringList &columnVariables() const;
+
+    //! Return parameter variable hash table
+    QHash<QString, Position> parameterVariableHashTable() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -77,6 +85,13 @@ public:
     //! Apply value
     void applyValue(const QString &sValue);
 
+    //! Set value
+    void setValue(const QString &sParameterVariable, const QString &sVariableValue);
+
+private:
+    //! Get formatted variable name
+    static QString getFormattedVariableName(const QString &sVariableMethod, const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
+
 private:
     //! Column labels
     QStringList m_lColumnLabels;
@@ -107,6 +122,9 @@ private:
 
     //! Data
     QVector<double> m_vData;
+
+    //! QHash variable/(row, column)
+    QHash<QString, Position> m_hHashTable;
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -162,6 +180,13 @@ public:
     ~GenericParameterTable();
 
     //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return parameter variable hash table
+    QHash<QString, Position> parameterVariableHashTable() const;
+
+    //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
@@ -170,6 +195,9 @@ public:
 
     //! Apply value
     virtual void applyValue(const QString &sValue);
+
+    //! Set value
+    void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
 private:
     //! Populate button area

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                 int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QObject *parent) : QAbstractItemModel(parent)
+                                                       int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QObject *parent) : QAbstractItemModel(parent)
 {
     QStringList lDefaultValues;
     if (sDefaultValue.contains(","))
@@ -38,6 +38,19 @@ GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColum
     m_sTargetVariable = sTargetVariable;
     m_sVariableMethod = sVariableMethod;
     m_vData.resize(nRows*nColumns);
+
+    for (int i=0; i<nRows; i++)
+    {
+        for (int j=0; j<nColumns; j++)
+        {
+            // Build formatted variable name
+            QString sFormattedVariableName = getFormattedVariableName(m_sVariableMethod, sTargetVariable, m_lColumnVariables, m_sTargetRow, j, i);
+            Position p;
+            p.column = j;
+            p.row = i;
+            m_hHashTable[sFormattedVariableName] = p;
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -59,6 +72,13 @@ const QStringList &GenericParameterTableModel::columnLabels() const
 const QStringList &GenericParameterTableModel::columnVariables() const
 {
     return m_lColumnVariables;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QHash<QString, Position> GenericParameterTableModel::parameterVariableHashTable() const
+{
+    return m_hHashTable;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -113,29 +133,17 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
 
 bool GenericParameterTableModel::setData(const QModelIndex &index, const QVariant &vData, int iRole)
 {
-    if (index.isValid())
-        if (iRole == Qt::EditRole)
-        {
-            double dValue = vData.toDouble();
-            m_vData[index.column()+index.row()*m_lColumnVariables.size()] = dValue;
+    if (index.isValid() && (iRole == Qt::EditRole))
+    {
+        double dValue = vData.toDouble();
+        m_vData[index.column()+index.row()*m_lColumnVariables.size()] = dValue;
 
-            QString sFormattedVariable("");
-            if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD1)
-            {
-                sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
-                emit parameterValueChanged(sFormattedVariable, vData.toString());
-                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
-                return true;
-            }
-            else
-            if (m_sVariableMethod == PROPERTY_VARIABLE_METHOD2)
-            {
-                sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(m_sTargetVariable, index.row());
-                emit parameterValueChanged(sFormattedVariable, vData.toString());
-                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
-                return true;
-            }
-        }
+        QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
+        emit parameterValueChanged(sFormattedVariable, vData.toString());
+        emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+        return true;
+
+    }
 
     return false;
 }
@@ -201,6 +209,39 @@ void GenericParameterTableModel::applyValue(const QString &sValue)
 
 //-------------------------------------------------------------------------------------------------
 
+void GenericParameterTableModel::setValue(const QString &sParameterVariable, const QString &sVariableValue)
+{
+    if (m_hHashTable.contains(sParameterVariable))
+    {
+        Position p = m_hHashTable[sParameterVariable];
+        QModelIndex targetIndex = index(p.row, p.column, QModelIndex());
+        if (targetIndex.isValid())
+        {
+            qDebug() << "-------------------------------------------------------------------> SETTING VALUE: " << sVariableValue << " FOR VARIABLE: " << sParameterVariable;
+            setData(targetIndex, sVariableValue, Qt::EditRole);
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString GenericParameterTableModel::getFormattedVariableName(const QString &sVariableMethod, const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow)
+{
+    QString sFormattedVariable("");
+    if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+    {
+        sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
+    }
+    else
+    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+    {
+        sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(sTargetVariable, iRow);
+    }
+    return sFormattedVariable;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 ItemDelegate::ItemDelegate(QObject *parent) : QItemDelegate(parent)
 {
 }
@@ -253,7 +294,7 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                   int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : BaseWidget(parent),  ui(new Ui::GenericParameterTable)
+                                             int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : BaseWidget(parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);
@@ -288,6 +329,13 @@ GenericParameterTable::~GenericParameterTable()
 
 //-------------------------------------------------------------------------------------------------
 
+QHash<QString, Position> GenericParameterTable::parameterVariableHashTable() const
+{
+    return m_pModel->parameterVariableHashTable();
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void GenericParameterTable::applyDefaultValue()
 {
     applyValue(m_sDefaultValue);
@@ -298,6 +346,13 @@ void GenericParameterTable::applyDefaultValue()
 void GenericParameterTable::applyValue(const QString &sValue)
 {
     m_pModel->applyValue(sValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTable::setValue(const QString &sParameterVariable, const QString &sVariableValue)
+{
+    m_pModel->setValue(sParameterVariable, sVariableValue);
 }
 
 //-------------------------------------------------------------------------------------------------

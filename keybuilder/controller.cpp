@@ -9,6 +9,7 @@
 #include "selectionmgr.h"
 #include "constants.h"
 #include "basewidget.h"
+#include "genericparametertable.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -115,11 +116,22 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
     BaseWidget *pWidget = m_pWidgetFactory->getWidgetByVariableName(sParameterVariable);
     if (pWidget != nullptr)
     {
-        pWidget->applyValue(sVariableValue);
+        GenericParameterTable *pTable = dynamic_cast<GenericParameterTable *>(pWidget);
+        if (pTable != nullptr)
+        {
+            pTable->setValue(sParameterVariable, sVariableValue);
+        }
+        else pWidget->applyValue(sVariableValue);
     }
     else
     {
-        qDebug() << "COULD NOT FIND ANY WIDGET WITH ASSOCIATED VARIABLE: " << sParameterVariable;
+        Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sParameterVariable);
+        if (pParameter != nullptr)
+            pParameter->setValue(sVariableValue);
+        else
+        {
+            qDebug() << "COULD NOT FIND ANY WIDGET OR PARAMETER ASSOCIATED WITH VARIABLE: " << sParameterVariable;
+        }
     }
 }
 

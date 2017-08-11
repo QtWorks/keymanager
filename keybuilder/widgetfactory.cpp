@@ -66,6 +66,10 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
             GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, pParentWidget);
             pWidget = pGenericParameterTable;
+
+            QHash<QString, Position> hParameterVariableHash = pGenericParameterTable->parameterVariableHashTable();
+            for (QHash<QString, Position>::iterator it=hParameterVariableHash.begin(); it!=hParameterVariableHash.end(); ++it)
+                m_hWidgetHash[it.key()] = pWidget;
         }
     }
     else
