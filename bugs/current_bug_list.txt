@@ -1,15 +1,5 @@
 ﻿ajuster les dimensions pour que les textes s'affichent en entier
 Afficher les valeurs par défaut en grisé, et quand l'utilisateur clique dans la case, effacer la valeur par défaut pour que l'utilisateur puisse rentrer sa propre valeur
-Prévoir un bouton "Export Parameters" et "Import Parameters", qui exporte un *.txt (pour le moment, *.dat plus tard) avec la liste de toutes les valeurs de variables (mais pas le nom des variables)
-
-menu1
-	regular
-		YES/NO : ajouter "AUTOMATIC TIP" en titre pour ce choix
-	Expert
-		SET DIMENSIONS // DEFAULTS IS NO
-			griser la liste dessous quand le radio button NO est coché
-	
-
 
 menu2
 	mettre des valeurs par défaut pour le choix des fraises et leurs parametres (voir en bas de ce document)
@@ -25,7 +15,6 @@ menu2
 	lever lock
 		dans le tableau, thickness doit s'afficher automatiquement, ainsi que Distance
 	disklock pro (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
-		groove at the tip est un radio button qui donne le choix entre "YES" ou "NO" et renvoie dans qt_abloy_disklock_pro_groove_at_the_tip_qt 
 	protec (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
 
 Menu3
