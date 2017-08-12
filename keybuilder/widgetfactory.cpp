@@ -50,11 +50,17 @@ BaseWidget *WidgetFactory::getWidgetByVariableName(const QString &sParameterVari
 
 BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pParentWidget)
 {
-    Parameter *pParameter = nullptr;
     BaseWidget *pWidget = nullptr;
+    QString sParameterName = xParameter.attributes()[PROPERTY_NAME].simplified();
+    QString sParameterType = xParameter.attributes()[PROPERTY_TYPE].simplified();
     QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE].simplified();
     QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
-    QString sAutoScript("");
+    QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+    QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
+    sAutoScript.replace(" ", "");
+    QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
+    sEnabledCondition.replace(" ", "");
+
     if (sParameterUI == WIDGET_GENERIC_PARAMETER_TABLE)
     {
         QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
@@ -77,98 +83,89 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         }
     }
     else
+    if (sParameterUI == WIDGET_FILE_PICKER)
     {
-        pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
-        if (pParameter != nullptr)
+        QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION].simplified();
+        FilePickerWidget *pFilePickerWidget = new FilePickerWidget(m_pController, sParameterName, sFileExtension, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        pWidget = pFilePickerWidget;
+    }
+    if (sParameterUI == WIDGET_LINE_EDIT)
+    {
+        QString sMinValue = xParameter.attributes()[PROPERTY_MIN_VALUE].simplified();
+        QString sMaxValue = xParameter.attributes()[PROPERTY_MAX_VALUE].simplified();
+        LineEditWidget *pLineEdit = new LineEditWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        if (sParameterType == PROPERTY_INT)
         {
-            sAutoScript = pParameter->autoScript();
-            QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
-            if (sParameterUI == WIDGET_LINE_EDIT)
+            int iMin = 0;
+            int iMax = 100;
+            if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
             {
-                QString sMinValue = xParameter.attributes()[PROPERTY_MIN_VALUE].simplified();
-                QString sMaxValue = xParameter.attributes()[PROPERTY_MAX_VALUE].simplified();
-                LineEditWidget *pLineEdit = new LineEditWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                if (pParameter->type() == PROPERTY_INT)
+                bool bOKMin = true;
+                bool bOKMax = true;
+                int iTestMin = sMinValue.toInt(&bOKMin);
+                int iTestMax = sMaxValue.toInt(&bOKMax);
+                if (bOKMin && bOKMax)
                 {
-                    int iMin = 0;
-                    int iMax = 100;
-                    if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
-                    {
-                        bool bOKMin = true;
-                        bool bOKMax = true;
-                        int iTestMin = sMinValue.toInt(&bOKMin);
-                        int iTestMax = sMaxValue.toInt(&bOKMax);
-                        if (bOKMin && bOKMax)
-                        {
-                            iMin = qMin(iTestMin, iTestMax);
-                            iMax = qMax(iTestMin, iTestMax);
-                        }
-                    }
-                    IntValidator *pValidator = new IntValidator(iMin, iMax, this);
-                    pLineEdit->setValidator(pValidator);
-                }
-                else
-                if (pParameter->type() == PROPERTY_DOUBLE)
-                {
-                    double dMin = 0.;
-                    double dMax = 100.;
-                    if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
-                    {
-                        bool bOKMin = true;
-                        bool bOKMax = true;
-                        double dTestMin = sMinValue.toDouble(&bOKMin);
-                        double dTestMax = sMaxValue.toDouble(&bOKMax);
-                        if (bOKMin && bOKMax)
-                        {
-                            dMin = qMin(dTestMin, dTestMax);
-                            dMax = qMax(dTestMin, dTestMax);
-                        }
-                    }
-                    DoubleValidator *pValidator = new DoubleValidator(dMin, dMax, 3, this);
-                    pLineEdit->setValidator(pValidator);
-                }
-                pWidget = pLineEdit;
-            }
-            else
-            if (sParameterUI == WIDGET_FILE_PICKER)
-            {
-                QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION].simplified();
-                FilePickerWidget *pFilePickerWidget = new FilePickerWidget(m_pController, pParameter->name(), sFileExtension, pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                pWidget = pFilePickerWidget;
-            }
-            else
-            if (sParameterUI == WIDGET_DXF_OR_STL_FILE_PICKER)
-            {
-                QString sParameterSTLVariable = xParameter.attributes()[PROPERTY_STL_VARIABLE].simplified();
-                QString sParameterDXFVariable = xParameter.attributes()[PROPERTY_DXF_VARIABLE].simplified();
-                DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(m_pController, pParameter->defaultValue(), sParameterSTLVariable, sParameterDXFVariable, pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                pWidget = pFilePickerWidget;
-            }
-            else
-            if (sParameterUI == WIDGET_EXCLUSIVE_CHOICE)
-            {
-                QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
-                QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
-
-                if (!sLabels.isEmpty() && !sValues.isEmpty())
-                {
-                    ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(m_pController, sLabels.split(","), sValues.split(","), pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                    pWidget = pExclusiveChoiceWidet;
+                    iMin = qMin(iTestMin, iTestMax);
+                    iMax = qMax(iTestMin, iTestMax);
                 }
             }
-            else
-            if (sParameterUI == WIDGET_DOUBLE_TRIPLET)
-            {
-                DoubleTripletWidget *pTriplet = new DoubleTripletWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                pWidget = pTriplet;
-            }
-            else
-            if (sParameterUI == WIDGET_YES_NO)
-            {
-                YesNoWidget *pYesNoWidget = new YesNoWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
-                pWidget = pYesNoWidget;
-            }
+            IntValidator *pValidator = new IntValidator(iMin, iMax, this);
+            pLineEdit->setValidator(pValidator);
         }
+        else
+        if (sParameterType == PROPERTY_DOUBLE)
+        {
+            double dMin = 0.;
+            double dMax = 100.;
+            if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
+            {
+                bool bOKMin = true;
+                bool bOKMax = true;
+                double dTestMin = sMinValue.toDouble(&bOKMin);
+                double dTestMax = sMaxValue.toDouble(&bOKMax);
+                if (bOKMin && bOKMax)
+                {
+                    dMin = qMin(dTestMin, dTestMax);
+                    dMax = qMax(dTestMin, dTestMax);
+                }
+            }
+            DoubleValidator *pValidator = new DoubleValidator(dMin, dMax, 3, this);
+            pLineEdit->setValidator(pValidator);
+        }
+        pWidget = pLineEdit;
+    }
+    else
+    if (sParameterUI == WIDGET_DXF_OR_STL_FILE_PICKER)
+    {
+        QString sParameterSTLVariable = xParameter.attributes()[PROPERTY_STL_VARIABLE].simplified();
+        QString sParameterDXFVariable = xParameter.attributes()[PROPERTY_DXF_VARIABLE].simplified();
+        DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(m_pController, sDefaultValue, sParameterSTLVariable, sParameterDXFVariable, sAutoScript, sEnabledCondition, pParentWidget);
+        pWidget = pFilePickerWidget;
+    }
+    else
+    if (sParameterUI == WIDGET_EXCLUSIVE_CHOICE)
+    {
+        QString sLabels = xParameter.attributes()[PROPERTY_LABELS].simplified();
+        QString sValues = xParameter.attributes()[PROPERTY_VALUES].simplified();
+
+        if (!sLabels.isEmpty() && !sValues.isEmpty())
+        {
+            ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(m_pController, sLabels.split(","), sValues.split(","), sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+            pWidget = pExclusiveChoiceWidet;
+        }
+    }
+    else
+    if (sParameterUI == WIDGET_DOUBLE_TRIPLET)
+    {
+        DoubleTripletWidget *pTriplet = new DoubleTripletWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        pWidget = pTriplet;
+    }
+    else
+    if (sParameterUI == WIDGET_YES_NO)
+    {
+        YesNoWidget *pYesNoWidget = new YesNoWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        pWidget = pYesNoWidget;
     }
 
     if (pWidget != nullptr)
@@ -189,19 +186,14 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             }
         }
 
-        if (pParameter != nullptr)
+        if (!sEnabledCondition.isEmpty())
         {
-            // Retrieve enabled condition
-            QString sEnabledCondition = pParameter->enabledCondtion();
-            if (!sEnabledCondition.isEmpty())
+            QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sEnabledCondition);
+            foreach (QString sParameterVariable, vVariableNames)
             {
-                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sEnabledCondition);
-                foreach (QString sParameterVariable, vVariableNames)
-                {
-                    Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
-                    if (pWatchedParameter != nullptr)
-                        hWatchedParameters[sParameterVariable] = pWatchedParameter;
-                }
+                Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+                if (pWatchedParameter != nullptr)
+                    hWatchedParameters[sParameterVariable] = pWatchedParameter;
             }
         }
 

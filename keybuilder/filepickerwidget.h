@@ -57,10 +57,6 @@ public slots:
 
     //! File picker text changed
     void onFilePickerTextChanged();
-
-signals:
-    //! Text changed
-    void textChanged();
 };
 
 #endif // FILEPICKERWIDGET_H

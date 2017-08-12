@@ -19,7 +19,7 @@ FilePickerWidget::FilePickerWidget(Controller *pController, const QString &sLabe
     setEnabledCondition(sEnabledCondition);
     ui->label->setText(sLabel);
     connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked, Qt::UniqueConnection);
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::textChanged, Qt::UniqueConnection);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::onFilePickerTextChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
