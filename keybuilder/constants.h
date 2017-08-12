@@ -39,6 +39,8 @@
 #define PROPERTY_AUTO "auto"
 #define PROPERTY_YES "YES"
 #define PROPERTY_NO "NO"
+#define PROPERTY_MIN_VALUE "minvalue"
+#define PROPERTY_MAX_VALUE "maxvalue"
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"

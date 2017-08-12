@@ -78,7 +78,9 @@ SOURCES += main.cpp\
     dxforstlfilepicker.cpp \
     widgetfactory.cpp \
     yesnowidget.cpp \
-    selectionmgr.cpp
+    selectionmgr.cpp \
+    intvalidator.cpp \
+    doublevalidator.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -103,7 +105,9 @@ HEADERS  += mainwindow.h \
     dxforstlfilepicker.h \
     widgetfactory.h \
     yesnowidget.h \
-    selectionmgr.h
+    selectionmgr.h \
+    intvalidator.h \
+    doublevalidator.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

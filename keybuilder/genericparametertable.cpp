@@ -8,6 +8,7 @@
 #include "controller.h"
 #include "parametermgr.h"
 #include "constants.h"
+#include "intvalidator.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -285,7 +286,7 @@ QWidget *ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem 
     Q_UNUSED(option);
     Q_UNUSED(index);
     QLineEdit *pEditor = new QLineEdit(parent);
-    pEditor->setValidator(new QDoubleValidator);
+    pEditor->setValidator(new QDoubleValidator());
     return pEditor;
 }
 
@@ -332,7 +333,7 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
     ui->tableView->setItemDelegate(pItemDelegate);
 
     // Set validator
-    ui->lineEdit->setValidator(new QIntValidator(5, nRows, this));
+    ui->lineEdit->setValidator(new IntValidator(5, nRows, this));
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &GenericParameterTable::onNumActiveLeverChanged, Qt::UniqueConnection);
 
     // Stretch columns

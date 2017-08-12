@@ -2,6 +2,7 @@
 #include "doubletripletwidget.h"
 #include "ui_doubletripletwidget.h"
 #include "constants.h"
+#include "doublevalidator.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -16,7 +17,7 @@ DoubleTripletWidget::DoubleTripletWidget(Controller *pController, const QString 
     m_sAutoScript = sAutoScript;
     m_sEnabledCondition = sEnabledCondition;
 
-    QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
+    DoubleValidator *pValidator = new DoubleValidator(0, 100, 3, this);
     ui->lineEdit1->setValidator(pValidator);
     ui->lineEdit2->setValidator(pValidator);
     ui->lineEdit3->setValidator(pValidator);

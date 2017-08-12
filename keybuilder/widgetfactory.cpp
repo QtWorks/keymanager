@@ -14,6 +14,8 @@
 #include "yesnowidget.h"
 #include "controller.h"
 #include "parametermgr.h"
+#include "intvalidator.h"
+#include "doublevalidator.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -80,10 +82,46 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
             if (sParameterUI == WIDGET_LINE_EDIT)
             {
+                QString sMinValue = xParameter.attributes()[PROPERTY_MIN_VALUE].simplified();
+                QString sMaxValue = xParameter.attributes()[PROPERTY_MAX_VALUE].simplified();
                 LineEditWidget *pLineEdit = new LineEditWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                if (pParameter->type() == PROPERTY_INT)
+                {
+                    int iMin = 0;
+                    int iMax = 100;
+                    if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
+                    {
+                        bool bOKMin = true;
+                        bool bOKMax = true;
+                        int iTestMin = sMinValue.toInt(&bOKMin);
+                        int iTestMax = sMaxValue.toInt(&bOKMax);
+                        if (bOKMin && bOKMax)
+                        {
+                            iMin = qMin(iTestMin, iTestMax);
+                            iMax = qMax(iTestMin, iTestMax);
+                        }
+                    }
+                    IntValidator *pValidator = new IntValidator(iMin, iMax, this);
+                    pLineEdit->setValidator(pValidator);
+                }
+                else
                 if (pParameter->type() == PROPERTY_DOUBLE)
                 {
-                    QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
+                    double dMin = 0.;
+                    double dMax = 100.;
+                    if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
+                    {
+                        bool bOKMin = true;
+                        bool bOKMax = true;
+                        double dTestMin = sMinValue.toDouble(&bOKMin);
+                        double dTestMax = sMaxValue.toDouble(&bOKMax);
+                        if (bOKMin && bOKMax)
+                        {
+                            dMin = qMin(dTestMin, dTestMax);
+                            dMax = qMax(dTestMin, dTestMax);
+                        }
+                    }
+                    DoubleValidator *pValidator = new DoubleValidator(dMin, dMax, 3, this);
                     pLineEdit->setValidator(pValidator);
                 }
                 pWidget = pLineEdit;
