@@ -173,15 +173,6 @@ Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::setNumActiveLever(int iNumActiveLever)
-{
-    beginResetModel();
-    m_nActiveLever = iNumActiveLever;
-    endResetModel();
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void GenericParameterTableModel::resetColumnVariables(int iColumnIndex)
 {
     applyValue(m_sDefaultValue, iColumnIndex);

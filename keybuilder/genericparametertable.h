@@ -77,9 +77,6 @@ public:
     //! Return flags
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    //! Set number of active lever
-    void setNumActiveLever(int iNumActiveLever);
-
     //! Reset column variables
     void resetColumnVariables(int iColumnIndex);
 
