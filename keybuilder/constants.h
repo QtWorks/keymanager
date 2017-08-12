@@ -49,6 +49,8 @@
 #define WIDGET_YES_NO "yesno"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 
+#define ACTION_SET_NUMBER_OF_ROWS "setnumberofrows"
+
 #define VALUE_TRUE "true"
 #define VALUE_FALSE "false"
 

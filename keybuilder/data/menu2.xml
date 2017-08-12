@@ -4,7 +4,7 @@
       <Parameter variable="qt_regular_cut_use_qt" type="boolean" default="NO"/>
       <Block name="ROW1" exclusive="false" set_variable="qt_regular_row1_cut_use_qt">
          <Parameter variable="qt_regular_row1_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row1_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
@@ -42,7 +42,7 @@
       </Block>
       <Block name="ROW2" exclusive="false" set_variable="qt_regular_row2_cut_use_qt">
          <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row2_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row2_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row2_angle_on_y_qt" ui="lineedit" />
@@ -80,7 +80,7 @@
       </Block>
       <Block name="ROW3" set_variable="qt_regular_row3_cut_use_qt">
          <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row3_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row3_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row3_angle_on_y_qt" ui="lineedit" />
@@ -118,7 +118,7 @@
       </Block>
       <Block name="ROW4" set_variable="qt_regular_row4_cut_use_qt">
          <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row4_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row4_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row4_angle_on_y_qt" ui="lineedit" />
@@ -156,7 +156,7 @@
       </Block>
       <Block name="ROW5" set_variable="qt_regular_row5_cut_use_qt">
          <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row5_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row5_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row5_angle_on_y_qt" ui="lineedit" />
@@ -194,7 +194,7 @@
       </Block>
       <Block name="ROW6" set_variable="qt_regular_row6_cut_use_qt">
          <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF PINS" type="int" variable="qt_regular_row6_number_of_pins_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF PINS" type="int" default="22" variable="qt_regular_row6_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row6_angle_on_y_qt" ui="lineedit" />
@@ -233,7 +233,7 @@
    </Block>
    <Block name="ROUND PUMP/TUBULAR" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;round_pump&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;) || (qt_type_of_key_qt == &quot;round_stl&quot;)">
       <Parameter variable="qt_round_pump_cut_use_qt" type="boolean" default="NO"/>
-      <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" default="12" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
       <Parameter name="MILL DISTANCE FROM CENTER" type="double" variable="qt_round_pump_mill_distance_frome_center_qt" ui="lineedit" />
       <Parameter setnumberofpins="qt_round_pump_number_of_pins_qt" columnlabels="DEPTH FROM TIP" type="table" columnvariables="depth" nrows="12" targetvariable="qt_round_pump_cut%1_depth_from_tip_qt" variablemethod="method2" ui="genericparametertable" />
@@ -242,7 +242,7 @@
       <Parameter variable="qt_lever_lock_cut_use_qt" type="boolean" default="NO"/>
       <Block name="ROW1" set_variable="qt_lever_lock_row1_cut_use_qt">
          <Parameter variable="qt_lever_lock_row1_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF LEVERS" type="int" variable="qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF LEVERS" type="int" default="20" variable="qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row1_blade_length_qt" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row1_spaces_qt" auto="qt_lever_lock_row1_blade_length_qt/qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row1_thickness_qt" auto="qt_lever_lock_row1_spaces_qt*1.25" ui="lineedit" />
@@ -251,7 +251,7 @@
       </Block>
       <Block name="ROW2" set_variable="qt_lever_lock_row2_cut_use_qt">
          <Parameter variable="qt_lever_lock_row2_cut_use_qt" type="boolean" default="NO"/>
-         <Parameter name="NUMBER OF LEVERS" type="int" variable="qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
+         <Parameter name="NUMBER OF LEVERS" type="int" default="20" variable="qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
          <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row2_blade_length_qt" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row2_spaces_qt" auto="qt_lever_lock_row2_blade_length_qt/qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row2_thickness_qt" auto="qt_lever_lock_row2_spaces_qt*1.25" ui="lineedit" />
@@ -263,7 +263,7 @@
       <Parameter variable="qt_abloy_classic_cut_use_qt" type="boolean" default="NO"/>
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
-      <Parameter name="NUMBER OF DISCS" type="int" variable="qt_abloy_classic_number_of_discs_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF DISCS" type="int" default="20" variable="qt_abloy_classic_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_classic_spaces_qt" default="2" ui="lineedit" />
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abloy_classic_mill_thickness_qt" default="2.5" ui="lineedit" />
       <Parameter name="ANGLE STEP" type="double" variable="qt_abloy_classic_angle_step_qt" default="18" ui="lineedit" />
@@ -273,7 +273,7 @@
    <Block name="ABLOY DISKLOCK PRO" set_variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_disklock&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abloy_disklock_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_disklock_length_qt" default="34" ui="lineedit" />
-      <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_disklock_number_of_discs_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF DISCS" type="double" default="20" variable="qt_abloy_disklock_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_disklock_spaces_qt" default="1.6" ui="lineedit" />
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abloy_disklock_mill_thickness_qt" default="2" ui="lineedit" />
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_disklock_distance_from_tip_qt" default="2.5" ui="lineedit" />
@@ -283,7 +283,7 @@
    <Block name="ABLOY PROTEC" set_variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_protec&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abloy_protec_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_protec_length_qt" default="30" ui="lineedit" />
-      <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF DISCS" type="double" default="20" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_protec_spaces_qt" default="1.5" ui="lineedit" />
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abloy_protec_mill_thickness_qt" default="2" ui="lineedit" />
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_protec_distance_from_tip_qt" default="2" ui="lineedit" />
@@ -293,7 +293,7 @@
    <Block name="ABUS PLUS OR STANDARD DISC KEY" set_variable="qt_abus_plus_cut_qt" enabled="(qt_type_of_key_qt==&quot;abus_plus&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abus_plus_cut_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abus_plus_length_qt" default="33" ui="lineedit" />
-      <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF DISCS" type="double" default="20" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
       <Parameter name="SPACES" type="double" variable="qt_abus_plus_spaces_qt" default="2" ui="lineedit" />
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abus_plus_mill_thickness_qt" default="2.5" ui="lineedit" />
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abus_plus_distance_from_tip_qt" default="4" ui="lineedit" />
