@@ -9,7 +9,6 @@ menu2
 
 
 	lever lock
-		dans le tableau, thickness doit s'afficher automatiquement, ainsi que Distance
 	disklock pro (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
 	protec (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
 

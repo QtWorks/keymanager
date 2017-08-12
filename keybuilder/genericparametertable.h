@@ -86,8 +86,11 @@ public:
     //! Set value
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
+    //! Evaluate full script
+    void evaluateAutoScript(const QString &sFullScript);
+
     //! Evaluate auto script
-    void evaluateAutoScript(const QString &sAutoScript);
+    void evaluateSingleScript(const QString &sAutoScript);
 
 private:
     //! Get formatted variable name

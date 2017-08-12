@@ -268,9 +268,18 @@ void GenericParameterTableModel::setValue(const QString &sParameterVariable, con
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::evaluateAutoScript(const QString &sAutoScript)
+void GenericParameterTableModel::evaluateAutoScript(const QString &sFullScript)
 {
-    QStringList lSplitted = sAutoScript.split("=");
+    QStringList lSingleScripts = sFullScript.split(";");
+    foreach (QString sSingleScript, lSingleScripts)
+        evaluateSingleScript(sSingleScript);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScript)
+{
+    QStringList lSplitted = sSingleScript.split("=");
     if (lSplitted.size() == 2)
     {
         QString sColumnVariable = lSplitted.first().simplified();
@@ -281,7 +290,7 @@ void GenericParameterTableModel::evaluateAutoScript(const QString &sAutoScript)
         if (iColumnIndex >= 0)
         {
             // Retrieve variable names
-            QVector<QString> vVariableNames = m_pController->parameterMgr()->extractVariableNames(sAutoScript);
+            QVector<QString> vVariableNames = m_pController->parameterMgr()->extractVariableNames(sSingleScript);
             QString sMatchedScript = sLogicalExpression;
             bool bSuccess = true;
             foreach (QString sParameterVariable, vVariableNames)
@@ -289,7 +298,7 @@ void GenericParameterTableModel::evaluateAutoScript(const QString &sAutoScript)
                 Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
                 if (pParameter == nullptr)
                 {
-                    qDebug() << "ERROR: CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sParameterVariable << " DOES NOT EXIST";
+                    qDebug() << "ERROR: CAN'T EVALUATE " << sSingleScript << " SINCE VARIABLE " << sParameterVariable << " DOES NOT EXIST";
                     bSuccess = false;
                     break;
                 }
@@ -297,6 +306,7 @@ void GenericParameterTableModel::evaluateAutoScript(const QString &sAutoScript)
             }
             if (bSuccess)
             {
+                // Indexed to row
                 if (sMatchedScript.contains(PROPERTY_CURRENT_ROW))
                 {
                     for (int i=0; i<m_nRows; i++)
@@ -305,6 +315,17 @@ void GenericParameterTableModel::evaluateAutoScript(const QString &sAutoScript)
                         sIndexedScript.replace(PROPERTY_CURRENT_ROW, QString::number(i));
                         QScriptEngine expression;
                         QScriptValue xResult = expression.evaluate(sIndexedScript);
+                        if (xResult.isNumber())
+                            setData(index(i+1, iColumnIndex, QModelIndex()), xResult.toString(), Qt::EditRole);
+                    }
+                }
+                // Not indexed to row
+                else
+                {
+                    for (int i=0; i<m_nRows; i++)
+                    {
+                        QScriptEngine expression;
+                        QScriptValue xResult = expression.evaluate(sMatchedScript);
                         if (xResult.isNumber())
                             setData(index(i+1, iColumnIndex, QModelIndex()), xResult.toString(), Qt::EditRole);
                     }
@@ -354,7 +375,7 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
     {
         beginResetModel();
         m_nRows = nRows;
-        m_vData.resize(nRows*m_lColumnLabels.size());
+        m_vData.resize((nRows+1)*m_lColumnLabels.size());
         applyValue(m_sDefaultValue);
         endResetModel();
     }
