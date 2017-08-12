@@ -32,7 +32,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row1_linked_qt=&amp;YES&amp;" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row1_linked_qt==&quot;YES&quot;" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -70,7 +70,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row2_linked_qt=&amp;YES&amp;" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row2_linked_qt==&quot;YES&quot;" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row2_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -108,7 +108,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row3_linked_qt=&amp;YES&amp;" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row3_linked_qt==&quot;YES&quot;" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row3_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -146,7 +146,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row4_linked_qt=&amp;YES&amp;" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row4_linked_qt==&quot;YES&quot;" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row4_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -184,7 +184,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row5_linked_qt=&amp;YES&amp;" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row5_linked_qt==&quot;YES&quot;" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row5_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -222,7 +222,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row6_linked_qt=&amp;YES&amp;" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row6_linked_qt==&quot;YES&quot;" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row6_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="stl.mill" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -231,7 +231,7 @@
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ROUND PUMP/TUBULAR" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;round_pump&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;) || (qt_type_of_key_qt == &amp;quot;round_stl&amp;quot;)">
+   <Block name="ROUND PUMP/TUBULAR" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;round_pump&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;) || (qt_type_of_key_qt == &quot;round_stl&quot;)">
       <Parameter variable="qt_round_pump_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="NUMBER OF PINS (INCLUDING THE TENSIONER)" type="int" variable="qt_round_pump_number_of_pins_qt" ui="lineedit" />
       <Parameter name="MILL DIAMETER" type="double" variable="qt_round_pump_mill_diameter_qt" ui="lineedit" />
@@ -259,7 +259,7 @@
          <Parameter columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row2" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="ABLOY CLASSIC" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_classic&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="ABLOY CLASSIC" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_classic&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abloy_classic_cut_use_qt" type="boolean" default="NO"/>
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
@@ -270,7 +270,7 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abloy_classic_distance_from_tip_qt" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_classic_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY DISKLOCK PRO" set_variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_disklock&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="ABLOY DISKLOCK PRO" set_variable="qt_abloy_disklock_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_disklock&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abloy_disklock_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_disklock_length_qt" default="34" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_disklock_number_of_discs_qt" ui="lineedit" />
@@ -280,7 +280,7 @@
       <Parameter name="GROOVE AT THE TIP" type="string" variable="qt_abloy_disklock_groove_at_the_tip_qt" default="NO" ui="yesno" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_disklock_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABLOY PROTEC" set_variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;abloy_protec&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="ABLOY PROTEC" set_variable="qt_abloy_protec_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_protec&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abloy_protec_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_protec_length_qt" default="30" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abloy_protec_number_of_discs_qt" ui="lineedit" />
@@ -290,7 +290,7 @@
       <Parameter name="THINNER AT THE TIP" type="string" variable="qt_abloy_protec_thinner_at_the_tip_qt" default="NO" ui="yesno" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abloy_protec_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="ABUS PLUS OR STANDARD DISC KEY" set_variable="qt_abus_plus_cut_qt" enabled="(qt_type_of_key_qt == &amp;quot;abus_plus&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="ABUS PLUS OR STANDARD DISC KEY" set_variable="qt_abus_plus_cut_qt" enabled="(qt_type_of_key_qt==&quot;abus_plus&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
       <Parameter variable="qt_abus_plus_cut_qt" type="boolean" default="NO"/>
       <Parameter name="BLADE LENGTH" type="double" variable="qt_abus_plus_length_qt" default="33" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="double" variable="qt_abus_plus_number_of_discs_qt" ui="lineedit" />
@@ -299,7 +299,7 @@
       <Parameter name="DISTANCE FROM TIP" type="double" variable="qt_abus_plus_distance_from_tip_qt" default="4" ui="lineedit" />
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="20" targetvariable="qt_abus_plus_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
-   <Block name="AXI HOME" set_variable="qt_axi_home_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;axi_home&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="AXI HOME" set_variable="qt_axi_home_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;axi_home&quot;) || (qt_type_of_key_qt==&quot;import_stl&quot;)">
       <Parameter variable="qt_axi_home_cut_use_qt" type="boolean" default="NO"/>
       <Parameter name="TOP" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_top_row_qt" default="ROW1" ui="exclusivechoice" />
       <Parameter name="RIGHT" labels="ROW1,ROW2,ROW3" values="ROW1,ROW2,ROW3" type="string" variable="qt_axi_home_right_row_qt" default="ROW2" ui="exclusivechoice" />
@@ -317,7 +317,7 @@
          <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="6" targetvariable="qt_axi_home_row3_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
       </Block>
    </Block>
-   <Block name="FICHET 787" set_variable="qt_fichet_787_cut_use_qt" enabled="(qt_type_of_key_qt == &amp;quot;fichet_787&amp;quot;) || (qt_type_of_key_qt == &amp;quot;import_stl&amp;quot;)">
+   <Block name="FICHET 787" set_variable="qt_fichet_787_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;fichet_787&quot;) || (qt_type_of_key_qt==&quot;import_stl&quot;)">
       <Parameter variable="qt_fichet_787_cut_use_qt" type="boolean" default="NO"/>
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qt_fichet_787_cut%1_qt" variablemethod="method2" ui="genericparametertable" />
    </Block>
