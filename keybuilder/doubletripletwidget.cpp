@@ -10,12 +10,12 @@ DoubleTripletWidget::DoubleTripletWidget(Controller *pController, const QString 
     BaseWidget(pController, parent), ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
+    setDefaultValue(sDefaultValue);
     ui->label->setText(sLabel);
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_TRIPLET_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_TRIPLET_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
 
     DoubleValidator *pValidator = new DoubleValidator(0, 100, 3, this);
     ui->lineEdit1->setValidator(pValidator);
@@ -53,7 +53,7 @@ QString DoubleTripletWidget::value() const
 
 void DoubleTripletWidget::applyDefaultValue()
 {
-    applyValue(m_sDefaultValue);
+    applyValue(defaultValue());
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -105,5 +105,5 @@ void DoubleTripletWidget::applyValue(const QString &sValue)
 
 void DoubleTripletWidget::onTextChanged()
 {
-    emit parameterValueChanged(m_sParameterVariable, value());
+    emit parameterValueChanged(parameterVariable(), value());
 }

@@ -54,19 +54,21 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
     BaseWidget *pWidget = nullptr;
     QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE].simplified();
     QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
+    QString sAutoScript("");
     if (sParameterUI == WIDGET_GENERIC_PARAMETER_TABLE)
     {
         QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
         QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
-        QString sActionSetNumberOfPins = xParameter.attributes()[ACTION_SET_NUMBER_OF_ROWS];
+        QString sActionSetNumberOfPins = xParameter.attributes()[ACTION_SET_NUMBER_OF_ROWS].simplified();
         if (!sColumnLabels.isEmpty() && !sColumnVariables.isEmpty())
         {
             QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
             int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-            QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
-            QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
+            QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
+            QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD].simplified();
             QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(m_pController, sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, pParentWidget);
+            sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
+            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(m_pController, sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, sAutoScript, pParentWidget);
             pWidget = pGenericParameterTable;
 
             QHash<QString, Position> hParameterVariableHash = pGenericParameterTable->parameterVariableHashTable();
@@ -79,6 +81,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
         if (pParameter != nullptr)
         {
+            sAutoScript = pParameter->autoScript();
             QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
             if (sParameterUI == WIDGET_LINE_EDIT)
             {
@@ -129,7 +132,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             else
             if (sParameterUI == WIDGET_FILE_PICKER)
             {
-                QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
+                QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION].simplified();
                 FilePickerWidget *pFilePickerWidget = new FilePickerWidget(m_pController, pParameter->name(), sFileExtension, pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 pWidget = pFilePickerWidget;
             }
@@ -172,24 +175,22 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
     {
         pWidget->setParameterVariable(sParameterVariable);
         m_hWidgetHash[sParameterVariable] = pWidget;
+        QHash<QString, Parameter *> hWatchedParameters;
+
+        // Check auto script
+        if (!sAutoScript.isEmpty())
+        {
+            QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAutoScript);
+            foreach (QString sParameterVariable, vVariableNames)
+            {
+                Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+                if (pWatchedParameter != nullptr)
+                    hWatchedParameters[sParameterVariable] = pWatchedParameter;
+            }
+        }
 
         if (pParameter != nullptr)
         {
-            QHash<QString, Parameter *> hWatchedParameters;
-
-            // Retrieve autoscript
-            QString sAutoScript = pParameter->autoScript();
-            if (!sAutoScript.isEmpty())
-            {
-                QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sAutoScript);
-                foreach (QString sParameterVariable, vVariableNames)
-                {
-                    Parameter *pWatchedParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
-                    if (pWatchedParameter != nullptr)
-                        hWatchedParameters[sParameterVariable] = pWatchedParameter;
-                }
-            }
-
             // Retrieve enabled condition
             QString sEnabledCondition = pParameter->enabledCondtion();
             if (!sEnabledCondition.isEmpty())
@@ -202,11 +203,10 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
                         hWatchedParameters[sParameterVariable] = pWatchedParameter;
                 }
             }
-
-            if (!hWatchedParameters.isEmpty())
-                pWidget->setWatchedParameters(hWatchedParameters);
         }
 
+        if (!hWatchedParameters.isEmpty())
+            pWidget->setWatchedParameters(hWatchedParameters);
         pWidget->applyDefaultValue();
         pWidget->onEvaluateEnabledCondition();
     }

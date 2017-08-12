@@ -36,7 +36,7 @@ const QString &BaseWidget::defaultValue() const
 
 void BaseWidget::setDefaultValue(const QString &sDefaultValue)
 {
-    m_sDefaultValue = sDefaultValue;
+    m_sDefaultValue = sDefaultValue.simplified();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ const QString &BaseWidget::parameterVariable() const
 
 void BaseWidget::setParameterVariable(const QString &sParameterVariable)
 {
-    m_sParameterVariable = sParameterVariable;
+    m_sParameterVariable = sParameterVariable.simplified();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -65,6 +65,21 @@ const QString &BaseWidget::autoScript() const
 void BaseWidget::setAutoScript(const QString &sAutoScript)
 {
     m_sAutoScript = sAutoScript;
+    m_sAutoScript.replace(" ", "");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &BaseWidget::enabledCondition() const
+{
+    return m_sEnabledCondition;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BaseWidget::setEnabledCondition(const QString &sEnabledCondition)
+{
+    m_sEnabledCondition = sEnabledCondition;
 }
 
 //-------------------------------------------------------------------------------------------------

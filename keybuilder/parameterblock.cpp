@@ -46,13 +46,13 @@ ParameterBlock::~ParameterBlock()
 void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 {
     // Set name
-    setName(xParameterBlock.attributes()[PROPERTY_NAME]);
+    setName(xParameterBlock.attributes()[PROPERTY_NAME].simplified());
 
     // Set variable
-    setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE]);
+    setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE].simplified());
 
     // Set value
-    setValue(xParameterBlock.attributes()[PROPERTY_VALUE]);
+    setValue(xParameterBlock.attributes()[PROPERTY_VALUE].simplified());
 
     // Set empty state
     QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
@@ -246,7 +246,7 @@ void ParameterBlock::addChildRecursively(const CXMLNode &xParameterBlock)
 void ParameterBlock::processEnabledCondition(const CXMLNode &xParameterBlock)
 {
     // Read enabled condition
-    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED];
+    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED].simplified();
 
     if (!m_sEnabledCondition.isEmpty())
     {

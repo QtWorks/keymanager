@@ -14,11 +14,11 @@ LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, c
     BaseWidget(pController, parent), ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    setDefaultValue(sDefaultValue);
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
     ui->label->setText(sLabel);
 }
@@ -48,14 +48,14 @@ void LineEditWidget::setLabel(const QString &sLabel)
 
 void LineEditWidget::applyDefaultValue()
 {
-    ui->lineEdit->setText(m_sDefaultValue);
+    ui->lineEdit->setText(defaultValue());
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void LineEditWidget::onTextChanged()
 {
-    emit parameterValueChanged(m_sParameterVariable, ui->lineEdit->text());
+    emit parameterValueChanged(parameterVariable(), ui->lineEdit->text());
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ void LineEditWidget::onTextChanged()
 void LineEditWidget::onEvaluateAutoScript()
 {
     bool bSuccess = true;
-    QString sValue = m_pController->parameterMgr()->evaluateAutoScript(m_sAutoScript, bSuccess);
+    QString sValue = m_pController->parameterMgr()->evaluateAutoScript(autoScript(), bSuccess);
     if (bSuccess)
         ui->lineEdit->setText(sValue);
 }

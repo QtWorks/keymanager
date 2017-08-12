@@ -12,11 +12,11 @@ ExclusiveChoiceWidget::ExclusiveChoiceWidget(Controller *pController, const QStr
     BaseWidget(pController, parent), ui(new Ui::ExclusiveChoiceWidget)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    setDefaultValue(sDefaultValue);
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
     setup(sLabel, lLabels, lValues);
 }
 
@@ -31,8 +31,8 @@ ExclusiveChoiceWidget::~ExclusiveChoiceWidget()
 
 void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLabels, const QStringList &lValues)
 {
-    ui->labelArea->setVisible(!sLabel.simplified().isEmpty());
-    ui->labelArea->setText(sLabel.simplified());
+    ui->labelArea->setVisible(!sLabel.isEmpty());
+    ui->labelArea->setText(sLabel);
 
     int nItems = qMin(lLabels.size(), lValues.size());
     for (int i=0; i<nItems; i++)
@@ -50,7 +50,7 @@ void ExclusiveChoiceWidget::setup(const QString &sLabel, const QStringList &lLab
 
 void ExclusiveChoiceWidget::applyDefaultValue()
 {
-    applyValue(m_sDefaultValue);
+    applyValue(defaultValue());
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -86,6 +86,6 @@ void ExclusiveChoiceWidget::onRadioButtonToggled(bool bClicked)
     if (pSender && bClicked)
     {
         QString sUserValue = pSender->property(PROPERTY_USER_VALUE).toString();
-        emit parameterValueChanged(m_sParameterVariable, sUserValue);
+        emit parameterValueChanged(parameterVariable(), sUserValue);
     }
 }

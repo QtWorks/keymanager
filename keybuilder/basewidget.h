@@ -48,6 +48,12 @@ public:
     //! Set auto script
     void setAutoScript(const QString &sAutoScript);
 
+    //! Return enabled condition
+    const QString &enabledCondition() const;
+
+    //! Set enabled condition
+    void setEnabledCondition(const QString &sEnabledCondition);
+
     //! Set watched parameters
     void setWatchedParameters(const QHash<QString, Parameter *> &hParameters);
 
@@ -65,6 +71,7 @@ protected:
     //! Controller
     Controller *m_pController;
 
+private:
     //! Default value
     QString m_sDefaultValue;
 

@@ -37,41 +37,41 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
     QVector<CXMLNode> vParameterNodes = xBlock.getNodesByTagName(TAG_PARAMETER);
     foreach (CXMLNode xParameterNode, vParameterNodes)
     {
-        QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME];
-        if (sParameterName.simplified().isEmpty())
+        QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME].simplified();
+        if (sParameterName.isEmpty())
         {
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
         }
-        QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE];
-        if (sParameterType.simplified().isEmpty())
+        QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE].simplified();
+        if (sParameterType.isEmpty())
         {
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED TYPE, DEFAULTING TO STRING";
             sParameterType = PROPERTY_STRING;
         }
-        QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE];
-        if (sParameterVariable.simplified().isEmpty() && (sParameterType != PROPERTY_TABLE))
+        QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE].simplified();
+        if (sParameterVariable.isEmpty() && (sParameterType != PROPERTY_TABLE))
         {
             qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
             continue;
         }
-        QString sDefaultValue = xParameterNode.attributes()[PROPERTY_DEFAULT];
-        if (sDefaultValue.simplified().isEmpty())
+        QString sDefaultValue = xParameterNode.attributes()[PROPERTY_DEFAULT].simplified();
+        if (sDefaultValue.isEmpty())
         {
             sDefaultValue = PROPERTY_DEFAULT_VALUE;
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED DEFAULT VALUE. Defaulting to \"0\"";
         }
-        QString sAutoScript = xParameterNode.attributes()[PROPERTY_AUTO];
-        if (sAutoScript.simplified().isEmpty())
+        QString sAutoScript = xParameterNode.attributes()[PROPERTY_AUTO].simplified();
+        if (sAutoScript.isEmpty())
         {
             qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED AUTO SCRIPT";
         }
-        QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI];
-        if (sParameterUI.simplified().isEmpty())
+        QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI].simplified();
+        if (sParameterUI.isEmpty())
         {
             qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED UI";
         }
-        QString sEnabledCondition = xParameterNode.attributes()[PROPERTY_ENABLED];
-        if (sEnabledCondition.simplified().isEmpty())
+        QString sEnabledCondition = xParameterNode.attributes()[PROPERTY_ENABLED].simplified();
+        if (sEnabledCondition.isEmpty())
         {
             qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED ENABLED CONDTION";
         }
@@ -106,14 +106,14 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
     QStringList lColumnVariables = sColumnVariables.split(",");
     QString sParameterType = PROPERTY_DOUBLE;
-    QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
-    QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO];
-    QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED];
+    QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD].simplified();
+    QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
+    QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
     if (lColumnLabels.size() == lColumnVariables.size())
     {
         QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
         int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-        QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
+        QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
 
         for (int iRow=0; iRow<nRows; iRow++)
         {
@@ -376,12 +376,12 @@ void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
         QTextStream inStream(&inputParametersFile);
         while (!inStream.atEnd())
         {
-            QString sLine = inStream.readLine().simplified();
+            QString sLine = inStream.readLine();
             QStringList lSplitted = sLine.split("=");
             if (lSplitted.size() == 2)
             {
-                QString sParameterVariable = lSplitted.first().simplified();
-                QString sVariableValue = lSplitted[1].simplified();
+                QString sParameterVariable = lSplitted.first();
+                QString sVariableValue = lSplitted[1];
                 Parameter *pParameter = getParameterByVariableName(sParameterVariable);
                 if (pParameter != nullptr)
                 {

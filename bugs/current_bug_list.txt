@@ -2,14 +2,11 @@
 Afficher les valeurs par défaut en grisé, et quand l'utilisateur clique dans la case, effacer la valeur par défaut pour que l'utilisateur puisse rentrer sa propre valeur
 
 menu2
-	il manque les cases "all" sur les tableaux
-	Il faut supprimer la case "number of levers", qui existe déjà sous des noms différents pour chaque block. (number of pins, number of levers, number of discs
 	regular
 		row1
 			100 : les valeurs 100 ne doivent pas apparaitre dans l'UI (mais doivent être renvoyée dans le script si la case est vide)
-			number of levers : cette ligne existe déjà sous le nom "number of pins"
 			pour les décimales, le point ne fonctionne pas, il faut mettre une virgule, et la valeur ne s'enregistre pas quand même
-			distance from shoulder n'est pas calculé automatiquement dans le tableau
+
 
 	lever lock
 		dans le tableau, thickness doit s'afficher automatiquement, ainsi que Distance
@@ -18,7 +15,5 @@ menu2
 
 Menu3
 	Automatic Key head : mettre en block de 1° niveau
-	changer le nom ADDING MATERIAL : enlever le texte entre parenthèses
-	
 	including the tensioner : label bouffé
 

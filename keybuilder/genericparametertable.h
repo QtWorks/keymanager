@@ -86,6 +86,9 @@ public:
     //! Set value
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
+    //! Evaluate auto script
+    void evaluateAutoScript(const QString &sAutoScript);
+
 private:
     //! Get formatted variable name
     static QString getFormattedVariableName(const QString &sVariableMethod, const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
@@ -129,9 +132,6 @@ private:
 
     //! QHash variable/(row, column)
     QHash<QString, Position> m_hHashTable;
-
-    //! All data row
-    QVector<QString> m_vAllDataRow;
 
 public slots:
     //! Set number of rows
@@ -192,7 +192,7 @@ public:
     //! Constructor
     explicit GenericParameterTable(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
         int nRows, const QString &sTargetVariable,  const QString &sVariableMethod,
-            const QString &sActionSetNumberOfPins, QWidget *parent=nullptr);
+            const QString &sActionSetNumberOfPins, const QString &setAutoScript, QWidget *parent=nullptr);
 
     //! Destructor
     ~GenericParameterTable();
@@ -234,6 +234,9 @@ private:
 public slots:
     //! Action button clicked
     void onActionButtonClicked();
+
+    //! Evaluate auto script
+    virtual void onEvaluateAutoScript();
 };
 
 #endif // GENERICPARAMETERTABLE_H

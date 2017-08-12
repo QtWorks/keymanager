@@ -12,11 +12,11 @@ DXForSTLFilePicker::DXForSTLFilePicker(Controller *pController, const QString &s
     BaseWidget(pController, parent), ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(sSTLVariable), m_sDXFVariable(sDXFVariable)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    setDefaultValue(sDefaultValue);
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
     connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF, Qt::UniqueConnection);
     connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL, Qt::UniqueConnection);
 }
@@ -58,7 +58,7 @@ void DXForSTLFilePicker::onSelectDXF()
 
 void DXForSTLFilePicker::applyDefaultValue()
 {
-    applyValue(m_sDefaultValue);
+    applyValue(defaultValue());
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -38,7 +38,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row1_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row1_shoulder_distance_qt+currentrow*qt_regular_row1_interpin_space_qt" setnumberofrows="qt_regular_row1_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW2" exclusive="false" set_variable="qt_regular_row2_cut_use_qt">
          <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
@@ -76,7 +76,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row2_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row2_shoulder_distance_qt+currentrow*qt_regular_row2_interpin_space_qt" setnumberofrows="qt_regular_row2_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW3" set_variable="qt_regular_row3_cut_use_qt">
          <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
@@ -114,7 +114,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row3_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row3_shoulder_distance_qt+currentrow*qt_regular_row3_interpin_space_qt" setnumberofrows=" qt_regular_row3_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW4" set_variable="qt_regular_row4_cut_use_qt">
          <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
@@ -152,7 +152,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row4_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row4_shoulder_distance_qt+currentrow*qt_regular_row4_interpin_space_qt" setnumberofrows="qt_regular_row4_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW5" set_variable="qt_regular_row5_cut_use_qt">
          <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
@@ -190,7 +190,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row5_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row5_shoulder_distance_qt+currentrow*qt_regular_row5_interpin_space_qt" setnumberofrows="qt_regular_row5_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW6" set_variable="qt_regular_row6_cut_use_qt">
          <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
@@ -228,7 +228,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="stl.mill" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter setnumberofrows="qt_regular_row6_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row6_shoulder_distance_qt+currentrow*qt_regular_row6_interpin_space_qt" setnumberofrows="qt_regular_row6_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
    <Block name="ROUND PUMP/TUBULAR" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;round_pump&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;) || (qt_type_of_key_qt == &quot;round_stl&quot;)">

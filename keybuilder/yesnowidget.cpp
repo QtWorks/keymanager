@@ -12,11 +12,11 @@ YesNoWidget::YesNoWidget(Controller *pController, const QString &sLabel, const Q
     BaseWidget(pController, parent), ui(new Ui::YesNoWidget)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    setDefaultValue(sDefaultValue);
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
     ui->label->setText(sLabel);
     connect(ui->yesRadioButton, &QRadioButton::toggled, this, &YesNoWidget::onRadioButtonToggled, Qt::UniqueConnection);
     ui->yesRadioButton->setProperty(PROPERTY_USER_VALUE, PROPERTY_YES);
@@ -35,7 +35,7 @@ YesNoWidget::~YesNoWidget()
 
 void YesNoWidget::applyDefaultValue()
 {
-    applyValue(m_sDefaultValue);
+    applyValue(defaultValue());
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -56,6 +56,6 @@ void YesNoWidget::onRadioButtonToggled(bool bClicked)
     if (pSender && bClicked)
     {
         QString sUserValue = pSender->property(PROPERTY_USER_VALUE).toString();
-        emit parameterValueChanged(m_sParameterVariable, sUserValue);
+        emit parameterValueChanged(parameterVariable(), sUserValue);
     }
 }

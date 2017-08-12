@@ -12,11 +12,11 @@ FilePickerWidget::FilePickerWidget(Controller *pController, const QString &sLabe
     BaseWidget(pController, parent), ui(new Ui::FilePickerWidget), m_sFileExtension(sFileExtension)
 {
     ui->setupUi(this);
-    m_sDefaultValue = sDefaultValue;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
-    m_sAutoScript = sAutoScript;
-    m_sEnabledCondition = sEnabledCondition;
+    setDefaultValue(sDefaultValue);
+    if (defaultValue().isEmpty())
+        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+    setAutoScript(sAutoScript);
+    setEnabledCondition(sEnabledCondition);
     ui->label->setText(sLabel);
     connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked, Qt::UniqueConnection);
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::textChanged, Qt::UniqueConnection);
@@ -57,7 +57,7 @@ void FilePickerWidget::setExtension(const QString &sExtenion)
 
 void FilePickerWidget::applyDefaultValue()
 {
-    applyValue(m_sDefaultValue);
+    applyValue(defaultValue());
 }
 
 void FilePickerWidget::applyValue(const QString &sValue)
@@ -69,5 +69,5 @@ void FilePickerWidget::applyValue(const QString &sValue)
 
 void FilePickerWidget::onFilePickerTextChanged()
 {
-    emit parameterValueChanged(m_sParameterVariable, ui->lineEdit->text());
+    emit parameterValueChanged(parameterVariable(), ui->lineEdit->text());
 }
