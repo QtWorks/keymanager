@@ -32,7 +32,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row1_linked_qt=&amp;YES&amp;" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -70,7 +70,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row2_linked_qt=&amp;YES&amp;" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row2_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -108,7 +108,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row3_linked_qt=&amp;YES&amp;" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row3_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -146,7 +146,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row4_linked_qt=&amp;YES&amp;" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row4_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -184,7 +184,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row5_linked_qt=&amp;YES&amp;" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row5_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
@@ -222,7 +222,7 @@
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row6_linked_qt=&amp;YES&amp;" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row6_cut_to_use_qt" value="stl_mill">
                 <Parameter name="BROWSE FOR A STL" type="string" default="stl.mill" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
