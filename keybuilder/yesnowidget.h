@@ -18,7 +18,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit YesNoWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent);
+    explicit YesNoWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent);
 
     //! Destructor
     virtual ~YesNoWidget();

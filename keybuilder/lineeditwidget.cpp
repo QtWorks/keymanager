@@ -10,8 +10,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::LineEditWidget)
+LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
+    BaseWidget(pController, parent), ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;

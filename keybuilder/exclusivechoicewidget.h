@@ -18,7 +18,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit ExclusiveChoiceWidget(const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
+    explicit ExclusiveChoiceWidget(Controller *pController, const QStringList &lLabels, const QStringList &lValues, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~ExclusiveChoiceWidget();

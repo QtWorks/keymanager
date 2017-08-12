@@ -5,13 +5,15 @@
 // Application
 #include "genericparametertable.h"
 #include "ui_genericparametertable.h"
+#include "controller.h"
 #include "parametermgr.h"
 #include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
-GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                                       int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QObject *parent) : QAbstractItemModel(parent)
+GenericParameterTableModel::GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
+    int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent) : QAbstractItemModel(parent),
+    m_pController(pController)
 {
     QStringList lDefaultValues;
     if (sDefaultValue.contains(","))
@@ -37,6 +39,11 @@ GenericParameterTableModel::GenericParameterTableModel(const QStringList &lColum
     m_nEnabledRows = nRows;
     m_sTargetVariable = sTargetVariable;
     m_sVariableMethod = sVariableMethod;
+    m_sActionSetNumberOfPins = sActionSetNumberOfPins;
+    if (!m_sActionSetNumberOfPins.isEmpty())
+    {
+        processActionSetNumberOfPins(m_sActionSetNumberOfPins);
+    }
     m_vData.resize(nRows*nColumns);
 
     for (int i=0; i<nRows; i++)
@@ -242,6 +249,25 @@ QString GenericParameterTableModel::getFormattedVariableName(const QString &sVar
 
 //-------------------------------------------------------------------------------------------------
 
+void GenericParameterTableModel::processActionSetNumberOfPins(const QString &sActionSetNumberOfPins)
+{
+    // Retrieve parameter
+    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sActionSetNumberOfPins);
+    if (pParameter != nullptr)
+    {
+        connect(pParameter, &Parameter::parameterValueChanged, this, &GenericParameterTableModel::onSetNumberOfRows, Qt::UniqueConnection);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue)
+{
+    qDebug() << "NEED TO SET NUMBER OF ROWS TO: " << sParameterValue;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 ItemDelegate::ItemDelegate(QObject *parent) : QItemDelegate(parent)
 {
 }
@@ -293,8 +319,9 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 
 //-------------------------------------------------------------------------------------------------
 
-GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                             int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent) : BaseWidget(parent),  ui(new Ui::GenericParameterTable)
+GenericParameterTable::GenericParameterTable(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
+    int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QWidget *parent) :
+    BaseWidget(pController, parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);
@@ -312,7 +339,7 @@ GenericParameterTable::GenericParameterTable(const QStringList &lColumnLabels, c
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Set model
-    m_pModel = new GenericParameterTableModel(lColumnLabels, lColumnVariables, m_sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, this);
+    m_pModel = new GenericParameterTableModel(m_pController, lColumnLabels, lColumnVariables, m_sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, this);
     ui->tableView->setModel(m_pModel);
     connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged, Qt::UniqueConnection);
 

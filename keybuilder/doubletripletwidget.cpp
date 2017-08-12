@@ -5,8 +5,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleTripletWidget::DoubleTripletWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::DoubleTripletWidget)
+DoubleTripletWidget::DoubleTripletWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
+    BaseWidget(pController, parent), ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;

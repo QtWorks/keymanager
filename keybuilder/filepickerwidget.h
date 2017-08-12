@@ -19,7 +19,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit FilePickerWidget(const QString &sLabel, const QString &sFileExtension, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
+    explicit FilePickerWidget(Controller *pController, const QString &sLabel, const QString &sFileExtension, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~FilePickerWidget();

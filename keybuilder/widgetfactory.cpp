@@ -56,7 +56,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
     {
         QString sColumnLabels = xParameter.attributes()[PROPERTY_COLUMN_LABELS].simplified();
         QString sColumnVariables = xParameter.attributes()[PROPERTY_COLUMN_VARIABLES].simplified();
-
+        QString sActionSetNumberOfPins = xParameter.attributes()[ACTION_SET_NUMBER_OF_ROWS];
         if (!sColumnLabels.isEmpty() && !sColumnVariables.isEmpty())
         {
             QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
@@ -64,7 +64,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE];
             QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD];
             QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, pParentWidget);
+            GenericParameterTable *pGenericParameterTable = new GenericParameterTable(m_pController, sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, pParentWidget);
             pWidget = pGenericParameterTable;
 
             QHash<QString, Position> hParameterVariableHash = pGenericParameterTable->parameterVariableHashTable();
@@ -80,7 +80,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
             if (sParameterUI == WIDGET_LINE_EDIT)
             {
-                LineEditWidget *pLineEdit = new LineEditWidget(pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                LineEditWidget *pLineEdit = new LineEditWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 if (pParameter->type() == PROPERTY_DOUBLE)
                 {
                     QDoubleValidator *pValidator = new QDoubleValidator(0, 100, 3, this);
@@ -92,7 +92,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             if (sParameterUI == WIDGET_FILE_PICKER)
             {
                 QString sFileExtension = xParameter.attributes()[PROPERTY_FILE_EXTENSION];
-                FilePickerWidget *pFilePickerWidget = new FilePickerWidget(pParameter->name(), sFileExtension, pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                FilePickerWidget *pFilePickerWidget = new FilePickerWidget(m_pController, pParameter->name(), sFileExtension, pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 pWidget = pFilePickerWidget;
             }
             else
@@ -100,7 +100,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             {
                 QString sParameterSTLVariable = xParameter.attributes()[PROPERTY_STL_VARIABLE].simplified();
                 QString sParameterDXFVariable = xParameter.attributes()[PROPERTY_DXF_VARIABLE].simplified();
-                DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(pParameter->defaultValue(), sParameterSTLVariable, sParameterDXFVariable, pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                DXForSTLFilePicker *pFilePickerWidget = new DXForSTLFilePicker(m_pController, pParameter->defaultValue(), sParameterSTLVariable, sParameterDXFVariable, pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 pWidget = pFilePickerWidget;
             }
             else
@@ -111,20 +111,20 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
 
                 if (!sLabels.isEmpty() && !sValues.isEmpty())
                 {
-                    ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(sLabels.split(","), sValues.split(","), pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                    ExclusiveChoiceWidget *pExclusiveChoiceWidet = new ExclusiveChoiceWidget(m_pController, sLabels.split(","), sValues.split(","), pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                     pWidget = pExclusiveChoiceWidet;
                 }
             }
             else
             if (sParameterUI == WIDGET_DOUBLE_TRIPLET)
             {
-                DoubleTripletWidget *pTriplet = new DoubleTripletWidget(pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                DoubleTripletWidget *pTriplet = new DoubleTripletWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 pWidget = pTriplet;
             }
             else
             if (sParameterUI == WIDGET_YES_NO)
             {
-                YesNoWidget *pYesNoWidget = new YesNoWidget(pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
+                YesNoWidget *pYesNoWidget = new YesNoWidget(m_pController, pParameter->name(), pParameter->defaultValue(), pParameter->autoScript(), pParameter->enabledCondtion(), pParentWidget);
                 pWidget = pYesNoWidget;
             }
         }
@@ -132,7 +132,6 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
 
     if (pWidget != nullptr)
     {
-        pWidget->setController(m_pController);
         pWidget->setParameterVariable(sParameterVariable);
         m_hWidgetHash[sParameterVariable] = pWidget;
 

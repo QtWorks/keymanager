@@ -5,10 +5,10 @@
 
 //-------------------------------------------------------------------------------------------------
 
-BaseWidget::BaseWidget(QWidget *parent) : QWidget(parent),
-    m_pController(nullptr), m_sDefaultValue(""), m_sParameterVariable(""), m_sAutoScript("")
+BaseWidget::BaseWidget(Controller *pController, QWidget *parent) : QWidget(parent),
+    m_pController(pController), m_sDefaultValue(""), m_sParameterVariable(""), m_sAutoScript("")
 {
-
+    connect(this, &BaseWidget::parameterValueChanged, m_pController, &Controller::onParameterValueChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -23,14 +23,6 @@ BaseWidget::~BaseWidget()
 Controller *BaseWidget::controller() const
 {
     return m_pController;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void BaseWidget::setController(Controller *pController)
-{
-    m_pController = pController;
-    connect(this, &BaseWidget::parameterValueChanged, m_pController, &Controller::onParameterValueChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

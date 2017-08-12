@@ -9,6 +9,7 @@
 
 // Application
 #include "basewidget.h"
+class Controller;
 
 typedef struct P {
     int column;
@@ -29,8 +30,8 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    GenericParameterTableModel(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-        int nRows, const QString &sTargetVariable, const QString &sVariableMethod, QObject *parent=nullptr);
+    GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
+        int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent=nullptr);
 
     //! Destructor
     virtual ~GenericParameterTableModel();
@@ -92,7 +93,13 @@ private:
     //! Get formatted variable name
     static QString getFormattedVariableName(const QString &sVariableMethod, const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
 
+    //! Process action set number of pins
+    void processActionSetNumberOfPins(const QString &sActionSetNumberOfPins);
+
 private:
+    //! Controller
+    Controller *m_pController;
+
     //! Column labels
     QStringList m_lColumnLabels;
 
@@ -120,11 +127,18 @@ private:
     //! Variable method
     QString m_sVariableMethod;
 
+    //! Action set number of pins
+    QString m_sActionSetNumberOfPins;
+
     //! Data
     QVector<double> m_vData;
 
     //! QHash variable/(row, column)
     QHash<QString, Position> m_hHashTable;
+
+public slots:
+    //! Set number of rows
+    void onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue);
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -173,8 +187,9 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit GenericParameterTable(const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-        int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, QWidget *parent=nullptr);
+    explicit GenericParameterTable(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
+        int nRows, const QString &sTargetVariable,  const QString &sVariableMethod,
+            const QString &sActionSetNumberOfPins, QWidget *parent=nullptr);
 
     //! Destructor
     ~GenericParameterTable();

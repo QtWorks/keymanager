@@ -18,7 +18,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit BaseWidget(QWidget *parent=nullptr);
+    explicit BaseWidget(Controller *pController, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~BaseWidget();
@@ -29,9 +29,6 @@ public:
 
     //! Return controller
     Controller *controller() const;
-
-    //! Set controller
-    void setController(Controller *pController);
 
     //! Return default value
     const QString &defaultValue() const;

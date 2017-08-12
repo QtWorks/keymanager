@@ -8,8 +8,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-YesNoWidget::YesNoWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
-    BaseWidget(parent), ui(new Ui::YesNoWidget)
+YesNoWidget::YesNoWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
+    BaseWidget(pController, parent), ui(new Ui::YesNoWidget)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;

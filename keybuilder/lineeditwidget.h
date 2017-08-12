@@ -23,7 +23,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit LineEditWidget(const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
+    explicit LineEditWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent=nullptr);
 
     //! Destructor
     virtual ~LineEditWidget();

@@ -8,8 +8,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-FilePickerWidget::FilePickerWidget(const QString &sLabel, const QString &sFileExtension, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) : BaseWidget(parent),
-    ui(new Ui::FilePickerWidget), m_sFileExtension(sFileExtension)
+FilePickerWidget::FilePickerWidget(Controller *pController, const QString &sLabel, const QString &sFileExtension, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
+    BaseWidget(pController, parent), ui(new Ui::FilePickerWidget), m_sFileExtension(sFileExtension)
 {
     ui->setupUi(this);
     m_sDefaultValue = sDefaultValue;
