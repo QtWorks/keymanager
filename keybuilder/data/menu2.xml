@@ -14,28 +14,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row1_cut_to_use_qt" type="string" default="prism_cut" />
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row1_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row1_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row1_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row1_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row1_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row1_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" set_variable="qt_regular_row1_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row1_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row1_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row1_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row1_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row1_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" set_variable="qt_regular_row1_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row1_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -52,28 +52,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row2_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row2_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row2_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row2_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row2_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row2_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row2_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row2_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row2_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row2_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row2_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row2_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" set_variable="qt_regular_row2_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row2_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row2_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row2_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row2_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row2_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row2_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row2_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row2_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" set_variable="qt_regular_row2_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row2_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row2_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row2_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row2_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row2_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -90,28 +90,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row3_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row3_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row3_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row3_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row3_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row3_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row3_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row3_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row3_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row3_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row3_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row3_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" set_variable="qt_regular_row3_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row3_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row3_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row3_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row3_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row3_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row3_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row3_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row3_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" set_variable="qt_regular_row3_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row3_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row3_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row3_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row3_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row3_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -128,28 +128,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row4_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row4_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row4_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row4_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row4_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row4_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row4_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row4_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row4_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row4_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row4_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row4_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" set_variable="qt_regular_row4_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row4_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row4_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row4_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row4_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row4_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row4_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row4_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row4_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" set_variable="qt_regular_row4_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row4_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row4_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row4_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row4_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row4_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -166,28 +166,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row5_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row5_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row5_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row5_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row5_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row5_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row5_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row5_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row5_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row5_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row5_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row5_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" set_variable="qt_regular_row5_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row5_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row5_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row5_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row5_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row5_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row5_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row5_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row5_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" set_variable="qt_regular_row5_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row5_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row5_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row5_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row5_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row5_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
@@ -204,28 +204,28 @@
          <Block name="CHOOSE MILL SHAPE">
             <Parameter variable="qt_regular_row6_cut_to_use_qt" type="string"/>
             <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row6_cut_to_use_qt" value="prism_cut">
-               <Parameter name="ROOT WIDTH" type="double" variable="qt_regular_row6_prism_root_x_qt" ui="lineedit" />
-               <Parameter name="ROOT LENGTH" type="double" variable="qt_regular_row6_prism_root_y_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on X AXIS" type="double" variable="qt_regular_row6_prism_angle_x_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE on Y AXIS" type="double" variable="qt_regular_row6_prism_angle_y_qt" ui="lineedit" />
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row6_prism_height_qt" ui="lineedit" />
+               <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row6_prism_root_x_qt" ui="lineedit" />
+               <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row6_prism_root_y_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on X AXIS" type="double" default="90" variable="qt_regular_row6_prism_angle_x_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE on Y AXIS" type="double" default="90" variable="qt_regular_row6_prism_angle_y_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row6_prism_height_qt" ui="lineedit" />
             </Block>
             <Block name="CONICAL (LONG PROCESSING TIME)" variable="qt_regular_row6_cut_to_use_qt" value="cone_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row6_cone_height_qt" ui="lineedit" />
-               <Parameter name="ROOT DIAMETER" type="double" variable="qt_regular_row6_cone_bottom_diameter_qt" ui="lineedit" />
-               <Parameter name="MILL ANGLE" type="double" variable="qt_regular_row6_cone_angle_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row6_cone_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row6_cone_height_qt" ui="lineedit" />
+               <Parameter name="ROOT DIAMETER" type="double" default="1" variable="qt_regular_row6_cone_bottom_diameter_qt" ui="lineedit" />
+               <Parameter name="MILL ANGLE" type="double" default="90" variable="qt_regular_row6_cone_angle_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row6_cone_number_of_faces_qt" ui="lineedit" />
             </Block>
             <Block name="CYLINDER (FOR LASER)" variable="qt_regular_row6_cut_to_use_qt" value="laser_cut">
-               <Parameter name="MILL HEIGHT" type="double" variable="qt_regular_row6_laser_mill_height_qt" ui="lineedit" />
-               <Parameter name="DIAMETER" type="double" variable="qt_regular_row6_laser_mill_diameter_qt" ui="lineedit" />
-               <Parameter name="NUMBER OF FACES" type="int" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
+               <Parameter name="MILL HEIGHT" type="double" default="10" variable="qt_regular_row6_laser_mill_height_qt" ui="lineedit" />
+               <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row6_laser_mill_diameter_qt" ui="lineedit" />
+               <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="yesno" />
                <Parameter name="LINKED" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="yesno" />
-               <Parameter name="ROW ADDITION" type="double" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
+               <Parameter name="ROW ADDITION" type="double" default="0.5" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row6_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="stl.mill" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
