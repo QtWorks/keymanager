@@ -84,7 +84,7 @@ public:
     void resetColumnVariables(int iColumnIndex);
 
     //! Apply value
-    void applyValue(const QString &sValue);
+    void applyValue(const QString &sValue, int iTargetColumn=-1);
 
     //! Set value
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
@@ -100,14 +100,14 @@ private:
     //! Controller
     Controller *m_pController;
 
+    //! Default value
+    QString m_sDefaultValue;
+
     //! Column labels
     QStringList m_lColumnLabels;
 
     //! Column variables
     QStringList m_lColumnVariables;
-
-    //! Default values
-    QStringList m_lDefaultValues;
 
     //! Target row
     QString m_sTargetRow;
@@ -229,9 +229,6 @@ private:
     GenericParameterTableModel *m_pModel;
 
 public slots:
-    //! Number of active lever changed
-    void onNumActiveLeverChanged();
-
     //! Action button clicked
     void onActionButtonClicked();
 };

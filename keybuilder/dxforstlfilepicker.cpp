@@ -65,6 +65,6 @@ void DXForSTLFilePicker::applyDefaultValue()
 
 void DXForSTLFilePicker::applyValue(const QString &sValue)
 {
-    ui->dxfLineEdit->setText(m_sDefaultValue);
-    ui->stlLineEdit->setText(m_sDefaultValue);
+    ui->dxfLineEdit->setText(sValue);
+    ui->stlLineEdit->setText(sValue);
 }
