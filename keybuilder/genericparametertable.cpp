@@ -32,7 +32,6 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     m_lColumnVariables = lColumnVariables.mid(0, nColumns);
     m_sTargetRow = sTargetRow;
     m_nRows = nRows;
-    m_nActiveLever = nRows;
     m_nEnabledRows = nRows;
     m_sTargetVariable = sTargetVariable;
     m_sVariableMethod = sVariableMethod;
@@ -42,7 +41,8 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         processActionSetNumberOfPins(m_sActionSetNumberOfPins);
     }
     m_vData.resize(nRows*nColumns);
-
+    for (int i=0; i<lDefaultValues.size(); i++)
+        m_vAllDataRow << lDefaultValues[i];
     for (int i=0; i<nRows; i++)
     {
         for (int j=0; j<nColumns; j++)
@@ -55,6 +55,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
             m_hHashTable[sFormattedVariableName] = p;
         }
     }
+    connect(this, &GenericParameterTableModel::updateAll, this, &GenericParameterTableModel::onUpdateAll);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -106,7 +107,7 @@ QModelIndex GenericParameterTableModel::parent(const QModelIndex &) const
 int GenericParameterTableModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())
-        return m_nRows;
+        return m_nRows+1;
     return 0;
 }
 
@@ -126,7 +127,13 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
     if (index.isValid())
     {
         if (iRole == Qt::DisplayRole)
-            return m_vData[index.column()+index.row()*m_lColumnVariables.size()];
+        {
+            int iTargetIndex = index.row()-1;
+            if (iTargetIndex >= 0)
+                return m_vData[index.column()+iTargetIndex*m_lColumnVariables.size()];
+            else
+                return m_vAllDataRow[index.column()];
+        }
         else if (iRole == Qt::BackgroundColorRole)
             return (index.row()%2 == 0) ? QColor(Qt::white) : QColor(Qt::lightGray);
     }
@@ -139,13 +146,22 @@ bool GenericParameterTableModel::setData(const QModelIndex &index, const QVarian
 {
     if (index.isValid() && (iRole == Qt::EditRole))
     {
-        double dValue = vData.toDouble();
-        m_vData[index.column()+index.row()*m_lColumnVariables.size()] = dValue;
-        QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), index.row());
-        emit parameterValueChanged(sFormattedVariable, vData.toString());
-        emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+        QString sValue = vData.toString();
+        int iTargetIndex = index.row()-1;
+        if (iTargetIndex >= 0)
+        {
+            m_vData[index.column()+iTargetIndex*m_lColumnVariables.size()] = sValue;
+            QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), iTargetIndex);
+            emit parameterValueChanged(sFormattedVariable, vData.toString());
+            emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+        }
+        else
+        {
+            m_vAllDataRow[index.column()] = sValue;
+            emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+            emit updateAll(index.column());
+        }
         return true;
-
     }
 
     return false;
@@ -155,9 +171,22 @@ bool GenericParameterTableModel::setData(const QModelIndex &index, const QVarian
 
 QVariant GenericParameterTableModel::headerData(int section, Qt::Orientation eOrientation, int role) const
 {
-    if (eOrientation != Qt::Horizontal || role != Qt::DisplayRole)
-        return QAbstractItemModel::headerData(section, eOrientation, role);
-    return m_lColumnLabels[section];
+    if (role == Qt::DisplayRole)
+    {
+        if (eOrientation == Qt::Horizontal)
+        {
+            return m_lColumnLabels[section];
+        }
+        else
+            if (eOrientation == Qt::Vertical)
+            {
+                if (section == 0)
+                    return QString("ALL");
+                else return section;
+            }
+    }
+
+    return QAbstractItemModel::headerData(section, eOrientation, role);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -165,9 +194,6 @@ QVariant GenericParameterTableModel::headerData(int section, Qt::Orientation eOr
 Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 {
     Qt::ItemFlags flags = QAbstractItemModel::flags(index);
-    if (index.isValid() && (index.row() > (m_nActiveLever-1)))
-        flags &= (~Qt::ItemIsEnabled);
-
     return flags|Qt::ItemIsEditable;
 }
 
@@ -234,10 +260,10 @@ QString GenericParameterTableModel::getFormattedVariableName(const QString &sVar
         sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
     }
     else
-    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
-    {
-        sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(sTargetVariable, iRow);
-    }
+        if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+        {
+            sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(sTargetVariable, iRow);
+        }
     return sFormattedVariable;
 }
 
@@ -267,6 +293,18 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
         m_vData.resize(nRows*m_lColumnLabels.size());
         applyValue(m_sDefaultValue);
         endResetModel();
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTableModel::onUpdateAll(int iColumnIndex)
+{
+    for (int i=0; i<m_nRows; i++)
+    {
+        QModelIndex targetIndex = index(i+1, iColumnIndex, QModelIndex());
+        if (targetIndex.isValid())
+            setData(targetIndex, m_vAllDataRow[iColumnIndex], Qt::EditRole);
     }
 }
 
@@ -323,7 +361,7 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTable::GenericParameterTable(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-    int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QWidget *parent) :
+                                             int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QWidget *parent) :
     BaseWidget(pController, parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI

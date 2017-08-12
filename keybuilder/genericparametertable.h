@@ -72,7 +72,7 @@ public:
     virtual bool setData(const QModelIndex &index, const QVariant &, int iRole=Qt::EditRole);
 
     //! Return header data
-    virtual QVariant  headerData(int section, Qt::Orientation eOrientation, int iRole=Qt::DisplayRole) const;
+    virtual QVariant headerData(int section, Qt::Orientation eOrientation, int iRole=Qt::DisplayRole) const;
 
     //! Return flags
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
@@ -112,9 +112,6 @@ private:
     //! Number of rows
     int m_nRows;
 
-    //! Number of active lever
-    int m_nActiveLever;
-
     //! Number of enabled rows
     int m_nEnabledRows;
 
@@ -128,14 +125,20 @@ private:
     QString m_sActionSetNumberOfPins;
 
     //! Data
-    QVector<double> m_vData;
+    QVector<QString> m_vData;
 
     //! QHash variable/(row, column)
     QHash<QString, Position> m_hHashTable;
 
+    //! All data row
+    QVector<QString> m_vAllDataRow;
+
 public slots:
     //! Set number of rows
     void onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue);
+
+    //! Update all
+    void onUpdateAll(int iColumnIndex);
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -144,6 +147,9 @@ signals:
 
     //! Parameter value changed
     void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
+
+    //! Update all
+    void updateAll(int iColumnIndex);
 };
 
 class ItemDelegate : public QItemDelegate
