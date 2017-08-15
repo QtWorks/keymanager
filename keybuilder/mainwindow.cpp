@@ -11,6 +11,9 @@
 #include "collapsibleblock.h"
 #include "parametermgr.h"
 #include <src/stlwindow.h>
+#define CREATE_KEY_TAB 1
+#define USE_EXISTING_KEY_TAB 2
+#define VISUALIZE_STL_TAB 5
 
 //-------------------------------------------------------------------------------------------------
 
@@ -28,6 +31,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Add STL Window
     ui->stlViewerLayout->addWidget(new STLWindow);
+
+    // Page navigation
+    connect(ui->createKeyButton, &QPushButton::clicked, this, &MainWindow::onCreateKeyClicked);
+    connect(ui->useExistingKeyButton, &QPushButton::clicked, this, &MainWindow::onUseExistingKeyClicked);
+    connect(ui->visualizeSTLButton, &QPushButton::clicked, this, &MainWindow::onVisualizeSTLClicked);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -123,4 +131,25 @@ void MainWindow::onImportParametersFromTXT()
     QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
     if (!sInputFileName.isEmpty())
         m_pController->importParametersFromTXT(sInputFileName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onCreateKeyClicked()
+{
+    ui->tabWidget->setCurrentIndex(CREATE_KEY_TAB);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onUseExistingKeyClicked()
+{
+    ui->tabWidget->setCurrentIndex(USE_EXISTING_KEY_TAB);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onVisualizeSTLClicked()
+{
+    ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
 }

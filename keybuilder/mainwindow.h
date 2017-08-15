@@ -56,6 +56,16 @@ public slots:
 
     //! Import parameters from TXT
     void onImportParametersFromTXT();
+
+    //! Create key
+    void onCreateKeyClicked();
+
+    //! Use existing key
+    void onUseExistingKeyClicked();
+
+    //! Visualize STL
+    void onVisualizeSTLClicked();
+
 };
 
 #endif // MAINWINDOW_H
