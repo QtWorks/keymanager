@@ -13,6 +13,7 @@ class CollapsibleStack;
 class CollapsibleBlock;
 class Controller;
 class ParameterBlock;
+class BlockModel;
 
 class LayoutMgr : public QWidget
 {
@@ -54,8 +55,8 @@ protected:
     QVector<CollapsibleStack *> m_vStacks;
 
 private:
-    //! Add parameter block
-    CollapsibleBlock *addBlockToStack(const CXMLNode &xBlock);
+    //! Add block to stack
+    void addBlockToStack(CollapsibleBlock *pBlock);
 
 private:
     //! UI
@@ -78,6 +79,9 @@ private:
 
     //! Root block
     CollapsibleBlock *m_pRootCollapsibleBlock;
+
+    //! Block model
+    BlockModel *m_pBlockModel;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

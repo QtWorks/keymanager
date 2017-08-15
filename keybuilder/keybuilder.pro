@@ -80,7 +80,11 @@ SOURCES += main.cpp\
     yesnowidget.cpp \
     selectionmgr.cpp \
     intvalidator.cpp \
-    doublevalidator.cpp
+    doublevalidator.cpp \
+    blockmodel.cpp \
+    customheaderview.cpp \
+    headerobject.cpp \
+    about.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -107,7 +111,12 @@ HEADERS  += mainwindow.h \
     yesnowidget.h \
     selectionmgr.h \
     intvalidator.h \
-    doublevalidator.h
+    doublevalidator.h \
+    blockmodel.h \
+    helper.h \
+    customheaderview.h \
+    headerobject.h \
+    about.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -119,9 +128,12 @@ FORMS    += mainwindow.ui \
     doubletripletwidget.ui \
     genericparametertable.ui \
     dxforstlfilepicker.ui \
-    yesnowidget.ui
+    yesnowidget.ui \
+    headerobject.ui \
+    about.ui
 
-DISTFILES +=
+DISTFILES += \
+    icons/clear.png
 
 RESOURCES += \
     resources.qrc

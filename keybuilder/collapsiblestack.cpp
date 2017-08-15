@@ -7,6 +7,7 @@
 #include "collapsibleblock.h"
 #include "parameterblock.h"
 #include "constants.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ CollapsibleStack::CollapsibleStack(Controller *pController, QWidget *parent) : Q
 
 CollapsibleStack::~CollapsibleStack()
 {
-    qDebug() << "INFORMATION: DESTROY COLLAPSIBLE STACK";
+    logMessage("INFORMATION: DESTROY COLLAPSIBLE STACK");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -35,13 +36,14 @@ QVector<CollapsibleBlock *> CollapsibleStack::childBlocks() const
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *CollapsibleStack::addBlock(const CXMLNode &xBlock)
+void CollapsibleStack::addBlock(CollapsibleBlock *pBlock)
 {
-    CollapsibleBlock *pBlock = new CollapsibleBlock(xBlock, m_pController, this);
-    m_vBlocks << pBlock;
-    m_pLayout->addWidget(pBlock);
-    m_pLayout->setAlignment(pBlock, Qt::AlignTop);
-    return pBlock;
+    if (pBlock != nullptr)
+    {
+        m_vBlocks << pBlock;
+        m_pLayout->addWidget(pBlock);
+        m_pLayout->setAlignment(pBlock, Qt::AlignTop);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

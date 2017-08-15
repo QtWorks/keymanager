@@ -5,5 +5,7 @@
         <file>data/menu3.xml</file>
         <file>data/script_in.scad</file>
         <file>data/settings.xml</file>
+        <file>css/main.css</file>
+        <file>icons/clear.png</file>
     </qresource>
 </RCC>

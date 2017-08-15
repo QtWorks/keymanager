@@ -11,6 +11,7 @@
 #include "controller.h"
 #include "parametermgr.h"
 #include "selectionmgr.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -44,7 +45,7 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
 
 CollapsibleBlock::~CollapsibleBlock()
 {
-    qDebug() << "INFORMATION: DESTROY COLLAPSIBLE BLOCK";
+    logMessage("INFORMATION: DESTROY COLLAPSIBLE BLOCK");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -120,6 +121,8 @@ void CollapsibleBlock::addChildBlock(CollapsibleBlock *pBlock)
 
 void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 {
+    if (!bEnabled)
+        onClose(true);
     m_pCaptionLabel->updateEnabledState(bEnabled);
 }
 
@@ -157,9 +160,29 @@ void CollapsibleBlock::select(bool bSelect)
 
 //-------------------------------------------------------------------------------------------------
 
-QVector<CollapsibleBlock *> CollapsibleBlock::childBlocks() const
+const QVector<CollapsibleBlock *> &CollapsibleBlock::childBlocks() const
 {
     return m_vChildBlocks;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+CollapsibleBlock *CollapsibleBlock::childBlock(int iRow) const
+{
+    if ((iRow < 0) || (iRow > (m_vChildBlocks.size()-1)))
+        return nullptr;
+    return m_vChildBlocks[iRow];
+}
+
+//-------------------------------------------------------------------------------------------------
+
+int CollapsibleBlock::row() const
+{
+    if (m_pParentBlock != nullptr)
+    {
+        return m_pParentBlock->childBlocks().indexOf(const_cast<CollapsibleBlock *>(this));
+    }
+    return -1;
 }
 
 //-------------------------------------------------------------------------------------------------

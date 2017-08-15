@@ -69,16 +69,16 @@ void CaptionLabel::updateEnabledState(bool bEnabled)
 
 void CaptionLabel::paintEvent(QPaintEvent *e)
 {
+    QWidget::paintEvent(e);
     QPainter p(this);
-    QColor paintColor("lightblue");
+    QColor paintColor("#B1B1B1");
     if (!m_bIsEnabled)
-        paintColor.setNamedColor("lightgray");
+        paintColor.setNamedColor("red");
     else {
         if (m_bIsCurrent)
             paintColor.setNamedColor("lightgreen");
     }
     p.fillRect(e->rect(), paintColor);
-    QWidget::paintEvent(e);
 }
 
 //-------------------------------------------------------------------------------------------------

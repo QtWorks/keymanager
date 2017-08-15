@@ -41,7 +41,13 @@ public:
     void select(bool bSelect);
 
     //! Return child blocks
-    QVector<CollapsibleBlock *> childBlocks() const;
+    const QVector<CollapsibleBlock *> &childBlocks() const;
+
+    //! Return child block at index
+    CollapsibleBlock *childBlock(int iRow) const;
+
+    //! Return position within parent
+    int row() const;
 
     //! Return parent block
     CollapsibleBlock *parentBlock() const;

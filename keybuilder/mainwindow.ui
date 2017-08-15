@@ -17,8 +17,11 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {width: 128px; height: 48px; font: 14px;}</string>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -27,44 +30,6 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="6" column="0">
-           <widget class="QPushButton" name="importParametersButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>IMPORT PARAMETERS FROM TXT</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPushButton" name="exportToSCADButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>EXPORT TO SCAD</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="useExistingKeyButton">
             <property name="minimumSize">
@@ -84,8 +49,8 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QPushButton" name="visualizeSTLButton">
+          <item row="4" column="0">
+           <widget class="QPushButton" name="exportToSCADButton">
             <property name="minimumSize">
              <size>
               <width>256</width>
@@ -99,7 +64,7 @@
              </size>
             </property>
             <property name="text">
-             <string>VISUALIZE STL</string>
+             <string>EXPORT TO SCAD</string>
             </property>
            </widget>
           </item>
@@ -141,6 +106,44 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="visualizeSTLButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>VISUALIZE STL</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="importParametersButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>IMPORT PARAMETERS FROM TXT</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -150,21 +153,7 @@
         <string>Menu 1</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="openAllButtonMenu1">
-          <property name="text">
-           <string>OPEN ALL</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="closeAllButtonMenu1">
-          <property name="text">
-           <string>CLOSE ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
          <widget class="QScrollArea" name="scrollArea">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -175,7 +164,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>408</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
@@ -186,12 +175,30 @@
           </widget>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="clearAllButtonMenu1">
-          <property name="text">
-           <string>CLEAR ALL</string>
-          </property>
-         </widget>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="openAllButtonMenu1">
+            <property name="text">
+             <string>OPEN ALL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeAllButtonMenu1">
+            <property name="text">
+             <string>Close All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearAllButtonMenu1">
+            <property name="text">
+             <string>Clear All</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -200,7 +207,7 @@
         <string>Menu 2</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="3" column="0">
+        <item row="1" column="0">
          <widget class="QScrollArea" name="scrollArea_2">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -211,7 +218,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>408</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_7">
@@ -223,25 +230,29 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QPushButton" name="openAllButtonMenu2">
-          <property name="text">
-           <string>OPEN ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="closeAllButtonMenu2">
-          <property name="text">
-           <string>CLOSE ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="clearAllButtonMenu2">
-          <property name="text">
-           <string>CLEAR ALL</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="openAllButtonMenu2">
+            <property name="text">
+             <string>Open All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeAllButtonMenu2">
+            <property name="text">
+             <string>Close All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearAllButtonMenu2">
+            <property name="text">
+             <string>Clear All</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -250,21 +261,7 @@
         <string>Menu 3</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="openAllButtonMenu3">
-          <property name="text">
-           <string>OPEN ALL</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="closeAllButtonMenu3">
-          <property name="text">
-           <string>CLOSE ALL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
          <widget class="QScrollArea" name="scrollArea_3">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -275,7 +272,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>408</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_10">
@@ -286,12 +283,30 @@
           </widget>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="clearAllButtonMenu3">
-          <property name="text">
-           <string>CLEAR ALL</string>
-          </property>
-         </widget>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="openAllButtonMenu3">
+            <property name="text">
+             <string>Open All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeAllButtonMenu3">
+            <property name="text">
+             <string>Close All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearAllButtonMenu3">
+            <property name="text">
+             <string>Clear All</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -311,7 +326,7 @@
              <x>0</x>
              <y>0</y>
              <width>756</width>
-             <height>495</height>
+             <height>468</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_12">

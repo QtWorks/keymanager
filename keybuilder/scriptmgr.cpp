@@ -7,6 +7,7 @@
 #include "scriptmgr.h"
 #include "parameter.h"
 #include "constants.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -15,7 +16,8 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     // Check input script file exists
     if (!QFileInfo::exists(sInputScripFile))
     {
-        qDebug() << "ERROR: " << sInputScripFile << " DOES NOT EXIST";
+        QString sMsg = QString("ERROR: %1 DOES NOT EXIST").arg(sInputScripFile);
+        logMessage(sMsg);
         return;
     }
 
@@ -47,7 +49,8 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
             QTextStream outStream(&outputScriptFile);
             outStream << sCurrentText;
             outputScriptFile.close();
-            qDebug() << "RESULT EXPORTED IN " << sOutputScriptFile;
+            QString sMsg = QString("INFORMATION: SCAD SCRIPT SUCCESSFULLY EXPORTED IN: %1").arg(sOutputScriptFile);
+            logMessage(sMsg);
         }
     }
 }

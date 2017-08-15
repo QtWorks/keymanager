@@ -38,7 +38,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Add block
-    CollapsibleBlock *addBlock(const CXMLNode &xBlock);
+    void addBlock(CollapsibleBlock *pBlock);
 
     //! Open all
     void openAll();

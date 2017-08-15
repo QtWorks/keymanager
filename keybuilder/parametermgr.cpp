@@ -5,13 +5,13 @@
 #include <QFile>
 #include <QCoreApplication>
 #include <QDir>
-#include <QDebug>
 
 // Application
 #include "parametermgr.h"
 #include "parameter.h"
 #include "constants.h"
 #include "scriptmgr.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -40,40 +40,44 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         QString sParameterName = xParameterNode.attributes()[PROPERTY_NAME].simplified();
         if (sParameterName.isEmpty())
         {
-            qDebug() << "WARNING: FOUND A PARAMETER WITH AN EMPTY NAME";
+            logMessage("WARNING: FOUND A PARAMETER WITH AN EMPTY NAME");
         }
         QString sParameterType = xParameterNode.attributes()[PROPERTY_TYPE].simplified();
         if (sParameterType.isEmpty())
         {
-            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED TYPE, DEFAULTING TO STRING";
+            logMessage("WARNING: FOUND A PARAMETER WITH AN UNDEFINED TYPE, DEFAULTING TO STRING");
             sParameterType = PROPERTY_STRING;
         }
         QString sParameterVariable = xParameterNode.attributes()[PROPERTY_VARIABLE].simplified();
         if (sParameterVariable.isEmpty() && (sParameterType != PROPERTY_TABLE))
         {
-            qDebug() << "ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE";
+            logMessage("ERROR: FOUND A PARAMETER WITH AN UNDEFINED VARIABLE");
             continue;
         }
         QString sDefaultValue = xParameterNode.attributes()[PROPERTY_DEFAULT].simplified();
         if (sDefaultValue.isEmpty())
         {
             sDefaultValue = PROPERTY_DEFAULT_VALUE;
-            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED DEFAULT VALUE. Defaulting to \"0\"";
+            QString sMsg = QString("WARNING: PARAMETER VARIABLE: %1 HAS NO DEFAULT VALUE. DEFAULTING TO 0").arg(sParameterVariable);
+            logMessage(sMsg);
         }
         QString sAutoScript = xParameterNode.attributes()[PROPERTY_AUTO].simplified();
         if (sAutoScript.isEmpty())
         {
-            qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED AUTO SCRIPT";
+            QString sMsg = QString("INFORMATION: PARAMETER VARIABLE: %1 HAS NO AUTOSCRIPT");
+            logMessage(sMsg);
         }
         QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI].simplified();
         if (sParameterUI.isEmpty())
         {
-            qDebug() << "WARNING: FOUND A PARAMETER WITH AN UNDEFINED UI";
+            QString sMsg = QString("WARNING: PARAMETER VARIABLE: %1 HAS NO DEFINED UI").arg(sParameterVariable);
+            logMessage(sMsg);
         }
         QString sEnabledCondition = xParameterNode.attributes()[PROPERTY_ENABLED].simplified();
         if (sEnabledCondition.isEmpty())
         {
-            qDebug() << "INFORMATION: FOUND A PARAMETER WITH AN UNDEFINED ENABLED CONDTION";
+            QString sMsg = QString("INFORMATION: PARAMETER VARIABLE: %1 HAS NO ENABLED CONDITION").arg(sParameterVariable);
+            logMessage(sMsg);
         }
 
         // Special case for table
@@ -146,7 +150,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
             }
         }
     }
-    else qDebug() << "ERROR: CAN'T PARSE PARAMETER TABLE";
+    else logMessage("ERROR: CAN'T PARSE PARAMETER TABLE");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -199,7 +203,8 @@ QString ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucc
         Parameter *pParameter = getParameterByVariableName(sParameterVariable);
         if (pParameter == nullptr)
         {
-            qDebug() << "ERROR: CAN'T EVALUATE " << sAutoScript << " SINCE VARIABLE " << sParameterVariable << " DOES NOT EXIST";
+            QString sMsg = QString("ERROR: CAN'T EVALUATE: %1 SINCE PARAMETER VARIABLE: %2 DOES NOT EXIST").arg(sAutoScript).arg(sParameterVariable);
+            logMessage(sMsg);
             bSuccess = false;
             break;
         }
@@ -223,39 +228,43 @@ QString ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSucc
 
 bool ParameterMgr::evaluateEnabledCondition(const QString &sEnabledCondition, bool &bSuccess)
 {
-    QVector<QString> vVariableNames = extractVariableNames(sEnabledCondition);
-    QString sMatchedScript = sEnabledCondition;
-    bSuccess = true;
-    foreach (QString sParameterVariable, vVariableNames)
+    if (!sEnabledCondition.isEmpty())
     {
-        Parameter *pParameter = getParameterByVariableName(sParameterVariable);
-        if (pParameter == nullptr)
+        QVector<QString> vVariableNames = extractVariableNames(sEnabledCondition);
+        QString sMatchedScript = sEnabledCondition;
+        bSuccess = true;
+        foreach (QString sParameterVariable, vVariableNames)
         {
-            qDebug() << "ERROR: CAN'T EVALUATE " << sEnabledCondition << " SINCE VARIABLE " << sParameterVariable << " DOES NOT EXIST";
+            Parameter *pParameter = getParameterByVariableName(sParameterVariable);
+            if (pParameter == nullptr)
+            {
+                QString sMsg = QString("ERROR: CAN'T EVALUATE: %1 SINCE PARAMETER VARIABLE: %2 DOES NOT EXIST").arg(sEnabledCondition).arg(sParameterVariable);
+                logMessage(sMsg);
+                bSuccess = false;
+                break;
+            }
+            if (pParameter->type() == PROPERTY_STRING)
+            {
+                sMatchedScript.replace("&quot;", "\"");
+                QString sQuotedString = QString("\"%1\"").arg(pParameter->value());
+                sMatchedScript.replace(sParameterVariable, sQuotedString);
+            }
+            else
+                sMatchedScript.replace(sParameterVariable, pParameter->value());
+        }
+        if (bSuccess)
+        {
             bSuccess = false;
-            break;
-        }
-        if (pParameter->type() == PROPERTY_STRING)
-        {
-            sMatchedScript.replace("&quot;", "\"");
-            QString sQuotedString = QString("\"%1\"").arg(pParameter->value());
-            sMatchedScript.replace(sParameterVariable, sQuotedString);
-        }
-        else
-            sMatchedScript.replace(sParameterVariable, pParameter->value());
-    }
-    if (bSuccess)
-    {
-        bSuccess = false;
-        QScriptEngine expression;
-        QScriptValue xResult = expression.evaluate(sMatchedScript);
-        if (xResult.isBoolean())
-        {
-            bSuccess = true;
-            return xResult.toBool();
+            QScriptEngine expression;
+            QScriptValue xResult = expression.evaluate(sMatchedScript);
+            if (xResult.isBoolean())
+            {
+                bSuccess = true;
+                return xResult.toBool();
+            }
         }
     }
-    return false;
+    return true;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -313,8 +322,6 @@ bool ParameterMgr::loadSettingsParameters()
 
     // Parse
     parseSingleBlock(m_xSettingsNode);
-    qDebug() << "INFORMATION: IDENTIFIED " << m_hParameters.size();
-
     return true;
 }
 
@@ -325,7 +332,11 @@ void ParameterMgr::setParameterValue(const QString &sParameterVariable, const QS
     Parameter *pParameter = m_hParameters[sParameterVariable];
     if (pParameter != nullptr)
         pParameter->setValue(sVariableValue);
-    else qDebug() << "ERROR: CAN'T FIND PARAMETER " << sParameterVariable;
+    else
+    {
+        QString sMsg = QString("ERROR: CAN'T FIND PARAMETER VARIABLE: %1").arg(sParameterVariable);
+        logMessage(sMsg);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -337,11 +348,11 @@ void ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
     QVector<QString> vUnReplacedVariables;
     if (!checkIfAllVariablesReplaced(sOuputFileName, vUnReplacedVariables))
     {
-        qDebug() << "COULD NOT REPLACE THE FOLLOWING VARIABLES: ";
+        logMessage("COULD NOT REPLACE THE FOLLOWING VARIABLES:");
         foreach (QString sUnReplacedVariable, vUnReplacedVariables)
-            qDebug() << sUnReplacedVariable << "\n";
+            logMessage(sUnReplacedVariable);
     }
-    else qDebug() << "ALL VARIABLES SUCCESSFULLY REPLACED";
+    else logMessage("INFORMATION: ALL VARIABLES SUCCESSFULLY REPLACED");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -362,7 +373,8 @@ void ParameterMgr::exportParametersToTXT(const QString &sOuputFileName)
             }
         }
         outputParametersFile.close();
-        qDebug() << "PARAMETERS EXPORTED TO: " << sOuputFileName;
+        QString sMsg = QString("INFORMATION: PARAMETERS EXPORTED TO TEXT FILE: %1").arg(sOuputFileName);
+        logMessage(sMsg);
     }
 }
 
@@ -389,13 +401,15 @@ void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
                 }
                 else
                 {
-                    qDebug() << "FOUND AN UNKNOWN VARIABLE: " << sParameterVariable;
+                    QString sMsg = QString("INFORMATION: %1 PARAMETER VARIABLE IS UNKNOWN").arg(sParameterVariable);
+                    logMessage(sMsg);
                 }
 
             }
         }
         inputParametersFile.close();
-        qDebug() << "PARAMETERS IMPORTED FROM: " << sInputFileName;
+        QString sMsg = QString("INFORMATION: PARAMETERS SUCCESSFULLY IMPORTED FROM: %1").arg(sInputFileName);
+        logMessage(sMsg);
     }
 }
 

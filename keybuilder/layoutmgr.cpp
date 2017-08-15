@@ -11,7 +11,8 @@
 #include "filepickerwidget.h"
 #include "parametermgr.h"
 #include "constants.h"
-#define NSTACKS 3
+#include "blockmodel.h"
+#define NSTACKS 2
 
 //-------------------------------------------------------------------------------------------------
 
@@ -20,6 +21,9 @@ LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
     m_pRootCollapsibleBlock(nullptr)
 {
     ui->setupUi(this);
+    m_pBlockModel = new BlockModel(this);
+    ui->treeView->setHeaderHidden(true);
+    ui->treeView->setModel(m_pBlockModel);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -33,21 +37,22 @@ LayoutMgr::~LayoutMgr()
 
 void LayoutMgr::buildMenu(const CXMLNode &xBlock)
 {
-    // Create root parameter block and root collapsible block (invisible)
+    // Process blocks
     m_pRootCollapsibleBlock = new CollapsibleBlock(xBlock, m_pController, this);
     m_pRootCollapsibleBlock->setVisible(false);
 
-    QVector<CXMLNode> vBlocks = xBlock.getNodesByTagName(TAG_BLOCK);
-    setSize(vBlocks.size());
-    foreach (CXMLNode xParameterBlock, vBlocks)
+    // Retrieve childs
+    QVector<CollapsibleBlock *> vRootChildBlocks = m_pRootCollapsibleBlock->childBlocks();
+    setSize(vRootChildBlocks.size());
+    foreach (CollapsibleBlock *pChildBlock, vRootChildBlocks)
     {
-        // Add block
-        CollapsibleBlock *pAddedBlock = addBlockToStack(xParameterBlock);
-
-        // Add child recursively
-        if (pAddedBlock != nullptr)
-            m_pRootCollapsibleBlock->addChildBlock(pAddedBlock);
+        // Add child block to stack
+        if (pChildBlock != nullptr)
+            addBlockToStack(pChildBlock);
     }
+
+    m_pBlockModel->setRootBlock(m_pRootCollapsibleBlock);
+    ui->treeView->expandAll();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -66,28 +71,29 @@ void LayoutMgr::setController(Controller *pController)
 
 //-------------------------------------------------------------------------------------------------
 
-CollapsibleBlock *LayoutMgr::addBlockToStack(const CXMLNode &xBlock)
+void LayoutMgr::addBlockToStack(CollapsibleBlock *pBlock)
 {
-    CollapsibleStack *pTargetStack = nullptr;
-    CollapsibleBlock *pAddedBlock = nullptr;
-    int iStackIndex = m_nBlocks/m_nBlockPerStack;
-    if (iStackIndex > (NSTACKS-1))
-        iStackIndex = NSTACKS-1;
-    if (iStackIndex < m_vStacks.size())
-        pTargetStack = m_vStacks[iStackIndex];
-    else
+    if (pBlock != nullptr)
     {
-        pTargetStack = new CollapsibleStack(m_pController, this);
-        m_vStacks << pTargetStack;
-        ui->horizontalLayout->addWidget(pTargetStack);
-        ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
+        CollapsibleStack *pTargetStack = nullptr;
+        int iStackIndex = m_nBlocks/m_nBlockPerStack;
+        if (iStackIndex > (NSTACKS-1))
+            iStackIndex = NSTACKS-1;
+        if (iStackIndex < m_vStacks.size())
+            pTargetStack = m_vStacks[iStackIndex];
+        else
+        {
+            pTargetStack = new CollapsibleStack(m_pController, this);
+            m_vStacks << pTargetStack;
+            ui->horizontalLayout->addWidget(pTargetStack);
+            ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);
+        }
+        if (pTargetStack != nullptr)
+        {
+            pTargetStack->addBlock(pBlock);
+            m_nBlocks++;
+        }
     }
-    if (pTargetStack != nullptr)
-    {
-        pAddedBlock = pTargetStack->addBlock(xBlock);
-        m_nBlocks++;
-    }
-    return pAddedBlock;
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -28,10 +28,17 @@ bool KeyBuilder::startup()
 
     // Show UI
     m_wMainWindow.setController(m_pController);
-    m_wMainWindow.show();
+    m_wMainWindow.showMaximized();
 
-    // This forces blocks to update their enabled state
-    m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, "regular");
+    // This hack forces blocks to update their enabled state
+    Parameter *pTypeOfKeyParameter = m_pController->parameterMgr()->getParameterByVariableName(VARIABLE_TYPE_OF_KEY);
+    if (pTypeOfKeyParameter != nullptr)
+    {
+        QString sDefaultValue = pTypeOfKeyParameter->defaultValue();
+        if (pTypeOfKeyParameter->value() == sDefaultValue)
+            m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, "");
+        else m_pController->parameterMgr()->setParameterValue(VARIABLE_TYPE_OF_KEY, sDefaultValue);
+    }
 
     return true;
 }

@@ -85,6 +85,13 @@ public:
     //! Add widget
     void addWidget(BaseWidget *pWidget);
 
+    //! Return number of parents
+    int nParents() const;
+
+protected:
+    //! Handle paint events
+    void paintEvent(QPaintEvent *e);
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots

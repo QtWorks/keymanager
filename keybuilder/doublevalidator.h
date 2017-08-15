@@ -2,9 +2,9 @@
 #define DOUBLEVALIDATOR_H
 
 // Qt
-#include <QDoubleValidator>
+#include <QValidator>
 
-class DoubleValidator : public QDoubleValidator
+class DoubleValidator : public QValidator
 {
     Q_OBJECT
 
@@ -25,6 +25,16 @@ public:
 
     //! Validate
     virtual QValidator::State validate(QString &sInput, int &iPos) const;
+
+private:
+    //! Min value
+    double m_dMin;
+
+    //! Max value
+    double m_dMax;
+
+    //! Decimals
+    int m_iDecimals;
 };
 
 #endif // DOUBLEVALIDATOR_H

@@ -10,6 +10,7 @@
 #include "constants.h"
 #include "basewidget.h"
 #include "genericparametertable.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -130,7 +131,8 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
             pParameter->setValue(sVariableValue);
         else
         {
-            qDebug() << "COULD NOT FIND ANY WIDGET OR PARAMETER ASSOCIATED WITH VARIABLE: " << sParameterVariable;
+            QString sMsg = QString("COULD NOT FIND ANY WIDGET OR PARAMETER ASSOCIATED WITH VARIABLE: %1").arg(sParameterVariable);
+            logMessage(sMsg);
         }
     }
 }

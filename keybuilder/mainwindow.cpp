@@ -16,7 +16,13 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
-{
+{    
+    // Set window title
+    setWindowTitle("tr(Key Manager (version 1.0))");
+
+    // Load CSS
+    loadCSS();
+
     // Setup UI
     ui->setupUi(this);
 
@@ -75,6 +81,21 @@ void MainWindow::setController(Controller *pController)
 
     // Build settings tab
     ui->menuSettingsLayoutMgr->buildMenu(m_pController->settingsNode());
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::loadCSS()
+{
+    // Set style sheet
+    QFile file(":/css/main.css");
+    if (file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QTextStream stream(&file);
+        QString sStyle = stream.readAll();
+        this->setStyleSheet(sStyle);
+        file.close();
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -4,14 +4,17 @@
 // Application
 #include "parameter.h"
 #include "constants.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
     const QString &sAutoScript, const QString &sEnabledCondition) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
-    m_sValue(sDefaultValue), m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
+    m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
 {
-
+    if (m_sDefaultValue.isEmpty())
+        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
+    m_sValue = m_sDefaultValue;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -19,7 +22,7 @@ Parameter::Parameter(const QString &sName, const QString &sType, const QString &
 //! Destructor
 Parameter::~Parameter()
 {
-    qDebug() << "INFORMATION: DESTROY PARAMETER";
+    logMessage("INFORMATION: DESTROY PARAMETER");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -75,9 +78,10 @@ const QString &Parameter::value() const
 
 void Parameter::setValue(const QString &sValue)
 {
-    qDebug() << "INFORMATION: SETTING VALUE " << sValue << " FOR PARAMETER (" << m_sName << "/" << m_sVariable << ")";
     if (sValue != m_sValue)
     {
+        QString sMsg = QString("INFORMATION: SETTING VALUE: %1 FOR VARIABLE: %2").arg(sValue).arg(m_sVariable);
+        logMessage(sMsg);
         m_sValue = sValue;
         emit parameterValueChanged(m_sVariable, sValue);
     }

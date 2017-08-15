@@ -36,7 +36,7 @@ const QString &BaseWidget::defaultValue() const
 
 void BaseWidget::setDefaultValue(const QString &sDefaultValue)
 {
-    m_sDefaultValue = sDefaultValue.simplified();
+    m_sDefaultValue = sDefaultValue;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ const QString &BaseWidget::parameterVariable() const
 
 void BaseWidget::setParameterVariable(const QString &sParameterVariable)
 {
-    m_sParameterVariable = sParameterVariable.simplified();
+    m_sParameterVariable = sParameterVariable;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -118,8 +118,11 @@ void BaseWidget::onEvaluateAutoScript()
 
 void BaseWidget::onEvaluateEnabledCondition()
 {
-    bool bSuccess = true;
-    bool bValue = m_pController->parameterMgr()->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
-    if (bSuccess)
-        setEnabled(bValue);
+    if (!m_sEnabledCondition.isEmpty())
+    {
+        bool bSuccess = true;
+        bool bValue = m_pController->parameterMgr()->evaluateEnabledCondition(m_sEnabledCondition, bSuccess);
+        if (bSuccess)
+            setEnabled(bValue);
+    }
 }

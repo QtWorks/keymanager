@@ -1,7 +1,6 @@
 // Qt
-#include <QLabel>
-#include <QLineEdit>
-#include <QRadioButton>
+#include <QPainter>
+#include <QPaintEvent>
 #include <QDebug>
 
 // Application
@@ -21,6 +20,7 @@
 #include "basewidget.h"
 #include "widgetfactory.h"
 
+static QVector<QColor> sBlockColors = QVector<QColor>() << Qt::red << Qt::green << Qt::yellow << Qt::blue << Qt::lightGray << Qt::cyan;
 //-------------------------------------------------------------------------------------------------
 
 ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
@@ -94,6 +94,20 @@ void ParameterBlock::addWidget(BaseWidget *pWidget)
         ui->verticalLayout->addWidget(pWidget);
         ui->verticalLayout->setAlignment(pWidget, Qt::AlignTop);
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+int ParameterBlock::nParents() const
+{
+    int nParents = 0;
+    CollapsibleBlock *pOwnerCollapsibleBlock = m_pOwnerCollapsibleBlock;
+    while (pOwnerCollapsibleBlock != nullptr)
+    {
+        nParents++;
+        pOwnerCollapsibleBlock = pOwnerCollapsibleBlock->parentBlock();
+    }
+    return nParents;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -261,4 +275,16 @@ void ParameterBlock::processEnabledCondition(const CXMLNode &xParameterBlock)
         if (!hParameters.isEmpty() && (hParameters.size() == vVariableNames.size()))
             setWatchedParameters(hParameters);
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::paintEvent(QPaintEvent *e)
+{
+    QWidget::paintEvent(e);
+    /* TEST ONLY
+    QPainter p(this);
+    QColor paintColor = sBlockColors[nParents()];
+    p.fillRect(e->rect(), paintColor);
+    */
 }

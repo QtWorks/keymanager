@@ -221,9 +221,6 @@ public:
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
 private:
-    //! Populate button area
-    void populateButtonArea();
-
     //! Reset column variables
     void resetColumnVariables(int iColumnIndex);
 
@@ -235,11 +232,11 @@ private:
     GenericParameterTableModel *m_pModel;
 
 public slots:
-    //! Action button clicked
-    void onActionButtonClicked();
-
     //! Evaluate auto script
     virtual void onEvaluateAutoScript();
+
+    //! Clear column
+    void onClearColumn(int iColumnIndex);
 };
 
 #endif // GENERICPARAMETERTABLE_H

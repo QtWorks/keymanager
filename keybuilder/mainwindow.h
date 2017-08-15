@@ -34,6 +34,9 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
+    //! Load CSS
+    void loadCSS();
+
 private:
     //! UI
     Ui::MainWindow *ui;

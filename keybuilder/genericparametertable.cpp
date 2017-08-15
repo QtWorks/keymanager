@@ -12,6 +12,8 @@
 #include "parametermgr.h"
 #include "constants.h"
 #include "intvalidator.h"
+#include "helper.h"
+#include "customheaderview.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -215,20 +217,6 @@ void GenericParameterTableModel::applyValue(const QString &sValue, int iTargetCo
         lValues = sValue.split(",");
     else lValues << m_sDefaultValue;
 
-    if ((iTargetColumn >= 0) && (iTargetColumn < lValues.size()))
-    {
-        QModelIndex targetIndex = index(0, iTargetColumn, QModelIndex());
-        if (targetIndex.isValid())
-            setData(targetIndex, lValues[iTargetColumn], Qt::EditRole);
-    }
-    else
-    for (int j=0; j<lValues.size(); j++)
-    {
-        QModelIndex targetIndex = index(0, j, QModelIndex());
-        if (targetIndex.isValid())
-            setData(targetIndex, lValues[j], Qt::EditRole);
-    }
-
     if (!lValues.isEmpty())
     {
         for (int i=0; i<m_nRows; i++)
@@ -260,7 +248,8 @@ void GenericParameterTableModel::setValue(const QString &sParameterVariable, con
         QModelIndex targetIndex = index(p.row, p.column, QModelIndex());
         if (targetIndex.isValid())
         {
-            qDebug() << "-------------------------------------------------------------------> SETTING VALUE: " << sVariableValue << " FOR VARIABLE: " << sParameterVariable;
+            QString sMsg = QString("SETTING VALUE: %1 FOR VARIABLE: %2").arg(sVariableValue).arg(sParameterVariable);
+            logMessage(sMsg);
             setData(targetIndex, sVariableValue, Qt::EditRole);
         }
     }
@@ -298,7 +287,8 @@ void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScri
                 Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
                 if (pParameter == nullptr)
                 {
-                    qDebug() << "ERROR: CAN'T EVALUATE " << sSingleScript << " SINCE VARIABLE " << sParameterVariable << " DOES NOT EXIST";
+                    QString sMsg = QString("ERROR: CAN'T EVALUATE: %1 SINCE VARIABLE: %2 DOES NOT EXIST").arg(sSingleScript).arg(sParameterVariable);
+                    logMessage(sMsg);
                     bSuccess = false;
                     break;
                 }
@@ -454,11 +444,14 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
     setDefaultValue(sDefaultValue);
     setAutoScript(sAutoScript);
 
+
     // Build item delegate
     ItemDelegate *pItemDelegate = new  ItemDelegate;
     ui->tableView->setItemDelegate(pItemDelegate);
 
     // Stretch columns
+    CustomHeaderView *pHeaderView = new CustomHeaderView(lColumnLabels.toVector());
+    ui->tableView->setHorizontalHeader(pHeaderView);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Set model
@@ -467,7 +460,7 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
     connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged, Qt::UniqueConnection);
 
     // Populate button area
-    populateButtonArea();
+    connect(pHeaderView, &CustomHeaderView::clearClicked, this, &GenericParameterTable::onClearColumn);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -507,36 +500,16 @@ void GenericParameterTable::setValue(const QString &sParameterVariable, const QS
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTable::populateButtonArea()
-{
-    QStringList lColumnLabels = m_pModel->columnLabels();
-    for (int i=0; i<lColumnLabels.size(); i++)
-    {
-        QString sButtonLabel = QString("CLEAR ALL %1").arg(lColumnLabels[i]);
-        QPushButton *pButton = new QPushButton(sButtonLabel, this);
-        pButton->setProperty(PROPERTY_USER_VALUE, i);
-        connect(pButton, &QPushButton::clicked, this, &onActionButtonClicked, Qt::UniqueConnection);
-        ui->buttonLayout->addWidget(pButton);
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void GenericParameterTable::onActionButtonClicked()
-{
-    QPushButton *pSender = dynamic_cast<QPushButton *>(sender());
-    if (pSender != nullptr)
-    {
-        int iTargetColumn = pSender->property(PROPERTY_USER_VALUE).toInt();
-        resetColumnVariables(iTargetColumn);
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void GenericParameterTable::onEvaluateAutoScript()
 {
     m_pModel->evaluateAutoScript(autoScript());
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTable::onClearColumn(int iColumnIndex)
+{
+    resetColumnVariables(iColumnIndex);
 }
 
 //-------------------------------------------------------------------------------------------------
