@@ -52,7 +52,7 @@ void CollapsibleStack::openAll()
 {
     foreach (CollapsibleBlock *pBlock, m_vBlocks)
         if (pBlock != nullptr)
-            pBlock->onClose(false);
+            pBlock->onOpenOrClose(false);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ void CollapsibleStack::closeAll()
 {
     foreach (CollapsibleBlock *pBlock, m_vBlocks)
         if (pBlock != nullptr)
-            pBlock->onClose(true);
+            pBlock->onOpenOrClose(true);
 }
 
 

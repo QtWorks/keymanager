@@ -64,7 +64,7 @@ signals:
     //-------------------------------------------------------------------------------------------------
 
     //! Open/Close
-    void openClose();
+    void openOrClose();
 
     //! Clear all
     void clearAll();

@@ -1,3 +1,6 @@
+// Qt
+#include <QDebug>
+
 // Application
 #include "blockmodel.h"
 #include "collapsibleblock.h"
@@ -50,6 +53,12 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
     {
         ParameterBlock *pParameterBlock = pBlock->parameterBlock();
         return (pParameterBlock != nullptr) ? pParameterBlock->name() : QVariant();
+    }
+
+    // UID role
+    if (role == UidRole)
+    {
+        return pBlock->uid();
     }
 
     return QVariant();
@@ -120,4 +129,18 @@ void BlockModel::setRootBlock(CollapsibleBlock *pRootBlock)
     beginResetModel();
     m_pRootBlock = pRootBlock;
     endResetModel();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BlockModel::onBlockStatusChanged(CollapsibleBlock *pBlock)
+{
+    if ((pBlock != nullptr) && (pBlock->parameterBlock() != nullptr) && (pBlock->parameterBlock()->isEnabled()))
+    {
+        QModelIndexList lIndexList = match(index(0, 0, QModelIndex()), UidRole, pBlock->uid(), 1, Qt::MatchRecursive);
+        if (!lIndexList.isEmpty())
+        {
+            emit highlightItem(lIndexList.first(), pBlock->isSelected());
+        }
+    }
 }

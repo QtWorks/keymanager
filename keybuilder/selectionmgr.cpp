@@ -35,10 +35,12 @@ void SelectionMgr::unselectBlock(CollapsibleBlock *pBlock)
     if ((pBlock != nullptr) && pBlock->isSelected())
     {
         pBlock->select(false);
-        pBlock->fullReset();
+        if (pBlock->parentBlock()->isExclusive())
+            pBlock->fullReset();
         QVector<CollapsibleBlock *> vChilds = pBlock->childBlocks();
         foreach (CollapsibleBlock *pChildBlock, vChilds)
             unselectBlock(pChildBlock);
+        emit blockStatusChanged(pBlock);
     }
 }
 
@@ -51,36 +53,33 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
         CollapsibleBlock *pParentBlock = pBlock->parentBlock();
         if (pParentBlock != nullptr)
         {
-            ParameterBlock *pParentParameterBlock = pParentBlock->parameterBlock();
-            if (pParentParameterBlock != nullptr)
+            bool bParentBlockIsExclusive = pParentBlock->isExclusive();
+            if (bParentBlockIsExclusive)
             {
-                bool bParentBlockIsExclusive = pParentParameterBlock->isExclusive();
-                if (bParentBlockIsExclusive)
+                foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
                 {
-                    foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
+                    if (pChildBlock == pBlock)
                     {
-                        if (pChildBlock == pBlock)
-                        {
-                            pChildBlock->select(true);
-                        }
-                        else
-                        {
-                            unselectBlock(pChildBlock);
-                        }
+                        pChildBlock->select(true);
+                    }
+                    else
+                    {
+                        unselectBlock(pChildBlock);
                     }
                 }
-                else
-                {
-                    if (pBlock->isSelected())
-                        unselectBlock(pBlock);
-                    else pBlock->select(true);
-                }
+            }
+            else
+            {
+                if (pBlock->isSelected())
+                    unselectBlock(pBlock);
+                else pBlock->select(true);
             }
             selectBlock(pParentBlock);
         }
         if (pBlock->isSelected())
             pBlock->processBlockVariable();
         else pBlock->fullReset();
+        emit blockStatusChanged(pBlock);
     }
 }
 
@@ -89,28 +88,30 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
 void SelectionMgr::onBlockSelected()
 {
     CollapsibleBlock *pSelectedBlock = dynamic_cast<CollapsibleBlock *>(sender());
-    if (pSelectedBlock != nullptr)
+    selectThisBlock(pSelectedBlock);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void SelectionMgr::selectThisBlock(CollapsibleBlock *pBlock)
+{
+    if (pBlock != nullptr)
     {
         // Retrieve parent block
-        CollapsibleBlock *pParentBlock = pSelectedBlock->parentBlock();
+        CollapsibleBlock *pParentBlock = pBlock->parentBlock();
         if (pParentBlock != nullptr)
         {
-            // Retrieve parent parameter block
-            ParameterBlock *pParentParameterBlock = pParentBlock->parameterBlock();
-            if (pParentParameterBlock != nullptr)
+            // Exclusive?
+            bool bParentIsExclusive = pParentBlock->isExclusive();
+            if (bParentIsExclusive)
+                // When we select a block, make sure block parents are also selected
+                selectBlock(pBlock);
+            else
             {
-                // Exclusive?
-                bool bParentIsExclusive = pParentParameterBlock->isExclusive();
-                if (bParentIsExclusive)
-                    // When we select a block, make sure block parents are also selected
-                    selectBlock(pSelectedBlock);
+                if (pBlock->isSelected())
+                    unselectBlock(pBlock);
                 else
-                {
-                    if (pSelectedBlock->isSelected())
-                        unselectBlock(pSelectedBlock);
-                    else
-                        selectBlock(pSelectedBlock);
-                }
+                    selectBlock(pBlock);
             }
         }
     }

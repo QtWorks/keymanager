@@ -14,7 +14,7 @@ CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     m_bIsCurrent(false)
 {
     ui->setupUi(this);
-    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::openClose, Qt::UniqueConnection);
+    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::openOrClose, Qt::UniqueConnection);
     connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::clearAll, Qt::UniqueConnection);
 }
 

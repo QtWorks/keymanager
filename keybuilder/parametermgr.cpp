@@ -64,7 +64,7 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         QString sAutoScript = xParameterNode.attributes()[PROPERTY_AUTO].simplified();
         if (sAutoScript.isEmpty())
         {
-            QString sMsg = QString("INFORMATION: PARAMETER VARIABLE: %1 HAS NO AUTOSCRIPT");
+            QString sMsg = QString("INFORMATION: PARAMETER VARIABLE: %1 HAS NO AUTOSCRIPT").arg(sParameterVariable);
             logMessage(sMsg);
         }
         QString sParameterUI = xParameterNode.attributes()[PROPERTY_UI].simplified();

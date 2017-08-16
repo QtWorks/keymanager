@@ -6,10 +6,10 @@
 #include "cxmlnode.h"
 #include "parametermgr.h"
 #include "widgetfactory.h"
-#include "selectionmgr.h"
 #include "constants.h"
 #include "basewidget.h"
 #include "genericparametertable.h"
+#include "collapsibleblock.h"
 #include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -21,8 +21,6 @@ Controller::Controller(QObject *parent) : QObject(parent)
     m_pParameterMgr->setController(this);
     m_pWidgetFactory = new WidgetFactory(this);
     m_pWidgetFactory->setController(this);
-    m_pSelectionMgr = new SelectionMgr(this);
-    m_pSelectionMgr->setController(this);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -72,13 +70,6 @@ ParameterMgr *Controller::parameterMgr() const
 WidgetFactory *Controller::widgetFactory() const
 {
     return m_pWidgetFactory;
-}
-
-//-------------------------------------------------------------------------------------------------
-
-SelectionMgr *Controller::selectionMgr() const
-{
-    return m_pSelectionMgr;
 }
 
 //-------------------------------------------------------------------------------------------------

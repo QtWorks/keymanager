@@ -1,6 +1,7 @@
 // Qt
 #include <QVBoxLayout>
 #include <QMouseEvent>
+#include <QUuid>
 #include <QDebug>
 
 // Application
@@ -16,7 +17,8 @@
 //-------------------------------------------------------------------------------------------------
 
 CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pController, QWidget *parent) : QWidget(parent),
-    m_pParameterBlock(nullptr), m_bIsClosed(true), m_bIsSelected(false), m_pParentBlock(nullptr), m_pController(pController)
+    m_pParameterBlock(nullptr), m_bIsClosed(true), m_bIsSelected(false), m_pParentBlock(nullptr), m_pController(pController),
+    m_sUID(QUuid::createUuid().toString())
 {
     // Set size policy
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -28,7 +30,6 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
     m_pCaptionLabel = new CaptionLabel(this);
     m_pLayout->addWidget(m_pCaptionLabel);
     connect(m_pCaptionLabel, &CaptionLabel::selectMe, this, &CollapsibleBlock::selectMe, Qt::UniqueConnection);
-    connect(this, &CollapsibleBlock::selectMe, m_pController->selectionMgr(), &SelectionMgr::onBlockSelected, Qt::UniqueConnection);
 
     // Create parameter block
     setParameterBlock(new ParameterBlock(xBlock, this, m_pController));
@@ -37,7 +38,7 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
 
     // Do connections
     connect(this, &CollapsibleBlock::closedStateChanged, m_pCaptionLabel, &CaptionLabel::onStateChanged, Qt::UniqueConnection);
-    connect(m_pCaptionLabel, &CaptionLabel::openClose, this, &CollapsibleBlock::onOpenClose, Qt::UniqueConnection);
+    connect(m_pCaptionLabel, &CaptionLabel::openOrClose, this, &CollapsibleBlock::onToggleOpenedState, Qt::UniqueConnection);
     connect(m_pCaptionLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll, Qt::UniqueConnection);
 }
 
@@ -70,13 +71,13 @@ void CollapsibleBlock::setParameterBlock(ParameterBlock *pParameterBlock)
         m_pLayout->setAlignment(m_pParameterBlock, Qt::AlignTop);
 
         // Check closed state
-        onClose(m_bIsClosed);
+        onOpenOrClose(m_bIsClosed);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::onClose(bool bClose, bool bRecurse)
+void CollapsibleBlock::onOpenOrClose(bool bClose, bool bRecurse)
 {
     if (m_pParameterBlock != nullptr)
     {
@@ -87,16 +88,16 @@ void CollapsibleBlock::onClose(bool bClose, bool bRecurse)
         {
             foreach (CollapsibleBlock *pBlock, m_vChildBlocks)
                 if (pBlock != nullptr)
-                    pBlock->onClose(bClose);
+                    pBlock->onOpenOrClose(bClose);
         }
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::onOpenClose()
+void CollapsibleBlock::onToggleOpenedState()
 {
-    onClose(!m_bIsClosed, false);
+    onOpenOrClose(!m_bIsClosed, false);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -122,7 +123,7 @@ void CollapsibleBlock::addChildBlock(CollapsibleBlock *pBlock)
 void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 {
     if (!bEnabled)
-        onClose(true);
+        onOpenOrClose(true);
     m_pCaptionLabel->updateEnabledState(bEnabled);
 }
 
@@ -208,26 +209,36 @@ CaptionLabel *CollapsibleBlock::captionLabel() const
 
 //-------------------------------------------------------------------------------------------------
 
+const QString &CollapsibleBlock::uid() const
+{
+    return m_sUID;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool CollapsibleBlock::isExclusive() const
+{
+    return (m_pParameterBlock != nullptr) ? m_pParameterBlock->isExclusive() : false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void CollapsibleBlock::setCurrentBlock(CollapsibleBlock *pBlock)
 {
     if ((m_pParentBlock != nullptr) || (m_pParameterBlock != nullptr))
     {
-        ParameterBlock *pParentParameterBlock = m_pParentBlock->parameterBlock();
-        if (pParentParameterBlock != nullptr)
-        {
-            // Is parent exclusive?
-            bool bParentIsExclusive = pParentParameterBlock->isExclusive();
+        // Is parent exclusive?
+        bool bParentIsExclusive = m_pParentBlock->isExclusive();
 
-            // Get owner collapsible block
-            QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
-            foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
-            {
-                if (bParentIsExclusive)
-                    pChildBlock->select(pChildBlock == pBlock);
-                else
-                    if (pChildBlock == pBlock)
-                        pChildBlock->select(!pChildBlock->isSelected());
-            }
+        // Get owner collapsible block
+        QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
+        foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
+        {
+            if (bParentIsExclusive)
+                pChildBlock->select(pChildBlock == pBlock);
+            else
+                if (pChildBlock == pBlock)
+                    pChildBlock->select(!pChildBlock->isSelected());
         }
     }
 }
@@ -253,28 +264,27 @@ void CollapsibleBlock::processBlockVariable()
                 // Retrieve parent
                 if (m_pParentBlock != nullptr)
                 {
-                    // Retrieve parent parameter block
-                    ParameterBlock *pParentParameterBlock = m_pParentBlock->parameterBlock();
-                    if (pParentParameterBlock != nullptr)
+                    // Exclusive?
+                    bool bParentIsExclusive = m_pParentBlock->isExclusive();
+                    if (!bParentIsExclusive)
                     {
-                        // Exclusive?
-                        bool bParentIsExclusive = pParentParameterBlock->isExclusive();
-                        if (!bParentIsExclusive)
-                        {
-                            QString sValue = pParameter->value();
-                            m_pController->parameterMgr()->setParameterValue(sSelectionVariable, sValue == PROPERTY_NO ? PROPERTY_YES : PROPERTY_NO);
-                        }
+                        QString sValue = pParameter->value();
+                        if (sValue == PROPERTY_NO)
+                            sValue = PROPERTY_YES;
                         else
+                            sValue = PROPERTY_NO;
+                        m_pController->parameterMgr()->setParameterValue(sSelectionVariable, sValue);
+                    }
+                    else
+                    {
+                        QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
+                        foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
                         {
-                            QVector<CollapsibleBlock *> vChildBlocks = m_pParentBlock->childBlocks();
-                            foreach (CollapsibleBlock *pChildBlock, vChildBlocks)
+                            ParameterBlock *pChildParameterBlock = pChildBlock->parameterBlock();
+                            if (pChildParameterBlock != nullptr)
                             {
-                                ParameterBlock *pChildParameterBlock = pChildBlock->parameterBlock();
-                                if (pChildParameterBlock != nullptr)
-                                {
-                                    QString sSelectionVariable = pChildParameterBlock->selectionVariable();
-                                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, pChildBlock == this ? PROPERTY_YES : PROPERTY_NO);
-                                }
+                                QString sSelectionVariable = pChildParameterBlock->selectionVariable();
+                                m_pController->parameterMgr()->setParameterValue(sSelectionVariable, pChildBlock == this ? PROPERTY_YES : PROPERTY_NO);
                             }
                         }
                     }

@@ -12,6 +12,7 @@
 #include "parametermgr.h"
 #include "constants.h"
 #include "blockmodel.h"
+#include "selectionmgr.h"
 #define NSTACKS 2
 
 //-------------------------------------------------------------------------------------------------
@@ -21,9 +22,18 @@ LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
     m_pRootCollapsibleBlock(nullptr)
 {
     ui->setupUi(this);
+
+    // Build selection mgr
+    m_pSelectionMgr = new SelectionMgr(this);
+
+    // Build block model
     m_pBlockModel = new BlockModel(this);
     ui->treeView->setHeaderHidden(true);
     ui->treeView->setModel(m_pBlockModel);
+    connect(m_pBlockModel, &BlockModel::highlightItem, this, &LayoutMgr::onHighlightItem);
+
+    // Listen to block status changed from selection mgr
+    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, m_pBlockModel, &BlockModel::onBlockStatusChanged);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -50,7 +60,7 @@ void LayoutMgr::buildMenu(const CXMLNode &xBlock)
         if (pChildBlock != nullptr)
             addBlockToStack(pChildBlock);
     }
-
+    connectBlocksToSelectionMgr(m_pRootCollapsibleBlock);
     m_pBlockModel->setRootBlock(m_pRootCollapsibleBlock);
     ui->treeView->expandAll();
 }
@@ -67,6 +77,7 @@ Controller *LayoutMgr::controller() const
 void LayoutMgr::setController(Controller *pController)
 {
     m_pController = pController;
+    m_pSelectionMgr->setController(m_pController);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -93,6 +104,18 @@ void LayoutMgr::addBlockToStack(CollapsibleBlock *pBlock)
             pTargetStack->addBlock(pBlock);
             m_nBlocks++;
         }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::connectBlocksToSelectionMgr(CollapsibleBlock *pBlock)
+{
+    if (pBlock != nullptr)
+    {
+        connect(pBlock, &CollapsibleBlock::selectMe, m_pSelectionMgr, &SelectionMgr::onBlockSelected, Qt::UniqueConnection);
+        foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
+            connectBlocksToSelectionMgr(pChildBlock);
     }
 }
 
@@ -131,3 +154,12 @@ void LayoutMgr::onClearAll()
     m_pRootCollapsibleBlock->onClearAll();
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onHighlightItem(const QModelIndex &index, bool bSelected)
+{
+    if (index.isValid())
+    {
+        ui->treeView->selectionModel()->setCurrentIndex(index, bSelected ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
+    }
+}

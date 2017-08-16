@@ -30,26 +30,7 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="0">
-           <widget class="QPushButton" name="useExistingKeyButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>USE EXISTING KEY</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
+          <item row="3" column="0">
            <widget class="QPushButton" name="exportToSCADButton">
             <property name="minimumSize">
              <size>
@@ -69,7 +50,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="createKeyButton">
+           <widget class="QPushButton" name="useExistingKeyButton">
             <property name="minimumSize">
              <size>
               <width>256</width>
@@ -83,30 +64,11 @@
              </size>
             </property>
             <property name="text">
-             <string>CREATE KEY</string>
+             <string>USE EXISTING KEY</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QPushButton" name="exportParametersButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>EXPORT PARAMETERS TO TXT</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
+          <item row="2" column="0">
            <widget class="QPushButton" name="visualizeSTLButton">
             <property name="minimumSize">
              <size>
@@ -125,7 +87,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="5" column="0">
            <widget class="QPushButton" name="importParametersButton">
             <property name="minimumSize">
              <size>
@@ -144,6 +106,44 @@
             </property>
            </widget>
           </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="exportParametersButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>EXPORT PARAMETERS TO TXT</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="createKeyButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>CREATE KEY</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -153,28 +153,6 @@
         <string>Menu 1</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="scrollArea">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>756</width>
-             <height>437</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="0">
-             <widget class="LayoutMgr" name="menu1LayoutMgr" native="true"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -200,6 +178,16 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0">
+         <widget class="LayoutMgr" name="menu1LayoutMgr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_3">
@@ -207,28 +195,6 @@
         <string>Menu 2</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="scrollArea_2">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_2">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>756</width>
-             <height>437</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_7">
-            <item row="2" column="0">
-             <widget class="LayoutMgr" name="menu2LayoutMgr" native="true"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
@@ -254,6 +220,16 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0">
+         <widget class="LayoutMgr" name="menu2LayoutMgr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_5">
@@ -261,28 +237,6 @@
         <string>Menu 3</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="scrollArea_3">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_3">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>756</width>
-             <height>437</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_10">
-            <item row="0" column="0">
-             <widget class="LayoutMgr" name="menu3LayoutMgr" native="true"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
@@ -308,6 +262,16 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0">
+         <widget class="LayoutMgr" name="menu3LayoutMgr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_6">
@@ -316,26 +280,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="0" column="0">
-         <widget class="QScrollArea" name="scrollArea_4">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_4">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>756</width>
-             <height>468</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_12">
-            <item row="0" column="0">
-             <widget class="LayoutMgr" name="menuSettingsLayoutMgr" native="true"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
+         <widget class="LayoutMgr" name="menuSettingsLayoutMgr" native="true"/>
         </item>
        </layout>
       </widget>

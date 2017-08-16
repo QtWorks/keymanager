@@ -14,6 +14,8 @@ class BlockModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
+    enum Roles {UidRole = Qt::UserRole+1};
+
     //-------------------------------------------------------------------------------------------------
     // Constructors and destructor
     //-------------------------------------------------------------------------------------------------
@@ -57,6 +59,22 @@ protected:
 
     //: Root block
     CollapsibleBlock *m_pRootBlock;
+
+public slots:
+    //-------------------------------------------------------------------------------------------------
+    // Slots
+    //-------------------------------------------------------------------------------------------------
+
+    //! Block status changed
+    void onBlockStatusChanged(CollapsibleBlock *pBlock);
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! Highlight item
+    void highlightItem(const QModelIndex &index, bool bSelected);
 };
 
 #endif // BLOCKMODEL_H

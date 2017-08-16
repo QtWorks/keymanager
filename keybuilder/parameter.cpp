@@ -11,9 +11,12 @@
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
     const QString &sAutoScript, const QString &sEnabledCondition) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
     m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
-{
+{    
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
+    if (m_sType == PROPERTY_BOOLEAN)
+        if ((m_sDefaultValue != PROPERTY_YES) && (m_sDefaultValue != PROPERTY_NO))
+            m_sDefaultValue = PROPERTY_NO;
     m_sValue = m_sDefaultValue;
 }
 

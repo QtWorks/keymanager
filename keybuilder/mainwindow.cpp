@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {    
     // Set window title
-    setWindowTitle("tr(Key Manager (version 1.0))");
+    setWindowTitle(tr("OFC3DKEY V.2.0.2017"));
 
     // Load CSS
     loadCSS();

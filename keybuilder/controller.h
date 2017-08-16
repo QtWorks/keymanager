@@ -11,7 +11,7 @@
 #include "iservice.h"
 class ParameterMgr;
 class WidgetFactory;
-class SelectionMgr;
+class CollapsibleBlock;
 
 class Controller : public QObject, public IService
 {
@@ -50,9 +50,6 @@ public:
     //! Return widget factory
     WidgetFactory *widgetFactory() const;
 
-    //! Return selection manager
-    SelectionMgr *selectionMgr() const;
-
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -78,9 +75,6 @@ private:
 
     //! Widget factory
     WidgetFactory *m_pWidgetFactory;
-
-    //! Selection manager
-    SelectionMgr *m_pSelectionMgr;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

@@ -30,13 +30,8 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
-public slots:
-    //-------------------------------------------------------------------------------------------------
-    // Slots
-    //-------------------------------------------------------------------------------------------------
-
-    //! A block was selected
-    void onBlockSelected();
+    //! Update block selected state
+    void selectThisBlock(CollapsibleBlock *pBlock);
 
 private:
     //! Unselect block
@@ -48,6 +43,22 @@ private:
 private:
     //! Controller
     Controller *m_pController;
+
+public slots:
+    //-------------------------------------------------------------------------------------------------
+    // Slots
+    //-------------------------------------------------------------------------------------------------
+
+    //! A block was selected
+    void onBlockSelected();
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! Block status changed
+    void blockStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif // SELECTIONMGR_H

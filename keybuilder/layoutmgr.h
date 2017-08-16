@@ -14,6 +14,7 @@ class CollapsibleBlock;
 class Controller;
 class ParameterBlock;
 class BlockModel;
+class SelectionMgr;
 
 class LayoutMgr : public QWidget
 {
@@ -58,6 +59,9 @@ private:
     //! Add block to stack
     void addBlockToStack(CollapsibleBlock *pBlock);
 
+    //! Connect blocks to selection mgr
+    void connectBlocksToSelectionMgr(CollapsibleBlock *pBlock);
+
 private:
     //! UI
     Ui::LayoutMgr *ui;
@@ -83,6 +87,9 @@ private:
     //! Block model
     BlockModel *m_pBlockModel;
 
+    //! Selection manager
+    SelectionMgr *m_pSelectionMgr;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -96,6 +103,9 @@ public slots:
 
     //! Clear all
     void onClearAll();
+
+    //! Highlight item
+    void onHighlightItem(const QModelIndex &index, bool bSelected);
 };
 
 #endif // LAYOUTMGR_H

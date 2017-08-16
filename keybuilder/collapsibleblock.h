@@ -58,6 +58,12 @@ public:
     //! Return label
     CaptionLabel *captionLabel() const;
 
+    //! Return uid
+    const QString &uid() const;
+
+    //! Exclusive?
+    bool isExclusive() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -109,8 +115,11 @@ private:
     //! Parent block
     CollapsibleBlock *m_pParentBlock;
 
-    // Controller
+    //! Controller
     Controller *m_pController;
+
+    //! Block uid
+    QString m_sUID;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -118,10 +127,10 @@ public slots:
     //-------------------------------------------------------------------------------------------------
 
     //! Close or open
-    void onClose(bool bClose, bool bRecurse=true);
+    void onOpenOrClose(bool bClose, bool bRecurse=true);
 
-    //! Toggle closed state
-    void onOpenClose();
+    //! Toggle opened state
+    void onToggleOpenedState();
 
     //! Update enabled state
     void onUpdateEnabledState(bool bEnabled);
