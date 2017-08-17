@@ -75,13 +75,10 @@ public:
     void addChildBlock(CollapsibleBlock *pBlock);
 
     //! Process block variable
-    void processBlockVariable();
+    void setBlockVariable();
 
     //! Reset block variable
     void resetBlockVariable();
-
-    //! Full reset
-    void fullReset();
 
 private:
     //! Set parameter block

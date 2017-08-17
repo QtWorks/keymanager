@@ -245,7 +245,7 @@ void CollapsibleBlock::setCurrentBlock(CollapsibleBlock *pBlock)
 
 //-------------------------------------------------------------------------------------------------
 
-void CollapsibleBlock::processBlockVariable()
+void CollapsibleBlock::setBlockVariable()
 {
     // Retrieve parameter block
     if (m_pParameterBlock != nullptr)
@@ -306,18 +306,6 @@ void CollapsibleBlock::resetBlockVariable()
         if (pParameter != nullptr)
             pParameter->resetToDefaultValue();
     }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void CollapsibleBlock::fullReset()
-{
-    resetBlockVariable();
-    if (m_pParameterBlock != nullptr)
-        m_pParameterBlock->clearAll();
-    foreach (CollapsibleBlock *pChildBlock, m_vChildBlocks)
-        if (pChildBlock != nullptr)
-            pChildBlock->fullReset();
 }
 
 //-------------------------------------------------------------------------------------------------

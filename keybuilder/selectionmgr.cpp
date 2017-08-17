@@ -35,8 +35,6 @@ void SelectionMgr::unselectBlock(CollapsibleBlock *pBlock)
     if ((pBlock != nullptr) && pBlock->isSelected())
     {
         pBlock->select(false);
-        if (pBlock->parentBlock()->isExclusive())
-            pBlock->fullReset();
         QVector<CollapsibleBlock *> vChilds = pBlock->childBlocks();
         foreach (CollapsibleBlock *pChildBlock, vChilds)
             unselectBlock(pChildBlock);
@@ -59,26 +57,20 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
                 foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
                 {
                     if (pChildBlock == pBlock)
-                    {
                         pChildBlock->select(true);
-                    }
                     else
-                    {
                         unselectBlock(pChildBlock);
-                    }
                 }
             }
             else
             {
                 if (pBlock->isSelected())
                     unselectBlock(pBlock);
-                else pBlock->select(true);
+                else
+                    pBlock->select(true);
             }
             selectBlock(pParentBlock);
         }
-        if (pBlock->isSelected())
-            pBlock->processBlockVariable();
-        else pBlock->fullReset();
         emit blockStatusChanged(pBlock);
     }
 }
@@ -104,14 +96,23 @@ void SelectionMgr::selectThisBlock(CollapsibleBlock *pBlock)
             // Exclusive?
             bool bParentIsExclusive = pParentBlock->isExclusive();
             if (bParentIsExclusive)
+            {
                 // When we select a block, make sure block parents are also selected
                 selectBlock(pBlock);
+                pBlock->setBlockVariable();
+            }
             else
             {
                 if (pBlock->isSelected())
+                {
                     unselectBlock(pBlock);
+                    pBlock->resetBlockVariable();
+                }
                 else
+                {
                     selectBlock(pBlock);
+                    pBlock->setBlockVariable();
+                }
             }
         }
     }
