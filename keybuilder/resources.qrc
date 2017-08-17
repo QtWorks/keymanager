@@ -8,5 +8,6 @@
         <file>css/main.css</file>
         <file>icons/clear.png</file>
         <file>icons/prohibited.svg</file>
+        <file>data/about.xml</file>
     </qresource>
 </RCC>

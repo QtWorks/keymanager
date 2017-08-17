@@ -85,7 +85,8 @@ SOURCES += main.cpp\
     customheaderview.cpp \
     headerobject.cpp \
     about.cpp \
-    utils.cpp
+    utils.cpp \
+    hometab.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -118,7 +119,8 @@ HEADERS  += mainwindow.h \
     customheaderview.h \
     headerobject.h \
     about.h \
-    utils.h
+    utils.h \
+    hometab.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -132,10 +134,10 @@ FORMS    += mainwindow.ui \
     dxforstlfilepicker.ui \
     yesnowidget.ui \
     headerobject.ui \
-    about.ui
+    about.ui \
+    hometab.ui
 
-DISTFILES += \
-    icons/clear.png
+DISTFILES +=
 
 RESOURCES += \
     resources.qrc
