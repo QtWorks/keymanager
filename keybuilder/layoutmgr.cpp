@@ -30,10 +30,11 @@ LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
     m_pBlockModel = new BlockModel(this);
     ui->treeView->setHeaderHidden(true);
     ui->treeView->setModel(m_pBlockModel);
-    connect(m_pBlockModel, &BlockModel::highlightItem, this, &LayoutMgr::onHighlightItem);
+    connect(m_pBlockModel, &BlockModel::highlightItem, this, &LayoutMgr::onHighlightItem, Qt::UniqueConnection);
 
     // Listen to block status changed from selection mgr
-    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, m_pBlockModel, &BlockModel::onBlockStatusChanged);
+    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, m_pBlockModel, &BlockModel::onBlockStatusChanged, Qt::UniqueConnection);
+    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, this, &LayoutMgr::onBlockStatusChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -161,5 +162,15 @@ void LayoutMgr::onHighlightItem(const QModelIndex &index, bool bSelected)
     if (index.isValid())
     {
         ui->treeView->selectionModel()->setCurrentIndex(index, bSelected ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onBlockStatusChanged(CollapsibleBlock *pBlock)
+{
+    if (pBlock != nullptr)
+    {
+        pBlock->setBlockVariable();
     }
 }

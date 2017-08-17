@@ -30,6 +30,7 @@ CaptionLabel::~CaptionLabel()
 void CaptionLabel::setCurrent(bool bCurrent)
 {
     m_bIsCurrent = bCurrent;
+    update();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -71,12 +72,15 @@ void CaptionLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
     QPainter p(this);
-    QColor paintColor("#B1B1B1");
-    if (!m_bIsEnabled)
-        paintColor.setNamedColor("red");
-    else {
+    QColor paintColor("#EEEEEE");
+    if (m_bIsEnabled)
+    {
         if (m_bIsCurrent)
             paintColor.setNamedColor("lightgreen");
+    }
+    else
+    {
+        paintColor.setNamedColor("#B1B1B1");
     }
     p.fillRect(e->rect(), paintColor);
 }

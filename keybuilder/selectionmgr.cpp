@@ -32,13 +32,13 @@ void SelectionMgr::setController(Controller *pController)
 
 void SelectionMgr::unselectBlock(CollapsibleBlock *pBlock)
 {
-    if ((pBlock != nullptr) && pBlock->isSelected())
+    if (pBlock != nullptr)
     {
         pBlock->select(false);
-        QVector<CollapsibleBlock *> vChilds = pBlock->childBlocks();
-        foreach (CollapsibleBlock *pChildBlock, vChilds)
-            unselectBlock(pChildBlock);
         emit blockStatusChanged(pBlock);
+        foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
+            if (pChildBlock != nullptr)
+                unselectBlock(pChildBlock);
     }
 }
 
@@ -46,32 +46,12 @@ void SelectionMgr::unselectBlock(CollapsibleBlock *pBlock)
 
 void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
 {
-    if ((pBlock != nullptr) && (!pBlock->isSelected()))
+    if (pBlock != nullptr)
     {
-        CollapsibleBlock *pParentBlock = pBlock->parentBlock();
-        if (pParentBlock != nullptr)
-        {
-            bool bParentBlockIsExclusive = pParentBlock->isExclusive();
-            if (bParentBlockIsExclusive)
-            {
-                foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
-                {
-                    if (pChildBlock == pBlock)
-                        pChildBlock->select(true);
-                    else
-                        unselectBlock(pChildBlock);
-                }
-            }
-            else
-            {
-                if (pBlock->isSelected())
-                    unselectBlock(pBlock);
-                else
-                    pBlock->select(true);
-            }
-            selectBlock(pParentBlock);
-        }
+        pBlock->select(true);
         emit blockStatusChanged(pBlock);
+        if (pBlock->parentBlock() != nullptr)
+            selectBlock(pBlock->parentBlock());
     }
 }
 
@@ -80,39 +60,30 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
 void SelectionMgr::onBlockSelected()
 {
     CollapsibleBlock *pSelectedBlock = dynamic_cast<CollapsibleBlock *>(sender());
-    selectThisBlock(pSelectedBlock);
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void SelectionMgr::selectThisBlock(CollapsibleBlock *pBlock)
-{
-    if (pBlock != nullptr)
+    if ((pSelectedBlock != nullptr) && (pSelectedBlock->isEnabled()))
     {
         // Retrieve parent block
-        CollapsibleBlock *pParentBlock = pBlock->parentBlock();
+        CollapsibleBlock *pParentBlock = pSelectedBlock->parentBlock();
         if (pParentBlock != nullptr)
         {
             // Exclusive?
             bool bParentIsExclusive = pParentBlock->isExclusive();
             if (bParentIsExclusive)
             {
-                // When we select a block, make sure block parents are also selected
-                selectBlock(pBlock);
-                pBlock->setBlockVariable();
+                foreach (CollapsibleBlock *pChildBlock, pParentBlock->childBlocks())
+                {
+                    if (pSelectedBlock == pChildBlock)
+                        selectBlock(pChildBlock);
+                    else
+                        unselectBlock(pChildBlock);
+                }
             }
             else
             {
-                if (pBlock->isSelected())
-                {
-                    unselectBlock(pBlock);
-                    pBlock->resetBlockVariable();
-                }
+                if (pSelectedBlock->isSelected())
+                    unselectBlock(pSelectedBlock);
                 else
-                {
-                    selectBlock(pBlock);
-                    pBlock->setBlockVariable();
-                }
+                    selectBlock(pSelectedBlock);
             }
         }
     }

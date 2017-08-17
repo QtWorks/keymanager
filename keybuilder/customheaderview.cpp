@@ -13,7 +13,7 @@ CustomHeaderView::CustomHeaderView(const QVector<QString> &vColumnLabels, QWidge
     for (int i=0; i<iColumnCount; i++)
     {
         HeaderObject *pHeaderObject = new HeaderObject(i, vColumnLabels[i], this);
-        connect(pHeaderObject, &HeaderObject::clearClicked, this, &CustomHeaderView::clearClicked);
+        connect(pHeaderObject, &HeaderObject::clearClicked, this, &CustomHeaderView::clearClicked, Qt::UniqueConnection);
         m_vHeaderSections.insert(i, pHeaderObject);
         m_vHeaderSections[i]->hide();
     }

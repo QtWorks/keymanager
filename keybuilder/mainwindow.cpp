@@ -33,9 +33,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->stlViewerLayout->addWidget(new STLWindow);
 
     // Page navigation
-    connect(ui->createKeyButton, &QPushButton::clicked, this, &MainWindow::onCreateKeyClicked);
-    connect(ui->useExistingKeyButton, &QPushButton::clicked, this, &MainWindow::onUseExistingKeyClicked);
-    connect(ui->visualizeSTLButton, &QPushButton::clicked, this, &MainWindow::onVisualizeSTLClicked);
+    connect(ui->createKeyButton, &QPushButton::clicked, this, &MainWindow::onCreateKeyClicked, Qt::UniqueConnection);
+    connect(ui->useExistingKeyButton, &QPushButton::clicked, this, &MainWindow::onUseExistingKeyClicked, Qt::UniqueConnection);
+    connect(ui->visualizeSTLButton, &QPushButton::clicked, this, &MainWindow::onVisualizeSTLClicked, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -71,9 +71,9 @@ void MainWindow::setController(Controller *pController)
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
 
-    connect(ui->exportToSCADButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToSCAD);
-    connect(ui->exportParametersButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToTXT);
-    connect(ui->importParametersButton, &QPushButton::clicked, this, &MainWindow::onImportParametersFromTXT);
+    connect(ui->exportToSCADButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToSCAD, Qt::UniqueConnection);
+    connect(ui->exportParametersButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToTXT, Qt::UniqueConnection);
+    connect(ui->importParametersButton, &QPushButton::clicked, this, &MainWindow::onImportParametersFromTXT, Qt::UniqueConnection);
 
     // Build menu 1 tab
     ui->menu1LayoutMgr->buildMenu(m_pController->menu1Node());

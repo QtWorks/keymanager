@@ -30,9 +30,6 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
-    //! Update block selected state
-    void selectThisBlock(CollapsibleBlock *pBlock);
-
 private:
     //! Unselect block
     void unselectBlock(CollapsibleBlock *pBlock);

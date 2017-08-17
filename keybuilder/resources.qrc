@@ -7,5 +7,6 @@
         <file>data/settings.xml</file>
         <file>css/main.css</file>
         <file>icons/clear.png</file>
+        <file>icons/prohibited.svg</file>
     </qresource>
 </RCC>

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml script
+QT       += core gui xml script svg
 CONFIG += static
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 INCLUDEPATH += $$PWD/../stllibrary
@@ -84,7 +84,8 @@ SOURCES += main.cpp\
     blockmodel.cpp \
     customheaderview.cpp \
     headerobject.cpp \
-    about.cpp
+    about.cpp \
+    utils.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -116,7 +117,8 @@ HEADERS  += mainwindow.h \
     helper.h \
     customheaderview.h \
     headerobject.h \
-    about.h
+    about.h \
+    utils.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

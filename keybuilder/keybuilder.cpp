@@ -28,7 +28,7 @@ bool KeyBuilder::startup()
 
     // Show UI
     m_wMainWindow.setController(m_pController);
-    m_wMainWindow.showMaximized();
+    m_wMainWindow.show();
 
     // This hack forces blocks to update their enabled state
     Parameter *pTypeOfKeyParameter = m_pController->parameterMgr()->getParameterByVariableName(VARIABLE_TYPE_OF_KEY);

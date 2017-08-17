@@ -31,6 +31,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
     if (!lDefaultValues.isEmpty())
         nColumns = qMin(nColumns, lDefaultValues.size());
+    m_lDefaultValues = lDefaultValues;
 
     m_lColumnLabels = lColumnLabels.mid(0, nColumns);
     m_lColumnVariables = lColumnVariables.mid(0, nColumns);
@@ -45,8 +46,8 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         processActionSetNumberOfPins(m_sActionSetNumberOfPins);
     }
     m_vData.resize((nRows+1)*nColumns);
-    for (int i=0; i<lDefaultValues.size(); i++)
-        m_vData[i] = lDefaultValues[i];
+    for (int i=0; i<m_lDefaultValues.size(); i++)
+        m_vData[i] = m_lDefaultValues[i];
     for (int i=0; i<nRows; i++)
     {
         for (int j=0; j<nColumns; j++)
@@ -59,7 +60,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
             m_hHashTable[sFormattedVariableName] = p;
         }
     }
-    connect(this, &GenericParameterTableModel::updateAll, this, &GenericParameterTableModel::onUpdateAll);
+    connect(this, &GenericParameterTableModel::updateAll, this, &GenericParameterTableModel::onUpdateAll, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -203,34 +204,29 @@ Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::resetColumnVariables(int iColumnIndex)
-{
-    applyValue(m_sDefaultValue, iColumnIndex);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void GenericParameterTableModel::applyValue(const QString &sValue, int iTargetColumn)
 {
     QStringList lValues;
     if (sValue.contains(","))
         lValues = sValue.split(",");
-    else lValues << m_sDefaultValue;
+    else
+        lValues << sValue;
 
     if (!lValues.isEmpty())
     {
-        for (int i=0; i<m_nRows; i++)
+        for (int i=0; i<m_nRows+1; i++)
         {
+
             if ((iTargetColumn >= 0) && (iTargetColumn < lValues.size()))
             {
-                QModelIndex targetIndex = index(i+1, iTargetColumn, QModelIndex());
+                QModelIndex targetIndex = index(i, iTargetColumn, QModelIndex());
                 if (targetIndex.isValid())
                     setData(targetIndex, lValues[iTargetColumn], Qt::EditRole);
             }
             else
             for (int j=0; j<lValues.size(); j++)
             {
-                QModelIndex targetIndex = index(i+1, j, QModelIndex());
+                QModelIndex targetIndex = index(i, j, QModelIndex());
                 if (targetIndex.isValid())
                     setData(targetIndex, lValues[j], Qt::EditRole);
             }
@@ -275,8 +271,8 @@ void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScri
         QString sLogicalExpression = lSplitted[1].simplified();
 
         // Identify column index
-        int iColumnIndex = m_lColumnVariables.indexOf(sColumnVariable);
-        if (iColumnIndex >= 0)
+        int iTargetColumn = m_lColumnVariables.indexOf(sColumnVariable);
+        if (iTargetColumn >= 0)
         {
             // Retrieve variable names
             QVector<QString> vVariableNames = m_pController->parameterMgr()->extractVariableNames(sSingleScript);
@@ -306,7 +302,7 @@ void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScri
                         QScriptEngine expression;
                         QScriptValue xResult = expression.evaluate(sIndexedScript);
                         if (xResult.isNumber())
-                            setData(index(i+1, iColumnIndex, QModelIndex()), xResult.toString(), Qt::EditRole);
+                            setData(index(i+1, iTargetColumn, QModelIndex()), xResult.toString(), Qt::EditRole);
                     }
                 }
                 // Not indexed to row
@@ -317,7 +313,7 @@ void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScri
                         QScriptEngine expression;
                         QScriptValue xResult = expression.evaluate(sMatchedScript);
                         if (xResult.isNumber())
-                            setData(index(i+1, iColumnIndex, QModelIndex()), xResult.toString(), Qt::EditRole);
+                            setData(index(i+1, iTargetColumn, QModelIndex()), xResult.toString(), Qt::EditRole);
                     }
                 }
             }
@@ -373,13 +369,13 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::onUpdateAll(int iColumnIndex)
+void GenericParameterTableModel::onUpdateAll(int iTargetColumn)
 {
     for (int i=0; i<m_nRows; i++)
     {
-        QModelIndex targetIndex = index(i+1, iColumnIndex, QModelIndex());
+        QModelIndex targetIndex = index(i+1, iTargetColumn, QModelIndex());
         if (targetIndex.isValid())
-            setData(targetIndex, m_vData[iColumnIndex], Qt::EditRole);
+            setData(targetIndex, m_vData[iTargetColumn], Qt::EditRole);
     }
 }
 
@@ -507,15 +503,9 @@ void GenericParameterTable::onEvaluateAutoScript()
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTable::onClearColumn(int iColumnIndex)
+void GenericParameterTable::onClearColumn(int iTargetColumn)
 {
-    resetColumnVariables(iColumnIndex);
+    m_pModel->applyValue(defaultValue(), iTargetColumn);
 }
 
-//-------------------------------------------------------------------------------------------------
-
-void GenericParameterTable::resetColumnVariables(int iColumnIndex)
-{
-    m_pModel->resetColumnVariables(iColumnIndex);
-}
 

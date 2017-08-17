@@ -16,7 +16,7 @@ HeaderObject::HeaderObject(int iColumnIndex, const QString &sLabel, QWidget *par
 {
     ui->setupUi(this);
     ui->label->setText(sLabel);
-    connect(ui->pushButton, &QPushButton::clicked, this, &HeaderObject::onButtonClicked);
+    connect(ui->pushButton, &QPushButton::clicked, this, &HeaderObject::onButtonClicked, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

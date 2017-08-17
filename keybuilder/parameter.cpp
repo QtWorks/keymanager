@@ -10,7 +10,7 @@
 
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
     const QString &sAutoScript, const QString &sEnabledCondition) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
-    m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
+    m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
 {    
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
@@ -81,7 +81,7 @@ const QString &Parameter::value() const
 
 void Parameter::setValue(const QString &sValue)
 {
-    if (sValue != m_sValue)
+    if (m_sValue != sValue)
     {
         QString sMsg = QString("INFORMATION: SETTING VALUE: %1 FOR VARIABLE: %2").arg(sValue).arg(m_sVariable);
         logMessage(sMsg);

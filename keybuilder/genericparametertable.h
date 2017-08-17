@@ -77,9 +77,6 @@ public:
     //! Return flags
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    //! Reset column variables
-    void resetColumnVariables(int iColumnIndex);
-
     //! Apply value
     void applyValue(const QString &sValue, int iTargetColumn=-1);
 
@@ -105,6 +102,9 @@ private:
 
     //! Default value
     QString m_sDefaultValue;
+
+    //! Default values
+    QStringList m_lDefaultValues;
 
     //! Column labels
     QStringList m_lColumnLabels;
@@ -141,7 +141,7 @@ public slots:
     void onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue);
 
     //! Update all
-    void onUpdateAll(int iColumnIndex);
+    void onUpdateAll(int iTargetColumn);
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ signals:
     void parameterValueChanged(const QString &sParameterName, const QString &sParameterValue);
 
     //! Update all
-    void updateAll(int iColumnIndex);
+    void updateAll(int iTargetColumn);
 };
 
 class ItemDelegate : public QItemDelegate
@@ -221,10 +221,6 @@ public:
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
 private:
-    //! Reset column variables
-    void resetColumnVariables(int iColumnIndex);
-
-private:
     //! UI
     Ui::GenericParameterTable *ui;
 
@@ -236,7 +232,7 @@ public slots:
     virtual void onEvaluateAutoScript();
 
     //! Clear column
-    void onClearColumn(int iColumnIndex);
+    void onClearColumn(int iTargetColumn);
 };
 
 #endif // GENERICPARAMETERTABLE_H

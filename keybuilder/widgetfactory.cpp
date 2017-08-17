@@ -72,7 +72,6 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
             QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
             QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD].simplified();
-            QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
             sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
             GenericParameterTable *pGenericParameterTable = new GenericParameterTable(m_pController, sColumnLabels.split(","), sColumnVariables.split(","), sDefaultValue, sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, sAutoScript, pParentWidget);
             pWidget = pGenericParameterTable;

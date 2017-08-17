@@ -64,6 +64,9 @@ public:
     //! Exclusive?
     bool isExclusive() const;
 
+    //! Enabled?
+    bool isEnabled() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -77,18 +80,9 @@ public:
     //! Process block variable
     void setBlockVariable();
 
-    //! Reset block variable
-    void resetBlockVariable();
-
 private:
     //! Set parameter block
     void setParameterBlock(ParameterBlock *pParameterBlock);
-
-    //! Set current block
-    void setCurrentBlock(CollapsibleBlock *pBlock);
-
-    //! Unselect me
-    void unselectMe();
 
 private:
     //! Own parameter block

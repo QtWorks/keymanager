@@ -106,6 +106,9 @@ public slots:
 
     //! Highlight item
     void onHighlightItem(const QModelIndex &index, bool bSelected);
+
+    //! Block status changed
+    void onBlockStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif // LAYOUTMGR_H
