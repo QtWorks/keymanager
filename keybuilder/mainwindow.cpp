@@ -1,6 +1,7 @@
 // Qt
 #include <QDebug>
 #include <QFileDialog>
+#include <QProcess>
 
 // Application
 #include "mainwindow.h"
@@ -151,5 +152,10 @@ void MainWindow::onUseExistingKeyClicked()
 
 void MainWindow::onVisualizeSTLClicked()
 {
+    QString sProgram = "C:/Program Files/OpenSCAD/openscad.exe -o out.stl -D 'quality=\"production\" D:/projects/keymanager/bin/toto.scad";
+    qDebug() << sProgram;
+    QProcess *pProcess = new QProcess(this);
+    QStringList args;
+    pProcess->start(sProgram, args);
     ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
 }

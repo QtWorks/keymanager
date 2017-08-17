@@ -65,7 +65,6 @@ public slots:
 
     //! Visualize STL
     void onVisualizeSTLClicked();
-
 };
 
 #endif // MAINWINDOW_H
