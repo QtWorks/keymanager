@@ -5,6 +5,7 @@
 #include "dxforstlfilepicker.h"
 #include "ui_dxforstlfilepicker.h"
 #include "constants.h"
+#include "utils.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -12,11 +13,16 @@ DXForSTLFilePicker::DXForSTLFilePicker(Controller *pController, const QString &s
     BaseWidget(pController, parent), ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(sSTLVariable), m_sDXFVariable(sDXFVariable)
 {
     ui->setupUi(this);
+
+    // Set default value
     setDefaultValue(sDefaultValue);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
+
     connect(ui->selectDXFButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectDXF, Qt::UniqueConnection);
     connect(ui->selectSTLButton, &QPushButton::clicked, this, &DXForSTLFilePicker::onSelectSTL, Qt::UniqueConnection);
 }
@@ -32,7 +38,7 @@ DXForSTLFilePicker::~DXForSTLFilePicker()
 
 void DXForSTLFilePicker::onSelectSTL()
 {
-    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", "*.stl");
+    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::appDir().absolutePath(), "*.stl");
     if (!sFileName.isEmpty())
     {
         ui->stlLineEdit->setText(sFileName);
@@ -45,7 +51,7 @@ void DXForSTLFilePicker::onSelectSTL()
 
 void DXForSTLFilePicker::onSelectDXF()
 {
-    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", "*.dxf");
+    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::appDir().absolutePath(), "*.dxf");
     if (!sFileName.isEmpty())
     {
         ui->dxfLineEdit->setText(sFileName);

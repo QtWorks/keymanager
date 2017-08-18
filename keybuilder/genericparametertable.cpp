@@ -18,11 +18,9 @@
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTableModel::GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                                       int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent) : QAbstractItemModel(parent),
+    int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent) : QAbstractItemModel(parent),
     m_pController(pController), m_sDefaultValue(sDefaultValue)
 {
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     QStringList lDefaultValues;
     if (m_sDefaultValue.contains(","))
         lDefaultValues = m_sDefaultValue.split(",");
@@ -42,9 +40,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     m_sVariableMethod = sVariableMethod;
     m_sActionSetNumberOfPins = sActionSetNumberOfPins;
     if (!m_sActionSetNumberOfPins.isEmpty())
-    {
         processActionSetNumberOfPins(m_sActionSetNumberOfPins);
-    }
     m_vData.resize((nRows+1)*nColumns);
     for (int i=0; i<m_lDefaultValues.size(); i++)
         m_vData[i] = m_lDefaultValues[i];
@@ -245,7 +241,7 @@ void GenericParameterTableModel::setValue(const QString &sParameterVariable, con
         if (targetIndex.isValid())
         {
             QString sMsg = QString("SETTING VALUE: %1 FOR VARIABLE: %2").arg(sVariableValue).arg(sParameterVariable);
-            logMessage(sMsg);
+            logInfo(sMsg);
             setData(targetIndex, sVariableValue, Qt::EditRole);
         }
     }
@@ -283,8 +279,8 @@ void GenericParameterTableModel::evaluateSingleScript(const QString &sSingleScri
                 Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
                 if (pParameter == nullptr)
                 {
-                    QString sMsg = QString("ERROR: CAN'T EVALUATE: %1 SINCE VARIABLE: %2 DOES NOT EXIST").arg(sSingleScript).arg(sParameterVariable);
-                    logMessage(sMsg);
+                    QString sMsg = QString("CAN'T EVALUATE: %1 SINCE VARIABLE: %2 DOES NOT EXIST").arg(sSingleScript).arg(sParameterVariable);
+                    logError(sMsg);
                     bSuccess = false;
                     break;
                 }
@@ -437,9 +433,12 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
 {
     // Setup UI
     ui->setupUi(this);
-    setDefaultValue(sDefaultValue);
-    setAutoScript(sAutoScript);
 
+    // Set default value
+    setDefaultValue(sDefaultValue);
+
+    // Set auto script
+    setAutoScript(sAutoScript);
 
     // Build item delegate
     ItemDelegate *pItemDelegate = new  ItemDelegate;

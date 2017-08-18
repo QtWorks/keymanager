@@ -10,6 +10,8 @@ class Parameter : public QObject
     Q_OBJECT
 
 public:
+    friend class ParameterMgr;
+
     //-------------------------------------------------------------------------------------------------
     // Constructors and destructor
     //-------------------------------------------------------------------------------------------------
@@ -45,9 +47,6 @@ public:
     //! Get value
     const QString &value() const;
 
-    //! Set value
-    void setValue(const QString &sValue);
-
     //! Get default value
     const QString &defaultValue() const;
 
@@ -72,6 +71,10 @@ public:
 
     //! Reset to default value
     void resetToDefaultValue();
+
+private:
+    //! Set value
+    void setValue(const QString &sValue);
 
 private:
     //! Name

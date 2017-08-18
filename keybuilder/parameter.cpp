@@ -25,7 +25,7 @@ Parameter::Parameter(const QString &sName, const QString &sType, const QString &
 //! Destructor
 Parameter::~Parameter()
 {
-    logMessage("INFORMATION: DESTROY PARAMETER");
+    logInfo("DESTROY PARAMETER");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -83,8 +83,8 @@ void Parameter::setValue(const QString &sValue)
 {
     if (m_sValue != sValue)
     {
-        QString sMsg = QString("INFORMATION: SETTING VALUE: %1 FOR VARIABLE: %2").arg(sValue).arg(m_sVariable);
-        logMessage(sMsg);
+        QString sMsg = QString("SETTING VALUE: %1 FOR VARIABLE: %2").arg(sValue).arg(m_sVariable);
+        logInfo(sMsg);
         m_sValue = sValue;
         emit parameterValueChanged(m_sVariable, sValue);
     }

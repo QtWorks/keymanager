@@ -31,7 +31,7 @@
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="3" column="0">
-           <widget class="QPushButton" name="exportToSCADButton">
+           <widget class="QPushButton" name="importParametersButton">
             <property name="minimumSize">
              <size>
               <width>256</width>
@@ -45,26 +45,7 @@
              </size>
             </property>
             <property name="text">
-             <string>EXPORT TO SCAD</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QPushButton" name="useExistingKeyButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>USE EXISTING KEY</string>
+             <string>IMPORT KEY PARAMETERS FROM TXT FILE</string>
             </property>
            </widget>
           </item>
@@ -87,44 +68,6 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QPushButton" name="importParametersButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>IMPORT PARAMETERS FROM TXT</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPushButton" name="exportParametersButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>EXPORT PARAMETERS TO TXT</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0">
            <widget class="QPushButton" name="createKeyButton">
             <property name="minimumSize">
@@ -141,6 +84,25 @@
             </property>
             <property name="text">
              <string>CREATE KEY</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="useExistingKeyButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>USE EXISTING KEY</string>
             </property>
            </widget>
           </item>
@@ -173,6 +135,20 @@
            <widget class="QPushButton" name="clearAllButtonMenu1">
             <property name="text">
              <string>Clear All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="generateSTLButtonMenu1">
+            <property name="text">
+             <string>Generate STL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveKeyParametersButtonMenu1">
+            <property name="text">
+             <string>Save Key Parameters</string>
             </property>
            </widget>
           </item>
@@ -218,6 +194,20 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="generateSTLButtonMenu2">
+            <property name="text">
+             <string>Generate STL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveKeyParametersButtonMenu2">
+            <property name="text">
+             <string>Save Key Parameters</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="1" column="0">
@@ -260,6 +250,20 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="generateSTLButtonMenu3">
+            <property name="text">
+             <string>Generate STL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveKeyParametersButtonMenu3">
+            <property name="text">
+             <string>Save Key Parameters</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="1" column="0">
@@ -294,6 +298,16 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>SCRIPT_OUT.SCAD</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QPlainTextEdit" name="plainTextEdit"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -315,6 +329,11 @@
    <class>LayoutMgr</class>
    <extends>QWidget</extends>
    <header>layoutmgr.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HomeTab</class>
+   <extends>QWidget</extends>
+   <header>hometab.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

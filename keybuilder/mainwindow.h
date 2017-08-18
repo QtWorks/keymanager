@@ -3,11 +3,13 @@
 
 // Qt
 #include <QMainWindow>
+#include <QTimer>
 
 // Application
 #include "cxmlnode.h"
 class Controller;
 class CollapsibleBlock;
+class STLWindow;
 namespace Ui {
 class MainWindow;
 }
@@ -47,13 +49,16 @@ private:
     //! All opened at startup?
     bool m_bAllOpened;
 
+    //! STL window
+    STLWindow *m_pSTLWindow;
+
+    //! Next STL file to display
+    QString m_sNextSTLFileToDisplay;
+
+    //! Timer
+    QTimer m_STLViewerTimer;
+
 public slots:
-    //! Export parameters to SCAD
-    void onExportParametersToSCAD();
-
-    //! Export parameters to TXT
-    void onExportParametersToTXT();
-
     //! Import parameters from TXT
     void onImportParametersFromTXT();
 
@@ -65,6 +70,21 @@ public slots:
 
     //! Visualize STL
     void onVisualizeSTLClicked();
+
+    //! Generate STL
+    void onGenerateSTL();
+
+    //! Save key parameters
+    void onSaveKeyParameters();
+
+    //! STL file ready
+    void onSTLFileReady(const QString &sSTLFilePath);
+
+    //! Output SCAD ready
+    void onOutputSCADReady(const QString &sOutputSCADFile);
+
+    //! STL Viewer timer time out
+    void onSTLViewerTimerTimeOut();
 };
 
 #endif // MAINWINDOW_H

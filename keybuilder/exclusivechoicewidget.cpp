@@ -12,11 +12,16 @@ ExclusiveChoiceWidget::ExclusiveChoiceWidget(Controller *pController, const QStr
     BaseWidget(pController, parent), ui(new Ui::ExclusiveChoiceWidget)
 {
     ui->setupUi(this);
+
+    // Set default value
     setDefaultValue(sDefaultValue);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
+
     setup(sLabel, lLabels, lValues);
 }
 

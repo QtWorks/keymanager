@@ -3,7 +3,7 @@
 
 // Qt
 #include <QObject>
-#include <QHash>
+#include <QThread>
 
 // Application
 #include "parameter.h"
@@ -12,6 +12,7 @@
 class ParameterMgr;
 class WidgetFactory;
 class CollapsibleBlock;
+class OpenSCADWrapper;
 
 class Controller : public QObject, public IService
 {
@@ -50,6 +51,9 @@ public:
     //! Return widget factory
     WidgetFactory *widgetFactory() const;
 
+    //! Return OpenSCAD wrapper
+    OpenSCADWrapper *openSCADwrapper() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -61,13 +65,20 @@ public:
     virtual void shutdown();
 
     //! Export parameters to SCAD
-    void exportParametersToSCAD(const QString &sOutputFileName);
+    bool exportParametersToSCAD(QString &sOutputFileName);
 
     //! Export parameters to TXT
     void exportParametersToTXT(const QString &sOutputFileName);
 
     //! Import parameters from TXT
     void importParametersFromTXT(const QString &sInputFileName);
+
+    //! Generate STL
+    void generateSTL();
+
+private:
+    //! Load settings
+    bool loadSettings();
 
 private:
     //! Parameter manager
@@ -76,9 +87,18 @@ private:
     //! Widget factory
     WidgetFactory *m_pWidgetFactory;
 
+    //! Parameter thread
+    QThread m_tParameterThread;
+
+    //! Open SCAD path
+    QString m_sOpenSCADPath;
+
+    //! Open SCAD wrapper
+    OpenSCADWrapper *m_pOpenSCADWrapper;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
-    // Control methods
+    // Slots
     //-------------------------------------------------------------------------------------------------
 
     //! Parameter value changed
@@ -86,6 +106,17 @@ public slots:
 
     //! Update widget value
     void onUpdateWidgetValue(const QString &sParameterVariable, const QString &sVariableValue);
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //--------------------------------------
+
+    //! STL file ready
+    void STLFileReady(const QString &sPath);
+
+    //! Output SCAD ready
+    void outputSCADReady(const QString &sPath);
 };
 
 #endif // CONTROLLER_H

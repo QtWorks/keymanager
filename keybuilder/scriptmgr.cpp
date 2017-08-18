@@ -8,26 +8,24 @@
 #include "parameter.h"
 #include "constants.h"
 #include "helper.h"
+#include "utils.h"
 
 //-------------------------------------------------------------------------------------------------
 
-void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sOutputScriptFile, const QList<Parameter *> &vParameters)
+bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sOutputScriptFile, const QList<Parameter *> &vParameters)
 {
     // Check input script file exists
     if (!QFileInfo::exists(sInputScripFile))
     {
-        QString sMsg = QString("ERROR: %1 DOES NOT EXIST").arg(sInputScripFile);
-        logMessage(sMsg);
-        return;
+        QString sMsg = QString("%1 DOES NOT EXIST").arg(sInputScripFile);
+        logError(sMsg);
+        return false;
     }
 
-    QFile inputScriptFile(sInputScripFile);
-    if (inputScriptFile.open(QIODevice::ReadOnly))
+    QString sCurrentText = Utils::loadFile(sInputScripFile);
+    if (!sCurrentText.isEmpty())
     {
-        QTextStream inStream(&inputScriptFile);
-        QString sCurrentText = inStream.readAll();
-        inputScriptFile.close();
-
+        // Do replacements
         foreach (Parameter *pParameter, vParameters)
         {
             if (pParameter != nullptr)
@@ -43,14 +41,20 @@ void ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
             }
         }
 
-        QFile outputScriptFile(sOutputScriptFile);
-        if (outputScriptFile.open(QIODevice::WriteOnly))
+        // Save file
+        if (Utils::saveFile(sCurrentText, sOutputScriptFile))
         {
-            QTextStream outStream(&outputScriptFile);
-            outStream << sCurrentText;
-            outputScriptFile.close();
-            QString sMsg = QString("INFORMATION: SCAD SCRIPT SUCCESSFULLY EXPORTED IN: %1").arg(sOutputScriptFile);
-            logMessage(sMsg);
+            QString sMsg = QString("SCAD SCRIPT SUCCESSFULLY EXPORTED IN: %1").arg(sOutputScriptFile);
+            logInfo(sMsg);
+            return true;
+        }
+        else
+        {
+            QString sMsg = QString("COULD NOT EXPORT SCAD SCRIPT TO: %1").arg(sOutputScriptFile);
+            logError(sMsg);
+            return false;
         }
     }
+
+    return false;
 }

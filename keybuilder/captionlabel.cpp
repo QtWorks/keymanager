@@ -14,8 +14,8 @@ CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     m_bIsCurrent(false)
 {
     ui->setupUi(this);
-    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::openOrClose, Qt::UniqueConnection);
-    connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::clearAll, Qt::UniqueConnection);
+    connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::onOpenOrClose, Qt::UniqueConnection);
+    connect(ui->clearAllButton, &QPushButton::clicked, this, &CaptionLabel::onClearAll, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ CaptionLabel::~CaptionLabel()
 void CaptionLabel::setCurrent(bool bCurrent)
 {
     m_bIsCurrent = bCurrent;
-    update();
+    repaint();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ void CaptionLabel::updateEnabledState(bool bEnabled)
     m_bIsEnabled = bEnabled;
     ui->openCloseButton->setVisible(bEnabled);
     ui->clearAllButton->setVisible(bEnabled);
-    update();
+    repaint();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -77,6 +77,8 @@ void CaptionLabel::paintEvent(QPaintEvent *e)
     {
         if (m_bIsCurrent)
             paintColor.setNamedColor("lightgreen");
+        else
+            paintColor.setNamedColor("#EEEEEE");
     }
     else
     {
@@ -98,4 +100,19 @@ void CaptionLabel::mousePressEvent(QMouseEvent *event)
 void CaptionLabel::onStateChanged(bool bIsClosed)
 {
     setButtonLabel(bIsClosed ? tr("OPEN") : tr("CLOSE"));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CaptionLabel::onOpenOrClose()
+{
+    emit selectMe();
+    emit openOrClose();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CaptionLabel::onClearAll()
+{
+    emit clearAll();
 }

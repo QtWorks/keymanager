@@ -10,13 +10,18 @@ DoubleTripletWidget::DoubleTripletWidget(Controller *pController, const QString 
     BaseWidget(pController, parent), ui(new Ui::DoubleTripletWidget)
 {
     ui->setupUi(this);
-    setDefaultValue(sDefaultValue);
     ui->label->setText(sLabel);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_TRIPLET_VALUE);
+
+    // Set default value
+    setDefaultValue(sDefaultValue);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
 
+    // Set validator
     DoubleValidator *pValidator = new DoubleValidator(0, 100, 3, this);
     ui->lineEdit1->setValidator(pValidator);
     ui->lineEdit2->setValidator(pValidator);

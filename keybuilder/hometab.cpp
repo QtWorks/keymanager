@@ -7,18 +7,17 @@
 #include "hometab.h"
 #include "ui_hometab.h"
 #include "cxmlnode.h"
-#define APP_TITLE "title"
-#define APP_DEVELOPER "developer"
-#define DEVELOPER_EMAIL "email"
-#define DEVELOPER_PHONE "phone"
+#define ITEM "Item"
 #define NODE_VALUE "value"
 
 //-------------------------------------------------------------------------------------------------
 
 HomeTab::HomeTab(QWidget *parent) : QWidget(parent),
-    ui(new Ui::HomeTab)
+    ui(new Ui::HomeTab), m_iMaxTextWidth(0)
 {
     ui->setupUi(this);
+    m_font.setFamily("Segoe UI");
+    m_font.setPixelSize(16);
     loadDescription();
 }
 
@@ -33,20 +32,36 @@ HomeTab::~HomeTab()
 
 void HomeTab::paintEvent(QPaintEvent *event)
 {
+    // Default paint
     QWidget::paintEvent(event);
 
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
+    int nItems = m_vItems.size();
+    int iHeight = (nItems+.5)*m_iTextHeight;
+    qreal xRadius = 10;
+    qreal yRadius = 10;
+
+    // Setup painter path
     QPainterPath path;
-    path.addRoundedRect(QRectF(10, 10, 216, 80), 10, 10);
-    QPen pen(Qt::gray, 3);
+    QPoint topLeft(10, 10);
+    QSize size(m_iMaxTextWidth+m_font.pixelSize(), iHeight);
+    int iStartX = topLeft.x()+6;
+    int iStartY = topLeft.y()+m_iTextHeight;
+    path.addRoundedRect(QRectF(topLeft, size), xRadius, yRadius);
+    QPen pen(QColor("orange"));
     p.setPen(pen);
     p.fillPath(path, QColor("#444444"));
     p.drawPath(path);
-    p.drawText(16, 28, m_sAppTitle);
-    p.drawText(16, 44, m_sAppDeveloper);
-    p.drawText(16, 60, m_sDeveloperEmail);
-    p.drawText(16, 76, m_sDeveloperPhone);
+    p.setFont(m_font);
+    pen.setColor(Qt::lightGray);
+    p.setPen(pen);
+    int c = 0;
+    foreach (CXMLNode xNode, m_vItems)
+    {
+        QString sLabel = xNode.attributes()[NODE_VALUE];
+        p.drawText(iStartX, iStartY+(m_iTextHeight*c++), sLabel);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -54,13 +69,19 @@ void HomeTab::paintEvent(QPaintEvent *event)
 void HomeTab::loadDescription()
 {
     CXMLNode xRootNode = CXMLNode::loadXMLFromFile(":/data/about.xml");
-    CXMLNode xAppTitleNode = xRootNode.getNodeByTagName(APP_TITLE);
-    m_sAppTitle = xAppTitleNode.attributes()[NODE_VALUE];
-    CXMLNode xAppDeveloperNode = xRootNode.getNodeByTagName(APP_DEVELOPER);
-    m_sAppDeveloper = xAppDeveloperNode.attributes()[NODE_VALUE];
-    CXMLNode xDeveloperEmail = xRootNode.getNodeByTagName(DEVELOPER_EMAIL);
-    m_sDeveloperEmail = xDeveloperEmail.attributes()[NODE_VALUE];
-    CXMLNode xDeveloperPhone = xRootNode.getNodeByTagName(DEVELOPER_PHONE);
-    m_sDeveloperPhone = xDeveloperPhone.attributes()[NODE_VALUE];
-    update();
+    m_vItems = xRootNode.getNodesByTagName(ITEM);
+    QFontMetrics fm(m_font);
+
+    // Find max text width and height
+    m_iTextHeight = fm.height();
+    m_iMaxTextWidth = 0;
+    foreach (CXMLNode xNode, m_vItems)
+    {
+        QString sLabel = xNode.attributes()[NODE_VALUE];
+        int iWidth = fm.width(sLabel);
+        if (iWidth > m_iMaxTextWidth)
+            m_iMaxTextWidth = iWidth;
+    }
+
+    repaint();
 }

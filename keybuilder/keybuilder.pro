@@ -86,7 +86,9 @@ SOURCES += main.cpp\
     headerobject.cpp \
     about.cpp \
     utils.cpp \
-    hometab.cpp
+    hometab.cpp \
+    openscadwrapper.cpp \
+    helper.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -120,7 +122,8 @@ HEADERS  += mainwindow.h \
     headerobject.h \
     about.h \
     utils.h \
-    hometab.h
+    hometab.h \
+    openscadwrapper.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

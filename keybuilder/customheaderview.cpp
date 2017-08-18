@@ -33,7 +33,7 @@ CustomHeaderView::~CustomHeaderView()
 
 void CustomHeaderView::paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const
 {
-    //QHeaderView::paintSection(painter, rect, logicalIndex);
+    Q_UNUSED(painter);
     if (rect.isValid())
     {
         m_vHeaderSections[logicalIndex]->setGeometry(rect);

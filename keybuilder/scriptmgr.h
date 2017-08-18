@@ -12,7 +12,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Generate script
-    static void generateScript(const QString &sInputScripFile, const QString &sOutputScriptFile, const QList<Parameter *> &vParameters);
+    static bool generateScript(const QString &sInputScripFile, const QString &sOutputScriptFile, const QList<Parameter *> &vParameters);
 };
 
 #endif // SCRIPTMGR_H

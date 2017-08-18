@@ -5,6 +5,7 @@
 #include "filepickerwidget.h"
 #include "ui_filepickerwidget.h"
 #include "constants.h"
+#include "utils.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -12,11 +13,16 @@ FilePickerWidget::FilePickerWidget(Controller *pController, const QString &sLabe
     BaseWidget(pController, parent), ui(new Ui::FilePickerWidget), m_sFileExtension(sFileExtension)
 {
     ui->setupUi(this);
+
+    // Set default value
     setDefaultValue(sDefaultValue);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
+
     ui->label->setText(sLabel);
     connect(ui->openButton, &QPushButton::clicked, this, &FilePickerWidget::onOpenClicked, Qt::UniqueConnection);
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &FilePickerWidget::onFilePickerTextChanged, Qt::UniqueConnection);
@@ -34,7 +40,7 @@ FilePickerWidget::~FilePickerWidget()
 void FilePickerWidget::onOpenClicked()
 {
     QString sFileName = QFileDialog::getOpenFileName(this,
-        tr("Open File"), "", m_sFileExtension);
+        tr("Open File"), Utils::appDir().absolutePath(), m_sFileExtension);
     if (!sFileName.isEmpty())
         ui->lineEdit->setText(sFileName);
 }

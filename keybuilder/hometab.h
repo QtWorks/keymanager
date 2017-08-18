@@ -1,7 +1,12 @@
 #ifndef HOMETAB_H
 #define HOMETAB_H
 
+// Qt
 #include <QWidget>
+#include <QFont>
+
+// Application
+#include "cxmlnode.h"
 
 namespace Ui {
 class HomeTab;
@@ -34,17 +39,17 @@ private:
     //! UI
     Ui::HomeTab *ui;
 
-    //! App title
-    QString m_sAppTitle;
+    //! Items
+    QVector<CXMLNode> m_vItems;
 
-    //! App developer
-    QString m_sAppDeveloper;
+    //! Max text width
+    int m_iMaxTextWidth;
 
-    //! Developer email
-    QString m_sDeveloperEmail;
+    //! Text height
+    int m_iTextHeight;
 
-    //! Developer phone
-    QString m_sDeveloperPhone;
+    //! Font
+    QFont m_font;
 };
 
 #endif // HOMETAB_H

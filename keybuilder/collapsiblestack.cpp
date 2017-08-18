@@ -24,7 +24,7 @@ CollapsibleStack::CollapsibleStack(Controller *pController, QWidget *parent) : Q
 
 CollapsibleStack::~CollapsibleStack()
 {
-    logMessage("INFORMATION: DESTROY COLLAPSIBLE STACK");
+    logInfo("DESTROY COLLAPSIBLE STACK");
 }
 
 //-------------------------------------------------------------------------------------------------

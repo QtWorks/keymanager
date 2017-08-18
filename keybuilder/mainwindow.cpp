@@ -11,18 +11,26 @@
 #include "constants.h"
 #include "collapsibleblock.h"
 #include "parametermgr.h"
+#include "utils.h"
 #include <src/stlwindow.h>
 #define CREATE_KEY_TAB 1
 #define USE_EXISTING_KEY_TAB 2
 #define VISUALIZE_STL_TAB 5
+#define OUTPUT_SCAD_TAB 6
 
 //-------------------------------------------------------------------------------------------------
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow), m_bAllOpened(false), m_pSTLWindow(new STLWindow),
+    m_sNextSTLFileToDisplay("")
 {    
     // Set window title
     setWindowTitle(tr("OFC3DKEY V.2.0.2017"));
+
+    // Setup timer
+    m_STLViewerTimer.setInterval(500);
+    m_STLViewerTimer.setSingleShot(true);
+    connect(&m_STLViewerTimer, &QTimer::timeout, this, &MainWindow::onSTLViewerTimerTimeOut);
 
     // Load CSS
     loadCSS();
@@ -31,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     // Add STL Window
-    ui->stlViewerLayout->addWidget(new STLWindow);
+    ui->stlViewerLayout->addWidget(m_pSTLWindow);
 
     // Page navigation
     connect(ui->createKeyButton, &QPushButton::clicked, this, &MainWindow::onCreateKeyClicked, Qt::UniqueConnection);
@@ -53,6 +61,12 @@ void MainWindow::setController(Controller *pController)
     // Set controller
     m_pController = pController;
 
+    // Listen to output SCAD ready
+    connect(m_pController, &Controller::outputSCADReady, this, &MainWindow::onOutputSCADReady, Qt::UniqueConnection);
+
+    // Listen to STLFileReady signal
+    connect(m_pController, &Controller::STLFileReady, this, &MainWindow::onSTLFileReady, Qt::UniqueConnection);
+
     // Set controller on layout managers
     ui->menu1LayoutMgr->setController(m_pController);
     ui->menu2LayoutMgr->setController(m_pController);
@@ -63,17 +77,21 @@ void MainWindow::setController(Controller *pController)
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
+    connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
 
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
+    connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
 
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
+    connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
 
-    connect(ui->exportToSCADButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToSCAD, Qt::UniqueConnection);
-    connect(ui->exportParametersButton, &QPushButton::clicked, this, &MainWindow::onExportParametersToTXT, Qt::UniqueConnection);
     connect(ui->importParametersButton, &QPushButton::clicked, this, &MainWindow::onImportParametersFromTXT, Qt::UniqueConnection);
 
     // Build menu 1 tab
@@ -83,7 +101,10 @@ void MainWindow::setController(Controller *pController)
     ui->menu2LayoutMgr->buildMenu(m_pController->menu2Node());
     Parameter *pTypeOfKeyParameter = m_pController->parameterMgr()->getParameterByVariableName(VARIABLE_TYPE_OF_KEY);
     if (pTypeOfKeyParameter != nullptr)
+    {
         connect(pTypeOfKeyParameter, &Parameter::parameterValueChanged, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+        connect(pTypeOfKeyParameter, &Parameter::parameterValueChanged, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    }
 
     // Build menu 3 tab
     ui->menu3LayoutMgr->buildMenu(m_pController->menu3Node());
@@ -96,34 +117,20 @@ void MainWindow::setController(Controller *pController)
 
 void MainWindow::loadCSS()
 {
-    // Set style sheet
-    QFile file(":/css/main.css");
-    if (file.open(QFile::ReadOnly | QFile::Text))
-    {
-        QTextStream stream(&file);
-        QString sStyle = stream.readAll();
-        this->setStyleSheet(sStyle);
-        file.close();
-    }
+    QString sStyle = Utils::loadFile(":/css/main.css");
+    this->setStyleSheet(sStyle);
 }
 
 //-------------------------------------------------------------------------------------------------
 
+/*
 void MainWindow::onExportParametersToSCAD()
 {
     QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Enter output SCAD file name"), ".", tr("SCAD (*.scad)"));
     if (!sOutputFileName.isEmpty())
         m_pController->exportParametersToSCAD(sOutputFileName);
 }
-
-//-------------------------------------------------------------------------------------------------
-
-void MainWindow::onExportParametersToTXT()
-{
-    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
-    if (!sOutputFileName.isEmpty())
-        m_pController->exportParametersToTXT(sOutputFileName);
-}
+*/
 
 //-------------------------------------------------------------------------------------------------
 
@@ -158,4 +165,52 @@ void MainWindow::onVisualizeSTLClicked()
     QStringList args;
     pProcess->start(sProgram, args);
     ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onGenerateSTL()
+{
+    // Step 1: do replacement in script_in.scad
+    m_pController->generateSTL();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onSaveKeyParameters()
+{
+    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
+    if (!sOutputFileName.isEmpty())
+        m_pController->exportParametersToTXT(sOutputFileName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
+{
+    // Load STL
+    m_sNextSTLFileToDisplay = sSTLFilePath;
+    m_STLViewerTimer.start();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
+{
+    QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
+    if (!sOutputSCADContents.isEmpty())
+    {
+        ui->plainTextEdit->document()->setPlainText(sOutputSCADContents);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onSTLViewerTimerTimeOut()
+{
+    // Go to STL tab
+    ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
+
+    // Display
+    m_pSTLWindow->load_stl(m_sNextSTLFileToDisplay);
 }

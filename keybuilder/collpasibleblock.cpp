@@ -46,7 +46,7 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
 
 CollapsibleBlock::~CollapsibleBlock()
 {
-    logMessage("INFORMATION: DESTROY COLLAPSIBLE BLOCK");
+    logInfo("DESTROY COLLAPSIBLE BLOCK");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -131,6 +131,8 @@ void CollapsibleBlock::onUpdateEnabledState(bool bEnabled)
 
 void CollapsibleBlock::onClearAll()
 {
+    // Unselect
+    select(false);
     // Clear own parameter block if any
     if (m_pParameterBlock != nullptr)
         // Clear own parameter block
@@ -151,6 +153,7 @@ bool CollapsibleBlock::isSelected() const
 
 void CollapsibleBlock::select(bool bSelect)
 {
+    qDebug() << bSelect;
     m_bIsSelected = bSelect;
     m_pCaptionLabel->setCurrent(bSelect);
     if (!bSelect)

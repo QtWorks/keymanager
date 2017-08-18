@@ -72,6 +72,13 @@ signals:
     //! Select me
     void selectMe();
 
+public slots:
+    //! Open or close
+    void onOpenOrClose();
+
+    //! Clear all
+    void onClearAll();
+
 private:
     //! UI
     Ui::CaptionLabel *ui;

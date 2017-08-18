@@ -5,6 +5,7 @@ QToolTip
      padding: 1px;
      border-radius: 3px;
      opacity: 100;
+     font: Segoe UI;
 }
 
 QWidget
@@ -26,11 +27,13 @@ QWidget:item:selected
 QLabel
 {
     background-color: transparent;
+    font: Segoe UI;
 }
 
 QMenuBar::item
 {
     background: transparent;
+    font: Segoe UI;
 }
 
 QMenuBar::item:selected
@@ -63,6 +66,7 @@ QMenu
 QMenu::item
 {
     padding: 2px 20px 2px 20px;
+    font: Segoe UI;
 }
 
 QMenu::item:selected
@@ -93,6 +97,7 @@ QLineEdit
     border-style: solid;
     border: 1px solid #1e1e1e;
     border-radius: 5;
+    font: Segoe UI;
 }
 
 QPushButton
@@ -104,6 +109,7 @@ QPushButton
     border-style: solid;
     border-radius: 6;
     padding: 3px;
+    font: Segoe UI;
     font-size: 12px;
     padding-left: 5px;
     padding-right: 5px;
@@ -126,6 +132,7 @@ QComboBox
     border-style: solid;
     border: 1px solid #1e1e1e;
     border-radius: 5;
+    font: Segoe UI;
 }
 
 QComboBox:hover,QPushButton:hover
@@ -273,11 +280,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
 QTextEdit
 {
     background-color: #242424;
+    font: Segoe UI;
 }
 
 QPlainTextEdit
 {
     background-color: #242424;
+    font: Segoe UI;
+    color:#EEE;
 }
 
 QHeaderView::section
@@ -335,6 +345,7 @@ QToolBar::handle
 {
      spacing: 3px; /* spacing between items in the tool bar */
      background: url(:/handle.png);
+     font: Segoe UI;
 }
 
 QMenu::separator
@@ -449,72 +460,3 @@ QRadioButton::indicator:disabled
     border: 1px solid #444;
 }
 
-CNodeWidget
-{
-    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #666, stop:1 #333);
-    border: 1px solid #ffffff;
-    border-radius: 8px;
-}
-
-CNodeWidget QFrame
-{
-    background-color: transparent;
-}
-
-QWidget #Canvas
-{
-    background-color: transparent;
-    border: 1px dashed black;
-}
-
-QWidget #Parameters
-{
-    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #333, stop:1 #666);
-    border-radius: 6px;
-}
-
-QWidget #Content
-{
-    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #333, stop:1 #666);
-    border-radius: 6px;
-}
-
-QWidget #Selection
-{
-    border: 2px solid #F00;
-}
-
-QWidget #Evaluating
-{
-    border: 2px solid #0F0;
-}
-
-CGroupWidget
-{
-    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #333, stop:1 #666);
-    border-radius: 6px;
-}
-
-CPinWidget
-{
-    background-color: transparent
-}
-
-CSpotWidget
-{
-background-color: transparent
-}
-
-CSpotWidget #Normal
-{
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 6px;
-}
-
-CSpotWidget #Ghost
-{
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 6px;
-}

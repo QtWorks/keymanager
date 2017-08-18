@@ -1,5 +1,8 @@
 // Qt
 #include <QDebug>
+#include <QSettings>
+#include <QFileInfo>
+#include <QDir>
 
 // Application
 #include "controller.h"
@@ -11,16 +14,33 @@
 #include "genericparametertable.h"
 #include "collapsibleblock.h"
 #include "helper.h"
+#include "openscadwrapper.h"
+#include "utils.h"
+#define OPENSCAD_GROUP "OPENSCAD"
+#define OPENSCAD_PATH "OPENSCAD_PATH"
+#define SCAD_OUTPUT_FILE "script_out.scad"
 
 //-------------------------------------------------------------------------------------------------
 
-Controller::Controller(QObject *parent) : QObject(parent)
+Controller::Controller(QObject *parent) : QObject(parent),
+    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr)
 {
+    // Load settings
+    loadSettings();
+
+    // Build app components
     m_pParameterMgr = new ParameterMgr(this);
     connect(m_pParameterMgr, &ParameterMgr::updateWidgetValue, this, &Controller::onUpdateWidgetValue, Qt::UniqueConnection);
     m_pParameterMgr->setController(this);
+
     m_pWidgetFactory = new WidgetFactory(this);
     m_pWidgetFactory->setController(this);
+
+    if (!m_sOpenSCADPath.isEmpty())
+    {
+        m_pOpenSCADWrapper = new OpenSCADWrapper(m_sOpenSCADPath, this);
+        connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileReady, this, &Controller::STLFileReady, Qt::UniqueConnection);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -74,6 +94,13 @@ WidgetFactory *Controller::widgetFactory() const
 
 //-------------------------------------------------------------------------------------------------
 
+OpenSCADWrapper *Controller::openSCADwrapper() const
+{
+    return m_pOpenSCADWrapper;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool Controller::startup()
 {
     if (!m_pParameterMgr->loadMenu1Parameters())
@@ -115,31 +142,22 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
         }
         else pWidget->applyValue(sVariableValue);
     }
-    else
-    {
-        Parameter *pParameter = m_pParameterMgr->getParameterByVariableName(sParameterVariable);
-        if (pParameter != nullptr)
-            pParameter->setValue(sVariableValue);
-        else
-        {
-            QString sMsg = QString("COULD NOT FIND ANY WIDGET OR PARAMETER ASSOCIATED WITH VARIABLE: %1").arg(sParameterVariable);
-            logMessage(sMsg);
-        }
-    }
+    else m_pParameterMgr->setParameterValue(sParameterVariable, sVariableValue);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::exportParametersToSCAD(const QString &sOutputFileName)
+bool Controller::exportParametersToSCAD(QString &sOutputFileName)
 {
-   m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
+    sOutputFileName = Utils::outputDir().absoluteFilePath(SCAD_OUTPUT_FILE);
+    return m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void Controller::exportParametersToTXT(const QString &sOutputFileName)
 {
-   m_pParameterMgr->exportParametersToTXT(sOutputFileName);
+    m_pParameterMgr->exportParametersToTXT(sOutputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -147,4 +165,53 @@ void Controller::exportParametersToTXT(const QString &sOutputFileName)
 void Controller::importParametersFromTXT(const QString &sInputFileName)
 {
     m_pParameterMgr->importParametersFromTXT(sInputFileName);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::generateSTL()
+{
+    if (m_pOpenSCADWrapper != nullptr)
+    {
+        logInfo("ATTEMPT TO GENERATE AN STL FILE...");
+
+        // Step 1: export to SCAD
+        QString sOutputSCAD("");
+        if (exportParametersToSCAD(sOutputSCAD))
+        {
+            // Notify
+            emit outputSCADReady(sOutputSCAD);
+
+            // Step 2: generate STL
+            m_pOpenSCADWrapper->generateSTL(sOutputSCAD);
+        }
+    }
+    else
+    {
+        QString sMsg = QString("OPENSCAD NOT FOUND AT: %1").arg(m_sOpenSCADPath);
+        logError(sMsg);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool Controller::loadSettings()
+{
+    QFileInfo fi(":/ini/settings.ini");
+    if (fi.exists())
+    {
+        QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
+        settings.beginGroup(OPENSCAD_GROUP);
+        QString sOpenSCADPath = settings.value(OPENSCAD_PATH).toString();
+        m_sOpenSCADPath = sOpenSCADPath;
+        fi.setFile(m_sOpenSCADPath);
+        if (!fi.exists())
+        {
+            m_sOpenSCADPath.clear();
+            logError("OPENSCAD EXECUTABLE NOT FOUND. EXPORT TO STL WILL NOT WORK!");
+        }
+        settings.endGroup();
+        return true;
+    }
+    return false;
 }

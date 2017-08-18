@@ -9,5 +9,6 @@
         <file>icons/clear.png</file>
         <file>icons/prohibited.svg</file>
         <file>data/about.xml</file>
+        <file>ini/settings.ini</file>
     </qresource>
 </RCC>

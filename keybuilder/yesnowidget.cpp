@@ -12,11 +12,16 @@ YesNoWidget::YesNoWidget(Controller *pController, const QString &sLabel, const Q
     BaseWidget(pController, parent), ui(new Ui::YesNoWidget)
 {
     ui->setupUi(this);
+
+    // Set default value
     setDefaultValue(sDefaultValue);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
+
     ui->label->setText(sLabel);
     connect(ui->yesRadioButton, &QRadioButton::toggled, this, &YesNoWidget::onRadioButtonToggled, Qt::UniqueConnection);
     ui->yesRadioButton->setProperty(PROPERTY_USER_VALUE, PROPERTY_YES);

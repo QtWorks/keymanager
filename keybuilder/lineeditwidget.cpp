@@ -14,11 +14,16 @@ LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, c
     BaseWidget(pController, parent), ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
+
+    // Set default value
     setDefaultValue(sDefaultValue);
-    if (defaultValue().isEmpty())
-        setDefaultValue(PROPERTY_DEFAULT_VALUE);
+
+    // Set auto script
     setAutoScript(sAutoScript);
+
+    // Set enabled condition
     setEnabledCondition(sEnabledCondition);
+
     connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
     ui->label->setText(sLabel);
 }
