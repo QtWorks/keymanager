@@ -271,7 +271,6 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
       background: white;
 }
 
-
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
 {
       background: none;
@@ -460,3 +459,18 @@ QRadioButton::indicator:disabled
     border: 1px solid #444;
 }
 
+QTreeView::item:hover
+{
+    background-color: transparent;
+    color: white;
+}
+
+QTreeView::item:selected
+{
+    background-color: transparent;
+    color: white;
+}
+
+QTreeView {
+    outline: 0;
+}

@@ -176,7 +176,9 @@ void LayoutMgr::onHighlightItem(const QModelIndex &index, bool bSelected)
 {
     if (index.isValid())
     {
-        ui->treeView->selectionModel()->setCurrentIndex(index, bSelected ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
+        m_pBlockModel->updateIndex(index);
+
+        //ui->treeView->selectionModel()->setCurrentIndex(index, bSelected ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
     }
 }
 

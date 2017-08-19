@@ -39,20 +39,34 @@ CollapsibleBlock *BlockModel::getBlock(const QModelIndex &index) const
 
 QVariant BlockModel::data(const QModelIndex &index, int role) const
 {
-    // Check index:
+    // Check index
     if (!index.isValid())
         return QVariant();
 
-    // Get node:
+    // Get node
     CollapsibleBlock *pBlock = getBlock(index);
     if (!pBlock)
         return QVariant();
 
-    // Node base name:
+    // Display role
     if (role == Qt::DisplayRole)
     {
         ParameterBlock *pParameterBlock = pBlock->parameterBlock();
         return (pParameterBlock != nullptr) ? pParameterBlock->name() : QVariant();
+    }
+
+    // Foreground role
+    if (role == Qt::ForegroundRole)
+    {
+        return pBlock->isSelected() ? QColor("orange") : QColor(Qt::white);
+    }
+
+    if (role == Qt::FontRole)
+    {
+        QFont font;
+        font.setPixelSize(16);
+        font.setBold(pBlock->isSelected());
+        return font;
     }
 
     // UID role
@@ -70,7 +84,9 @@ Qt::ItemFlags BlockModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return 0;
-    return QAbstractItemModel::flags(index);
+
+    Qt::ItemFlags flags = QAbstractItemModel::flags(index);
+    return flags&~Qt::ItemIsSelectable;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -129,6 +145,14 @@ void BlockModel::setRootBlock(CollapsibleBlock *pRootBlock)
     beginResetModel();
     m_pRootBlock = pRootBlock;
     endResetModel();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BlockModel::updateIndex(const QModelIndex &index)
+{
+    if (index.isValid())
+        emit dataChanged(index, index);
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -53,6 +53,9 @@ public:
     // Set root block
     void setRootBlock(CollapsibleBlock *pRootBlock);
 
+    //! Update index
+    void updateIndex(const QModelIndex &index);
+
 protected:
     //! Controller
     Controller *m_pController;

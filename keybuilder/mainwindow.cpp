@@ -196,7 +196,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
     if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
     {
-        ui->plainTextEdit->document()->setPlainText(sOutputSCADContents);
+        ui->plainTextEdit->load(sOutputSCADContents);
     }
 }
 

@@ -107,7 +107,6 @@ void CaptionLabel::onStateChanged(bool bIsClosed)
 
 void CaptionLabel::onOpenOrClose()
 {
-    emit selectMe();
     emit openOrClose();
 }
 

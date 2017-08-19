@@ -88,7 +88,9 @@ SOURCES += main.cpp\
     utils.cpp \
     hometab.cpp \
     openscadwrapper.cpp \
-    helper.cpp
+    helper.cpp \
+    customtreeview.cpp \
+    texteditor.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -123,7 +125,9 @@ HEADERS  += mainwindow.h \
     about.h \
     utils.h \
     hometab.h \
-    openscadwrapper.h
+    openscadwrapper.h \
+    customtreeview.h \
+    texteditor.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
