@@ -45,7 +45,7 @@ bool OpenSCADWrapper::generateSTL(const QString &sInputSCAD)
 
         // Compute out STL file name
         m_sNextOutputSTLFile = Utils::outputDir().absoluteFilePath(sOutputFileName);
-        QString sProgram = QString("\"%1\" -o \"%2\" \"%3\"").arg(m_sOpenSCADPath).arg(m_sNextOutputSTLFile).arg(sInputSCAD).arg(sOutputFileName);
+        QString sProgram = QString("\"%1\" -o \"%2\" \"%3\"").arg(m_sOpenSCADPath).arg(m_sNextOutputSTLFile).arg(sInputSCAD);
         logInfo(sProgram);
 
         // Setup process

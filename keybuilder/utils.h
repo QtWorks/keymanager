@@ -22,6 +22,9 @@ public:
 
     //! Return output directory
     static QDir outputDir();
+
+    //! Return data directory
+    static QDir dataDirectory();
 };
 
 #endif // UTILS_H

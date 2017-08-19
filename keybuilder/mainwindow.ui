@@ -364,7 +364,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="0" column="0">
-         <widget class="TextEditor" name="plainTextEdit" native="true"/>
+         <widget class="CodeEditor" name="plainTextEdit" native="true"/>
         </item>
        </layout>
       </widget>
@@ -396,9 +396,9 @@
    <header>hometab.h</header>
   </customwidget>
   <customwidget>
-   <class>TextEditor</class>
+   <class>CodeEditor</class>
    <extends>QWidget</extends>
-   <header>texteditor.h</header>
+   <header>codeeditor.h</header>
   </customwidget>
  </customwidgets>
  <resources>

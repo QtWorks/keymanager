@@ -1033,6 +1033,7 @@ axi_home_row3_shoulder_distance =   23.8-18.5 ; //CLOSEST TO TIP
 axi_home_root_x =                   1 ; 
 axi_home_root_y =                   1 ; 
 
+axi_home_side = qt_axi_home_side_qt;
 axi_home_top_row = qt_axi_home_top_row_qt;
 axi_home_right_row = qt_axi_home_right_row_qt;
 axi_home_left_row = qt_axi_home_left_row_qt;
@@ -1944,7 +1945,7 @@ module abloy_disklock(abloy_disklock_length=abloy_disklock_length)
             translate ([-3.5/2,0,-6/2])
             rotate([90,0,0])
             linear_extrude(height = abloy_disklock_length+1, center = 1, convexity = 10)
-            import (file = qt_dislockpro_template_qt); 
+            import (file = "disklockpro.dxf"); 
         }
         
         //HOLES
@@ -1977,7 +1978,7 @@ module abloy_protec(abloy_protec_length=abloy_protec_length)
             translate ([0,abloy_protec_length,0])
             rotate([90,0,0])
             linear_extrude(height = abloy_protec_length+1, center = 1, convexity = 10)
-            import (file = qt_protect_template_qt); 
+            import (file = "protec.dxf"); 
         }
         
         //HOLES
@@ -2003,7 +2004,7 @@ module abus_plus(abus_plus_length=abus_plus_length)
             translate ([-1.45,0,-6.7/2])
             rotate([90,0,0])
             linear_extrude(height = abus_plus_length+1, center = 1, convexity = 10)
-            import (file = qt_abusplus_template_qt); 
+            import (file = "abusplus.dxf"); 
         }
         
         
@@ -2028,7 +2029,7 @@ module axi_home()
             translate ([0,axi_home_blank_length,0])
             rotate([90,0,0])
             linear_extrude(height = axi_home_blank_length+1, center = 1, convexity = 10)
-            import (file = qt_axi_template_qt); 
+            import (file = "axi.dxf"); 
         }
     
     if (axi_home_model=="LEFT")
@@ -2039,7 +2040,7 @@ module axi_home()
             rotate([0,0,180])
             rotate([90,0,0])
             linear_extrude(height = axi_home_blank_length+1, center = 1, convexity = 10)
-            import (file = qt_axi_template_qt);
+            import (file = "axi.dxf");
         }  
      
         translate ([5.66/2,axi_home_blank_length-2,5.24/2])
@@ -2065,7 +2066,7 @@ module fichet_787()
             translate ([fichet_787_thickness/2,0,0])
             rotate ([0,0,90])
             linear_extrude(height = fichet_787_height, center = 1, convexity = 10)
-            import (file = qt_787svierge_qt); 
+            import (file = "787Svierge.dxf"); 
         }
         
         //REMOVED MATERIAL

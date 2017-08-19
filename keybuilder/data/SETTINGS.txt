@@ -1,9 +1,0 @@
-SETTINGS
-
-PRECISION [ ] (PRECISION OF CYLINDERS AND SPHERES)//3 TO 100 //qt_fn_qt DEFAULT IS 20
-EPSILON = [ ] //qt_epsilon_qt DEFAULT IS 0.1
-TOLERANCE = [ ] //qt_tolerance_qt DEFAULT IS 0.1
-
-qt_fn_qt = 20; //NUMBER OF FACES
-qt_epsilon_qt = 0.1;
-qt_tolerance_qt = 0.1;

@@ -9,6 +9,11 @@
 #include "constants.h"
 #include "helper.h"
 #include "utils.h"
+#define DISLOCKPRO_TEMPLATE "qt_dislockpro_template_qt"
+#define PROTEC_TEMPLATE "qt_protect_template_qt"
+#define ABUSPLUS_TEMPLATE "qt abusplus.dxf"
+#define AXI_TEMPLATE "qt_axi_template_qt"
+#define VIERGE_TEMPLATE "qt_787svierge_qt"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -25,6 +30,9 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     QString sCurrentText = Utils::loadFile(sInputScripFile);
     if (!sCurrentText.isEmpty())
     {
+        // Replace dxf templates
+        replaceDXFTemplates(sCurrentText);
+
         // Do replacements
         foreach (Parameter *pParameter, vParameters)
         {
@@ -57,4 +65,22 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
     }
 
     return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ScriptMgr::replaceDXFTemplates(QString &sCurrentText)
+{
+    QDir dataDirectory = Utils::dataDirectory();
+    QString sDislockProTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("disklockpro.dxf"));
+    QString sProtecTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("protec.dxf"));
+    QString sAbusPlusTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("abusplus.dxf"));
+    QString sAxiTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("axi.dxf"));
+    QString sViergeTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("787Svierge.dxf"));
+
+    sCurrentText.replace(DISLOCKPRO_TEMPLATE, sDislockProTemplate);
+    sCurrentText.replace(PROTEC_TEMPLATE, sProtecTemplate);
+    sCurrentText.replace(ABUSPLUS_TEMPLATE, sAbusPlusTemplate);
+    sCurrentText.replace(AXI_TEMPLATE, sAxiTemplate);
+    sCurrentText.replace(VIERGE_TEMPLATE, sViergeTemplate);
 }

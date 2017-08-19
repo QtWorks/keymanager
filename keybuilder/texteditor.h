@@ -39,6 +39,9 @@ public:
     //! Load
     void load(const QString &sText);
 
+    //! Do search
+    void doSearch(const QString &sTargetString);
+
 protected:
     //! Handle resize event
     void resizeEvent(QResizeEvent *event);
@@ -60,6 +63,9 @@ private slots:
 private:
     //! Line number area
     QWidget *m_pLineNumberArea;
+
+    //! First time?
+    bool m_bIsFirstTime;
 };
 
 class LineNumberArea : public QWidget

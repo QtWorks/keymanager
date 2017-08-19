@@ -6,8 +6,12 @@
 
 //-------------------------------------------------------------------------------------------------
 
-TextEditor::TextEditor(QWidget *parent) : QPlainTextEdit(parent)
+TextEditor::TextEditor(QWidget *parent) : QPlainTextEdit(parent),
+    m_bIsFirstTime(true)
 {
+    QFont font;
+    font.setPixelSize(18);
+    setFont(font);
     setReadOnly(true);
     m_pLineNumberArea = new LineNumberArea(this);
 
@@ -47,6 +51,9 @@ int TextEditor::lineNumberAreaWidth()
 void TextEditor::load(const QString &sText)
 {
     document()->setPlainText(sText);
+    int iLine = 1;
+    QTextCursor cursor(document()->findBlockByLineNumber(iLine-1));
+    setTextCursor(cursor);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -126,4 +133,35 @@ void TextEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
     }
 }
 
+//-------------------------------------------------------------------------------------------------
 
+void TextEditor::doSearch(const QString &sTargetString)
+{
+    if (m_bIsFirstTime == false)
+        document()->undo();
+
+    if (!sTargetString.isEmpty())
+    {
+        QTextCursor highlightCursor(document());
+        QTextCursor cursor(document());
+
+        cursor.beginEditBlock();
+
+        QTextCharFormat plainFormat(highlightCursor.charFormat());
+        QTextCharFormat colorFormat = plainFormat;
+        colorFormat.setForeground(QColor("black"));
+        colorFormat.setBackground(QColor("orange"));
+        while (!highlightCursor.isNull() && !highlightCursor.atEnd())
+        {
+            highlightCursor = document()->find(sTargetString, highlightCursor);
+            if (!highlightCursor.isNull())
+            {
+                highlightCursor.movePosition(QTextCursor::WordRight, QTextCursor::KeepAnchor);
+                highlightCursor.mergeCharFormat(colorFormat);
+            }
+        }
+
+        cursor.endEditBlock();
+        m_bIsFirstTime = false;
+    }
+}

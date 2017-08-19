@@ -58,6 +58,8 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
     // Foreground role
     if (role == Qt::ForegroundRole)
     {
+        if (!pBlock->isEnabled())
+            return QColor("gray");
         return pBlock->isSelected() ? QColor("orange") : QColor(Qt::white);
     }
 

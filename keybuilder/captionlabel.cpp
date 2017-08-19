@@ -77,7 +77,7 @@ void CaptionLabel::paintEvent(QPaintEvent *e)
     if (m_bIsEnabled)
     {
         if (m_bIsCurrent)
-            paintColor.setNamedColor("lightgreen");
+            paintColor.setNamedColor("orange");
         else
             paintColor.setNamedColor("#EEEEEE");
     }

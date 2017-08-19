@@ -69,3 +69,15 @@ QDir Utils::outputDir()
     dRootDir.cd(OUTPUT_DIR);
     return dRootDir;
 }
+
+//-------------------------------------------------------------------------------------------------
+
+QDir Utils::dataDirectory()
+{
+    QDir dataDir = appDir();
+    dataDir.cdUp();
+    dataDir.cd("keybuilder");
+    dataDir.cd("data");
+    dataDir.cd("confidential");
+    return dataDir;
+}

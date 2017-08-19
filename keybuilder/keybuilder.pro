@@ -90,7 +90,8 @@ SOURCES += main.cpp\
     openscadwrapper.cpp \
     helper.cpp \
     customtreeview.cpp \
-    texteditor.cpp
+    texteditor.cpp \
+    codeeditor.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -127,7 +128,8 @@ HEADERS  += mainwindow.h \
     hometab.h \
     openscadwrapper.h \
     customtreeview.h \
-    texteditor.h
+    texteditor.h \
+    codeeditor.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -142,7 +144,8 @@ FORMS    += mainwindow.ui \
     yesnowidget.ui \
     headerobject.ui \
     about.ui \
-    hometab.ui
+    hometab.ui \
+    codeeditor.ui
 
 DISTFILES +=
 
