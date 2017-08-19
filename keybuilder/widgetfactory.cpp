@@ -51,14 +51,15 @@ BaseWidget *WidgetFactory::getWidgetByVariableName(const QString &sParameterVari
 BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pParentWidget)
 {
     BaseWidget *pWidget = nullptr;
-    QString sParameterName = xParameter.attributes()[PROPERTY_NAME].simplified();
-    QString sParameterType = xParameter.attributes()[PROPERTY_TYPE].simplified();
     QString sParameterVariable = xParameter.attributes()[PROPERTY_VARIABLE].simplified();
+    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sParameterVariable);
+    QString sParameterName = (pParameter != nullptr) ? pParameter->name() : xParameter.attributes()[PROPERTY_NAME].simplified();
+    QString sParameterType = (pParameter != nullptr) ? pParameter->type() : xParameter.attributes()[PROPERTY_TYPE].simplified();
     QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
-    QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-    QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
+    QString sDefaultValue = (pParameter != nullptr) ? pParameter->defaultValue() : xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+    QString sAutoScript = (pParameter != nullptr) ? pParameter->autoScript() : xParameter.attributes()[PROPERTY_AUTO].simplified();
     sAutoScript.replace(" ", "");
-    QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
+    QString sEnabledCondition = (pParameter != nullptr) ? pParameter->enabledCondtion() : xParameter.attributes()[PROPERTY_ENABLED].simplified();
     sEnabledCondition.replace(" ", "");
 
     if (sParameterUI == WIDGET_GENERIC_PARAMETER_TABLE)
