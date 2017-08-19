@@ -62,8 +62,8 @@ void CaptionLabel::setExpandable(bool bExpandable)
 void CaptionLabel::updateEnabledState(bool bEnabled)
 {
     m_bIsEnabled = bEnabled;
-    ui->openCloseButton->setVisible(bEnabled);
-    ui->clearAllButton->setVisible(bEnabled);
+    ui->openCloseButton->setVisible(m_bExpandable && bEnabled);
+    ui->clearAllButton->setVisible(m_bExpandable && bEnabled);
     repaint();
 }
 
