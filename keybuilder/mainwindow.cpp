@@ -130,17 +130,6 @@ void MainWindow::loadCSS()
 
 //-------------------------------------------------------------------------------------------------
 
-/*
-void MainWindow::onExportParametersToSCAD()
-{
-    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Enter output SCAD file name"), ".", tr("SCAD (*.scad)"));
-    if (!sOutputFileName.isEmpty())
-        m_pController->exportParametersToSCAD(sOutputFileName);
-}
-*/
-
-//-------------------------------------------------------------------------------------------------
-
 void MainWindow::onImportParametersFromTXT()
 {
     QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));

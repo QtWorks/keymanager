@@ -35,7 +35,6 @@ void SelectionMgr::unselectBlock(CollapsibleBlock *pBlock)
     if (pBlock != nullptr)
     {
         pBlock->select(false);
-        emit blockStatusChanged(pBlock);
         foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
             if (pChildBlock != nullptr)
                 unselectBlock(pChildBlock);
@@ -49,7 +48,6 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
     if (pBlock != nullptr)
     {
         pBlock->select(true);
-        emit blockStatusChanged(pBlock);
         if (pBlock->parentBlock() != nullptr)
             selectBlock(pBlock->parentBlock());
     }
@@ -57,7 +55,7 @@ void SelectionMgr::selectBlock(CollapsibleBlock *pBlock)
 
 //-------------------------------------------------------------------------------------------------
 
-void SelectionMgr::onBlockSelected()
+void SelectionMgr::onSelectBlock()
 {
     CollapsibleBlock *pSelectedBlock = dynamic_cast<CollapsibleBlock *>(sender());
     if ((pSelectedBlock != nullptr) && (pSelectedBlock->isEnabled()))

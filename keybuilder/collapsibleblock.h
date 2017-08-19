@@ -139,6 +139,9 @@ signals:
 
     //! Select me
     void selectMe();
+
+    //! Block status changed
+    void blockStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

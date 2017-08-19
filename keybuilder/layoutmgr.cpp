@@ -62,6 +62,7 @@ void LayoutMgr::buildMenu(const CXMLNode &xBlock)
             addBlockToStack(pChildBlock);
     }
     connectBlocksToSelectionMgr(m_pRootCollapsibleBlock);
+    evaluateEnabledCondition(m_pRootCollapsibleBlock);
     m_pBlockModel->setRootBlock(m_pRootCollapsibleBlock);
     ui->treeView->expandAll();
 }
@@ -114,9 +115,23 @@ void LayoutMgr::connectBlocksToSelectionMgr(CollapsibleBlock *pBlock)
 {
     if (pBlock != nullptr)
     {
-        connect(pBlock, &CollapsibleBlock::selectMe, m_pSelectionMgr, &SelectionMgr::onBlockSelected, Qt::UniqueConnection);
+        connect(pBlock, &CollapsibleBlock::selectMe, m_pSelectionMgr, &SelectionMgr::onSelectBlock, Qt::UniqueConnection);
+        connect(pBlock, &CollapsibleBlock::blockStatusChanged, m_pSelectionMgr, &SelectionMgr::blockStatusChanged);
         foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
             connectBlocksToSelectionMgr(pChildBlock);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::evaluateEnabledCondition(CollapsibleBlock *pBlock)
+{
+    if (pBlock != nullptr)
+    {
+        if (pBlock->parameterBlock() != nullptr)
+            pBlock->parameterBlock()->onEvaluateEnabledCondition();
+        foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
+            evaluateEnabledCondition(pChildBlock);
     }
 }
 

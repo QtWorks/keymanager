@@ -62,6 +62,9 @@ private:
     //! Connect blocks to selection mgr
     void connectBlocksToSelectionMgr(CollapsibleBlock *pBlock);
 
+    //! Evaluate enabled condition
+    void evaluateEnabledCondition(CollapsibleBlock *pBlock);
+
 private:
     //! UI
     Ui::LayoutMgr *ui;
