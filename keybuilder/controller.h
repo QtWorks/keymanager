@@ -54,6 +54,9 @@ public:
     //! Return OpenSCAD wrapper
     OpenSCADWrapper *openSCADwrapper() const;
 
+    //! Debug on?
+    bool debugOn() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -95,6 +98,9 @@ private:
 
     //! Open SCAD wrapper
     OpenSCADWrapper *m_pOpenSCADWrapper;
+
+    //! Debug mode
+    bool m_bDebugOn;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

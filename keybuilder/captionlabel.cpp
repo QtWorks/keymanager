@@ -1,6 +1,7 @@
 // Qt
 #include <QPainter>
 #include <QPaintEvent>
+#include <QDebug>
 
 // Application
 #include "captionlabel.h"

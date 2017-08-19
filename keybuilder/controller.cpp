@@ -16,14 +16,14 @@
 #include "helper.h"
 #include "openscadwrapper.h"
 #include "utils.h"
-#define OPENSCAD_GROUP "OPENSCAD"
 #define OPENSCAD_PATH "OPENSCAD_PATH"
+#define DEBUG_MODE "DEBUG"
 #define SCAD_OUTPUT_FILE "script_out.scad"
 
 //-------------------------------------------------------------------------------------------------
 
 Controller::Controller(QObject *parent) : QObject(parent),
-    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr)
+    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr), m_bDebugOn(1)
 {
     // Load settings
     loadSettings();
@@ -32,10 +32,8 @@ Controller::Controller(QObject *parent) : QObject(parent),
     m_pParameterMgr = new ParameterMgr(this);
     connect(m_pParameterMgr, &ParameterMgr::updateWidgetValue, this, &Controller::onUpdateWidgetValue, Qt::UniqueConnection);
     m_pParameterMgr->setController(this);
-
     m_pWidgetFactory = new WidgetFactory(this);
     m_pWidgetFactory->setController(this);
-
     if (!m_sOpenSCADPath.isEmpty())
     {
         m_pOpenSCADWrapper = new OpenSCADWrapper(m_sOpenSCADPath, this);
@@ -97,6 +95,13 @@ WidgetFactory *Controller::widgetFactory() const
 OpenSCADWrapper *Controller::openSCADwrapper() const
 {
     return m_pOpenSCADWrapper;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool Controller::debugOn() const
+{
+    return m_bDebugOn;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -201,7 +206,6 @@ bool Controller::loadSettings()
     if (fi.exists())
     {
         QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
-        settings.beginGroup(OPENSCAD_GROUP);
         QString sOpenSCADPath = settings.value(OPENSCAD_PATH).toString();
         m_sOpenSCADPath = sOpenSCADPath;
         fi.setFile(m_sOpenSCADPath);
@@ -210,7 +214,8 @@ bool Controller::loadSettings()
             m_sOpenSCADPath.clear();
             logError("OPENSCAD EXECUTABLE NOT FOUND. EXPORT TO STL WILL NOT WORK!");
         }
-        settings.endGroup();
+        QString sDebugMode = settings.value(DEBUG_MODE).toString().simplified();
+        m_bDebugOn = (sDebugMode.compare("true", Qt::CaseInsensitive) == 0);
         return true;
     }
     return false;

@@ -13,8 +13,11 @@
 #include "parametermgr.h"
 #include "utils.h"
 #include <src/stlwindow.h>
-#define CREATE_KEY_TAB 1
-#define USE_EXISTING_KEY_TAB 2
+#define HOME_TAB 0
+#define MENU1_TAB 1
+#define MENU2_TAB 2
+#define MENU3_TAB 3
+#define SETTINGS_TAB 4
 #define VISUALIZE_STL_TAB 5
 #define OUTPUT_SCAD_TAB 6
 
@@ -82,13 +85,13 @@ void MainWindow::setController(Controller *pController)
 
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
-    connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
     connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
 
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
-    connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
+    connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
     connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
 
@@ -111,6 +114,10 @@ void MainWindow::setController(Controller *pController)
 
     // Build settings tab
     ui->menuSettingsLayoutMgr->buildMenu(m_pController->settingsNode());
+
+    // SCAD output tab
+    if (!m_pController->debugOn())
+        ui->tabWidget->removeTab(OUTPUT_SCAD_TAB);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -145,14 +152,14 @@ void MainWindow::onImportParametersFromTXT()
 
 void MainWindow::onCreateKeyClicked()
 {
-    ui->tabWidget->setCurrentIndex(CREATE_KEY_TAB);
+    ui->tabWidget->setCurrentIndex(MENU1_TAB);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void MainWindow::onUseExistingKeyClicked()
 {
-    ui->tabWidget->setCurrentIndex(USE_EXISTING_KEY_TAB);
+    ui->tabWidget->setCurrentIndex(MENU2_TAB);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -198,7 +205,7 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 {
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
-    if (!sOutputSCADContents.isEmpty())
+    if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
     {
         ui->plainTextEdit->document()->setPlainText(sOutputSCADContents);
     }

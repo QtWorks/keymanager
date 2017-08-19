@@ -6,9 +6,12 @@
         <file>data/script_in.scad</file>
         <file>data/settings.xml</file>
         <file>css/main.css</file>
-        <file>icons/clear.png</file>
-        <file>icons/prohibited.svg</file>
         <file>data/about.xml</file>
         <file>ini/settings.ini</file>
+        <file>icons/ico-build.png</file>
+        <file>icons/ico-clear.png</file>
+        <file>icons/ico-close.png</file>
+        <file>icons/ico-open.png</file>
+        <file>icons/ico-save.png</file>
     </qresource>
 </RCC>

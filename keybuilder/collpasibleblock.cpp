@@ -153,7 +153,6 @@ bool CollapsibleBlock::isSelected() const
 
 void CollapsibleBlock::select(bool bSelect)
 {
-    qDebug() << bSelect;
     m_bIsSelected = bSelect;
     m_pCaptionLabel->setCurrent(bSelect);
     if (!bSelect)
