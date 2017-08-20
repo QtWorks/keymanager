@@ -56,6 +56,9 @@ public:
     //! Update index
     void updateIndex(const QModelIndex &index);
 
+    //! Return a block index
+    QModelIndex getBlockIndex(const QString &sBlockUID) const;
+
 protected:
     //! Controller
     Controller *m_pController;
@@ -69,7 +72,7 @@ public slots:
     //-------------------------------------------------------------------------------------------------
 
     //! Block status changed
-    void onBlockStatusChanged(CollapsibleBlock *pBlock);
+    void onBlockSelectionStatusChanged(CollapsibleBlock *pBlock);
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -77,7 +80,7 @@ signals:
     //-------------------------------------------------------------------------------------------------
 
     //! Highlight item
-    void highlightItem(const QModelIndex &index, bool bSelected);
+    void highlightItem(const QModelIndex &index, CollapsibleBlock *pBlock);
 };
 
 #endif // BLOCKMODEL_H

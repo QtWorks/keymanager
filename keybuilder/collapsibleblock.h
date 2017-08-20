@@ -140,8 +140,8 @@ signals:
     //! Select me
     void selectMe();
 
-    //! Block status changed
-    void blockStatusChanged(CollapsibleBlock *pBlock);
+    //! Block selection status changed
+    void blockSelectionStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif /*COLLAPSIBLEBLOCK_H*/

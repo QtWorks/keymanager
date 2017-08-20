@@ -159,14 +159,24 @@ void BlockModel::updateIndex(const QModelIndex &index)
 
 //-------------------------------------------------------------------------------------------------
 
-void BlockModel::onBlockStatusChanged(CollapsibleBlock *pBlock)
+QModelIndex BlockModel::getBlockIndex(const QString &sBlockUID) const
+{
+    QModelIndexList lIndexList = match(index(0, 0, QModelIndex()), UidRole,sBlockUID, 1, Qt::MatchRecursive);
+    if (!lIndexList.isEmpty())
+        return lIndexList.first();
+    return QModelIndex();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void BlockModel::onBlockSelectionStatusChanged(CollapsibleBlock *pBlock)
 {
     if ((pBlock != nullptr) && (pBlock->parameterBlock() != nullptr) && (pBlock->parameterBlock()->isEnabled()))
     {
-        QModelIndexList lIndexList = match(index(0, 0, QModelIndex()), UidRole, pBlock->uid(), 1, Qt::MatchRecursive);
-        if (!lIndexList.isEmpty())
+        QModelIndex index = getBlockIndex(pBlock->uid());
+        if (index.isValid())
         {
-            emit highlightItem(lIndexList.first(), pBlock->isSelected());
+            emit highlightItem(index, pBlock);
         }
     }
 }

@@ -54,8 +54,8 @@ signals:
     // Signals
     //-------------------------------------------------------------------------------------------------
 
-    //! Block status changed
-    void blockStatusChanged(CollapsibleBlock *pBlock);
+    //! Block selection status changed
+    void blockSelectionStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif // SELECTIONMGR_H

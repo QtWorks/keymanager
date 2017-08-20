@@ -156,7 +156,7 @@ void CollapsibleBlock::select(bool bSelect)
     if (m_bIsSelected != bSelect)
     {
         m_bIsSelected = bSelect;
-        emit blockStatusChanged(this);
+        emit blockSelectionStatusChanged(this);
         m_pCaptionLabel->setCurrent(bSelect);
         if (!bSelect)
             foreach (CollapsibleBlock *pChildBlock, m_vChildBlocks)

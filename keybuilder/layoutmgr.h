@@ -108,10 +108,13 @@ public slots:
     void onClearAll();
 
     //! Highlight item
-    void onHighlightItem(const QModelIndex &index, bool bSelected);
+    void onHighlightItem(const QModelIndex &index, CollapsibleBlock *pBlock);
 
     //! Block status changed
-    void onBlockStatusChanged(CollapsibleBlock *pBlock);
+    void onBlockSelectionStatusChanged(CollapsibleBlock *pBlock);
+
+    //! Closed state changed
+    void onClosedStateChanged(bool bClosed);
 };
 
 #endif // LAYOUTMGR_H

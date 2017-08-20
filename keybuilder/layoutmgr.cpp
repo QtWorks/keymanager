@@ -33,8 +33,8 @@ LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
     connect(m_pBlockModel, &BlockModel::highlightItem, this, &LayoutMgr::onHighlightItem, Qt::UniqueConnection);
 
     // Listen to block status changed from selection mgr
-    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, m_pBlockModel, &BlockModel::onBlockStatusChanged, Qt::UniqueConnection);
-    connect(m_pSelectionMgr, &SelectionMgr::blockStatusChanged, this, &LayoutMgr::onBlockStatusChanged, Qt::UniqueConnection);
+    connect(m_pSelectionMgr, &SelectionMgr::blockSelectionStatusChanged, m_pBlockModel, &BlockModel::onBlockSelectionStatusChanged, Qt::UniqueConnection);
+    connect(m_pSelectionMgr, &SelectionMgr::blockSelectionStatusChanged, this, &LayoutMgr::onBlockSelectionStatusChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -116,7 +116,8 @@ void LayoutMgr::connectBlocksToSelectionMgr(CollapsibleBlock *pBlock)
     if (pBlock != nullptr)
     {
         connect(pBlock, &CollapsibleBlock::selectMe, m_pSelectionMgr, &SelectionMgr::onSelectBlock, Qt::UniqueConnection);
-        connect(pBlock, &CollapsibleBlock::blockStatusChanged, m_pSelectionMgr, &SelectionMgr::blockStatusChanged);
+        connect(pBlock, &CollapsibleBlock::blockSelectionStatusChanged, m_pSelectionMgr, &SelectionMgr::blockSelectionStatusChanged);
+        connect(pBlock, &CollapsibleBlock::closedStateChanged, this, &LayoutMgr::onClosedStateChanged);
         foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
             connectBlocksToSelectionMgr(pChildBlock);
     }
@@ -174,22 +175,38 @@ void LayoutMgr::onClearAll()
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onHighlightItem(const QModelIndex &index, bool bSelected)
+void LayoutMgr::onHighlightItem(const QModelIndex &index, CollapsibleBlock *pBlock)
 {
-    if (index.isValid())
+    if (index.isValid() && (pBlock != nullptr))
     {
         m_pBlockModel->updateIndex(index);
-
-        //ui->treeView->selectionModel()->setCurrentIndex(index, bSelected ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void LayoutMgr::onBlockStatusChanged(CollapsibleBlock *pBlock)
+void LayoutMgr::onBlockSelectionStatusChanged(CollapsibleBlock *pBlock)
 {
     if (pBlock != nullptr)
     {
         pBlock->setBlockVariable();
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LayoutMgr::onClosedStateChanged(bool bClosed)
+{
+    CollapsibleBlock *pSender = dynamic_cast<CollapsibleBlock *>(sender());
+    if (pSender != nullptr)
+    {
+        QModelIndex blockIndex = m_pBlockModel->getBlockIndex(pSender->uid());
+        if (blockIndex.isValid())
+        {
+            if (bClosed)
+                ui->treeView->collapse(blockIndex);
+            else
+                ui->treeView->expand(blockIndex);
+        }
     }
 }
