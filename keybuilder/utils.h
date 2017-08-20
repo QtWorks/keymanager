@@ -24,7 +24,10 @@ public:
     static QDir outputDir();
 
     //! Return data directory
-    static QDir dataDirectory();
+    static QDir templatesDirectory();
+
+    //! Return OpenSCAD path
+    static QString openSCADPath();
 };
 
 #endif // UTILS_H

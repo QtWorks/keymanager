@@ -74,7 +74,7 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
 
 void ScriptMgr::replaceDXFTemplates(QString &sCurrentText)
 {
-    QDir dataDirectory = Utils::dataDirectory();
+    QDir dataDirectory = Utils::templatesDirectory();
     QString sDislockProTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("disklockpro.dxf"));
     QString sProtecTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("protec.dxf"));
     QString sAbusPlusTemplate = QString("\"%1\"").arg(dataDirectory.absoluteFilePath("abusplus.dxf"));

@@ -17,7 +17,6 @@
 #include "helper.h"
 #include "openscadwrapper.h"
 #include "utils.h"
-#define OPENSCAD_PATH "OPENSCAD_PATH"
 #define DEBUG_MODE "DEBUG"
 #define SCAD_OUTPUT_FILE "script_out.scad"
 
@@ -28,6 +27,20 @@ Controller::Controller(QObject *parent) : QObject(parent),
 {
     // Load settings
     loadSettings();
+
+    // Find OpenSCAD path
+    m_sOpenSCADPath = Utils::openSCADPath();
+
+    QFileInfo fi(m_sOpenSCADPath);
+    if (!fi.exists())
+    {
+        logError("OPENSCAD EXECUTABLE NOT FOUND. EXPORT TO STL WILL NOT WORK!");
+    }
+    else
+    {
+        QString sMsg = QString("IDENTIFIED OPENSCAD AT: %1").arg(m_sOpenSCADPath);
+        logInfo(sMsg);
+    }
 
     // Build app components
     m_pParameterMgr = new ParameterMgr(this);
@@ -242,14 +255,6 @@ bool Controller::loadSettings()
     if (fi.exists())
     {
         QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
-        QString sOpenSCADPath = settings.value(OPENSCAD_PATH).toString();
-        m_sOpenSCADPath = sOpenSCADPath;
-        fi.setFile(m_sOpenSCADPath);
-        if (!fi.exists())
-        {
-            m_sOpenSCADPath.clear();
-            logError("OPENSCAD EXECUTABLE NOT FOUND. EXPORT TO STL WILL NOT WORK!");
-        }
         QString sDebugMode = settings.value(DEBUG_MODE).toString().simplified();
         m_bDebugOn = (sDebugMode.compare("true", Qt::CaseInsensitive) == 0);
         return true;

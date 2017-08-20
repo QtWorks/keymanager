@@ -6,13 +6,14 @@
 #include <QFile>
 #include <QTextStream>
 #include <QCoreApplication>
+#include <QStandardPaths>
 
 // Application
 #include "utils.h"
-#define OUTPUT_DIR "output"
-#define KEYBUILDER_DIR "keybuilder"
-#define DATA_DIR "data"
+#define OUTPUT_DIR "OFC3DKEY_output"
 #define TEMPLATES_DIR "templates"
+#define OPENSCAD_DIR "OpenSCAD"
+#define OPENSCAD_EXE "openscad.exe"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -66,22 +67,26 @@ QDir Utils::appDir()
 
 QDir Utils::outputDir()
 {
-    QDir dRootDir = appDir();
-    dRootDir.cdUp();
-    dRootDir.cd(KEYBUILDER_DIR);
-    dRootDir.mkdir(OUTPUT_DIR);
-    dRootDir.cd(OUTPUT_DIR);
-    return dRootDir;
+    QDir tmpLocation = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+    tmpLocation.mkdir(OUTPUT_DIR);
+    tmpLocation.cd(OUTPUT_DIR);
+    return tmpLocation;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-QDir Utils::dataDirectory()
+QDir Utils::templatesDirectory()
 {
     QDir dataDir = appDir();
-    dataDir.cdUp();
-    dataDir.cd(KEYBUILDER_DIR);
-    dataDir.cd(DATA_DIR);
     dataDir.cd(TEMPLATES_DIR);
     return dataDir;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString Utils::openSCADPath()
+{
+    QDir openSCADDir = appDir();
+    openSCADDir.cd(OPENSCAD_DIR);
+    return openSCADDir.absoluteFilePath(OPENSCAD_EXE);
 }
