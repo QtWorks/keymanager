@@ -120,7 +120,7 @@
           <item>
            <widget class="QPushButton" name="openAllButtonMenu1">
             <property name="text">
-             <string>OPEN ALL</string>
+             <string>Open All</string>
             </property>
             <property name="icon">
              <iconset resource="resources.qrc">

@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
-    const QString &sAutoScript, const QString &sEnabledCondition) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
+    const QString &sAutoScript, const QString &sEnabledCondition, bool bSetValue) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
     m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
 {    
     if (m_sDefaultValue.isEmpty())
@@ -17,7 +17,7 @@ Parameter::Parameter(const QString &sName, const QString &sType, const QString &
     if (m_sType == PROPERTY_BOOLEAN)
         if ((m_sDefaultValue != PROPERTY_YES) && (m_sDefaultValue != PROPERTY_NO))
             m_sDefaultValue = PROPERTY_NO;
-    m_sValue = m_sDefaultValue;
+    m_sValue = bSetValue ? m_sDefaultValue : QString("");
 }
 
 //-------------------------------------------------------------------------------------------------

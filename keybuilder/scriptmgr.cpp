@@ -39,8 +39,11 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
             if (pParameter != nullptr)
             {
                 QString sParameterVariable = pParameter->variable();
+                QString sParameterValue = pParameter->value();
+                if (sParameterValue.isEmpty())
+                    sParameterValue = pParameter->defaultValue();
                 if ((pParameter->type() != PROPERTY_STRING) && (pParameter->type() != PROPERTY_BOOLEAN))
-                    sCurrentText.replace(sParameterVariable, pParameter->value());
+                    sCurrentText.replace(sParameterVariable, sParameterValue);
                 else
                 {
                     QString sQuotedVariable = QString("\"%1\"").arg(pParameter->value());

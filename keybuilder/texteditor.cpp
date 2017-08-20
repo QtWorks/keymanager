@@ -7,7 +7,7 @@
 //-------------------------------------------------------------------------------------------------
 
 TextEditor::TextEditor(QWidget *parent) : QPlainTextEdit(parent),
-    m_bIsFirstTime(true)
+    m_bIsFirstTime(true), m_iSearchIndex(-1)
 {
     QFont font;
     font.setPixelSize(18);
@@ -21,6 +21,7 @@ TextEditor::TextEditor(QWidget *parent) : QPlainTextEdit(parent),
 
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();
+    setFocus();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -139,7 +140,8 @@ void TextEditor::doSearch(const QString &sTargetString)
 {
     if (m_bIsFirstTime == false)
         document()->undo();
-
+    m_vSearchResults.clear();
+    m_iSearchIndex = -1;
     if (!sTargetString.isEmpty())
     {
         QTextCursor highlightCursor(document());
@@ -158,10 +160,58 @@ void TextEditor::doSearch(const QString &sTargetString)
             {
                 highlightCursor.movePosition(QTextCursor::WordRight, QTextCursor::KeepAnchor);
                 highlightCursor.mergeCharFormat(colorFormat);
+                m_vSearchResults << highlightCursor;
             }
         }
 
         cursor.endEditBlock();
         m_bIsFirstTime = false;
+        if (!m_vSearchResults.isEmpty())
+            onF3Pressed();
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void TextEditor::keyPressEvent(QKeyEvent *event)
+{
+    QPlainTextEdit::keyPressEvent(event);
+    if (!m_vSearchResults.isEmpty())
+    {
+        if (event->key() == Qt::Key_F3)
+        {
+            onF3Pressed();
+            event->accept();
+        }
+        else
+        if (event->key() == Qt::Key_F4)
+        {
+            onF4Pressed();
+            event->accept();
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void TextEditor::onF3Pressed()
+{
+    m_iSearchIndex++;
+    if (m_iSearchIndex > (m_vSearchResults.size()-1))
+        m_iSearchIndex = 0;
+    QTextCursor highlightCursor = m_vSearchResults[m_iSearchIndex];
+    highlightCursor.select(QTextCursor::BlockUnderCursor);
+    setTextCursor(highlightCursor);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void TextEditor::onF4Pressed()
+{
+    m_iSearchIndex--;
+    if (m_iSearchIndex < 0)
+        m_iSearchIndex = m_vSearchResults.size()-1;
+    QTextCursor highlightCursor = m_vSearchResults[m_iSearchIndex];
+    highlightCursor.select(QTextCursor::BlockUnderCursor);
+    setTextCursor(highlightCursor);
 }

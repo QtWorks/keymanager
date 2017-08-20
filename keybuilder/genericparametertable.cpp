@@ -23,6 +23,8 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     m_pController(pController), m_sDefaultValue(sDefaultValue)
 {
     QStringList lDefaultValues;
+    if (m_sDefaultValue.isEmpty())
+        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     if (m_sDefaultValue.contains(","))
         lDefaultValues = m_sDefaultValue.split(",");
     else lDefaultValues << m_sDefaultValue;
@@ -44,7 +46,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         processActionSetNumberOfPins(m_sActionSetNumberOfPins);
     m_vData.resize((nRows+1)*nColumns);
     for (int i=0; i<m_lDefaultValues.size(); i++)
-        m_vData[i] = m_lDefaultValues[i];
+        m_vData[i] = PROPERTY_DEFAULT_VALUE;
     for (int i=0; i<nRows; i++)
     {
         for (int j=0; j<nColumns; j++)

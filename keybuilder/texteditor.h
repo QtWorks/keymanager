@@ -10,6 +10,7 @@ class QPaintEvent;
 class QResizeEvent;
 class QSize;
 class QWidget;
+class QKeyEvent;
 QT_END_NAMESPACE
 
 // Application
@@ -44,7 +45,10 @@ public:
 
 protected:
     //! Handle resize event
-    void resizeEvent(QResizeEvent *event);
+    virtual void resizeEvent(QResizeEvent *event);
+
+    //! Handle key press event
+    virtual void keyPressEvent(QKeyEvent *event);
 
 private slots:
     //-------------------------------------------------------------------------------------------------
@@ -61,11 +65,24 @@ private slots:
     void updateLineNumberArea(const QRect &, int);
 
 private:
+    //! F3 pressed
+    void onF3Pressed();
+
+    //! F4 pressed
+    void onF4Pressed();
+
+private:
     //! Line number area
     QWidget *m_pLineNumberArea;
 
     //! First time?
     bool m_bIsFirstTime;
+
+    //! Search results
+    QVector<QTextCursor> m_vSearchResults;
+
+    //! Search index
+    int m_iSearchIndex;
 };
 
 class LineNumberArea : public QWidget

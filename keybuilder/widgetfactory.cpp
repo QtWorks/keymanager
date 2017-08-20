@@ -199,7 +199,8 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
 
         if (!hWatchedParameters.isEmpty())
             pWidget->setWatchedParameters(hWatchedParameters);
-        pWidget->applyDefaultValue();
+        if (sParameterUI != WIDGET_GENERIC_PARAMETER_TABLE)
+            pWidget->applyDefaultValue();
         pWidget->onEvaluateEnabledCondition();
     }
 

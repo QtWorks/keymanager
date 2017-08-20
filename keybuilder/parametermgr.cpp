@@ -120,44 +120,57 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QString sVariableMethod = xParameter.attributes()[PROPERTY_VARIABLE_METHOD].simplified();
     QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
     QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
-    if (lColumnLabels.size() == lColumnVariables.size())
+    QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
+    if (sDefaultValue.isEmpty())
+        sDefaultValue = PROPERTY_DEFAULT_VALUE;
+
+    // Make sure default values, column labels and column variables have same size
+    QStringList lDefaultValues;
+    if (sDefaultValue.contains(","))
+        lDefaultValues = sDefaultValue.split(",");
+    else lDefaultValues << sDefaultValue;
+
+    int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
+    if (!lDefaultValues.isEmpty())
+        nColumns = qMin(nColumns, lDefaultValues.size());
+
+    lColumnLabels = lColumnLabels.mid(0, nColumns);
+    lColumnVariables = lColumnVariables.mid(0, nColumns);
+
+    QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
+    int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
+    QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
+
+    for (int iRow=0; iRow<nRows; iRow++)
     {
-        QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
-        int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-        QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
-
-        for (int iRow=0; iRow<nRows; iRow++)
+        QString sRowNumber = QString::number(iRow+1);
+        if (sRowNumber.length() < 2)
+            sRowNumber = "0"+sRowNumber;
+        for (int iColumn=0; iColumn<lColumnVariables.size(); iColumn++)
         {
-            QString sRowNumber = QString::number(iRow+1);
-            if (sRowNumber.length() < 2)
-                sRowNumber = "0"+sRowNumber;
-            for (int iColumn=0; iColumn<lColumnVariables.size(); iColumn++)
-            {
-                QString sFormattedVariable("");
+            QString sFormattedVariable("");
 
-                // Compute variable name using method1
-                if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+            // Compute variable name using method1
+            if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+            {
+                sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
+                if (!m_hParameters.contains(sFormattedVariable))
                 {
-                    sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
-                    if (!m_hParameters.contains(sFormattedVariable))
-                    {
-                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript, sEnabledCondition);
-                    }
+                    m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
                 }
-                else
-                    // Compute variable name using method2
-                    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
-                    {
-                        sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
-                        if (!m_hParameters.contains(sFormattedVariable))
-                        {
-                            m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, PROPERTY_DEFAULT_VALUE, sAutoScript, sEnabledCondition);
-                        }
-                    }
+            }
+            else
+            // Compute variable name using method2
+            if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+            {
+                sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
+                if (!m_hParameters.contains(sFormattedVariable))
+                {
+                    m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
+                }
             }
         }
     }
-    else logError("CAN'T PARSE PARAMETER TABLE");
 }
 
 //-------------------------------------------------------------------------------------------------

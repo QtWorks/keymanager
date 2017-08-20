@@ -17,7 +17,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition);
+    Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, bool bSetValue=true);
 
     //! Destructor
     ~Parameter();

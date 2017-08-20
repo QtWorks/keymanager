@@ -170,6 +170,7 @@ void MainWindow::onVisualizeSTLClicked()
 
 void MainWindow::onGenerateSTL()
 {
+    ui->textBrowser->clear();
     statusBar()->showMessage("BUILDING STL...");
     // Step 1: do replacement in script_in.scad
     m_pController->generateSTL();
