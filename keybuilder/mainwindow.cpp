@@ -27,9 +27,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow), m_bAllOpened(false), m_pSTLWindow(new STLWindow),
     m_sNextSTLFileToDisplay("")
 {    
-    // Set window title
-    setWindowTitle(tr("OFC3DKEY V.2.0.2017"));
-
     // Setup timer
     m_STLViewerTimer.setInterval(500);
     m_STLViewerTimer.setSingleShot(true);
@@ -40,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+
+    // Set window title
+    setWindowTitle(tr("OFC3DKEY V.2.0.2017"));
 
     // Add STL Window
     ui->stlViewerLayout->addWidget(m_pSTLWindow);

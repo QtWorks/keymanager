@@ -18,6 +18,22 @@
       <Parameter name="STL FILE" type="string" variable="qt_dimple_laser_stl_name_qt" />
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_dimple_laser_stl_name_qt" dxf_variable="qt_dimple_laser_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
+   <Block name="ROUND PUMP/TUBULAR" set_variable="qt_type_of_key_qt" value="round_pump">
+      <Parameter name="LENGTH" type="double" variable="qt_round_pump_length_qt" ui="lineedit" />
+      <Parameter name="DIAMETER" type="double" variable="qt_round_pump_diameter_qt" ui="lineedit" />
+      <Parameter name="NUMBER OF RAISED WINGS" type="int" variable="qt_round_pump_number_of_raised_wings_qt" ui="lineedit" />
+      <Parameter name="RAISED DIAMETER" type="double" variable="qt_round_pump_raised_diameter_qt" ui="lineedit" />
+      <Parameter name="RAISED LENGTH FROM TIP" type="double" variable="qt_round_pump_raised_length_from_tip_qt" ui="lineedit" />
+      <Parameter name="RAISED THICKNESS" type="double" variable="qt_round_pump_raised_thickness_qt" ui="lineedit" />
+      <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_round_pump_tip_hole_diameter_qt" ui="lineedit" />
+      <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_round_pump_tip_hole_depth_qt" ui="lineedit" />
+      <Parameter name="OUTWARD TENSIONER LENGTH" type="double" variable="qt_round_pump_outward_tensioner_length_qt" ui="lineedit" />
+      <Parameter name="OUTWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_outward_tensioner_height_qt" ui="lineedit" />
+      <Parameter name="OUTWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_outward_tensioner_thickness_qt" ui="lineedit" />
+      <Parameter name="INWARD TENSIONER LENGTH" type="double" variable="qt_round_pump_inward_tensioner_length_qt" ui="lineedit" />
+      <Parameter name="INWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_inward_tensioner_height_qt" ui="lineedit" />
+      <Parameter name="INWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_inward_tensioner_thickness_qt" ui="lineedit" />
+   </Block>
    <Block name="BROWSE FOR A ROUND PUMP BLANK STL" set_variable="qt_type_of_key_qt" value="round_stl">
       <Parameter name="BROWSE FOR A STL" type="string" variable="qt_round_stl_name_qt" ui="filepicker" extension="*.stl" />
       <Parameter name="X ROTATION" type="double" variable="qt_round_stl_rx_qt" ui="lineedit" />
@@ -37,14 +53,6 @@
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_simple_tip_hole_diameter_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_lever_simple_tip_hole_depth_qt" ui="lineedit" />
    </Block>
-   <Block name="ABLOY CLASSIC" set_variable="qt_type_of_key_qt" value="abloy_classic">
-      <Parameter name="LENGTH" type="double" variable="qt_abloy_classic_length_qt" default="30" ui="lineedit" />
-      <Parameter name="HEIGHT" type="double" variable="qt_abloy_classic_height_qt" default="6" ui="lineedit" />
-      <Parameter name="THICKNESS" type="double" variable="qt_abloy_classic_thickness_qt" default="3" ui="lineedit" />
-      <Parameter name="DXF FILE" type="string" variable="qt_abloy_classic_dxf_name_qt" />
-      <Parameter name="STL FILE" type="string" variable="qt_abloy_classic_stl_name_qt" />
-      <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_abloy_classic_stl_name_qt" dxf_variable="qt_abloy_classic_dxf_name_qt" ui="dxforstlfilepicker"/>
-   </Block>
    <Block name="LEVER LOCK DOUBLE BITTED" set_variable="qt_type_of_key_qt" value="lever_double">
       <Parameter name="BODY LENGTH" type="double" variable="qt_lever_double_body_length_qt" ui="lineedit" />
       <Parameter name="BODY DIAMETER" type="double" variable="qt_lever_double_body_diameter_qt" ui="lineedit" />
@@ -55,6 +63,14 @@
       <Parameter name="TIP LENGTH" type="double" variable="qt_lever_double_tip_length_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_double_tip_hole_diameter_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_lever_double_tip_hole_depth_qt" ui="lineedit" />
+   </Block>
+   <Block name="ABLOY CLASSIC" set_variable="qt_type_of_key_qt" value="abloy_classic">
+      <Parameter name="LENGTH" type="double" variable="qt_abloy_classic_length_qt" default="30" ui="lineedit" />
+      <Parameter name="HEIGHT" type="double" variable="qt_abloy_classic_height_qt" default="6" ui="lineedit" />
+      <Parameter name="THICKNESS" type="double" variable="qt_abloy_classic_thickness_qt" default="3" ui="lineedit" />
+      <Parameter name="DXF FILE" type="string" variable="qt_abloy_classic_dxf_name_qt" />
+      <Parameter name="STL FILE" type="string" variable="qt_abloy_classic_stl_name_qt" />
+      <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_abloy_classic_stl_name_qt" dxf_variable="qt_abloy_classic_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
    <Block name="ABLOY DISKLOCK PRO" set_variable="qt_type_of_key_qt" value="abloy_disklock" />
    <Block name="ABLOY PROTECT" set_variable="qt_type_of_key_qt" value="abloy_protec" />
@@ -75,21 +91,5 @@
       <Parameter name="X TRANSLATION" type="double" variable="qt_expert_stl_tx_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &quot;YES&quot;)"/>
       <Parameter name="Y TRANSLATION" type="double" variable="qt_expert_stl_ty_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &quot;YES&quot;)"/>
       <Parameter name="Z TRANSLATION" type="double" variable="qt_expert_stl_tz_qt" ui="lineedit" enabled="(qt_expert_stl_set_dimensions_qt == &quot;YES&quot;)"/>
-   </Block>
-   <Block name="ROUND PUMP/TUBULAR" set_variable="qt_type_of_key_qt" value="round_pump">
-      <Parameter name="LENGTH" type="double" variable="qt_round_pump_length_qt" ui="lineedit" />
-      <Parameter name="DIAMETER" type="double" variable="qt_round_pump_diameter_qt" ui="lineedit" />
-      <Parameter name="NUMBER OF RAISED WINGS" type="int" variable="qt_round_pump_number_of_raised_wings_qt" ui="lineedit" />
-      <Parameter name="RAISED DIAMETER" type="double" variable="qt_round_pump_raised_diameter_qt" ui="lineedit" />
-      <Parameter name="RAISED LENGTH FROM TIP" type="double" variable="qt_round_pump_raised_length_from_tip_qt" ui="lineedit" />
-      <Parameter name="RAISED THICKNESS" type="double" variable="qt_round_pump_raised_thickness_qt" ui="lineedit" />
-      <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_round_pump_tip_hole_diameter_qt" ui="lineedit" />
-      <Parameter name="TIP HOLE DEPTH" type="double" variable="qt_round_pump_tip_hole_depth_qt" ui="lineedit" />
-      <Parameter name="OUTWARD TENSIONER LENGTH" type="double" variable="qt_round_pump_outward_tensioner_length_qt" ui="lineedit" />
-      <Parameter name="OUTWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_outward_tensioner_height_qt" ui="lineedit" />
-      <Parameter name="OUTWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_outward_tensioner_thickness_qt" ui="lineedit" />
-      <Parameter name="INWARD TENSIONER LENGTH" type="double" variable="qt_round_pump_inward_tensioner_length_qt" ui="lineedit" />
-      <Parameter name="INWARD TENSIONER HEIGHT" type="double" variable="qt_round_pump_inward_tensioner_height_qt" ui="lineedit" />
-      <Parameter name="INWARD TENSIONER THICKNESS" type="double" variable="qt_round_pump_inward_tensioner_thickness_qt" ui="lineedit" />
    </Block>
 </Block>
