@@ -156,8 +156,8 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
 
 void Controller::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
 {
-    QString sMsg = QString("OPENSCAD PROCESS COMPLETED WITH EXIT CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
-    logInfo(sMsg);
+    QString sMsg = QString("OPENSCAD PROCESS EXIT CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
+    emit openSCADProcessComplete(sMsg);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -168,8 +168,8 @@ void Controller::onOpenSCADreadyReadStandardOutput()
     if (pSender != nullptr)
     {
         QByteArray bBuffer = pSender->readAllStandardOutput();
-        QString sMsg = QString("OPENSCAD OUTPUT LOG IS: %1").arg(QString(bBuffer));
-        logInfo(sMsg);
+        QString sMsg = QString("OPENSCAD OUTPUT: %1").arg(QString(bBuffer));
+        emit openSCADStandardOutputReady(sMsg);
     }
 }
 
@@ -181,8 +181,8 @@ void Controller::onOpenSCADreadyReadStandardError()
     if (pSender != nullptr)
     {
         QByteArray bBuffer = pSender->readAllStandardError();
-        QString sMsg = QString("OPENSCAD ERROR LOG IS: %1").arg(QString(bBuffer));
-        logInfo(sMsg);
+        QString sMsg = QString("OPENSCAD ERROR: %1").arg(QString(bBuffer));
+        emit openSCADStandardErrorReady(sMsg);
     }
 }
 

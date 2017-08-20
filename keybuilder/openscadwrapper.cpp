@@ -19,8 +19,8 @@ OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) 
 {
     // Add path
     m_pFileSystemWatcher->addPath(Utils::outputDir().absolutePath());
-    connect(m_pFileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
-    connect(m_pFileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
+    connect(m_pFileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged, Qt::UniqueConnection);
+    connect(m_pFileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -28,9 +28,9 @@ OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) 
 void OpenSCADWrapper::setController(Controller *pController)
 {
     m_pController = pController;
-    connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), m_pController, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)));
-    connect(m_pProcess, &QProcess::readyReadStandardOutput, m_pController, &Controller::onOpenSCADreadyReadStandardOutput);
-    connect(m_pProcess, &QProcess::readyReadStandardError, m_pController, &Controller::onOpenSCADreadyReadStandardError);
+    connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), m_pController, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)), Qt::UniqueConnection);
+    connect(m_pProcess, &QProcess::readyReadStandardOutput, m_pController, &Controller::onOpenSCADreadyReadStandardOutput, Qt::UniqueConnection);
+    connect(m_pProcess, &QProcess::readyReadStandardError, m_pController, &Controller::onOpenSCADreadyReadStandardError, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

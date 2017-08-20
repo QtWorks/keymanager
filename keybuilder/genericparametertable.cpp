@@ -456,7 +456,7 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
     connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged, Qt::UniqueConnection);
 
     // Populate button area
-    connect(pHeaderView, &CustomHeaderView::clearClicked, this, &GenericParameterTable::onClearColumn);
+    connect(pHeaderView, &CustomHeaderView::clearClicked, this, &GenericParameterTable::onClearColumn, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

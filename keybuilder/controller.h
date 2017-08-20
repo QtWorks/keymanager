@@ -125,6 +125,15 @@ signals:
 
     //! Output SCAD ready
     void outputSCADReady(const QString &sPath);
+
+    //! OpenSCAD process complete
+    void openSCADProcessComplete(const QString &sStatus);
+
+    //! OpenSCAD standard error ready
+    void openSCADStandardErrorReady(const QString &sError);
+
+    //! OpenSCAD standard output ready
+    void openSCADStandardOutputReady(const QString &sOutput);
 };
 
 #endif // CONTROLLER_H

@@ -15,9 +15,9 @@ TextEditor::TextEditor(QWidget *parent) : QPlainTextEdit(parent),
     setReadOnly(true);
     m_pLineNumberArea = new LineNumberArea(this);
 
-    connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
-    connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
-    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
+    connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)), Qt::UniqueConnection);
+    connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)), Qt::UniqueConnection);
+    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()), Qt::UniqueConnection);
 
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();

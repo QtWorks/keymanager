@@ -8,7 +8,7 @@ CodeEditor::CodeEditor(QWidget *parent) : QWidget(parent),
     ui(new Ui::CodeEditor)
 {
     ui->setupUi(this);
-    connect(ui->searchArea, &QLineEdit::returnPressed, this, &CodeEditor::onSearchTextChanged);
+    connect(ui->searchArea, &QLineEdit::returnPressed, this, &CodeEditor::onSearchTextChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

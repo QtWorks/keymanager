@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Setup timer
     m_STLViewerTimer.setInterval(500);
     m_STLViewerTimer.setSingleShot(true);
-    connect(&m_STLViewerTimer, &QTimer::timeout, this, &MainWindow::onSTLViewerTimerTimeOut);
+    connect(&m_STLViewerTimer, &QTimer::timeout, this, &MainWindow::onSTLViewerTimerTimeOut, Qt::UniqueConnection);
 
     // Load CSS
     loadCSS();
@@ -70,6 +70,11 @@ void MainWindow::setController(Controller *pController)
     // Listen to STLFileReady signal
     connect(m_pController, &Controller::STLFileReady, this, &MainWindow::onSTLFileReady, Qt::UniqueConnection);
 
+    // Listen to SCAD process output
+    connect(m_pController, &Controller::openSCADProcessComplete, this, &MainWindow::onOpenSCADProcessComplete, Qt::UniqueConnection);
+    connect(m_pController, &Controller::openSCADStandardErrorReady, this, &MainWindow::onOpenSCADStandardErrorReady, Qt::UniqueConnection);
+    connect(m_pController, &Controller::openSCADStandardOutputReady, this, &MainWindow::onOpenSCADStandardOutputReady, Qt::UniqueConnection);
+
     // Set controller on layout managers
     ui->menu1LayoutMgr->setController(m_pController);
     ui->menu2LayoutMgr->setController(m_pController);
@@ -80,20 +85,20 @@ void MainWindow::setController(Controller *pController)
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu1, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
-    connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
+    connect(ui->generateSTLButtonMenu1, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
-    connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
+    connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL);
-    connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters);
+    connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     connect(ui->importParametersButton, &QPushButton::clicked, this, &MainWindow::onImportParametersFromTXT, Qt::UniqueConnection);
 
@@ -117,7 +122,10 @@ void MainWindow::setController(Controller *pController)
 
     // SCAD output tab
     if (!m_pController->debugOn())
+    {
         ui->tabWidget->removeTab(OUTPUT_SCAD_TAB);
+        ui->textBrowser->hide();
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -162,6 +170,7 @@ void MainWindow::onVisualizeSTLClicked()
 
 void MainWindow::onGenerateSTL()
 {
+    statusBar()->showMessage("BUILDING STL...");
     // Step 1: do replacement in script_in.scad
     m_pController->generateSTL();
 }
@@ -204,4 +213,31 @@ void MainWindow::onSTLViewerTimerTimeOut()
 
     // Display
     m_pSTLWindow->load_stl(m_sNextSTLFileToDisplay);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
+{
+    statusBar()->showMessage("");
+    if (ui->textBrowser->isVisible())
+        ui->textBrowser->append(sStatus);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
+{
+    statusBar()->showMessage("");
+    if (ui->textBrowser->isVisible())
+        ui->textBrowser->append(sStatus);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
+{
+    statusBar()->showMessage("");
+    if (ui->textBrowser->isVisible())
+        ui->textBrowser->append(sStatus);
 }

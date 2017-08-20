@@ -10,6 +10,7 @@
 class Controller;
 class CollapsibleBlock;
 class STLWindow;
+
 namespace Ui {
 class MainWindow;
 }
@@ -85,6 +86,11 @@ public slots:
 
     //! STL Viewer timer time out
     void onSTLViewerTimerTimeOut();
+
+    //! Listen to OpenSCAD process status
+    void onOpenSCADProcessComplete(const QString &sStatus);
+    void onOpenSCADStandardErrorReady(const QString &sStatus);
+    void onOpenSCADStandardOutputReady(const QString &sStatus);
 };
 
 #endif // MAINWINDOW_H

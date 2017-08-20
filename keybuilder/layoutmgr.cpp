@@ -117,7 +117,7 @@ void LayoutMgr::connectBlocksToSelectionMgr(CollapsibleBlock *pBlock)
     {
         connect(pBlock, &CollapsibleBlock::selectMe, m_pSelectionMgr, &SelectionMgr::onSelectBlock, Qt::UniqueConnection);
         connect(pBlock, &CollapsibleBlock::blockSelectionStatusChanged, m_pSelectionMgr, &SelectionMgr::blockSelectionStatusChanged);
-        connect(pBlock, &CollapsibleBlock::closedStateChanged, this, &LayoutMgr::onClosedStateChanged);
+        connect(pBlock, &CollapsibleBlock::closedStateChanged, this, &LayoutMgr::onClosedStateChanged, Qt::UniqueConnection);
         foreach (CollapsibleBlock *pChildBlock, pBlock->childBlocks())
             connectBlocksToSelectionMgr(pChildBlock);
     }

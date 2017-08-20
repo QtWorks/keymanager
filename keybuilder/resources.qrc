@@ -13,5 +13,6 @@
         <file>icons/ico-close.png</file>
         <file>icons/ico-open.png</file>
         <file>icons/ico-save.png</file>
+        <file>icons/ico-progress-inidcator.gif</file>
     </qresource>
 </RCC>
