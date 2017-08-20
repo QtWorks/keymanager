@@ -1,18 +1,1 @@
-﻿ajuster les dimensions pour que les textes s'affichent en entier
-Afficher les valeurs par défaut en grisé, et quand l'utilisateur clique dans la case, effacer la valeur par défaut pour que l'utilisateur puisse rentrer sa propre valeur
-
-menu2
-	regular
-		row1
-			100 : les valeurs 100 ne doivent pas apparaitre dans l'UI (mais doivent être renvoyée dans le script si la case est vide)
-			pour les décimales, le point ne fonctionne pas, il faut mettre une virgule, et la valeur ne s'enregistre pas quand même
-
-
-	lever lock
-	disklock pro (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
-	protec (ne se sélectionne pas automatiquement quand on choisit disklock dans menu1)
-
-Menu3
-	Automatic Key head : mettre en block de 1° niveau
-	including the tensioner : label bouffé
-
+﻿
