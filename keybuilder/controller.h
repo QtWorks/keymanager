@@ -3,7 +3,7 @@
 
 // Qt
 #include <QObject>
-#include <QThread>
+#include <QProcess>
 
 // Application
 #include "parameter.h"
@@ -90,9 +90,6 @@ private:
     //! Widget factory
     WidgetFactory *m_pWidgetFactory;
 
-    //! Parameter thread
-    QThread m_tParameterThread;
-
     //! Open SCAD path
     QString m_sOpenSCADPath;
 
@@ -112,6 +109,11 @@ public slots:
 
     //! Update widget value
     void onUpdateWidgetValue(const QString &sParameterVariable, const QString &sVariableValue);
+
+    //! OpenSCAD process complete
+    void onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus);
+    void onOpenSCADreadyReadStandardOutput();
+    void onOpenSCADreadyReadStandardError();
 
 signals:
     //-------------------------------------------------------------------------------------------------

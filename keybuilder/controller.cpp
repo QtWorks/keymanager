@@ -3,6 +3,7 @@
 #include <QSettings>
 #include <QFileInfo>
 #include <QDir>
+#include <QProcess>
 
 // Application
 #include "controller.h"
@@ -37,6 +38,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
     if (!m_sOpenSCADPath.isEmpty())
     {
         m_pOpenSCADWrapper = new OpenSCADWrapper(m_sOpenSCADPath, this);
+        m_pOpenSCADWrapper->setController(this);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileReady, this, &Controller::STLFileReady, Qt::UniqueConnection);
     }
 }
@@ -148,6 +150,40 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
         else pWidget->applyValue(sVariableValue);
     }
     else m_pParameterMgr->setParameterValue(sParameterVariable, sVariableValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
+{
+    QString sMsg = QString("OPENSCAD PROCESS COMPLETED WITH EXIT CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
+    logInfo(sMsg);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::onOpenSCADreadyReadStandardOutput()
+{
+    QProcess *pSender = dynamic_cast<QProcess *>(sender());
+    if (pSender != nullptr)
+    {
+        QByteArray bBuffer = pSender->readAllStandardOutput();
+        QString sMsg = QString("OPENSCAD OUTPUT LOG IS: %1").arg(QString(bBuffer));
+        logInfo(sMsg);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::onOpenSCADreadyReadStandardError()
+{
+    QProcess *pSender = dynamic_cast<QProcess *>(sender());
+    if (pSender != nullptr)
+    {
+        QByteArray bBuffer = pSender->readAllStandardError();
+        QString sMsg = QString("OPENSCAD ERROR LOG IS: %1").arg(QString(bBuffer));
+        logInfo(sMsg);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

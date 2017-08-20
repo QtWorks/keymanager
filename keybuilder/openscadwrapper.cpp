@@ -9,20 +9,28 @@
 #include "openscadwrapper.h"
 #include "helper.h"
 #include "utils.h"
+#include "controller.h"
 
 //-------------------------------------------------------------------------------------------------
 
 OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) : QObject(parent),
-    m_sOpenSCADPath(sOpenSCADPath), m_pProcess(new QProcess(this)),
+    m_pController(nullptr), m_sOpenSCADPath(sOpenSCADPath), m_pProcess(new QProcess(this)),
     m_pFileSystemWatcher(new QFileSystemWatcher(this)), m_sNextOutputSTLFile("")
 {
     // Add path
     m_pFileSystemWatcher->addPath(Utils::outputDir().absolutePath());
     connect(m_pFileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
     connect(m_pFileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
+}
 
-    connect(m_pProcess, &QProcess::readyReadStandardOutput, this, &OpenSCADWrapper::readyReadStandardOutput);
-    connect(m_pProcess, &QProcess::readyReadStandardError, this, &OpenSCADWrapper::readyReadStandardError);
+//-------------------------------------------------------------------------------------------------
+
+void OpenSCADWrapper::setController(Controller *pController)
+{
+    m_pController = pController;
+    connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), m_pController, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)));
+    connect(m_pProcess, &QProcess::readyReadStandardOutput, m_pController, &Controller::onOpenSCADreadyReadStandardOutput);
+    connect(m_pProcess, &QProcess::readyReadStandardError, m_pController, &Controller::onOpenSCADreadyReadStandardError);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -67,6 +75,7 @@ bool OpenSCADWrapper::generateSTL(const QString &sInputSCAD)
 
 void OpenSCADWrapper::onOutputDirectoryChanged(const QString &sPath)
 {
+    Q_UNUSED(sPath);
     QFileInfo fi(m_sNextOutputSTLFile);
     if (fi.exists())
         emit STLFileReady(m_sNextOutputSTLFile);
