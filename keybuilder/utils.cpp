@@ -10,6 +10,9 @@
 // Application
 #include "utils.h"
 #define OUTPUT_DIR "output"
+#define KEYBUILDER_DIR "keybuilder"
+#define DATA_DIR "data"
+#define TEMPLATES_DIR "templates"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -65,6 +68,7 @@ QDir Utils::outputDir()
 {
     QDir dRootDir = appDir();
     dRootDir.cdUp();
+    dRootDir.cd(KEYBUILDER_DIR);
     dRootDir.mkdir(OUTPUT_DIR);
     dRootDir.cd(OUTPUT_DIR);
     return dRootDir;
@@ -76,8 +80,8 @@ QDir Utils::dataDirectory()
 {
     QDir dataDir = appDir();
     dataDir.cdUp();
-    dataDir.cd("keybuilder");
-    dataDir.cd("data");
-    dataDir.cd("confidential");
+    dataDir.cd(KEYBUILDER_DIR);
+    dataDir.cd(DATA_DIR);
+    dataDir.cd(TEMPLATES_DIR);
     return dataDir;
 }
