@@ -52,6 +52,10 @@ signals:
 
     //! STL file ready
     void STLFileReady(const QString &sPath);
+
+    //! Get output log
+    void readyReadStandardOutput();
+    void readyReadStandardError();
 };
 
 #endif // OPENSCADWRAPPER_H

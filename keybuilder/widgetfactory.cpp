@@ -116,8 +116,8 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         else
         if (sParameterType == PROPERTY_DOUBLE)
         {
-            double dMin = 0.;
-            double dMax = 100.;
+            double dMin = -1000.;
+            double dMax = 1000.;
             if (!sMinValue.isEmpty() && !sMaxValue.isEmpty())
             {
                 bool bOKMin = true;

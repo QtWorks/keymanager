@@ -14,6 +14,7 @@
 #include "intvalidator.h"
 #include "helper.h"
 #include "customheaderview.h"
+#include "doublevalidator.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -394,7 +395,7 @@ QWidget *ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem 
     Q_UNUSED(option);
     Q_UNUSED(index);
     QLineEdit *pEditor = new QLineEdit(parent);
-    pEditor->setValidator(new QDoubleValidator());
+    pEditor->setValidator(new DoubleValidator(-1000., 1000., 3));
     return pEditor;
 }
 

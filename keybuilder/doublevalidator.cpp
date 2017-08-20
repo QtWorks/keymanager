@@ -21,8 +21,9 @@ DoubleValidator::~DoubleValidator()
 QValidator::State DoubleValidator::validate(QString &sInput, int &iPos) const
 {
     Q_UNUSED(iPos);
-    if (sInput.isEmpty())
-        return QValidator::Acceptable;
+    if (sInput.isEmpty() || sInput == "-") {
+        return QValidator::Intermediate;
+    }
     if (sInput.contains(","))
         return QValidator::Invalid;
     bool bOK = true;

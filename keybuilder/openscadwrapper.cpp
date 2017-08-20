@@ -20,6 +20,9 @@ OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) 
     m_pFileSystemWatcher->addPath(Utils::outputDir().absolutePath());
     connect(m_pFileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
     connect(m_pFileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged);
+
+    connect(m_pProcess, &QProcess::readyReadStandardOutput, this, &OpenSCADWrapper::readyReadStandardOutput);
+    connect(m_pProcess, &QProcess::readyReadStandardError, this, &OpenSCADWrapper::readyReadStandardError);
 }
 
 //-------------------------------------------------------------------------------------------------
