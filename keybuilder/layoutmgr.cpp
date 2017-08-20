@@ -64,7 +64,7 @@ void LayoutMgr::buildMenu(const CXMLNode &xBlock)
     connectBlocksToSelectionMgr(m_pRootCollapsibleBlock);
     evaluateEnabledCondition(m_pRootCollapsibleBlock);
     m_pBlockModel->setRootBlock(m_pRootCollapsibleBlock);
-    ui->treeView->expandAll();
+    ui->treeView->collapseAll();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -153,6 +153,7 @@ void LayoutMgr::onOpenAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
         pStack->openAll();
+    ui->treeView->expandAll();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -161,6 +162,7 @@ void LayoutMgr::onCloseAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)
         pStack->closeAll();
+    ui->treeView->collapseAll();
 }
 
 //-------------------------------------------------------------------------------------------------
