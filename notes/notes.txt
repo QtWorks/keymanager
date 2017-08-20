@@ -76,3 +76,18 @@ INTEGRER REPERE 3D DANS VIEWER STL
 
 toutes les colonnes a la meme largeur
 
+
+sinon, voici les différents bugs constatés
+il faut changer le nom de openscad au moment de l'installation. Rien ne doit avoir ce nom
+s'ouvre sur menu1 au lieu de home
+USE EXISTING KEY ne propose pas d'utiliser un fichier txt existant
+le contraste n'est pas idéal
+l'ordre des clés ne respecte pas l'ordre 'officiel' dans le menu1
+stl viewer doit être épuré de ses références github... et s'afficher automatiquement en "projection ortho"
+100 s'affiche toujours dans le tableau
+menu3 : automatic key head devrait être avant "adding material"
+changer le nom de MainWindow et des Menus
+erreur de création de certains stl (voire plantage du programme)
+
+
+
