@@ -298,6 +298,11 @@ bool STLWindow::load_stl(const QString& filename, bool is_reload)
     return true;
 }
 
+void STLWindow::viewOrthographic()
+{
+     canvas->view_orthographic();
+}
+
 void STLWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasUrls())

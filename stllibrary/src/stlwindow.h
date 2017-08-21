@@ -14,6 +14,7 @@ class STLLIBRARYSHARED_EXPORT STLWindow : public QMainWindow
 public:
     explicit STLWindow(QWidget* parent=0);
     bool load_stl(const QString& filename, bool is_reload=false);
+    void viewOrthographic();
 
 protected:
     void dragEnterEvent(QDragEnterEvent* event);

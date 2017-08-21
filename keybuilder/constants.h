@@ -42,6 +42,7 @@
 #define PROPERTY_MIN_VALUE "minvalue"
 #define PROPERTY_MAX_VALUE "maxvalue"
 #define PROPERTY_CURRENT_ROW "currentrow"
+#define PROPERTY_IMAGE "image"
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"

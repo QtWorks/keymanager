@@ -205,6 +205,7 @@ void MainWindow::onSTLViewerTimerTimeOut()
 
     // Display
     m_pSTLWindow->load_stl(m_sNextSTLFileToDisplay);
+    m_pSTLWindow->viewOrthographic();
 }
 
 //-------------------------------------------------------------------------------------------------

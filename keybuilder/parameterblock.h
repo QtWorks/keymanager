@@ -39,6 +39,12 @@ public:
     //! Set name
     void setName(const QString &sName);
 
+    //! Return image
+    const QString &image() const;
+
+    //! Set image
+    void setImage(const QString &sImage);
+
     //! Return selection variable
     const QString &selectionVariable() const;
 
@@ -119,6 +125,9 @@ private:
 
     //! Name
     QString m_sName;
+
+    //! Block image
+    QString m_sImage;
 
     //! Is empty?
     bool m_bIsEmpty;

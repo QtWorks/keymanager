@@ -83,5 +83,5 @@ void HomeTab::loadDescription()
             m_iMaxTextWidth = iWidth;
     }
 
-    repaint();
+    update();
 }

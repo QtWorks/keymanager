@@ -14,5 +14,12 @@
         <file>icons/ico-open.png</file>
         <file>icons/ico-save.png</file>
         <file>icons/ico-progress-inidcator.gif</file>
+        <file>images/image-key.jpg</file>
+        <file>images/image-key1.jpg</file>
+        <file>images/image-key2.jpg</file>
+        <file>images/image-key3.png</file>
+        <file>images/image-key4.jpg</file>
+        <file>images/image-key6.jpg</file>
+        <file>images/image-key7.jpg</file>
     </qresource>
 </RCC>

@@ -31,7 +31,7 @@ CaptionLabel::~CaptionLabel()
 void CaptionLabel::setCurrent(bool bCurrent)
 {
     m_bIsCurrent = bCurrent;
-    repaint();
+    update();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ void CaptionLabel::updateEnabledState(bool bEnabled)
     m_bIsEnabled = bEnabled;
     ui->openCloseButton->setVisible(m_bExpandable && bEnabled);
     ui->clearAllButton->setVisible(m_bExpandable && bEnabled);
-    repaint();
+    update();
 }
 
 //-------------------------------------------------------------------------------------------------

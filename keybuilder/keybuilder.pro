@@ -84,14 +84,14 @@ SOURCES += main.cpp\
     blockmodel.cpp \
     customheaderview.cpp \
     headerobject.cpp \
-    about.cpp \
     utils.cpp \
     hometab.cpp \
     openscadwrapper.cpp \
     helper.cpp \
     customtreeview.cpp \
     texteditor.cpp \
-    codeeditor.cpp
+    codeeditor.cpp \
+    keypreviewwidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -123,13 +123,13 @@ HEADERS  += mainwindow.h \
     helper.h \
     customheaderview.h \
     headerobject.h \
-    about.h \
     utils.h \
     hometab.h \
     openscadwrapper.h \
     customtreeview.h \
     texteditor.h \
-    codeeditor.h
+    codeeditor.h \
+    keypreviewwidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -143,7 +143,6 @@ FORMS    += mainwindow.ui \
     dxforstlfilepicker.ui \
     yesnowidget.ui \
     headerobject.ui \
-    about.ui \
     hometab.ui \
     codeeditor.ui
 

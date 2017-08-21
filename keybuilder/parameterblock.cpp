@@ -20,7 +20,6 @@
 #include "basewidget.h"
 #include "widgetfactory.h"
 
-static QVector<QColor> sBlockColors = QVector<QColor>() << Qt::red << Qt::green << Qt::yellow << Qt::blue << Qt::lightGray << Qt::cyan;
 //-------------------------------------------------------------------------------------------------
 
 ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
@@ -47,6 +46,9 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
 {
     // Set name
     setName(xParameterBlock.attributes()[PROPERTY_NAME].simplified());
+
+    // Set image
+    setImage(xParameterBlock.attributes()[PROPERTY_IMAGE].simplified());
 
     // Set variable
     setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE].simplified());
@@ -133,6 +135,20 @@ const QString &ParameterBlock::name() const
 void ParameterBlock::setName(const QString &sName)
 {
     m_sName = sName;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &ParameterBlock::image() const
+{
+    return m_sImage;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setImage(const QString &sImage)
+{
+    m_sImage = sImage;
 }
 
 //-------------------------------------------------------------------------------------------------
