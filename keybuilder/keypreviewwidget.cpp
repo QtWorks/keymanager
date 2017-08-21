@@ -39,15 +39,11 @@ void KeyPreviewWidget::paintEvent(QPaintEvent *event)
     QFont font;
     font.setFamily("Segoe UI");
     font.setPixelSize(24);
-    QFontMetrics fm(font);
-    int iTextHeight = fm.height();
+
     QString sLabel = tr("NO KEY SELECTED");
-    int iTextWidth = fm.width(sLabel);
-    int x = (rect().width()-iTextWidth)/2;
-    int y = (rect().height()-iTextHeight)/2;
     painter.setPen(pen);
     painter.setFont(font);
-    painter.drawText(QPoint(x, y), sLabel);
+    painter.drawText(rect(), Qt::AlignCenter, sLabel);
 
     if (m_pKeyImage != nullptr)
     {
