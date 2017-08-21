@@ -102,6 +102,13 @@ void BaseWidget::applyDefaultValue()
 
 //-------------------------------------------------------------------------------------------------
 
+void BaseWidget::clearAll()
+{
+
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void BaseWidget::applyValue(const QString &sValue)
 {
     Q_UNUSED(sValue);

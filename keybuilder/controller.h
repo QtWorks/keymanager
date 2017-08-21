@@ -13,6 +13,7 @@ class ParameterMgr;
 class WidgetFactory;
 class CollapsibleBlock;
 class OpenSCADWrapper;
+class QImage;
 
 class Controller : public QObject, public IService
 {
@@ -57,6 +58,9 @@ public:
     //! Debug on?
     bool debugOn() const;
 
+    //! Return key preview image
+    QImage *keyPreviewImage() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -79,6 +83,9 @@ public:
     //! Generate STL
     void generateSTL();
 
+    //! Load key preview image
+    void loadKeyPreviewImage(const QString &sKeyImagePath);
+
 private:
     //! Load settings
     bool loadSettings();
@@ -98,6 +105,9 @@ private:
 
     //! Debug mode
     bool m_bDebugOn;
+
+    //! Key preview image
+    QImage *m_pKeyPreviewImage;
 
 public slots:
     //-------------------------------------------------------------------------------------------------
@@ -134,6 +144,9 @@ signals:
 
     //! OpenSCAD standard output ready
     void openSCADStandardOutputReady(const QString &sOutput);
+
+    //! Update key previews
+    void updateKeyPreviews();
 };
 
 #endif // CONTROLLER_H

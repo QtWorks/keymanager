@@ -64,6 +64,9 @@ public:
     //! Apply default value
     virtual void applyDefaultValue();
 
+    //! Clear all (used for tables)
+    virtual void clearAll();
+
     //! Apply value
     virtual void applyValue(const QString &sValue);
 

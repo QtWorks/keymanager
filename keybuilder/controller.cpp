@@ -23,7 +23,8 @@
 //-------------------------------------------------------------------------------------------------
 
 Controller::Controller(QObject *parent) : QObject(parent),
-    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr), m_bDebugOn(1)
+    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr), m_bDebugOn(true),
+    m_pKeyPreviewImage(new QImage())
 {
     // Load settings
     loadSettings();
@@ -60,7 +61,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
 
 Controller::~Controller()
 {
-
+    delete m_pKeyPreviewImage;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -117,6 +118,13 @@ OpenSCADWrapper *Controller::openSCADwrapper() const
 bool Controller::debugOn() const
 {
     return m_bDebugOn;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QImage *Controller::keyPreviewImage() const
+{
+    return m_pKeyPreviewImage;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -244,6 +252,18 @@ void Controller::generateSTL()
     {
         QString sMsg = QString("OPENSCAD NOT FOUND AT: %1").arg(m_sOpenSCADPath);
         logError(sMsg);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::loadKeyPreviewImage(const QString &sKeyImagePath)
+{
+    QImage image(sKeyImagePath);
+    if (!image.isNull())
+    {
+        m_pKeyPreviewImage->load(sKeyImagePath);
+        emit updateKeyPreviews();
     }
 }
 

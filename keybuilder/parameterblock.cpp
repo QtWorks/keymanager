@@ -250,7 +250,13 @@ void ParameterBlock::clearAll()
 {
     foreach (BaseWidget *pWidget, m_vWidgets)
         if (pWidget != nullptr)
-            pWidget->applyDefaultValue();
+        {
+            GenericParameterTable *pTable = dynamic_cast<GenericParameterTable *>(pWidget);
+            if (pTable != nullptr)
+                pTable->clearAll();
+            else
+                pWidget->applyDefaultValue();
+        }
 }
 
 //-------------------------------------------------------------------------------------------------

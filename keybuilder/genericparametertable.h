@@ -77,6 +77,9 @@ public:
     //! Return flags
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
+    //! Clear all
+    void clearAll();
+
     //! Apply value
     void applyValue(const QString &sValue, int iTargetColumn=-1);
 
@@ -213,6 +216,9 @@ public:
 
     //! Apply default values
     virtual void applyDefaultValue();
+
+    //! Clear all
+    virtual void clearAll();
 
     //! Apply value
     virtual void applyValue(const QString &sValue);

@@ -203,6 +203,18 @@ Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 
 //-------------------------------------------------------------------------------------------------
 
+void GenericParameterTableModel::clearAll()
+{
+    beginResetModel();
+    for (int i=0; i<m_lDefaultValues.size(); i++)
+        m_vData[i] = PROPERTY_DEFAULT_VALUE;
+    for (int i=m_lDefaultValues.size()-1; i<m_vData.size(); i++)
+        m_vData[i] = "";
+    endResetModel();
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void GenericParameterTableModel::applyValue(const QString &sValue, int iTargetColumn)
 {
     QStringList lValues;
@@ -215,7 +227,6 @@ void GenericParameterTableModel::applyValue(const QString &sValue, int iTargetCo
     {
         for (int i=0; i<m_nRows+1; i++)
         {
-
             if ((iTargetColumn >= 0) && (iTargetColumn < lValues.size()))
             {
                 QModelIndex targetIndex = index(i, iTargetColumn, QModelIndex());
@@ -480,6 +491,13 @@ QHash<QString, Position> GenericParameterTable::parameterVariableHashTable() con
 void GenericParameterTable::applyDefaultValue()
 {
     applyValue(defaultValue());
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTable::clearAll()
+{
+    m_pModel->clearAll();
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -80,6 +80,8 @@ void LayoutMgr::setController(Controller *pController)
 {
     m_pController = pController;
     m_pSelectionMgr->setController(m_pController);
+    ui->keyPreviewWidget->setController(m_pController);
+    connect(m_pController, &Controller::updateKeyPreviews, ui->keyPreviewWidget, &KeyPreviewWidget::onUpdateKeyImage);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -193,7 +195,7 @@ void LayoutMgr::onBlockSelectionStatusChanged(CollapsibleBlock *pBlock)
         {
             ParameterBlock *pParameterBlock = pBlock->parameterBlock();
             if ((pParameterBlock != nullptr) && (!pParameterBlock->image().isEmpty()))
-                ui->keyPreviewWidget->load(pParameterBlock->image());
+                m_pController->loadKeyPreviewImage(pParameterBlock->image());
         }
         pBlock->setBlockVariable();
     }

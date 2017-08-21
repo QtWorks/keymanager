@@ -59,13 +59,13 @@
        <property name="minimumSize">
         <size>
          <width>300</width>
-         <height>300</height>
+         <height>160</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>300</height>
+         <height>160</height>
         </size>
        </property>
       </widget>
@@ -79,6 +79,11 @@
    <class>CustomTreeView</class>
    <extends>QWidget</extends>
    <header>customtreeview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KeyPreviewWidget</class>
+   <extends>QWidget</extends>
+   <header>keypreviewwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

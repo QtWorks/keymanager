@@ -21,7 +21,7 @@
        <string notr="true">QTabBar::tab {width: 128px; height: 48px; font: 14px;}</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="HomeTab" name="tab">
        <attribute name="title">
@@ -93,7 +93,7 @@
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Menu 1</string>
+        <string>Blank Key</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
@@ -169,7 +169,7 @@
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Menu 2</string>
+        <string>Cuts</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
@@ -245,7 +245,7 @@
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>Menu 3</string>
+        <string>Additions</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="0" column="0">
