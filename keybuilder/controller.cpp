@@ -146,7 +146,7 @@ bool Controller::startup()
 
 void Controller::shutdown()
 {
-
+    clearOutputDirectory();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -280,4 +280,17 @@ bool Controller::loadSettings()
         return true;
     }
     return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearOutputDirectory()
+{
+    QString sMsg = QString("REMOVING ALL *.scad, *.stl FROM: %1").arg(Utils::outputDir().absolutePath());
+    logInfo(sMsg);
+    QDir outputDir = Utils::outputDir();
+    outputDir.setNameFilters(QStringList() << "*.scad" << "*.stl");
+    outputDir.setFilter(QDir::Files);
+    foreach(QString sDirFile, outputDir.entryList())
+        outputDir.remove(sDirFile);
 }

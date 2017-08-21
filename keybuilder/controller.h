@@ -90,6 +90,9 @@ private:
     //! Load settings
     bool loadSettings();
 
+    //! Clear output directory
+    void clearOutputDirectory();
+
 private:
     //! Parameter manager
     ParameterMgr *m_pParameterMgr;
