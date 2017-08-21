@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     m_sNextSTLFileToDisplay("")
 {    
     // Setup timer
-    m_STLViewerTimer.setInterval(500);
+    m_STLViewerTimer.setInterval(1000);
     m_STLViewerTimer.setSingleShot(true);
     connect(&m_STLViewerTimer, &QTimer::timeout, this, &MainWindow::onSTLViewerTimerTimeOut, Qt::UniqueConnection);
 
@@ -162,7 +162,6 @@ void MainWindow::onVisualizeSTLClicked()
 void MainWindow::onGenerateSTL()
 {
     ui->textBrowser->clear();
-    statusBar()->showMessage("BUILDING STL...");
     // Step 1: do replacement in script_in.scad
     m_pController->generateSTL();
 }
@@ -192,6 +191,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
     if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
     {
+        statusBar()->showMessage("BUILDING STL...");
         ui->plainTextEdit->load(sOutputSCADContents);
     }
 }
@@ -212,7 +212,7 @@ void MainWindow::onSTLViewerTimerTimeOut()
 
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
-    statusBar()->showMessage("");
+    statusBar()->showMessage("STL BUILD SUCCESS");
     if (ui->textBrowser->isVisible())
         ui->textBrowser->append(sStatus);
 }
@@ -221,6 +221,7 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
+   statusBar()->showMessage("STL BUILD FAILURE");
     statusBar()->showMessage("");
     if (ui->textBrowser->isVisible())
         ui->textBrowser->append(sStatus);
