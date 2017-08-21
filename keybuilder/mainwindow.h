@@ -60,9 +60,6 @@ private:
     QTimer m_STLViewerTimer;
 
 public slots:
-    //! Import parameters from TXT
-    void onImportParametersFromTXT();
-
     //! Create key
     void onCreateKeyClicked();
 

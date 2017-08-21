@@ -100,8 +100,6 @@ void MainWindow::setController(Controller *pController)
     connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
-    connect(ui->importParametersButton, &QPushButton::clicked, this, &MainWindow::onImportParametersFromTXT, Qt::UniqueConnection);
-
     // Build menu 1 tab
     ui->menu1LayoutMgr->buildMenu(m_pController->menu1Node());
 
@@ -138,15 +136,6 @@ void MainWindow::loadCSS()
 
 //-------------------------------------------------------------------------------------------------
 
-void MainWindow::onImportParametersFromTXT()
-{
-    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
-    if (!sInputFileName.isEmpty())
-        m_pController->importParametersFromTXT(sInputFileName);
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void MainWindow::onCreateKeyClicked()
 {
     ui->tabWidget->setCurrentIndex(MENU1_TAB);
@@ -156,7 +145,9 @@ void MainWindow::onCreateKeyClicked()
 
 void MainWindow::onUseExistingKeyClicked()
 {
-    ui->tabWidget->setCurrentIndex(MENU2_TAB);
+    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
+    if (!sInputFileName.isEmpty())
+        m_pController->importParametersFromTXT(sInputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------
