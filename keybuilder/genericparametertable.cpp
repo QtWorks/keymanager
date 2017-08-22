@@ -369,10 +369,18 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
     int nRows = sParameterValue.toInt(&bOK);
     if (bOK)
     {
+        // Prepare buffer for new data
+        QVector<QString> vNewData;
+        vNewData.resize((nRows+1)*m_lColumnLabels.size());
+
+        // Copy data for current data to new
+        int iCopySize = qMin(vNewData.size(), m_vData.size());
+
+        // Reset model
         beginResetModel();
         m_nRows = nRows;
-        m_vData.resize((nRows+1)*m_lColumnLabels.size());
-        applyValue(m_sDefaultValue);
+        vNewData = m_vData.mid(0, iCopySize*m_lColumnLabels.size());
+        m_vData = vNewData;
         endResetModel();
     }
 }

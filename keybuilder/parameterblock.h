@@ -39,11 +39,14 @@ public:
     //! Set name
     void setName(const QString &sName);
 
-    //! Return image
-    const QString &image() const;
+    //! Return key preview image
+    const QString &keyPreviewImage() const;
 
-    //! Set image
-    void setImage(const QString &sImage);
+    //! Return key preview label
+    const QString &keyPreviewLabel() const;
+
+    //! Set key preview image
+    void setKeyPreviewImage(const QString &sKeyPreviewImage);
 
     //! Return selection variable
     const QString &selectionVariable() const;
@@ -75,6 +78,12 @@ public:
     //! Return owner collapsible block
     CollapsibleBlock *ownerCollapsibleBlock() const;
 
+    //! Block always opened?
+    bool blockAlwaysOpened() const;
+
+    //! Can clear block?
+    bool canClearBlock() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -86,7 +95,7 @@ public:
     void clearAll();
 
     //! Add child recursively
-    void addChildRecursively(const CXMLNode &xParameterBlock);
+    void addChildRecursively(const CXMLNode &xParameterNode);
 
     //! Add widget
     void addWidget(BaseWidget *pWidget);
@@ -108,16 +117,16 @@ public slots:
 
 private:
     //! Constructor
-    explicit ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent=nullptr);
+    explicit ParameterBlock(const CXMLNode &xParameterNode, CollapsibleBlock *pOwner, Controller *pController, bool bIsClosed=true, QWidget *parent=nullptr);
 
     //! Populate parameter block
-    void populateParameterBlock(const CXMLNode &xParameterBlock);
+    void populateParameterBlock(const CXMLNode &xParameterNode);
 
     //! Add collapsible block
     void addCollapsibleBlock(CollapsibleBlock *pBlock);
 
     //! Process enabled condition
-    void processEnabledCondition(const CXMLNode &xParameterBlock);
+    void processEnabledCondition(const CXMLNode &xParameterNode);
 
 private:
     //! UI
@@ -126,8 +135,8 @@ private:
     //! Name
     QString m_sName;
 
-    //! Block image
-    QString m_sImage;
+    //! Key preview image
+    QString m_sKeyPreviewImage;
 
     //! Is empty?
     bool m_bIsEmpty;
@@ -158,6 +167,12 @@ private:
 
     //! Widgets
     QVector<BaseWidget *> m_vWidgets;
+
+    //! Always opened?
+    bool m_bBlockAlwaysOpened;
+
+    //! Can clear block?
+    bool m_bCanClearBlock;
 
 signals:
     //! Parameter value changed

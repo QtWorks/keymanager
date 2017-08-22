@@ -43,6 +43,12 @@ public:
     //! Update enabled state
     void updateEnabledState(bool bEnabled);
 
+    //! Set block always opened
+    void setBlockAlwaysOpened(bool bBlockAlwaysOpened);
+
+    //! Set can clear block
+    void setCanClearBlock(bool bCanClearBlock);
+
 protected:
     //! Paint event
     void paintEvent(QPaintEvent *e);
@@ -50,10 +56,35 @@ protected:
     //! Mouse press event
     virtual void mousePressEvent(QMouseEvent *event);
 
+private:
+    //! UI
+    Ui::CaptionLabel *ui;
+
+    //! Enabled?
+    bool m_bIsEnabled;
+
+    //! Expandable?
+    bool m_bExpandable;
+
+    //! Is current?
+    bool m_bIsCurrent;
+
+    //! Block always opened?
+    bool m_bBlockAlwaysOpened;
+
+    //! Can clear block?
+    bool m_bCanClearBlock;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
-    // Signals
+    // Slots
     //-------------------------------------------------------------------------------------------------
+
+    //! Open or close
+    void onOpenOrClose();
+
+    //! Clear all
+    void onClearAll();
 
     //! State changed
     void onStateChanged(bool bIsClosed);
@@ -71,26 +102,6 @@ signals:
 
     //! Select me
     void selectMe();
-
-public slots:
-    //! Open or close
-    void onOpenOrClose();
-
-    //! Clear all
-    void onClearAll();
-
-private:
-    //! UI
-    Ui::CaptionLabel *ui;
-
-    //! Enabled?
-    bool m_bIsEnabled;
-
-    //! Expandable?
-    bool m_bExpandable;
-
-    //! Is current?
-    bool m_bIsCurrent;
 };
 
 #endif // CAPTIONLABEL_H

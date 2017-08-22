@@ -22,6 +22,7 @@ protected:
 
 public slots:
     void on_open();
+    void on_saveas();
     void on_about();
     void on_bad_stl();
     void on_empty_mesh();
@@ -45,6 +46,7 @@ private:
     void rebuild_recent_files();
 
     QAction* const open_action;
+    QAction* const saveas_action;
     QAction* const about_action;
     QAction* const quit_action;
     QAction* const perspective_action;
@@ -57,6 +59,7 @@ private:
     QAction* const recent_files_clear_action;
     const static int MAX_RECENT_FILES=8;
     const static QString RECENT_FILE_KEY;
+    QString currentSTLFileName;
 
     QFileSystemWatcher* watcher;
 

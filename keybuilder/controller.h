@@ -84,7 +84,7 @@ public:
     void generateSTL();
 
     //! Load key preview image
-    void loadKeyPreviewImage(const QString &sKeyImagePath);
+    void loadKeyPreviewImage(const QString &sKeyImagePreview);
 
 private:
     //! Load settings

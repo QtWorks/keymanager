@@ -257,12 +257,12 @@ void Controller::generateSTL()
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::loadKeyPreviewImage(const QString &sKeyImagePath)
+void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 {
-    QImage image(sKeyImagePath);
+    QImage image(sKeyImagePreview);
     if (!image.isNull())
     {
-        m_pKeyPreviewImage->load(sKeyImagePath);
+        m_pKeyPreviewImage->load(sKeyImagePreview);
         emit updateKeyPreviews();
     }
 }

@@ -194,8 +194,11 @@ void LayoutMgr::onBlockSelectionStatusChanged(CollapsibleBlock *pBlock)
         if (pBlock->isSelected())
         {
             ParameterBlock *pParameterBlock = pBlock->parameterBlock();
-            if ((pParameterBlock != nullptr) && (!pParameterBlock->image().isEmpty()))
-                m_pController->loadKeyPreviewImage(pParameterBlock->image());
+            if (pParameterBlock != nullptr)
+            {
+                if (!pParameterBlock->keyPreviewImage().isEmpty())
+                    m_pController->loadKeyPreviewImage(pParameterBlock->keyPreviewImage());
+            }
         }
         pBlock->setBlockVariable();
     }

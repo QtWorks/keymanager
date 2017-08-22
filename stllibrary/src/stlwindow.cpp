@@ -11,6 +11,7 @@ const QString STLWindow::RECENT_FILE_KEY = "recentFiles";
 STLWindow::STLWindow(QWidget *parent) :
     QMainWindow(parent),
     open_action(new QAction("Open", this)),
+    saveas_action(new QAction("Save As...", this)),
     about_action(new QAction("About", this)),
     quit_action(new QAction("Quit", this)),
     perspective_action(new QAction("Perspective", this)),
@@ -39,6 +40,10 @@ STLWindow::STLWindow(QWidget *parent) :
     open_action->setShortcut(QKeySequence::Open);
     QObject::connect(open_action, &QAction::triggered,
                      this, &STLWindow::on_open);
+
+    saveas_action->setShortcut(QKeySequence("CTRL+S"));
+    QObject::connect(saveas_action, &QAction::triggered,
+                     this, &STLWindow::on_saveas);
 
     quit_action->setShortcut(QKeySequence::Quit);
     QObject::connect(quit_action, &QAction::triggered,
@@ -96,11 +101,23 @@ STLWindow::STLWindow(QWidget *parent) :
 
 void STLWindow::on_open()
 {
-    QString filename = QFileDialog::getOpenFileName(
-                this, "Load .stl file", QString(), "*.stl");
+    QString filename = QFileDialog::getOpenFileName(this, "Load .stl file", QString(), "*.stl");
     if (!filename.isNull())
     {
         load_stl(filename);
+    }
+}
+
+void STLWindow::on_saveas()
+{
+    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output STL file"), QCoreApplication::applicationDirPath(), tr("STL (*.stl)"));
+    if (!sOutputFileName.isEmpty())
+    {
+        QFileInfo fi(currentSTLFileName);
+        if (fi.exists())
+        {
+            QFile::copy(currentSTLFileName, sOutputFileName);
+        }
     }
 }
 
@@ -258,6 +275,7 @@ void STLWindow::on_reload()
 
 bool STLWindow::load_stl(const QString& filename, bool is_reload)
 {
+    currentSTLFileName.clear();
     if (!open_action->isEnabled())  return false;
 
     canvas->set_status("Loading " + filename);
@@ -295,6 +313,7 @@ bool STLWindow::load_stl(const QString& filename, bool is_reload)
     }
 
     loader->start();
+    currentSTLFileName = filename;
     return true;
 }
 

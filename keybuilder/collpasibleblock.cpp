@@ -32,14 +32,20 @@ CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pControll
     connect(m_pCaptionLabel, &CaptionLabel::selectMe, this, &CollapsibleBlock::selectMe, Qt::UniqueConnection);
 
     // Create parameter block
-    setParameterBlock(new ParameterBlock(xBlock, this, m_pController));
+    setParameterBlock(new ParameterBlock(xBlock, this, m_pController, m_bIsClosed));
     m_pCaptionLabel->setCaption(m_pParameterBlock->name());
     m_pCaptionLabel->setExpandable(!m_pParameterBlock->isEmpty());
+    m_pCaptionLabel->setBlockAlwaysOpened(m_pParameterBlock->blockAlwaysOpened());
+    m_pCaptionLabel->setCanClearBlock(m_pParameterBlock->canClearBlock());
 
     // Do connections
     connect(this, &CollapsibleBlock::closedStateChanged, m_pCaptionLabel, &CaptionLabel::onStateChanged, Qt::UniqueConnection);
     connect(m_pCaptionLabel, &CaptionLabel::openOrClose, this, &CollapsibleBlock::onToggleOpenedState, Qt::UniqueConnection);
     connect(m_pCaptionLabel, &CaptionLabel::clearAll, this, &CollapsibleBlock::onClearAll, Qt::UniqueConnection);
+
+    // Block always opened
+    if (m_pParameterBlock->blockAlwaysOpened())
+        onOpenOrClose(false);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -69,9 +75,6 @@ void CollapsibleBlock::setParameterBlock(ParameterBlock *pParameterBlock)
         // Add to layout
         m_pLayout->addWidget(m_pParameterBlock);
         m_pLayout->setAlignment(m_pParameterBlock, Qt::AlignTop);
-
-        // Check closed state
-        onOpenOrClose(m_bIsClosed);
     }
 }
 

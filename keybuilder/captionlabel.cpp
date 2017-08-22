@@ -12,7 +12,7 @@
 
 CaptionLabel::CaptionLabel(QWidget *parent) : QWidget(parent),
     ui(new Ui::CaptionLabel),  m_bIsEnabled(true), m_bExpandable(true),
-    m_bIsCurrent(false)
+    m_bIsCurrent(false), m_bBlockAlwaysOpened(false), m_bCanClearBlock(true)
 {
     ui->setupUi(this);
     connect(ui->openCloseButton, &QPushButton::clicked, this, &CaptionLabel::onOpenOrClose, Qt::UniqueConnection);
@@ -53,8 +53,8 @@ void CaptionLabel::setButtonLabel(const QString &sButtonLabel)
 void CaptionLabel::setExpandable(bool bExpandable)
 {
     m_bExpandable = bExpandable;
-    ui->openCloseButton->setVisible(bExpandable);
-    ui->clearAllButton->setVisible(bExpandable);
+    ui->openCloseButton->setVisible(!m_bBlockAlwaysOpened && bExpandable);
+    ui->clearAllButton->setVisible(m_bCanClearBlock && bExpandable);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -62,9 +62,23 @@ void CaptionLabel::setExpandable(bool bExpandable)
 void CaptionLabel::updateEnabledState(bool bEnabled)
 {
     m_bIsEnabled = bEnabled;
-    ui->openCloseButton->setVisible(m_bExpandable && bEnabled);
-    ui->clearAllButton->setVisible(m_bExpandable && bEnabled);
+    ui->openCloseButton->setVisible(!m_bBlockAlwaysOpened && m_bExpandable && bEnabled);
+    ui->clearAllButton->setVisible(m_bCanClearBlock && m_bExpandable && bEnabled);
     update();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CaptionLabel::setBlockAlwaysOpened(bool bBlockAlwaysOpened)
+{
+    m_bBlockAlwaysOpened = bBlockAlwaysOpened;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CaptionLabel::setCanClearBlock(bool bCanClearBlock)
+{
+    m_bCanClearBlock = bCanClearBlock;
 }
 
 //-------------------------------------------------------------------------------------------------

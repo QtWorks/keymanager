@@ -22,15 +22,19 @@
 
 //-------------------------------------------------------------------------------------------------
 
-ParameterBlock::ParameterBlock(const CXMLNode &xParameterBlock, CollapsibleBlock *pOwner, Controller *pController, QWidget *parent) : QWidget(parent), ui(new Ui::ParameterBlock),
-    m_sName(""), m_bIsEmpty(false), m_sEnabledCondition(""), m_sSelectionVariable(""),
-    m_sValue(""), m_bIsExclusive(true), m_bIsEnabled(true),
-    m_pOwnerCollapsibleBlock(pOwner), m_pController(pController)
+ParameterBlock::ParameterBlock(const CXMLNode &xParameterNode, CollapsibleBlock *pOwner, Controller *pController, bool bIsClosed, QWidget *parent) : QWidget(parent),
+    ui(new Ui::ParameterBlock),
+    m_sName(""), m_sKeyPreviewImage(""), m_bIsEmpty(false),
+    m_sEnabledCondition(""), m_sSelectionVariable(""), m_sValue(""),
+    m_bIsExclusive(true), m_bIsEnabled(true), m_pOwnerCollapsibleBlock(pOwner),
+    m_pController(pController), m_bBlockAlwaysOpened(false),
+    m_bCanClearBlock(true)
 {
     ui->setupUi(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     connect(this, &ParameterBlock::parameterValueChanged, m_pController, &Controller::onParameterValueChanged, Qt::UniqueConnection);
-    populateParameterBlock(xParameterBlock);
+    setVisible(!bIsClosed);
+    populateParameterBlock(xParameterNode);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -42,23 +46,33 @@ ParameterBlock::~ParameterBlock()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
+void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterNode)
 {
     // Set name
-    setName(xParameterBlock.attributes()[PROPERTY_NAME].simplified());
+    setName(xParameterNode.attributes()[PROPERTY_NAME].simplified());
 
-    // Set image
-    setImage(xParameterBlock.attributes()[PROPERTY_IMAGE].simplified());
+    // Set key preview image
+    setKeyPreviewImage(xParameterNode.attributes()[PROPERTY_KEY_PREVIEW_IMAGE].simplified());
 
     // Set variable
-    setSelectionVariable(xParameterBlock.attributes()[PROPERTY_SET_VARIABLE].simplified());
+    setSelectionVariable(xParameterNode.attributes()[PROPERTY_SET_VARIABLE].simplified());
 
     // Set value
-    setValue(xParameterBlock.attributes()[PROPERTY_VALUE].simplified());
+    setValue(xParameterNode.attributes()[PROPERTY_VALUE].simplified());
+
+    // Block always opened?
+    QString sBlockAlwaysOpened = xParameterNode.attributes()[PROPERTY_ALWAYS_OPENED].simplified();
+    if ((sBlockAlwaysOpened == VALUE_TRUE) || (sBlockAlwaysOpened == VALUE_FALSE))
+        m_bBlockAlwaysOpened = (sBlockAlwaysOpened == VALUE_TRUE);
+
+    // Can clear block?
+    QString sCanClearBlock = xParameterNode.attributes()[PROPERTY_CAN_CLEAR].simplified();
+    if ((sCanClearBlock == VALUE_TRUE) || (sCanClearBlock == VALUE_FALSE))
+        m_bCanClearBlock = (sCanClearBlock == VALUE_TRUE);
 
     // Set empty state
-    QVector<CXMLNode> vParameterNodes = xParameterBlock.getNodesByTagName(TAG_PARAMETER);
-    m_bIsEmpty = xParameterBlock.nodes().isEmpty();
+    QVector<CXMLNode> vParameterNodes = xParameterNode.getNodesByTagName(TAG_PARAMETER);
+    m_bIsEmpty = xParameterNode.nodes().isEmpty();
     if (m_bIsEmpty)
     {
         setFixedSize(0, 0);
@@ -66,11 +80,11 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     }
 
     // Set exclusive state
-    QString sExclusive = xParameterBlock.attributes()[PROPERTY_EXCLUSIVE].simplified();
+    QString sExclusive = xParameterNode.attributes()[PROPERTY_EXCLUSIVE].simplified();
     setExclusive(sExclusive.isEmpty() ? true : (sExclusive == VALUE_TRUE));
 
     // Process enabled condition
-    processEnabledCondition(xParameterBlock);
+    processEnabledCondition(xParameterNode);
 
     // Add widgets
     foreach (CXMLNode xParameter, vParameterNodes)
@@ -84,7 +98,7 @@ void ParameterBlock::populateParameterBlock(const CXMLNode &xParameterBlock)
     }
 
     // Add child recursively
-    addChildRecursively(xParameterBlock);
+    addChildRecursively(xParameterNode);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -139,16 +153,23 @@ void ParameterBlock::setName(const QString &sName)
 
 //-------------------------------------------------------------------------------------------------
 
-const QString &ParameterBlock::image() const
+const QString &ParameterBlock::keyPreviewImage() const
 {
-    return m_sImage;
+    return m_sKeyPreviewImage;
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::setImage(const QString &sImage)
+const QString &ParameterBlock::keyPreviewLabel() const
 {
-    m_sImage = sImage;
+    return m_sKeyPreviewImage;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void ParameterBlock::setKeyPreviewImage(const QString &sKeyPreviewImage)
+{
+    m_sKeyPreviewImage = sKeyPreviewImage;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -227,6 +248,20 @@ CollapsibleBlock *ParameterBlock::ownerCollapsibleBlock() const
 
 //-------------------------------------------------------------------------------------------------
 
+bool ParameterBlock::blockAlwaysOpened() const
+{
+    return m_bBlockAlwaysOpened;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool ParameterBlock::canClearBlock() const
+{
+    return m_bCanClearBlock;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void ParameterBlock::setWatchedParameters(const QHash<QString, Parameter *> &hParameters)
 {
     m_hWatchedParameters = hParameters;
@@ -261,10 +296,10 @@ void ParameterBlock::clearAll()
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::addChildRecursively(const CXMLNode &xParameterBlock)
+void ParameterBlock::addChildRecursively(const CXMLNode &xParameterNode)
 {
     // Parse child blocks
-    QVector<CXMLNode> vChildBlocks = xParameterBlock.getNodesByTagName(TAG_BLOCK);
+    QVector<CXMLNode> vChildBlocks = xParameterNode.getNodesByTagName(TAG_BLOCK);
     foreach (CXMLNode xChildBlock, vChildBlocks)
     {
         // Create new collapsible block
@@ -279,10 +314,10 @@ void ParameterBlock::addChildRecursively(const CXMLNode &xParameterBlock)
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterBlock::processEnabledCondition(const CXMLNode &xParameterBlock)
+void ParameterBlock::processEnabledCondition(const CXMLNode &xParameterNode)
 {
     // Read enabled condition
-    m_sEnabledCondition = xParameterBlock.attributes()[PROPERTY_ENABLED].simplified();
+    m_sEnabledCondition = xParameterNode.attributes()[PROPERTY_ENABLED].simplified();
 
     if (!m_sEnabledCondition.isEmpty())
     {

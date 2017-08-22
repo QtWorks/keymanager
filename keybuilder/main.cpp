@@ -8,8 +8,6 @@
 
 int main(int argc, char *argv[])
 {
-    qDebug() << Utils::getDiskSerial();
-
     QApplication app(argc, argv);
 
     // Return an instance of the application

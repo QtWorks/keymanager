@@ -321,7 +321,7 @@
       <Parameter variable="qt_fichet_787_cut_use_qt" type="boolean" default="NO"/>
       <Parameter columnlabels="DEPTH" type="table" columnvariables="depth" nrows="10" targetvariable="qt_fichet_787_cut%1_qt" variablemethod="method2" default="0" ui="genericparametertable" />
    </Block>
-   <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)" set_variable="qt_extra_cut_use_qt">
+   <Block name="EXTRA CUTS (FOR A MOBILE ELEMENT OR A TENSIONER)" set_variable="qt_extra_cut_use_qt" exclusive="false">
       <Parameter variable="qt_extra_cut_use_qt" type="boolean" default="NO"/>
       <Parameter variable="qt_extra_cut_shape01_use_qt" type="boolean" default="NO"/>
       <Parameter variable="qt_extra_cut_shape02_use_qt" type="boolean" default="NO"/>

@@ -42,7 +42,9 @@
 #define PROPERTY_MIN_VALUE "minvalue"
 #define PROPERTY_MAX_VALUE "maxvalue"
 #define PROPERTY_CURRENT_ROW "currentrow"
-#define PROPERTY_IMAGE "image"
+#define PROPERTY_KEY_PREVIEW_IMAGE "keypreviewimage"
+#define PROPERTY_ALWAYS_OPENED "alwaysopened"
+#define PROPERTY_CAN_CLEAR "canclear"
 
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"

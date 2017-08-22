@@ -62,6 +62,8 @@ QMenuBar::item:pressed
 QMenu
 {
     border: 1px solid #000;
+    color: #EEEEEE;
+    font: Segoe UI;
 }
 
 QMenu::item
