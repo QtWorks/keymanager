@@ -31,9 +31,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
 
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
-
-    QFileInfo fi(m_sOpenSCADPath);
-    if (!fi.exists())
+    if (m_sOpenSCADPath.isEmpty())
     {
         logError("OPENSCAD EXECUTABLE NOT FOUND. EXPORT TO STL WILL NOT WORK!");
     }
@@ -250,7 +248,7 @@ void Controller::generateSTL()
     }
     else
     {
-        QString sMsg = QString("OPENSCAD NOT FOUND AT: %1").arg(m_sOpenSCADPath);
+        QString sMsg = QString("OPENSCAD NOT FOUND ON THIS SYSTEM");
         logError(sMsg);
     }
 }

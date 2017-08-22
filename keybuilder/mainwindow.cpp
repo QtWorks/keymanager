@@ -13,6 +13,7 @@
 #include "parametermgr.h"
 #include "utils.h"
 #include <src/stlwindow.h>
+#include "helper.h"
 #define HOME_TAB 0
 #define MENU1_TAB 1
 #define MENU2_TAB 2
@@ -162,8 +163,16 @@ void MainWindow::onVisualizeSTLClicked()
 void MainWindow::onGenerateSTL()
 {
     ui->textBrowser->clear();
+
     // Step 1: do replacement in script_in.scad
-    m_pController->generateSTL();
+    QString sOpenSCADPath = Utils::openSCADPath();
+    if (!sOpenSCADPath.isEmpty())
+        m_pController->generateSTL();
+    else
+    {
+        logError("OPENSCAD NOT FOUND ON THIS SYSTEM");
+        ui->statusbar->showMessage("OPENSCAD NOT FOUND ON THIS SYSTEM");
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

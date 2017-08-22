@@ -88,5 +88,9 @@ QString Utils::openSCADPath()
 {
     QDir openSCADDir = appDir();
     openSCADDir.cd(OPENSCAD_DIR);
-    return openSCADDir.absoluteFilePath(OPENSCAD_EXE);
+    QString sOpenSCADPath = openSCADDir.absoluteFilePath(OPENSCAD_EXE);
+    QFileInfo fi(sOpenSCADPath);
+    if (!fi.exists())
+        return QString("");
+    return sOpenSCADPath;
 }
