@@ -26,5 +26,7 @@
         <file>images/menu1_regular.png</file>
         <file>images/menu1_round_pump.png</file>
         <file>images/menu1_browse_for_a_stl.png</file>
+        <file>icons/ico-key.ico</file>
+        <file>icons/ico-key.png</file>
     </qresource>
 </RCC>

@@ -21,6 +21,8 @@
 #define SETTINGS_TAB 4
 #define VISUALIZE_STL_TAB 5
 #define OUTPUT_SCAD_TAB 6
+#define APP_NAME "appname"
+#define APP_VERSION "appversion"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -40,7 +42,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     // Set window title
-    setWindowTitle(tr("OFC3DKEY V.2.0.2017"));
+    CXMLNode xRootNode = CXMLNode::loadXMLFromFile(":/data/about.xml");
+    QString sAppName = xRootNode.attributes()[APP_NAME];
+    QString sAppVersion = xRootNode.attributes()[APP_VERSION];
+    QString sWindowTitle = sAppName + QString(" ") + sAppVersion;
+    setWindowTitle(sWindowTitle);
+
+    // Set window icon
+    setWindowIcon(QIcon(":/icons/ico-key.ico"));
 
     // Add STL Window
     ui->stlViewerLayout->addWidget(m_pSTLWindow);

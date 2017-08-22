@@ -3,7 +3,7 @@
    <Block name="AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)" alwaysopened="true" canclear="false">
       <Parameter name="AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)" type="string" variable="qt_automatic_key_head_and_shoulder_qt" default="NO" ui="yesno" />
    </Block>
-   <Block name="ADDING MATERIAL" set_variable="qt_extra_material_use_qt">
+   <Block name="ADDING MATERIAL" set_variable="qt_extra_material_use_qt" exclusive="false">
       <Parameter variable="qt_extra_material_use_qt" type="boolean" default="NO" />
       <Parameter variable="qt_extra_material_shape01_use_qt" type="boolean" default="NO" />
       <Parameter variable="qt_extra_material_shape02_use_qt" type="boolean" default="NO" />
