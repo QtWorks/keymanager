@@ -79,6 +79,7 @@ void MainWindow::setController(Controller *pController)
     // Set controller on layout managers
     ui->menu1LayoutMgr->setController(m_pController);
     ui->menu2LayoutMgr->setController(m_pController);
+    ui->menu3LayoutMgr->setNumberOfStacks(1);
     ui->menu3LayoutMgr->setController(m_pController);
     ui->menuSettingsLayoutMgr->setController(m_pController);
 

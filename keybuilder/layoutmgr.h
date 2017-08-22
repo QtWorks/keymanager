@@ -15,6 +15,7 @@ class Controller;
 class ParameterBlock;
 class BlockModel;
 class SelectionMgr;
+#define NSTACKS 2
 
 class LayoutMgr : public QWidget
 {
@@ -28,6 +29,9 @@ public:
     //! Constructor
     explicit LayoutMgr(QWidget *parent=nullptr);
 
+    //! Constructor
+    explicit LayoutMgr(int nStacks=NSTACKS, QWidget *parent=nullptr);
+
     //! Destructor
     virtual ~LayoutMgr();
 
@@ -40,6 +44,9 @@ public:
 
     //! Set controller
     void setController(Controller *pController);
+
+    //! Set number of stacks
+    void setNumberOfStacks(int nStacks);
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -80,6 +87,9 @@ private:
 
     //! # block per stack
     int m_nBlockPerStack;
+
+    //! # stacks
+    int m_nStacks;
 
     //! Controller
     Controller *m_pController;

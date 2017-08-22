@@ -13,13 +13,12 @@
 #include "constants.h"
 #include "blockmodel.h"
 #include "selectionmgr.h"
-#define NSTACKS 2
 
 //-------------------------------------------------------------------------------------------------
 
 LayoutMgr::LayoutMgr(QWidget *parent) : QWidget(parent), ui(new Ui::LayoutMgr),
-    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0), m_pController(nullptr),
-    m_pRootCollapsibleBlock(nullptr)
+    m_nBlocks(0), m_iSize(0), m_nCols(0), m_nBlockPerStack(0), m_nStacks(NSTACKS),
+    m_pController(nullptr), m_pRootCollapsibleBlock(nullptr)
 {
     ui->setupUi(this);
 
@@ -86,14 +85,21 @@ void LayoutMgr::setController(Controller *pController)
 
 //-------------------------------------------------------------------------------------------------
 
+void LayoutMgr::setNumberOfStacks(int nStacks)
+{
+    m_nStacks = nStacks;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void LayoutMgr::addBlockToStack(CollapsibleBlock *pBlock)
 {
     if (pBlock != nullptr)
     {
         CollapsibleStack *pTargetStack = nullptr;
         int iStackIndex = m_nBlocks/m_nBlockPerStack;
-        if (iStackIndex > (NSTACKS-1))
-            iStackIndex = NSTACKS-1;
+        if (iStackIndex > (m_nStacks-1))
+            iStackIndex = m_nStacks-1;
         if (iStackIndex < m_vStacks.size())
             pTargetStack = m_vStacks[iStackIndex];
         else
@@ -145,7 +151,7 @@ void LayoutMgr::setSize(int iSize)
     if (iSize > 0)
     {
         m_iSize = iSize;
-        m_nCols = (m_iSize < NSTACKS) ? 1 : NSTACKS;
+        m_nCols = (m_iSize < m_nStacks) ? 1 : m_nStacks;
         m_nBlockPerStack = qRound((double)m_iSize/(double)m_nCols);
     }
 }
