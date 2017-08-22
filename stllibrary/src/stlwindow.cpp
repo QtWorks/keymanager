@@ -72,6 +72,7 @@ STLWindow::STLWindow(QWidget *parent) :
 
     auto file_menu = menuBar()->addMenu("File");
     file_menu->addAction(open_action);
+    file_menu->addAction(saveas_action);
     file_menu->addMenu(recent_files);
     file_menu->addSeparator();
     file_menu->addAction(reload_action);

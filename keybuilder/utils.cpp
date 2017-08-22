@@ -94,3 +94,17 @@ QString Utils::openSCADPath()
         return QString("");
     return sOpenSCADPath;
 }
+
+//-------------------------------------------------------------------------------------------------
+
+void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString, const QString &sOutputString, Qt::CaseSensitivity iSensitivity)
+{
+    QFileInfo fi(sInputFile);
+    if (fi.exists())
+    {
+        QString sFileContents = Utils::loadFile(sInputFile);
+        while (sFileContents.contains(sInputString, iSensitivity))
+            sFileContents.replace(sInputString, sOutputString);
+        saveFile(sFileContents, sInputFile);
+    }
+}

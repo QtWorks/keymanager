@@ -28,6 +28,9 @@ public:
 
     //! Return OpenSCAD path
     static QString openSCADPath();
+
+    //! Replace inputString by output string in given file
+    static void replaceInFile(const QString &sInputFile, const QString &sInputString, const QString &sOutputString, Qt::CaseSensitivity iSensitivity=Qt::CaseInsensitive);
 };
 
 #endif // UTILS_H

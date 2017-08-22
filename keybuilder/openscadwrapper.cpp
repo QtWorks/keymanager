@@ -10,6 +10,8 @@
 #include "helper.h"
 #include "utils.h"
 #include "controller.h"
+#define TARGET_STRING "OpenSCAD_Model"
+#define OUTPUT_STRING "OFC3DKEY"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -62,7 +64,6 @@ bool OpenSCADWrapper::generateSTL(const QString &sInputSCAD)
         // Setup process
         QStringList lArgs;
         m_pProcess->start(sProgram, lArgs);
-
         return true;
     }
 
@@ -78,5 +79,8 @@ void OpenSCADWrapper::onOutputDirectoryChanged(const QString &sPath)
     Q_UNUSED(sPath);
     QFileInfo fi(m_sNextOutputSTLFile);
     if (fi.exists())
+    {
+        Utils::replaceInFile(m_sNextOutputSTLFile, TARGET_STRING, OUTPUT_STRING);
         emit STLFileReady(m_sNextOutputSTLFile);
+    }
 }
