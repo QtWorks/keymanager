@@ -2,7 +2,6 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QDateTime>
-#include <QFileSystemWatcher>
 #include <QDebug>
 
 // Application
@@ -17,12 +16,9 @@
 
 OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) : QObject(parent),
     m_pController(nullptr), m_sOpenSCADPath(sOpenSCADPath), m_pProcess(new QProcess(this)),
-    m_pFileSystemWatcher(new QFileSystemWatcher(this)), m_sNextOutputSTLFile("")
+    m_sNextOutputSTLFile("")
 {
-    // Add path
-    m_pFileSystemWatcher->addPath(Utils::outputDir().absolutePath());
-    connect(m_pFileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged, Qt::UniqueConnection);
-    connect(m_pFileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &OpenSCADWrapper::onOutputDirectoryChanged, Qt::UniqueConnection);
+
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -30,9 +26,9 @@ OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) 
 void OpenSCADWrapper::setController(Controller *pController)
 {
     m_pController = pController;
-    connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), m_pController, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)), Qt::UniqueConnection);
-    connect(m_pProcess, &QProcess::readyReadStandardOutput, m_pController, &Controller::onOpenSCADreadyReadStandardOutput, Qt::UniqueConnection);
-    connect(m_pProcess, &QProcess::readyReadStandardError, m_pController, &Controller::onOpenSCADreadyReadStandardError, Qt::UniqueConnection);
+    connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)), Qt::UniqueConnection);
+    connect(m_pProcess, &QProcess::readyReadStandardOutput, this, &OpenSCADWrapper::onOpenSCADreadyReadStandardOutput, Qt::UniqueConnection);
+    connect(m_pProcess, &QProcess::readyReadStandardError, this, &OpenSCADWrapper::onOpenSCADreadyReadStandardError, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -74,13 +70,56 @@ bool OpenSCADWrapper::generateSTL(const QString &sInputSCAD)
 
 //-------------------------------------------------------------------------------------------------
 
-void OpenSCADWrapper::onOutputDirectoryChanged(const QString &sPath)
+const QString &OpenSCADWrapper::nextOutputSTLFile() const
 {
-    Q_UNUSED(sPath);
+    return m_sNextOutputSTLFile;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void OpenSCADWrapper::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
+{
+    QString sMsg = QString("OPENSCAD PROCESS TERMINATED WITH CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
+    emit openSCADProcessComplete(sMsg);
+
+    // Process completed, check if file exists
     QFileInfo fi(m_sNextOutputSTLFile);
     if (fi.exists())
     {
+        QString sMsg = QString("STL FILE SUCCESSFULLY GENERATED AT: %1").arg(m_sNextOutputSTLFile);
+        logInfo(sMsg);
         Utils::replaceInFile(m_sNextOutputSTLFile, TARGET_STRING, OUTPUT_STRING);
         emit STLFileReady(m_sNextOutputSTLFile);
+    }
+    else
+    {
+        QString sMsg = QString("COULD NOT GENERATE STL FILE: %1").arg(m_sNextOutputSTLFile);
+        emit STLFileError(sMsg);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void OpenSCADWrapper::onOpenSCADreadyReadStandardOutput()
+{
+    QProcess *pSender = dynamic_cast<QProcess *>(sender());
+    if (pSender != nullptr)
+    {
+        QByteArray bBuffer = pSender->readAllStandardOutput();
+        QString sMsg = QString("OPENSCAD OUTPUT: %1").arg(QString(bBuffer));
+        emit openSCADStandardOutputReady(sMsg);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void OpenSCADWrapper::onOpenSCADreadyReadStandardError()
+{
+    QProcess *pSender = dynamic_cast<QProcess *>(sender());
+    if (pSender != nullptr)
+    {
+        QByteArray bBuffer = pSender->readAllStandardError();
+        QString sMsg = QString("OPENSCAD ERROR: %1").arg(QString(bBuffer));
+        emit openSCADStandardErrorReady(sMsg);
     }
 }

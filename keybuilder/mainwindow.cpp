@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QProcess>
+#include <QCloseEvent>
+#include <QMessageBox>
 
 // Application
 #include "mainwindow.h"
@@ -28,13 +30,8 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow), m_bAllOpened(false), m_pSTLWindow(new STLWindow),
-    m_sNextSTLFileToDisplay("")
+    m_sNextSTLFileToDisplay(""), m_bAppIsDirty(false)
 {    
-    // Setup timer
-    m_STLViewerTimer.setInterval(1000);
-    m_STLViewerTimer.setSingleShot(true);
-    connect(&m_STLViewerTimer, &QTimer::timeout, this, &MainWindow::onSTLViewerTimerTimeOut, Qt::UniqueConnection);
-
     // Load CSS
     loadCSS();
 
@@ -80,10 +77,17 @@ void MainWindow::setController(Controller *pController)
     // Listen to STLFileReady signal
     connect(m_pController, &Controller::STLFileReady, this, &MainWindow::onSTLFileReady, Qt::UniqueConnection);
 
-    // Listen to SCAD process output
+    // Listen to STLFileError signal
+    connect(m_pController, &Controller::STLFileError, this, &MainWindow::onSTLFileError, Qt::UniqueConnection);
+
+    // Listen to OpenSCAD process complete
     connect(m_pController, &Controller::openSCADProcessComplete, this, &MainWindow::onOpenSCADProcessComplete, Qt::UniqueConnection);
-    connect(m_pController, &Controller::openSCADStandardErrorReady, this, &MainWindow::onOpenSCADStandardErrorReady, Qt::UniqueConnection);
+
+    // Listen to OpenSCAD standard output ready
     connect(m_pController, &Controller::openSCADStandardOutputReady, this, &MainWindow::onOpenSCADStandardOutputReady, Qt::UniqueConnection);
+
+    // Listen to OpenSCAD standard error ready
+    connect(m_pController, &Controller::openSCADStandardErrorReady, this, &MainWindow::onOpenSCADStandardErrorReady, Qt::UniqueConnection);
 
     // Set controller on layout managers
     ui->menu1LayoutMgr->setController(m_pController);
@@ -180,8 +184,8 @@ void MainWindow::onGenerateSTL()
         m_pController->generateSTL();
     else
     {
-        logError("OPENSCAD NOT FOUND ON THIS SYSTEM");
-        ui->statusbar->showMessage("OPENSCAD NOT FOUND ON THIS SYSTEM");
+        QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
+        ui->statusbar->showMessage(sMsg);
     }
 }
 
@@ -194,13 +198,60 @@ void MainWindow::onSaveKeyParameters()
         m_pController->exportParametersToTXT(sOutputFileName);
 }
 
+void MainWindow::onSaveGeneratedSTL()
+{
+    QString sLastGeneratedSTLFile = m_pController->nextOutputSTLFile();
+    QFileInfo fi(sLastGeneratedSTLFile);
+    if (fi.exists())
+    {
+        QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output STL file"), QCoreApplication::applicationDirPath(), tr("STL (*.stl)"));
+        if (!sOutputFileName.isEmpty())
+        {
+            QFile::copy(sLastGeneratedSTLFile, sOutputFileName);
+        }
+    }
+    else
+    {
+        QString sMsg = QString("FILE %1 DOES NOT EXIST ANYMORE").arg(sLastGeneratedSTLFile);
+        logError(sMsg);
+    }
+}
+
 //-------------------------------------------------------------------------------------------------
 
 void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 {
     // Load STL
-    m_sNextSTLFileToDisplay = sSTLFilePath;
-    m_STLViewerTimer.start();
+    QFileInfo fi(sSTLFilePath);
+    if (fi.exists())
+    {
+        QString sMsg = QString("STL FILE READY AT: %1").arg(sSTLFilePath);
+        logInfo(sMsg);
+        ui->statusbar->showMessage(sMsg);
+        m_sNextSTLFileToDisplay = sSTLFilePath;
+
+        // Go to STL viewer tab
+        ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
+
+        // Display
+        m_pSTLWindow->load_stl(m_sNextSTLFileToDisplay);
+        m_pSTLWindow->viewOrthographic();
+    }
+    else
+    {
+        QString sMsg = QString("COULD NOT FIND STL FILE AT: %1").arg(sSTLFilePath);
+        logError(sMsg);
+        ui->statusbar->showMessage(sMsg);
+    }
+    m_bAppIsDirty = true;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onSTLFileError(const QString &sErrorMsg)
+{
+    logError(sErrorMsg);
+    ui->statusbar->showMessage(sErrorMsg);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -210,40 +261,31 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
     if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
     {
-        statusBar()->showMessage("BUILDING STL...");
+        QString sMsg = "BUILDING STL...";
+        logInfo(sMsg);
+        statusBar()->showMessage(sMsg);
         ui->plainTextEdit->load(sOutputSCADContents);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void MainWindow::onSTLViewerTimerTimeOut()
-{
-    // Go to STL tab
-    ui->tabWidget->setCurrentIndex(VISUALIZE_STL_TAB);
-
-    // Display
-    m_pSTLWindow->load_stl(m_sNextSTLFileToDisplay);
-    m_pSTLWindow->viewOrthographic();
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
+    QString sMsg = "STL BUILD SUCCESS";
+    logInfo(sMsg);
     statusBar()->showMessage("STL BUILD SUCCESS");
-    if (ui->textBrowser->isVisible())
-        ui->textBrowser->append(sStatus);
+    ui->textBrowser->append(sStatus);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
-   statusBar()->showMessage("STL BUILD FAILURE");
-    statusBar()->showMessage("");
-    if (ui->textBrowser->isVisible())
-        ui->textBrowser->append(sStatus);
+    QString sMsg = "STL BUILD FAILURE";
+    logInfo(sMsg);
+    statusBar()->showMessage("STL BUILD FAILURE");
+    ui->textBrowser->append(sStatus);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -251,6 +293,31 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
     statusBar()->showMessage("");
-    if (ui->textBrowser->isVisible())
-        ui->textBrowser->append(sStatus);
+    ui->textBrowser->append(sStatus);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (m_bAppIsDirty)
+    {
+        // Save key parameters
+        QMessageBox msgBox;
+        msgBox.setText("Save Key Parameters?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::No);
+        int iValue = msgBox.exec();
+        if (iValue == QMessageBox::Yes)
+            onSaveKeyParameters();
+
+        // Save generated STL
+        msgBox.setText("Save generated STL?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::No);
+        iValue = msgBox.exec();
+        if (iValue == QMessageBox::Yes)
+            onSaveGeneratedSTL();
+    }
+    event->accept();
 }

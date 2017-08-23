@@ -21,7 +21,6 @@
 #define PROPERTY_STRING "string"
 #define PROPERTY_BOOLEAN "boolean"
 #define PROPERTY_TABLE "table"
-#define PROPERTY_TYPE_OF_KEY "TYPE OF KEY"
 #define PROPERTY_COLUMN_LABELS "columnlabels"
 #define PROPERTY_COLUMN_VARIABLES "columnvariables"
 #define PROPERTY_TARGET_ROW "targetrow"
@@ -33,12 +32,8 @@
 #define PROPERTY_VARIABLE_METHOD2 "method2"
 #define PROPERTY_ENABLED "enabled"
 #define PROPERTY_DEFAULT "default"
-#define PROPERTY_DEFAULT_VALUE "0"
-#define PROPERTY_DEFAULT_TRIPLET_VALUE "[0,0,0]"
 #define PROPERTY_EXCLUSIVE "exclusive"
 #define PROPERTY_AUTO "auto"
-#define PROPERTY_YES "YES"
-#define PROPERTY_NO "NO"
 #define PROPERTY_MIN_VALUE "minvalue"
 #define PROPERTY_MAX_VALUE "maxvalue"
 #define PROPERTY_CURRENT_ROW "currentrow"
@@ -55,9 +50,13 @@
 #define WIDGET_YES_NO "yesno"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 
-#define ACTION_SET_NUMBER_OF_ROWS "setnumberofrows"
-
 #define VALUE_TRUE "true"
 #define VALUE_FALSE "false"
+#define VALUE_YES "YES"
+#define VALUE_NO "NO"
+#define VALUE_DEFAULT_VALUE "0"
+#define VALUE_DEFAULT_TRIPLET_VALUE "[0,0,0]"
+
+#define ACTION_SET_NUMBER_OF_ROWS "setnumberofrows"
 
 #endif // CONSTANTS_H

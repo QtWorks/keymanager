@@ -3,8 +3,7 @@
 
 // Qt
 #include <QObject>
-class QProcess;
-class QFileSystemWatcher;
+#include <QProcess>
 class Controller;
 
 class OpenSCADWrapper : public QObject
@@ -28,6 +27,9 @@ public:
     //! Generate STL
     bool generateSTL(const QString &sInputSCAD);
 
+    //! Return next output STL file
+    const QString &nextOutputSTLFile() const;
+
 private:
     //! Controller
     Controller *m_pController;
@@ -38,9 +40,6 @@ private:
     //! Own process
     QProcess *m_pProcess;
 
-    //! File system watcher
-    QFileSystemWatcher *m_pFileSystemWatcher;
-
     //! Next output STL file
     QString m_sNextOutputSTLFile;
 
@@ -49,8 +48,14 @@ public slots:
     // Slots
     //-------------------------------------------------------------------------------------------------
 
-    //! Output directory changed
-    void onOutputDirectoryChanged(const QString &sPath);
+    //! OpenSCAD process completed
+    void onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus);
+
+    //! OpenSCAD standard output ready
+    void onOpenSCADreadyReadStandardOutput();
+
+    //! OpenSCAD standard error ready
+    void onOpenSCADreadyReadStandardError();
 
 signals:
     //-------------------------------------------------------------------------------------------------
@@ -59,6 +64,18 @@ signals:
 
     //! STL file ready
     void STLFileReady(const QString &sPath);
+
+    //! STL file error
+    void STLFileError(const QString &sPath);
+
+    //! OpenSCAD process complete
+    void openSCADProcessComplete(const QString &sMsg);
+
+    //! OpenSCAD standard output ready
+    void openSCADStandardOutputReady(const QString &sMsg);
+
+    //! OpenSCAD standard error ready
+    void openSCADStandardErrorReady(const QString &sMsg);
 };
 
 #endif // OPENSCADWRAPPER_H

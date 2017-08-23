@@ -121,9 +121,6 @@ private:
     //! Number of rows
     int m_nRows;
 
-    //! Number of enabled rows
-    int m_nEnabledRows;
-
     //! Target variabe
     QString m_sTargetVariable;
 

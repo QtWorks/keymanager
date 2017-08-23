@@ -47,7 +47,7 @@
       <Parameter name="BODY LENGTH" type="double" variable="qt_lever_simple_body_length_qt" ui="lineedit" />
       <Parameter name="BODY DIAMETER" type="double" variable="qt_lever_simple_body_diameter_qt" ui="lineedit" />
       <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_simple_blade_length_qt" ui="lineedit" />
-      <Parameter name="BLADE HEIGHT FROM BACK" type="double" variable="qt_lever_simple_blade_height_qt" ui="lineedit" />
+      <Parameter name="BLADE HEIGHT FROM MIDDLE" type="double" variable="qt_lever_simple_blade_height_qt" ui="lineedit" />
       <Parameter name="BLADE THICKNESS" type="double" variable="qt_lever_simple_blade_thickness_qt" ui="lineedit" />
       <Parameter name="TIP LENGTH" type="double" variable="qt_lever_simple_tip_length_qt" ui="lineedit" />
       <Parameter name="TIP HOLE DIAMETER" type="double" variable="qt_lever_simple_tip_hole_diameter_qt" ui="lineedit" />

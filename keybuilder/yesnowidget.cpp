@@ -24,9 +24,9 @@ YesNoWidget::YesNoWidget(Controller *pController, const QString &sLabel, const Q
 
     ui->label->setText(sLabel);
     connect(ui->yesRadioButton, &QRadioButton::toggled, this, &YesNoWidget::onRadioButtonToggled, Qt::UniqueConnection);
-    ui->yesRadioButton->setProperty(PROPERTY_USER_VALUE, PROPERTY_YES);
+    ui->yesRadioButton->setProperty(PROPERTY_USER_VALUE, VALUE_YES);
     connect(ui->noRadioButton, &QRadioButton::toggled, this, &YesNoWidget::onRadioButtonToggled, Qt::UniqueConnection);
-    ui->noRadioButton->setProperty(PROPERTY_USER_VALUE, PROPERTY_NO);
+    ui->noRadioButton->setProperty(PROPERTY_USER_VALUE, VALUE_NO);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ void YesNoWidget::applyDefaultValue()
 
 void YesNoWidget::applyValue(const QString &sValue)
 {
-    if (sValue == PROPERTY_YES)
+    if (sValue == VALUE_YES)
         ui->yesRadioButton->setChecked(true);
     else
         ui->noRadioButton->setChecked(true);

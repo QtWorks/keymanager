@@ -497,3 +497,7 @@ QTreeView {
 QStatusBar {
     color: orange;
 }
+
+QStatusBar::item {
+    border: none;
+}

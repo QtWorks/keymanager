@@ -68,9 +68,9 @@ void ParameterMgr::parseSingleBlock(const CXMLNode &xBlock)
         QString sDefaultValue = xParameterNode.attributes()[PROPERTY_DEFAULT].simplified();
         if (sDefaultValue.isEmpty())
         {
-            sDefaultValue = PROPERTY_DEFAULT_VALUE;
+            sDefaultValue = VALUE_DEFAULT_VALUE;
             if (sParameterUI == WIDGET_DOUBLE_TRIPLET)
-                sDefaultValue = PROPERTY_DEFAULT_TRIPLET_VALUE;
+                sDefaultValue = VALUE_DEFAULT_TRIPLET_VALUE;
             QString sMsg = QString("PARAMETER VARIABLE: %1 HAS NO DEFAULT VALUE. DEFAULTING TO 0").arg(sParameterVariable);
             logWarning(sMsg);
         }
@@ -122,7 +122,7 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
     QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
     if (sDefaultValue.isEmpty())
-        sDefaultValue = PROPERTY_DEFAULT_VALUE;
+        sDefaultValue = VALUE_DEFAULT_VALUE;
 
     // Make sure default values, column labels and column variables have same size
     QStringList lDefaultValues;

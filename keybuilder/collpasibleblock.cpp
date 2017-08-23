@@ -255,12 +255,12 @@ void CollapsibleBlock::setBlockVariable()
                     m_pController->parameterMgr()->setParameterValue(sSelectionVariable, m_pParameterBlock->value());
                 else
                 if (sType == PROPERTY_BOOLEAN)
-                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, PROPERTY_YES);
+                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, VALUE_YES);
             }
             else
             {
                 if (sType == PROPERTY_BOOLEAN)
-                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, PROPERTY_NO);
+                    m_pController->parameterMgr()->setParameterValue(sSelectionVariable, VALUE_NO);
             }
         }
     }

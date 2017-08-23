@@ -61,6 +61,9 @@ public:
     //! Return key preview image
     QImage *keyPreviewImage() const;
 
+    //! Return next output STL file
+    QString nextOutputSTLFile() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -123,11 +126,6 @@ public slots:
     //! Update widget value
     void onUpdateWidgetValue(const QString &sParameterVariable, const QString &sVariableValue);
 
-    //! OpenSCAD process complete
-    void onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus);
-    void onOpenSCADreadyReadStandardOutput();
-    void onOpenSCADreadyReadStandardError();
-
 signals:
     //-------------------------------------------------------------------------------------------------
     // Signals
@@ -136,17 +134,20 @@ signals:
     //! STL file ready
     void STLFileReady(const QString &sPath);
 
+    //! STL file error
+    void STLFileError(const QString &sPath);
+
     //! Output SCAD ready
     void outputSCADReady(const QString &sPath);
 
     //! OpenSCAD process complete
-    void openSCADProcessComplete(const QString &sStatus);
-
-    //! OpenSCAD standard error ready
-    void openSCADStandardErrorReady(const QString &sError);
+    void openSCADProcessComplete(const QString &sMsg);
 
     //! OpenSCAD standard output ready
-    void openSCADStandardOutputReady(const QString &sOutput);
+    void openSCADStandardOutputReady(const QString &sMsg);
+
+    //! OpenSCAD standard error ready
+    void openSCADStandardErrorReady(const QString &sMsg);
 
     //! Update key previews
     void updateKeyPreviews();

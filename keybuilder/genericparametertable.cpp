@@ -23,8 +23,6 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     m_pController(pController), m_sDefaultValue(sDefaultValue)
 {
     QStringList lDefaultValues;
-    if (m_sDefaultValue.isEmpty())
-        m_sDefaultValue = PROPERTY_DEFAULT_VALUE;
     if (m_sDefaultValue.contains(","))
         lDefaultValues = m_sDefaultValue.split(",");
     else lDefaultValues << m_sDefaultValue;
@@ -38,7 +36,6 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
     m_lColumnVariables = lColumnVariables.mid(0, nColumns);
     m_sTargetRow = sTargetRow;
     m_nRows = nRows;
-    m_nEnabledRows = nRows;
     m_sTargetVariable = sTargetVariable;
     m_sVariableMethod = sVariableMethod;
     m_sActionSetNumberOfPins = sActionSetNumberOfPins;
@@ -46,7 +43,8 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         processActionSetNumberOfPins(m_sActionSetNumberOfPins);
     m_vData.resize((nRows+1)*nColumns);
     for (int i=0; i<m_lDefaultValues.size(); i++)
-        m_vData[i] = PROPERTY_DEFAULT_VALUE;
+        m_vData[i] = VALUE_DEFAULT_VALUE;
+
     for (int i=0; i<nRows; i++)
     {
         for (int j=0; j<nColumns; j++)
@@ -207,7 +205,7 @@ void GenericParameterTableModel::clearAll()
 {
     beginResetModel();
     for (int i=0; i<m_lDefaultValues.size(); i++)
-        m_vData[i] = PROPERTY_DEFAULT_VALUE;
+        m_vData[i] = VALUE_DEFAULT_VALUE;
     for (int i=m_lDefaultValues.size()-1; i<m_vData.size(); i++)
         m_vData[i] = "";
     endResetModel();
@@ -341,10 +339,10 @@ QString GenericParameterTableModel::getFormattedVariableName(const QString &sVar
         sFormattedVariable = ParameterMgr::identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
     }
     else
-        if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
-        {
-            sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(sTargetVariable, iRow);
-        }
+    if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+    {
+        sFormattedVariable = ParameterMgr::identifyTargetVariable_method2(sTargetVariable, iRow);
+    }
     return sFormattedVariable;
 }
 
@@ -373,7 +371,7 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
         m_nRows = nRows;
         m_vData.resize((nRows+1)*m_lColumnLabels.size());
         for (int i=0; i<m_lDefaultValues.size(); i++)
-            m_vData[i] = PROPERTY_DEFAULT_TRIPLET_VALUE;
+            m_vData[i] = VALUE_DEFAULT_TRIPLET_VALUE;
         endResetModel();
     }
 }

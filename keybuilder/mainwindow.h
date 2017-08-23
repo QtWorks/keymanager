@@ -3,7 +3,6 @@
 
 // Qt
 #include <QMainWindow>
-#include <QTimer>
 
 // Application
 #include "cxmlnode.h"
@@ -40,6 +39,10 @@ public:
     //! Load CSS
     void loadCSS();
 
+protected:
+    //! Handle close event
+    virtual void closeEvent(QCloseEvent *event);
+
 private:
     //! UI
     Ui::MainWindow *ui;
@@ -56,8 +59,8 @@ private:
     //! Next STL file to display
     QString m_sNextSTLFileToDisplay;
 
-    //! Timer
-    QTimer m_STLViewerTimer;
+    //! App dirty?
+    bool m_bAppIsDirty;
 
 public slots:
     //! Create key
@@ -75,14 +78,17 @@ public slots:
     //! Save key parameters
     void onSaveKeyParameters();
 
+    //! Save generated STL
+    void onSaveGeneratedSTL();
+
     //! STL file ready
     void onSTLFileReady(const QString &sSTLFilePath);
 
+    //! STL file error
+    void onSTLFileError(const QString &sSTLFilePath);
+
     //! Output SCAD ready
     void onOutputSCADReady(const QString &sOutputSCADFile);
-
-    //! STL Viewer timer time out
-    void onSTLViewerTimerTimeOut();
 
     //! Listen to OpenSCAD process status
     void onOpenSCADProcessComplete(const QString &sStatus);

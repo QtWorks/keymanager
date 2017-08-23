@@ -52,6 +52,10 @@ Controller::Controller(QObject *parent) : QObject(parent),
         m_pOpenSCADWrapper = new OpenSCADWrapper(m_sOpenSCADPath, this);
         m_pOpenSCADWrapper->setController(this);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileReady, this, &Controller::STLFileReady, Qt::UniqueConnection);
+        connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileError, this, &Controller::STLFileError, Qt::UniqueConnection);
+        connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADProcessComplete, this, &Controller::openSCADProcessComplete, Qt::UniqueConnection);
+        connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardErrorReady, this, &Controller::openSCADStandardErrorReady, Qt::UniqueConnection);
+        connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardOutputReady, this, &Controller::openSCADStandardOutputReady, Qt::UniqueConnection);
     }
 }
 
@@ -127,6 +131,13 @@ QImage *Controller::keyPreviewImage() const
 
 //-------------------------------------------------------------------------------------------------
 
+QString Controller::nextOutputSTLFile() const
+{
+    return (m_pOpenSCADWrapper != nullptr) ? m_pOpenSCADWrapper->nextOutputSTLFile() : QString("");
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool Controller::startup()
 {
     if (!m_pParameterMgr->loadMenu1Parameters())
@@ -169,40 +180,6 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
         else pWidget->applyValue(sVariableValue);
     }
     else m_pParameterMgr->setParameterValue(sParameterVariable, sVariableValue);
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void Controller::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
-{
-    QString sMsg = QString("OPENSCAD PROCESS EXIT CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
-    emit openSCADProcessComplete(sMsg);
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void Controller::onOpenSCADreadyReadStandardOutput()
-{
-    QProcess *pSender = dynamic_cast<QProcess *>(sender());
-    if (pSender != nullptr)
-    {
-        QByteArray bBuffer = pSender->readAllStandardOutput();
-        QString sMsg = QString("OPENSCAD OUTPUT: %1").arg(QString(bBuffer));
-        emit openSCADStandardOutputReady(sMsg);
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void Controller::onOpenSCADreadyReadStandardError()
-{
-    QProcess *pSender = dynamic_cast<QProcess *>(sender());
-    if (pSender != nullptr)
-    {
-        QByteArray bBuffer = pSender->readAllStandardError();
-        QString sMsg = QString("OPENSCAD ERROR: %1").arg(QString(bBuffer));
-        emit openSCADStandardErrorReady(sMsg);
-    }
 }
 
 //-------------------------------------------------------------------------------------------------
