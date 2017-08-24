@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+    ui->progressBar->setRange(0, 0);
+    ui->progressBar->setVisible(false);
 
     // Set window title
     CXMLNode xRootNode = CXMLNode::loadXMLFromFile(":/data/about.xml");
@@ -181,7 +183,9 @@ void MainWindow::onGenerateSTL()
     // Step 1: do replacement in script_in.scad
     QString sOpenSCADPath = Utils::openSCADPath();
     if (!sOpenSCADPath.isEmpty())
+    {
         m_pController->generateSTL();
+    }
     else
     {
         QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
@@ -197,6 +201,8 @@ void MainWindow::onSaveKeyParameters()
     if (!sOutputFileName.isEmpty())
         m_pController->exportParametersToTXT(sOutputFileName);
 }
+
+//-------------------------------------------------------------------------------------------------
 
 void MainWindow::onSaveGeneratedSTL()
 {
@@ -221,6 +227,9 @@ void MainWindow::onSaveGeneratedSTL()
 
 void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 {
+    // Hide progress bar
+    ui->progressBar->setVisible(false);
+
     // Load STL
     QFileInfo fi(sSTLFilePath);
     if (fi.exists())
@@ -248,6 +257,9 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 
 void MainWindow::onSTLFileError(const QString &sErrorMsg)
 {
+    // Hide progress bar
+    ui->progressBar->setVisible(false);
+
     logError(sErrorMsg);
     ui->statusbar->showMessage(sErrorMsg);
 }
@@ -259,6 +271,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
     if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
     {
+        ui->progressBar->setVisible(true);
         QString sMsg = "BUILDING STL...";
         logInfo(sMsg);
         statusBar()->showMessage(sMsg);
@@ -270,6 +283,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
+    ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD SUCCESS";
     logInfo(sMsg);
     statusBar()->showMessage("STL BUILD SUCCESS");
@@ -280,6 +294,7 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
+    ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD FAILURE";
     logInfo(sMsg);
     statusBar()->showMessage("STL BUILD FAILURE");
@@ -290,6 +305,7 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
+    ui->progressBar->setVisible(false);
     statusBar()->showMessage("");
     ui->textBrowser->append(sStatus);
 }
