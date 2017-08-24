@@ -4,6 +4,6 @@
       <Parameter name="PRECISION" type="double" variable="qt_fn_qt" default="20" ui="lineedit" />
       <Parameter name="EPSILON" type="double" variable="qt_epsilon_qt" default="0.1" ui="lineedit" />
       <Parameter name="TOLERANCE" type="double" variable="qt_tolerance_qt" default="0.1" ui="lineedit" />
-      <Parameter name="SHOW CUTS" type="string" variable="qt_show_chosen_cuts" default="NO" ui="yesno" />
+      <Parameter name="SHOW CUTS" type="string" variable="qt_show_chosen_cuts_qt" default="NO" ui="yesno" />
    </Block>
 </Block>
