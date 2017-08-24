@@ -144,7 +144,7 @@ abus_plus_length =        qt_abus_plus_length_qt;
 
 
 //PARAMETERS OF AXI HOME
-axi_home_model =            qt_axi_home_model_qt;
+axi_home_model =            qt_axi_home_side_qt;
 axi_home_blank_length =     23.8 ; //CONSTANT DEFAULT 23.8
 axi_home_key_thickness =    5.24 ; //CONSTANT DEFAULT 5.24
 axi_home_key_width =        5.66 ; //CONSTANT DEFAULT 5.66

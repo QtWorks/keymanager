@@ -76,7 +76,7 @@
    <Block name="ABLOY PROTECT" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abloy_protec.png" value="abloy_protec" />
    <Block name="ABUS PLUS" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abus_plus.png" value="abus_plus" />
    <Block name="AXI HOME" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_axi_home.png" value="axi_home">
-      <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" default="RIGHT" ui="exclusivechoice" />
+      <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_side_qt" default="RIGHT" ui="exclusivechoice" />
    </Block>
    <Block name="FICHET 787" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_fichet_787.png" value="fichet_787" />
    <Block name="EXPERT: BROWSE FOR A STL" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_browse_for_a_stl.png" value="expert_stl">

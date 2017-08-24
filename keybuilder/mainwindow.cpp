@@ -227,7 +227,6 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
     {
         QString sMsg = QString("STL FILE READY AT: %1").arg(sSTLFilePath);
         logInfo(sMsg);
-        ui->statusbar->showMessage(sMsg);
         m_sNextSTLFileToDisplay = sSTLFilePath;
 
         // Go to STL viewer tab
@@ -241,7 +240,6 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
     {
         QString sMsg = QString("COULD NOT FIND STL FILE AT: %1").arg(sSTLFilePath);
         logError(sMsg);
-        ui->statusbar->showMessage(sMsg);
     }
     m_bAppIsDirty = true;
 }

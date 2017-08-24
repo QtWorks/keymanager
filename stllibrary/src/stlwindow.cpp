@@ -1,26 +1,15 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QFileDialog>
-
 #include "stlwindow.h"
 #include "canvas.h"
 #include "loader.h"
 
-const QString STLWindow::RECENT_FILE_KEY = "recentFiles";
-
 STLWindow::STLWindow(QWidget *parent) :
     QMainWindow(parent),
-    open_action(new QAction("Open", this)),
     saveas_action(new QAction("Save As...", this)),
-    about_action(new QAction("About", this)),
-    quit_action(new QAction("Quit", this)),
     perspective_action(new QAction("Perspective", this)),
     orthogonal_action(new QAction("Orthographic", this)),
-    reload_action(new QAction("Reload", this)),
-    autoreload_action(new QAction("Autoreload", this)),
-    recent_files(new QMenu("Open recent", this)),
-    recent_files_group(new QActionGroup(this)),
-    recent_files_clear_action(new QAction("Clear recent files", this)),
     watcher(new QFileSystemWatcher(this))
 
 {
@@ -37,47 +26,12 @@ STLWindow::STLWindow(QWidget *parent) :
     QObject::connect(watcher, &QFileSystemWatcher::fileChanged,
                      this, &STLWindow::on_watched_change);
 
-    open_action->setShortcut(QKeySequence::Open);
-    QObject::connect(open_action, &QAction::triggered,
-                     this, &STLWindow::on_open);
-
     saveas_action->setShortcut(QKeySequence("CTRL+S"));
     QObject::connect(saveas_action, &QAction::triggered,
                      this, &STLWindow::on_saveas);
 
-    quit_action->setShortcut(QKeySequence::Quit);
-    QObject::connect(quit_action, &QAction::triggered,
-                     this, &STLWindow::close);
-
-    autoreload_action->setCheckable(true);
-    autoreload_action->setChecked(true);
-    autoreload_action->setEnabled(false);
-    QObject::connect(autoreload_action, &QAction::triggered,
-            this, &STLWindow::on_autoreload_triggered);
-
-    reload_action->setShortcut(QKeySequence::Refresh);
-    reload_action->setEnabled(false);
-    QObject::connect(reload_action, &QAction::triggered,
-                     this, &STLWindow::on_reload);
-
-    QObject::connect(about_action, &QAction::triggered,
-                     this, &STLWindow::on_about);
-
-    QObject::connect(recent_files_clear_action, &QAction::triggered,
-                     this, &STLWindow::on_clear_recent);
-    QObject::connect(recent_files_group, &QActionGroup::triggered,
-                     this, &STLWindow::on_load_recent);
-
-    rebuild_recent_files();
-
     auto file_menu = menuBar()->addMenu("File");
-    file_menu->addAction(open_action);
     file_menu->addAction(saveas_action);
-    file_menu->addMenu(recent_files);
-    file_menu->addSeparator();
-    file_menu->addAction(reload_action);
-    file_menu->addAction(autoreload_action);
-    file_menu->addAction(quit_action);
 
     auto view_menu = menuBar()->addMenu("View");
     auto projection_menu = view_menu->addMenu("Projection");
@@ -93,9 +47,6 @@ STLWindow::STLWindow(QWidget *parent) :
     projections->setExclusive(true);
     QObject::connect(projections, &QActionGroup::triggered,
                      this, &STLWindow::on_projection);
-
-    auto help_menu = menuBar()->addMenu("Help");
-    help_menu->addAction(about_action);
 
     resize(600, 400);
 }
@@ -120,18 +71,6 @@ void STLWindow::on_saveas()
             QFile::copy(currentSTLFileName, sOutputFileName);
         }
     }
-}
-
-void STLWindow::on_about()
-{
-    QMessageBox::about(this, "",
-        "<p align=\"center\"><b>fstl</b></p>"
-        "<p>A fast viewer for <code>.stl</code> files.<br>"
-        "<a href=\"https://github.com/mkeeter/fstl\""
-        "   style=\"color: #93a1a1;\">https://github.com/mkeeter/fstl</a></p>"
-        "<p>© 2014-2017 Matthew Keeter<br>"
-        "<a href=\"mailto:matt.j.keeter@gmail.com\""
-        "   style=\"color: #93a1a1;\">matt.j.keeter@gmail.com</a></p>");
 }
 
 void STLWindow::on_bad_stl()
@@ -164,16 +103,6 @@ void STLWindow::on_missing_file()
                           "The target file is missing.<br>");
 }
 
-void STLWindow::enable_open()
-{
-    open_action->setEnabled(true);
-}
-
-void STLWindow::disable_open()
-{
-    open_action->setEnabled(false);
-}
-
 void STLWindow::set_watched(const QString& filename)
 {
     const auto files = watcher->files();
@@ -182,18 +111,6 @@ void STLWindow::set_watched(const QString& filename)
         watcher->removePaths(watcher->files());
     }
     watcher->addPath(filename);
-
-    QSettings settings;
-    auto recent = settings.value(RECENT_FILE_KEY).toStringList();
-    const auto f = QFileInfo(filename).absoluteFilePath();
-    recent.removeAll(f);
-    recent.prepend(f);
-    while (recent.size() > MAX_RECENT_FILES)
-    {
-        recent.pop_back();
-    }
-    settings.setValue(RECENT_FILE_KEY, recent);
-    rebuild_recent_files();
 }
 
 void STLWindow::on_projection(QAction* proj)
@@ -210,10 +127,7 @@ void STLWindow::on_projection(QAction* proj)
 
 void STLWindow::on_watched_change(const QString& filename)
 {
-    if (autoreload_action->isChecked())
-    {
-        load_stl(filename, true);
-    }
+    load_stl(filename, true);
 }
 
 void STLWindow::on_autoreload_triggered(bool b)
@@ -224,45 +138,9 @@ void STLWindow::on_autoreload_triggered(bool b)
     }
 }
 
-void STLWindow::on_clear_recent()
-{
-    QSettings settings;
-    settings.setValue(RECENT_FILE_KEY, QStringList());
-    rebuild_recent_files();
-}
-
 void STLWindow::on_load_recent(QAction* a)
 {
     load_stl(a->data().toString());
-}
-
-void STLWindow::rebuild_recent_files()
-{
-    QSettings settings;
-    QStringList files = settings.value(RECENT_FILE_KEY).toStringList();
-
-    const auto actions = recent_files_group->actions();
-    for (auto a : actions)
-    {
-        recent_files_group->removeAction(a);
-    }
-    recent_files->clear();
-
-    for (auto f : files)
-    {
-        const auto a = new QAction(f, recent_files);
-        a->setData(f);
-        recent_files_group->addAction(a);
-        recent_files->addAction(a);
-    }
-    if (files.size() == 0)
-    {
-        auto a = new QAction("No recent files", recent_files);
-        recent_files->addAction(a);
-        a->setEnabled(false);
-    }
-    recent_files->addSeparator();
-    recent_files->addAction(recent_files_clear_action);
 }
 
 void STLWindow::on_reload()
@@ -277,13 +155,9 @@ void STLWindow::on_reload()
 bool STLWindow::load_stl(const QString& filename, bool is_reload)
 {
     currentSTLFileName.clear();
-    if (!open_action->isEnabled())  return false;
-
     canvas->set_status("Loading " + filename);
 
     Loader* loader = new Loader(this, filename, is_reload);
-    connect(loader, &Loader::started,
-              this, &STLWindow::disable_open);
 
     connect(loader, &Loader::got_mesh,
             canvas, &Canvas::load_mesh);
@@ -295,11 +169,8 @@ bool STLWindow::load_stl(const QString& filename, bool is_reload)
               this, &STLWindow::on_confusing_stl);
     connect(loader, &Loader::error_missing_file,
               this, &STLWindow::on_missing_file);
-
     connect(loader, &Loader::finished,
             loader, &Loader::deleteLater);
-    connect(loader, &Loader::finished,
-              this, &STLWindow::enable_open);
     connect(loader, &Loader::finished,
             canvas, &Canvas::clear_status);
 
@@ -309,8 +180,6 @@ bool STLWindow::load_stl(const QString& filename, bool is_reload)
                   this, &STLWindow::setWindowTitle);
         connect(loader, &Loader::loaded_file,
                   this, &STLWindow::set_watched);
-        autoreload_action->setEnabled(true);
-        reload_action->setEnabled(true);
     }
 
     loader->start();
