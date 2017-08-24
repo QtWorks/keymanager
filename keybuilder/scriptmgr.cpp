@@ -41,7 +41,7 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
                 QString sParameterVariable = pParameter->variable();
                 QString sParameterValue = pParameter->value();
                 if (sParameterValue.isEmpty())
-                    sParameterValue = pParameter->defaultValue();
+                    sParameterValue = !pParameter->unsetValue().isEmpty() ? pParameter->unsetValue() : pParameter->defaultValue();
                 if ((pParameter->type() != PROPERTY_STRING) && (pParameter->type() != PROPERTY_BOOLEAN))
                     sCurrentText.replace(sParameterVariable, sParameterValue);
                 else

@@ -20,44 +20,66 @@
 
 GenericParameterTableModel::GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
     int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent) : QAbstractItemModel(parent),
-    m_pController(pController), m_sDefaultValue(sDefaultValue)
+    m_pController(pController)
 {
-    QStringList lDefaultValues;
-    if (m_sDefaultValue.contains(","))
-        lDefaultValues = m_sDefaultValue.split(",");
-    else lDefaultValues << m_sDefaultValue;
-
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
-    if (!lDefaultValues.isEmpty())
-        nColumns = qMin(nColumns, lDefaultValues.size());
-    m_lDefaultValues = lDefaultValues;
 
-    m_lColumnLabels = lColumnLabels.mid(0, nColumns);
-    m_lColumnVariables = lColumnVariables.mid(0, nColumns);
-    m_sTargetRow = sTargetRow;
-    m_nRows = nRows;
-    m_sTargetVariable = sTargetVariable;
-    m_sVariableMethod = sVariableMethod;
-    m_sActionSetNumberOfPins = sActionSetNumberOfPins;
-    if (!m_sActionSetNumberOfPins.isEmpty())
-        processActionSetNumberOfPins(m_sActionSetNumberOfPins);
-    m_vData.resize((nRows+1)*nColumns);
-    for (int i=0; i<m_lDefaultValues.size(); i++)
-        m_vData[i] = VALUE_DEFAULT_VALUE;
-
-    for (int i=0; i<nRows; i++)
+    // Check we have the right number of default values:
+    QStringList lDefaultValues;
+    if (sDefaultValue.isEmpty())
     {
-        for (int j=0; j<nColumns; j++)
+        for (int i=0; i<nColumns; i++)
+            lDefaultValues << VALUE_DEFAULT_VALUE;
+    }
+    else
+    if (sDefaultValue.contains(","))
+    {
+        lDefaultValues = sDefaultValue.split(",");
+        if (lDefaultValues.size() != nColumns)
         {
-            // Build formatted variable name
-            QString sFormattedVariableName = getFormattedVariableName(m_sVariableMethod, sTargetVariable, m_lColumnVariables, m_sTargetRow, j, i);
-            Position p;
-            p.column = j;
-            p.row = i+1;
-            m_hHashTable[sFormattedVariableName] = p;
+            lDefaultValues.clear();
+            for (int i=0; i<nColumns; i++)
+                lDefaultValues << VALUE_DEFAULT_VALUE;
         }
     }
-    connect(this, &GenericParameterTableModel::updateAll, this, &GenericParameterTableModel::onUpdateAll, Qt::UniqueConnection);
+    else lDefaultValues << sDefaultValue;
+
+    if (nColumns > 0)
+    {
+        // Set default values
+        m_lDefaultValues = lDefaultValues;
+
+        // Set own properties
+        m_lColumnLabels = lColumnLabels.mid(0, nColumns);
+        m_lColumnVariables = lColumnVariables.mid(0, nColumns);
+        m_sTargetRow = sTargetRow;
+        m_nRows = nRows;
+        m_sTargetVariable = sTargetVariable;
+        m_sVariableMethod = sVariableMethod;
+        m_sActionSetNumberOfPins = sActionSetNumberOfPins;
+        if (!m_sActionSetNumberOfPins.isEmpty())
+            processActionSetNumberOfPins(m_sActionSetNumberOfPins);
+        m_vData.resize((nRows+1)*nColumns);
+
+        // Write first row using default values
+        for (int i=0; i<m_lDefaultValues.size(); i++)
+            m_vData[i] = m_lDefaultValues[i];
+
+        for (int i=0; i<nRows; i++)
+        {
+            for (int j=0; j<nColumns; j++)
+            {
+                // Build formatted variable name
+                QString sFormattedVariableName = getFormattedVariableName(m_sVariableMethod, sTargetVariable, m_lColumnVariables, m_sTargetRow, j, i);
+                Position p;
+                p.column = j;
+                p.row = i+1;
+                m_hHashTable[sFormattedVariableName] = p;
+            }
+        }
+        connect(this, &GenericParameterTableModel::updateAll, this, &GenericParameterTableModel::onUpdateAll, Qt::UniqueConnection);
+    }
+    else logError("CANNOT CREATE A TABLE WITH 0 COLUMN");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -204,10 +226,12 @@ Qt::ItemFlags GenericParameterTableModel::flags(const QModelIndex &index) const
 void GenericParameterTableModel::clearAll()
 {
     beginResetModel();
+    // Reset first row to default values
     for (int i=0; i<m_lDefaultValues.size(); i++)
-        m_vData[i] = VALUE_DEFAULT_VALUE;
-    for (int i=m_lDefaultValues.size()-1; i<m_vData.size(); i++)
-        m_vData[i] = "";
+        m_vData[i] = m_lDefaultValues[i];
+    // Clear other rows
+    for (int i=m_lDefaultValues.size(); i<m_vData.size(); i++)
+        m_vData[i] = QString("");
     endResetModel();
 }
 
@@ -238,6 +262,26 @@ void GenericParameterTableModel::applyValue(const QString &sValue, int iTargetCo
                 if (targetIndex.isValid())
                     setData(targetIndex, lValues[j], Qt::EditRole);
             }
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void GenericParameterTableModel::clearColumn(int iTargetColumn)
+{
+    if ((iTargetColumn >= 0) && (iTargetColumn < columnCount()))
+    {
+        // Reset first row to default values
+        m_vData[iTargetColumn] = m_lDefaultValues[iTargetColumn];
+        emit dataChanged(index(0, iTargetColumn, QModelIndex()), index(0, iTargetColumn, QModelIndex()));
+
+        // Clear others
+        for (int i=1; i<m_nRows+1; i++)
+        {
+            QModelIndex targetIndex = index(i, iTargetColumn, QModelIndex());
+            if (targetIndex.isValid())
+                setData(targetIndex, QString(""), Qt::EditRole);
         }
     }
 }
@@ -370,8 +414,7 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
         beginResetModel();
         m_nRows = nRows;
         m_vData.resize((nRows+1)*m_lColumnLabels.size());
-        for (int i=0; i<m_lDefaultValues.size(); i++)
-            m_vData[i] = VALUE_DEFAULT_TRIPLET_VALUE;
+        clearAll();
         endResetModel();
     }
 }
@@ -524,7 +567,7 @@ void GenericParameterTable::onEvaluateAutoScript()
 
 void GenericParameterTable::onClearColumn(int iTargetColumn)
 {
-    m_pModel->applyValue(defaultValue(), iTargetColumn);
+    m_pModel->clearColumn(iTargetColumn);
 }
 
 

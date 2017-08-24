@@ -53,6 +53,7 @@ $fn=qt_fn_qt;
 
 epsilon = qt_epsilon_qt ;
 tolerance = qt_tolerance_qt ;
+show_chosen_cuts = qt_show_chosen_cuts_qt ;
 
 type_of_key = qt_type_of_key_qt ;//can be regular, dimple_laser, round_pump, round_stl, lever_simple, lever_double, abloy_classic, abloy_disklock, abloy_protec, abus_plus, axi_home, fichet_787, expert_stl
 
@@ -1033,6 +1034,7 @@ axi_home_row3_shoulder_distance =   23.8-18.5 ; //CLOSEST TO TIP
 axi_home_root_x =                   1 ; 
 axi_home_root_y =                   1 ; 
 
+axi_home_side = qt_axi_home_side_qt;
 axi_home_top_row = qt_axi_home_top_row_qt;
 axi_home_right_row = qt_axi_home_right_row_qt;
 axi_home_left_row = qt_axi_home_left_row_qt;
@@ -8727,7 +8729,10 @@ automatic_key_head_and_shoulder();
 extra_material_use();
 
 
-
+if(show_chosen_cuts == "YES")
+{
+    perform_chosen_cuts();
+}
 
 
 

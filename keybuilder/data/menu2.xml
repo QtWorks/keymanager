@@ -38,7 +38,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row1_shoulder_distance_qt+currentrow*qt_regular_row1_interpin_space_qt" setnumberofrows="qt_regular_row1_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row1_shoulder_distance_qt+currentrow*qt_regular_row1_interpin_space_qt" setnumberofrows="qt_regular_row1_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW2" exclusive="false" set_variable="qt_regular_row2_cut_use_qt">
          <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
@@ -76,7 +76,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row2_shoulder_distance_qt+currentrow*qt_regular_row2_interpin_space_qt" setnumberofrows="qt_regular_row2_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row2_shoulder_distance_qt+currentrow*qt_regular_row2_interpin_space_qt" setnumberofrows="qt_regular_row2_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW3" set_variable="qt_regular_row3_cut_use_qt">
          <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
@@ -114,7 +114,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row3_shoulder_distance_qt+currentrow*qt_regular_row3_interpin_space_qt" setnumberofrows=" qt_regular_row3_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row3_shoulder_distance_qt+currentrow*qt_regular_row3_interpin_space_qt" setnumberofrows=" qt_regular_row3_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW4" set_variable="qt_regular_row4_cut_use_qt">
          <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
@@ -152,7 +152,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row4_shoulder_distance_qt+currentrow*qt_regular_row4_interpin_space_qt" setnumberofrows="qt_regular_row4_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row4_shoulder_distance_qt+currentrow*qt_regular_row4_interpin_space_qt" setnumberofrows="qt_regular_row4_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW5" set_variable="qt_regular_row5_cut_use_qt">
          <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
@@ -190,7 +190,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row5_shoulder_distance_qt+currentrow*qt_regular_row5_interpin_space_qt" setnumberofrows="qt_regular_row5_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row5_shoulder_distance_qt+currentrow*qt_regular_row5_interpin_space_qt" setnumberofrows="qt_regular_row5_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW6" set_variable="qt_regular_row6_cut_use_qt">
          <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
@@ -228,7 +228,7 @@
                 <Parameter name="BROWSE FOR A STL" type="string" default="stl.mill" variable="qt_regular_row6_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
-         <Parameter auto="distance=qt_regular_row6_shoulder_distance_qt+currentrow*qt_regular_row6_interpin_space_qt" setnumberofrows="qt_regular_row6_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="100,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_regular_row6_shoulder_distance_qt+currentrow*qt_regular_row6_interpin_space_qt" setnumberofrows="qt_regular_row6_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row6" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
    <Block name="ROUND PUMP/TUBULAR" set_variable="qt_round_pump_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;round_pump&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;) || (qt_type_of_key_qt == &quot;round_stl&quot;)">
@@ -247,7 +247,7 @@
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row1_spaces_qt" auto="qt_lever_lock_row1_blade_length_qt/qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row1_thickness_qt" auto="qt_lever_lock_row1_spaces_qt*1.25" ui="lineedit" />
          <Parameter name="ANGLE OF CUTTING [ ] (ON Y AXIS)" type="double" variable="qt_lever_lock_row1_angle_on_y_qt" ui="lineedit" />
-         <Parameter auto="distance=qt_lever_lock_row1_spaces_qt/2+currentrow*qt_lever_lock_row1_spaces_qt;thickness=1.25*qt_lever_lock_row1_spaces_qt" setnumberofrows="qt_lever_lock_row1_number_of_levers_qt" columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row1" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_lever_lock_row1_spaces_qt/2+currentrow*qt_lever_lock_row1_spaces_qt;thickness=1.25*qt_lever_lock_row1_spaces_qt" setnumberofrows="qt_lever_lock_row1_number_of_levers_qt" columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row1" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
       <Block name="ROW2" set_variable="qt_lever_lock_row2_cut_use_qt">
          <Parameter variable="qt_lever_lock_row2_cut_use_qt" type="boolean" default="NO"/>
@@ -256,7 +256,7 @@
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row2_spaces_qt" auto="qt_lever_lock_row2_blade_length_qt/qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row2_thickness_qt" auto="qt_lever_lock_row2_spaces_qt*1.25" ui="lineedit" />
          <Parameter name="ANGLE OF CUTTING [ ] (ON Y AXIS)" type="double" variable="qt_lever_lock_row2_angle_on_y_qt" ui="lineedit" />
-         <Parameter auto="distance=qt_lever_lock_row2_spaces_qt/2+currentrow*qt_lever_lock_row2_spaces_qt;thickness=1.25*qt_lever_lock_row2_spaces_qt" setnumberofrows="qt_lever_lock_row2_number_of_levers_qt" columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row2" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ui="genericparametertable" />
+         <Parameter auto="distance=qt_lever_lock_row2_spaces_qt/2+currentrow*qt_lever_lock_row2_spaces_qt;thickness=1.25*qt_lever_lock_row2_spaces_qt" setnumberofrows="qt_lever_lock_row2_number_of_levers_qt" columnlabels="DEPTH,DISTANCE,THICKNESS" type="table" targetrow="row2" columnvariables="depth,distance,thickness" nrows="20" targetvariable="qt_lever_lock_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
       </Block>
    </Block>
    <Block name="ABLOY CLASSIC" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_classic&quot;) || (qt_type_of_key_qt == &quot;import_stl&quot;)">
@@ -345,13 +345,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_01_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_01_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_01_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_01_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_01_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_01_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_01_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_01_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_01_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_01_model_qt" value="BROWSE FOR STL">
@@ -372,13 +372,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_02_cylinder_centered_qt" default="NO"  ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_02_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_02_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_02_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_02_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_02_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_02_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_02_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_02_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_02_model_qt" value="BROWSE FOR STL">
@@ -399,13 +399,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_03_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_03_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_03_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_03_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_03_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_03_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_03_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_03_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_03_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_03_model_qt" value="BROWSE FOR STL">
@@ -426,13 +426,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_04_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_04_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_04_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_04_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_04_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_04_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_04_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_04_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_04_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_04_model_qt" value="BROWSE FOR STL">
@@ -453,13 +453,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_05_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_05_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_05_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_05_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_05_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_05_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_05_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_05_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_05_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_05_model_qt" value="BROWSE FOR STL">
@@ -480,13 +480,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_06_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_06_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_06_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_06_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_06_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_06_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_06_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_06_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_06_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_06_model_qt" value="BROWSE FOR STL">
@@ -507,13 +507,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_07_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_07_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_07_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_07_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_07_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_07_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_07_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_07_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_07_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_07_model_qt" value="BROWSE FOR STL">
@@ -534,13 +534,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_08_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_08_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_08_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_08_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_08_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_08_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_08_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_08_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_08_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_08_model_qt" value="BROWSE FOR STL">
@@ -561,13 +561,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_09_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_09_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_09_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_09_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_09_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_09_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_09_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_09_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_09_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_09_model_qt" value="BROWSE FOR STL">
@@ -588,13 +588,13 @@
             <Parameter name="CENTER" type="string" variable="qt_extra_cut_shape_10_cylinder_centered_qt" default="NO" ui="yesno" />
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_10_cylinder_diameter_qt" ui="lineedit" />
             <Parameter name="HEIGHT" type="double" variable="qt_extra_cut_shape_10_cylinder_height_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_10_cylinder_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_10_cylinder_number_of_faces_qt" ui="lineedit" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_cylinder_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_cylinder_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="SPHERE" set_variable="qt_extra_cut_shape_10_model_qt" value="SPHERE">
             <Parameter name="DIAMETER" type="double" variable="qt_extra_cut_shape_10_sphere_diameter_qt" ui="lineedit" />
-            <Parameter name="NUMBER OF FACES" type="int" variable="qt_extra_cut_shape_10_sphere_number_of_faces_qt" ui="lineedit" />
+            <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_10_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_sphere_translate_qt" ui="double_triplet" />
          </Block>
          <Block name="STL" set_variable="qt_extra_cut_shape_10_model_qt" value="BROWSE FOR STL">

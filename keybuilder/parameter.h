@@ -53,6 +53,12 @@ public:
     //! Set default value
     void setDefaultValue(const QString &sDefaultValue);
 
+    //! Get unset value (used for tables only)
+    const QString &unsetValue() const;
+
+    //! Set unser value
+    void setUnsetValue(const QString &sUnsetValue);
+
     //! Get auto script
     const QString &autoScript() const;
 
@@ -91,6 +97,9 @@ private:
 
     //! Default value
     QString m_sDefaultValue;
+
+    //! Unset value
+    QString m_sUnsetValue;
 
     //! Auto script
     QString m_sAutoScript;

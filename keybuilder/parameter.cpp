@@ -10,7 +10,7 @@
 
 Parameter::Parameter(const QString &sName, const QString &sType, const QString &sVariable, const QString &sDefaultValue,
     const QString &sAutoScript, const QString &sEnabledCondition, bool bSetValue) : m_sName(sName), m_sType(sType), m_sVariable(sVariable),
-    m_sDefaultValue(sDefaultValue), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
+    m_sDefaultValue(sDefaultValue), m_sUnsetValue(""), m_sAutoScript(sAutoScript), m_sEnabledCondition(sEnabledCondition)
 {    
     if (m_sDefaultValue.isEmpty())
         m_sDefaultValue = VALUE_DEFAULT_VALUE;
@@ -102,6 +102,20 @@ const QString &Parameter::defaultValue() const
 void Parameter::setDefaultValue(const QString &sDefaultValue)
 {
     m_sDefaultValue = sDefaultValue;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &Parameter::unsetValue() const
+{
+    return m_sUnsetValue;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Parameter::setUnsetValue(const QString &sUnsetValue)
+{
+    m_sUnsetValue = sUnsetValue;
 }
 
 //-------------------------------------------------------------------------------------------------

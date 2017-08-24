@@ -83,6 +83,9 @@ public:
     //! Apply value
     void applyValue(const QString &sValue, int iTargetColumn=-1);
 
+    //! Clear column
+    void clearColumn(int iTargetColumn);
+
     //! Set value
     void setValue(const QString &sParameterVariable, const QString &sVariableValue);
 
@@ -102,9 +105,6 @@ private:
 private:
     //! Controller
     Controller *m_pController;
-
-    //! Default value
-    QString m_sDefaultValue;
 
     //! Default values
     QStringList m_lDefaultValues;

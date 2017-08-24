@@ -6,7 +6,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
-#include "utils.h"
+#include <QDebug>
 
 // Application
 #include "parametermgr.h"
@@ -14,6 +14,7 @@
 #include "constants.h"
 #include "scriptmgr.h"
 #include "helper.h"
+#include "utils.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -121,56 +122,93 @@ void ParameterMgr::parseTableParameters(const CXMLNode &xParameter)
     QString sAutoScript = xParameter.attributes()[PROPERTY_AUTO].simplified();
     QString sEnabledCondition = xParameter.attributes()[PROPERTY_ENABLED].simplified();
     QString sDefaultValue = xParameter.attributes()[PROPERTY_DEFAULT].simplified();
-    if (sDefaultValue.isEmpty())
-        sDefaultValue = VALUE_DEFAULT_VALUE;
+    QString sUnsetValue = xParameter.attributes()[PROPERTY_UNSET].simplified();
 
-    // Make sure default values, column labels and column variables have same size
-    QStringList lDefaultValues;
-    if (sDefaultValue.contains(","))
-        lDefaultValues = sDefaultValue.split(",");
-    else lDefaultValues << sDefaultValue;
-
+    // Compute number of columns based on column labels and column variables
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
-    if (!lDefaultValues.isEmpty())
-        nColumns = qMin(nColumns, lDefaultValues.size());
-
     lColumnLabels = lColumnLabels.mid(0, nColumns);
     lColumnVariables = lColumnVariables.mid(0, nColumns);
 
-    QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
-    int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
-    QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
-
-    for (int iRow=0; iRow<nRows; iRow++)
+    if (nColumns > 0)
     {
-        QString sRowNumber = QString::number(iRow+1);
-        if (sRowNumber.length() < 2)
-            sRowNumber = "0"+sRowNumber;
-        for (int iColumn=0; iColumn<lColumnVariables.size(); iColumn++)
+        // Check we have the right number of default values:
+        QStringList lDefaultValues;
+        if (sDefaultValue.isEmpty())
         {
-            QString sFormattedVariable("");
-
-            // Compute variable name using method1
-            if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
+            for (int i=0; i<nColumns; i++)
+                lDefaultValues << VALUE_DEFAULT_VALUE;
+        }
+        else
+        if (sDefaultValue.contains(","))
+        {
+            lDefaultValues = sDefaultValue.split(",");
+            if (lDefaultValues.size() != nColumns)
             {
-                sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
-                if (!m_hParameters.contains(sFormattedVariable))
-                {
-                    m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
-                }
+                lDefaultValues.clear();
+                for (int i=0; i<nColumns; i++)
+                    lDefaultValues << VALUE_DEFAULT_VALUE;
             }
-            else
-            // Compute variable name using method2
-            if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+        }
+        else lDefaultValues << sDefaultValue;
+
+        // Check we have the right number of unset values:
+        QStringList lUnsetValues;
+        if (sUnsetValue.isEmpty())
+        {
+            for (int i=0; i<nColumns; i++)
+                lUnsetValues << VALUE_DEFAULT_VALUE;
+        }
+        else
+        if (sUnsetValue.contains(","))
+        {
+            lUnsetValues = sUnsetValue.split(",");
+            if (lUnsetValues.size() != nColumns)
             {
-                sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
-                if (!m_hParameters.contains(sFormattedVariable))
+                lUnsetValues.clear();
+                for (int i=0; i<nColumns; i++)
+                    lUnsetValues << VALUE_DEFAULT_VALUE;
+            }
+        }
+        else lUnsetValues << sUnsetValue;
+
+        QString sTargetRow = xParameter.attributes()[PROPERTY_TARGET_ROW].simplified();
+        int nRows = xParameter.attributes()[PROPERTY_NROWS].toInt();
+        QString sTargetVariable = xParameter.attributes()[PROPERTY_TARGET_VARIABLE].simplified();
+
+        for (int iRow=0; iRow<nRows; iRow++)
+        {
+            QString sRowNumber = QString::number(iRow+1);
+            if (sRowNumber.length() < 2)
+                sRowNumber = "0"+sRowNumber;
+            for (int iColumn=0; iColumn<lColumnVariables.size(); iColumn++)
+            {
+                QString sFormattedVariable("");
+
+                // Compute variable name using method1
+                if (sVariableMethod == PROPERTY_VARIABLE_METHOD1)
                 {
-                    m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
+                    sFormattedVariable = identifyTargetVariable_method1(sTargetVariable, lColumnVariables, sTargetRow, iColumn, iRow);
+                    if (!m_hParameters.contains(sFormattedVariable))
+                    {
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
+                        m_hParameters[sFormattedVariable]->setUnsetValue(lUnsetValues[iColumn]);
+                    }
+                }
+                else
+                // Compute variable name using method2
+                if (sVariableMethod == PROPERTY_VARIABLE_METHOD2)
+                {
+                    sFormattedVariable = identifyTargetVariable_method2(sTargetVariable, iRow);
+                    if (!m_hParameters.contains(sFormattedVariable))
+                    {
+                        m_hParameters[sFormattedVariable] = new Parameter(sFormattedVariable.toUpper(), sParameterType, sFormattedVariable, lDefaultValues[iColumn], sAutoScript, sEnabledCondition, false);
+                        m_hParameters[sFormattedVariable]->setUnsetValue(lUnsetValues[iColumn]);
+                    }
                 }
             }
         }
     }
+    else logError("CANNOT CREATE A TABLE WITH 0 COLUMN");
 }
 
 //-------------------------------------------------------------------------------------------------
