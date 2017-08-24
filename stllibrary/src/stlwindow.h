@@ -15,6 +15,7 @@ public:
     explicit STLWindow(QWidget* parent=0);
     bool load_stl(const QString& filename, bool is_reload=false);
     void viewOrthographic();
+    void viewPerspective();
 
 protected:
     void dragEnterEvent(QDragEnterEvent* event);

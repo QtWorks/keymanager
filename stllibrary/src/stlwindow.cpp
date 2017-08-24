@@ -43,7 +43,6 @@ STLWindow::STLWindow(QWidget *parent) :
         projections->addAction(p);
         p->setCheckable(true);
     }
-    perspective_action->setChecked(true);
     projections->setExclusive(true);
     QObject::connect(projections, &QActionGroup::triggered,
                      this, &STLWindow::on_projection);
@@ -190,6 +189,13 @@ bool STLWindow::load_stl(const QString& filename, bool is_reload)
 void STLWindow::viewOrthographic()
 {
      canvas->view_orthographic();
+     orthogonal_action->setChecked(true);
+}
+
+void STLWindow::viewPerspective()
+{
+     canvas->view_perspective();
+     perspective_action->setChecked(true);
 }
 
 void STLWindow::dragEnterEvent(QDragEnterEvent *event)
