@@ -18,11 +18,11 @@ public:
     // Constructors and destructor
     //-------------------------------------------------------------------------------------------------
 
-    //! Constructor
-    KeyBuilder(QObject *parent=nullptr);
-
     //! Destructor
     virtual ~KeyBuilder();
+
+    //! Return instance
+    static KeyBuilder *instance();
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -35,11 +35,18 @@ public:
     virtual void shutdown();
 
 private:
+    //! Constructor
+    KeyBuilder(QObject *parent=nullptr);
+
+private:
     //! Controller
     Controller *m_pController;
 
     //! Main window
     MainWindow m_wMainWindow;
+
+    //! KeyBuilder instance
+    static KeyBuilder *sInstance;
 };
 
 #endif // KEYBUILDER_H

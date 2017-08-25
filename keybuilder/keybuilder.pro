@@ -91,7 +91,8 @@ SOURCES += main.cpp\
     customtreeview.cpp \
     texteditor.cpp \
     codeeditor.cpp \
-    keypreviewwidget.cpp
+    keypreviewwidget.cpp \
+    customtableview.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -129,7 +130,8 @@ HEADERS  += mainwindow.h \
     customtreeview.h \
     texteditor.h \
     codeeditor.h \
-    keypreviewwidget.h
+    keypreviewwidget.h \
+    customtableview.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

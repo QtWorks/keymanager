@@ -19,7 +19,7 @@
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTableModel::GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-    int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfPins, QObject *parent) : QAbstractItemModel(parent),
+    int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfRows, QObject *parent) : QAbstractItemModel(parent),
     m_pController(pController)
 {
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
@@ -56,9 +56,8 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         m_nRows = nRows;
         m_sTargetVariable = sTargetVariable;
         m_sVariableMethod = sVariableMethod;
-        m_sActionSetNumberOfPins = sActionSetNumberOfPins;
-        if (!m_sActionSetNumberOfPins.isEmpty())
-            processActionSetNumberOfPins(m_sActionSetNumberOfPins);
+        if (!sActionSetNumberOfRows.isEmpty())
+            processActionSetNumberOfRows(sActionSetNumberOfRows);
         m_vData.resize((nRows+1)*nColumns);
 
         // Write first row using default values
@@ -392,10 +391,10 @@ QString GenericParameterTableModel::getFormattedVariableName(const QString &sVar
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::processActionSetNumberOfPins(const QString &sActionSetNumberOfPins)
+void GenericParameterTableModel::processActionSetNumberOfRows(const QString &sActionSetNumberOfRows)
 {
     // Retrieve parameter
-    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sActionSetNumberOfPins);
+    Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sActionSetNumberOfRows);
     if (pParameter != nullptr)
     {
         connect(pParameter, &Parameter::parameterValueChanged, this, &GenericParameterTableModel::onSetNumberOfRows, Qt::UniqueConnection);
@@ -416,6 +415,7 @@ void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName
         m_vData.resize((nRows+1)*m_lColumnLabels.size());
         clearAll();
         endResetModel();
+        emit rowCountChanged(m_nRows);
     }
 }
 
@@ -484,11 +484,12 @@ void ItemDelegate::updateEditorGeometry(QWidget *pEditor, const QStyleOptionView
 //-------------------------------------------------------------------------------------------------
 
 GenericParameterTable::GenericParameterTable(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
-                                             int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, const QString &sActionSetNumberOfPins, const QString &sAutoScript, QWidget *parent) :
+                                             int nRows, const QString &sTargetVariable,  const QString &sVariableMethod, const QString &sActionSetNumberOfRows, const QString &sAutoScript, QWidget *parent) :
     BaseWidget(pController, parent),  ui(new Ui::GenericParameterTable)
 {
     // Setup UI
     ui->setupUi(this);
+    ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Set default value
     setDefaultValue(sDefaultValue);
@@ -506,8 +507,10 @@ GenericParameterTable::GenericParameterTable(Controller *pController, const QStr
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Set model
-    m_pModel = new GenericParameterTableModel(m_pController, lColumnLabels, lColumnVariables, defaultValue(), sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfPins, this);
+    m_pModel = new GenericParameterTableModel(m_pController, lColumnLabels, lColumnVariables, defaultValue(), sTargetRow, nRows, sTargetVariable, sVariableMethod, sActionSetNumberOfRows, this);
     ui->tableView->setModel(m_pModel);
+    ui->tableView->onRowCountChanged();
+    connect(m_pModel, &GenericParameterTableModel::rowCountChanged, ui->tableView, &CustomTableView::onRowCountChanged);
     connect(m_pModel, &GenericParameterTableModel::parameterValueChanged, this, &GenericParameterTable::parameterValueChanged, Qt::UniqueConnection);
 
     // Populate button area

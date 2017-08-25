@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     // Return an instance of the application
-    KeyBuilder *pKeyBuilder = new KeyBuilder();
+    KeyBuilder *pKeyBuilder = KeyBuilder::instance();
 
     // Startup
     pKeyBuilder->startup();

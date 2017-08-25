@@ -346,8 +346,54 @@
         <string>Settings</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
+        <item row="1" column="0">
+         <widget class="LayoutMgr" name="menuSettingsLayoutMgr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
-         <widget class="LayoutMgr" name="menuSettingsLayoutMgr" native="true"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="generateSTLButtonMenu4">
+            <property name="text">
+             <string>Generate STL</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/ico-build.png</normaloff>:/icons/ico-build.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveKeyParametersButtonMenu4">
+            <property name="text">
+             <string>Save Key Parameters</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/ico-save.png</normaloff>:/icons/ico-save.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>

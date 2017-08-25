@@ -98,24 +98,30 @@ void MainWindow::setController(Controller *pController)
     ui->menu3LayoutMgr->setController(m_pController);
     ui->menuSettingsLayoutMgr->setController(m_pController);
 
-    // Close/Open all
+    // Connect menu 1 buttons
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu1, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
+    // Connect menu 2 buttons
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
+    // Connect menu 3 buttons
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
+
+    // Connect menu 4 buttons
+    connect(ui->generateSTLButtonMenu4, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Build menu 1 tab
     ui->menu1LayoutMgr->buildMenu(m_pController->menu1Node());
@@ -314,24 +320,38 @@ void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    bool bCancelled = false;
     if (m_bAppIsDirty)
     {
-        // Save key parameters
         QMessageBox msgBox;
-        msgBox.setText("Save Key Parameters?");
-        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        msgBox.setDefaultButton(QMessageBox::No);
-        int iValue = msgBox.exec();
-        if (iValue == QMessageBox::Yes)
-            onSaveKeyParameters();
 
         // Save generated STL
         msgBox.setText("Save generated STL?");
-        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::No);
-        iValue = msgBox.exec();
+        int iValue = msgBox.exec();
         if (iValue == QMessageBox::Yes)
             onSaveGeneratedSTL();
+        else
+        if (iValue == QMessageBox::Cancel)
+            bCancelled = true;
+
+        if (!bCancelled)
+        {
+            // Save key parameters
+            msgBox.setText("Save Key Parameters?");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+            msgBox.setDefaultButton(QMessageBox::No);
+            iValue = msgBox.exec();
+            if (iValue == QMessageBox::Yes)
+                onSaveKeyParameters();
+            else
+            if (iValue == QMessageBox::Cancel)
+                bCancelled = true;
+        }
     }
-    event->accept();
+    if (bCancelled)
+        event->ignore();
+    else
+        event->accept();
 }

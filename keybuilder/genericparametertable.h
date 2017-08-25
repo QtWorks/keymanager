@@ -100,7 +100,7 @@ private:
     static QString getFormattedVariableName(const QString &sVariableMethod, const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
 
     //! Process action set number of pins
-    void processActionSetNumberOfPins(const QString &sActionSetNumberOfPins);
+    void processActionSetNumberOfRows(const QString &sActionSetNumberOfRows);
 
 private:
     //! Controller
@@ -127,9 +127,6 @@ private:
     //! Variable method
     QString m_sVariableMethod;
 
-    //! Action set number of pins
-    QString m_sActionSetNumberOfPins;
-
     //! Data
     QVector<QString> m_vData;
 
@@ -153,6 +150,9 @@ signals:
 
     //! Update all
     void updateAll(int iTargetColumn);
+
+    //! # rows changed
+    void rowCountChanged(int nRows);
 };
 
 class ItemDelegate : public QItemDelegate

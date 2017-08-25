@@ -4,6 +4,8 @@
 #include "parametermgr.h"
 #include "constants.h"
 
+KeyBuilder *KeyBuilder::sInstance = nullptr;
+
 //-------------------------------------------------------------------------------------------------
 
 KeyBuilder::KeyBuilder(QObject *parent) : QObject(parent)
@@ -16,6 +18,15 @@ KeyBuilder::KeyBuilder(QObject *parent) : QObject(parent)
 KeyBuilder::~KeyBuilder()
 {
 
+}
+
+//-------------------------------------------------------------------------------------------------
+
+KeyBuilder *KeyBuilder::instance()
+{
+    if (sInstance == nullptr)
+        sInstance = new KeyBuilder;
+    return sInstance;
 }
 
 //-------------------------------------------------------------------------------------------------
