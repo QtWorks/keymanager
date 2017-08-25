@@ -344,7 +344,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
             msgBox.setDefaultButton(QMessageBox::No);
             iValue = msgBox.exec();
             if (iValue == QMessageBox::Yes)
+            {
                 onSaveKeyParameters();
+                m_bAppIsDirty = false;
+            }
             else
             if (iValue == QMessageBox::Cancel)
                 bCancelled = true;
