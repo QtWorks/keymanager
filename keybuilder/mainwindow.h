@@ -94,6 +94,12 @@ public slots:
     void onOpenSCADProcessComplete(const QString &sStatus);
     void onOpenSCADStandardErrorReady(const QString &sStatus);
     void onOpenSCADStandardOutputReady(const QString &sStatus);
+
+    //! Tree visibility changed, update button labels
+    void onMenu1TreeVisibilityChanged(bool bTreeVisible);
+    void onMenu2TreeVisibilityChanged(bool bTreeVisible);
+    void onMenu3TreeVisibilityChanged(bool bTreeVisible);
+    void onMenu4TreeVisibilityChanged(bool bTreeVisible);
 };
 
 #endif // MAINWINDOW_H

@@ -108,6 +108,9 @@ public slots:
     // Slots
     //-------------------------------------------------------------------------------------------------
 
+    //! Show hide tree
+    void onShowHideTree();
+
     //! Open all parameter blocks
     void onOpenAll();
 
@@ -125,6 +128,14 @@ public slots:
 
     //! Closed state changed
     void onClosedStateChanged(bool bClosed);
+
+signals:
+    //-------------------------------------------------------------------------------------------------
+    // Signals
+    //-------------------------------------------------------------------------------------------------
+
+    //! Tree visibility changed
+    void treeVisibilityChanged(bool bTreeVisible);
 };
 
 #endif // LAYOUTMGR_H

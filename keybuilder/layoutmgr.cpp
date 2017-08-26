@@ -158,6 +158,23 @@ void LayoutMgr::setSize(int iSize)
 
 //-------------------------------------------------------------------------------------------------
 
+void LayoutMgr::onShowHideTree()
+{
+    if (ui->treeView->isVisible())
+    {
+        ui->treeView->hide();
+        ui->keyPreviewWidget->hide();
+    }
+    else
+    {
+        ui->treeView->show();
+        ui->keyPreviewWidget->show();
+    }
+    emit treeVisibilityChanged(ui->treeView->isVisible());
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void LayoutMgr::onOpenAll()
 {
     foreach (CollapsibleStack *pStack, m_vStacks)

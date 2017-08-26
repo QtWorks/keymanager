@@ -15,6 +15,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="minimumSize">
@@ -43,7 +50,7 @@
        <string notr="true">QTabBar::tab {width: 128px; height: 48px; font: 14px;}</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="HomeTab" name="tab">
        <attribute name="title">
@@ -121,6 +128,13 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
+           <widget class="QPushButton" name="hideTreeButtonMenu1">
+            <property name="text">
+             <string>Hide Tree</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="openAllButtonMenu1">
             <property name="text">
              <string>Open All</string>
@@ -196,6 +210,13 @@
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="hideTreeButtonMenu2">
+            <property name="text">
+             <string>Hide Tree</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QPushButton" name="openAllButtonMenu2">
             <property name="text">
@@ -273,6 +294,13 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
+           <widget class="QPushButton" name="hideTreeButtonMenu3">
+            <property name="text">
+             <string>Hide Tree</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="openAllButtonMenu3">
             <property name="text">
              <string>Open All</string>
@@ -347,7 +375,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="1" column="0">
-         <widget class="LayoutMgr" name="menuSettingsLayoutMgr" native="true">
+         <widget class="LayoutMgr" name="menu4LayoutMgr" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -358,6 +386,13 @@
         </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="hideTreeButtonMenu4">
+            <property name="text">
+             <string>Hide Tree</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
@@ -417,13 +452,6 @@
         </item>
        </layout>
       </widget>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QProgressBar" name="progressBar">
-      <property name="value">
-       <number>24</number>
-      </property>
      </widget>
     </item>
    </layout>

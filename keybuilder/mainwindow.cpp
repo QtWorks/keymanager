@@ -96,9 +96,15 @@ void MainWindow::setController(Controller *pController)
     ui->menu2LayoutMgr->setController(m_pController);
     ui->menu3LayoutMgr->setNumberOfStacks(1);
     ui->menu3LayoutMgr->setController(m_pController);
-    ui->menuSettingsLayoutMgr->setController(m_pController);
+    ui->menu4LayoutMgr->setController(m_pController);
+
+    connect(ui->menu1LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu1TreeVisibilityChanged);
+    connect(ui->menu2LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu2TreeVisibilityChanged);
+    connect(ui->menu3LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu3TreeVisibilityChanged);
+    connect(ui->menu4LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu4TreeVisibilityChanged);
 
     // Connect menu 1 buttons
+    connect(ui->hideTreeButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
@@ -106,6 +112,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 2 buttons
+    connect(ui->hideTreeButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
@@ -113,6 +120,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 3 buttons
+    connect(ui->hideTreeButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
@@ -120,6 +128,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 4 buttons
+    connect(ui->hideTreeButtonMenu4, &QPushButton::clicked, ui->menu4LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
     connect(ui->generateSTLButtonMenu4, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
@@ -139,7 +148,7 @@ void MainWindow::setController(Controller *pController)
     ui->menu3LayoutMgr->buildMenu(m_pController->menu3Node());
 
     // Build settings tab
-    ui->menuSettingsLayoutMgr->buildMenu(m_pController->settingsNode());
+    ui->menu4LayoutMgr->buildMenu(m_pController->settingsNode());
 
     // SCAD output tab
     if (!m_pController->debugOn())
@@ -314,6 +323,34 @@ void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
     ui->progressBar->setVisible(false);
     statusBar()->showMessage("");
     ui->textBrowser->append(sStatus);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onMenu1TreeVisibilityChanged(bool bTreeVisible)
+{
+    ui->hideTreeButtonMenu1->setText(bTreeVisible ? tr("Hide Tree") : tr("Show Tree"));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onMenu2TreeVisibilityChanged(bool bTreeVisible)
+{
+    ui->hideTreeButtonMenu2->setText(bTreeVisible ? tr("Hide Tree") : tr("Show Tree"));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onMenu3TreeVisibilityChanged(bool bTreeVisible)
+{
+    ui->hideTreeButtonMenu3->setText(bTreeVisible ? tr("Hide Tree") : tr("Show Tree"));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onMenu4TreeVisibilityChanged(bool bTreeVisible)
+{
+    ui->hideTreeButtonMenu4->setText(bTreeVisible ? tr("Hide Tree") : tr("Show Tree"));
 }
 
 //-------------------------------------------------------------------------------------------------
