@@ -58,9 +58,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
     QString sParameterUI = xParameter.attributes()[PROPERTY_UI].simplified();
     QString sDefaultValue = (pParameter != nullptr) ? pParameter->defaultValue() : xParameter.attributes()[PROPERTY_DEFAULT].simplified();
     QString sAutoScript = (pParameter != nullptr) ? pParameter->autoScript() : xParameter.attributes()[PROPERTY_AUTO].simplified();
-    sAutoScript.replace(" ", "");
     QString sEnabledCondition = (pParameter != nullptr) ? pParameter->enabledCondtion() : xParameter.attributes()[PROPERTY_ENABLED].simplified();
-    sEnabledCondition.replace(" ", "");
 
     if (sParameterUI == WIDGET_GENERIC_PARAMETER_TABLE)
     {
