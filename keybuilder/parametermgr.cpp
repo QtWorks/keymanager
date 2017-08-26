@@ -253,7 +253,6 @@ QVector<QString> ParameterMgr::extractVariableNames(const QString &sInputString)
 
 QString ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSuccess)
 {
-    qDebug() << sAutoScript;
     QVector<QString> vVariableNames = extractVariableNames(sAutoScript);
     QString sMatchedScript = sAutoScript;
     bSuccess = true;
@@ -430,8 +429,6 @@ void ParameterMgr::exportParametersToTXT(const QString &sOuputFileName)
             if (pParameter != nullptr)
             {
                 QString sParameterValue = pParameter->value();
-                if (sParameterValue.isEmpty())
-                    sParameterValue = !pParameter->unsetValue().isEmpty() ? pParameter->unsetValue() : pParameter->defaultValue();
                 QString sParameterLine = QString("%1 = %2").arg(pParameter->variable(), sParameterValue);
                 outStream << sParameterLine << "\n";
             }
@@ -457,10 +454,6 @@ void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
             if (lSplitted.size() == 2)
             {
                 QString sParameterVariable = lSplitted.first().simplified();
-                if (sParameterVariable == "qt_regular_dxf_name_qt")
-                {
-                    int x = 0;
-                }
                 QString sVariableValue = lSplitted[1].simplified();
                 Parameter *pParameter = getParameterByVariableName(sParameterVariable);
                 if (pParameter != nullptr)

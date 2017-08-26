@@ -60,6 +60,12 @@ public slots:
 
     //! Select STL
     void onSelectSTL();
+
+    //! DXF text changed
+    void onDXFTextChanged();
+
+    //! STL text changed
+    void onSTLTextChanged();
 };
 
 #endif // DXFORSTLFILEPICKER_H

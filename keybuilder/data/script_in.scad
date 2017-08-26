@@ -1565,6 +1565,7 @@ module regular(regular_length=regular_length,
             translate([regular_thickness/2,0,0])
             resize([regular_thickness,regular_height,regular_length+1])
             rotate([0,0,90])
+            linear_extrude(height = regular_length+1, center = 1, convexity = 10)
             import (file = regular_dxf_name);
 
                 
