@@ -58,6 +58,13 @@ void LineEditWidget::applyDefaultValue()
 
 //-------------------------------------------------------------------------------------------------
 
+void LineEditWidget::applyValue(const QString &sValue)
+{
+    ui->lineEdit->setText(sValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void LineEditWidget::onTextChanged()
 {
     emit parameterValueChanged(parameterVariable(), ui->lineEdit->text());

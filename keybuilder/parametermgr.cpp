@@ -428,8 +428,11 @@ void ParameterMgr::exportParametersToTXT(const QString &sOuputFileName)
             Parameter *pParameter = it.value();
             if (pParameter != nullptr)
             {
-                QString sParameterValue = QString("%1 = %2").arg(pParameter->variable(), pParameter->value());
-                outStream << sParameterValue << "\n";
+                QString sParameterValue = pParameter->value();
+                if (sParameterValue.isEmpty())
+                    sParameterValue = !pParameter->unsetValue().isEmpty() ? pParameter->unsetValue() : pParameter->defaultValue();
+                QString sParameterLine = QString("%1 = %2").arg(pParameter->variable(), sParameterValue);
+                outStream << sParameterLine << "\n";
             }
         }
         outputParametersFile.close();
@@ -452,8 +455,12 @@ void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
             QStringList lSplitted = sLine.split("=");
             if (lSplitted.size() == 2)
             {
-                QString sParameterVariable = lSplitted.first();
-                QString sVariableValue = lSplitted[1];
+                QString sParameterVariable = lSplitted.first().simplified();
+                if (sParameterVariable == "qt_regular_dxf_name_qt")
+                {
+                    int x = 0;
+                }
+                QString sVariableValue = lSplitted[1].simplified();
                 Parameter *pParameter = getParameterByVariableName(sParameterVariable);
                 if (pParameter != nullptr)
                 {
@@ -462,7 +469,7 @@ void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
                 else
                 {
                     QString sMsg = QString("%1 PARAMETER VARIABLE IS UNKNOWN").arg(sParameterVariable);
-                    logInfo(sMsg);
+                    logError(sMsg);
                 }
 
             }
