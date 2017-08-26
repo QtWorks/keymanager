@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    qDebug() << Utils::getDiskSerial();
+
     // Return an instance of the application
     KeyBuilder *pKeyBuilder = KeyBuilder::instance();
 

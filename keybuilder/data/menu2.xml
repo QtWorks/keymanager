@@ -243,7 +243,7 @@
       <Block name="ROW1" set_variable="qt_lever_lock_row1_cut_use_qt">
          <Parameter variable="qt_lever_lock_row1_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF LEVERS" type="int" default="20" minvalue="1" maxvalue="20" variable="qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
-         <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row1_blade_length_qt" ui="lineedit" />
+         <Parameter name="BLADE LENGTH" variable="qt_lever_lock_row1_blade_length_qt" auto="qt_type_of_key_qt == &quot;LEVER LOCK&quot; ? qt_lever_simple_blade_length_qt : (qt_type_of_key_qt == &quot;LEVER LOCK DOUBLE BITTED\&quot; ? qt_lever_double_blade_length_qt : qt_lever_lock_row1_blade_length_qt)" type="double" variable="qt_lever_lock_row1_blade_length_qt" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row1_spaces_qt" auto="qt_lever_lock_row1_blade_length_qt/qt_lever_lock_row1_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row1_thickness_qt" auto="qt_lever_lock_row1_spaces_qt*1.25" ui="lineedit" />
          <Parameter name="ANGLE OF CUTTING [ ] (ON Y AXIS)" type="double" variable="qt_lever_lock_row1_angle_on_y_qt" ui="lineedit" />
@@ -252,7 +252,7 @@
       <Block name="ROW2" set_variable="qt_lever_lock_row2_cut_use_qt">
          <Parameter variable="qt_lever_lock_row2_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF LEVERS" type="int" default="20" minvalue="1" maxvalue="20" variable="qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
-         <Parameter name="BLADE LENGTH" type="double" variable="qt_lever_lock_row2_blade_length_qt" ui="lineedit" />
+         <Parameter name="BLADE LENGTH" variable="qt_lever_lock_row2_blade_length_qt" auto="qt_type_of_key_qt == &quot;LEVER LOCK&quot; ? qt_lever_simple_blade_length_qt : (qt_type_of_key_qt == &quot;LEVER LOCK DOUBLE BITTED\&quot; ? qt_lever_double_blade_length_qt : qt_lever_lock_row1_blade_length_qt)" ui="lineedit" />
          <Parameter name="SPACES" type="double" variable="qt_lever_lock_row2_spaces_qt" auto="qt_lever_lock_row2_blade_length_qt/qt_lever_lock_row2_number_of_levers_qt" ui="lineedit" />
          <Parameter name="THICKNESS OF THE CUT" type="double" variable="qt_lever_lock_row2_thickness_qt" auto="qt_lever_lock_row2_spaces_qt*1.25" ui="lineedit" />
          <Parameter name="ANGLE OF CUTTING [ ] (ON Y AXIS)" type="double" variable="qt_lever_lock_row2_angle_on_y_qt" ui="lineedit" />

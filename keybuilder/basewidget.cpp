@@ -64,8 +64,7 @@ const QString &BaseWidget::autoScript() const
 
 void BaseWidget::setAutoScript(const QString &sAutoScript)
 {
-    m_sAutoScript = sAutoScript;
-    m_sAutoScript.replace(" ", "");
+    m_sAutoScript = sAutoScript.simplified();
 }
 
 //-------------------------------------------------------------------------------------------------

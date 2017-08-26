@@ -253,6 +253,7 @@ QVector<QString> ParameterMgr::extractVariableNames(const QString &sInputString)
 
 QString ParameterMgr::evaluateAutoScript(const QString &sAutoScript, bool &bSuccess)
 {
+    qDebug() << sAutoScript;
     QVector<QString> vVariableNames = extractVariableNames(sAutoScript);
     QString sMatchedScript = sAutoScript;
     bSuccess = true;

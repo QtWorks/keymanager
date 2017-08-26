@@ -29,6 +29,9 @@ public:
     //! Set value
     void setValue(const QString &sVariableName, const QString &sVariableValue);
 
+    //! Apply value
+    virtual void applyValue(const QString &sValue);
+
     //! Apply default value
     virtual void applyDefaultValue();
 

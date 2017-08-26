@@ -73,6 +73,18 @@ void DXForSTLFilePicker::setValue(const QString &sVariableName, const QString &s
 
 //-------------------------------------------------------------------------------------------------
 
+void DXForSTLFilePicker::applyValue(const QString &sValue)
+{
+    QStringList lSplitted = sValue.split(",");
+    if (lSplitted.size() == 2)
+    {
+        ui->dxfLineEdit->setText(lSplitted.first());
+        ui->stlLineEdit->setText(lSplitted[1]);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void DXForSTLFilePicker::applyDefaultValue()
 {
     applyValue(defaultValue());
