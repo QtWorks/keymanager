@@ -13,6 +13,8 @@ DXForSTLFilePicker::DXForSTLFilePicker(Controller *pController, const QString &s
     BaseWidget(pController, parent), ui(new Ui::DXForSTLFilePicker), m_sSTLVariable(sSTLVariable), m_sDXFVariable(sDXFVariable)
 {
     ui->setupUi(this);
+    m_hWidgetHash[m_sSTLVariable] = ui->stlLineEdit;
+    m_hWidgetHash[m_sDXFVariable] = ui->dxfLineEdit;
 
     // Set default value
     setDefaultValue(sDefaultValue);
@@ -62,6 +64,15 @@ void DXForSTLFilePicker::onSelectDXF()
 
 //-------------------------------------------------------------------------------------------------
 
+void DXForSTLFilePicker::setValue(const QString &sVariableName, const QString &sVariableValue)
+{
+    QLineEdit *pLineEdit = m_hWidgetHash[sVariableName];
+    if (pLineEdit != nullptr)
+        pLineEdit->setText(sVariableValue);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void DXForSTLFilePicker::applyDefaultValue()
 {
     applyValue(defaultValue());
@@ -69,8 +80,14 @@ void DXForSTLFilePicker::applyDefaultValue()
 
 //-------------------------------------------------------------------------------------------------
 
-void DXForSTLFilePicker::applyValue(const QString &sValue)
+const QString &DXForSTLFilePicker::stlVariable() const
 {
-    ui->dxfLineEdit->setText(sValue);
-    ui->stlLineEdit->setText(sValue);
+    return m_sDXFVariable;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+const QString &DXForSTLFilePicker::dxfVariable() const
+{
+    return m_sSTLVariable;
 }

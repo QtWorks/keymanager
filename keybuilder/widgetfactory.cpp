@@ -170,8 +170,18 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
 
     if (pWidget != nullptr)
     {
-        pWidget->setParameterVariable(sParameterVariable);
-        m_hWidgetHash[sParameterVariable] = pWidget;
+        DXForSTLFilePicker *pDXFOrSTLFilePicker = dynamic_cast<DXForSTLFilePicker *>(pWidget);
+        if (pDXFOrSTLFilePicker != nullptr)
+        {
+            m_hWidgetHash[pDXFOrSTLFilePicker->dxfVariable()] = pWidget;
+            m_hWidgetHash[pDXFOrSTLFilePicker->stlVariable()] = pWidget;
+        }
+        else
+        {
+            pWidget->setParameterVariable(sParameterVariable);
+            m_hWidgetHash[sParameterVariable] = pWidget;
+        }
+
         QHash<QString, Parameter *> hWatchedParameters;
 
         // Check auto script

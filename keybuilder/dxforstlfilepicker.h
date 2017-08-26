@@ -3,6 +3,7 @@
 
 // Qt
 #include <QWidget>
+class QLineEdit;
 
 // Application
 #include "basewidget.h"
@@ -25,11 +26,17 @@ public:
     //! Destructor
     ~DXForSTLFilePicker();
 
+    //! Set value
+    void setValue(const QString &sVariableName, const QString &sVariableValue);
+
     //! Apply default value
     virtual void applyDefaultValue();
 
-    //! Apply value
-    virtual void applyValue(const QString &sValue);
+    //! Return STL variable
+    const QString &stlVariable() const;
+
+    //! Return DXF variable
+    const QString &dxfVariable() const;
 
 private:
     //! UI
@@ -40,6 +47,9 @@ private:
 
     //! DXF variable
     QString m_sDXFVariable;
+
+    //! Widget hash
+    QHash<QString, QLineEdit *> m_hWidgetHash;
 
 public slots:
     //! Select DXF

@@ -16,6 +16,7 @@
 #include "collapsibleblock.h"
 #include "helper.h"
 #include "openscadwrapper.h"
+#include "dxforstlfilepicker.h"
 #include "utils.h"
 #define DEBUG_MODE "DEBUG"
 #define SCAD_OUTPUT_FILE "script_out.scad"
@@ -177,7 +178,15 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
         {
             pTable->setValue(sParameterVariable, sVariableValue);
         }
-        else pWidget->applyValue(sVariableValue);
+        else
+        {
+            DXForSTLFilePicker *pDXForSTLFilePicker = dynamic_cast<DXForSTLFilePicker *>(pWidget);
+            if (pDXForSTLFilePicker != nullptr)
+            {
+                pDXForSTLFilePicker->setValue(sParameterVariable, sVariableValue);
+            }
+            else pWidget->applyValue(sVariableValue);
+        }
     }
     else m_pParameterMgr->setParameterValue(sParameterVariable, sVariableValue);
 }
