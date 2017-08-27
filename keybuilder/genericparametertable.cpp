@@ -152,10 +152,13 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
         if (iRole == Qt::DisplayRole)
         {
             int iTargetRow = index.row();
+            QString sTargetData("");
             if (iTargetRow > 0)
-                return m_vData[index.column()+iTargetRow*m_lColumnVariables.size()];
+                sTargetData = m_vData[index.column()+iTargetRow*m_lColumnVariables.size()];
             else
-                return m_vData[index.column()];
+                sTargetData = m_vData[index.column()];
+            double d = sTargetData.toDouble();
+            return sTargetData.isEmpty() ? sTargetData : QString::number(d, 'f', 4);
         }
         else if (iRole == Qt::BackgroundColorRole)
             return (index.row()%2 == 0) ? QColor(Qt::white) : QColor(Qt::lightGray);

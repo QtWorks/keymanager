@@ -2,9 +2,9 @@
 #define DOUBLEVALIDATOR_H
 
 // Qt
-#include <QValidator>
+#include <QDoubleValidator>
 
-class DoubleValidator : public QValidator
+class DoubleValidator : public QDoubleValidator
 {
     Q_OBJECT
 

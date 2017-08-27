@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------------------------------------------
 
-DoubleValidator::DoubleValidator(double dMin, double dMax, int iDecimals, QObject *parent) : QValidator(parent),
+DoubleValidator::DoubleValidator(double dMin, double dMax, int iDecimals, QObject *parent) : QDoubleValidator(dMin, dMax, iDecimals, parent),
     m_dMin(dMin), m_dMax(dMax), m_iDecimals(iDecimals)
 {
 
