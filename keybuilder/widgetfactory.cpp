@@ -12,6 +12,7 @@
 #include "doubletripletwidget.h"
 #include "dxforstlfilepicker.h"
 #include "yesnowidget.h"
+#include "xyzmirrorwidget.h"
 #include "controller.h"
 #include "parametermgr.h"
 #include "intvalidator.h"
@@ -165,6 +166,12 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         YesNoWidget *pYesNoWidget = new YesNoWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
         pWidget = pYesNoWidget;
     }
+    else
+    if (sParameterUI == WIDGET_XYZMIRROR)
+    {
+        XYZMirrorWidget *pXYZMirrorWidget = new XYZMirrorWidget(m_pController, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        pWidget = pXYZMirrorWidget;
+    }
 
     if (pWidget != nullptr)
     {
@@ -194,6 +201,7 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
             }
         }
 
+        // Check enabled condition
         if (!sEnabledCondition.isEmpty())
         {
             QVector<QString> vVariableNames = ParameterMgr::extractVariableNames(sEnabledCondition);

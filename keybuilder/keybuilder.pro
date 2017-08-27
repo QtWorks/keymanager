@@ -93,7 +93,8 @@ SOURCES += main.cpp\
     codeeditor.cpp \
     keypreviewwidget.cpp \
     customtableview.cpp \
-    simplecrypt.cpp
+    simplecrypt.cpp \
+    xyzmirrorwidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -134,7 +135,8 @@ HEADERS  += mainwindow.h \
     customtableview.h \
     encoder.h \
     simplecrypt.h \
-    exclusivechoicewidget.h
+    exclusivechoicewidget.h \
+    xyzmirrorwidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -149,7 +151,8 @@ FORMS    += mainwindow.ui \
     yesnowidget.ui \
     headerobject.ui \
     hometab.ui \
-    codeeditor.ui
+    codeeditor.ui \
+    xyzmirrorwidget.ui
 
 DISTFILES +=
 

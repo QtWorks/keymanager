@@ -49,6 +49,7 @@
 #define WIDGET_GENERIC_PARAMETER_TABLE "genericparametertable"
 #define WIDGET_DOUBLE_TRIPLET "double_triplet"
 #define WIDGET_YES_NO "yesno"
+#define WIDGET_XYZMIRROR "xyzmirror"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 
 #define VALUE_TRUE "true"
