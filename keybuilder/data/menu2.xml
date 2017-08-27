@@ -50,7 +50,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row2_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row2_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row2_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row2_cut_to_use_qt" type="string" default="prism_cut"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row2_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row2_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row2_prism_root_y_qt" ui="lineedit" />
@@ -88,7 +88,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row3_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row3_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row3_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row3_cut_to_use_qt" type="string" default="prism_cut"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row3_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row3_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row3_prism_root_y_qt" ui="lineedit" />
@@ -126,7 +126,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row4_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row4_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row4_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row4_cut_to_use_qt" type="string" default="prism_cut"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row4_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row4_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row4_prism_root_y_qt" ui="lineedit" />
@@ -164,7 +164,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row5_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row5_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row5_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row5_cut_to_use_qt" type="string" default="prism_cut"/>
             <Block name="STANDARD (PRISM SHAPE)" set_variable="qt_regular_row5_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row5_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row5_prism_root_y_qt" ui="lineedit" />
@@ -202,7 +202,7 @@
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row6_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row6_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
-            <Parameter variable="qt_regular_row6_cut_to_use_qt" type="string"/>
+            <Parameter variable="qt_regular_row6_cut_to_use_qt" type="string" default="prism_cut"/>
             <Block name="STANDARD (PRISM SHAPE)" variable="qt_regular_row6_cut_to_use_qt" value="prism_cut">
                <Parameter name="ROOT WIDTH" type="double" default="3" variable="qt_regular_row6_prism_root_x_qt" ui="lineedit" />
                <Parameter name="ROOT LENGTH" type="double" default="1" variable="qt_regular_row6_prism_root_y_qt" ui="lineedit" />
