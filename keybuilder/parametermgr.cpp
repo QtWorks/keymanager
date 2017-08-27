@@ -387,6 +387,10 @@ bool ParameterMgr::loadSettingsParameters()
 
 void ParameterMgr::setParameterValue(const QString &sParameterVariable, const QString &sVariableValue)
 {
+    if (sParameterVariable == "qt_regular_row2_cut22_distance_qt")
+    {
+        int x = 0;
+    }
     Parameter *pParameter = m_hParameters[sParameterVariable];
     if (pParameter != nullptr)
         pParameter->setValue(sVariableValue);
