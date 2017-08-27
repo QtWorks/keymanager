@@ -44,7 +44,7 @@
          <Parameter variable="qt_regular_row2_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" default="22" minvalue="1" maxvalue="22" variable="qt_regular_row2_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row2_angle_on_y_qt" ui="lineedit" />
          <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row2_mirror_qt" ui="double_triplet" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row2_shoulder_distance_qt" ui="lineedit" />
@@ -82,7 +82,7 @@
          <Parameter variable="qt_regular_row3_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" default="22" minvalue="1" maxvalue="22" variable="qt_regular_row3_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row3_angle_on_y_qt" ui="lineedit" />
          <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row3_mirror_qt" ui="double_triplet" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row3_shoulder_distance_qt" ui="lineedit" />
@@ -120,7 +120,7 @@
          <Parameter variable="qt_regular_row4_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" default="22" minvalue="1" maxvalue="22" variable="qt_regular_row4_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row4_angle_on_y_qt" ui="lineedit" />
          <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row4_mirror_qt" ui="double_triplet" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row4_shoulder_distance_qt" ui="lineedit" />
@@ -158,7 +158,7 @@
          <Parameter variable="qt_regular_row5_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" default="22" minvalue="1" maxvalue="22" variable="qt_regular_row5_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row5_angle_on_y_qt" ui="lineedit" />
          <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row5_mirror_qt" ui="double_triplet" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row5_shoulder_distance_qt" ui="lineedit" />
@@ -196,7 +196,7 @@
          <Parameter variable="qt_regular_row6_cut_use_qt" type="boolean" default="NO"/>
          <Parameter name="NUMBER OF PINS" type="int" default="22" minvalue="1" maxvalue="22" variable="qt_regular_row6_number_of_pins_qt" ui="lineedit" />
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_x_qt" ui="lineedit" />
-         <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
+         <Parameter name="OFFSET Z" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row6_angle_on_y_qt" ui="lineedit" />
          <Parameter name="MIRROR (XYZ)" type="double" variable="qt_regular_row6_mirror_qt" ui="double_triplet" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row6_shoulder_distance_qt" ui="lineedit" />

@@ -72,7 +72,7 @@ void KeyPreviewWidget::paintEvent(QPaintEvent *event)
             painter.drawImage(targetRect, *m_pKeyImage, srcRect);
             if (m_bNoCutSelected)
             {
-                pen.setColor(Qt::black);
+                pen.setColor("orange");
                 painter.setPen(pen);
                 painter.drawText(targetRect,  Qt::AlignCenter, QString("NO CUT SELECTED"));
             }
