@@ -399,6 +399,16 @@ void ParameterMgr::setParameterValue(const QString &sParameterVariable, const QS
 
 //-------------------------------------------------------------------------------------------------
 
+QString ParameterMgr::getParameterValue(const QString &sParameterVariable) const
+{
+    Parameter *pParameter = getParameterByVariableName(sParameterVariable);
+    if (pParameter != nullptr)
+        return pParameter->value();
+    return QString("");
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
 {
     QString sInFile = ":/data/script_in.scad";

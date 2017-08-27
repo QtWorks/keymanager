@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Block name="ROOT" exclusive="false">
+<Block name="ROOT_MENU3" exclusive="false">
    <Block name="AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)" alwaysopened="true" canclear="false">
       <Parameter name="AUTOMATIC KEY HEAD AND SHOULDER (DOES NOT APPLY TO STL BLANKS)" type="string" variable="qt_automatic_key_head_and_shoulder_qt" default="NO" ui="yesno" />
    </Block>

@@ -7,6 +7,8 @@
 #include <QTextStream>
 #include <QCoreApplication>
 #include <QStandardPaths>
+#include <QTime>
+#include <QtGlobal>
 #include <QDebug>
 
 // Application
@@ -18,13 +20,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-QString Utils::getDiskSerial()
+QByteArray Utils::getDiskSerial()
 {
     DWORD dwVolSerial;
     BOOL bIsRetrieved = GetVolumeInformation(L"C:\\", NULL, NULL, &dwVolSerial, NULL, NULL, NULL, NULL);
     if (bIsRetrieved)
-        return QString::number(dwVolSerial);
-    return QString("");
+        return QString::number(dwVolSerial, 16).toLatin1();
+    return QByteArray();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -109,4 +111,22 @@ void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString
             sFileContents.replace(sInputString, sOutputString);
         saveFile(sFileContents, sInputFile);
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QByteArray Utils::getRandomHex(const int &iLength)
+{    
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
+
+    QString sRandomHex;
+
+    for(int i=0; i<iLength; i++)
+    {
+        int n = qrand() % 16;
+        sRandomHex.append(QString::number(n, 16));
+    }
+
+    return sRandomHex.toLatin1();
 }

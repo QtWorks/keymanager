@@ -9,7 +9,7 @@ class Utils
 {
 public:
     //! Return disk serial number
-    static QString getDiskSerial();
+    static QByteArray getDiskSerial();
 
     //! Load file
     static QString loadFile(const QString &sInputFile);
@@ -31,6 +31,9 @@ public:
 
     //! Replace inputString by output string in given file
     static void replaceInFile(const QString &sInputFile, const QString &sInputString, const QString &sOutputString, Qt::CaseSensitivity iSensitivity=Qt::CaseInsensitive);
+
+    //! Generate random hex
+    static QByteArray getRandomHex(const int &iLength);
 };
 
 #endif // UTILS_H

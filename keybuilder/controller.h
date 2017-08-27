@@ -151,6 +151,9 @@ signals:
 
     //! Update key previews
     void updateKeyPreviews();
+
+    //! Block selection status changed
+    void blockSelectionStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif // CONTROLLER_H

@@ -5,6 +5,7 @@
 #include "selectionmgr.h"
 #include "collapsibleblock.h"
 #include "parameterblock.h"
+#include "controller.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -26,6 +27,7 @@ SelectionMgr::~SelectionMgr()
 void SelectionMgr::setController(Controller *pController)
 {
     m_pController = pController;
+    connect(this, &SelectionMgr::blockSelectionStatusChanged, m_pController, Controller::blockSelectionStatusChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

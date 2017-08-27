@@ -7,6 +7,7 @@
 
 // Application
 class Controller;
+class CollapsibleBlock;
 
 class KeyPreviewWidget : public QWidget
 {
@@ -26,6 +27,9 @@ public:
     //! Set controller
     void setController(Controller *pController);
 
+    //! Set no cut selected
+    void setNoCutSelected(bool bNoCutSelected);
+
 protected:
     //! Handle paint event
     virtual void paintEvent(QPaintEvent *event);
@@ -41,9 +45,15 @@ private:
     //! Controller
     Controller *m_pController;
 
+    //! No cut selected?
+    bool m_bNoCutSelected;
+
 public slots:
     //! Update key image
     void onUpdateKeyImage();
+
+    //! Block selection status changed
+    void onBlockSelectionStatusChanged(CollapsibleBlock *pBlock);
 };
 
 #endif // KEYPREVIEWWIDGET_H

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Block name="ROOT">
+<Block name="ROOT_SETTINGS">
    <Block name="SETTINGS" alwaysopened="true">
       <Parameter name="PRECISION" type="double" variable="qt_fn_qt" default="20" ui="lineedit" />
       <Parameter name="EPSILON" type="double" variable="qt_epsilon_qt" default="0.1" ui="lineedit" />

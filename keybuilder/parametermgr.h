@@ -44,6 +44,9 @@ public:
     //! Set parameter value
     void setParameterValue(const QString &sParameterVariable, const QString &sVariableValue);
 
+    //! Return parameter value
+    QString getParameterValue(const QString &sParameterVariable) const;
+
     //! Generate script
     bool exportParametersToSCAD(const QString &sOutputFileName);
 

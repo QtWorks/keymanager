@@ -92,7 +92,8 @@ SOURCES += main.cpp\
     texteditor.cpp \
     codeeditor.cpp \
     keypreviewwidget.cpp \
-    customtableview.cpp
+    customtableview.cpp \
+    simplecrypt.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -108,7 +109,6 @@ HEADERS  += mainwindow.h \
     captionlabel.h \
     collapsibleblock.h \
     parameterblock.h \
-    exclusivechoicewidget.h \
     lineeditwidget.h \
     filepickerwidget.h \
     doubletripletwidget.h \
@@ -131,7 +131,10 @@ HEADERS  += mainwindow.h \
     texteditor.h \
     codeeditor.h \
     keypreviewwidget.h \
-    customtableview.h
+    customtableview.h \
+    encoder.h \
+    simplecrypt.h \
+    exclusivechoicewidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

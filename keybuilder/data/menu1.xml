@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Block name="ROOT">
+<Block name="ROOT_MENU1">
    <Parameter variable="qt_type_of_key_qt" default="regular" type="string"/>
    <Block name="REGULAR KEY" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_regular.png" value="regular">
       <Parameter name="LENGTH" type="double" variable="qt_regular_length_qt" ui="lineedit"/>
