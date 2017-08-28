@@ -154,9 +154,16 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
             int iTargetRow = index.row();
             QString sTargetData("");
             if (iTargetRow > 0)
-                sTargetData = m_vData[index.column()+iTargetRow*m_lColumnVariables.size()];
+            {
+                int iIndex = index.column()+iTargetRow*m_lColumnVariables.size();
+                if ((iIndex >= 0) && (iIndex < m_vData.size()))
+                    sTargetData = m_vData[iIndex];
+            }
             else
-                sTargetData = m_vData[index.column()];
+            {
+                if ((index.column() >= 0) && (index.column() < m_vData.size()))
+                    sTargetData = m_vData[index.column()];
+            }
             double d = sTargetData.toDouble();
             return sTargetData.isEmpty() ? sTargetData : QString::number(d, 'f', 4);
         }
@@ -170,22 +177,30 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
 
 bool GenericParameterTableModel::setData(const QModelIndex &index, const QVariant &vData, int iRole)
 {
+
     if (index.isValid() && (iRole == Qt::EditRole))
     {
         QString sValue = vData.toString();
         int iTargetRow = index.row();
         if (iTargetRow > 0)
         {
-            m_vData[index.column()+iTargetRow*m_lColumnVariables.size()] = sValue;
-            QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), iTargetRow-1);
-            emit parameterValueChanged(sFormattedVariable, vData.toString());
-            emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+            int iTargetIndex = index.column()+iTargetRow*m_lColumnVariables.size();
+            if ((iTargetIndex >= 0) && (iTargetIndex < m_vData.size()))
+            {
+                m_vData[index.column()+iTargetRow*m_lColumnVariables.size()] = sValue;
+                QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), iTargetRow-1);
+                emit parameterValueChanged(sFormattedVariable, vData.toString());
+                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+            }
         }
         else
         {
-            m_vData[index.column()] = sValue;
-            emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
-            emit updateAll(index.column());
+            if ((index.column() >= 0) && (index.column() < m_vData.size()))
+            {
+                m_vData[index.column()] = sValue;
+                emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
+                emit updateAll(index.column());
+            }
         }
         return true;
     }
