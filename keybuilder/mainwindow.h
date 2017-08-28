@@ -44,6 +44,13 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 
 private:
+    //! Export blocks to XML
+    void exportBlocksToXML(CXMLNode &xRootNode);
+
+    //! Import block parameters from XML
+    void importBlockParametersFromXML(const QString &sInputFile);
+
+private:
     //! UI
     Ui::MainWindow *ui;
 
@@ -61,6 +68,9 @@ private:
 
     //! App dirty?
     bool m_bAppIsDirty;
+
+    //! All blocks
+    QHash<QString, CollapsibleBlock *> m_hAllBlocks;
 
 public slots:
     //! Create key

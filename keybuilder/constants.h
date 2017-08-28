@@ -1,10 +1,44 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+// General
+#define DEBUG_MODE "DEBUG"
+#define SCAD_OUTPUT_FILE "script_out.scad"
+#define HOME_TAB 0
+#define MENU1_TAB 1
+#define MENU2_TAB 2
+#define MENU3_TAB 3
+#define SETTINGS_TAB 4
+#define VISUALIZE_STL_TAB 5
+#define OUTPUT_SCAD_TAB 6
+#define APP_NAME "appname"
+#define APP_VERSION "appversion"
+#define TARGET_STRING "OpenSCAD_Model"
+#define OUTPUT_STRING "OFC3DKEY"
+#define DISLOCKPRO_TEMPLATE "qt_dislockpro_template_qt"
+#define PROTEC_TEMPLATE "qt_protect_template_qt"
+#define ABUSPLUS_TEMPLATE "qt_abusplus_template_qt"
+#define AXI_TEMPLATE "qt_axi_template_qt"
+#define VIERGE_TEMPLATE "qt_787svierge_qt"
+#define OUTPUT_DIR "OFC3DKEY_output"
+#define TEMPLATES_DIR "templates"
+#define OPENSCAD_DIR "STLCompiler"
+#define OPENSCAD_EXE "stlcompiler.exe"
+#define BLOCK_UID "uid"
+#define BLOCK_SELECTED "selected"
+#define BLOCK_CLOSED "closed"
+
+// Tags
 #define TAG_GROUP "Group"
 #define TAG_BLOCK "Block"
 #define TAG_PARAMETER "Parameter"
+#define TAG_ROOT "ROOT"
+#define TAG_VARIABLES "Variables"
+#define TAG_VARIABLE "Variable"
+#define TAG_ITEM "Item"
+#define TAG_BLOCKS "Blocks"
 
+// Properties
 #define PROPERTY_NAME "name"
 #define PROPERTY_VARIABLE "variable"
 #define PROPERTY_SET_VARIABLE "set_variable"
@@ -42,6 +76,7 @@
 #define PROPERTY_ALWAYS_OPENED "alwaysopened"
 #define PROPERTY_CAN_CLEAR "canclear"
 
+// Widgets
 #define WIDGET_LINE_EDIT "lineedit"
 #define WIDGET_FILE_PICKER "filepicker"
 #define WIDGET_DXF_OR_STL_FILE_PICKER "dxforstlfilepicker"
@@ -52,6 +87,7 @@
 #define WIDGET_XYZMIRROR "xyzmirror"
 #define VARIABLE_TYPE_OF_KEY "qt_type_of_key_qt"
 
+// Values
 #define VALUE_TRUE "true"
 #define VALUE_FALSE "false"
 #define VALUE_YES "YES"
@@ -59,6 +95,7 @@
 #define VALUE_DEFAULT_VALUE "0"
 #define VALUE_DEFAULT_TRIPLET_VALUE "[0,0,0]"
 
+// Actions
 #define ACTION_SET_NUMBER_OF_ROWS "setnumberofrows"
 
 #endif // CONSTANTS_H

@@ -16,15 +16,6 @@
 #include "utils.h"
 #include <src/stlwindow.h>
 #include "helper.h"
-#define HOME_TAB 0
-#define MENU1_TAB 1
-#define MENU2_TAB 2
-#define MENU3_TAB 3
-#define SETTINGS_TAB 4
-#define VISUALIZE_STL_TAB 5
-#define OUTPUT_SCAD_TAB 6
-#define APP_NAME "appname"
-#define APP_VERSION "appversion"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -150,6 +141,15 @@ void MainWindow::setController(Controller *pController)
     // Build settings tab
     ui->menu4LayoutMgr->buildMenu(m_pController->settingsNode());
 
+    foreach (CollapsibleBlock *pBlock, ui->menu1LayoutMgr->blocks())
+        m_hAllBlocks[pBlock->uid()] = pBlock;
+    foreach (CollapsibleBlock *pBlock, ui->menu2LayoutMgr->blocks())
+        m_hAllBlocks[pBlock->uid()] = pBlock;
+    foreach (CollapsibleBlock *pBlock, ui->menu3LayoutMgr->blocks())
+        m_hAllBlocks[pBlock->uid()] = pBlock;
+    foreach (CollapsibleBlock *pBlock, ui->menu4LayoutMgr->blocks())
+        m_hAllBlocks[pBlock->uid()] = pBlock;
+
     // SCAD output tab
     if (!m_pController->debugOn())
     {
@@ -177,9 +177,12 @@ void MainWindow::onCreateKeyClicked()
 
 void MainWindow::onUseExistingKeyClicked()
 {
-    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input TXT parameter file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
+    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input XML parameter file"), QCoreApplication::applicationDirPath(), tr("XML (*.xml)"));
     if (!sInputFileName.isEmpty())
-        m_pController->importParametersFromTXT(sInputFileName);
+    {
+        m_pController->importParametersFromXML(sInputFileName);
+        importBlockParametersFromXML(sInputFileName);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -212,9 +215,29 @@ void MainWindow::onGenerateSTL()
 
 void MainWindow::onSaveKeyParameters()
 {
-    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("TXT (*.txt)"));
+    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("XML (*.xml)"));
     if (!sOutputFileName.isEmpty())
-        m_pController->exportParametersToTXT(sOutputFileName);
+    {
+        CXMLNode xRootNode(TAG_ROOT);
+
+        // Export parameters
+        m_pController->exportParametersToXML(xRootNode);
+
+        // Export blocks
+        exportBlocksToXML(xRootNode);
+
+        // Save
+        if (xRootNode.save(sOutputFileName))
+        {
+            QString sMsg = QString("KEY PARAMETERS SAVED TO: %1").arg(sOutputFileName);
+            logInfo(sMsg);
+        }
+        else
+        {
+            QString sMsg = QString("COULD NOT SAVE KEY PARAMETERS TO: %1").arg(sOutputFileName);
+            logError(sMsg);
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -394,4 +417,53 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     else
         event->accept();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::exportBlocksToXML(CXMLNode &xRootNode)
+{
+    QVector<LayoutMgr *> vLayoutMgrs;
+    vLayoutMgrs << ui->menu1LayoutMgr << ui->menu2LayoutMgr << ui->menu3LayoutMgr << ui->menu4LayoutMgr;
+    CXMLNode xBlocksNode(TAG_BLOCKS);
+    foreach (LayoutMgr *pLayoutMgr, vLayoutMgrs)
+    {
+        QList<CollapsibleBlock *> lBlocks = pLayoutMgr->blocks();
+        foreach (CollapsibleBlock *pBlock, lBlocks)
+        {
+            QString sBlockUID = pBlock->uid();
+            bool bBlockIsSelected = pBlock->isSelected();
+            bool bBlockIsClosed = pBlock->isClosed();
+            CXMLNode xBlockNode(TAG_BLOCK);
+            xBlockNode.attributes()[BLOCK_UID] = sBlockUID;
+            xBlockNode.attributes()[BLOCK_SELECTED] = QString::number(bBlockIsSelected);
+            xBlockNode.attributes()[BLOCK_CLOSED] = QString::number(bBlockIsClosed);
+            xBlocksNode.nodes() << xBlockNode;
+        }
+    }
+    xRootNode.nodes() << xBlocksNode;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
+{
+    CXMLNode xRootNode = CXMLNode::loadXMLFromFile(sInputFile);
+    CXMLNode xBlocks = xRootNode.getNodeByTagName(TAG_BLOCKS);
+    QVector<CXMLNode> vChildBlocks = xBlocks.getNodesByTagName(TAG_BLOCK);
+    foreach (CXMLNode xChildBlock, vChildBlocks)
+    {
+        QString sBlockUID = xChildBlock.attributes()[BLOCK_UID];
+        QString sBlockSelected = xChildBlock.attributes()[BLOCK_SELECTED];
+        bool bBlockSelected = (sBlockSelected == "1");
+        QString sBlockClosed = xChildBlock.attributes()[BLOCK_CLOSED];
+        bool bBlockClosed = (sBlockClosed == "1");
+
+        CollapsibleBlock *pTargetBlock = m_hAllBlocks[sBlockUID];
+        if (pTargetBlock != nullptr)
+        {
+            pTargetBlock->select(bBlockSelected);
+            pTargetBlock->onOpenOrClose(bBlockClosed, false);
+        }
+    }
 }

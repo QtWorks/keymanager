@@ -61,6 +61,9 @@ public:
     //! Return uid
     const QString &uid() const;
 
+    //! Set uid
+    void setUID(const QString &sUID);
+
     //! Exclusive?
     bool isExclusive() const;
 

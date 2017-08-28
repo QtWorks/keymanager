@@ -48,6 +48,9 @@ public:
     //! Set number of stacks
     void setNumberOfStacks(int nStacks);
 
+    //! Return all blocks
+    QList<CollapsibleBlock *> blocks() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -102,6 +105,9 @@ private:
 
     //! Selection manager
     SelectionMgr *m_pSelectionMgr;
+
+    //! Own blocks
+    QList<CollapsibleBlock *> m_lBlocks;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

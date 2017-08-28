@@ -9,11 +9,6 @@
 #include "constants.h"
 #include "helper.h"
 #include "utils.h"
-#define DISLOCKPRO_TEMPLATE "qt_dislockpro_template_qt"
-#define PROTEC_TEMPLATE "qt_protect_template_qt"
-#define ABUSPLUS_TEMPLATE "qt_abusplus_template_qt"
-#define AXI_TEMPLATE "qt_axi_template_qt"
-#define VIERGE_TEMPLATE "qt_787svierge_qt"
 
 //-------------------------------------------------------------------------------------------------
 

@@ -64,6 +64,9 @@ void LayoutMgr::buildMenu(const CXMLNode &xBlock)
     evaluateEnabledCondition(m_pRootCollapsibleBlock);
     m_pBlockModel->setRootBlock(m_pRootCollapsibleBlock);
     ui->treeView->collapseAll();
+
+    // Store blocks
+    m_lBlocks = findChildren<CollapsibleBlock *>();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -88,6 +91,13 @@ void LayoutMgr::setController(Controller *pController)
 void LayoutMgr::setNumberOfStacks(int nStacks)
 {
     m_nStacks = nStacks;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QList<CollapsibleBlock *> LayoutMgr::blocks() const
+{
+    return m_lBlocks;
 }
 
 //-------------------------------------------------------------------------------------------------

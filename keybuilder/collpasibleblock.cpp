@@ -1,7 +1,6 @@
 // Qt
 #include <QVBoxLayout>
 #include <QMouseEvent>
-#include <QUuid>
 #include <QDebug>
 
 // Application
@@ -14,11 +13,13 @@
 #include "selectionmgr.h"
 #include "helper.h"
 
+static int iBlockCount = 0;
+
 //-------------------------------------------------------------------------------------------------
 
 CollapsibleBlock::CollapsibleBlock(const CXMLNode &xBlock, Controller *pController, QWidget *parent) : QWidget(parent),
     m_pParameterBlock(nullptr), m_bIsClosed(true), m_bIsSelected(false), m_pParentBlock(nullptr), m_pController(pController),
-    m_sUID(QUuid::createUuid().toString())
+    m_sUID(QString::number(++iBlockCount))
 {
     // Set size policy
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -220,6 +221,13 @@ CaptionLabel *CollapsibleBlock::captionLabel() const
 const QString &CollapsibleBlock::uid() const
 {
     return m_sUID;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void CollapsibleBlock::setUID(const QString &sUID)
+{
+    m_sUID = sUID;
 }
 
 //-------------------------------------------------------------------------------------------------

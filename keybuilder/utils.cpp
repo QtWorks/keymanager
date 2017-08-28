@@ -13,10 +13,7 @@
 
 // Application
 #include "utils.h"
-#define OUTPUT_DIR "OFC3DKEY_output"
-#define TEMPLATES_DIR "templates"
-#define OPENSCAD_DIR "STLCompiler"
-#define OPENSCAD_EXE "stlcompiler.exe"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 

@@ -9,8 +9,7 @@
 #include "helper.h"
 #include "utils.h"
 #include "controller.h"
-#define TARGET_STRING "OpenSCAD_Model"
-#define OUTPUT_STRING "OFC3DKEY"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 

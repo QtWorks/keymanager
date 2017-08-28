@@ -78,10 +78,10 @@ public:
     bool exportParametersToSCAD(QString &sOutputFileName);
 
     //! Export parameters to TXT
-    void exportParametersToTXT(const QString &sOutputFileName);
+    void exportParametersToXML(CXMLNode &xRootNode);
 
     //! Import parameters from TXT
-    void importParametersFromTXT(const QString &sInputFileName);
+    void importParametersFromXML(const QString &sInputFileName);
 
     //! Generate STL
     void generateSTL();

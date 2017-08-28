@@ -18,8 +18,6 @@
 #include "openscadwrapper.h"
 #include "dxforstlfilepicker.h"
 #include "utils.h"
-#define DEBUG_MODE "DEBUG"
-#define SCAD_OUTPUT_FILE "script_out.scad"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -201,16 +199,16 @@ bool Controller::exportParametersToSCAD(QString &sOutputFileName)
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::exportParametersToTXT(const QString &sOutputFileName)
+void Controller::exportParametersToXML(CXMLNode &xRootNode)
 {
-    m_pParameterMgr->exportParametersToTXT(sOutputFileName);
+    m_pParameterMgr->exportParametersToXML(xRootNode);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::importParametersFromTXT(const QString &sInputFileName)
+void Controller::importParametersFromXML(const QString &sInputFileName)
 {
-    m_pParameterMgr->importParametersFromTXT(sInputFileName);
+    m_pParameterMgr->importParametersFromXML(sInputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------

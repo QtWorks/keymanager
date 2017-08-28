@@ -387,10 +387,6 @@ bool ParameterMgr::loadSettingsParameters()
 
 void ParameterMgr::setParameterValue(const QString &sParameterVariable, const QString &sVariableValue)
 {
-    if (sParameterVariable == "qt_regular_row2_cut22_distance_qt")
-    {
-        int x = 0;
-    }
     Parameter *pParameter = m_hParameters[sParameterVariable];
     if (pParameter != nullptr)
         pParameter->setValue(sVariableValue);
@@ -431,31 +427,31 @@ bool ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterMgr::exportParametersToTXT(const QString &sOuputFileName)
+void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
 {
-    QFile outputParametersFile(sOuputFileName);
-    if (outputParametersFile.open(QIODevice::WriteOnly))
+    if (!m_hParameters.isEmpty())
     {
-        QTextStream outStream(&outputParametersFile);
+        CXMLNode xVariableNodes(TAG_VARIABLES);
         for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
         {
             Parameter *pParameter = it.value();
             if (pParameter != nullptr)
             {
                 QString sParameterValue = pParameter->value();
-                QString sParameterLine = QString("%1 = %2").arg(pParameter->variable(), sParameterValue);
-                outStream << sParameterLine << "\n";
+                CXMLNode xVariableNode(TAG_VARIABLE);
+                xVariableNode.attributes()["name"] = pParameter->variable();
+                xVariableNode.attributes()["value"] = sParameterValue;
+                xVariableNodes.nodes() << xVariableNode;
             }
         }
-        outputParametersFile.close();
-        QString sMsg = QString("PARAMETERS EXPORTED TO TEXT FILE: %1").arg(sOuputFileName);
-        logInfo(sMsg);
+        xRootNode.nodes() << xVariableNodes;
     }
+    else logInfo("NO PARAMETER TO SAVE");
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterMgr::importParametersFromTXT(const QString &sInputFileName)
+void ParameterMgr::importParametersFromXML(const QString &sInputFileName)
 {
     QFile inputParametersFile(sInputFileName);
     if (inputParametersFile.open(QIODevice::ReadOnly))

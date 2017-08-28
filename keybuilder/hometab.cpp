@@ -7,8 +7,7 @@
 #include "hometab.h"
 #include "ui_hometab.h"
 #include "cxmlnode.h"
-#define ITEM "Item"
-#define NODE_VALUE "value"
+#include "constants.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -59,7 +58,7 @@ void HomeTab::paintEvent(QPaintEvent *event)
     int c = 0;
     foreach (CXMLNode xNode, m_vItems)
     {
-        QString sLabel = xNode.attributes()[NODE_VALUE];
+        QString sLabel = xNode.attributes()[PROPERTY_VALUE];
         p.drawText(iStartX, iStartY+(m_iTextHeight*c++), sLabel);
     }
 }
@@ -69,7 +68,7 @@ void HomeTab::paintEvent(QPaintEvent *event)
 void HomeTab::loadDescription()
 {
     CXMLNode xRootNode = CXMLNode::loadXMLFromFile(":/data/about.xml");
-    m_vItems = xRootNode.getNodesByTagName(ITEM);
+    m_vItems = xRootNode.getNodesByTagName(TAG_ITEM);
     QFontMetrics fm(m_font);
 
     // Find max text width and height
@@ -77,7 +76,7 @@ void HomeTab::loadDescription()
     m_iMaxTextWidth = 0;
     foreach (CXMLNode xNode, m_vItems)
     {
-        QString sLabel = xNode.attributes()[NODE_VALUE];
+        QString sLabel = xNode.attributes()[PROPERTY_VALUE];
         int iWidth = fm.width(sLabel);
         if (iWidth > m_iMaxTextWidth)
             m_iMaxTextWidth = iWidth;

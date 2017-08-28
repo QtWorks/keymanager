@@ -51,10 +51,10 @@ public:
     bool exportParametersToSCAD(const QString &sOutputFileName);
 
     //! Export parameters to TXT
-    void exportParametersToTXT(const QString &sOutputFileName);
+    void exportParametersToXML(CXMLNode &xRootNode);
 
     //! Import parameters from TXT
-    void importParametersFromTXT(const QString &sInputFileName);
+    void importParametersFromXML(const QString &sInputFileName);
 
     //! Identify target variable (method1)
     static QString identifyTargetVariable_method1(const QString &sTargetVariable, const QStringList &lColumnVariables, const QString &sTargetRow, int iColumn, int iRow);
