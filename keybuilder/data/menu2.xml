@@ -8,7 +8,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row1_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row1_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row1_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row1_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row1_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row1_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row1_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
@@ -46,7 +46,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row2_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row2_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row2_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row2_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row2_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row2_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row2_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
@@ -84,7 +84,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row3_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row3_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row3_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row3_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row3_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row3_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row3_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
@@ -122,7 +122,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row4_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row4_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row4_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row4_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row4_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row4_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row4_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
@@ -160,7 +160,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row5_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row5_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row5_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row5_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row5_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row5_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row5_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">
@@ -198,7 +198,7 @@
          <Parameter name="OFFSET X" type="double" variable="qt_regular_row6_offset_on_x_qt" ui="lineedit" />
          <Parameter name="OFFSET Z" type="double" variable="qt_regular_row6_offset_on_z_qt" ui="lineedit" />
          <Parameter name="ROW ANGLE" type="double" variable="qt_regular_row6_angle_on_y_qt" ui="lineedit" />
-         <Parameter name="MIRROR (XYZ)" type="string" variable="qt_regular_row6_mirror_qt" ui="xyzmirror" />
+         <Parameter name="MIRROR (XYZ)" type="mirror" variable="qt_regular_row6_mirror_qt" ui="xyzmirror" />
          <Parameter name="SHOULDER DISTANCE" type="double" variable="qt_regular_row6_shoulder_distance_qt" ui="lineedit" />
          <Parameter name="INTERSPIN SPACE" type="double" variable="qt_regular_row6_interpin_space_qt" ui="lineedit" />
          <Block name="CHOOSE MILL SHAPE">

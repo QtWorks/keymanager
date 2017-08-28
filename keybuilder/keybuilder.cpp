@@ -39,7 +39,7 @@ bool KeyBuilder::startup()
 
     // Show UI
     m_wMainWindow.setController(m_pController);
-    m_wMainWindow.show();
+    m_wMainWindow.showMaximized();
 
     return true;
 }

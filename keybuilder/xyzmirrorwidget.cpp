@@ -1,3 +1,7 @@
+// Qt
+#include <QDebug>
+
+// Application
 #include "xyzmirrorwidget.h"
 #include "ui_xyzmirrorwidget.h"
 
@@ -40,6 +44,7 @@ void XYZMirrorWidget::applyDefaultValue()
 
 void XYZMirrorWidget::applyValue(const QString &sValue)
 {
+    qDebug() << "---> APPLY VALUE " << sValue;
     ui->xCheckBox->blockSignals(true);
     ui->yCheckBox->blockSignals(true);
     ui->zCheckBox->blockSignals(true);

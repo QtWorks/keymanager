@@ -54,6 +54,7 @@
 #define PROPERTY_DOUBLE "double"
 #define PROPERTY_STRING "string"
 #define PROPERTY_BOOLEAN "boolean"
+#define PROPERTY_MIRROR "mirror"
 #define PROPERTY_TABLE "table"
 #define PROPERTY_COLUMN_LABELS "columnlabels"
 #define PROPERTY_COLUMN_VARIABLES "columnvariables"

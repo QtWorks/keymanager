@@ -453,32 +453,23 @@ void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
 
 void ParameterMgr::importParametersFromXML(const QString &sInputFileName)
 {
-    QFile inputParametersFile(sInputFileName);
-    if (inputParametersFile.open(QIODevice::ReadOnly))
+    CXMLNode xRootNode = CXMLNode::load(sInputFileName);
+    CXMLNode xVariablesNode = xRootNode.getNodeByTagName(TAG_VARIABLES);
+    QVector<CXMLNode> vVariableNodes = xVariablesNode.getNodesByTagName(TAG_VARIABLE);
+    foreach (CXMLNode xVariableNode, vVariableNodes)
     {
-        QTextStream inStream(&inputParametersFile);
-        while (!inStream.atEnd())
+        QString sParameterVariable = xVariableNode.attributes()[PROPERTY_NAME];
+        QString sVariableValue = xVariableNode.attributes()[PROPERTY_VALUE];
+        Parameter *pParameter = getParameterByVariableName(sParameterVariable);
+        if (pParameter != nullptr)
         {
-            QString sLine = inStream.readLine();
-            QStringList lSplitted = sLine.split("=");
-            if (lSplitted.size() == 2)
-            {
-                QString sParameterVariable = lSplitted.first().simplified();
-                QString sVariableValue = lSplitted[1].simplified();
-                Parameter *pParameter = getParameterByVariableName(sParameterVariable);
-                if (pParameter != nullptr)
-                {
-                    emit updateWidgetValue(sParameterVariable, sVariableValue);
-                }
-                else
-                {
-                    QString sMsg = QString("%1 PARAMETER VARIABLE IS UNKNOWN").arg(sParameterVariable);
-                    logError(sMsg);
-                }
-
-            }
+            emit updateWidgetValue(sParameterVariable, sVariableValue);
         }
-        inputParametersFile.close();
+        else
+        {
+            QString sMsg = QString("%1 PARAMETER VARIABLE IS UNKNOWN").arg(sParameterVariable);
+            logError(sMsg);
+        }
         QString sMsg = QString("PARAMETERS SUCCESSFULLY IMPORTED FROM: %1").arg(sInputFileName);
         logInfo(sMsg);
     }
