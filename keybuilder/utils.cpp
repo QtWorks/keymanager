@@ -1,6 +1,9 @@
 // Windows
 #include <stdio.h>
 #include <windows.h>
+#include <iostream>
+#include <random>
+#include <cmath>
 
 // Qt
 #include <QFile>
@@ -112,18 +115,10 @@ void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString
 
 //-------------------------------------------------------------------------------------------------
 
-QByteArray Utils::getRandomHex(const int &iLength)
-{    
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
-
-    QString sRandomHex;
-
-    for(int i=0; i<iLength; i++)
-    {
-        int n = qrand() % 16;
-        sRandomHex.append(QString::number(n, 16));
-    }
-
-    return sRandomHex.toLatin1();
+quint64 Utils::rand64()
+{
+    std::random_device rd;
+    std::mt19937_64 e2(rd());
+    std::uniform_int_distribution<long long int> dist(std::llround(std::pow(2,61)), std::llround(std::pow(2,62)));
+    return dist(e2);
 }

@@ -33,7 +33,7 @@ public:
     static void replaceInFile(const QString &sInputFile, const QString &sInputString, const QString &sOutputString, Qt::CaseSensitivity iSensitivity=Qt::CaseInsensitive);
 
     //! Generate random hex
-    static QByteArray getRandomHex(const int &iLength);
+    static quint64 rand64();
 };
 
 #endif // UTILS_H
