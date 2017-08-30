@@ -20,13 +20,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-QByteArray Utils::getDiskSerial()
+QString Utils::getDiskSerial()
 {
     DWORD dwVolSerial;
     BOOL bIsRetrieved = GetVolumeInformation(L"C:\\", NULL, NULL, &dwVolSerial, NULL, NULL, NULL, NULL);
     if (bIsRetrieved)
-        return QString::number(dwVolSerial, 16).toLatin1();
-    return QByteArray();
+        return QString::number(dwVolSerial, 16);
+    return QString("");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -115,10 +115,16 @@ void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString
 
 //-------------------------------------------------------------------------------------------------
 
-quint64 Utils::rand64()
+QString Utils::randHex(int iLength)
 {
-    std::random_device rd;
-    std::mt19937_64 e2(rd());
-    std::uniform_int_distribution<long long int> dist(std::llround(std::pow(2,61)), std::llround(std::pow(2,62)));
-    return dist(e2);
+    qsrand(QTime::currentTime().msec());
+    const QString sPossibleCharacters("0123456789ABCDEF");
+    QString sRandomString;
+    for(int i=0; i<iLength; ++i)
+    {
+        int index = qrand() % sPossibleCharacters.length();
+        QChar nextChar = sPossibleCharacters.at(index);
+        sRandomString.append(nextChar);
+    }
+    return sRandomString;
 }

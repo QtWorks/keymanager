@@ -123,6 +123,14 @@ void MainWindow::setController(Controller *pController)
     connect(ui->generateSTLButtonMenu4, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
+    // Connect license widget
+    connect(ui->licenseWidget, &LicenseWidget::validateClicked, this, &MainWindow::onValidateLicenseClicked);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::buildMenus()
+{
     // Build menu 1 tab
     ui->menu1LayoutMgr->buildMenu(m_pController->menu1Node());
 
@@ -149,13 +157,6 @@ void MainWindow::setController(Controller *pController)
         m_hAllBlocks[pBlock->uid()] = pBlock;
     foreach (CollapsibleBlock *pBlock, ui->menu4LayoutMgr->blocks())
         m_hAllBlocks[pBlock->uid()] = pBlock;
-
-    // SCAD output tab
-    if (!m_pController->debugOn())
-    {
-        ui->tabWidget->removeTab(OUTPUT_SCAD_TAB);
-        ui->textBrowser->hide();
-    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -164,6 +165,35 @@ void MainWindow::loadCSS()
 {
     QString sStyle = Utils::loadFile(":/css/main.css");
     this->setStyleSheet(sStyle);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::setLicenseMode(bool bLicenseMode)
+{
+    ui->licenseWidget->setVisible(bLicenseMode);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::showApplicationBody(bool bShowApplicationBody)
+{
+    ui->tabWidget->setVisible(bShowApplicationBody);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::showDebugTab(bool bShowDebugTab)
+{
+    if (!bShowDebugTab)
+        ui->tabWidget->removeTab(OUTPUT_SCAD_TAB);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::showOpenSCADOutputLog(bool bShowOpenSCADOoutputLog)
+{
+    ui->openSCADOutputLog->setVisible(bShowOpenSCADOoutputLog);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -196,7 +226,7 @@ void MainWindow::onVisualizeSTLClicked()
 
 void MainWindow::onGenerateSTL()
 {
-    ui->textBrowser->clear();
+    ui->openSCADOutputLog->clear();
 
     // Step 1: do replacement in script_in.scad
     QString sOpenSCADPath = Utils::openSCADPath();
@@ -325,7 +355,7 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
     QString sMsg = "STL BUILD SUCCESS";
     logInfo(sMsg);
     statusBar()->showMessage("STL BUILD SUCCESS");
-    ui->textBrowser->append(sStatus);
+    ui->openSCADOutputLog->append(sStatus);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -336,7 +366,7 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
     QString sMsg = "STL BUILD FAILURE";
     logInfo(sMsg);
     statusBar()->showMessage("STL BUILD FAILURE");
-    ui->textBrowser->append(sStatus);
+    ui->openSCADOutputLog->append(sStatus);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -345,7 +375,7 @@ void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
     ui->progressBar->setVisible(false);
     statusBar()->showMessage("");
-    ui->textBrowser->append(sStatus);
+    ui->openSCADOutputLog->append(sStatus);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -393,8 +423,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         if (iValue == QMessageBox::Yes)
             onSaveGeneratedSTL();
         else
-        if (iValue == QMessageBox::Cancel)
-            bCancelled = true;
+            if (iValue == QMessageBox::Cancel)
+                bCancelled = true;
 
         if (!bCancelled)
         {
@@ -409,8 +439,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
                 m_bAppIsDirty = false;
             }
             else
-            if (iValue == QMessageBox::Cancel)
-                bCancelled = true;
+                if (iValue == QMessageBox::Cancel)
+                    bCancelled = true;
         }
     }
     if (bCancelled)
@@ -465,5 +495,24 @@ void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
             pTargetBlock->select(bBlockSelected);
             pTargetBlock->onOpenOrClose(bBlockClosed, false);
         }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onValidateLicenseClicked(const QString &sQuestion, const QString &sAnswer)
+{
+    if (m_pController->validateLicense(sQuestion, sAnswer))
+    {
+        // Start controller
+        if (m_pController->startup())
+        {
+            setLicenseMode(false);
+            showApplicationBody(true);
+            showOpenSCADOutputLog(m_pController->debugOn());
+            showDebugTab(m_pController->debugOn());
+            buildMenus();
+        }
+        else logError("COULD NOT STARTUP CONTROLLER. EXITING.");
     }
 }

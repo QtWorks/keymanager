@@ -95,7 +95,10 @@ SOURCES += main.cpp\
     customtableview.cpp \
     simplecrypt.cpp \
     xyzmirrorwidget.cpp \
-    encoder.cpp
+    encoder.cpp \
+    cryptomgr.cpp \
+    licensewidget.cpp \
+    keywidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -138,7 +141,10 @@ HEADERS  += mainwindow.h \
     simplecrypt.h \
     exclusivechoicewidget.h \
     xyzmirrorwidget.h \
-    encoder.h
+    encoder.h \
+    cryptomgr.h \
+    licensewidget.h \
+    keywidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
@@ -154,7 +160,9 @@ FORMS    += mainwindow.ui \
     headerobject.ui \
     hometab.ui \
     codeeditor.ui \
-    xyzmirrorwidget.ui
+    xyzmirrorwidget.ui \
+    licensewidget.ui \
+    keywidget.ui
 
 DISTFILES +=
 

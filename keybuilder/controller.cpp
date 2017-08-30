@@ -16,14 +16,18 @@
 #include "collapsibleblock.h"
 #include "helper.h"
 #include "openscadwrapper.h"
+#include "cryptomgr.h"
 #include "dxforstlfilepicker.h"
 #include "utils.h"
+#include "encoder.h"
 
 //-------------------------------------------------------------------------------------------------
 
 Controller::Controller(QObject *parent) : QObject(parent),
-    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr), m_bDebugOn(true),
-    m_pKeyPreviewImage(new QImage())
+    m_pParameterMgr(nullptr), m_pWidgetFactory(nullptr),
+    m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr),
+    m_pCryptoMgr(nullptr), m_bDebugOn(true),
+    m_pKeyPreviewImage(new QImage()), m_bFirstInstallation(false)
 {
     // Load settings
     loadSettings();
@@ -56,6 +60,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardErrorReady, this, &Controller::openSCADStandardErrorReady, Qt::UniqueConnection);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardOutputReady, this, &Controller::openSCADStandardOutputReady, Qt::UniqueConnection);
     }
+    m_pCryptoMgr = new CryptoMgr(this);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -133,6 +138,13 @@ QImage *Controller::keyPreviewImage() const
 QString Controller::nextOutputSTLFile() const
 {
     return (m_pOpenSCADWrapper != nullptr) ? m_pOpenSCADWrapper->nextOutputSTLFile() : QString("");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+bool Controller::isFirstInstallation() const
+{
+    return m_bFirstInstallation;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -251,6 +263,13 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 
 //-------------------------------------------------------------------------------------------------
 
+bool Controller::validateLicense(const QString &sQuestion, const QString &sAnswer)
+{
+    return m_pCryptoMgr->validateLicense(sQuestion, sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool Controller::loadSettings()
 {
     QFileInfo fi(":/ini/settings.ini");
@@ -259,6 +278,8 @@ bool Controller::loadSettings()
         QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
         QString sDebugMode = settings.value(DEBUG_MODE).toString().simplified();
         m_bDebugOn = (sDebugMode.compare("true", Qt::CaseInsensitive) == 0);
+        QString sFirstInstall = settings.value(FIRST_INSTALL).toString().simplified();
+        m_bFirstInstallation = (sFirstInstall == VALUE_TRUE);
         return true;
     }
     return false;
@@ -276,3 +297,4 @@ void Controller::clearOutputDirectory()
     foreach(QString sDirFile, outputDir.entryList())
         outputDir.remove(sDirFile);
 }
+

@@ -13,6 +13,7 @@ class ParameterMgr;
 class WidgetFactory;
 class CollapsibleBlock;
 class OpenSCADWrapper;
+class CryptoMgr;
 class QImage;
 
 class Controller : public QObject, public IService
@@ -64,6 +65,9 @@ public:
     //! Return next output STL file
     QString nextOutputSTLFile() const;
 
+    //! First installation?
+    bool isFirstInstallation() const;
+
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -89,6 +93,9 @@ public:
     //! Load key preview image
     void loadKeyPreviewImage(const QString &sKeyImagePreview);
 
+    //! Validate license
+    bool validateLicense(const QString &sQuestion, const QString &sAnswer);
+
 private:
     //! Load settings
     bool loadSettings();
@@ -109,11 +116,17 @@ private:
     //! Open SCAD wrapper
     OpenSCADWrapper *m_pOpenSCADWrapper;
 
+    //! Crypto mgr
+    CryptoMgr *m_pCryptoMgr;
+
     //! Debug mode
     bool m_bDebugOn;
 
     //! Key preview image
     QImage *m_pKeyPreviewImage;
+
+    //! First installation?
+    bool m_bFirstInstallation;
 
 public slots:
     //-------------------------------------------------------------------------------------------------

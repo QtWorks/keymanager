@@ -39,6 +39,21 @@ public:
     //! Load CSS
     void loadCSS();
 
+    //! Set license mode
+    void setLicenseMode(bool bLicenseMode);
+
+    //! Show application body?
+    void showApplicationBody(bool bShowApplicationBody);
+
+    //! Show debug tab?
+    void showDebugTab(bool bShowDebugTab);
+
+    //! Show openscad output log?
+    void showOpenSCADOutputLog(bool bShowOpenSCADOoutputLog);
+
+    //! Setup
+    void buildMenus();
+
 protected:
     //! Handle close event
     virtual void closeEvent(QCloseEvent *event);
@@ -110,6 +125,9 @@ public slots:
     void onMenu2TreeVisibilityChanged(bool bTreeVisible);
     void onMenu3TreeVisibilityChanged(bool bTreeVisible);
     void onMenu4TreeVisibilityChanged(bool bTreeVisible);
+
+    //! Validate license clicked
+    void onValidateLicenseClicked(const QString &sQuestion, const QString &sAnswer);
 };
 
 #endif // MAINWINDOW_H

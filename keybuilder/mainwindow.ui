@@ -15,15 +15,15 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
+    <item row="4" column="0">
      <widget class="QProgressBar" name="progressBar">
       <property name="value">
        <number>24</number>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QTextBrowser" name="textBrowser">
+    <item row="3" column="0">
+     <widget class="QTextBrowser" name="openSCADOutputLog">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -50,7 +50,7 @@
        <string notr="true">QTabBar::tab {width: 128px; height: 48px; font: 14px;}</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="HomeTab" name="tab">
        <attribute name="title">
@@ -454,6 +454,9 @@
       </widget>
      </widget>
     </item>
+    <item row="5" column="0">
+     <widget class="LicenseWidget" name="licenseWidget" native="true"/>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -483,6 +486,11 @@
    <class>CodeEditor</class>
    <extends>QWidget</extends>
    <header>codeeditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LicenseWidget</class>
+   <extends>QWidget</extends>
+   <header>licensewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

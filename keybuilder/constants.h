@@ -2,6 +2,7 @@
 #define CONSTANTS_H
 
 // General
+#define FIRST_INSTALL "FIRSTINSTALL"
 #define DEBUG_MODE "DEBUG"
 #define SCAD_OUTPUT_FILE "script_out.scad"
 #define HOME_TAB 0
