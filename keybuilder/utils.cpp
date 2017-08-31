@@ -132,13 +132,33 @@ QString Utils::randHex(int iLength)
 
 //-------------------------------------------------------------------------------------------------
 
-QString Utils::reorderString(const QString &sInput, const QVector<int> &vOrder)
+QString Utils::simpleEncode(const QString &sInput, const QVector<int> &vOrder)
 {
     QString sOutput("");
     for (int i=0; i<vOrder.size(); i++)
     {
         if ((vOrder[i] >= 0) && (vOrder[i] < sInput.length()))
             sOutput += sInput.at(vOrder[i]);
+    }
+    if (sOutput.length() != sInput.length())
+    {
+        logWarning("FAILED TO REORDER INPUT STRING");
+        return sInput;
+    }
+    return sOutput;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString Utils::simpleDecode(const QString &sInput, const QVector<int> &vOrder)
+{
+    QString sOutput("");
+    for (int i=0; i<vOrder.size(); i++)
+    {
+        int iIndex = vOrder.indexOf(i);
+
+        if ((iIndex >= 0) && (iIndex < sInput.length()))
+            sOutput += sInput.at(iIndex);
     }
     if (sOutput.length() != sInput.length())
     {

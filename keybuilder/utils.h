@@ -35,8 +35,11 @@ public:
     //! Generate random hex
     static QString randHex(int iLength=16);
 
-    //! Reorder given string
-    static QString reorderString(const QString &sInput, const QVector<int> &vOrder);
+    //! Simple encode
+    static QString simpleEncode(const QString &sInput, const QVector<int> &vOrder);
+
+    //! Simple decode
+    static QString simpleDecode(const QString &sInput, const QVector<int> &vOrder);
 
     //! Reorder input array randomly
     static QVector<int> buildOrder(int nItems);

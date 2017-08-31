@@ -6,6 +6,7 @@ using std::string;
 
 // Application
 #include "keybuilder.h"
+#include "utils.h"
 
 int main(int argc, char *argv[])
 {
