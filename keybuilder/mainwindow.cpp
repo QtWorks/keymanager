@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(false);
 
@@ -296,6 +297,7 @@ void MainWindow::onSaveGeneratedSTL()
 void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 {
     // Hide progress bar
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
 
     // Load STL
@@ -326,6 +328,7 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 void MainWindow::onSTLFileError(const QString &sErrorMsg)
 {
     // Hide progress bar
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
 
     logError(sErrorMsg);
@@ -337,8 +340,9 @@ void MainWindow::onSTLFileError(const QString &sErrorMsg)
 void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 {
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
-    if (!sOutputSCADContents.isEmpty() && (m_pController->debugOn()))
+    if (!sOutputSCADContents.isEmpty())
     {
+        qDebug() << "SHOWING PROGESS BAR";
         ui->progressBar->setVisible(true);
         QString sMsg = "BUILDING STL...";
         logInfo(sMsg);
@@ -351,6 +355,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD SUCCESS";
     logInfo(sMsg);
@@ -362,6 +367,7 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD FAILURE";
     logInfo(sMsg);
@@ -373,6 +379,7 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
+    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     statusBar()->showMessage("");
     ui->openSCADOutputLog->append(sStatus);

@@ -43,10 +43,6 @@ private:
 
     //! Random
     QString m_sRandom;
-
-signals:
-
-public slots:
 };
 
 #endif // CRYPTOMGR_H

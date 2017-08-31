@@ -25,6 +25,9 @@ public:
     //! Set title
     void setTitle(const QString &sTitle);
 
+    //! Set read only
+    void setReadOnly(bool bReadOnly);
+
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
@@ -32,7 +35,15 @@ public:
     //! Return value
     QString getValue() const;
 
+    //! Set value
+    void setValue(const QString &sValue);
+
 private:
+    //! Apply font
+    void applyFont();
+
+private:
+    //! UI
     Ui::KeyWidget *ui;
 };
 

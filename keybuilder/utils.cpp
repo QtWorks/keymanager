@@ -17,6 +17,7 @@
 // Application
 #include "utils.h"
 #include "constants.h"
+#include "helper.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -127,4 +128,42 @@ QString Utils::randHex(int iLength)
         sRandomString.append(nextChar);
     }
     return sRandomString;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString Utils::reorderString(const QString &sInput, const QVector<int> &vOrder)
+{
+    QString sOutput("");
+    for (int i=0; i<vOrder.size(); i++)
+    {
+        if ((vOrder[i] >= 0) && (vOrder[i] < sInput.length()))
+            sOutput += sInput.at(vOrder[i]);
+    }
+    if (sOutput.length() != sInput.length())
+    {
+        logWarning("FAILED TO REORDER INPUT STRING");
+        return sInput;
+    }
+    return sOutput;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QVector<int> Utils::buildOrder(int nItems)
+{
+    qsrand(QTime::currentTime().msec());
+    QVector<int> vOrigOrder;
+    for (int i=0; i<nItems; i++)
+        vOrigOrder << i;
+    QVector<int> vOut;
+    while (!vOrigOrder.isEmpty())
+    {
+        int iBottom = 0;
+        int iTop = vOrigOrder.size()-1;
+        int iRand = qrand()%((iTop + 1)-iBottom)+iBottom;
+        vOut << vOrigOrder[iRand];
+        vOrigOrder.takeAt(iRand);
+    }
+    return vOut;
 }

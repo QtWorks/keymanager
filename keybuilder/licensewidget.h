@@ -23,6 +23,9 @@ public:
     //! Destructor
     ~LicenseWidget();
 
+    //! Set question
+    void setQuestion(const QString &sQuestion);
+
 private:
     //! UI
     Ui::LicenseWidget *ui;

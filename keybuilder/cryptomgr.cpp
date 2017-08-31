@@ -35,7 +35,7 @@ void CryptoMgr::writeInitialCryptedFile(const QString &sInputFilePath)
         QByteArray baOriginalSCADScript = sOriginalSCADScript.toLatin1().toBase64();
         m_encoder.setKey(m_sKey1);
         QString sEncrypted = m_encoder.encrypt(QString::fromLatin1(baOriginalSCADScript));
-        QString sOutputFileName = "c:/temp/script_in.enc";
+        QString sOutputFileName = "c:/temp/script_in_before_install.enc";
         Utils::saveFile(sEncrypted, sOutputFileName);
     }
     else logError("ORIGINAL SCAD SCRIPT IS EMPTY");
@@ -53,6 +53,9 @@ void CryptoMgr::writeInitialCryptedFile(const QString &sInputFilePath)
         QString sDiskMD5Hash = QCryptographicHash::hash(sDiskSerial.toLatin1(), QCryptographicHash::Md5);
         m_encoder.setKey(sDiskMD5Hash);
         sEncrypted = m_encoder.encrypt(sEncrypted);
+
+        QString sOutputFileName = "c:/temp/script_in_adter_install.enc";
+        Utils::saveFile(sEncrypted, sOutputFileName);
     }
 }
 

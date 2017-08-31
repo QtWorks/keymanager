@@ -28,6 +28,7 @@
 #define BLOCK_UID "uid"
 #define BLOCK_SELECTED "selected"
 #define BLOCK_CLOSED "closed"
+#define QUESTION_LENGTH 16
 
 // Tags
 #define TAG_GROUP "Group"
