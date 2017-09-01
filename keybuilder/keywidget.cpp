@@ -55,7 +55,7 @@ void KeyWidget::setValue(const QString &sValue)
     int iLength = sValue.length();
     int nBlocks = (iLength/4) + (iLength%4 != 0 ? 1 : 0);
     qDebug() << sValue << nBlocks;
-    int iDelta = 10;
+    int iDelta = 12;
     for (int i=0; i<nBlocks; i++)
     {
         qDebug() << i << nBlocks;
