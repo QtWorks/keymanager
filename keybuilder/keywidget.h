@@ -1,7 +1,9 @@
 #ifndef KEYWIDGET_H
 #define KEYWIDGET_H
 
+// Qt
 #include <QWidget>
+class QLineEdit;
 
 namespace Ui {
 class KeyWidget;
@@ -39,12 +41,11 @@ public:
     void setValue(const QString &sValue);
 
 private:
-    //! Apply font
-    void applyFont();
-
-private:
     //! UI
     Ui::KeyWidget *ui;
+
+    //! Blocks
+    QVector<QLineEdit *> m_vBlocks;
 };
 
 #endif // KEYWIDGET_H

@@ -3,6 +3,7 @@
 
 // Qt
 #include <QObject>
+#include <QVector>
 
 // Application
 #include "encoder.h"
@@ -22,6 +23,20 @@ public:
     //! Destructor
     ~CryptoMgr();
 
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
+    //! Return question
+    const QString &question() const;
+
+    //! Return response
+    const QString &answer() const;
+
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
     //! Write initial crypted file
     void writeInitialCryptedFile(const QString &sInputFilePath);
 
@@ -35,14 +50,23 @@ private:
     //! Encoder
     Encoder m_encoder;
 
-    //! Disk serial
-    QString m_sDiskSerial;
+    //! Disk serial hash
+    QString m_sDiskSerialHash;
 
     //! Key 1
     QString m_sKey1;
 
-    //! Random
-    QString m_sRandom;
+    //! Key 2
+    QString m_sKey2;
+
+    //! Simple encoding order
+    QVector<int> m_vSimpleEncodingOrder;
+
+    //! Question
+    QString m_sQuestion;
+
+    //! Reponse
+    QString m_sResponse;
 };
 
 #endif // CRYPTOMGR_H

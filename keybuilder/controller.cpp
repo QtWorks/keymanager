@@ -121,6 +121,13 @@ OpenSCADWrapper *Controller::openSCADwrapper() const
 
 //-------------------------------------------------------------------------------------------------
 
+CryptoMgr *Controller::cryptoMgr() const
+{
+    return m_pCryptoMgr;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 bool Controller::debugOn() const
 {
     return m_bDebugOn;

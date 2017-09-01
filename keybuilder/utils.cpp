@@ -12,6 +12,7 @@
 #include <QStandardPaths>
 #include <QTime>
 #include <QtGlobal>
+#include <QCryptographicHash>
 #include <QDebug>
 
 // Application
@@ -28,6 +29,13 @@ QString Utils::getDiskSerial()
     if (bIsRetrieved)
         return QString::number(dwVolSerial, 16);
     return QString("");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString Utils::getDiskSerialHash()
+{
+    return QCryptographicHash::hash(Utils::getDiskSerial().toLatin1(), QCryptographicHash::Sha256).toHex().toUpper();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -127,7 +135,7 @@ QString Utils::randHex(int iLength)
         QChar nextChar = sPossibleCharacters.at(index);
         sRandomString.append(nextChar);
     }
-    return sRandomString;
+    return sRandomString.toUpper();
 }
 
 //-------------------------------------------------------------------------------------------------

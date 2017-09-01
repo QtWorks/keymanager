@@ -26,6 +26,9 @@ public:
     //! Set question
     void setQuestion(const QString &sQuestion);
 
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
+
 private:
     //! UI
     Ui::LicenseWidget *ui;

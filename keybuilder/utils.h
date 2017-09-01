@@ -11,6 +11,9 @@ public:
     //! Return disk serial number
     static QString getDiskSerial();
 
+    //! Return disk hash
+    static QString getDiskSerialHash();
+
     //! Load file
     static QString loadFile(const QString &sInputFile);
 

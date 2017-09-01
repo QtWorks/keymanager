@@ -56,6 +56,9 @@ public:
     //! Return OpenSCAD wrapper
     OpenSCADWrapper *openSCADwrapper() const;
 
+    //! Return crypto mgr
+    CryptoMgr *cryptoMgr() const;
+
     //! Debug on?
     bool debugOn() const;
 

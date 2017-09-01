@@ -199,6 +199,20 @@ void MainWindow::showOpenSCADOutputLog(bool bShowOpenSCADOoutputLog)
 
 //-------------------------------------------------------------------------------------------------
 
+void MainWindow::setQuestion(const QString &sQuestion)
+{
+    ui->licenseWidget->setQuestion(sQuestion);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::setAnswer(const QString &sAnswer)
+{
+    ui->licenseWidget->setAnswer(sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void MainWindow::onCreateKeyClicked()
 {
     ui->tabWidget->setCurrentIndex(MENU1_TAB);

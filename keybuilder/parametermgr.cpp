@@ -432,18 +432,59 @@ void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
     if (!m_hParameters.isEmpty())
     {
         CXMLNode xVariableNodes(TAG_VARIABLES);
+
+        // Write VARIABLE_TYPE_OF_KEY first
+        Parameter *pTypeOfKeyParameter = m_hParameters[VARIABLE_TYPE_OF_KEY];
+        if (pTypeOfKeyParameter != nullptr)
+        {
+            QString sParameterValue = pTypeOfKeyParameter->value();
+            CXMLNode xVariableNode(TAG_VARIABLE);
+            xVariableNode.attributes()["name"] = pTypeOfKeyParameter->variable();
+            xVariableNode.attributes()["value"] = sParameterValue;
+            xVariableNodes.nodes() << xVariableNode;
+        }
+
+        // Write table-dimensioning parameters first
         for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
         {
+            if (it.key() == VARIABLE_TYPE_OF_KEY)
+                continue;
             Parameter *pParameter = it.value();
             if (pParameter != nullptr)
             {
-                QString sParameterValue = pParameter->value();
-                CXMLNode xVariableNode(TAG_VARIABLE);
-                xVariableNode.attributes()["name"] = pParameter->variable();
-                xVariableNode.attributes()["value"] = sParameterValue;
-                xVariableNodes.nodes() << xVariableNode;
+                // Those parameters allow to dimension the tables, put them last
+                if ((pParameter->variable().contains(NUMBER_OF_PINS) || pParameter->variable().contains(NUMBER_OF_LEVERS) || pParameter->variable().contains(NUMBER_OF_DISCS)))
+                {
+                    QString sParameterValue = pParameter->value();
+                    CXMLNode xVariableNode(TAG_VARIABLE);
+                    xVariableNode.attributes()["name"] = pParameter->variable();
+                    xVariableNode.attributes()["value"] = sParameterValue;
+                    xVariableNodes.nodes() << xVariableNode;
+                }
             }
         }
+
+        // Write non table-dimensioning parameters last
+        for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
+        {
+            if (it.key() == VARIABLE_TYPE_OF_KEY)
+                continue;
+            if (it.key().contains(NUMBER_OF_PINS) || it.key().contains(NUMBER_OF_LEVERS) || it.key().contains(NUMBER_OF_DISCS))
+                continue;
+            Parameter *pParameter = it.value();
+            if (pParameter != nullptr)
+            {
+                if (!pParameter->variable().contains(NUMBER_OF_PINS) && !pParameter->variable().contains(NUMBER_OF_LEVERS) && !pParameter->variable().contains(NUMBER_OF_DISCS))
+                {
+                    QString sParameterValue = pParameter->value();
+                    CXMLNode xVariableNode(TAG_VARIABLE);
+                    xVariableNode.attributes()["name"] = pParameter->variable();
+                    xVariableNode.attributes()["value"] = sParameterValue;
+                    xVariableNodes.nodes() << xVariableNode;
+                }
+            }
+        }
+
         xRootNode.nodes() << xVariableNodes;
     }
     else logInfo("NO PARAMETER TO SAVE");
@@ -470,9 +511,9 @@ void ParameterMgr::importParametersFromXML(const QString &sInputFileName)
             QString sMsg = QString("%1 PARAMETER VARIABLE IS UNKNOWN").arg(sParameterVariable);
             logError(sMsg);
         }
-        QString sMsg = QString("PARAMETERS SUCCESSFULLY IMPORTED FROM: %1").arg(sInputFileName);
-        logInfo(sMsg);
     }
+    QString sMsg = QString("PARAMETERS SUCCESSFULLY IMPORTED FROM: %1").arg(sInputFileName);
+    logInfo(sMsg);
 }
 
 //-------------------------------------------------------------------------------------------------

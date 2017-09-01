@@ -98,7 +98,9 @@ SOURCES += main.cpp\
     encoder.cpp \
     cryptomgr.cpp \
     licensewidget.cpp \
-    keywidget.cpp
+    keywidget.cpp \
+    qskeinhash.cpp \
+    skeinimpl.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -144,7 +146,8 @@ HEADERS  += mainwindow.h \
     encoder.h \
     cryptomgr.h \
     licensewidget.h \
-    keywidget.h
+    keywidget.h \
+    qskeinhash.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \

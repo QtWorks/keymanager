@@ -177,7 +177,6 @@ QVariant GenericParameterTableModel::data(const QModelIndex &index, int iRole) c
 
 bool GenericParameterTableModel::setData(const QModelIndex &index, const QVariant &vData, int iRole)
 {
-
     if (index.isValid() && (iRole == Qt::EditRole))
     {
         QString sValue = vData.toString();
@@ -188,8 +187,8 @@ bool GenericParameterTableModel::setData(const QModelIndex &index, const QVarian
             if ((iTargetIndex >= 0) && (iTargetIndex < m_vData.size()))
             {
                 m_vData[index.column()+iTargetRow*m_lColumnVariables.size()] = sValue;
-                QString sFormattedVariable = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), iTargetRow-1);
-                emit parameterValueChanged(sFormattedVariable, vData.toString());
+                QString sFormattedVariableName = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, index.column(), iTargetRow-1);
+                emit parameterValueChanged(sFormattedVariableName, vData.toString());
                 emit dataChanged(index, index, QVector<int>() << Qt::DisplayRole);
             }
         }
@@ -423,6 +422,7 @@ void GenericParameterTableModel::processActionSetNumberOfRows(const QString &sAc
 
 void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue)
 {
+    qDebug() << "---> " << sParameterName << sParameterValue;
     Q_UNUSED(sParameterName);
     bool bOK = true;
     int nRows = sParameterValue.toInt(&bOK);

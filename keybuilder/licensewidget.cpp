@@ -33,6 +33,13 @@ void LicenseWidget::onValidateClicked()
 
 void LicenseWidget::setQuestion(const QString &sQuestion)
 {
-    if (sQuestion.length() == QUESTION_LENGTH)
-        ui->questionWidget->setValue(sQuestion);
+    ui->questionWidget->setValue(sQuestion);
+    ui->questionWidget->setReadOnly(true);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LicenseWidget::setAnswer(const QString &setAnswer)
+{
+    ui->answerWidget->setValue(setAnswer);
 }

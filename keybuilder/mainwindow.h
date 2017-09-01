@@ -51,6 +51,12 @@ public:
     //! Show openscad output log?
     void showOpenSCADOutputLog(bool bShowOpenSCADOoutputLog);
 
+    //! Set question
+    void setQuestion(const QString &sQuestion);
+
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
+
     //! Setup
     void buildMenus();
 

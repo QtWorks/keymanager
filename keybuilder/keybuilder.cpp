@@ -4,6 +4,7 @@
 #include "parametermgr.h"
 #include "constants.h"
 #include "helper.h"
+#include "cryptomgr.h"
 
 KeyBuilder *KeyBuilder::sInstance = nullptr;
 
@@ -43,6 +44,8 @@ bool KeyBuilder::startup()
         m_wMainWindow.setLicenseMode(true);
         m_wMainWindow.showApplicationBody(false);
         m_wMainWindow.showOpenSCADOutputLog(false);
+        m_wMainWindow.setQuestion(m_pController->cryptoMgr()->question());
+        m_wMainWindow.setAnswer(m_pController->cryptoMgr()->answer());
     }
     // Not first installation
     else
