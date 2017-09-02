@@ -9,7 +9,6 @@
 class CollapsibleBlock;
 class ParameterBlock;
 class QVBoxLayout;
-class Controller;
 
 class CollapsibleStack : public QWidget
 {
@@ -21,7 +20,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CollapsibleStack(Controller *pController, QWidget *parent=nullptr);
+    explicit CollapsibleStack(QWidget *parent=nullptr);
 
     //! Destructor
     ~CollapsibleStack();
@@ -52,9 +51,6 @@ private:
 
     //! Own blocks
     QVector<CollapsibleBlock *> m_vBlocks;
-
-    //! Controller
-    Controller *m_pController;
 };
 
 #endif // COLLAPSIBLESTACK_H

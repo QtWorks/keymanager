@@ -53,7 +53,6 @@ Controller::Controller(QObject *parent) : QObject(parent),
     if (!m_sOpenSCADPath.isEmpty())
     {
         m_pOpenSCADWrapper = new OpenSCADWrapper(m_sOpenSCADPath, this);
-        m_pOpenSCADWrapper->setController(this);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileReady, this, &Controller::STLFileReady, Qt::UniqueConnection);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::STLFileError, this, &Controller::STLFileError, Qt::UniqueConnection);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADProcessComplete, this, &Controller::openSCADProcessComplete, Qt::UniqueConnection);

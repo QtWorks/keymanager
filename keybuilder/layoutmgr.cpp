@@ -114,7 +114,7 @@ void LayoutMgr::addBlockToStack(CollapsibleBlock *pBlock)
             pTargetStack = m_vStacks[iStackIndex];
         else
         {
-            pTargetStack = new CollapsibleStack(m_pController, this);
+            pTargetStack = new CollapsibleStack(this);
             m_vStacks << pTargetStack;
             ui->horizontalLayout->addWidget(pTargetStack);
             ui->horizontalLayout->setAlignment(pTargetStack, Qt::AlignTop);

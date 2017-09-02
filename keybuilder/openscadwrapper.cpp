@@ -14,17 +14,9 @@
 //-------------------------------------------------------------------------------------------------
 
 OpenSCADWrapper::OpenSCADWrapper(const QString &sOpenSCADPath, QObject *parent) : QObject(parent),
-    m_pController(nullptr), m_sOpenSCADPath(sOpenSCADPath), m_pProcess(new QProcess(this)),
+    m_sOpenSCADPath(sOpenSCADPath), m_pProcess(new QProcess(this)),
     m_sNextOutputSTLFile("")
 {
-
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void OpenSCADWrapper::setController(Controller *pController)
-{
-    m_pController = pController;
     connect(m_pProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onOpenSCADProcessComplete(int, QProcess::ExitStatus)), Qt::UniqueConnection);
     connect(m_pProcess, &QProcess::readyReadStandardOutput, this, &OpenSCADWrapper::onOpenSCADreadyReadStandardOutput, Qt::UniqueConnection);
     connect(m_pProcess, &QProcess::readyReadStandardError, this, &OpenSCADWrapper::onOpenSCADreadyReadStandardError, Qt::UniqueConnection);

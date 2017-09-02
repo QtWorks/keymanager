@@ -6,7 +6,6 @@
 #include <QModelIndex>
 
 // Application
-class Controller;
 class CollapsibleBlock;
 
 class BlockModel : public QAbstractItemModel
@@ -25,9 +24,6 @@ public:
 
     //! Destructor
     ~BlockModel();
-
-    //! Set controller
-    void setController(Controller *pController);
 
     //! Get block
     CollapsibleBlock *getBlock(const QModelIndex &index) const;
@@ -60,9 +56,6 @@ public:
     QModelIndex getBlockIndex(const QString &sBlockUID) const;
 
 protected:
-    //! Controller
-    Controller *m_pController;
-
     //: Root block
     CollapsibleBlock *m_pRootBlock;
 

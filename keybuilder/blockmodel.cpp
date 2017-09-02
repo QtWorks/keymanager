@@ -8,8 +8,7 @@
 
 //-------------------------------------------------------------------------------------------------
 
-BlockModel::BlockModel(QObject *parent) : QAbstractItemModel(parent), m_pController(nullptr),
-    m_pRootBlock(nullptr)
+BlockModel::BlockModel(QObject *parent) : QAbstractItemModel(parent), m_pRootBlock(nullptr)
 {
 }
 
@@ -17,13 +16,6 @@ BlockModel::BlockModel(QObject *parent) : QAbstractItemModel(parent), m_pControl
 
 BlockModel::~BlockModel()
 {
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void BlockModel::setController(Controller *controller)
-{
-    m_pController = controller;
 }
 
 //-------------------------------------------------------------------------------------------------

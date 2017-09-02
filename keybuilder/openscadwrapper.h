@@ -4,7 +4,6 @@
 // Qt
 #include <QObject>
 #include <QProcess>
-class Controller;
 
 class OpenSCADWrapper : public QObject
 {
@@ -21,9 +20,6 @@ public:
     //! Destructor
     ~OpenSCADWrapper();
 
-    //! Set controller
-    void setController(Controller *pController);
-
     //! Generate STL
     bool generateSTL(const QString &sInputSCAD);
 
@@ -31,9 +27,6 @@ public:
     const QString &nextOutputSTLFile() const;
 
 private:
-    //! Controller
-    Controller *m_pController;
-
     //! OpenSCAD path
     QString m_sOpenSCADPath;
 
