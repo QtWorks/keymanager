@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(false);
 
@@ -222,10 +221,10 @@ void MainWindow::onCreateKeyClicked()
 
 void MainWindow::onUseExistingKeyClicked()
 {
-    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input XML parameter file"), QCoreApplication::applicationDirPath(), tr("XML (*.xml)"));
+    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input 03D parameter file"), QCoreApplication::applicationDirPath(), tr("03D (*.o3d)"));
     if (!sInputFileName.isEmpty())
     {
-        m_pController->importParametersFromXML(sInputFileName);
+        m_pController->importParametersFrom03D(sInputFileName);
         importBlockParametersFromXML(sInputFileName);
     }
 }
@@ -260,13 +259,13 @@ void MainWindow::onGenerateSTL()
 
 void MainWindow::onSaveKeyParameters()
 {
-    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("XML (*.xml)"));
+    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("03D (*.o3d)"));
     if (!sOutputFileName.isEmpty())
     {
         CXMLNode xRootNode(TAG_ROOT);
 
         // Export parameters
-        m_pController->exportParametersToXML(xRootNode);
+        m_pController->exportParametersToO3D(xRootNode);
 
         // Export blocks
         exportBlocksToXML(xRootNode);
@@ -311,7 +310,6 @@ void MainWindow::onSaveGeneratedSTL()
 void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 {
     // Hide progress bar
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
 
     // Load STL
@@ -342,7 +340,6 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
 void MainWindow::onSTLFileError(const QString &sErrorMsg)
 {
     // Hide progress bar
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
 
     logError(sErrorMsg);
@@ -356,7 +353,6 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
     if (!sOutputSCADContents.isEmpty())
     {
-        qDebug() << "SHOWING PROGESS BAR";
         ui->progressBar->setVisible(true);
         QString sMsg = "BUILDING STL...";
         logInfo(sMsg);
@@ -369,7 +365,6 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD SUCCESS";
     logInfo(sMsg);
@@ -381,7 +376,6 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     QString sMsg = "STL BUILD FAILURE";
     logInfo(sMsg);
@@ -393,7 +387,6 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
-    qDebug() << "HIDING PROGESS BAR";
     ui->progressBar->setVisible(false);
     statusBar()->showMessage("");
     ui->openSCADOutputLog->append(sStatus);
@@ -499,7 +492,7 @@ void MainWindow::exportBlocksToXML(CXMLNode &xRootNode)
 
 void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
 {
-    CXMLNode xRootNode = CXMLNode::loadXMLFromFile(sInputFile);
+    CXMLNode xRootNode = CXMLNode::loadXMLFromFile(sInputFile, true);
     CXMLNode xBlocks = xRootNode.getNodeByTagName(TAG_BLOCKS);
     QVector<CXMLNode> vChildBlocks = xBlocks.getNodesByTagName(TAG_BLOCK);
     foreach (CXMLNode xChildBlock, vChildBlocks)

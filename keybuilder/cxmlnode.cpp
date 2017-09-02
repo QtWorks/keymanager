@@ -2,6 +2,7 @@
 // Qt
 #include <QFile>
 #include <QStringList>
+#include <QDebug>
 
 // Library
 #include "cxmlnode.h"
@@ -17,6 +18,7 @@
 //-------------------------------------------------------------------------------------------------
 
 QString const CXMLNode::sExtension_XML = ".xml";
+QString const CXMLNode::sExtension_O3D = ".o3d";
 QString const CXMLNode::sExtension_QRC = ".qrc";
 QString const CXMLNode::sExtension_JSON = ".json";
 
@@ -143,11 +145,12 @@ QVector<CXMLNode>& CXMLNode::nodes()
 /*!
     Returns a CXMLNode hierarchy loaded from the file named \a sFileName (XML or JSON).
 */
-CXMLNode CXMLNode::load(const QString& sFileName)
+CXMLNode CXMLNode::load(const QString& sFileName, bool bBase64)
 {
-    if (sFileName.toLower().endsWith(sExtension_XML))
+    if (sFileName.toLower().endsWith(sExtension_XML) || sFileName.toLower().endsWith(sExtension_O3D))
     {
-        return loadXMLFromFile(sFileName);
+        bool bBase64 = sFileName.toLower().endsWith(sExtension_O3D);
+        return loadXMLFromFile(sFileName, bBase64);
     }
     else if (sFileName.toLower().endsWith(sExtension_JSON))
     {
@@ -166,14 +169,15 @@ CXMLNode CXMLNode::load(const QString& sFileName)
 bool CXMLNode::save(const QString& sFileName)
 {
     QString sLowerFileName = sFileName.toLower();
+    bool bBase64 = sLowerFileName.endsWith(sExtension_O3D);
 
     if (sLowerFileName.endsWith(sExtension_QRC))
     {
         return saveXMLToFile(sFileName, false);
     }
-    else if (sLowerFileName.endsWith(sExtension_XML))
+    else if (sLowerFileName.endsWith(sExtension_XML) || sLowerFileName.endsWith(sExtension_O3D))
     {
-        return saveXMLToFile(sFileName);
+        return saveXMLToFile(sFileName, true, bBase64);
     }
     else if (sLowerFileName.endsWith(sExtension_JSON))
     {
@@ -188,7 +192,7 @@ bool CXMLNode::save(const QString& sFileName)
 /*!
     Returns a CXMLNode hierarchy loaded from the XML file named \a sFileName.
 */
-CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName)
+CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName, bool bBase64)
 {
     QFile xmlFile(sFileName);
 
@@ -196,9 +200,16 @@ CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName)
     {
         if (xmlFile.open(QIODevice::ReadOnly))
         {
-            QString sText = QString(xmlFile.readAll());
+            QString sText("");
+            if (bBase64)
+            {
+                sText = QString(QByteArray::fromBase64(xmlFile.readAll()));
+            }
+            else
+            {
+                sText = QString(xmlFile.readAll());
+            }
             xmlFile.close();
-
             return parseXML(sText);
         }
     }
@@ -518,15 +529,19 @@ QJsonObject CXMLNode::toJsonObject() const
     If \a bXMLHeader is \c true, the xml file will contain a header of the type <?xml version="1.0" encoding="UTF-8"?> \br
     Returns \c true if successful, \c false otherwise.
 */
-bool CXMLNode::saveXMLToFile(const QString& sFileName, bool bXMLHeader)
+bool CXMLNode::saveXMLToFile(const QString& sFileName, bool bXMLHeader, bool bBase64)
 {
     QFile xmlFile(sFileName);
 
     if (xmlFile.open(QIODevice::WriteOnly))
     {
-        xmlFile.write(toString(bXMLHeader).toUtf8());
+        if (bBase64)
+        {
+            QByteArray baOriginalSCADScript = toString(bXMLHeader).toLatin1().toBase64();
+            xmlFile.write(baOriginalSCADScript);
+        }
+        else xmlFile.write(toString(bXMLHeader).toUtf8());
         xmlFile.close();
-
         return true;
     }
 

@@ -84,6 +84,7 @@
 
 // Widgets
 #define WIDGET_LINE_EDIT "lineedit"
+#define WIDGET_LINE_EDIT_RETURN "lineeditvalidateonreturn"
 #define WIDGET_FILE_PICKER "filepicker"
 #define WIDGET_DXF_OR_STL_FILE_PICKER "dxforstlfilepicker"
 #define WIDGET_EXCLUSIVE_CHOICE "exclusivechoice"

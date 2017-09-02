@@ -218,16 +218,16 @@ bool Controller::exportParametersToSCAD(QString &sOutputFileName)
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::exportParametersToXML(CXMLNode &xRootNode)
+void Controller::exportParametersToO3D(CXMLNode &xRootNode)
 {
-    m_pParameterMgr->exportParametersToXML(xRootNode);
+    m_pParameterMgr->exportParametersTo03D(xRootNode);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::importParametersFromXML(const QString &sInputFileName)
+void Controller::importParametersFrom03D(const QString &sInputFileName)
 {
-    m_pParameterMgr->importParametersFromXML(sInputFileName);
+    m_pParameterMgr->importParametersFrom03D(sInputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------

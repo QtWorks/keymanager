@@ -73,7 +73,7 @@
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_abloy_classic_stl_name_qt" dxf_variable="qt_abloy_classic_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
    <Block name="ABLOY DISKLOCK PRO" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abloy_disklock.png" value="abloy_disklock" />
-   <Block name="ABLOY PROTECT" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abloy_protec.png" value="abloy_protec" />
+   <Block name="ABLOY PROTEC" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abloy_protec.png" value="abloy_protec" />
    <Block name="ABUS PLUS" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_abus_plus.png" value="abus_plus" />
    <Block name="AXI HOME" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_axi_home.png" value="axi_home">
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_axi_home_model_qt" default="RIGHT" ui="exclusivechoice" />

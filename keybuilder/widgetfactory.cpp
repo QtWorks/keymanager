@@ -88,11 +88,11 @@ BaseWidget *WidgetFactory::buildWidget(const CXMLNode &xParameter, QWidget *pPar
         FilePickerWidget *pFilePickerWidget = new FilePickerWidget(m_pController, sParameterName, sFileExtension, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
         pWidget = pFilePickerWidget;
     }
-    if (sParameterUI == WIDGET_LINE_EDIT)
+    if ((sParameterUI == WIDGET_LINE_EDIT) || (sParameterUI == WIDGET_LINE_EDIT_RETURN))
     {
         QString sMinValue = xParameter.attributes()[PROPERTY_MIN_VALUE].simplified();
         QString sMaxValue = xParameter.attributes()[PROPERTY_MAX_VALUE].simplified();
-        LineEditWidget *pLineEdit = new LineEditWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, pParentWidget);
+        LineEditWidget *pLineEdit = new LineEditWidget(m_pController, sParameterName, sDefaultValue, sAutoScript, sEnabledCondition, (sParameterUI == WIDGET_LINE_EDIT_RETURN), pParentWidget);
         if (sParameterType == PROPERTY_INT)
         {
             int iMin = 0;

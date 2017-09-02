@@ -100,7 +100,7 @@ public:
 
     //! Charge un CXMLNode depuis un fichier XML ou JSON selon son extension
     //! Loads a CXMLNode from a XML or JSON file based on the extension
-    static CXMLNode load(const QString& sFileName);
+    static CXMLNode load(const QString& sFileName, bool bBase64=false);
 
     //! Ecrit le contenu dans un fichier XML ou JSON selon son extension
     //! Saves content to a XML or JSON file based on the extension
@@ -108,7 +108,7 @@ public:
 
     //! Lit un fichier XML d'après un nom de fichier
     //! Reads a XML file given a file name
-    static CXMLNode loadXMLFromFile(const QString& sFileName);
+    static CXMLNode loadXMLFromFile(const QString& sFileName, bool bBase64=false);
 
     //! Lit un fichier XML d'après un nom de fichier
     //! Reads a JSON file given a file name
@@ -120,7 +120,7 @@ public:
 
     //! Ecrit un fichier XML
     //! Saves a XML file
-    bool saveXMLToFile(const QString& sFileName, bool bXMLHeader = true);
+    bool saveXMLToFile(const QString& sFileName, bool bXMLHeader = true, bool bBase64 = false);
 
     //! Ecrit un fichier XML
     //! Saves a XML file
@@ -188,6 +188,7 @@ public:
 public:
 
     static const QString sExtension_XML;
+    static const QString sExtension_O3D;
     static const QString sExtension_QRC;
     static const QString sExtension_JSON;
 

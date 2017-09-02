@@ -135,7 +135,7 @@ private:
 
 public slots:
     //! Set number of rows
-    void onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue);
+    void onSetRowCount(const QString &sParameterName, const QString &sParameterValue);
 
     //! Update all
     void onUpdateAll(int iTargetColumn);

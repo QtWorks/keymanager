@@ -10,7 +10,8 @@
 
 //-------------------------------------------------------------------------------------------------
 
-LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript, const QString &sEnabledCondition, QWidget *parent) :
+LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, const QString &sDefaultValue, const QString &sAutoScript,
+    const QString &sEnabledCondition, bool bValidateOnReturnPressed, QWidget *parent) :
     BaseWidget(pController, parent), ui(new Ui::LineEditWidget)
 {
     ui->setupUi(this);
@@ -24,7 +25,11 @@ LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, c
     // Set enabled condition
     setEnabledCondition(sEnabledCondition);
 
-    connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
+    if (bValidateOnReturnPressed)
+        connect(ui->lineEdit, &QLineEdit::returnPressed, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
+    else
+        connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
+
     ui->label->setText(sLabel);
 }
 
@@ -54,6 +59,7 @@ void LineEditWidget::setLabel(const QString &sLabel)
 void LineEditWidget::applyDefaultValue()
 {
     ui->lineEdit->setText(defaultValue());
+    onTextChanged();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -61,6 +67,7 @@ void LineEditWidget::applyDefaultValue()
 void LineEditWidget::applyValue(const QString &sValue)
 {
     ui->lineEdit->setText(sValue);
+    onTextChanged();
 }
 
 //-------------------------------------------------------------------------------------------------

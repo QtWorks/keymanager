@@ -85,14 +85,14 @@ void OpenSCADWrapper::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitSta
     QFileInfo fi(m_sNextOutputSTLFile);
     if (fi.exists())
     {
-        QString sMsg = QString("STL FILE SUCCESSFULLY GENERATED AT: %1").arg(m_sNextOutputSTLFile);
+        QString sMsg = QString("STL FILE SUCCESSFULLY GENERATED");
         logInfo(sMsg);
         Utils::replaceInFile(m_sNextOutputSTLFile, TARGET_STRING, OUTPUT_STRING);
         emit STLFileReady(m_sNextOutputSTLFile);
     }
     else
     {
-        QString sMsg = QString("COULD NOT GENERATE STL FILE: %1").arg(m_sNextOutputSTLFile);
+        QString sMsg = QString("COULD NOT GENERATE STL FILE");
         emit STLFileError(sMsg);
     }
 }

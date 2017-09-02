@@ -427,7 +427,7 @@ bool ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
+void ParameterMgr::exportParametersTo03D(CXMLNode &xRootNode)
 {
     if (!m_hParameters.isEmpty())
     {
@@ -444,7 +444,7 @@ void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
             xVariableNodes.nodes() << xVariableNode;
         }
 
-        // Write table-dimensioning parameters first
+        // Write table-dimensioning parameters next
         for (QHash<QString, Parameter *>::iterator it=m_hParameters.begin(); it!=m_hParameters.end(); ++it)
         {
             if (it.key() == VARIABLE_TYPE_OF_KEY)
@@ -492,9 +492,9 @@ void ParameterMgr::exportParametersToXML(CXMLNode &xRootNode)
 
 //-------------------------------------------------------------------------------------------------
 
-void ParameterMgr::importParametersFromXML(const QString &sInputFileName)
+void ParameterMgr::importParametersFrom03D(const QString &sInputFileName)
 {
-    CXMLNode xRootNode = CXMLNode::load(sInputFileName);
+    CXMLNode xRootNode = CXMLNode::load(sInputFileName, true);
     CXMLNode xVariablesNode = xRootNode.getNodeByTagName(TAG_VARIABLES);
     QVector<CXMLNode> vVariableNodes = xVariablesNode.getNodesByTagName(TAG_VARIABLE);
     foreach (CXMLNode xVariableNode, vVariableNodes)

@@ -414,24 +414,28 @@ void GenericParameterTableModel::processActionSetNumberOfRows(const QString &sAc
     Parameter *pParameter = m_pController->parameterMgr()->getParameterByVariableName(sActionSetNumberOfRows);
     if (pParameter != nullptr)
     {
-        connect(pParameter, &Parameter::parameterValueChanged, this, &GenericParameterTableModel::onSetNumberOfRows, Qt::UniqueConnection);
+        connect(pParameter, &Parameter::parameterValueChanged, this, &GenericParameterTableModel::onSetRowCount, Qt::UniqueConnection);
     }
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void GenericParameterTableModel::onSetNumberOfRows(const QString &sParameterName, const QString &sParameterValue)
+void GenericParameterTableModel::onSetRowCount(const QString &sParameterName, const QString &sParameterValue)
 {
-    qDebug() << "---> " << sParameterName << sParameterValue;
     Q_UNUSED(sParameterName);
     bool bOK = true;
     int nRows = sParameterValue.toInt(&bOK);
     if (bOK)
     {
+        // Make copy of current
+        QVector<QString> vData = m_vData;
         beginResetModel();
         m_nRows = nRows;
         m_vData.resize((nRows+1)*m_lColumnLabels.size());
         clearAll();
+        int iDataSize = qMin(vData.size(), m_vData.size());
+        for (int i=0; i<iDataSize; i++)
+            m_vData[i] = vData[i];
         endResetModel();
         emit rowCountChanged(m_nRows);
     }

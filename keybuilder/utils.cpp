@@ -115,7 +115,6 @@ void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString
     if (fi.exists())
     {
         QString sFileContents = Utils::loadFile(sInputFile);
-        qDebug() << sFileContents;
         while (sFileContents.contains(sInputString, iSensitivity))
             sFileContents.replace(sInputString, sOutputString);
         saveFile(sFileContents, sInputFile);
