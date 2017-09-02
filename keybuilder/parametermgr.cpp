@@ -494,7 +494,7 @@ void ParameterMgr::exportParametersTo03D(CXMLNode &xRootNode)
 
 void ParameterMgr::importParametersFrom03D(const QString &sInputFileName)
 {
-    CXMLNode xRootNode = CXMLNode::load(sInputFileName, true);
+    CXMLNode xRootNode = CXMLNode::load(sInputFileName);
     CXMLNode xVariablesNode = xRootNode.getNodeByTagName(TAG_VARIABLES);
     QVector<CXMLNode> vVariableNodes = xVariablesNode.getNodesByTagName(TAG_VARIABLE);
     foreach (CXMLNode xVariableNode, vVariableNodes)
