@@ -40,12 +40,23 @@ public:
     //! Set value
     void setValue(const QString &sValue);
 
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Show clipboard button
+    void showClipBoardButton(bool bShow);
+
 private:
     //! UI
     Ui::KeyWidget *ui;
 
     //! Blocks
     QVector<QLineEdit *> m_vBlocks;
+
+public slots:
+    //! Copy value to clipboard
+    void onCopyValueToClipBoard();
 };
 
 #endif // KEYWIDGET_H

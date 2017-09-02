@@ -15,11 +15,19 @@ CryptoMgr::CryptoMgr(QObject *parent) : QObject(parent),
     m_bFirstInstall(true), m_sDiskSerialHash(""),
     m_sKey1(""), m_sKey2(""), m_sQuestion(""), m_sResponse("")
 {
+    // Compute disk serial hash
     m_sDiskSerialHash = Utils::getDiskSerialHash();
+
+    // Key1 (known)
     m_sKey1 = "d8ffIUHGdf8g7b45";
+
+    // Check if this is the first installation
     QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
     m_bFirstInstall = settings.value(FIRST_INSTALL).toString() == VALUE_TRUE;
+
+    // Compute simple encoding order (known)
     m_vSimpleEncodingOrder = Utils::buildOrder(QUESTION_LENGTH);
+
     writeInitialCryptedFile(":/data/script_in.scad");
 }
 

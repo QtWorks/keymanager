@@ -1,3 +1,6 @@
+// Qt
+#include <QPainter>
+
 // Application
 #include "licensewidget.h"
 #include "ui_licensewidget.h"
@@ -5,12 +8,13 @@
 
 //-------------------------------------------------------------------------------------------------
 
-LicenseWidget::LicenseWidget(QWidget *parent) : QWidget(parent),
+LicenseWidget::LicenseWidget(QWidget *parent) : DescriptionTaggedWidget(parent),
     ui(new Ui::LicenseWidget)
 {
     // Setup UI
     ui->setupUi(this);
     ui->questionWidget->setTitle(tr("QUESTION"));
+    ui->questionWidget->showClipBoardButton(true);
     ui->answerWidget->setTitle(tr("ANSWER"));
     connect(ui->validateButton, &QPushButton::clicked, this, &LicenseWidget::onValidateClicked);
 }
@@ -37,9 +41,3 @@ void LicenseWidget::setQuestion(const QString &sQuestion)
     ui->questionWidget->setReadOnly(true);
 }
 
-//-------------------------------------------------------------------------------------------------
-
-void LicenseWidget::setAnswer(const QString &setAnswer)
-{
-    ui->answerWidget->setValue(setAnswer);
-}

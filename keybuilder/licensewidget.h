@@ -1,14 +1,14 @@
 #ifndef LICENSEWIDGET_H
 #define LICENSEWIDGET_H
 
-// Qt
-#include <QWidget>
+// Application
+#include "descriptiontaggedwidget.h"
 
 namespace Ui {
 class LicenseWidget;
 }
 
-class LicenseWidget : public QWidget
+class LicenseWidget : public DescriptionTaggedWidget
 {
     Q_OBJECT
 
@@ -25,9 +25,6 @@ public:
 
     //! Set question
     void setQuestion(const QString &sQuestion);
-
-    //! Set answer
-    void setAnswer(const QString &sAnswer);
 
 private:
     //! UI

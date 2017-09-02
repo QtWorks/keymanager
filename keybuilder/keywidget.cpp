@@ -1,6 +1,7 @@
 // Qt
 #include <QFont>
 #include <QLineEdit>
+#include <QClipboard>
 #include <QDebug>
 
 // Application
@@ -14,6 +15,8 @@ KeyWidget::KeyWidget(QWidget *parent) : QWidget(parent),
     ui(new Ui::KeyWidget)
 {
     ui->setupUi(this);
+    connect(ui->copyToClipBoardButton, &QPushButton::clicked, this, &KeyWidget::onCopyValueToClipBoard);
+    showClipBoardButton(false);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -54,12 +57,12 @@ void KeyWidget::setValue(const QString &sValue)
 {
     int iLength = sValue.length();
     int nBlocks = (iLength/4) + (iLength%4 != 0 ? 1 : 0);
-    int iDelta = 12;
+    int iDelta = 15;
     for (int i=0; i<nBlocks; i++)
     {
         QLineEdit *pBlock = new QLineEdit(this);
         pBlock->setContentsMargins(0, 0, 0, 0);
-        ui->blockLayout->addWidget(pBlock);
+        ui->innerLayout->addWidget(pBlock);
         pBlock->setText(sValue.mid(i*4, 4));
         QFont font("Segoe UI", 24);
         QFontMetrics fm(font);
@@ -72,3 +75,17 @@ void KeyWidget::setValue(const QString &sValue)
     }
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void KeyWidget::showClipBoardButton(bool bShow)
+{
+    ui->copyToClipBoardButton->setVisible(bShow);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void KeyWidget::onCopyValueToClipBoard()
+{
+    QClipboard *pClipBoard = QApplication::clipboard();
+    pClipBoard->setText(getValue());
+}

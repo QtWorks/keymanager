@@ -21,7 +21,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit BlockModel(QObject *parent = 0);
+    explicit BlockModel(QObject *parent=nullptr);
 
     //! Destructor
     ~BlockModel();

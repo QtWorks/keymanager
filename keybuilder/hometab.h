@@ -7,12 +7,13 @@
 
 // Application
 #include "cxmlnode.h"
+#include "descriptiontaggedwidget.h"
 
 namespace Ui {
 class HomeTab;
 }
 
-class HomeTab : public QWidget
+class HomeTab : public DescriptionTaggedWidget
 {
     Q_OBJECT
 
@@ -22,34 +23,14 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit HomeTab(QWidget *parent = 0);
+    explicit HomeTab(QWidget *parent=nullptr);
 
     //! Destructor
     ~HomeTab();
 
-protected:
-    //! Paint event
-    virtual void paintEvent(QPaintEvent *event);
-
-private:
-    //! Load description
-    void loadDescription();
-
 private:
     //! UI
     Ui::HomeTab *ui;
-
-    //! Items
-    QVector<CXMLNode> m_vItems;
-
-    //! Max text width
-    int m_iMaxTextWidth;
-
-    //! Text height
-    int m_iTextHeight;
-
-    //! Font
-    QFont m_font;
 };
 
 #endif // HOMETAB_H

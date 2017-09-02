@@ -93,12 +93,13 @@ SOURCES += main.cpp\
     codeeditor.cpp \
     keypreviewwidget.cpp \
     customtableview.cpp \
-    simplecrypt.cpp \
     xyzmirrorwidget.cpp \
     encoder.cpp \
     cryptomgr.cpp \
     licensewidget.cpp \
-    keywidget.cpp
+    keywidget.cpp \
+    descriptiontaggedwidget.cpp \
+    appsettings.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -138,13 +139,14 @@ HEADERS  += mainwindow.h \
     keypreviewwidget.h \
     customtableview.h \
     encoder.h \
-    simplecrypt.h \
     exclusivechoicewidget.h \
     xyzmirrorwidget.h \
     encoder.h \
     cryptomgr.h \
     licensewidget.h \
-    keywidget.h
+    keywidget.h \
+    descriptiontaggedwidget.h \
+    appsettings.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
