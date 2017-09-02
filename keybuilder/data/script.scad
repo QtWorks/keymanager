@@ -66,6 +66,7 @@ regular_dxf_name = qt_regular_dxf_name_qt;
 regular_stl_name = qt_regular_stl_name_qt;
 
 //PARAMETERS OF DIMPLE AND LASER BLANK
+dimple_laser_make_reversible  = qt_dimple_laser_make_reversible_qt;
 dimple_laser_length = qt_dimple_laser_length_qt;
 dimple_laser_width = qt_dimple_laser_width_qt;
 dimple_laser_thickness = qt_dimple_laser_thickness_qt;
@@ -1556,15 +1557,16 @@ module regular(regular_length=regular_length,
             resize([regular_thickness,regular_length+1,regular_height])   import(regular_stl_name);
         }//END OF IF
   
-    
         if (regular_stl_name=="0")
         {  
             difference()
             {
             translate ([0,regular_length,0])
-                rotate([90,0,0])
+            rotate([90,0,0])
+            translate([regular_thickness/2,0,0])
                 resize([regular_thickness,regular_height,regular_length+1])
-                linear_extrude(height = regular_length+1, center = 1, convexity = 10)
+            rotate([0,0,90])
+            linear_extrude(height = regular_length+1, center = 1, convexity = 10)
                 import (file = regular_dxf_name);
                 
             if(regular_auto_tip=="YES")
@@ -7418,7 +7420,7 @@ module extra_cut_shape_01()
     {
         translate(extra_cut_shape_01_stl_translate)
         rotate(extra_cut_shape_01_stl_rotation)
-        import("shape01.stl");
+        import("extra_cut_shape_01_stl_name");
     }
 
 }
@@ -7473,7 +7475,7 @@ module extra_cut_shape_02()
     {
         translate(extra_cut_shape_02_stl_translate)
         rotate(extra_cut_shape_02_stl_rotation)
-        import("shape02.stl");
+        import(extra_cut_shape_02_stl_name);
     }
 
 }
@@ -7528,7 +7530,7 @@ module extra_cut_shape_03()
     {
         translate(extra_cut_shape_03_stl_translate)
         rotate(extra_cut_shape_03_stl_rotation)
-        import("shape03.stl");
+        import(extra_cut_shape_03_stl_name);
     }
 
 }
@@ -7584,7 +7586,7 @@ module extra_cut_shape_04()
     {
         translate(extra_cut_shape_04_stl_translate)
         rotate(extra_cut_shape_04_stl_rotation)
-        import("shape04.stl");
+        import(extra_cut_shape_04_stl_name);
     }
 
 }
@@ -7640,7 +7642,7 @@ module extra_cut_shape_05()
     {
         translate(extra_cut_shape_05_stl_translate)
         rotate(extra_cut_shape_05_stl_rotation)
-        import("shape05.stl");
+        import(extra_cut_shape_05_stl_name);
     }
 
 }
@@ -7696,7 +7698,7 @@ module extra_cut_shape_06()
     {
         translate(extra_cut_shape_06_stl_translate)
         rotate(extra_cut_shape_06_stl_rotation)
-        import("shape06.stl");
+        import(extra_cut_shape_06_stl_name);
     }
 
 }
@@ -7752,7 +7754,7 @@ module extra_cut_shape_07()
     {
         translate(extra_cut_shape_07_stl_translate)
         rotate(extra_cut_shape_07_stl_rotation)
-        import("shape07.stl");
+        import(extra_cut_shape_07_stl_name);
     }
 
 }
@@ -7808,7 +7810,7 @@ module extra_cut_shape_08()
     {
         translate(extra_cut_shape_08_stl_translate)
         rotate(extra_cut_shape_08_stl_rotation)
-        import("shape08.stl");
+        import(extra_cut_shape_08_stl_name);
     }
 
 }
@@ -7864,7 +7866,7 @@ module extra_cut_shape_09()
     {
         translate(extra_cut_shape_09_stl_translate)
         rotate(extra_cut_shape_09_stl_rotation)
-        import("shape09.stl");
+        import(extra_cut_shape_09_stl_name);
     }
 
 }
@@ -7920,7 +7922,7 @@ module extra_cut_shape_10()
     {
         translate(extra_cut_shape_10_stl_translate)
         rotate(extra_cut_shape_10_stl_rotation)
-        import("shape10.stl");
+        import(extra_cut_shape_10_stl_name);
     }
 
 }
@@ -8186,7 +8188,7 @@ module extra_material_shape_01()
     {
         translate(extra_material_shape_01_stl_translate)
         rotate(extra_material_shape_01_stl_rotation)
-        import("shape01.stl");
+        import(extra_material_shape_01_stl_name);
     }
 
 }
@@ -8241,7 +8243,7 @@ module extra_material_shape_02()
     {
         translate(extra_material_shape_02_stl_translate)
         rotate(extra_material_shape_02_stl_rotation)
-        import("shape02.stl");
+        import(extra_material_shape_02_stl_name);
     }
 
 }
@@ -8296,7 +8298,7 @@ module extra_material_shape_03()
     {
         translate(extra_material_shape_03_stl_translate)
         rotate(extra_material_shape_03_stl_rotation)
-        import("shape03.stl");
+        import(extra_material_shape_03_stl_name);
     }
 
 }
@@ -8352,7 +8354,7 @@ module extra_material_shape_04()
     {
         translate(extra_material_shape_04_stl_translate)
         rotate(extra_material_shape_04_stl_rotation)
-        import("shape04.stl");
+        import(extra_material_shape_04_stl_name);
     }
 
 }
@@ -8408,7 +8410,7 @@ module extra_material_shape_05()
     {
         translate(extra_material_shape_05_stl_translate)
         rotate(extra_material_shape_05_stl_rotation)
-        import("shape05.stl");
+        import(extra_material_shape_05_stl_name);
     }
 
 }
@@ -8464,7 +8466,7 @@ module extra_material_shape_06()
     {
         translate(extra_material_shape_06_stl_translate)
         rotate(extra_material_shape_06_stl_rotation)
-        import("shape06.stl");
+        import(extra_material_shape_06_stl_name);
     }
 
 }
@@ -8520,7 +8522,7 @@ module extra_material_shape_07()
     {
         translate(extra_material_shape_07_stl_translate)
         rotate(extra_material_shape_07_stl_rotation)
-        import("shape07.stl");
+        import(extra_material_shape_07_stl_name);
     }
 
 }
@@ -8576,7 +8578,7 @@ module extra_material_shape_08()
     {
         translate(extra_material_shape_08_stl_translate)
         rotate(extra_material_shape_08_stl_rotation)
-        import("shape08.stl");
+        import(extra_material_shape_08_stl_name);
     }
 
 }
@@ -8632,7 +8634,7 @@ module extra_material_shape_09()
     {
         translate(extra_material_shape_09_stl_translate)
         rotate(extra_material_shape_09_stl_rotation)
-        import("shape09.stl");
+        import(extra_material_shape_09_stl_name);
     }
 
 }
@@ -8688,7 +8690,7 @@ module extra_material_shape_10()
     {
         translate(extra_material_shape_10_stl_translate)
         rotate(extra_material_shape_10_stl_rotation)
-        import("shape10.stl");
+        import(extra_material_shape_10_stl_name);
     }
 
 }
@@ -8723,6 +8725,15 @@ difference()
     generate_blank(type_of_key);
 
     perform_chosen_cuts();
+    
+    //reversible keys
+    if(dimple_laser_make_reversible == "YES")
+    {
+        translate([dimple_laser_width,0,dimple_laser_thickness])
+        rotate([0,180,0])
+        translate([0,0,0])
+        perform_chosen_cuts();
+    }
 }
 
 automatic_key_head_and_shoulder();
@@ -8732,6 +8743,16 @@ extra_material_use();
 if(show_chosen_cuts == "YES")
 {
     perform_chosen_cuts();
+    
+    
+    //reversible keys
+    if(dimple_laser_make_reversible == "YES")
+    {
+        translate([dimple_laser_width,0,dimple_laser_thickness])
+        rotate([0,180,0])
+        translate([0,0,0])
+        perform_chosen_cuts();
+    }
 }
 
 

@@ -11,6 +11,7 @@
       <Parameter name="BROWSE FOR A DXF/STL" type="string" stl_variable="qt_regular_stl_name_qt" dxf_variable="qt_regular_dxf_name_qt" ui="dxforstlfilepicker"/>
    </Block>
    <Block name="DIMPLE/LASER KEY" set_variable="qt_type_of_key_qt" keypreviewimage=":/images/menu1_dimple_laser.png" value="dimple_laser">
+      <Parameter name="MAKE KEY REVERSIBLE" type="string" variable="qt_dimple_laser_make_reversible_qt" default="NO" ui="yesno"/>
       <Parameter name="LENGTH" type="double" variable="qt_dimple_laser_length_qt" ui="lineedit" />
       <Parameter name="WIDTH" type="double" variable="qt_dimple_laser_width_qt" ui="lineedit" />
       <Parameter name="THICKNESS" type="double" variable="qt_dimple_laser_thickness_qt" ui="lineedit" />
