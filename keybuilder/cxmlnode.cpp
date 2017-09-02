@@ -145,7 +145,7 @@ QVector<CXMLNode>& CXMLNode::nodes()
 /*!
     Returns a CXMLNode hierarchy loaded from the file named \a sFileName (XML or JSON).
 */
-CXMLNode CXMLNode::load(const QString& sFileName, bool bBase64)
+CXMLNode CXMLNode::load(const QString& sFileName)
 {
     if (sFileName.toLower().endsWith(sExtension_XML) || sFileName.toLower().endsWith(sExtension_O3D))
     {

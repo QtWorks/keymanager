@@ -100,7 +100,7 @@ public:
 
     //! Charge un CXMLNode depuis un fichier XML ou JSON selon son extension
     //! Loads a CXMLNode from a XML or JSON file based on the extension
-    static CXMLNode load(const QString& sFileName, bool bBase64=false);
+    static CXMLNode load(const QString& sFileName);
 
     //! Ecrit le contenu dans un fichier XML ou JSON selon son extension
     //! Saves content to a XML or JSON file based on the extension
