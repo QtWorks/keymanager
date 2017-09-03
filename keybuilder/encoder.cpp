@@ -31,8 +31,8 @@ QString Encoder::encrypt(const QString &sPlainText)
         if (invAlphabet.count(plaintext[i]) > 0)
         {
             int k=invAlphabet[plaintext[i]];
-            int j=(k>25)?26:0;
-            out.push_back(alphabet[(k+key[ctr])%26 + j]);
+            int j=(k>(alphabet.length()-1))?alphabet.length():0;
+            out.push_back(alphabet[(k+key[ctr])%alphabet.length() + j]);
         }
         else
         {
@@ -55,9 +55,9 @@ QString Encoder::decrypt(const QString &sPlainText)
         if(invAlphabet.count(plaintext[i]) > 0)
         {
             int k=invAlphabet[plaintext[i]];
-            int j=(k>25)?26:0;
-            if(k-key[ctr]<0){k+=26;};
-            out.push_back(alphabet[(k-key[ctr])%26 + j]);
+            int j=(k>(alphabet.length()-1))?alphabet.length():0;
+            if(k-key[ctr]<0){k+=alphabet.length();};
+            out.push_back(alphabet[(k-key[ctr])%alphabet.length() + j]);
         }
         else
         {
@@ -78,7 +78,7 @@ void Encoder::setKey(const QString &sKeyIn)
     for (unsigned int i=0;i<keyin.length();++i)
     {
         if (invAlphabet.count(keyin[i])>0)
-            key.push_back(invAlphabet[keyin[i]]%26);
+            key.push_back(invAlphabet[keyin[i]]%alphabet.length());
     }
     ctr=0;
 }

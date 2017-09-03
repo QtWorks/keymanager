@@ -7,7 +7,6 @@
         <file>data/settings.xml</file>
         <file>css/main.css</file>
         <file>data/about.xml</file>
-        <file>ini/settings.ini</file>
         <file>icons/ico-build.png</file>
         <file>icons/ico-clear.png</file>
         <file>icons/ico-close.png</file>
@@ -28,5 +27,6 @@
         <file>images/menu1_browse_for_a_stl.png</file>
         <file>icons/ico-key.ico</file>
         <file>icons/ico-key.png</file>
+        <file>ini/publicsettings.ini</file>
     </qresource>
 </RCC>

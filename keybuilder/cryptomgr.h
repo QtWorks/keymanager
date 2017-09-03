@@ -18,7 +18,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CryptoMgr(QObject *parent=nullptr);
+    explicit CryptoMgr(bool bFirstInstallation, QObject *parent=nullptr);
 
     //! Destructor
     ~CryptoMgr();
@@ -30,9 +30,6 @@ public:
     //! Return question
     const QString &question() const;
 
-    //! Return response
-    const QString &answer() const;
-
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -40,8 +37,8 @@ public:
     //! Write initial crypted file
     void writeInitialCryptedFile(const QString &sInputFilePath);
 
-    //! Validate license
-    bool validateLicense(const QString &sQuestion, const QString &sAnswer);
+    //! Validate answer
+    bool validateAnswer(const QString &sAnswer);
 
 private:
     //! First installation?
@@ -54,19 +51,16 @@ private:
     QString m_sDiskSerialHash;
 
     //! Key 1
-    QString m_sKey1;
+    QString m_sSecretKey1;
 
     //! Key 2
-    QString m_sKey2;
+    QString m_sSecretKey2;
 
     //! Simple encoding order
     QVector<int> m_vSimpleEncodingOrder;
 
     //! Question
     QString m_sQuestion;
-
-    //! Reponse
-    QString m_sResponse;
 };
 
 #endif // CRYPTOMGR_H

@@ -26,11 +26,15 @@
 Controller::Controller(QObject *parent) : QObject(parent),
     m_pParameterMgr(nullptr), m_pWidgetFactory(nullptr),
     m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr),
-    m_pCryptoMgr(nullptr), m_bDebugOn(true),
-    m_pKeyPreviewImage(new QImage()), m_bFirstInstallation(false)
+    m_pCryptoMgr(nullptr), m_bDebugOn(false),
+    m_pKeyPreviewImage(new QImage()),
+    m_bFirstInstallation(true)
 {
-    // Load settings
-    loadSettings();
+    // Load public settings
+    loadPublicSettings();
+
+    // Load private settings
+    loadPrivateSettings();
 
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
@@ -269,26 +273,50 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 
 //-------------------------------------------------------------------------------------------------
 
-bool Controller::validateLicense(const QString &sQuestion, const QString &sAnswer)
+bool Controller::validateAnswer(const QString &sAnswer)
 {
-    return m_pCryptoMgr->validateLicense(sQuestion, sAnswer);
+    return m_pCryptoMgr->validateAnswer(sAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-bool Controller::loadSettings()
+void Controller::saveAnswer(const QString &sAnswer)
 {
-    QFileInfo fi(":/ini/settings.ini");
+    QString sPrivateSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QSettings privSettings(sPrivateSettingsFile);
+    privSettings.setValue(ANSWER, sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::loadPublicSettings()
+{
+    QFileInfo fi(":/ini/publicsettings.ini");
     if (fi.exists())
     {
-        QSettings settings(":/ini/settings.ini", QSettings::IniFormat);
-        QString sDebugMode = settings.value(DEBUG_MODE).toString().simplified();
+        QSettings pubSettings(":/ini/publicsettings.ini", QSettings::IniFormat);
+        QString sDebugMode = pubSettings.value(DEBUG_MODE).toString().simplified();
         m_bDebugOn = (sDebugMode.compare("true", Qt::CaseInsensitive) == 0);
-        QString sFirstInstall = settings.value(FIRST_INSTALL).toString().simplified();
-        m_bFirstInstallation = (sFirstInstall == VALUE_TRUE);
-        return true;
     }
-    return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::loadPrivateSettings()
+{
+    QString sPrivateSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QFileInfo fi(sPrivateSettingsFile);
+    if (!fi.exists())
+    {
+        m_bFirstInstallation = true;
+    }
+    else
+    {
+        QSettings privSettings(sPrivateSettingsFile);
+        QString sAnswer = privSettings.value(ANSWER).toString();
+        bool bAnswerIsValid = m_pCryptoMgr->validateAnswer(sAnswer);
+        m_bFirstInstallation = !bAnswerIsValid;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

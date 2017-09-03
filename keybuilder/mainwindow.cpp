@@ -124,7 +124,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect license widget
-    connect(ui->licenseWidget, &LicenseWidget::validateClicked, this, &MainWindow::onValidateLicenseClicked);
+    connect(ui->licenseWidget, &LicenseWidget::validateClicked, this, &MainWindow::onValidateAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -201,6 +201,13 @@ void MainWindow::showOpenSCADOutputLog(bool bShowOpenSCADOoutputLog)
 void MainWindow::setQuestion(const QString &sQuestion)
 {
     ui->licenseWidget->setQuestion(sQuestion);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::setAnswer(const QString &sAnswer)
+{
+    ui->licenseWidget->setAnswer(sAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -507,10 +514,13 @@ void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
 
 //-------------------------------------------------------------------------------------------------
 
-void MainWindow::onValidateLicenseClicked(const QString &sQuestion, const QString &sAnswer)
+void MainWindow::onValidateAnswer(const QString &sAnswer)
 {
-    if (m_pController->validateLicense(sQuestion, sAnswer))
+    if (m_pController->validateAnswer(sAnswer))
     {
+        // Save answer
+        m_pController->saveAnswer(sAnswer);
+
         // Start controller
         if (m_pController->startup())
         {

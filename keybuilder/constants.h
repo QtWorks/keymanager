@@ -28,11 +28,10 @@
 #define BLOCK_UID "uid"
 #define BLOCK_SELECTED "selected"
 #define BLOCK_CLOSED "closed"
-#define QUESTION_LENGTH 80
 #define NUMBER_OF_PINS "number_of_pins"
 #define NUMBER_OF_LEVERS "number_of_levers"
 #define NUMBER_OF_DISCS "number_of_discs"
-#define SETTINGS "settings"
+#define ANSWER "answer"
 
 // Tags
 #define TAG_GROUP "Group"

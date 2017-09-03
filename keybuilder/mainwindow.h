@@ -54,6 +54,9 @@ public:
     //! Set question
     void setQuestion(const QString &sQuestion);
 
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
+
     //! Setup
     void buildMenus();
 
@@ -129,8 +132,8 @@ public slots:
     void onMenu3TreeVisibilityChanged(bool bTreeVisible);
     void onMenu4TreeVisibilityChanged(bool bTreeVisible);
 
-    //! Validate license clicked
-    void onValidateLicenseClicked(const QString &sQuestion, const QString &sAnswer);
+    //! Validate answer clicked
+    void onValidateAnswer(const QString &sAnswer);
 };
 
 #endif // MAINWINDOW_H

@@ -23,8 +23,15 @@ public:
     //! Destructor
     ~LicenseWidget();
 
+    //-------------------------------------------------------------------------------------------------
+    // Getters & setters
+    //-------------------------------------------------------------------------------------------------
+
     //! Set question
     void setQuestion(const QString &sQuestion);
+
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
 
 private:
     //! UI
@@ -36,7 +43,7 @@ public slots:
 
 signals:
     //! Validate clicked
-    void validateClicked(const QString &sQuestion, const QString &sAnswer);
+    void validateClicked(const QString &sAnswer);
 };
 
 #endif // LICENSEWIDGET_H

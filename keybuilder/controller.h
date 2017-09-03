@@ -96,12 +96,18 @@ public:
     //! Load key preview image
     void loadKeyPreviewImage(const QString &sKeyImagePreview);
 
-    //! Validate license
-    bool validateLicense(const QString &sQuestion, const QString &sAnswer);
+    //! Validate answer
+    bool validateAnswer(const QString &sAnswer);
+
+    //! Save answer
+    void saveAnswer(const QString &sAnswer);
 
 private:
     //! Load settings
-    bool loadSettings();
+    void loadPublicSettings();
+
+    //! Load private settings
+    void loadPrivateSettings();
 
     //! Clear output directory
     void clearOutputDirectory();

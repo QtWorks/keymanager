@@ -47,12 +47,25 @@ public:
     //! Show clipboard button
     void showClipBoardButton(bool bShow);
 
+    //! Set block count
+    void setBlockCount(int iBlockCount);
+
+    //! Build blocks
+    void buildBlocks();
+
+protected:
+    //! Event filter
+    bool eventFilter(QObject *pWatched, QEvent *event);
+
 private:
     //! UI
     Ui::KeyWidget *ui;
 
     //! Blocks
     QVector<QLineEdit *> m_vBlocks;
+
+    //! Block count
+    int m_iBlockCount;
 
 public slots:
     //! Copy value to clipboard

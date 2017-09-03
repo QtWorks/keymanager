@@ -98,8 +98,7 @@ SOURCES += main.cpp\
     cryptomgr.cpp \
     licensewidget.cpp \
     keywidget.cpp \
-    descriptiontaggedwidget.cpp \
-    appsettings.cpp
+    descriptiontaggedwidget.cpp
 
 HEADERS  += mainwindow.h \
     collapsiblestack.h \
@@ -145,8 +144,7 @@ HEADERS  += mainwindow.h \
     cryptomgr.h \
     licensewidget.h \
     keywidget.h \
-    descriptiontaggedwidget.h \
-    appsettings.h
+    descriptiontaggedwidget.h
 
 FORMS    += mainwindow.ui \
     layoutmgr.ui \
