@@ -93,21 +93,15 @@ public:
     //! Generate STL
     void generateSTL();
 
+    //! Stop STL generation
+    void stopSTLGeneration();
+
     //! Load key preview image
     void loadKeyPreviewImage(const QString &sKeyImagePreview);
-
-    //! Validate answer
-    bool validateAnswer(const QString &sAnswer);
-
-    //! Save answer
-    void saveAnswer(const QString &sAnswer);
 
 private:
     //! Load settings
     void loadPublicSettings();
-
-    //! Load private settings
-    void loadPrivateSettings();
 
     //! Clear output directory
     void clearOutputDirectory();

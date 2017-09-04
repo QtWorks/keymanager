@@ -28,6 +28,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+    ui->generateSTLButtonMenu1->setStateLabels("Generate STL", "Cancel Generation");
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    ui->generateSTLButtonMenu2->setStateLabels("Generate STL", "Cancel Generation");
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    ui->generateSTLButtonMenu3->setStateLabels("Generate STL", "Cancel Generation");
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    ui->generateSTLButtonMenu4->setStateLabels("Generate STL", "Cancel Generation");
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(false);
 
@@ -99,7 +108,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->closeAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu1, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::buttonClicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu1, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 2 buttons
@@ -107,7 +116,7 @@ void MainWindow::setController(Controller *pController)
     connect(ui->closeAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu2, &QPushButton::clicked, ui->menu2LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu2, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu2, &DoubleStateButton::buttonClicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu2, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 3 buttons
@@ -115,12 +124,12 @@ void MainWindow::setController(Controller *pController)
     connect(ui->closeAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onCloseAll, Qt::UniqueConnection);
     connect(ui->openAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onOpenAll, Qt::UniqueConnection);
     connect(ui->clearAllButtonMenu3, &QPushButton::clicked, ui->menu3LayoutMgr, &LayoutMgr::onClearAll, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu3, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu3, &DoubleStateButton::buttonClicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu3, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect menu 4 buttons
     connect(ui->hideTreeButtonMenu4, &QPushButton::clicked, ui->menu4LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
-    connect(ui->generateSTLButtonMenu4, &QPushButton::clicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu4, &DoubleStateButton::buttonClicked, this, &MainWindow::onGenerateSTL, Qt::UniqueConnection);
     connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect license widget
@@ -240,18 +249,39 @@ void MainWindow::onVisualizeSTLClicked()
 
 void MainWindow::onGenerateSTL()
 {
-    ui->openSCADOutputLog->clear();
+    // Update button states
+    DoubleStateButton *pButton = dynamic_cast<DoubleStateButton *>(sender());
+    if (pButton != nullptr)
+    {
+        // Clear log
+        ui->openSCADOutputLog->clear();
 
-    // Step 1: do replacement in script_in.scad
-    QString sOpenSCADPath = Utils::openSCADPath();
-    if (!sOpenSCADPath.isEmpty())
-    {
-        m_pController->generateSTL();
-    }
-    else
-    {
-        QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
-        ui->statusbar->showMessage(sMsg);
+        // Check button state
+        bool bState = pButton->state();
+
+        if (bState)
+        {
+            // Step 1: do replacement in script_in.scad
+            QString sOpenSCADPath = Utils::openSCADPath();
+            if (!sOpenSCADPath.isEmpty())
+            {
+                m_pController->generateSTL();
+            }
+            else
+            {
+                QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
+                logError(sMsg);
+                ui->statusbar->showMessage(sMsg);
+            }
+        }
+        else
+        {
+            QString sMsg("STL GENERATION CANCELLED");
+            logInfo(sMsg);
+            ui->statusbar->showMessage(sMsg);
+            m_pController->stopSTLGeneration();
+            ui->progressBar->hide();
+        }
     }
 }
 
@@ -312,6 +342,9 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
     // Hide progress bar
     ui->progressBar->setVisible(false);
 
+    // Update Generate STL button state
+    ui->generateSTLButtonMenu1->setState(true);
+
     // Load STL
     QFileInfo fi(sSTLFilePath);
     if (fi.exists())
@@ -341,6 +374,9 @@ void MainWindow::onSTLFileError(const QString &sErrorMsg)
 {
     // Hide progress bar
     ui->progressBar->setVisible(false);
+
+    // Update Generate STL button state
+    ui->generateSTLButtonMenu1->setState(true);
 
     logError(sErrorMsg);
     ui->statusbar->showMessage(sErrorMsg);
@@ -516,20 +552,35 @@ void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
 
 void MainWindow::onValidateAnswer(const QString &sAnswer)
 {
-    if (m_pController->validateAnswer(sAnswer))
+    // Start controller
+    if (m_pController->startup())
     {
-        // Save answer
-        m_pController->saveAnswer(sAnswer);
+        setLicenseMode(false);
+        showApplicationBody(true);
+        showOpenSCADOutputLog(m_pController->debugOn());
+        showDebugTab(m_pController->debugOn());
+        buildMenus();
+    }
+    else logError("COULD NOT STARTUP CONTROLLER. EXITING.");
+}
 
-        // Start controller
-        if (m_pController->startup())
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onSTLButtonStateChanged()
+{
+    // Sync all Generate STL buttons
+    QVector<DoubleStateButton *> vButtons;
+    vButtons << ui->generateSTLButtonMenu1 << ui->generateSTLButtonMenu2 << ui->generateSTLButtonMenu3 << ui->generateSTLButtonMenu4;
+
+    DoubleStateButton *pSender = dynamic_cast<DoubleStateButton *>(sender());
+    if (pSender != nullptr)
+    {
+        foreach (DoubleStateButton *pButton, vButtons)
         {
-            setLicenseMode(false);
-            showApplicationBody(true);
-            showOpenSCADOutputLog(m_pController->debugOn());
-            showDebugTab(m_pController->debugOn());
-            buildMenus();
+            if (pButton != pSender)
+            {
+                pButton->setState(pSender->state());
+            }
         }
-        else logError("COULD NOT STARTUP CONTROLLER. EXITING.");
     }
 }

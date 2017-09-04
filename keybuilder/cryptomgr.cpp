@@ -72,24 +72,6 @@ void CryptoMgr::writeInitialCryptedFile(const QString &sInputFilePath)
 
 //-------------------------------------------------------------------------------------------------
 
-bool CryptoMgr::validateAnswer(const QString &sAnswer)
-{
-    m_encoder.setKey(m_sSecretKey2);
-    QString sValidAnswer = m_encoder.encrypt(m_sSecretKey1);
-    if (sAnswer == sValidAnswer)
-    {
-        qDebug() << "*** VALID ANSWER ***";
-        QString sCurrentDiskSerialHash = Utils::getDiskSerialHash();
-        QString sExpectedQuestion = Utils::simpleEncode(m_sSecretKey2 + sCurrentDiskSerialHash, m_vSimpleEncodingOrder);
-        if (sExpectedQuestion == m_sQuestion)
-            return true;
-    }
-    qDebug() << "*** NOT VALID ANSWER ***";
-    return false;
-}
-
-//-------------------------------------------------------------------------------------------------
-
 const QString &CryptoMgr::question() const
 {
     return m_sQuestion;

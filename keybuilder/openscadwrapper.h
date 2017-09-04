@@ -23,6 +23,9 @@ public:
     //! Generate STL
     bool generateSTL(const QString &sInputSCAD);
 
+    //! Stop STL generation
+    void stopSTLGeneration();
+
     //! Return next output STL file
     const QString &nextOutputSTLFile() const;
 

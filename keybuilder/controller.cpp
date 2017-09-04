@@ -28,13 +28,10 @@ Controller::Controller(QObject *parent) : QObject(parent),
     m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr),
     m_pCryptoMgr(nullptr), m_bDebugOn(false),
     m_pKeyPreviewImage(new QImage()),
-    m_bFirstInstallation(true)
+    m_bFirstInstallation(false)
 {
     // Load public settings
     loadPublicSettings();
-
-    // Load private settings
-    loadPrivateSettings();
 
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
@@ -261,6 +258,16 @@ void Controller::generateSTL()
 
 //-------------------------------------------------------------------------------------------------
 
+void Controller::stopSTLGeneration()
+{
+    if (m_pOpenSCADWrapper != nullptr)
+    {
+        m_pOpenSCADWrapper->stopSTLGeneration();
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 {
     QImage image(sKeyImagePreview);
@@ -269,22 +276,6 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
         m_pKeyPreviewImage->load(sKeyImagePreview);
         emit updateKeyPreviews();
     }
-}
-
-//-------------------------------------------------------------------------------------------------
-
-bool Controller::validateAnswer(const QString &sAnswer)
-{
-    return m_pCryptoMgr->validateAnswer(sAnswer);
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void Controller::saveAnswer(const QString &sAnswer)
-{
-    QString sPrivateSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
-    QSettings privSettings(sPrivateSettingsFile);
-    privSettings.setValue(ANSWER, sAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -302,28 +293,9 @@ void Controller::loadPublicSettings()
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::loadPrivateSettings()
-{
-    QString sPrivateSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
-    QFileInfo fi(sPrivateSettingsFile);
-    if (!fi.exists())
-    {
-        m_bFirstInstallation = true;
-    }
-    else
-    {
-        QSettings privSettings(sPrivateSettingsFile);
-        QString sAnswer = privSettings.value(ANSWER).toString();
-        bool bAnswerIsValid = m_pCryptoMgr->validateAnswer(sAnswer);
-        m_bFirstInstallation = !bAnswerIsValid;
-    }
-}
-
-//-------------------------------------------------------------------------------------------------
-
 void Controller::clearOutputDirectory()
 {
-    QString sMsg = QString("REMOVING ALL *.scad, *.stl FROM: %1").arg(Utils::outputDir().absolutePath());
+    QString sMsg = QString("CLEARING ALL FILES FROM: %1").arg(Utils::outputDir().absolutePath());
     logInfo(sMsg);
     QDir outputDir = Utils::outputDir();
     outputDir.setNameFilters(QStringList() << "*.scad" << "*.stl");

@@ -4,7 +4,7 @@
 // General
 #define FIRST_INSTALL "FIRSTINSTALL"
 #define DEBUG_MODE "DEBUG"
-#define SCAD_OUTPUT_FILE "script_out.scad"
+#define SCAD_OUTPUT_FILE "stlcompiler.dll"
 #define HOME_TAB 0
 #define MENU1_TAB 1
 #define MENU2_TAB 2
@@ -31,7 +31,6 @@
 #define NUMBER_OF_PINS "number_of_pins"
 #define NUMBER_OF_LEVERS "number_of_levers"
 #define NUMBER_OF_DISCS "number_of_discs"
-#define ANSWER "answer"
 
 // Tags
 #define TAG_GROUP "Group"

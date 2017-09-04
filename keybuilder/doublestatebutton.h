@@ -1,14 +1,10 @@
-#ifndef CRYPTOMGR_H
-#define CRYPTOMGR_H
+#ifndef DOUBLESTATEBUTTON_H
+#define DOUBLESTATEBUTTON_H
 
 // Qt
-#include <QObject>
-#include <QVector>
+#include <QPushButton>
 
-// Application
-#include "encoder.h"
-
-class CryptoMgr : public QObject
+class DoubleStateButton : public QPushButton
 {
     Q_OBJECT
 
@@ -18,46 +14,48 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CryptoMgr(bool bFirstInstallation, QObject *parent=nullptr);
+    DoubleStateButton(QWidget *parent=nullptr);
 
     //! Destructor
-    ~CryptoMgr();
+    ~DoubleStateButton();
 
     //-------------------------------------------------------------------------------------------------
     // Getters & setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Return question
-    const QString &question() const;
+    //! Return state
+    bool state() const;
+
+    //! Set state
+    void setState(bool bOn);
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
-    //! Write initial crypted file
-    void writeInitialCryptedFile(const QString &sInputFilePath);
+    //! Set states
+    void setStateLabels(const QString &sStateLabel1, const QString &sStateLabel2);
 
 private:
-    //! First installation?
-    bool m_bFirstInstall;
+    //! State1
+    QString m_sStateLabel1;
 
-    //! Encoder
-    Encoder m_encoder;
+    //! State 2
+    QString m_sStateLabel2;
 
-    //! Disk serial hash
-    QString m_sDiskSerialHash;
+    //! Current state
+    bool m_bCurrentState;
 
-    //! Key 1
-    QString m_sSecretKey1;
+public slots:
+    //! Clicked
+    void onClicked();
 
-    //! Key 2
-    QString m_sSecretKey2;
+signals:
+    //! Button clicked
+    void buttonClicked(bool bButtonClicked);
 
-    //! Simple encoding order
-    QVector<int> m_vSimpleEncodingOrder;
-
-    //! Question
-    QString m_sQuestion;
+    //! State changed
+    void stateChanged();
 };
 
-#endif // CRYPTOMGR_H
+#endif // DOUBLESTATEBUTTON_H

@@ -61,6 +61,16 @@ bool OpenSCADWrapper::generateSTL(const QString &sInputSCAD)
 
 //-------------------------------------------------------------------------------------------------
 
+void OpenSCADWrapper::stopSTLGeneration()
+{
+    if ((m_pProcess->state() == QProcess::Starting) || (m_pProcess->state() == QProcess::Running))
+    {
+        m_pProcess->kill();
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
 const QString &OpenSCADWrapper::nextOutputSTLFile() const
 {
     return m_sNextOutputSTLFile;

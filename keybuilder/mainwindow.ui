@@ -50,7 +50,7 @@
        <string notr="true">QTabBar::tab {width: 128px; height: 48px; font: 14px;}</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="HomeTab" name="tab">
        <attribute name="title">
@@ -168,11 +168,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="generateSTLButtonMenu1">
-            <property name="text">
+           <widget class="DoubleStateButton" name="generateSTLButtonMenu1" native="true">
+            <property name="text" stdset="0">
              <string>Generate STL</string>
             </property>
-            <property name="icon">
+            <property name="icon" stdset="0">
              <iconset resource="resources.qrc">
               <normaloff>:/icons/ico-build.png</normaloff>:/icons/ico-build.png</iconset>
             </property>
@@ -251,11 +251,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="generateSTLButtonMenu2">
-            <property name="text">
+           <widget class="DoubleStateButton" name="generateSTLButtonMenu2" native="true">
+            <property name="text" stdset="0">
              <string>Generate STL</string>
             </property>
-            <property name="icon">
+            <property name="icon" stdset="0">
              <iconset resource="resources.qrc">
               <normaloff>:/icons/ico-build.png</normaloff>:/icons/ico-build.png</iconset>
             </property>
@@ -334,11 +334,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="generateSTLButtonMenu3">
-            <property name="text">
+           <widget class="DoubleStateButton" name="generateSTLButtonMenu3" native="true">
+            <property name="text" stdset="0">
              <string>Generate STL</string>
             </property>
-            <property name="icon">
+            <property name="icon" stdset="0">
              <iconset resource="resources.qrc">
               <normaloff>:/icons/ico-build.png</normaloff>:/icons/ico-build.png</iconset>
             </property>
@@ -407,11 +407,11 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="generateSTLButtonMenu4">
-            <property name="text">
+           <widget class="DoubleStateButton" name="generateSTLButtonMenu4" native="true">
+            <property name="text" stdset="0">
              <string>Generate STL</string>
             </property>
-            <property name="icon">
+            <property name="icon" stdset="0">
              <iconset resource="resources.qrc">
               <normaloff>:/icons/ico-build.png</normaloff>:/icons/ico-build.png</iconset>
             </property>
@@ -491,6 +491,11 @@
    <class>LicenseWidget</class>
    <extends>QWidget</extends>
    <header>licensewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DoubleStateButton</class>
+   <extends>QWidget</extends>
+   <header>doublestatebutton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

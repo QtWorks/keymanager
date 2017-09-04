@@ -6,8 +6,8 @@
 
 // Application
 #define INFO_ON false
-#define ERROR_ON false
-#define WARNING_ON false
+#define ERROR_ON true
+#define WARNING_ON true
 
 //! Log information
 void logInfo(const QString &sMsg);

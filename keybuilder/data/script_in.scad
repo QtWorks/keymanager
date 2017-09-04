@@ -1035,7 +1035,6 @@ axi_home_row3_shoulder_distance =   23.8-18.5 ; //CLOSEST TO TIP
 axi_home_root_x =                   1 ; 
 axi_home_root_y =                   1 ; 
 
-axi_home_side = qt_axi_home_side_qt;
 axi_home_top_row = qt_axi_home_top_row_qt;
 axi_home_right_row = qt_axi_home_right_row_qt;
 axi_home_left_row = qt_axi_home_left_row_qt;

@@ -134,6 +134,9 @@ public slots:
 
     //! Validate answer clicked
     void onValidateAnswer(const QString &sAnswer);
+
+    //! STL button state changed
+    void onSTLButtonStateChanged();
 };
 
 #endif // MAINWINDOW_H
