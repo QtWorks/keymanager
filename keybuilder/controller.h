@@ -99,9 +99,18 @@ public:
     //! Load key preview image
     void loadKeyPreviewImage(const QString &sKeyImagePreview);
 
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
+
 private:
     //! Load settings
     void loadPublicSettings();
+
+    //! Load private settings
+    void loadPrivateSettings();
+
+    //! Save private settings
+    void savePrivateSettings(const QString &sAnswer);
 
     //! Clear output directory
     void clearOutputDirectory();

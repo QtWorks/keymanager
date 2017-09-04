@@ -31,6 +31,7 @@
 #define NUMBER_OF_PINS "number_of_pins"
 #define NUMBER_OF_LEVERS "number_of_levers"
 #define NUMBER_OF_DISCS "number_of_discs"
+#define ANSWER "answer"
 
 // Tags
 #define TAG_GROUP "Group"

@@ -24,24 +24,28 @@ Encoder::Encoder()
 
 QString Encoder::encrypt(const QString &sPlainText)
 {
-    std::string plaintext = sPlainText.toStdString();
-    std::string out;
-    for (unsigned int i=0;i<plaintext.length();++i)
+    if (key.size() > 0)
     {
-        if (invAlphabet.count(plaintext[i]) > 0)
+        std::string plaintext = sPlainText.toStdString();
+        std::string out;
+        for (unsigned int i=0;i<plaintext.length();++i)
         {
-            int k=invAlphabet[plaintext[i]];
-            int j=(k>(alphabet.length()-1))?alphabet.length():0;
-            out.push_back(alphabet[(k+key[ctr])%alphabet.length() + j]);
+            if (invAlphabet.count(plaintext[i]) > 0)
+            {
+                int k=invAlphabet[plaintext[i]];
+                int j=(k>(alphabet.length()-1))?alphabet.length():0;
+                out.push_back(alphabet[(k+key[ctr])%alphabet.length() + j]);
+            }
+            else
+            {
+                out.push_back(plaintext[i]);
+                --ctr;
+            }
+            ctr=(ctr+1)%key.size();
         }
-        else
-        {
-            out.push_back(plaintext[i]);
-            --ctr;
-        }
-        ctr=(ctr+1)%key.size();
+        return QString::fromStdString(out);
     }
-    return QString::fromStdString(out);
+    return QString("");
 }
 
 //-------------------------------------------------------------------------------------------------

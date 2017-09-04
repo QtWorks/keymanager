@@ -37,6 +37,9 @@ public:
     //! Write initial crypted file
     void writeInitialCryptedFile(const QString &sInputFilePath);
 
+    //! Set answer
+    void setAnswer(const QString &sAnswer);
+
 private:
     //! First installation?
     bool m_bFirstInstall;
@@ -58,6 +61,9 @@ private:
 
     //! Question
     QString m_sQuestion;
+
+    //! Answer
+    QString m_sAnswer;
 };
 
 #endif // CRYPTOMGR_H

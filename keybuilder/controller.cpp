@@ -33,6 +33,9 @@ Controller::Controller(QObject *parent) : QObject(parent),
     // Load public settings
     loadPublicSettings();
 
+    // Load private settings
+    //loadPrivateSettings();
+
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
     if (m_sOpenSCADPath.isEmpty())
@@ -280,6 +283,14 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 
 //-------------------------------------------------------------------------------------------------
 
+void Controller::setAnswer(const QString &sAnswer)
+{
+    savePrivateSettings(sAnswer);
+    m_pCryptoMgr->setAnswer(sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void Controller::loadPublicSettings()
 {
     QFileInfo fi(":/ini/publicsettings.ini");
@@ -288,6 +299,34 @@ void Controller::loadPublicSettings()
         QSettings pubSettings(":/ini/publicsettings.ini", QSettings::IniFormat);
         QString sDebugMode = pubSettings.value(DEBUG_MODE).toString().simplified();
         m_bDebugOn = (sDebugMode.compare("true", Qt::CaseInsensitive) == 0);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::loadPrivateSettings()
+{
+    QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QFileInfo fi(sPrivSettingsFile);
+    m_bFirstInstallation = !fi.exists();
+    if (fi.exists())
+    {
+        QSettings privSettings(sPrivSettingsFile);
+        QString sAnswer = privSettings.value(ANSWER).toString().simplified();
+        m_pCryptoMgr->setAnswer(sAnswer);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::savePrivateSettings(const QString &sAnswer)
+{
+    QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QFileInfo fi(sPrivSettingsFile);
+    if (fi.exists())
+    {
+        QSettings privSettings(sPrivSettingsFile);
+        privSettings.setValue(ANSWER, sAnswer);
     }
 }
 

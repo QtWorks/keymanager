@@ -466,6 +466,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         QMessageBox msgBox;
 
         // Save generated STL
+        msgBox.setWindowIcon(QIcon(":/icons/ico-key.ico"));
         msgBox.setText("Save generated STL?");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::No);
@@ -552,16 +553,20 @@ void MainWindow::importBlockParametersFromXML(const QString &sInputFile)
 
 void MainWindow::onValidateAnswer(const QString &sAnswer)
 {
-    // Start controller
-    if (m_pController->startup())
+    if (!sAnswer.simplified().isEmpty())
     {
-        setLicenseMode(false);
-        showApplicationBody(true);
-        showOpenSCADOutputLog(m_pController->debugOn());
-        showDebugTab(m_pController->debugOn());
-        buildMenus();
+        // Start controller
+        if (m_pController->startup())
+        {
+            m_pController->setAnswer(sAnswer);
+            setLicenseMode(false);
+            showApplicationBody(true);
+            showOpenSCADOutputLog(m_pController->debugOn());
+            showDebugTab(m_pController->debugOn());
+            buildMenus();
+        }
+        else logError("COULD NOT STARTUP CONTROLLER. EXITING.");
     }
-    else logError("COULD NOT STARTUP CONTROLLER. EXITING.");
 }
 
 //-------------------------------------------------------------------------------------------------

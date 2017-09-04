@@ -50,12 +50,13 @@ public:
     //! Set block count
     void setBlockCount(int iBlockCount);
 
-    //! Build blocks
-    void buildBlocks();
-
 protected:
     //! Event filter
     bool eventFilter(QObject *pWatched, QEvent *event);
+
+private:
+    //! Build blocks
+    void buildBlocks();
 
 private:
     //! UI

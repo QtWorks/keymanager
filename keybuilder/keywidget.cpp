@@ -83,6 +83,7 @@ void KeyWidget::showClipBoardButton(bool bShow)
 void KeyWidget::setBlockCount(int iBlockCount)
 {
     m_iBlockCount = iBlockCount;
+    buildBlocks();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -123,6 +124,7 @@ void KeyWidget::buildBlocks()
     for (int i=0; i<m_iBlockCount; i++)
     {
         QLineEdit *pBlock = new QLineEdit(this);
+        pBlock->setMaxLength(4);
         pBlock->installEventFilter(this);
         pBlock->setContextMenuPolicy(Qt::NoContextMenu);
         pBlock->setContentsMargins(0, 0, 0, 0);
