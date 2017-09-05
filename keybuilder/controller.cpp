@@ -28,7 +28,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
     m_sOpenSCADPath(""), m_pOpenSCADWrapper(nullptr),
     m_pCryptoMgr(nullptr), m_bDebugOn(false),
     m_pKeyPreviewImage(new QImage()),
-    m_bFirstInstallation(false)
+    m_bFirstInstallation(true)
 {
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
@@ -57,7 +57,9 @@ Controller::Controller(QObject *parent) : QObject(parent),
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardErrorReady, this, &Controller::openSCADStandardErrorReady, Qt::UniqueConnection);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardOutputReady, this, &Controller::openSCADStandardOutputReady, Qt::UniqueConnection);
     }
-    m_pCryptoMgr = new CryptoMgr(m_bFirstInstallation, this);
+
+    // Build crypto manager
+    m_pCryptoMgr = new CryptoMgr(this);
 
     // Load public settings
     loadPublicSettings();
@@ -306,10 +308,15 @@ void Controller::loadPublicSettings()
 
 void Controller::loadPrivateSettings()
 {
+    // Check if we have private settings
     QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
     QFileInfo fi(sPrivSettingsFile);
+
+    // No private settings? This is a first installation
     m_bFirstInstallation = !fi.exists();
-    if (fi.exists())
+    if (m_bFirstInstallation)
+        m_pCryptoMgr->doInitialEncryption();
+    else
     {
         QString sAnswer("");
         if (Utils::loadFile(sPrivSettingsFile, sAnswer))
@@ -324,7 +331,7 @@ void Controller::loadPrivateSettings()
 void Controller::savePrivateSettings(const QString &sAnswer)
 {
     QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
-    Utils::saveFile(sAnswer, sPrivSettingsFile);
+    Utils::saveFile(sAnswer+m_pCryptoMgr->diskSerialHash(), sPrivSettingsFile);
 }
 
 //-------------------------------------------------------------------------------------------------

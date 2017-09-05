@@ -18,7 +18,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Constructor
-    explicit CryptoMgr(bool bFirstInstallation, QObject *parent=nullptr);
+    explicit CryptoMgr(QObject *parent=nullptr);
 
     //! Destructor
     ~CryptoMgr();
@@ -29,6 +29,9 @@ public:
 
     //! Return question
     const QString &question() const;
+
+    //! Return disk serial hash
+    const QString &diskSerialHash() const;
 
     //-------------------------------------------------------------------------------------------------
     // Control methods
@@ -44,9 +47,6 @@ public:
     bool decrypt(QString &sClearScriptFile);
 
 private:
-    //! First installation?
-    bool m_bFirstInstall;
-
     //! Encoder
     Encoder m_encoder;
 
@@ -64,6 +64,9 @@ private:
 
     //! Answer
     QString m_sAnswer;
+
+    //! Target serial hash
+    QString m_sTargetSerialHash;
 };
 
 #endif // CRYPTOMGR_H
