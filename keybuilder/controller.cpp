@@ -30,12 +30,6 @@ Controller::Controller(QObject *parent) : QObject(parent),
     m_pKeyPreviewImage(new QImage()),
     m_bFirstInstallation(false)
 {
-    // Load public settings
-    loadPublicSettings();
-
-    // Load private settings
-    loadPrivateSettings();
-
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
     if (m_sOpenSCADPath.isEmpty())
@@ -64,6 +58,12 @@ Controller::Controller(QObject *parent) : QObject(parent),
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardOutputReady, this, &Controller::openSCADStandardOutputReady, Qt::UniqueConnection);
     }
     m_pCryptoMgr = new CryptoMgr(m_bFirstInstallation, this);
+
+    // Load public settings
+    loadPublicSettings();
+
+    // Load private settings
+    loadPrivateSettings();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ bool Controller::startup()
 
 void Controller::shutdown()
 {
-    clearOutputDirectory();
+    clearOutputDirectory(QStringList() << "*.scad" << "*.dll" << "*.stl");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -285,8 +285,8 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 
 void Controller::setAnswer(const QString &sAnswer)
 {
-    //savePrivateSettings(sAnswer);
-    m_pCryptoMgr->setAnswerPlusDiskSerialHash(sAnswer);
+    savePrivateSettings(sAnswer);
+    m_pCryptoMgr->setAnswer(sAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -314,7 +314,7 @@ void Controller::loadPrivateSettings()
         QString sAnswer("");
         if (Utils::loadFile(sPrivSettingsFile, sAnswer))
         {
-            m_pCryptoMgr->setAnswerPlusDiskSerialHash(sAnswer);
+            m_pCryptoMgr->setAnswer(sAnswer);
         }
     }
 }

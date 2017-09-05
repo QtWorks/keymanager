@@ -38,7 +38,7 @@ public:
     void doInitialEncryption();
 
     //! Set answer
-    void setAnswerPlusDiskSerialHash(const QString &sAnswer);
+    void setAnswer(const QString &sAnswer);
 
     //! Decrypt
     bool decrypt(QString &sClearScriptFile);

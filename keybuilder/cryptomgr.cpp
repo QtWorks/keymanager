@@ -73,7 +73,7 @@ void CryptoMgr::doInitialEncryption()
 
 //-------------------------------------------------------------------------------------------------
 
-void CryptoMgr::setAnswerPlusDiskSerialHash(const QString &sAnswer)
+void CryptoMgr::setAnswer(const QString &sAnswer)
 {
     m_sAnswer = sAnswer;
 }
