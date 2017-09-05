@@ -78,8 +78,8 @@
      </property>
     </spacer>
    </item>
-   <item row="7" column="0">
-    <spacer name="verticalSpacer_4">
+   <item row="5" column="0">
+    <spacer name="verticalSpacer_5">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -91,8 +91,8 @@
      </property>
     </spacer>
    </item>
-   <item row="5" column="0">
-    <spacer name="verticalSpacer_5">
+   <item row="7" column="0">
+    <spacer name="verticalSpacer_4">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -170,20 +170,6 @@
       </size>
      </property>
     </spacer>
-   </item>
-   <item row="10" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="errorLabelWidget">
-       <property name="text">
-        <string>INVALID ANSWER</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

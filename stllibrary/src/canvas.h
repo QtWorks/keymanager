@@ -40,6 +40,7 @@ protected:
     void wheelEvent(QWheelEvent* event);
     void resizeGL(int width, int height);
     void set_perspective(float p);
+    float get_perspective() const;
     void view_anim(float v);
 
 
@@ -62,7 +63,7 @@ private:
     float yaw;
 
     float perspective;
-    Q_PROPERTY(float perspective WRITE set_perspective);
+    Q_PROPERTY(float perspective READ get_perspective WRITE set_perspective)
     QPropertyAnimation anim;
 
     QPoint mouse_pos;

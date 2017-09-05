@@ -40,17 +40,18 @@ QString Utils::getDiskSerialHash()
 
 //-------------------------------------------------------------------------------------------------
 
-QString Utils::loadFile(const QString &sInputFile)
+bool Utils::loadFile(const QString &sInputFile, QString &sFileContents)
 {
-    QString sFileContents("");
+    sFileContents.clear();
     QFile file(sInputFile);
     if (file.open(QFile::ReadOnly | QFile::Text))
     {
         QTextStream stream(&file);
         sFileContents = stream.readAll();
         file.close();
+        return !sFileContents.simplified().isEmpty();
     }
-    return sFileContents;
+    return false;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -87,6 +88,17 @@ QDir Utils::outputDir()
 
 //-------------------------------------------------------------------------------------------------
 
+QDir Utils::dataDir()
+{
+    QDir dDataDir = appDir();
+    dDataDir.cdUp();
+    dDataDir.cd(KEYBUILDER_DIR);
+    dDataDir.cd(DATA_DIR);
+    return dDataDir;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 QDir Utils::templatesDirectory()
 {
     QDir dataDir = appDir();
@@ -114,10 +126,13 @@ void Utils::replaceInFile(const QString &sInputFile, const QString &sInputString
     QFileInfo fi(sInputFile);
     if (fi.exists())
     {
-        QString sFileContents = Utils::loadFile(sInputFile);
-        while (sFileContents.contains(sInputString, iSensitivity))
-            sFileContents.replace(sInputString, sOutputString);
-        saveFile(sFileContents, sInputFile);
+        QString sFileContents("");
+        if (Utils::loadFile(sInputFile, sFileContents))
+        {
+            while (sFileContents.contains(sInputString, iSensitivity))
+                sFileContents.replace(sInputString, sOutputString);
+            saveFile(sFileContents, sInputFile);
+        }
     }
 }
 

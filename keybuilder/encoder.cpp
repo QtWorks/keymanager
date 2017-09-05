@@ -28,13 +28,13 @@ QString Encoder::encrypt(const QString &sPlainText)
     {
         std::string plaintext = sPlainText.toStdString();
         std::string out;
-        for (unsigned int i=0;i<plaintext.length();++i)
+        for (int i=0;i<plaintext.size();++i)
         {
             if (invAlphabet.count(plaintext[i]) > 0)
             {
                 int k=invAlphabet[plaintext[i]];
-                int j=(k>(alphabet.length()-1))?alphabet.length():0;
-                out.push_back(alphabet[(k+key[ctr])%alphabet.length() + j]);
+                int j=(k>(alphabet.size()-1))?alphabet.size():0;
+                out.push_back(alphabet[(k+key[ctr])%alphabet.size() + j]);
             }
             else
             {
@@ -54,14 +54,14 @@ QString Encoder::decrypt(const QString &sPlainText)
 {
     std::string plaintext = sPlainText.toStdString();
     std::string out;
-    for (unsigned int i=0;i<plaintext.length();++i)
+    for (int i=0;i<plaintext.size();++i)
     {
         if(invAlphabet.count(plaintext[i]) > 0)
         {
             int k=invAlphabet[plaintext[i]];
-            int j=(k>(alphabet.length()-1))?alphabet.length():0;
-            if(k-key[ctr]<0){k+=alphabet.length();};
-            out.push_back(alphabet[(k-key[ctr])%alphabet.length() + j]);
+            int j=(k>(alphabet.size()-1))?alphabet.size():0;
+            if(k-key[ctr]<0){k+=alphabet.size();};
+            out.push_back(alphabet[(k-key[ctr])%alphabet.size() + j]);
         }
         else
         {
@@ -79,10 +79,10 @@ void Encoder::setKey(const QString &sKeyIn)
 {
     std::string keyin = sKeyIn.toStdString();
     key.clear();
-    for (unsigned int i=0;i<keyin.length();++i)
+    for (int i=0;i<keyin.size();++i)
     {
         if (invAlphabet.count(keyin[i])>0)
-            key.push_back(invAlphabet[keyin[i]]%alphabet.length());
+            key.push_back(invAlphabet[keyin[i]]%alphabet.size());
     }
     ctr=0;
 }
@@ -107,7 +107,7 @@ void Encoder::init(const QString &sKeyIn)
 {
     std::string keyin = sKeyIn.toStdString();
     alphabet ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=";
-    for (int i=0;i<alphabet.length();++i)
+    for (int i=0;i<alphabet.size();++i)
     {
         invAlphabet[alphabet[i]]=i;
     }

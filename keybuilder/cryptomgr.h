@@ -35,10 +35,13 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Write initial crypted file
-    void writeInitialCryptedFile(const QString &sInputFilePath);
+    void doInitialEncryption();
 
     //! Set answer
-    void setAnswer(const QString &sAnswer);
+    void setAnswerPlusDiskSerialHash(const QString &sAnswer);
+
+    //! Decrypt
+    bool decrypt(QString &sClearScriptFile);
 
 private:
     //! First installation?
@@ -49,9 +52,6 @@ private:
 
     //! Disk serial hash
     QString m_sDiskSerialHash;
-
-    //! Key 1
-    QString m_sSecretKey1;
 
     //! Key 2
     QString m_sSecretKey2;

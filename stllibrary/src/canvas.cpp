@@ -76,6 +76,11 @@ void Canvas::set_perspective(float p)
     update();
 }
 
+float Canvas::get_perspective() const
+{
+    return perspective;
+}
+
 void Canvas::clear_status()
 {
     status = "";

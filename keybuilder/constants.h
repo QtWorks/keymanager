@@ -32,6 +32,8 @@
 #define NUMBER_OF_LEVERS "number_of_levers"
 #define NUMBER_OF_DISCS "number_of_discs"
 #define ANSWER "answer"
+#define DATA_DIR "data"
+#define KEYBUILDER_DIR "keybuilder"
 
 // Tags
 #define TAG_GROUP "Group"

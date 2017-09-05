@@ -15,6 +15,8 @@
 #include "scriptmgr.h"
 #include "helper.h"
 #include "utils.h"
+#include "controller.h"
+#include "cryptomgr.h"
 
 //-------------------------------------------------------------------------------------------------
 
@@ -411,18 +413,27 @@ QString ParameterMgr::getParameterValue(const QString &sParameterVariable) const
 
 bool ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
 {
-    QString sInFile = ":/data/script_in.scad";
-    if (!ScriptMgr::generateScript(sInFile, sOuputFileName, m_hParameters.values()))
-        return false;
-    QVector<QString> vUnReplacedVariables;
-    if (!checkIfAllVariablesReplaced(sOuputFileName, vUnReplacedVariables))
+    QString sClearScriptFile("");
+    if (m_pController->cryptoMgr()->decrypt(sClearScriptFile))
     {
-        logWarning("COULD NOT REPLACE THE FOLLOWING VARIABLES:");
-        foreach (QString sUnReplacedVariable, vUnReplacedVariables)
-            logWarning(sUnReplacedVariable);
+        if (!ScriptMgr::generateScript(sClearScriptFile, sOuputFileName, m_hParameters.values()))
+        {
+            // Remove clear script file
+            return false;
+        }
+        QVector<QString> vUnReplacedVariables;
+        if (!checkIfAllVariablesReplaced(sOuputFileName, vUnReplacedVariables))
+        {
+            logWarning("COULD NOT REPLACE THE FOLLOWING VARIABLES:");
+            foreach (QString sUnReplacedVariable, vUnReplacedVariables)
+                logWarning(sUnReplacedVariable);
+        }
+        else logInfo("ALL VARIABLES SUCCESSFULLY REPLACED");
+
+        // Remove clear script file
+        return true;
     }
-    else logInfo("ALL VARIABLES SUCCESSFULLY REPLACED");
-    return true;
+    return false;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -563,8 +574,8 @@ void ParameterMgr::setController(Controller *pController)
 bool ParameterMgr::checkIfAllVariablesReplaced(const QString &sFileName, QVector<QString> &vUnReplacedVariables) const
 {
     vUnReplacedVariables.clear();
-    QString sFileContents = Utils::loadFile(sFileName);
-    if (!sFileContents.isEmpty())
+    QString sFileContents("");
+    if (Utils::loadFile(sFileName, sFileContents))
     {
         QVector<QString> vUnReplacedVariables = extractVariableNames(sFileContents);
         return vUnReplacedVariables.isEmpty();

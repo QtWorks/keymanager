@@ -172,8 +172,9 @@ void MainWindow::buildMenus()
 
 void MainWindow::loadCSS()
 {
-    QString sStyle = Utils::loadFile(":/css/main.css");
-    this->setStyleSheet(sStyle);
+    QString sStyle("");
+    if (Utils::loadFile(":/css/main.css", sStyle))
+        this->setStyleSheet(sStyle);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -261,7 +262,7 @@ void MainWindow::onGenerateSTL()
 
         if (bState)
         {
-            // Step 1: do replacement in script_in.scad
+            // Step 1: do replacement in original script file
             QString sOpenSCADPath = Utils::openSCADPath();
             if (!sOpenSCADPath.isEmpty())
             {
@@ -366,6 +367,9 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
         logError(sMsg);
     }
     m_bAppIsDirty = true;
+
+    // Clear output directory
+    m_pController->clearOutputDirectory(QStringList() << "*.scad" << "*.dll");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -378,16 +382,20 @@ void MainWindow::onSTLFileError(const QString &sErrorMsg)
     // Update Generate STL button state
     ui->generateSTLButtonMenu1->setState(true);
 
+    // Log error
     logError(sErrorMsg);
     ui->statusbar->showMessage(sErrorMsg);
+
+    // Clear output directory
+    m_pController->clearOutputDirectory(QStringList() << "*.scad" << "*.dll");
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 {
-    QString sOutputSCADContents = Utils::loadFile(sOutputSCADFile);
-    if (!sOutputSCADContents.isEmpty())
+    QString sOutputSCADContents("");
+    if (Utils::loadFile(sOutputSCADFile, sOutputSCADContents))
     {
         ui->progressBar->setVisible(true);
         QString sMsg = "BUILDING STL...";

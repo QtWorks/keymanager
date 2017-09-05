@@ -22,8 +22,8 @@ bool ScriptMgr::generateScript(const QString &sInputScripFile, const QString &sO
         return false;
     }
 
-    QString sCurrentText = Utils::loadFile(sInputScripFile);
-    if (!sCurrentText.isEmpty())
+    QString sCurrentText("");
+    if (Utils::loadFile(sInputScripFile, sCurrentText))
     {
         // Replace dxf templates
         replaceDXFTemplates(sCurrentText);

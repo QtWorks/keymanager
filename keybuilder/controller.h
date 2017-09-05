@@ -102,6 +102,9 @@ public:
     //! Set answer
     void setAnswer(const QString &sAnswer);
 
+    //! Clear output directory
+    void clearOutputDirectory(const QStringList &lTargets=QStringList() << "*");
+
 private:
     //! Load settings
     void loadPublicSettings();
@@ -111,9 +114,6 @@ private:
 
     //! Save private settings
     void savePrivateSettings(const QString &sAnswer);
-
-    //! Clear output directory
-    void clearOutputDirectory();
 
 private:
     //! Parameter manager

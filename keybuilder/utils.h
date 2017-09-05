@@ -15,7 +15,7 @@ public:
     static QString getDiskSerialHash();
 
     //! Load file
-    static QString loadFile(const QString &sInputFile);
+    static bool loadFile(const QString &sInputFile, QString &sFileContents);
 
     //! Save file
     static bool saveFile(const QString &sFileContents, const QString &sOutputFile);
@@ -25,6 +25,9 @@ public:
 
     //! Return output directory
     static QDir outputDir();
+
+    //! Return data dir
+    static QDir dataDir();
 
     //! Return data directory
     static QDir templatesDirectory();

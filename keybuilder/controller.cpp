@@ -34,7 +34,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
     loadPublicSettings();
 
     // Load private settings
-    //loadPrivateSettings();
+    loadPrivateSettings();
 
     // Find OpenSCAD path
     m_sOpenSCADPath = Utils::openSCADPath();
@@ -63,7 +63,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardErrorReady, this, &Controller::openSCADStandardErrorReady, Qt::UniqueConnection);
         connect(m_pOpenSCADWrapper, &OpenSCADWrapper::openSCADStandardOutputReady, this, &Controller::openSCADStandardOutputReady, Qt::UniqueConnection);
     }
-    m_pCryptoMgr = new CryptoMgr(this);
+    m_pCryptoMgr = new CryptoMgr(m_bFirstInstallation, this);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -285,8 +285,8 @@ void Controller::loadKeyPreviewImage(const QString &sKeyImagePreview)
 
 void Controller::setAnswer(const QString &sAnswer)
 {
-    savePrivateSettings(sAnswer);
-    m_pCryptoMgr->setAnswer(sAnswer);
+    //savePrivateSettings(sAnswer);
+    m_pCryptoMgr->setAnswerPlusDiskSerialHash(sAnswer);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -311,9 +311,11 @@ void Controller::loadPrivateSettings()
     m_bFirstInstallation = !fi.exists();
     if (fi.exists())
     {
-        QSettings privSettings(sPrivSettingsFile);
-        QString sAnswer = privSettings.value(ANSWER).toString().simplified();
-        m_pCryptoMgr->setAnswer(sAnswer);
+        QString sAnswer("");
+        if (Utils::loadFile(sPrivSettingsFile, sAnswer))
+        {
+            m_pCryptoMgr->setAnswerPlusDiskSerialHash(sAnswer);
+        }
     }
 }
 
@@ -322,22 +324,17 @@ void Controller::loadPrivateSettings()
 void Controller::savePrivateSettings(const QString &sAnswer)
 {
     QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
-    QFileInfo fi(sPrivSettingsFile);
-    if (fi.exists())
-    {
-        QSettings privSettings(sPrivSettingsFile);
-        privSettings.setValue(ANSWER, sAnswer);
-    }
+    Utils::saveFile(sAnswer, sPrivSettingsFile);
 }
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::clearOutputDirectory()
+void Controller::clearOutputDirectory(const QStringList &lTargets)
 {
-    QString sMsg = QString("CLEARING ALL FILES FROM: %1").arg(Utils::outputDir().absolutePath());
+    QString sMsg = QString("CLEARING ALL FILES! %1 FROM: %2").arg(lTargets.join(",")).arg(Utils::outputDir().absolutePath());
     logInfo(sMsg);
     QDir outputDir = Utils::outputDir();
-    outputDir.setNameFilters(QStringList() << "*.scad" << "*.stl");
+    outputDir.setNameFilters(lTargets);
     outputDir.setFilter(QDir::Files);
     foreach(QString sDirFile, outputDir.entryList())
         outputDir.remove(sDirFile);
