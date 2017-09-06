@@ -18,7 +18,7 @@ LicenseWidget::LicenseWidget(QWidget *parent) : DescriptionTaggedWidget(parent),
     ui->questionWidget->showClipBoardButton(true);
     ui->answerWidget->setBlockCount(4);
     ui->answerWidget->setTitle(tr("ANSWER"));
-    connect(ui->validateButton, &QPushButton::clicked, this, &LicenseWidget::onValidateClicked);
+    connect(ui->validateButton, &QPushButton::clicked, this, &LicenseWidget::onValidateClicked, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

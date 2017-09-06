@@ -137,6 +137,9 @@ public slots:
 
     //! STL button state changed
     void onSTLButtonStateChanged();
+
+    //! License error
+    void onLicenseError();
 };
 
 #endif // MAINWINDOW_H

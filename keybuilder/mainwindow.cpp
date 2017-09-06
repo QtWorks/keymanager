@@ -29,13 +29,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Setup UI
     ui->setupUi(this);
     ui->generateSTLButtonMenu1->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
     ui->generateSTLButtonMenu2->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
     ui->generateSTLButtonMenu3->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
     ui->generateSTLButtonMenu4->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
 
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(false);
@@ -98,10 +98,10 @@ void MainWindow::setController(Controller *pController)
     ui->menu3LayoutMgr->setController(m_pController);
     ui->menu4LayoutMgr->setController(m_pController);
 
-    connect(ui->menu1LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu1TreeVisibilityChanged);
-    connect(ui->menu2LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu2TreeVisibilityChanged);
-    connect(ui->menu3LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu3TreeVisibilityChanged);
-    connect(ui->menu4LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu4TreeVisibilityChanged);
+    connect(ui->menu1LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu1TreeVisibilityChanged, Qt::UniqueConnection);
+    connect(ui->menu2LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu2TreeVisibilityChanged, Qt::UniqueConnection);
+    connect(ui->menu3LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu3TreeVisibilityChanged, Qt::UniqueConnection);
+    connect(ui->menu4LayoutMgr, &LayoutMgr::treeVisibilityChanged, this, &MainWindow::onMenu4TreeVisibilityChanged, Qt::UniqueConnection);
 
     // Connect menu 1 buttons
     connect(ui->hideTreeButtonMenu1, &QPushButton::clicked, ui->menu1LayoutMgr, &LayoutMgr::onShowHideTree, Qt::UniqueConnection);
@@ -133,7 +133,10 @@ void MainWindow::setController(Controller *pController)
     connect(ui->saveKeyParametersButtonMenu4, &QPushButton::clicked, this, &MainWindow::onSaveKeyParameters, Qt::UniqueConnection);
 
     // Connect license widget
-    connect(ui->licenseWidget, &LicenseWidget::validateClicked, this, &MainWindow::onValidateAnswer);
+    connect(ui->licenseWidget, &LicenseWidget::validateClicked, this, &MainWindow::onValidateAnswer, Qt::UniqueConnection);
+
+    // Connect crypto mgr
+    connect(m_pController, &Controller::licenseError, this, &MainWindow::onLicenseError, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -596,4 +599,11 @@ void MainWindow::onSTLButtonStateChanged()
             }
         }
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onLicenseError()
+{
+    ui->statusbar->showMessage("THIS SOFTWARE IS NOT LICENSED FOR THAT MACHINE");
 }

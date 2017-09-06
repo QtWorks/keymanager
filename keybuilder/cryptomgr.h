@@ -30,9 +30,6 @@ public:
     //! Return question
     const QString &question() const;
 
-    //! Return disk serial hash
-    const QString &diskSerialHash() const;
-
     //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
@@ -43,15 +40,15 @@ public:
     //! Set answer
     void setAnswer(const QString &sAnswer);
 
+    //! Set target serial hash
+    void setTargetSerialHash(const QString &sTargetSerialHash);
+
     //! Decrypt
     bool decrypt(QString &sClearScriptFile);
 
 private:
     //! Encoder
     Encoder m_encoder;
-
-    //! Disk serial hash
-    QString m_sDiskSerialHash;
 
     //! Key 2
     QString m_sSecretKey2;
@@ -67,6 +64,10 @@ private:
 
     //! Target serial hash
     QString m_sTargetSerialHash;
+
+signals:
+    //! License error
+    void licenseError();
 };
 
 #endif // CRYPTOMGR_H

@@ -83,7 +83,7 @@ void LayoutMgr::setController(Controller *pController)
     m_pController = pController;
     m_pSelectionMgr->setController(m_pController);
     ui->keyPreviewWidget->setController(m_pController);
-    connect(m_pController, &Controller::updateKeyPreviews, ui->keyPreviewWidget, &KeyPreviewWidget::onUpdateKeyImage);
+    connect(m_pController, &Controller::updateKeyPreviews, ui->keyPreviewWidget, &KeyPreviewWidget::onUpdateKeyImage, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

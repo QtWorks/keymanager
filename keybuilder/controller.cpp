@@ -60,6 +60,7 @@ Controller::Controller(QObject *parent) : QObject(parent),
 
     // Build crypto manager
     m_pCryptoMgr = new CryptoMgr(this);
+    connect(m_pCryptoMgr, &CryptoMgr::licenseError, this, &Controller::licenseError, Qt::UniqueConnection);
 
     // Load public settings
     loadPublicSettings();
@@ -322,6 +323,7 @@ void Controller::loadPrivateSettings()
         if (Utils::loadFile(sPrivSettingsFile, sAnswer))
         {
             m_pCryptoMgr->setAnswer(sAnswer);
+            m_pCryptoMgr->setTargetSerialHash(sAnswer.mid(16, sAnswer.size()-16));
         }
     }
 }
@@ -331,14 +333,14 @@ void Controller::loadPrivateSettings()
 void Controller::savePrivateSettings(const QString &sAnswer)
 {
     QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
-    Utils::saveFile(sAnswer+m_pCryptoMgr->diskSerialHash(), sPrivSettingsFile);
+    Utils::saveFile(sAnswer+Utils::getDiskSerialHash(), sPrivSettingsFile);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void Controller::clearOutputDirectory(const QStringList &lTargets)
 {
-    QString sMsg = QString("CLEARING ALL FILES! %1 FROM: %2").arg(lTargets.join(",")).arg(Utils::outputDir().absolutePath());
+    QString sMsg = QString("CLEARING ALL FILES: %1 FROM: %2").arg(lTargets.join(",")).arg(Utils::outputDir().absolutePath());
     logInfo(sMsg);
     QDir outputDir = Utils::outputDir();
     outputDir.setNameFilters(lTargets);

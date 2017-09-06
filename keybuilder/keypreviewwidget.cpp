@@ -29,7 +29,7 @@ void KeyPreviewWidget::setController(Controller *pController)
 {
     m_pController = pController;
     m_pKeyImage = m_pController->keyPreviewImage();
-    connect(m_pController, &Controller::blockSelectionStatusChanged, this, &KeyPreviewWidget::onBlockSelectionStatusChanged);
+    connect(m_pController, &Controller::blockSelectionStatusChanged, this, &KeyPreviewWidget::onBlockSelectionStatusChanged, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -20,7 +20,7 @@ KeyWidget::KeyWidget(QWidget *parent) : QWidget(parent),
 
     // Copy to clipboard
     ui->copyToClipBoardButton->hide();
-    connect(ui->copyToClipBoardButton, &QPushButton::clicked, this, &KeyWidget::onCopyValueToClipBoard);
+    connect(ui->copyToClipBoardButton, &QPushButton::clicked, this, &KeyWidget::onCopyValueToClipBoard, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

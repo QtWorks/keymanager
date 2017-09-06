@@ -7,7 +7,7 @@ DoubleStateButton::DoubleStateButton(QWidget *parent) : QPushButton(parent),
     m_sStateLabel1(""), m_sStateLabel2(""), m_bCurrentState(true)
 {
     setState(m_bCurrentState);
-    connect(this, &DoubleStateButton::clicked, this, &DoubleStateButton::onClicked);
+    connect(this, &DoubleStateButton::clicked, this, &DoubleStateButton::onClicked, Qt::UniqueConnection);
 }
 
 //-------------------------------------------------------------------------------------------------

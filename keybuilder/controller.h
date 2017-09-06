@@ -179,6 +179,9 @@ signals:
 
     //! Block selection status changed
     void blockSelectionStatusChanged(CollapsibleBlock *pBlock);
+
+    //! License error
+    void licenseError();
 };
 
 #endif // CONTROLLER_H
