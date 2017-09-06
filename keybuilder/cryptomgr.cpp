@@ -23,7 +23,8 @@ CryptoMgr::CryptoMgr(QObject *parent) : QObject(parent),
 
     // Compute disk serial hash
     m_sTargetSerialHash = Utils::getDiskSerialHash();
-    qDebug() << "DISK SERIAL HASH = " << m_sTargetSerialHash;
+    QString sMsg = QString("DISK SERIAL HASH IS: %1").arg(m_sTargetSerialHash);
+    logInfo(sMsg);
 }
 
 //-------------------------------------------------------------------------------------------------

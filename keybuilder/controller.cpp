@@ -310,7 +310,7 @@ void Controller::loadPublicSettings()
 void Controller::loadPrivateSettings()
 {
     // Check if we have private settings
-    QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QString sPrivSettingsFile = Utils::appDir().absoluteFilePath("privatesettings.ini");
     QFileInfo fi(sPrivSettingsFile);
 
     // No private settings? This is a first installation
@@ -332,7 +332,7 @@ void Controller::loadPrivateSettings()
 
 void Controller::savePrivateSettings(const QString &sAnswer)
 {
-    QString sPrivSettingsFile = Utils::outputDir().absoluteFilePath("privatesettings.ini");
+    QString sPrivSettingsFile = Utils::appDir().absoluteFilePath("privatesettings.ini");
     Utils::saveFile(sAnswer+Utils::getDiskSerialHash(), sPrivSettingsFile);
 }
 
