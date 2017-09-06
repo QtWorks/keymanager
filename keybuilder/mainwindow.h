@@ -140,6 +140,9 @@ public slots:
 
     //! License error
     void onLicenseError();
+
+    //! Script missing
+    void onScriptMissingError();
 };
 
 #endif // MAINWINDOW_H

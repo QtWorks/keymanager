@@ -43,13 +43,17 @@ QString Utils::getDiskSerialHash()
 bool Utils::loadFile(const QString &sInputFile, QString &sFileContents)
 {
     sFileContents.clear();
-    QFile file(sInputFile);
-    if (file.open(QFile::ReadOnly | QFile::Text))
+    QFileInfo fi(sInputFile);
+    if (fi.exists())
     {
-        QTextStream stream(&file);
-        sFileContents = stream.readAll();
-        file.close();
-        return !sFileContents.simplified().isEmpty();
+        QFile file(sInputFile);
+        if (file.open(QFile::ReadOnly | QFile::Text))
+        {
+            QTextStream stream(&file);
+            sFileContents = stream.readAll();
+            file.close();
+            return !sFileContents.simplified().isEmpty();
+        }
     }
     return false;
 }

@@ -185,6 +185,13 @@ void MainWindow::loadCSS()
 void MainWindow::setLicenseMode(bool bLicenseMode)
 {
     ui->licenseWidget->setVisible(bLicenseMode);
+    if (bLicenseMode)
+    {
+        QString sScriptFile = Utils::outputDir().absoluteFilePath("script_in.enc");
+        QFileInfo fi(sScriptFile);
+        if (!fi.exists())
+            onScriptMissingError();
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -606,4 +613,11 @@ void MainWindow::onSTLButtonStateChanged()
 void MainWindow::onLicenseError()
 {
     ui->statusbar->showMessage("THIS SOFTWARE IS NOT LICENSED FOR THAT MACHINE");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onScriptMissingError()
+{
+    ui->licenseWidget->showScriptMissingErrorMsg();
 }

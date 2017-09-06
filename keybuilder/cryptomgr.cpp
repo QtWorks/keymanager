@@ -2,6 +2,7 @@
 #include <QSettings>
 #include <QCryptographicHash>
 #include <QDebug>
+#include <QMessageBox>
 
 // Application
 #include "cryptomgr.h"
@@ -38,8 +39,9 @@ CryptoMgr::~CryptoMgr()
 
 void CryptoMgr::doInitialEncryption()
 {
-    QString sOutputFileName = Utils::dataDir().absoluteFilePath("script_in.enc");
+    QString sOutputFileName = Utils::outputDir().absoluteFilePath("script_in.enc");
     QString sEncrypted("");
+
     if (Utils::loadFile(sOutputFileName, sEncrypted))
     {
         // Encode with random
@@ -81,7 +83,7 @@ void CryptoMgr::setTargetSerialHash(const QString &sTargetSerialHash)
 bool CryptoMgr::decrypt(QString &sClearScriptFile)
 {
     sClearScriptFile.clear();
-    QString sEncodedFileName = Utils::dataDir().absoluteFilePath("script_in.enc");
+    QString sEncodedFileName = Utils::outputDir().absoluteFilePath("script_in.enc");
     QString sFileContents("");
 
     QString sMsg = QString("COMPARING SERIAL HASH: %1 and %2").arg(m_sTargetSerialHash).arg(Utils::getDiskSerialHash());

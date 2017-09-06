@@ -33,6 +33,13 @@ public:
     //! Set answer
     void setAnswer(const QString &sAnswer);
 
+    //-------------------------------------------------------------------------------------------------
+    // Control methods
+    //-------------------------------------------------------------------------------------------------
+
+    //! Show script missing error msg
+    void showScriptMissingErrorMsg();
+
 private:
     //! UI
     Ui::LicenseWidget *ui;

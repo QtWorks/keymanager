@@ -13,11 +13,14 @@ LicenseWidget::LicenseWidget(QWidget *parent) : DescriptionTaggedWidget(parent),
 {
     // Setup UI
     ui->setupUi(this);
+    ui->scriptMissingErrorLabel->hide();
     ui->questionWidget->setBlockCount(20);
-    ui->questionWidget->setTitle(tr("QUESTION"));
+    ui->questionWidget->setReadOnly(true);
+    ui->questionWidget->setTitle(tr("QUESTION (READ ONLY)"));
     ui->questionWidget->showClipBoardButton(true);
     ui->answerWidget->setBlockCount(4);
-    ui->answerWidget->setTitle(tr("ANSWER"));
+    ui->answerWidget->setReadOnly(true);
+    ui->answerWidget->setTitle(tr("ANSWER (CTRL+V)"));
     connect(ui->validateButton, &QPushButton::clicked, this, &LicenseWidget::onValidateClicked, Qt::UniqueConnection);
 }
 
@@ -40,7 +43,6 @@ void LicenseWidget::onValidateClicked()
 void LicenseWidget::setQuestion(const QString &sQuestion)
 {
     ui->questionWidget->setValue(sQuestion);
-    ui->questionWidget->setReadOnly(true);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -48,4 +50,11 @@ void LicenseWidget::setQuestion(const QString &sQuestion)
 void LicenseWidget::setAnswer(const QString &sAnswer)
 {
     ui->answerWidget->setValue(sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void LicenseWidget::showScriptMissingErrorMsg()
+{
+    ui->scriptMissingErrorLabel->show();
 }
