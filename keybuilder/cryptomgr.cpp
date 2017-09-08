@@ -115,7 +115,7 @@ bool CryptoMgr::decrypt(QString &sClearScriptFile)
             QString sOut = QString::fromLatin1(baResult);
 
             // Write file
-            sClearScriptFile = Utils::outputDir().absoluteFilePath("script_in.scad");
+            sClearScriptFile = Utils::outputDir().absoluteFilePath(CLEAR_SCRIPT_FILE);
             sMsg = QString("WRITING CLEAR SCRIPT FILE: %1").arg(sClearScriptFile);
             logInfo(sMsg);
             return Utils::saveFile(sOut, sClearScriptFile);
