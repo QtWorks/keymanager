@@ -213,3 +213,11 @@ QVector<int> Utils::buildOrder(int nItems)
     }
     return vOut;
 }
+
+//-------------------------------------------------------------------------------------------------
+
+int Utils::randInt(int iMin, int iMax)
+{
+    qsrand(QTime::currentTime().msec());
+    return ((qrand() % ((iMax + 1) - iMin)) + iMin);
+}

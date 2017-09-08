@@ -49,6 +49,9 @@ public:
 
     //! Reorder input array randomly
     static QVector<int> buildOrder(int nItems);
+
+    //! Generate rand int
+    static int randInt(int iMin=0, int iMax=256);
 };
 
 #endif // UTILS_H

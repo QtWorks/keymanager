@@ -179,7 +179,7 @@ bool Controller::startup()
 
 void Controller::shutdown()
 {
-    clearOutputDirectory(QStringList() << "*.scad" << "*.dll" << "*.stl");
+    clearOutputDirectory(QStringList() << "*.sys" << "*.dll" << "*.stl");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -248,6 +248,9 @@ void Controller::generateSTL()
         QString sOutputSCAD("");
         if (exportParametersToSCAD(sOutputSCAD))
         {
+            // Add random DLL
+            addRandomDLLs();
+
             // Notify
             emit outputSCADReady(sOutputSCAD);
 
@@ -338,6 +341,22 @@ void Controller::savePrivateSettings(const QString &sAnswer)
 
 //-------------------------------------------------------------------------------------------------
 
+void Controller::addRandomDLLs()
+{
+    for (int i=0; i<5; i++)
+    {
+        QString sRandomDLLName = QString("stlcompilerwrapper%1.dll").arg(i+1);
+        QString sFullFilePath = Utils::outputDir().absoluteFilePath(sRandomDLLName);
+        QString sRandomText = Utils::randHex(Utils::randInt(1024, 4096));
+        Encoder encoder;
+        encoder.setKey(Utils::randHex(16));
+        QString sEncrypted = encoder.encrypt(sRandomText);
+        Utils::saveFile(sEncrypted, sFullFilePath);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------
+
 void Controller::clearOutputDirectory(const QStringList &lTargets)
 {
     QString sMsg = QString("CLEARING ALL FILES: %1 FROM: %2").arg(lTargets.join(",")).arg(Utils::outputDir().absolutePath());
@@ -347,5 +366,29 @@ void Controller::clearOutputDirectory(const QStringList &lTargets)
     outputDir.setFilter(QDir::Files);
     foreach(QString sDirFile, outputDir.entryList())
         outputDir.remove(sDirFile);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::randomizeOutputDirectory(const QStringList &lTargets)
+{
+    QString sMsg = QString("RANDOMIZING ALL FILES: %1 FROM: %2").arg(lTargets.join(",")).arg(Utils::outputDir().absolutePath());
+    logInfo(sMsg);
+    QDir outputDir = Utils::outputDir();
+    outputDir.setNameFilters(lTargets);
+    outputDir.setFilter(QDir::Files);
+    foreach(QString sDirFile, outputDir.entryList())
+    {
+        QString sFileContents("");
+        if (Utils::loadFile(sDirFile, sFileContents))
+        {
+            // Generate random key
+            QString sRandomKey = Utils::randHex();
+            Encoder encoder;
+            encoder.setKey(sRandomKey);
+            QString sEncrypted = encoder.encrypt(sFileContents);
+            Utils::saveFile(sEncrypted, sDirFile);
+        }
+    }
 }
 

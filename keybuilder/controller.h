@@ -105,6 +105,9 @@ public:
     //! Clear output directory
     void clearOutputDirectory(const QStringList &lTargets=QStringList() << "*");
 
+    //! Randomize output directory
+    void randomizeOutputDirectory(const QStringList &lTargets=QStringList() << "*");
+
 private:
     //! Load settings
     void loadPublicSettings();
@@ -114,6 +117,9 @@ private:
 
     //! Save private settings
     void savePrivateSettings(const QString &sAnswer);
+
+    //! Add random DLLs
+    void addRandomDLLs();
 
 private:
     //! Parameter manager

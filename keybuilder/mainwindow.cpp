@@ -379,7 +379,7 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
     m_bAppIsDirty = true;
 
     // Clear output directory
-    m_pController->clearOutputDirectory(QStringList() << "*.scad" << "*.dll");
+    m_pController->randomizeOutputDirectory(QStringList() << "*.sys" << "*.dll");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -397,7 +397,7 @@ void MainWindow::onSTLFileError(const QString &sErrorMsg)
     ui->statusbar->showMessage(sErrorMsg);
 
     // Clear output directory
-    m_pController->clearOutputDirectory(QStringList() << "*.scad" << "*.dll");
+    m_pController->randomizeOutputDirectory(QStringList() << "*.sys" << "*.dll");
 }
 
 //-------------------------------------------------------------------------------------------------
