@@ -29,13 +29,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Setup UI
     ui->setupUi(this);
     ui->generateSTLButtonMenu1->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::DirectConnection);
     ui->generateSTLButtonMenu2->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::DirectConnection);
     ui->generateSTLButtonMenu3->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::DirectConnection);
     ui->generateSTLButtonMenu4->setStateLabels("Generate STL", "Cancel Generation");
-    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::UniqueConnection);
+    connect(ui->generateSTLButtonMenu1, &DoubleStateButton::stateChanged, this, &onSTLButtonStateChanged, Qt::DirectConnection);
 
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(false);
