@@ -7,6 +7,9 @@
 // Library
 #include "cxmlnode.h"
 
+// Application
+#include "encoder.h"
+
 //-------------------------------------------------------------------------------------------------
 
 /*!
@@ -169,7 +172,7 @@ CXMLNode CXMLNode::load(const QString& sFileName)
 bool CXMLNode::save(const QString& sFileName)
 {
     QString sLowerFileName = sFileName.toLower();
-    bool bBase64 = sLowerFileName.endsWith(sExtension_O3D);
+    bool bBase64PlusVigenerKey3 = sLowerFileName.endsWith(sExtension_O3D);
 
     if (sLowerFileName.endsWith(sExtension_QRC))
     {
@@ -177,7 +180,7 @@ bool CXMLNode::save(const QString& sFileName)
     }
     else if (sLowerFileName.endsWith(sExtension_XML) || sLowerFileName.endsWith(sExtension_O3D))
     {
-        return saveXMLToFile(sFileName, true, bBase64);
+        return saveXMLToFile(sFileName, true, bBase64PlusVigenerKey3);
     }
     else if (sLowerFileName.endsWith(sExtension_JSON))
     {
@@ -192,7 +195,7 @@ bool CXMLNode::save(const QString& sFileName)
 /*!
     Returns a CXMLNode hierarchy loaded from the XML file named \a sFileName.
 */
-CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName, bool bBase64)
+CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName, bool bBase64PlusVigenerKey3)
 {
     QFile xmlFile(sFileName);
 
@@ -201,9 +204,12 @@ CXMLNode CXMLNode::loadXMLFromFile(const QString& sFileName, bool bBase64)
         if (xmlFile.open(QIODevice::ReadOnly))
         {
             QString sText("");
-            if (bBase64)
+            if (bBase64PlusVigenerKey3)
             {
-                sText = QString(QByteArray::fromBase64(xmlFile.readAll()));
+                Encoder encoder;
+                encoder.setKey(sVigenerKey);
+                QString sDecrypted = encoder.decrypt(QString::fromLatin1(xmlFile.readAll()));
+                sText = QString(QByteArray::fromBase64(sDecrypted.toLatin1()));
             }
             else
             {
@@ -529,16 +535,19 @@ QJsonObject CXMLNode::toJsonObject() const
     If \a bXMLHeader is \c true, the xml file will contain a header of the type <?xml version="1.0" encoding="UTF-8"?> \br
     Returns \c true if successful, \c false otherwise.
 */
-bool CXMLNode::saveXMLToFile(const QString& sFileName, bool bXMLHeader, bool bBase64)
+bool CXMLNode::saveXMLToFile(const QString& sFileName, bool bXMLHeader, bool bBase64PlusVigenerKey3)
 {
     QFile xmlFile(sFileName);
 
     if (xmlFile.open(QIODevice::WriteOnly))
     {
-        if (bBase64)
+        if (bBase64PlusVigenerKey3)
         {
             QByteArray baOriginalSCADScript = toString(bXMLHeader).toLatin1().toBase64();
-            xmlFile.write(baOriginalSCADScript);
+            Encoder encoder;
+            encoder.setKey(sVigenerKey);
+            QString sEncoded = encoder.encrypt(QString::fromLatin1(baOriginalSCADScript));
+            xmlFile.write(sEncoded.toLatin1());
         }
         else xmlFile.write(toString(bXMLHeader).toUtf8());
         xmlFile.close();

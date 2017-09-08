@@ -15,6 +15,7 @@
 
 // Application
 class CXMLNode;
+static QString sVigenerKey="AF23CD45999BCDEF";
 
 //-------------------------------------------------------------------------------------------------
 
@@ -108,7 +109,7 @@ public:
 
     //! Lit un fichier XML d'après un nom de fichier
     //! Reads a XML file given a file name
-    static CXMLNode loadXMLFromFile(const QString& sFileName, bool bBase64=false);
+    static CXMLNode loadXMLFromFile(const QString& sFileName, bool bBase64PlusVigenerKey3=false);
 
     //! Lit un fichier XML d'après un nom de fichier
     //! Reads a JSON file given a file name
@@ -120,7 +121,7 @@ public:
 
     //! Ecrit un fichier XML
     //! Saves a XML file
-    bool saveXMLToFile(const QString& sFileName, bool bXMLHeader = true, bool bBase64 = false);
+    bool saveXMLToFile(const QString& sFileName, bool bXMLHeader = true, bool bBase64PlusVigenerKey3=false);
 
     //! Ecrit un fichier XML
     //! Saves a XML file
