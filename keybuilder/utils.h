@@ -52,6 +52,12 @@ public:
 
     //! Generate rand int
     static int randInt(int iMin=0, int iMax=256);
+
+    //! Update settings
+    static void updateSettings(const QString &sFileName);
+
+    //! Return settings value
+    static QString settingsValue(const QString &sName);
 };
 
 #endif // UTILS_H

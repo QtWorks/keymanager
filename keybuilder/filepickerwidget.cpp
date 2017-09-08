@@ -1,5 +1,6 @@
 // Qt
 #include <QFileDialog>
+#include <QSettings>
 
 // Application
 #include "filepickerwidget.h"
@@ -40,9 +41,12 @@ FilePickerWidget::~FilePickerWidget()
 void FilePickerWidget::onOpenClicked()
 {
     QString sFileName = QFileDialog::getOpenFileName(this,
-        tr("Open File"), Utils::appDir().absolutePath(), m_sFileExtension);
+        tr("Open File"), Utils::settingsValue(LAST_VISITED_DIR), m_sFileExtension);
     if (!sFileName.isEmpty())
+    {
+        Utils::updateSettings(sFileName);
         ui->lineEdit->setText(sFileName);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------

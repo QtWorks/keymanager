@@ -241,9 +241,11 @@ void MainWindow::onCreateKeyClicked()
 
 void MainWindow::onUseExistingKeyClicked()
 {
-    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input 03D parameter file"), QCoreApplication::applicationDirPath(), tr("03D (*.o3d)"));
+    QString sInputFileName = QFileDialog::getOpenFileName(this, tr("Select input 03D parameter file"),
+        Utils::settingsValue(LAST_VISITED_DIR), tr("03D (*.o3d)"));
     if (!sInputFileName.isEmpty())
     {
+        Utils::updateSettings(sInputFileName);
         m_pController->importParametersFrom03D(sInputFileName);
         importBlockParametersFromXML(sInputFileName);
     }
@@ -300,9 +302,11 @@ void MainWindow::onGenerateSTL()
 
 void MainWindow::onSaveKeyParameters()
 {
-    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"), QCoreApplication::applicationDirPath(), tr("03D (*.o3d)"));
+    QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output key parameters file"),
+        Utils::settingsValue(LAST_VISITED_DIR), tr("03D (*.o3d)"));
     if (!sOutputFileName.isEmpty())
     {
+        Utils::updateSettings(sOutputFileName);
         CXMLNode xRootNode(TAG_ROOT);
 
         // Export parameters
@@ -336,6 +340,7 @@ void MainWindow::onSaveGeneratedSTL()
         QString sOutputFileName = QFileDialog::getSaveFileName(this, tr("Select output STL file"), QCoreApplication::applicationDirPath(), tr("STL (*.stl)"));
         if (!sOutputFileName.isEmpty())
         {
+            Utils::updateSettings(sOutputFileName);
             QFile::copy(sLastGeneratedSTLFile, sOutputFileName);
         }
     }

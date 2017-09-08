@@ -35,6 +35,7 @@
 #define ANSWER "answer"
 #define DATA_DIR "data"
 #define KEYBUILDER_DIR "keybuilder"
+#define LAST_VISITED_DIR "lastdir"
 
 // Tags
 #define TAG_GROUP "Group"

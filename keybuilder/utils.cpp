@@ -13,6 +13,7 @@
 #include <QTime>
 #include <QtGlobal>
 #include <QCryptographicHash>
+#include <QSettings>
 #include <QDebug>
 
 // Application
@@ -220,4 +221,22 @@ int Utils::randInt(int iMin, int iMax)
 {
     qsrand(QTime::currentTime().msec());
     return ((qrand() % ((iMax + 1) - iMin)) + iMin);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Utils::updateSettings(const QString &sFileName)
+{
+    QSettings settings(OUTPUT_STRING, OUTPUT_STRING);
+    QFileInfo fi(sFileName);
+    if (fi.exists())
+        settings.setValue(LAST_VISITED_DIR, fi.absoluteDir().absolutePath());
+}
+
+//-------------------------------------------------------------------------------------------------
+
+QString Utils::settingsValue(const QString &sName)
+{
+    QSettings settings(OUTPUT_STRING, OUTPUT_STRING);
+    return settings.value(sName).toString();
 }

@@ -42,9 +42,10 @@ DXForSTLFilePicker::~DXForSTLFilePicker()
 
 void DXForSTLFilePicker::onSelectSTL()
 {
-    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::appDir().absolutePath(), "*.stl");
+    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::settingsValue(LAST_VISITED_DIR), "*.stl");
     if (!sFileName.isEmpty())
     {
+        Utils::updateSettings(sFileName);
         ui->stlLineEdit->setText(sFileName);
         ui->dxfLineEdit->clear();
     }
@@ -54,9 +55,10 @@ void DXForSTLFilePicker::onSelectSTL()
 
 void DXForSTLFilePicker::onSelectDXF()
 {
-    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::appDir().absolutePath(), "*.dxf");
+    QString sFileName = QFileDialog::getOpenFileName(this, tr("Open File"), Utils::settingsValue(LAST_VISITED_DIR), "*.dxf");
     if (!sFileName.isEmpty())
     {
+        Utils::updateSettings(sFileName);
         ui->dxfLineEdit->setText(sFileName);
         ui->stlLineEdit->clear();
     }
