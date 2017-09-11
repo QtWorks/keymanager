@@ -185,7 +185,7 @@ void MainWindow::setLicenseMode(bool bLicenseMode)
     ui->licenseWidget->setVisible(bLicenseMode);
     if (bLicenseMode)
     {
-        QString sScriptFile = Utils::outputDir().absoluteFilePath("script_in.enc");
+        QString sScriptFile = Utils::outputDir().absoluteFilePath(ENCODED_SCRIPT_NAME);
         QFileInfo fi(sScriptFile);
         if (!fi.exists())
             onScriptMissingError();

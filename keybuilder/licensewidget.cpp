@@ -19,7 +19,6 @@ LicenseWidget::LicenseWidget(QWidget *parent) : DescriptionTaggedWidget(parent),
     ui->questionWidget->setTitle(tr("QUESTION (READ ONLY)"));
     ui->questionWidget->showClipBoardButton(true);
     ui->answerWidget->setBlockCount(4);
-    ui->answerWidget->setReadOnly(true);
     ui->answerWidget->setTitle(tr("ANSWER (CTRL+V)"));
     connect(ui->validateButton, &QPushButton::clicked, this, &LicenseWidget::onValidateClicked, Qt::UniqueConnection);
 }

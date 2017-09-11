@@ -39,7 +39,7 @@ CryptoMgr::~CryptoMgr()
 
 void CryptoMgr::doInitialEncryption()
 {
-    QString sOutputFileName = Utils::outputDir().absoluteFilePath("script_in.enc");
+    QString sOutputFileName = Utils::outputDir().absoluteFilePath(ENCODED_SCRIPT_NAME);
     QString sEncrypted("");
 
     if (Utils::loadFile(sOutputFileName, sEncrypted))
@@ -83,7 +83,7 @@ void CryptoMgr::setTargetSerialHash(const QString &sTargetSerialHash)
 bool CryptoMgr::decrypt(QString &sClearScriptFile)
 {
     sClearScriptFile.clear();
-    QString sEncodedFileName = Utils::outputDir().absoluteFilePath("script_in.enc");
+    QString sEncodedFileName = Utils::outputDir().absoluteFilePath(ENCODED_SCRIPT_NAME);
     QString sFileContents("");
 
     QString sMsg = QString("COMPARING SERIAL HASH: %1 and %2").arg(m_sTargetSerialHash).arg(Utils::getDiskSerialHash());

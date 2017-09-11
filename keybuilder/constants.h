@@ -38,6 +38,7 @@
 #define LAST_VISITED_DIR "lastdir"
 #define GENERATE_STL_TEXT "Generate STL"
 #define CANCEL_GENERATION_TEXT "Cancel Generation"
+#define ENCODED_SCRIPT_NAME "_get_m2.dat"
 
 // Tags
 #define TAG_GROUP "Group"
