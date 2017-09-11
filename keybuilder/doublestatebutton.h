@@ -20,16 +20,6 @@ public:
     ~DoubleStateButton();
 
     //-------------------------------------------------------------------------------------------------
-    // Getters & setters
-    //-------------------------------------------------------------------------------------------------
-
-    //! Return state
-    bool state() const;
-
-    //! Set state
-    void setState(bool bOn);
-
-    //-------------------------------------------------------------------------------------------------
     // Control methods
     //-------------------------------------------------------------------------------------------------
 
@@ -43,19 +33,13 @@ private:
     //! State 2
     QString m_sStateLabel2;
 
-    //! Current state
-    bool m_bCurrentState;
-
 public slots:
     //! Clicked
     void onClicked();
 
 signals:
-    //! Button clicked
-    void buttonClicked(bool bButtonClicked);
-
-    //! State changed
-    void stateChanged();
+    //! Do action
+    void doAction(const QString &sAction);
 };
 
 #endif // DOUBLESTATEBUTTON_H

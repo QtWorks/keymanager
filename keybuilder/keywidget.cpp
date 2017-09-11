@@ -129,7 +129,7 @@ void KeyWidget::buildBlocks()
         pBlock->setContextMenuPolicy(Qt::NoContextMenu);
         pBlock->setContentsMargins(0, 0, 0, 0);
         ui->innerLayout->addWidget(pBlock);
-        QFont font("Segoe UI", 16);
+        QFont font("Segoe UI", 12);
         QFontMetrics fm(font);
         QString sText("0000");
         int iPixelsWidth = fm.width(sText);

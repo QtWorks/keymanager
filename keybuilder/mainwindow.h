@@ -9,6 +9,7 @@
 class Controller;
 class CollapsibleBlock;
 class STLWindow;
+class DoubleStateButton;
 
 namespace Ui {
 class MainWindow;
@@ -93,6 +94,9 @@ private:
     //! All blocks
     QHash<QString, CollapsibleBlock *> m_hAllBlocks;
 
+    //! STL buttons
+    QVector<DoubleStateButton *> m_vGenerateSTLButtons;
+
 public slots:
     //! Create key
     void onCreateKeyClicked();
@@ -104,7 +108,7 @@ public slots:
     void onVisualizeSTLClicked();
 
     //! Generate STL
-    void onGenerateSTL();
+    void onGenerateSTL(const QString &sAction);
 
     //! Save key parameters
     void onSaveKeyParameters();
@@ -134,9 +138,6 @@ public slots:
 
     //! Validate answer clicked
     void onValidateAnswer(const QString &sAnswer);
-
-    //! STL button state changed
-    void onSTLButtonStateChanged();
 
     //! License error
     void onLicenseError();

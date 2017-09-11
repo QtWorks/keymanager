@@ -22,7 +22,7 @@
 #define ABUSPLUS_TEMPLATE "qt_abusplus_template_qt"
 #define AXI_TEMPLATE "qt_axi_template_qt"
 #define VIERGE_TEMPLATE "qt_787svierge_qt"
-#define OUTPUT_DIR "OFC3DKEY_output"
+#define OUTPUT_DIR "FFC41D0V"
 #define TEMPLATES_DIR "templates"
 #define OPENSCAD_DIR "STLCompiler"
 #define OPENSCAD_EXE "stlcompiler.exe"
@@ -36,6 +36,8 @@
 #define DATA_DIR "data"
 #define KEYBUILDER_DIR "keybuilder"
 #define LAST_VISITED_DIR "lastdir"
+#define GENERATE_STL_TEXT "Generate STL"
+#define CANCEL_GENERATION_TEXT "Cancel Generation"
 
 // Tags
 #define TAG_GROUP "Group"

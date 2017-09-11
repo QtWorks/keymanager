@@ -45,7 +45,6 @@ bool KeyBuilder::startup()
         m_wMainWindow.showApplicationBody(false);
         m_wMainWindow.showOpenSCADOutputLog(false);
         m_wMainWindow.setQuestion(m_pController->cryptoMgr()->question());
-        m_wMainWindow.setAnswer("                ");
     }
     // Not first installation
     else
