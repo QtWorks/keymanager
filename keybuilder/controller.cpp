@@ -162,8 +162,9 @@ bool Controller::isFirstInstallation() const
 
 //-------------------------------------------------------------------------------------------------
 
-bool Controller::startup()
+bool Controller::startup(const QString &args)
 {
+    Q_UNUSED(args);
     if (!m_pParameterMgr->loadMenu1Parameters())
         return false;
     if (!m_pParameterMgr->loadMenu2Parameters())

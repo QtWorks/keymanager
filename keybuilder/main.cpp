@@ -1,8 +1,7 @@
 // Qt
 #include <QApplication>
 #include <QDebug>
-#include <string.h>
-using std::string;
+#include <QMessageBox>
 
 // Application
 #include "keybuilder.h"
@@ -17,7 +16,7 @@ int main(int argc, char *argv[])
     KeyBuilder *pKeyBuilder = KeyBuilder::instance();
 
     // Startup
-    pKeyBuilder->startup();
+    pKeyBuilder->startup(argv[1]);
 
     // Event loop
     int res = app.exec();

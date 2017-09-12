@@ -76,7 +76,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Startup
-    virtual bool startup();
+    virtual bool startup(const QString &args="");
 
     //! Shutdown
     virtual void shutdown();

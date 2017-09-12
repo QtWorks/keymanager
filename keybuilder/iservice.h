@@ -4,7 +4,7 @@
 class IService
 {
 public:
-    virtual bool startup() = 0;
+    virtual bool startup(const QString &args="") = 0;
     virtual void shutdown() = 0;
     virtual ~IService() {
 

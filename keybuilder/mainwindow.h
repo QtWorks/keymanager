@@ -61,6 +61,9 @@ public:
     //! Setup
     void buildMenus();
 
+    //! Use existing key
+    void useExistingKey(const QString &sInputFileName);
+
 protected:
     //! Handle close event
     virtual void closeEvent(QCloseEvent *event);

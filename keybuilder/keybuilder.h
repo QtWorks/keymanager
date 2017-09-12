@@ -29,7 +29,7 @@ public:
     //-------------------------------------------------------------------------------------------------
 
     //! Start server
-    virtual bool startup();
+    virtual bool startup(const QString &args="");
 
     //! Stop server
     virtual void shutdown();

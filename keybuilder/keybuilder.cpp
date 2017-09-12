@@ -1,3 +1,6 @@
+// Qt
+#include <QFileInfo>
+
 // Application
 #include "keybuilder.h"
 #include "controller.h"
@@ -33,7 +36,7 @@ KeyBuilder *KeyBuilder::instance()
 
 //-------------------------------------------------------------------------------------------------
 
-bool KeyBuilder::startup()
+bool KeyBuilder::startup(const QString &args)
 {
     // Set controller on main window
     m_wMainWindow.setController(m_pController);
@@ -57,6 +60,19 @@ bool KeyBuilder::startup()
             m_wMainWindow.buildMenus();
             m_wMainWindow.showOpenSCADOutputLog(m_pController->debugOn());
             m_wMainWindow.showDebugTab(m_pController->debugOn());
+            if (!args.isEmpty())
+            {
+                QString sFileName = args;
+                QFileInfo fi(sFileName);
+                if (fi.exists())
+                {
+                    QString sExtensionO3D = ".o3d";
+                    if (sFileName.toLower().endsWith(sExtensionO3D))
+                    {
+                        m_wMainWindow.useExistingKey(sFileName);
+                    }
+                }
+            }
         }
         else
         {

@@ -243,10 +243,17 @@ void MainWindow::onUseExistingKeyClicked()
         Utils::settingsValue(LAST_VISITED_DIR), tr("03D (*.o3d)"));
     if (!sInputFileName.isEmpty())
     {
-        Utils::updateSettings(sInputFileName);
-        m_pController->importParametersFrom03D(sInputFileName);
-        importBlockParametersFromXML(sInputFileName);
+        useExistingKey(sInputFileName);
     }
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::useExistingKey(const QString &sInputFileName)
+{
+    Utils::updateSettings(sInputFileName);
+    m_pController->importParametersFrom03D(sInputFileName);
+    importBlockParametersFromXML(sInputFileName);
 }
 
 //-------------------------------------------------------------------------------------------------
