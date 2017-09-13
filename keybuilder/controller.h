@@ -102,11 +102,23 @@ public:
     //! Set answer
     void setAnswer(const QString &sAnswer);
 
-    //! Clear output directory
-    void clearOutputDirectory(const QStringList &lTargets=QStringList() << "*");
-
     //! Randomize output directory
     void randomizeOutputDirectory(const QStringList &lTargets=QStringList() << "*");
+
+    //! Clear clear script file
+    void clearClearScriptFile();
+
+    //! Clear all system files
+    void clearAllSystemFiles();
+
+    //! Clear scad output file
+    void clearScadOutputFile();
+
+    //! Clear random files
+    void clearRandomFiles();
+
+    //! Clear STL file
+    void clearSTLFiles();
 
 private:
     //! Load settings
@@ -119,7 +131,10 @@ private:
     void savePrivateSettings(const QString &sAnswer);
 
     //! Add random DLLs
-    void addRandomDLLs();
+    void addRandomFiles();
+
+    //! Clear output directory
+    void clearOutputDirectory(const QStringList &lTargets=QStringList() << "*");
 
 private:
     //! Parameter manager

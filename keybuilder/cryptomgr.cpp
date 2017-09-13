@@ -107,7 +107,7 @@ bool CryptoMgr::decrypt(QString &sClearScriptFile)
             m_encoder.setKey(m_sAnswer);
             QString sDecrypted2 = m_encoder.decrypt(sDecrypted1);
 
-            sMsg = QString("CHANGING FROM BASE64").arg(m_sAnswer);
+            sMsg = QString("CHANGING FROM BASE64 %1").arg(m_sAnswer);
             logInfo(sMsg);
 
             // Change from base64 to QString

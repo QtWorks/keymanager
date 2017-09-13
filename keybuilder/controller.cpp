@@ -180,7 +180,7 @@ bool Controller::startup(const QString &args)
 
 void Controller::shutdown()
 {
-    clearOutputDirectory(QStringList() << "*.sys" << "*.dll" << "*.stl");
+    clearAllSystemFiles();
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -220,7 +220,9 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
 bool Controller::exportParametersToSCAD(QString &sOutputFileName)
 {
     sOutputFileName = Utils::outputDir().absoluteFilePath(SCAD_OUTPUT_FILE);
-    return m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
+    bool bResult = m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
+    clearClearScriptFile();
+    return bResult;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -250,7 +252,7 @@ void Controller::generateSTL()
         if (exportParametersToSCAD(sOutputSCAD))
         {
             // Add random DLL
-            addRandomDLLs();
+            addRandomFiles();
 
             // Notify
             emit outputSCADReady(sOutputSCAD);
@@ -261,7 +263,7 @@ void Controller::generateSTL()
     }
     else
     {
-        QString sMsg = QString("OPENSCAD NOT FOUND ON THIS SYSTEM");
+        QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
         logError(sMsg);
     }
 }
@@ -342,11 +344,11 @@ void Controller::savePrivateSettings(const QString &sAnswer)
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::addRandomDLLs()
+void Controller::addRandomFiles()
 {
     for (int i=0; i<5; i++)
     {
-        QString sRandomDLLName = QString("stlcompilerwrapper%1.dll").arg(i+1);
+        QString sRandomDLLName = QString("stlcompilerwrapper%1.dnx").arg(i+1);
         QString sFullFilePath = Utils::outputDir().absoluteFilePath(sRandomDLLName);
         QString sRandomText = Utils::randHex(Utils::randInt(1024, 4096));
         Encoder encoder;
@@ -393,3 +395,40 @@ void Controller::randomizeOutputDirectory(const QStringList &lTargets)
     }
 }
 
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearClearScriptFile()
+{
+    clearOutputDirectory(QStringList() << "*.sys");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearAllSystemFiles()
+{
+    clearClearScriptFile();
+    clearScadOutputFile();
+    clearRandomFiles();
+    clearSTLFiles();
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearScadOutputFile()
+{
+    clearOutputDirectory(QStringList() << "*.dll");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearSTLFiles()
+{
+    clearOutputDirectory(QStringList() << "*.stl");
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void Controller::clearRandomFiles()
+{
+    clearOutputDirectory(QStringList() << "*.dnx");
+}

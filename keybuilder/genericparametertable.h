@@ -118,6 +118,9 @@ private:
     //! Target row
     QString m_sTargetRow;
 
+    //! Max number of rows
+    int m_nMaxNumberOfRows;
+
     //! Number of rows
     int m_nRows;
 

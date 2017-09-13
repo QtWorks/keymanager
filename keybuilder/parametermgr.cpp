@@ -418,7 +418,6 @@ bool ParameterMgr::exportParametersToSCAD(const QString &sOuputFileName)
     {
         if (!ScriptMgr::generateScript(sClearScriptFile, sOuputFileName, m_hParameters.values()))
         {
-            // Remove clear script file
             return false;
         }
         QVector<QString> vUnReplacedVariables;

@@ -393,6 +393,9 @@ void MainWindow::onSTLFileReady(const QString &sSTLFilePath)
     }
     m_bAppIsDirty = true;
 
+    // Clear output scad file
+    m_pController->clearScadOutputFile();
+
     // Clear output directory
     m_pController->randomizeOutputDirectory(QStringList() << "*.sys" << "*.dll");
 }
@@ -412,6 +415,9 @@ void MainWindow::onSTLFileError(const QString &sErrorMsg)
     logError(sErrorMsg);
     ui->statusbar->showMessage(sErrorMsg);
 
+    // Clear output scad file
+    m_pController->clearScadOutputFile();
+
     // Clear output directory
     m_pController->randomizeOutputDirectory(QStringList() << "*.sys" << "*.dll");
 }
@@ -424,9 +430,8 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     if (Utils::loadFile(sOutputSCADFile, sOutputSCADContents))
     {
         ui->progressBar->setVisible(true);
-        QString sMsg = "BUILDING STL...";
-        logInfo(sMsg);
-        statusBar()->showMessage(sMsg);
+        logInfo(BUILDING_STL_MSG);
+        statusBar()->showMessage(BUILDING_STL_MSG);
         ui->plainTextEdit->load(sOutputSCADContents);
     }
 }
@@ -436,9 +441,8 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
 void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
     ui->progressBar->setVisible(false);
-    QString sMsg = "STL BUILD SUCCESS";
-    logInfo(sMsg);
-    statusBar()->showMessage("STL BUILD SUCCESS");
+    logInfo(STL_BUILD_SUCCESS_MSG);
+    statusBar()->showMessage(STL_BUILD_SUCCESS_MSG);
     ui->openSCADOutputLog->append(sStatus);
 }
 
@@ -446,11 +450,13 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 
 void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 {
-    ui->progressBar->setVisible(false);
-    QString sMsg = "STL BUILD FAILURE";
-    logInfo(sMsg);
-    statusBar()->showMessage("STL BUILD FAILURE");
-    ui->openSCADOutputLog->append(sStatus);
+    if (!sStatus.contains(IGNORED_OPENSCAD_ERROR, Qt::CaseInsensitive))
+    {
+        ui->progressBar->setVisible(false);
+        logInfo(STL_BUILD_FAILURE_MSG);
+        statusBar()->showMessage(STL_BUILD_FAILURE_MSG);
+        ui->openSCADOutputLog->append(sStatus);
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -607,7 +613,7 @@ void MainWindow::onValidateAnswer(const QString &sAnswer)
 
 void MainWindow::onLicenseError()
 {
-    ui->statusbar->showMessage("THIS SOFTWARE IS NOT LICENSED FOR THAT MACHINE");
+    ui->statusbar->showMessage(SOFTWARE_NOT_LICENSED_MSG);
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -20,7 +20,7 @@
 
 GenericParameterTableModel::GenericParameterTableModel(Controller *pController, const QStringList &lColumnLabels, const QStringList &lColumnVariables, const QString &sDefaultValue, const QString &sTargetRow,
     int nRows, const QString &sTargetVariable, const QString &sVariableMethod, const QString &sActionSetNumberOfRows, QObject *parent) : QAbstractItemModel(parent),
-    m_pController(pController)
+    m_pController(pController), m_sTargetRow(""), m_nMaxNumberOfRows(0), m_nRows(0), m_sTargetVariable(""), m_sVariableMethod("")
 {
     int nColumns = qMin(lColumnLabels.size(), lColumnVariables.size());
 
@@ -53,6 +53,7 @@ GenericParameterTableModel::GenericParameterTableModel(Controller *pController, 
         m_lColumnLabels = lColumnLabels.mid(0, nColumns);
         m_lColumnVariables = lColumnVariables.mid(0, nColumns);
         m_sTargetRow = sTargetRow;
+        m_nMaxNumberOfRows = nRows;
         m_nRows = nRows;
         m_sTargetVariable = sTargetVariable;
         m_sVariableMethod = sVariableMethod;
@@ -433,9 +434,25 @@ void GenericParameterTableModel::onSetRowCount(const QString &sParameterName, co
         m_nRows = nRows;
         m_vData.resize((nRows+1)*m_lColumnLabels.size());
         clearAll();
+
+        // Write own data
         int iDataSize = qMin(vData.size(), m_vData.size());
         for (int i=0; i<iDataSize; i++)
             m_vData[i] = vData[i];
+
+        // Update corresponding variables
+        int nColumns = m_lColumnVariables.size();
+        for (int i=nRows; i<m_nMaxNumberOfRows; i++)
+        {
+            for (int j=0; j<nColumns; j++)
+            {
+                QString sFormattedVariableName = getFormattedVariableName(m_sVariableMethod, m_sTargetVariable, m_lColumnVariables, m_sTargetRow, j, i);
+                QString sMsg = QString("CLEARING: %1").arg(sFormattedVariableName);
+                logInfo(sMsg);
+                emit parameterValueChanged(sFormattedVariableName, QString(""));
+            }
+        }
+
         endResetModel();
         emit rowCountChanged(m_nRows);
     }

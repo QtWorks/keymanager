@@ -87,7 +87,7 @@ void OpenSCADWrapper::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitSta
     QFileInfo fi(m_sNextOutputSTLFile);
     if (fi.exists())
     {
-        QString sMsg = QString("STL FILE SUCCESSFULLY GENERATED");
+        QString sMsg("STL FILE SUCCESSFULLY GENERATED");
         logInfo(sMsg);
         Utils::replaceInFile(m_sNextOutputSTLFile, TARGET_STRING, OUTPUT_STRING);
         emit STLFileReady(m_sNextOutputSTLFile);
