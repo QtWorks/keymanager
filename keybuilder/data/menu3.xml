@@ -36,7 +36,8 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_01_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_01_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_01_model_qt" value="BROWSE FOR STL">                <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_01_stl_name_qt" ui="filepicker" extension="*.stl" />
+         <Block name="STL" set_variable="qt_extra_material_shape_01_model_qt" value="STL">
+            <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_01_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_01_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_01_stl_translate_qt" ui="double_triplet" />
          </Block>
@@ -62,7 +63,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_02_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_02_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_02_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_02_model_qt" value="FOR STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_02_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_02_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_02_stl_translate_qt" ui="double_triplet" />
@@ -89,7 +90,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_03_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_03_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_03_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_03_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_03_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_03_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_03_stl_translate_qt" ui="double_triplet" />
@@ -116,7 +117,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_04_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_04_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_04_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_04_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_04_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_04_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_04_stl_translate_qt" ui="double_triplet" />
@@ -143,7 +144,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_05_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_05_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_05_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_05_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_05_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_05_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_05_stl_translate_qt" ui="double_triplet" />
@@ -170,7 +171,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_06_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_06_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_06_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_06_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_06_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_06_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_06_stl_translate_qt" ui="double_triplet" />
@@ -197,7 +198,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_07_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_07_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_07_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_07_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_07_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_07_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_07_stl_translate_qt" ui="double_triplet" />
@@ -224,7 +225,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_08_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_08_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_08_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_08_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_08_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_08_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_08_stl_translate_qt" ui="double_triplet" />
@@ -251,7 +252,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_09_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_09_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_material_shape_09_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_09_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_09_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_09_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_09_stl_translate_qt" ui="double_triplet" />
@@ -278,7 +279,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_material_shape_10_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_10_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" variable="qt_extra_material_shape_10_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_material_shape_10_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_material_shape_10_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_material_shape_10_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_material_shape_10_stl_translate_qt" ui="double_triplet" />

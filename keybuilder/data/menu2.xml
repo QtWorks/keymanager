@@ -31,11 +31,11 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row1_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row1_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row1_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row1_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row1_linked_qt==&quot;YES&quot;" variable="qt_regular_row1_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row1_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="0" variable="qt_regular_row1_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter auto="distance=qt_regular_row1_shoulder_distance_qt+currentrow*qt_regular_row1_interpin_space_qt" setnumberofrows="qt_regular_row1_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row1" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
@@ -69,11 +69,11 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row2_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row2_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row2_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row2_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row2_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row2_linked_qt==&quot;YES&quot;" variable="qt_regular_row2_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row2_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="0" variable="qt_regular_row2_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter auto="distance=qt_regular_row2_shoulder_distance_qt+currentrow*qt_regular_row2_interpin_space_qt" setnumberofrows="qt_regular_row2_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row2" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
@@ -107,11 +107,11 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row3_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row3_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row3_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row3_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row3_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row3_linked_qt==&quot;YES&quot;" variable="qt_regular_row3_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row3_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="0" variable="qt_regular_row3_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter auto="distance=qt_regular_row3_shoulder_distance_qt+currentrow*qt_regular_row3_interpin_space_qt" setnumberofrows=" qt_regular_row3_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row3" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
@@ -145,11 +145,11 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row4_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row4_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row4_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row4_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row4_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row4_linked_qt==&quot;YES&quot;" variable="qt_regular_row4_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row4_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="0" variable="qt_regular_row4_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter auto="distance=qt_regular_row4_shoulder_distance_qt+currentrow*qt_regular_row4_interpin_space_qt" setnumberofrows="qt_regular_row4_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row4" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
@@ -183,11 +183,11 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row5_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row5_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row5_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row5_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row5_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row5_linked_qt==&quot;YES&quot;" variable="qt_regular_row5_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row5_cut_to_use_qt" value="stl_mill">
-                <Parameter name="BROWSE FOR A STL" type="string" default="mill.stl" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
+                <Parameter name="BROWSE FOR A STL" type="string" default="0" variable="qt_regular_row5_stl_mill_name_qt" ui="filepicker" extension="*.stl" />
             </Block>
          </Block>
          <Parameter auto="distance=qt_regular_row5_shoulder_distance_qt+currentrow*qt_regular_row5_interpin_space_qt" setnumberofrows="qt_regular_row5_number_of_pins_qt" columnlabels="DEPTH,ANGLE Z,DISTANCE FROM SHOULDER" type="table" targetrow="row5" columnvariables="depth,angle,distance" nrows="22" targetvariable="qt_regular_%1_cut%2_%3_qt" variablemethod="method1" default="0,0,0" ifunsetuse="100,0,0" ui="genericparametertable" />
@@ -221,7 +221,7 @@
                <Parameter name="DIAMETER" type="double" default="2" variable="qt_regular_row6_laser_mill_diameter_qt" ui="lineedit" />
                <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_regular_row6_laser_mill_number_of_faces_qt" ui="lineedit" />
                <Parameter name="CENTERED" type="string" variable="qt_regular_row6_laser_mill_center_qt" default="NO" ui="yesno" />
-               <Parameter name="LINKED" type="string" variable="qt_regular_row6_linked_qt" default="NO" ui="yesno" />
+               <Parameter name="LINKED" type="string" variable="qt_regular_row6_linked_qt" default="YES" ui="yesno" />
                <Parameter name="ROOT ADDITION" type="double" default="0.5" enabled="qt_regular_row6_linked_qt==&quot;YES&quot;" variable="qt_regular_row6_link_root_addition_qt" ui="lineedit" />
             </Block>
             <Block name="BROWSE FOR A STL MILL" set_variable="qt_regular_row6_cut_to_use_qt" value="stl_mill">
@@ -262,7 +262,6 @@
    <Block name="ABLOY CLASSIC" set_variable="qt_abloy_classic_cut_use_qt" enabled="(qt_type_of_key_qt==&quot;abloy_classic&quot;) || (qt_type_of_key_qt == &quot;expert_stl&quot;)">
       <Parameter variable="qt_abloy_classic_cut_use_qt" type="boolean" default="NO"/>
       <Parameter labels="RIGHT,LEFT" values="RIGHT,LEFT" type="string" variable="qt_abloy_classic_side_of_cutting_qt" default="RIGHT" ui="exclusivechoice" />
-      <Parameter name="BLADE LENGTH" type="double" variable="qt_abloy_classic_blade_length_qt" ui="lineedit" />
       <Parameter name="NUMBER OF DISCS" type="int" default="20" minvalue="1" maxvalue="20" variable="qt_abloy_classic_number_of_discs_qt" ui="lineeditvalidateonreturn" />
       <Parameter name="SPACES" type="double" variable="qt_abloy_classic_spaces_qt" default="2" ui="lineedit" />
       <Parameter name="MILL THICKNESS" type="double" variable="qt_abloy_classic_mill_thickness_qt" default="2.5" ui="lineedit" />
@@ -354,7 +353,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_01_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_01_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_01_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_01_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_01_stl_translate_qt" ui="double_triplet" />
@@ -381,7 +380,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_02_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_02_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_02_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_02_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_02_stl_translate_qt" ui="double_triplet" />
@@ -408,7 +407,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_03_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_03_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_03_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_03_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_03_stl_translate_qt" ui="double_triplet" />
@@ -435,7 +434,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_04_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_04_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_04_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_04_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_04_stl_translate_qt" ui="double_triplet" />
@@ -462,7 +461,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_05_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_05_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_05_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_05_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_05_stl_translate_qt" ui="double_triplet" />
@@ -489,7 +488,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_06_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_06_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_06_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_06_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_06_stl_translate_qt" ui="double_triplet" />
@@ -516,7 +515,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_07_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_07_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_07_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_07_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_07_stl_translate_qt" ui="double_triplet" />
@@ -543,7 +542,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_08_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_08_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_08_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_08_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_08_stl_translate_qt" ui="double_triplet" />
@@ -570,7 +569,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_09_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_09_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_09_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_09_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_09_stl_translate_qt" ui="double_triplet" />
@@ -597,7 +596,7 @@
             <Parameter name="NUMBER OF FACES" type="int" default="10" variable="qt_extra_cut_shape_10_sphere_number_of_faces_qt" ui="lineedit" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_sphere_translate_qt" ui="double_triplet" />
          </Block>
-         <Block name="STL" set_variable="qt_extra_cut_shape_10_model_qt" value="BROWSE FOR STL">
+         <Block name="STL" set_variable="qt_extra_cut_shape_10_model_qt" value="STL">
             <Parameter name="BROWSE FOR A STL" type="string" variable="qt_extra_cut_shape_10_stl_name_qt" ui="filepicker" extension="*.stl" />
             <Parameter name="ROTATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_stl_rotation_qt" ui="double_triplet" />
             <Parameter name="TRANSLATION (XYZ)" type="double" variable="qt_extra_cut_shape_10_stl_translate_qt" ui="double_triplet" />

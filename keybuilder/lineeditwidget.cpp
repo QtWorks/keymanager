@@ -30,7 +30,7 @@ LineEditWidget::LineEditWidget(Controller *pController, const QString &sLabel, c
     else
         connect(ui->lineEdit, &QLineEdit::textChanged, this, &LineEditWidget::onTextChanged, Qt::UniqueConnection);
 
-    ui->label->setText(sLabel);
+    setLabel(sLabel);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -51,6 +51,14 @@ void LineEditWidget::setValidator(QValidator *pValidator)
 
 void LineEditWidget::setLabel(const QString &sLabel)
 {
+    QFont font;
+    font.setFamily("Segoe UI");
+    font.setPixelSize(16);
+    QFontMetrics fm(font);
+
+    // Find max text width
+    int iMaxTextWidth = fm.width(sLabel);
+    ui->label->setFixedWidth(qMax(172, iMaxTextWidth));
     ui->label->setText(sLabel);
 }
 

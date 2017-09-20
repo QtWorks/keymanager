@@ -5,7 +5,7 @@
 #include <QString>
 
 // Application
-#define INFO_ON false
+#define INFO_ON true
 #define ERROR_ON false
 #define WARNING_ON false
 

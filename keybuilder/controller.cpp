@@ -348,9 +348,9 @@ void Controller::addRandomFiles()
 {
     for (int i=0; i<5; i++)
     {
-        QString sRandomDLLName = QString("stlcompilerwrapper%1.dnx").arg(i+1);
+        QString sRandomDLLName = QString("stlcompilerwrapper%1.dll_").arg(i+1);
         QString sFullFilePath = Utils::outputDir().absoluteFilePath(sRandomDLLName);
-        QString sRandomText = Utils::randHex(Utils::randInt(1024, 4096));
+        QString sRandomText = Utils::randHex(Utils::randInt(4096, 40960));
         Encoder encoder;
         encoder.setKey(Utils::randHex(16));
         QString sEncrypted = encoder.encrypt(sRandomText);
@@ -430,5 +430,5 @@ void Controller::clearSTLFiles()
 
 void Controller::clearRandomFiles()
 {
-    clearOutputDirectory(QStringList() << "*.dnx");
+    clearOutputDirectory(QStringList() << "*.dll_");
 }
