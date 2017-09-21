@@ -82,7 +82,7 @@ public:
     virtual void shutdown();
 
     //! Export parameters to SCAD
-    bool exportParametersToSCAD(QString &sOutputFileName);
+    bool exportParametersToSCAD(QString &sOutputFileName, int &iSCADFileId);
 
     //! Export parameters to TXT
     void exportParametersToO3D(CXMLNode &xRootNode);
@@ -111,12 +111,6 @@ public:
     //! Clear all system files
     void clearAllSystemFiles();
 
-    //! Clear scad output file
-    void clearScadOutputFile();
-
-    //! Clear random files
-    void clearRandomFiles();
-
     //! Clear STL file
     void clearSTLFiles();
 
@@ -131,7 +125,7 @@ private:
     void savePrivateSettings(const QString &sAnswer);
 
     //! Add random DLLs
-    void addRandomFiles();
+    void addRandomFiles(int iSCADFileId);
 
     //! Clear output directory
     void clearOutputDirectory(const QStringList &lTargets=QStringList() << "*");

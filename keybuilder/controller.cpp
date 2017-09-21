@@ -217,9 +217,11 @@ void Controller::onUpdateWidgetValue(const QString &sParameterVariable, const QS
 
 //-------------------------------------------------------------------------------------------------
 
-bool Controller::exportParametersToSCAD(QString &sOutputFileName)
+bool Controller::exportParametersToSCAD(QString &sOutputFileName, int &iSCADFileId)
 {
-    sOutputFileName = Utils::outputDir().absoluteFilePath(SCAD_OUTPUT_FILE);
+    iSCADFileId = Utils::randInt(1, 5);
+    QString sSCADOutputFileName = QString(SCAD_OUTPUT_FILE).arg(iSCADFileId);
+    sOutputFileName = Utils::outputDir().absoluteFilePath(sSCADOutputFileName);
     bool bResult = m_pParameterMgr->exportParametersToSCAD(sOutputFileName);
     clearClearScriptFile();
     return bResult;
@@ -249,10 +251,11 @@ void Controller::generateSTL()
 
         // Step 1: export to SCAD
         QString sOutputSCAD("");
-        if (exportParametersToSCAD(sOutputSCAD))
+        int iSCADFileId;
+        if (exportParametersToSCAD(sOutputSCAD, iSCADFileId))
         {
             // Add random DLL
-            addRandomFiles();
+            addRandomFiles(iSCADFileId);
 
             // Notify
             emit outputSCADReady(sOutputSCAD);
@@ -344,13 +347,16 @@ void Controller::savePrivateSettings(const QString &sAnswer)
 
 //-------------------------------------------------------------------------------------------------
 
-void Controller::addRandomFiles()
+void Controller::addRandomFiles(int iSCADFileId)
 {
     for (int i=0; i<5; i++)
     {
-        QString sRandomDLLName = QString("stlcompilerwrapper%1.dll_").arg(i+1);
+        int iCurrentFileId = i+1;
+        if (iCurrentFileId == iSCADFileId)
+            continue;
+        QString sRandomDLLName = QString("stlcompiler%1.dll").arg(iCurrentFileId);
         QString sFullFilePath = Utils::outputDir().absoluteFilePath(sRandomDLLName);
-        QString sRandomText = Utils::randHex(Utils::randInt(4096, 40960));
+        QString sRandomText = Utils::randHex(Utils::randInt(358400, 716800));
         Encoder encoder;
         encoder.setKey(Utils::randHex(16));
         QString sEncrypted = encoder.encrypt(sRandomText);
@@ -407,16 +413,7 @@ void Controller::clearClearScriptFile()
 void Controller::clearAllSystemFiles()
 {
     clearClearScriptFile();
-    clearScadOutputFile();
-    clearRandomFiles();
     clearSTLFiles();
-}
-
-//-------------------------------------------------------------------------------------------------
-
-void Controller::clearScadOutputFile()
-{
-    clearOutputDirectory(QStringList() << "*.dll");
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -426,9 +423,3 @@ void Controller::clearSTLFiles()
     clearOutputDirectory(QStringList() << "*.stl");
 }
 
-//-------------------------------------------------------------------------------------------------
-
-void Controller::clearRandomFiles()
-{
-    clearOutputDirectory(QStringList() << "*.dll_");
-}
