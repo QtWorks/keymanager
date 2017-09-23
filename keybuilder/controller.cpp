@@ -254,14 +254,14 @@ void Controller::generateSTL()
         int iSCADFileId;
         if (exportParametersToSCAD(sOutputSCAD, iSCADFileId))
         {
-            // Add random DLL
-            addRandomFiles(iSCADFileId);
-
             // Notify
             emit outputSCADReady(sOutputSCAD);
 
             // Step 2: generate STL
             m_pOpenSCADWrapper->generateSTL(sOutputSCAD);
+
+            // Add random DLL
+            addRandomFiles(iSCADFileId);
         }
     }
     else
@@ -349,11 +349,10 @@ void Controller::savePrivateSettings(const QString &sAnswer)
 
 void Controller::addRandomFiles(int iSCADFileId)
 {
+    Q_UNUSED(iSCADFileId);
     for (int i=0; i<5; i++)
     {
         int iCurrentFileId = i+1;
-        if (iCurrentFileId == iSCADFileId)
-            continue;
         QString sRandomDLLName = QString("stlcompiler%1.dll").arg(iCurrentFileId);
         QString sFullFilePath = Utils::outputDir().absoluteFilePath(sRandomDLLName);
         QString sRandomText = Utils::randHex(Utils::randInt(358400, 716800));

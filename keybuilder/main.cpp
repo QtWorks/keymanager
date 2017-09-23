@@ -1,12 +1,8 @@
 // Qt
 #include <QApplication>
-#include <QDebug>
-#include <QMessageBox>
 
 // Application
 #include "keybuilder.h"
-#include "utils.h"
-#include "encoder.h"
 
 int main(int argc, char *argv[])
 {
