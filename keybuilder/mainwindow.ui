@@ -15,34 +15,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="4" column="0">
-     <widget class="QProgressBar" name="progressBar">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QTextBrowser" name="openSCADOutputLog">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>96</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>96</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Courier</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
+    <item row="5" column="0">
+     <widget class="LicenseWidget" name="licenseWidget" native="true"/>
     </item>
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
@@ -59,25 +33,6 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="createKeyButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>CREATE KEY</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QPushButton" name="useExistingKeyButton">
             <property name="minimumSize">
@@ -94,6 +49,25 @@
             </property>
             <property name="text">
              <string>USE EXISTING KEY</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="createKeyButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>CREATE KEY</string>
             </property>
            </widget>
           </item>
@@ -452,13 +426,46 @@
         </item>
        </layout>
       </widget>
+      <zorder></zorder>
      </widget>
     </item>
-    <item row="5" column="0">
-     <widget class="LicenseWidget" name="licenseWidget" native="true"/>
+    <item row="4" column="0">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
     </item>
-    <item row="1" column="0">
+    <item row="3" column="0">
+     <widget class="QTextBrowser" name="openSCADOutputLog">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>96</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>96</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Courier</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
      <widget class="QLabel" name="hyperlinkLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="font">
        <font>
         <pointsize>16</pointsize>
@@ -469,6 +476,9 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
