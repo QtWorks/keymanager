@@ -101,6 +101,9 @@ private:
     QVector<DoubleStateButton *> m_vGenerateSTLButtons;
 
 public slots:
+    //! Current tab changed
+    void onCurrentTabChanged(int iTabIndex);
+
     //! Create key
     void onCreateKeyClicked();
 

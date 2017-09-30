@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onCurrentTabChanged);
 
     // Create hyperlink
     ui->hyperlinkLabel->setText("http://www.ouverturefine.com");
@@ -235,6 +236,13 @@ void MainWindow::setQuestion(const QString &sQuestion)
 void MainWindow::setAnswer(const QString &sAnswer)
 {
     ui->licenseWidget->setAnswer(sAnswer);
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void MainWindow::onCurrentTabChanged(int iTabIndex)
+{
+    ui->hyperlinkLabel->setVisible(iTabIndex == 0);
 }
 
 //-------------------------------------------------------------------------------------------------
