@@ -28,6 +28,10 @@ public:
     //! Destructor
     ~HomeTab();
 
+protected:
+    //! Paint event
+    virtual void paintEvent(QPaintEvent *event);
+
 private:
     //! UI
     Ui::HomeTab *ui;

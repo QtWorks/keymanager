@@ -59,25 +59,6 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="0">
-           <widget class="QPushButton" name="visualizeSTLButton">
-            <property name="minimumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>256</width>
-              <height>64</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>VISUALIZE STL</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0">
            <widget class="QPushButton" name="createKeyButton">
             <property name="minimumSize">
@@ -113,6 +94,25 @@
             </property>
             <property name="text">
              <string>USE EXISTING KEY</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="visualizeSTLButton">
+            <property name="minimumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>VISUALIZE STL</string>
             </property>
            </widget>
           </item>
@@ -456,6 +456,21 @@
     </item>
     <item row="5" column="0">
      <widget class="LicenseWidget" name="licenseWidget" native="true"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="hyperlinkLabel">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: orange</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

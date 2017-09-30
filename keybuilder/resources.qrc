@@ -27,5 +27,6 @@
         <file>icons/ico-key.ico</file>
         <file>icons/ico-key.png</file>
         <file>ini/publicsettings.ini</file>
+        <file>images/marque-3000-px.jpg</file>
     </qresource>
 </RCC>

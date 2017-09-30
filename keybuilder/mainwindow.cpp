@@ -28,6 +28,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Setup UI
     ui->setupUi(this);
+
+    // Create hyperlink
+    ui->hyperlinkLabel->setText("http://www.ouverturefine.com");
+    ui->hyperlinkLabel->setText("<a href=\"http://www.ouverturefine.com/\"><font color='orange'>http://www.ouverturefine.com</font></a>");
+    ui->hyperlinkLabel->setTextFormat(Qt::RichText);
+    ui->hyperlinkLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->hyperlinkLabel->setOpenExternalLinks(true);
+
+    // Setup generateSTL buttons
     ui->generateSTLButtonMenu1->setStateLabels(GENERATE_STL_TEXT, CANCEL_GENERATION_TEXT);
     ui->generateSTLButtonMenu2->setStateLabels(GENERATE_STL_TEXT, CANCEL_GENERATION_TEXT);
     ui->generateSTLButtonMenu3->setStateLabels(GENERATE_STL_TEXT, CANCEL_GENERATION_TEXT);
