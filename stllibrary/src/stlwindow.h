@@ -38,6 +38,7 @@ private slots:
     void on_load_recent(QAction* a);
 
 private:
+    QAction* const open_action;
     QAction* const saveas_action;
     QAction* const perspective_action;
     QAction* const orthogonal_action;

@@ -7,6 +7,7 @@
 
 STLWindow::STLWindow(QWidget *parent) :
     QMainWindow(parent),
+    open_action(new QAction("Open...", this)),
     saveas_action(new QAction("Save As...", this)),
     perspective_action(new QAction("Perspective", this)),
     orthogonal_action(new QAction("Orthographic", this)),
@@ -26,11 +27,15 @@ STLWindow::STLWindow(QWidget *parent) :
     QObject::connect(watcher, &QFileSystemWatcher::fileChanged,
                      this, &STLWindow::on_watched_change);
 
+    open_action->setShortcut(QKeySequence("CTRL+O"));
+    QObject::connect(open_action, &QAction::triggered,
+                     this, &STLWindow::on_open);
     saveas_action->setShortcut(QKeySequence("CTRL+S"));
     QObject::connect(saveas_action, &QAction::triggered,
                      this, &STLWindow::on_saveas);
 
     auto file_menu = menuBar()->addMenu("File");
+    file_menu->addAction(open_action);
     file_menu->addAction(saveas_action);
 
     auto view_menu = menuBar()->addMenu("View");

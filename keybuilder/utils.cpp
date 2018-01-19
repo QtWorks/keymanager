@@ -86,6 +86,7 @@ QDir Utils::appDir()
 QDir Utils::outputDir()
 {
     QDir tmpLocation = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+    tmpLocation.cdUp();
     tmpLocation.mkdir(OUTPUT_DIR);
     tmpLocation.cd(OUTPUT_DIR);
     qDebug() << tmpLocation;
