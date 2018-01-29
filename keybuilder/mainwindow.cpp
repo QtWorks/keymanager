@@ -196,6 +196,8 @@ void MainWindow::setLicenseMode(bool bLicenseMode)
     if (bLicenseMode)
     {
         QString sScriptFile = Utils::outputDir().absoluteFilePath(ENCODED_SCRIPT_NAME);
+        QString sMsg = QString("Looking for script file at: %1").arg(sScriptFile);
+        logInfo(sMsg);
         QFileInfo fi(sScriptFile);
         if (!fi.exists())
             onScriptMissingError();
@@ -308,7 +310,7 @@ void MainWindow::onGenerateSTL(const QString &sAction)
             }
             else
             {
-                QString sMsg("OPENSCAD NOT FOUND ON THIS SYSTEM");
+                QString sMsg("STLCompiler NOT FOUND ON THIS SYSTEM");
                 logError(sMsg);
                 ui->statusbar->showMessage(sMsg);
             }

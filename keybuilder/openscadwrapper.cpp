@@ -80,7 +80,7 @@ const QString &OpenSCADWrapper::nextOutputSTLFile() const
 
 void OpenSCADWrapper::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
 {
-    QString sMsg = QString("OPENSCAD PROCESS TERMINATED WITH CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
+    QString sMsg = QString("STLCompiler PROCESS TERMINATED WITH CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
     emit openSCADProcessComplete(sMsg);
 
     // Process completed, check if file exists
@@ -107,7 +107,7 @@ void OpenSCADWrapper::onOpenSCADreadyReadStandardOutput()
     if (pSender != nullptr)
     {
         QByteArray bBuffer = pSender->readAllStandardOutput();
-        QString sMsg = QString("OPENSCAD OUTPUT: %1").arg(QString(bBuffer));
+        QString sMsg = QString("STLCompiler OUTPUT: %1").arg(QString(bBuffer));
         emit openSCADStandardOutputReady(sMsg);
     }
 }
@@ -120,7 +120,7 @@ void OpenSCADWrapper::onOpenSCADreadyReadStandardError()
     if (pSender != nullptr)
     {
         QByteArray bBuffer = pSender->readAllStandardError();
-        QString sMsg = QString("OPENSCAD ERROR: %1").arg(QString(bBuffer));
+        QString sMsg = QString("STLCompiler ERROR: %1").arg(QString(bBuffer));
         emit openSCADStandardErrorReady(sMsg);
     }
 }
