@@ -2,6 +2,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QDateTime>
+#include <QTimer>
 #include <QDebug>
 
 // Application
@@ -80,7 +81,16 @@ const QString &OpenSCADWrapper::nextOutputSTLFile() const
 
 void OpenSCADWrapper::onOpenSCADProcessComplete(int iExitCode, QProcess::ExitStatus exitStatus)
 {
-    QString sMsg = QString("STLCompiler PROCESS TERMINATED WITH CODE: %1 AND EXIT STATUS: %2").arg(iExitCode).arg(exitStatus);
+    m_iOpenSCADExitCode = iExitCode;
+    m_eExitStatus = exitStatus;
+    QTimer::singleShot(3000, this, SLOT(onWriteTimerDone()));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+void OpenSCADWrapper::onWriteTimerDone()
+{
+    QString sMsg = QString("STLCompiler PROCESS TERMINATED WITH CODE: %1 AND EXIT STATUS: %2").arg(m_iOpenSCADExitCode).arg(m_eExitStatus);
     emit openSCADProcessComplete(sMsg);
 
     // Process completed, check if file exists

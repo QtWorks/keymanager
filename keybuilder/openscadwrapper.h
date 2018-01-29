@@ -39,6 +39,12 @@ private:
     //! Next output STL file
     QString m_sNextOutputSTLFile;
 
+    //! OpenSCAD exit code
+    int m_iOpenSCADExitCode = 0;
+
+    //! OpenSCAD exit status
+    int m_eExitStatus = QProcess::NormalExit;
+
 public slots:
     //-------------------------------------------------------------------------------------------------
     // Slots
@@ -52,6 +58,9 @@ public slots:
 
     //! OpenSCAD standard error ready
     void onOpenSCADreadyReadStandardError();
+
+    //! Write timer done
+    void onWriteTimerDone();
 
 signals:
     //-------------------------------------------------------------------------------------------------

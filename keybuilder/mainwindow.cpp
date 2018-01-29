@@ -444,7 +444,7 @@ void MainWindow::onOutputSCADReady(const QString &sOutputSCADFile)
     {
         ui->progressBar->setVisible(true);
         logInfo(BUILDING_STL_MSG);
-        statusBar()->showMessage(BUILDING_STL_MSG);
+        ui->statusbar->showMessage(BUILDING_STL_MSG);
         ui->plainTextEdit->load(sOutputSCADContents);
     }
 }
@@ -455,7 +455,7 @@ void MainWindow::onOpenSCADProcessComplete(const QString &sStatus)
 {
     ui->progressBar->setVisible(false);
     logInfo(STL_BUILD_SUCCESS_MSG);
-    statusBar()->showMessage(STL_BUILD_SUCCESS_MSG);
+    ui->statusbar->showMessage(STL_BUILD_SUCCESS_MSG);
     ui->openSCADOutputLog->append(sStatus);
 }
 
@@ -467,7 +467,7 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
     {
         ui->progressBar->setVisible(false);
         logInfo(STL_BUILD_FAILURE_MSG);
-        statusBar()->showMessage(STL_BUILD_FAILURE_MSG);
+        ui->statusbar->showMessage(STL_BUILD_FAILURE_MSG);
         ui->openSCADOutputLog->append(sStatus);
     }
 }
@@ -477,7 +477,7 @@ void MainWindow::onOpenSCADStandardErrorReady(const QString &sStatus)
 void MainWindow::onOpenSCADStandardOutputReady(const QString &sStatus)
 {
     ui->progressBar->setVisible(false);
-    statusBar()->showMessage("");
+    ui->statusbar->showMessage("");
     ui->openSCADOutputLog->append(sStatus);
 }
 
